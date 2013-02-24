@@ -45,7 +45,7 @@ You can activate premium features for a trial period inside the plugin.*
 
 * View Social Locker plugin <a href="http://demo.onepress-media.com/sociallocker-free/" target="_blank">demo</a>.  
 * Check out OnePress <a href="http://onepress-media.com/portfolio" target="_blank">portfolio</a>.  
-* Visit OnePress <a href="support.onepress-media.com/" target="_blank">help desk</a>.  
+* Visit OnePress <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.  
 * Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
 <a title="Follow OnePress on Twitter" href="http://twitter.com/OnePressMedia" target="_blank">Twitter</a>  
 
