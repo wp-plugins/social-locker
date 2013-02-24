@@ -39,8 +39,7 @@ free to use they.
 
 *The plugin is a free edition of the premium 
 <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" target="_blank" >social locker</a> plugin.
-The free edition doesn't send any requests to our server. But you can register your plugin instance to help us collect 
-statistics on the License Manager page inside the plugin.*
+You can activate premium features for a trial period inside the plugin.*
 
 = Resources =
 
