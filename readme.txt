@@ -45,16 +45,15 @@ You can activate premium features for a trial period inside the plugin.*
 
 * View Social Locker plugin <a href="http://demo.onepress-media.com/sociallocker-free/" target="_blank">demo</a>.  
 * Check out OnePress <a href="http://onepress-media.com/portfolio" target="_blank">portfolio</a>.  
-* Visit OnePress <a href="http://onepress-media.com/portfolio" target="_blank">help desk</a>.  
+* Visit OnePress <a href="support.onepress-media.com/" target="_blank">help desk</a>.  
 * Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
 <a title="Follow OnePress on Twitter" href="http://twitter.com/OnePressMedia" target="_blank">Twitter</a>  
 
 = Need Support, We Got You Covered =
 
 All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
-We want to make your life easier and make you happy about choosing our plugins.  
-
-We guarantee to respond to every inquiry within 1 business day.
+We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
+Please visit our <a href="support.onepress-media.com/" target="_blank">help desk</a>.
 
 == Installation ==
 
