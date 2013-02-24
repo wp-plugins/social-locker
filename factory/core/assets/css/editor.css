@@ -1,0 +1,11 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+p {
+    margin: 0px;
+}
+
+p + p {
+    margin-top: 5px;
+}
