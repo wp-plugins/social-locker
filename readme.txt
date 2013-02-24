@@ -15,7 +15,7 @@ Social Locker is a set of social buttons and a locker in one bottle.
 It allows you to lock a part of content on a web page until a user clicks one of the social buttons (Facebook Like, 
 Tweet Button, Google +1) and help you to get more likes/tweets/+1s, traffic and customers!
 
-** Do you still place social buttons on every page of your site? But users don’t click the ones as often as you would like? **
+<strong>Do you still place social buttons on every page of your site? But users don’t click the ones as often as you would like?</strong>
 
 You should **give people a reason** why they need to click your social buttons. Even if people like your content, 
 site or fanpage, they don’t click the buttons because they don’t worry about you, your benefits or your traffic. 
@@ -44,7 +44,7 @@ statistics on the License Manager page inside the plugin.*
 
 = Resources =
 
-* View Social Locker plugin <a href="http://www.nextgen-gallery.com" target="_blank">demo</a>.  
+* View Social Locker plugin <a href="http://demo.onepress-media.com/sociallocker-free/" target="_blank">demo</a>.  
 * Check out OnePress <a href="http://onepress-media.com/portfolio" target="_blank">portfolio</a>.  
 * Visit OnePress <a href="http://onepress-media.com/portfolio" target="_blank">help desk</a>.  
 * Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
