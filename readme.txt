@@ -53,7 +53,7 @@ You can activate premium features for a trial period inside the plugin.*
 
 All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
 We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
-Please visit our <a href="support.onepress-media.com/" target="_blank">help desk</a>.
+Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
 
 == Installation ==
 
