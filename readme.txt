@@ -68,11 +68,17 @@ The section is empty at the moment.
 == Screenshots ==
 
 1. How to use
-2. Available Options
-3. Common Settings
+2. Statistical tools
+3. Available Options
 4. Created Lockers
 
 == Changelog ==
+
+= 2.0.7 - 6 Mar 2013 =
+FIXED: The bug in the post editor.
+
+= 2.0.6 - 6 Mar 2013 =
+NEW: Statistical tools become available for free edition!
 
 = 2.0.2 - 24 Feb 2013 =
 Initial commit.  
