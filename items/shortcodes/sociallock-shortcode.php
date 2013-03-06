@@ -33,12 +33,12 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020006.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
         // styles
-        $styles->add('~/css/jquery.op.sociallocker.css');
+        $styles->add('~/css/jquery.op.sociallocker.020006.css');
     }
     
     public function facebookConnect() {
@@ -104,20 +104,18 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
         $content = preg_replace( '/^<br \/>/', '', $content );
         $content = preg_replace( '/<br \/>$/', '', $content );
         
-        // - 4. Build options' array
+        // Builds array of options to set into the jquery plugin
             
+            // FREE build options
             $params = array(
-
+                'demo' => get_option('sociallocker_debug', false ),
+                
                 'text' => array(
                     'header' => sociallocker_get_meta($id, 'header'), 
                     'message' => sociallocker_get_meta($id, 'message')           
                 ),
-                
-                'buttons' => array(
-                    'order' => explode( ',', sociallocker_get_meta($id, 'buttons_order') )
-                ),     
 
-                'style' => 'ui-social-locker-secrets',
+                'theme' => 'secrets',
 
                 'facebook' => array(
                     'url' => sociallocker_get_meta($id, 'common_url' ),
@@ -142,7 +140,8 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
 
         
 
-       
+        
+        // - Replaces shortcodes in the locker message and twitter text
         
         $postTitle = $post != null ? $post->post_title : '';
         $postUrl = $post != null ? get_permalink($post->ID) : '';
@@ -162,10 +161,9 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
 	
         $this->clearParams( $params );
 
-        // - 3. Markup and script generation 
+        // - Markup and script generation 
 
-        $rand = rand(100000, 999999);
-        $blockId = "lock-" . $rand;
+        $blockId = "lock-" . rand(100000, 999999);
         $resultSelector = '#' . $blockId;
             
             ?>
@@ -196,11 +194,6 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
         unset($call['params']['events']);
 
         $params = $call['params'];
-        
-        unset($params['facebook']['url']);
-        unset($params['twitter']['url']); 
-        unset($params['twitter']['counturl']);         
-        unset($params['google']['url']);
         unset($params['buttons']);
         ?>
               
@@ -214,24 +207,13 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
                 $(function(){
                     
                     var onpSL = <?php echo json_encode( $params ) ?>;
+                    <?php if ( isset($call['params']['buttons'])) { ?>
+                        
                     onpSL['buttons'] = {};
                     onpSL['buttons']['order'] = <?php echo json_encode( $call['params']['buttons']['order'] ) ?>;
-                    <?php if (!empty($call['params']['facebook']['url'])) { ?>
+                    <?php } ?>
                         
-                    onpSL['facebook']['url'] = "<?php echo $call['params']['facebook']['url'] ?>";
-                    <?php } if (!empty($call['params']['twitter']['url'])) { ?>
-                        
-                    onpSL['twitter']['url'] = "<?php echo $call['params']['twitter']['url'] ?>";
-                     <?php } if (!empty($call['params']['twitter']['counturl'])) { ?>
-                        
-                    onpSL['twitter']['counturl'] = "<?php echo $call['params']['twitter']['counturl'] ?>";
-                    <?php } if (!empty($call['params']['google']['url'])) { ?>
-                        
-                    onpSL['google']['url'] = "<?php echo $call['params']['google']['url'] ?>";
-                    <?php 
-                        } 
-                        if (!empty($call['ajax'])) {
-                    ?>
+                    <?php if (!empty($call['ajax'])) { ?>
                         
                     onpSL.content = {
                         url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',

@@ -20,31 +20,50 @@ function sociallocker_tracking() {
     switch($sender) {
         
         case 'timer':
-            $insertPart = '0,0,0,0,1,0';
-            $updatePart = 'TimerCount = TimerCount + 1';
+            $insertPart = '0,0,0,0,1,0,0,0,0,0';
+            $updatePart = 'timer_count = timer_count + 1';
             break;
         
         case 'cross':
-            $insertPart = '0,0,0,0,0,1';
-            $updatePart = 'CrossCount = CrossCount + 1';
+            $insertPart = '0,0,0,0,0,1,0,0,0,0';
+            $updatePart = 'cross_count = cross_count + 1';
             break;
         
         case 'button':
             
             switch($senderName) {
             
-                case 'facebook':
-                    $insertPart = '1,1,0,0,0,0';
-                    $updatePart = 'LikeCount = LikeCount + 1, TotalCount = TotalCount + 1';
+                case 'facebook-like':
+                    $insertPart = '1,1,0,0,0,0,0,0,0,0';
+                    $updatePart = 'facebook_like_count = facebook_like_count + 1, total_count = total_count + 1';
                     break;
-                case 'twitter':
-                    $insertPart = '1,0,1,0,0,0'; 
-                    $updatePart = 'TweetCount = TweetCount + 1, TotalCount = TotalCount + 1';
+                case 'twitter-tweet':
+                    $insertPart = '1,0,1,0,0,0,0,0,0,0'; 
+                    $updatePart = 'twitter_tweet_count = twitter_tweet_count + 1, total_count = total_count + 1';
                     break;
-                case 'google':
-                    $insertPart = '1,0,0,1,0,0'; 
-                    $updatePart = 'PlusCount = PlusCount + 1, TotalCount = TotalCount + 1';
+                case 'google-plus':
+                    $insertPart = '1,0,0,1,0,0,0,0,0,0'; 
+                    $updatePart = 'google_plus_count = google_plus_count + 1, total_count = total_count + 1';
                     break;
+                
+                case 'facebook-share':
+                    $insertPart = '1,0,0,0,0,0,1,0,0,0';
+                    $updatePart = 'facebook_share_count = facebook_share_count + 1, total_count = total_count + 1';
+                    break;
+                case 'twitter-follow':
+                    $insertPart = '1,0,0,0,0,0,0,1,0,0'; 
+                    $updatePart = 'twitter_follow_count = twitter_follow_count + 1, total_count = total_count + 1';
+                    break;
+                case 'google-share':
+                    $insertPart = '1,0,0,0,0,0,0,0,1,0'; 
+                    $updatePart = 'google_share_count = google_share_count + 1, total_count = total_count + 1';
+                    break;
+                
+                case 'linkedin-share':
+                    $insertPart = '1,0,0,0,0,0,0,0,0,1'; 
+                    $updatePart = 'linkedin_share_count = linkedin_share_count + 1, total_count = total_count + 1';
+                    break;
+                
             }
             break;
     }
@@ -60,7 +79,7 @@ function sociallocker_tracking() {
     $date = date("Y-m-d", $time);
     
     $sql = "INSERT INTO {$wpdb->prefix}so_tracking 
-            (AggregateDate, PostID, TotalCount, LikeCount, TweetCount, PlusCount, TimerCount, CrossCount) 
+            (AggregateDate, PostID, total_count, facebook_like_count, twitter_tweet_count, google_plus_count, timer_count, cross_count, facebook_share_count, twitter_follow_count, google_share_count, linkedin_share_count) 
             VALUES ('$date',$postId, $insertPart)
             ON DUPLICATE KEY UPDATE $updatePart";
     

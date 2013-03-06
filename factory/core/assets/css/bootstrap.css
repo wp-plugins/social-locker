@@ -3900,8 +3900,7 @@ input[type="submit"].btn.btn-mini {
 .pi-vertical-tabs .controls input[type=text],
 .pi-vertical-tabs .controls textarea
 {
-    width: 100%;
-    max-width: 600px;
+    width: 90%;
     
 }
 

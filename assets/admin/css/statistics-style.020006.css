@@ -2,7 +2,7 @@
     padding-right: 15px;
 }
 #chart-settings-bar {
-    height: 80px;
+    height: 50px;
     padding-top: 10px;
     border-top: 1px solid #ddd;
     margin-top: 10px;
@@ -49,6 +49,61 @@
     position: relative;
 }
 
+/**
+* Charts selector
+*/
+
+#chart-selector {
+
+    padding-bottom: 15px;
+}
+#chart-selector .chart-item {
+    display: inline-block;
+    clear: both;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 5px;
+    color: #e0e0e0;
+}
+#chart-selector .chart-item.active {
+    color: #111;
+}
+#chart-selector .chart-item:hover
+{ 
+    background-color: #f9f9f9;
+}
+#chart-selector .chart-item + .chart-item {
+    margin-left: 15px;
+}
+#chart-selector .chart-color {
+    width: 15px;
+    height: 15px;
+    float: left;
+    background-color: #e5e5e5;
+    margin-right: 5px;
+}
+#chart-selector .active.facebook-like .chart-color {
+    background-color: #7089be;
+}
+#chart-selector .active.facebook-share .chart-color {
+    background-color: #566a93;
+}
+#chart-selector .active.twitter-tweet .chart-color {
+    background-color: #3ab9e9;
+}
+#chart-selector .active.twitter-follow .chart-color {
+    background-color: #1c95c3;
+}
+#chart-selector .active.google-plus .chart-color {
+    background-color: #e26f61;
+}
+#chart-selector .active.google-share .chart-color {
+    background-color: #ba5145;
+}
+#chart-selector .active.linkedin-share .chart-color {
+    background-color: #006080;
+}
+
 #posts-table {
     width: 100%;
     padding: 0px;
@@ -66,7 +121,6 @@
 #posts-table td {
     padding: 9px 6px 9px 6px;
     text-align: right;
-    width: 8%;
     font-family: Arial, Helvetica, Geneva, sans-serif;
     font-size: 13px;
 }
@@ -75,11 +129,13 @@
     border-bottom: 1px solid #E5E5E5;
     border-top: 1px solid #E5E5E5;
 }
-#posts-table .col-number {
+#posts-table .col-index {
     width: 1%;
 }
+#posts-table .col-number {
+    width: 100px;
+}
 #posts-table .col-title {
-    width: 30%;
     text-align: left;
 }
 #posts-table .col-title a {
@@ -95,3 +151,4 @@
 #posts-table tbody tr:nth-child(odd) td.col-total {
     background-color: #F3F3F3;
 }
+

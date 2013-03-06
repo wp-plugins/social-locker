@@ -23,14 +23,57 @@
 .pi-tab-with-icon a {
     background-position-y: 6px;
 }
-.pi-vertical-tabs .nav-tabs .pi-tab-title-twitter.pi-tab-gray a {
-    background-image: url("../img/twitter-tab-gray.png");
+.pi-tab-contens-wrap {
+    min-height: 250px;
 }
-.pi-vertical-tabs .nav-tabs .pi-tab-title-facebook.pi-tab-gray a {
-    background-image: url("../img/facebook-tab-gray.png");
+.pi-vertical-tabs .nav-tabs li a {
+    background-image: url("../img/social-buttons-for-admin-7.png");
+    background-position: -38px 0;
+    height: 20px;
 }
-.pi-vertical-tabs .nav-tabs .pi-tab-title-google.pi-tab-gray a {
-    background-image: url("../img/google-tab-gray.png");
+
+.pi-vertical-tabs .nav-tabs .pi-tab-title-facebook-like a {
+    background-position: -38px 0px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-title-facebook-share a {
+    background-position: -38px -40px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-title-twitter-tweet a {
+    background-position: -38px -80px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-title-twitter-follow a {
+    background-position: -38px -120px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-title-google-plus a {
+    background-position: -38px -160px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-title-google-share a {
+    background-position: -38px -200px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-title-linkedin-share a {
+    background-position: -38px -240px;
+}
+
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-facebook-like a {
+    background-position: -195px 0px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-facebook-share a {
+    background-position: -195px -40px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-twitter-tweet a {
+    background-position: -195px -80px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-twitter-follow a {
+    background-position: -195px -120px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-google-plus a {
+    background-position: -195px -160px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-google-share a {
+    background-position: -195px -200px;
+}
+.pi-vertical-tabs .nav-tabs .pi-tab-gray.pi-tab-title-linkedin-share a {
+    background-position: -195px -240px;
 }
 
 .pi-vertical-tabs .nav-tabs li a {
@@ -41,6 +84,16 @@
 }
 .pi-vertical-tabs .pi-tab-hint {
     padding-left: 4px;
+}
+
+#sociallocker_facebook_like_title, 
+#sociallocker_facebook_share_title,
+#sociallocker_twitter_tweet_title,
+#sociallocker_twitter_follow_title,
+#sociallocker_google_plus_title,
+#sociallocker_google_share_title,
+#sociallocker_linkedin_share_title{
+    width: 150px;
 }
 
 /**
@@ -63,7 +116,7 @@
     margin: 0px;
 }
 
-#sociallocker_twitter_content {
+#sociallocker_twitter_tweet_text {
     background: #fff url("../img/tweet-content-bg.png") no-repeat 50% 50%;
 }
 
@@ -133,7 +186,7 @@
     margin: 0px;
 }
 
-/* if ( factory_build('free' ) { */
+/* if ( factory_build('free') { */
 
 /**
 * More Features?
@@ -258,8 +311,8 @@
     background-image: url("../img/advanced-stats.png");
 }
 .advanced-function-demo .advanced-social-options {
-    width: 776px;
-    height: 593px;
+    width: 706px;
+    height: 438px;
     background-image: url("../img/advanced-social-options.png");
 }
 .advanced-function-demo .qtip-content {

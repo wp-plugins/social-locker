@@ -20,3 +20,4 @@ define('ONEPRESS_FR100_URL', plugins_url(null,  __FILE__ ));
 include(ONEPRESS_FR100_DIR. '/helper-functions.php');
 include(ONEPRESS_FR100_DIR. '/activation.class.php');
 include(ONEPRESS_FR100_DIR. '/pages/license-manager.class.php');
+

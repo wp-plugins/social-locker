@@ -19,9 +19,8 @@ class SociallockerMoreFeatures extends FactoryFR100Metabox
         </div>
         <div class="sl-seporator"></div>
         <ul>
-            <li><span data-target="advanced-social-options">Flexible social options</span></li>
+            <li><span data-target="advanced-social-options">Extra social buttons (+4)</span></li>
             <li><span data-target="advanced-themes">Extra themes (+2)</span></li>
-            <li><span data-target="advanced-stats">Statistical tools</span></li> 
             <li><span data-target="advanced-options">Advanced options (+7)</span></li>
         </ul>
         <div class="sl-seporator"></div>

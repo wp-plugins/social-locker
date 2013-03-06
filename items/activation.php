@@ -10,7 +10,6 @@ class SocialLockerActivate extends OnePressFR100Activation {
 	add_option('sociallocker_facebook_appid', '117100935120196');
 	add_option('sociallocker_lang', 'en_US');
         add_option('sociallocker_short_lang', 'en');
-        add_option('sociallocker_tracking', 'true');
 
         // pages and posts
         
@@ -24,22 +23,40 @@ class SocialLockerActivate extends OnePressFR100Activation {
             array(
                 'sociallocker_text_header' => 'This content is locked!',       
                 'sociallocker_text_message' => 'Please support us, use one of the buttons below to unlock the content.',
-                'sociallocker_style' => 'ui-social-locker-secrets',
-                'sociallocker_close' => false,
+                'sociallocker_style' => 'secrets',
                 'sociallocker_mobile' => true,          
-                'sociallocker_timer' => 0,
-                'sociallocker_ajax' => false,
-                'sociallocker_highlight' => true,
-                'sociallocker_rss' => false,
-                
-                'sociallocker_buttons_order' => 'twitter,facebook,google',
-                'sociallocker_facebook_available' => true,  
-                'sociallocker_twitter_available' => true, 
-                'sociallocker_google_available' => true,              
-                
+                'sociallocker_highlight' => true,                   
                 'sociallocker_is_system' => true,
                 'sociallocker_is_default' => 'block'
             )
         );
+        
+        add_option('sociallocker_tracking', 'true');
+
+        // tables
+        global $wpdb;
+
+        $sql = "
+            CREATE TABLE {$wpdb->prefix}so_tracking (
+              ID BIGINT(20) NOT NULL AUTO_INCREMENT,
+              AggregateDate DATE NOT NULL,
+              PostID BIGINT(20) NOT NULL,
+              total_count INT(11) NOT NULL DEFAULT 0,
+              facebook_like_count INT(11) NOT NULL DEFAULT 0,
+              twitter_tweet_count INT(11) NOT NULL DEFAULT 0,
+              google_plus_count INT(11) NOT NULL DEFAULT 0,
+              timer_count INT(11) NOT NULL DEFAULT 0,
+              cross_count INT(11) NOT NULL DEFAULT 0,  
+              facebook_share_count INT(11) NOT NULL DEFAULT 0,
+              twitter_follow_count INT(11) NOT NULL DEFAULT 0,
+              google_share_count INT(11) NOT NULL DEFAULT 0,
+              linkedin_share_count INT(11) NOT NULL DEFAULT 0,    
+              PRIMARY KEY  (ID),
+              KEY IX_wp_so_tracking_PostID (PostID),
+              UNIQUE KEY UK_wp_so_tracking (AggregateDate,PostID)
+            );";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
     } 
 }

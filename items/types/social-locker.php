@@ -96,8 +96,8 @@ if ( in_array( $socialLocker->license->type, array( 'paid','trial' ) ) ) {
          * Scripts & styles
          */
         
-        $type->adminScripts->add('~/admin/js/locker-edit.js')->request('jquery-ui-sortable');       
-        $type->adminStyles->add('~/admin/css/locker-edit.css');
+        $type->adminScripts->add('~/admin/js/locker-edit.020006.js')->request('jquery-ui-sortable');       
+        $type->adminStyles->add('~/admin/css/locker-edit.020006.css');
             $type->adminScripts->add('~/admin/js/jquery.qtip.min.js');       
             $type->adminStyles->add('~/admin/css/jquery.qtip.min.css');
         

@@ -23,8 +23,8 @@ class SocialLockerViewTable extends FactoryFR100ViewTable
          * Scripts & styles
          */
                 
-        $scripts->add('~/admin/js/locker-table.js');       
-        $styles->add('~/admin/css/locker-table.css');
+        $scripts->add('~/admin/js/locker-table.020006.js');       
+        $styles->add('~/admin/css/locker-table.020006.css');
     }
     
     /**

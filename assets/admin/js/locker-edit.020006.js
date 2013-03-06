@@ -86,7 +86,7 @@ var lockerEditor = {};
         },
         
         updateButtonOrder: function(value) {
-            
+  
             if (!value) {
                 
                 var socialTabWrap = $(".pi-vertical-tabs .nav-tabs");
@@ -96,7 +96,7 @@ var lockerEditor = {};
                     resultArray.push( $(this).data('tab-id') );
                 });
                 var result = resultArray.join(',');
-                
+
                 $("#sociallocker_buttons_order").val(result).change();
             }
         },
@@ -175,7 +175,7 @@ var lockerEditor = {};
             for( propName in values ) {
 
                 if (typeof(values[propName]) === 'object') {
-                    this.createFormFields(propName, form, values[propName]);
+                    this.createFormFields((base ? (base + "_" + propName) : propName), form, values[propName]);
                 } else { 
                     if (values[propName] == null) continue;
                     form.append(
@@ -205,7 +205,7 @@ var lockerEditor = {};
                     order: $("#sociallocker_buttons_order").val()
                 },
                 
-                style: 'ui-social-locker-secrets',
+                theme: 'secrets',
                 effects: { 
                     highlight: $("#sociallocker_highlight").is(':checked')
                 },
@@ -216,24 +216,52 @@ var lockerEditor = {};
                     mobile: $("#sociallocker_mobile").is(':checked')
                 },
                 
-                twitter: {
-                    url: $("#sociallocker_twitter_url").val(),
-                    lang: $("#lock-preview-wrap").data('short-lang'),
-                    text: $("#sociallocker_twitter_text").val()
-                },
                 facebook: {
-                    url: $("#sociallocker_facebook_url").val(),
+                    appid: $("#lock-preview-wrap").data('facebook-appid'),
                     lang: $("#lock-preview-wrap").data('lang'),
-                    appid: $("#lock-preview-wrap").data('facebook-appid')
-                },           
+                    like: {
+                        url: $("#sociallocker_facebook_like_url").val(),
+                        title: $("#sociallocker_facebook_like_title").val()
+                    },
+                    share: {
+                        url: $("#sociallocker_facebook_share_url").val(),
+                        title: $("#sociallocker_facebook_share_title").val()
+                    }
+                }, 
+                twitter: {
+                    lang: $("#lock-preview-wrap").data('short-lang'),
+                    tweet: { 
+                        url: $("#sociallocker_twitter_tweet_url").val(),
+                        text: $("#sociallocker_twitter_tweet_text").val(),
+                        title: $("#sociallocker_twitter_tweet_title").val(),
+                        counturl: $("#sociallocker_twitter_tweet_counturl").val()
+                    },
+                    follow: {
+                        url: $("#sociallocker_twitter_follow_url").val(),
+                        title: $("#sociallocker_twitter_follow_title").val() 
+                    }
+                },          
                 google: {
-                    url: $("#sociallocker_google_url").val(),
-                    lang: $("#lock-preview-wrap").data('short-lang')
+                    lang: $("#lock-preview-wrap").data('short-lang'),
+                    plus: {
+                        url: $("#sociallocker_google_plus_url").val(),
+                        title: $("#sociallocker_google_plus_title").val()
+                    },   
+                    share: {
+                        url: $("#sociallocker_google_share_url").val(),
+                        title: $("#sociallocker_google_share_title").val()
+                    }
+                },          
+                linkedin: {  
+                    share: {
+                        url: $("#sociallocker_linkedin_share_url").val(),
+                        title: $("#sociallocker_linkedin_share_title").val()
+                    }
                 }
             };
 
             if ( window['sociallocker-next-build'] != 'free' ) {
-                preview_options['style'] = $("#sociallocker_style").val();
+                preview_options['theme'] = $("#sociallocker_style").val();
             }
             
             return preview_options;     

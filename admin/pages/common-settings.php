@@ -121,11 +121,6 @@ $sociallockerLangs = array(
 // function that is used to save a form
 function sociallocker_save_settings()
 {
-    ?>
-    <div id="message" class="updated" style="margin: 0px; margin-top: 10px; font-weight: bold;">
-        <p>Facebook Settings updated!</p></div>
-    <?php
-        
     update_option('sociallocker_facebook_appid', $_POST['sociallocker_facebook_appid']);
     update_option('sociallocker_lang', $_POST['sociallocker_lang']);
      
@@ -139,6 +134,12 @@ function sociallocker_save_settings()
     } else {
         delete_option('sociallocker_tracking');    
     }
+    
+    if ( isset($_POST['sociallocker_debug']) ) {
+        update_option('sociallocker_debug', true);  
+    } else {
+        delete_option('sociallocker_debug');    
+    }
 }
 
 // function that reders the form
@@ -146,12 +147,20 @@ function sociallocker_settings() {
     global $sociallockerLangs;
     if ( isset( $_POST['save-action'] ) ) sociallocker_save_settings();
 ?>
+<div class="wrap">
+    <h2>Settings</h2>
+    <p style="margin-top: 0px;">Common options for all social lockers.</p>
+    
+    <?php if ( isset( $_POST['save-action'] ) ) { ?>
+    <div id="message" class="updated" style="margin: 0px; margin-top: 10px; margin-bottom: 10px; font-weight: bold;">
+        <p>The setting have been updated successfully!</p></div>
+    <?php } ?>
+
 <div class="wpbootstrap">
 <form method="post" class="form-horizontal">
 
 <div id="facebook" class="panel like-panel">
-    <h2 style="margin-bottom: 10px;">Settings</h2>
-    <p style="margin-top: 0px;">Common options for all social lockers.</p>
+
     
  <fieldset style="padding-top: 10px;">
      <div class="control-group">
@@ -160,8 +169,7 @@ function sociallocker_settings() {
             <input type="text" class="short"  name="sociallocker_facebook_appid" id="sociallocker_facebook_appid" value="<?php echo get_option('sociallocker_facebook_appid') ?>" style="width: 180px;" />
             <span class="help-block">
                 A facebook app id. By default, a developer app id is used. It's recommended to use your own app id.<br />
-                Please visit <a href="https://developers.facebook.com/apps">https://developers.facebook.com/apps</a> to register your own app.
-                <?php ?>
+                Please read <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> to learn how to register one.
             </span>
         </div>
     </div>
@@ -181,6 +189,25 @@ function sociallocker_settings() {
             </span>
         </div>
     </div> 
+    <div class="control-group">
+        <label class="control-label" for="sociallocker_debug">Debug</label>
+        <?php 
+        $checked = get_option('sociallocker_debug') ? 'checked="checked"' : '';
+        ?>
+        <div class="controls">
+            
+            <div class="btn-group pi-checkbox" data-toggle="buttons-radio">
+                <button type="button" class="btn true <?php if ($checked) echo 'active' ?>" data-value="true">On</button>
+                <button type="button" class="btn false <?php if (!$checked) echo 'active' ?>" data-value="false">Off</button>                 
+            </div>
+
+            <input style="display: none;" type='checkbox' value='1' <?php echo $checked ?> name='sociallocker_debug' id='sociallocker_debug' /> 
+            
+            <span class="help-block">
+                if on, lockers will appear always even if you unlocked it already.
+            </span>
+        </div>
+    </div>
     <?php ?>
 </fieldset>
         
@@ -196,6 +223,6 @@ function sociallocker_settings() {
 
 </form>
 </div>
-
+</div>
 <?php
 }

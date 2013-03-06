@@ -56,6 +56,7 @@ include(FACTORY_FR100_DIR . '/layouts/pages/admin-page-manager.class.php');
 
 // Plugin activation
 include(FACTORY_FR100_DIR . '/layouts/installation/activation.class.php');
+include(FACTORY_FR100_DIR . '/layouts/installation/update.class.php');
 
 // Plugin loader and managment of plugin items
 include(FACTORY_FR100_DIR . '/layouts/plugin/functions.php');

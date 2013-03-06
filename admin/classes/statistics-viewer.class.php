@@ -40,12 +40,16 @@ class StatisticViewer {
         $sql = "
             SELECT 
                 t.AggregateDate AS aggregateDate,
-                SUM(t.TotalCount) AS totalCount,
-                SUM(t.LikeCount) AS likeCount,
-                SUM(t.TweetCount) AS tweetCount,
-                SUM(t.PlusCount) AS plusCount,
-                SUM(t.TimerCount) AS byTimerCount,
-                SUM(t.CrossCount) AS byCrossCount   
+                SUM(t.total_count) AS total_count,
+                SUM(t.facebook_like_count) AS facebook_like_count,
+                SUM(t.twitter_tweet_count) AS twitter_tweet_count,
+                SUM(t.google_plus_count) AS google_plus_count,
+                SUM(t.facebook_share_count) AS facebook_share_count,
+                SUM(t.twitter_follow_count) AS twitter_follow_count,
+                SUM(t.google_share_count) AS google_share_count,   
+                SUM(t.linkedin_share_count) AS linkedin_share_count, 
+                SUM(t.timer_count) AS timer_count,
+                SUM(t.cross_count) AS cross_count   
             FROM 
                 {$wpdb->prefix}so_tracking AS t
             WHERE 
@@ -66,12 +70,16 @@ class StatisticViewer {
                 'year' => $phpdate['year'],
                 'timestamp' => $currentDate,  
 
-                'totalCount' => 0,
-                'likeCount' => 0,    
-                'tweetCount' => 0,
-                'plusCount' => 0,   
-                'byTimerCount' => 0,
-                'byCrossCount' => 0                  
+                'total_count' => 0,
+                'facebook_like_count' => 0,    
+                'twitter_tweet_count' => 0,
+                'google_plus_count' => 0,   
+                'facebook_share_count' => 0,
+                'twitter_follow_count' => 0,
+                'google_share_count' => 0,   
+                'linkedin_share_count' => 0,
+                'timer_count' => 0,   
+                'cross_count' => 0 
             );
             $currentDate = strtotime("+1 days", $currentDate);
         }
@@ -91,7 +99,7 @@ class StatisticViewer {
         return $resultData;
     }
     
-    public function getViewTable($count = 50, $order = 'TotalCount') {
+    public function getViewTable($count = 50, $order = 'total_count') {
         global $wpdb;
         
         $extraWhere = '';
@@ -105,12 +113,16 @@ class StatisticViewer {
             SELECT 
                 t.PostID AS ID,
                 p.post_title AS title,
-                SUM(t.TotalCount) AS totalCount,
-                SUM(t.LikeCount) AS likeCount,
-                SUM(t.TweetCount) AS tweetCount,
-                SUM(t.PlusCount) AS plusCount,
-                SUM(t.TimerCount) AS byTimerCount,
-                SUM(t.CrossCount) AS byCrossCount             
+                SUM(t.total_count) AS total_count,
+                SUM(t.facebook_like_count) AS facebook_like_count,
+                SUM(t.twitter_tweet_count) AS twitter_tweet_count,
+                SUM(t.google_plus_count) AS google_plus_count,
+                SUM(t.facebook_share_count) AS facebook_share_count,
+                SUM(t.twitter_follow_count) AS twitter_follow_count,
+                SUM(t.google_share_count) AS google_share_count,   
+                SUM(t.linkedin_share_count) AS linkedin_share_count, 
+                SUM(t.timer_count) AS timer_count,
+                SUM(t.cross_count) AS cross_count           
             FROM 
                 {$wpdb->prefix}so_tracking AS t
             INNER JOIN

@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100FR100 {
+class FactoryFormFR100 {
     
     public static $controls = array();
 
@@ -135,7 +135,7 @@ class FactoryFormFR100FR100 {
         echo '<div class="pi-metabox wpbootstrap">';
         echo '<div class="form-horizontal">';
         
-        $root = new FactoryFormFR100FR100Item(array(), null);
+        $root = new FactoryFormFR100Item(array(), null);
         $currentLevel = $root;
         
         $currentTab = null;
@@ -153,7 +153,7 @@ class FactoryFormFR100FR100 {
                    case 'tab':
 
                        $levelToUse = $currentTab == null ? $root : $currentTab->parent;
-                       $tab = new FactoryFormFR100FR100Tab( $item, $levelToUse );
+                       $tab = new FactoryFormFR100Tab( $item, $levelToUse );
 
                        $currentLevel = $tab;
                        $currentTab = $tab;
@@ -163,7 +163,7 @@ class FactoryFormFR100FR100 {
                    // tab item
                    case 'tab-item':
 
-                       $tabItem = new FactoryFormFR100FR100TabItem( $item, $currentTab );
+                       $tabItem = new FactoryFormFR100TabItem( $item, $currentTab );
                        $currentLevel = $tabItem;
 
                    break;
@@ -173,7 +173,7 @@ class FactoryFormFR100FR100 {
 
                        if ($currentLevel->isGroup) $currentLevel = $currentLevel->parent;
 
-                       $group = new FactoryFormFR100FR100Group( $item, $currentLevel );
+                       $group = new FactoryFormFR100Group( $item, $currentLevel );
                        $currentLevel = $group;
 
                    break;  
@@ -207,7 +207,7 @@ class FactoryFormFR100FR100 {
     
     /**
      * Renders a given item.
-     * @param FactoryFormFR100FR100Item $item
+     * @param FactoryFormFR100Item $item
      */
     private function renderItem( $item ) {
         
@@ -233,7 +233,7 @@ class FactoryFormFR100FR100 {
     
     /**
      * Renders a tab item.
-     * @param FactoryFormFR100FR100Tab $item
+     * @param FactoryFormFR100Tab $item
      */
     private function renderTab( $item ) {
         
@@ -295,7 +295,7 @@ class FactoryFormFR100FR100 {
     
     /**
      * Renders a tab item
-     * @param FactoryFormFR100FR100TabItem $tabItem
+     * @param FactoryFormFR100TabItem $tabItem
      */
     private function renderTabItem( $tabItem ) {
         
@@ -306,7 +306,7 @@ class FactoryFormFR100FR100 {
     
     /**
      * Renders a group of items
-     * @param FactoryFormFR100FR100Group $groupItem
+     * @param FactoryFormFR100Group $groupItem
      */
     private function renderGroup( $groupItem ) {
         ?>
@@ -325,7 +325,7 @@ class FactoryFormFR100FR100 {
     
     /**
      * Render control item
-     * @param FactoryFormFR100FR100TabControl $controlItem
+     * @param FactoryFormFR100TabControl $controlItem
      */
     private function renderControl( $controlItem ) {
         $controlItem->render();

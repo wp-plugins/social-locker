@@ -1,4 +1,6 @@
 <?php
+#build: free, premium
+
 /**
  * License page is a place where a user can check updated and manage the license.
  */
@@ -32,7 +34,7 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
      */
     public function indexAction( $sender = 'index', $error = null ) {
         $licenseManager = $license = $this->plugin->license;
-        $licenseKey = isset( $_POST['licensekey'] ) ? $_POST['licensekey'] : null;
+        $licenseKey = isset( $_POST['licensekey'] ) ? trim( $_POST['licensekey'] ) : null;
         
         if ( isset( $_POST['licensekey'] ) ) {
             $licenseKey = $_POST['licensekey'];
@@ -79,7 +81,7 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
                         </div>
                         <?php } elseif ($sender == 'trial') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to get trial license key.</h4>
+                            <h4 class="alert-heading">Unable to get a trial license key.</h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
@@ -132,7 +134,6 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
  ?>
                         <?php } ?>
                 
-
                         <?php if ($sender == 'delete-key') { ?>
                         <div class="alert alert-normal alert-warning-icon">
                             <strong>The key has been deleted successfully.</strong>
@@ -141,13 +142,13 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
                         <?php } ?>          
                 
                         <?php if ($sender == 'check-updates') { ?>
-                        <div class="alert alert-normal alert-warning-icon">
-                            <h4 class="alert-heading">The updates have been checked successfully.</h4>
+                        <div class="alert alert-normal">
+                            <strong>The updates have been checked successfully.</strong>
                             <p>
                             <?php if ( $licenseManager->isActualVersion() ) { ?>
                                 You use the actual version of the plugin.
                             <?php } else { ?>
-                                The <?php echo $licenseManager->versionCheck['Build'] ?>-<?php echo $licenseManager->versionCheck['Version'] ?> version is available to update.
+                                The <?php echo $licenseManager->versionCheck['Build'] ?>-<?php echo $licenseManager->versionCheck['Version'] ?> version is available to download.
                                 <a href="plugins.php">Click here</a> to get the update.
                             <?php } ?>
                             </p>
@@ -231,7 +232,7 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
                                 </td>  
                                 <td class="license-param license-param-days">
                                     <span class="license-value"><?php echo $licenseManager->data['Build'] ?></span>                                   
-                                    <span class="license-value-name">build</span>
+                                    <span class="license-value-name">assembly</span>
                                 </td>
                                 <td class="license-param license-param-days">
                                     <?php if ( $licenseManager->isExpired() ) {?>
@@ -471,8 +472,8 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
         $saved = false;
         
         if ( isset( $_POST['site_secret'] ) ) {
-            update_option('fy_license_site_secret', $_POST['site_secret']);
-            $licenseManager->siteSecret = $_POST['site_secret'];
+            update_option('fy_license_site_secret', trim( $_POST['site_secret'] ));
+            $licenseManager->siteSecret = trim( $_POST['site_secret'] );
             $saved = true;
         }
         

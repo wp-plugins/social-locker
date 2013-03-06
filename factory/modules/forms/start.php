@@ -47,13 +47,13 @@ include(FACTORY_FORM_FR100_DIR. '/controls/service-controls/form-tab-item.class.
 include(FACTORY_FORM_FR100_DIR. '/controls/service-controls/form-tab.class.php');
 
 // register form controls
-FactoryFormFR100FR100::register('textbox', 'FactoryFormFR100FR100TextboxFormControl');
-FactoryFormFR100FR100::register('url', 'FactoryFormFR100FR100UrlFormControl');
-FactoryFormFR100FR100::register('textarea', 'FactoryFormFR100FR100TextareaFormControl');
-FactoryFormFR100FR100::register('list', 'factoryFormFR100ListFormControl');
-FactoryFormFR100FR100::register('integer', 'FactoryFormFR100FR100IntegerFormControl');
-FactoryFormFR100FR100::register('hidden', 'FactoryFormFR100FR100HiddenFormControl');
-FactoryFormFR100FR100::register('editor', 'FactoryFormFR100FR100EditorFormControl');
+FactoryFormFR100::register('textbox', 'FactoryFormFR100TextboxFormControl');
+FactoryFormFR100::register('url', 'FactoryFormFR100UrlFormControl');
+FactoryFormFR100::register('textarea', 'FactoryFormFR100TextareaFormControl');
+FactoryFormFR100::register('list', 'factoryFormFR100ListFormControl');
+FactoryFormFR100::register('integer', 'FactoryFormFR100IntegerFormControl');
+FactoryFormFR100::register('hidden', 'FactoryFormFR100HiddenFormControl');
+FactoryFormFR100::register('editor', 'FactoryFormFR100EditorFormControl');
 
-FactoryFormFR100FR100::register('mv-radio', 'FactoryFormFR100FR100TextareaFormControl');
-FactoryFormFR100FR100::register('mv-checkbox', 'FactoryFormFR100FR100CheckboxFormControl');
+FactoryFormFR100::register('mv-radio', 'FactoryFormFR100TextareaFormControl');
+FactoryFormFR100::register('mv-checkbox', 'FactoryFormFR100CheckboxFormControl');

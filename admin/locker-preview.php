@@ -1,6 +1,6 @@
 <?php
     function printJsVars( $vars ) {
-        
+
         foreach($vars as $var) {
             
             $indep = substr($var, 0, 1) == '_';
@@ -86,8 +86,8 @@
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.core.min.js"></script>     
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect.min.js"></script>
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js"></script>
-         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.js"></script>
-         <link rel="stylesheet" type="text/css" href="./../assets/css/jquery.op.sociallocker.css">  
+         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.020006.js"></script>
+         <link rel="stylesheet" type="text/css" href="./../assets/css/jquery.op.sociallocker.020006.css">  
          
          <script>
              function alertSize() {
@@ -101,9 +101,21 @@
                  buttons: {},
                  effects: {},
                  locker: {},
-                 facebook: {},
-                 twitter: {},
-                 google: {},
+                 facebook: {
+                     like: {},
+                     share: {}
+                 },
+                 twitter: {
+                     tweet: {},
+                     follow: {}
+                 },
+                 google: {
+                     plus: {},
+                     share: {}
+                 },
+                 linkedin: {
+                     share: {}
+                 },     
                  events: {
                     ready: function() { alertSize(); },             
                     unlock: function() { alertSize(); },
@@ -126,23 +138,36 @@
                     
                     'buttons.order',
                     
-                    'style',
+                    'theme',
                     'effects.highlight',
 
                     'locker.timer',
                     'locker.close',
                     'locker.mobile',
                     
-                    'facebook.url',
                     'facebook.appid',
                     'facebook.lang',
+                    'facebook.like.url',
+                    'facebook.like.title',
+                    'facebook.share.url',
+                    'facebook.share.title',
                     
-                    'twitter.url',
                     'twitter.lang',
-                    'twitter.content', 
+                    'twitter.tweet.url',
+                    'twitter.tweet.title',     
+                    'twitter.tweet.text', 
+                    'twitter.tweet.counturl', 
+                    'twitter.follow.url',
+                    'twitter.follow.title',  
                     
-                    'google.url',
-                    'google.lang'
+                    'google.lang',
+                    'google.plus.url',
+                    'google.plus.title',       
+                    'google.share.url',
+                    'google.share.title', 
+                    
+                    'linkedin.share.url',
+                    'linkedin.share.title'
                 ));
             ?>
             
@@ -160,7 +185,7 @@
             options.demo = true;
                
             jQuery(function(){
-                jQuery("#content-to-lock").socialLock(options);            
+                jQuery("#content-to-lock").sociallocker(options);            
             })
          </script>
     </head>

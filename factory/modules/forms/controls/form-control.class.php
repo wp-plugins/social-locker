@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFormFR100FR100Control {
+abstract class FactoryFormFR100Control {
     
     /**
      * A type of a control.

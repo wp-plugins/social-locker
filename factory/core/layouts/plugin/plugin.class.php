@@ -106,7 +106,7 @@ class FactoryFR100Plugin {
 
         // register activation hooks
         if ( $this->isAdmin ) { 
-            register_activation_hook( $this->mainFile, array($this, 'activationHook') );
+            register_activation_hook( $this->mainFile, array($this, 'forceActivationHook') );
             register_deactivation_hook( $this->mainFile, array($this, 'deactivationHook') );
         }
     }
@@ -115,9 +115,18 @@ class FactoryFR100Plugin {
      * Setups actions related with the Factory Plugin.
      */
     private function setupActions() {
-        add_action('init', array($this, 'actionInit'));
+        add_action('init', array($this, 'actionInit'));      
         if ( $this->isAdmin ) {
+            add_action('plugins_loaded', array($this, 'actionPluginLoadded'));  
             add_action('admin_enqueue_scripts', array($this, 'actionAdminScripts'));
+        }
+    }
+    
+    public function actionPluginLoadded() {
+        
+        $dbVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
+        if ( $dbVersion != $this->build . '-' . $this->version ) {
+            $this->activationOrUpdateHook( false );
         }
     }
     
@@ -126,14 +135,6 @@ class FactoryFR100Plugin {
      * Don't excite it directly.
      */
     public function actionInit() {
-        
-        if ( $this->isAdmin ) { 
-            $dbVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
-            if ( $dbVersion != $this->build . '-' . $this->version ) {
-                $this->updateHook($dbVersion, $this->version);
-                update_option('fy_plugin_version_' . $this->pluginName, $this->build . '-' . $this->version);
-            }
-        }
         
         $this->shortcodes = new FactoryFR100ShortcodeManager( $this );   
         $this->metaboxes = new FactoryFR100MetaboxManager( $this );   
@@ -168,18 +169,68 @@ class FactoryFR100Plugin {
         $this->shortcodes->register( $shortcodes );
     }
     
+    public function forceActivationHook() {
+        $this->activationOrUpdateHook(true);
+    }
+    
+    public function activationOrUpdateHook( $forceActivation = false ) {
+        
+         // clears cache that is used to store path and classes of Factory Items.
+        $this->clearCache();
+        $this->findItems();
+
+        // set cron tasks
+        $this->license->runCron();
+        // clear last version check data
+        $this->license->clearVersionCheck();
+        
+        $dbBuildVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
+
+        // there are not any previous version of the plugin in the past
+        if ( !$dbBuildVersion ) {
+            $this->activationHook();
+            
+            update_option('fy_plugin_version_' . $this->pluginName, $this->build . '-' . $this->version);
+            return;
+        }
+
+        $parts = split('-', $dbBuildVersion);
+        $prevousBuild = $parts[0];
+        $prevousVersion = $parts[1];
+
+        // if another build was used previously
+        if ( $prevousBuild != $this->build ) {
+            $this->migrationHook($prevousBuild, $this->build);
+            $this->activationHook();
+            
+            update_option('fy_plugin_version_' . $this->pluginName, $this->build . '-' . $this->version);
+            return;
+        }
+
+        // if another less version was used previously
+        if ( version_compare($prevousVersion, $this->version, '<') ){
+            $this->updateHook($prevousVersion, $this->version); 
+            
+            update_option('fy_plugin_version_' . $this->pluginName, $this->build . '-' . $this->version);
+            return;
+        }
+
+        // standart plugin activation
+        if ( $forceActivation && $dbBuildVersion ) {
+            $this->activationHook();
+        }
+        
+        // else nothing to do
+        update_option('fy_plugin_version_' . $this->pluginName, $this->build . '-' . $this->version);
+        return;
+    }
+    
     /**
      * It's invoked on plugin actionvation.
      * Don't excite it directly.
      */
     public function activationHook() {
-        
-         // clears cache that is used to store path and classes of Factory Items.
-        $this->clearCache();
-        
-        // set cron tasks
-        $this->license->activationHook();
-        
+ 
         $item = $this->loadItem( 'activation', true );
         $item->activate();     
         
@@ -200,9 +251,6 @@ class FactoryFR100Plugin {
                 $role->add_cap( 'read_private_' . $type->name . 's' );      
             }
         }
-        
-        // clears cache that is used to store path and classes of Factory Items.
-        $this->clearCache();
     }
     
     /**
@@ -210,12 +258,12 @@ class FactoryFR100Plugin {
      * Don't excite it directly.
      */
     public function deactivationHook() {
-        
-        // clears cache that is used to store path and classes of Factory Items.
         $this->clearCache();
+        $this->findItems();
         
         // clear cron tasks
-        $this->license->deactivationHook();
+        $this->license->stopCron();
+        $this->license->clearLicenseData();
         
         $item = $this->loadItem( 'activation', true );
         $item->deactivate();  
@@ -247,12 +295,69 @@ class FactoryFR100Plugin {
         $this->clearCache();
     }
     
-    public function updateHook( $old, $new ) {
+    /**
+     * Finds migration items and install ones.
+     */
+    public function migrationHook($previosBuild, $currentBuild) {
         
-        $this->clearCache();
-        $this->findItems();
-        $item = $this->loadItem( 'activation', true );
-        $item->update( $old, $new ); 
+        $migrationFile = $this->itemRoot + '/updates/' . $previosBuild . '-' . $currentBuild . '.php';
+        if ( !file_exists($migrationFile) ) return;
+        
+        $classes = $this->getClasses($migrationFile);
+        if ( count($classes) == 0 ) return;
+        
+        include_once($migrationFile);
+        $migrationClass = $classes[0]['name'];
+        
+        $migrationItem = new $migrationClass( $this->plugin );
+        $migrationItem->install();
+    }
+    
+    /**
+     * Finds upate items and install the ones.
+     */
+    public function updateHook( $old, $new ) {
+
+        // converts versions like 0.0.0 to 000000
+        $oldNumber = $this->getVersionNumber($old);
+        $newNumber = $this->getVersionNumber($new);
+
+        $updateFiles = $this->itemRoot . '/updates';
+        $files = $this->findFiles( $updateFiles );
+        if ( empty($files) ) return;
+
+        // finds updates that has intermediate version 
+        foreach($files as $item) {
+            if ( !preg_match('/^\d+$/', $item['name']) ) continue;
+
+            $itemNumber = intval($item['name']);
+            if ( $itemNumber > $oldNumber && $itemNumber <= $newNumber ) {
+
+                $classes = $this->getClasses($item['path']);
+                if ( count($classes) == 0 ) return;
+                
+                foreach($classes as $path => $classData) {
+                    include_once( $path );
+                    $updateClass = $classData['name'];
+
+                    $update = new $updateClass( $this );
+                    $update->install();
+                }
+            }
+        }
+    }
+    
+    protected function getVersionNumber($version) {
+
+        preg_match('/(\d+)\.(\d+)\.(\d+)/', $version, $matches);
+        if ( count($matches) == 0 ) return false;
+        
+        $number = '';
+        $number .= ( strlen( $matches[1] ) == 1 ) ? '0' . $matches[1] : $matches[1];
+        $number .= ( strlen( $matches[2] ) == 1 ) ? '0' . $matches[2] : $matches[2];
+        $number .= ( strlen( $matches[3] ) == 1 ) ? '0' . $matches[3] : $matches[3];
+        
+        return intval($number);
     }
      
     /**
@@ -262,6 +367,9 @@ class FactoryFR100Plugin {
     public function actionAdminScripts( $hook ) {
 	global $post;
         
+        wp_enqueue_style('factory-admin-global', FACTORY_FR100_URL . '/assets/css/admin-global.css');
+        wp_enqueue_script('factory-admin-global', FACTORY_FR100_URL . '/assets/js/admin-global.js'); 
+                        
 	if ( in_array( $hook, array('post.php', 'post-new.php')) && $post )
         {
             if ( !empty( $this->types[$post->post_type] ) ) {
@@ -358,7 +466,7 @@ class FactoryFR100Plugin {
             $filename = $path . '/' . $entryName;
             if ( ( $areFiles && is_file($filename) ) || ( !$areFiles && is_dir($filename) ) ) {
                 $files[] = array(
-                    'path' => addslashes( $filename ),
+                    'path' => str_replace("\\", "/", $filename ),
                     'name' => $areFiles ? str_replace('.php', '', $entryName) : $entryName
                 );
             }

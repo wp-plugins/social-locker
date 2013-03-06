@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100FR100IntegerFormControl extends FactoryFormFR100FR100TextboxFormControl 
+class FactoryFormFR100IntegerFormControl extends FactoryFormFR100TextboxFormControl 
 {
     public $type = 'integer';
         
