@@ -1,7 +1,7 @@
 === OnePress Social Locker ===
 Contributors: onepressmedia
 Donate link: http://onepress-media.com/portfolio
-Tags:social,facebook,twitter,google,smo,seo,locker,traffic,content
+Tags:social,facebook,twitter,google,smo,seo,locker,traffic,content,social plugins
 Requires at least: 3.2
 Tested up to: 3.5.1
 Stable tag: trunk
