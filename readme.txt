@@ -1,13 +1,13 @@
-=== OnePress Social Locker ===
+=== Сrafty Social Buttons ===
 Contributors: onepressmedia
 Donate link: http://onepress-media.com/portfolio
-Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins
+Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
 Tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2
 
-A set of social buttons and a locker in one bottle. Give people a reason why they need to click your social buttons!
+Adds a set of very crafty social buttons on site (Facebook, Twitter, Google). Give people a reason why they need to click your social buttons!
 
 == Description ==
 
@@ -25,12 +25,10 @@ It’s not their problem.
 
 * Any URL to like/tweet/+1. You can set any URL that will be used to share for social buttons.  
 * SEO friendly. Locked content is still available for search bots (Google, Bing, etc).  
+* Analytic tools. The plugin comes with built-in analytics tools to track how users interact with the 
+locker and which channels bring the most traffic.
 * Highly customizable. The plugin provides a considered html markup that allows you to create your 
-own style for the locker. You can change colors, fonts, sizes, paddings, backgrounds, shadows, 
-icons and all for any locker element. No coding required. Just add some CSS rules.
-* Preset Styles and Effects. We want to make a use of our plugins as simple as possible.  
-So we added some modern preset styles and effects for you. Every update we will add new ones. Feel 
-free to use they.
+own style for the locker.
 * Remembers users who already unlocked your content (via local storage and cookies).  
 * Compatible with all the popular browsers.  
 * Locks any type of content: text, videos, images, links, forms and more.
