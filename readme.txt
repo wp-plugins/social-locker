@@ -7,7 +7,7 @@ Tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2
 
-Adds a set of very crafty social buttons on site (Facebook, Twitter, Google). Give people a reason why they need to click your social buttons!
+Adds a set of very crafty social buttons on your site (Facebook, Twitter, Google). Give people a reason why they need to click the social buttons!
 
 == Description ==
 
