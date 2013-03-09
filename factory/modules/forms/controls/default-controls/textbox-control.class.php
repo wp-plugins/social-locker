@@ -10,6 +10,8 @@ class FactoryFormFR100TextboxFormControl extends FactoryFormFR100StandartFormCon
         
         $isAppend = (!empty( $c['append'] ));  
         $placeholder = (!empty( $c['placeholder'] )) ? $c['placeholder'] : '';
+        
+        $value = empty( $value ) ? $value : htmlentities($value);
         ?>
 
             <input 

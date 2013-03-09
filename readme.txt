@@ -1,4 +1,4 @@
-=== Сrafty Social Buttons ===
+=== OnePress Social Locker ===
 Contributors: onepressmedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
@@ -71,6 +71,9 @@ The section is empty at the moment.
 4. Created Lockers
 
 == Changelog ==
+
+= 2.0.8 - 9 Mar 2013 =
+FIXED: The bug of the locker message editor in the admin area.
 
 = 2.0.7 - 6 Mar 2013 =
 FIXED: The bug in the post editor.

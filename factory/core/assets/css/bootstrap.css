@@ -3932,6 +3932,11 @@ input[type="submit"].btn.btn-mini {
 #side-sortables .wpbootstrap .controls {
     margin: 0px;
 }
+.wpbootstrap .control-group {
+    float: none;
+    margin-top: 0px;
+    width: auto;
+}
 #side-sortables .wpbootstrap .control-group {
     margin-bottom: 15px;
 }
