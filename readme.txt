@@ -73,9 +73,9 @@ The section is empty at the moment.
 == Changelog ==
 
 = 2.1.0 - 14 Mar 2013 =
-FIXED: The bug of East European languages in the locker header.
-FIXED: The bug of loading Facebook SDK without a locker on a page.
-FIXED: The bug of the buttons titles.
+FIXED: The bug of East European languages in the locker header.  
+FIXED: The bug of loading Facebook SDK without a locker on a page.  
+FIXED: The bug of the buttons titles.  
 
 = 2.0.8 - 9 Mar 2013 =
 FIXED: The bug of the locker message editor in the admin area.
