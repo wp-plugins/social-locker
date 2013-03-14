@@ -84,7 +84,8 @@ class SocialLockShortcode extends FactoryFR100Shortcode {
         
         if (!function_exists('sociallocker_get_meta')) {
             function sociallocker_get_meta($id, $name) {
-                return get_post_meta($id, 'sociallocker_' . $name, true);
+                $value = get_post_meta($id, 'sociallocker_' . $name, true);
+                return empty( $value ) ? $value : stripslashes( $value );
             }
         }
         

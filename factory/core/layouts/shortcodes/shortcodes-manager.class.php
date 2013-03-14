@@ -146,7 +146,7 @@ class FactoryFR100ShortcodeManager {
     public function actionEnqueueScripts() {
        global $post;
        
-       if ( empty($post) ) return;
+       if ( empty($post) || is_home() || is_front_page() ) return;
        
        foreach( $this->blanks as $blank ) {
            $metaName = 'factory_fr100_' . $blank->shortcode . '_include_assets';

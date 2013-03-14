@@ -99,8 +99,6 @@ class FactoryFR100MetaValueProvider implements IFactoryValueProvider
                 ? $this->meta[$this->scope . '_' . $name][0] 
                 : $default;
         
-        $value = empty( $value ) ? $value : stripslashes ( $value );
-        
         if ($value === 'true') $value = true;
         if ($value === 'false') $value = false;
         
@@ -111,7 +109,7 @@ class FactoryFR100MetaValueProvider implements IFactoryValueProvider
     public function setValue($name, $value) {
 
         $name = $this->scope . '_' . $name;
-        $this->values[$name] = $value;
+        $this->values[$name] = empty( $value ) ? $value : stripslashes ( $value );
         $this->keys[] = $name;
         
         return;

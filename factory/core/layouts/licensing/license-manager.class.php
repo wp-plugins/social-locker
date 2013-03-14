@@ -95,9 +95,10 @@ class FactoryFR100LicenseManager {
      * Calls from the main plugin class when the plugin is being activated.
      */
     public function runCron() {
-
-        if ( !wp_next_scheduled( 'fy_check_upadates_' . $this->plugin->pluginName ) ) { 
-            wp_schedule_event( time(), 'hourly', 'fy_check_upadates_' . $this->plugin->pluginName );    
+        if ( ( !empty( $this->data ) && $this->data['Build'] != 'free' ) || $this->plugin->build != 'free' ) {
+            if ( !wp_next_scheduled( 'fy_check_upadates_' . $this->plugin->pluginName ) ) { 
+                wp_schedule_event( time(), 'hourly', 'fy_check_upadates_' . $this->plugin->pluginName );    
+            }
         }
     }
     
