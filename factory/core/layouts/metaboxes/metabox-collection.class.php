@@ -1,11 +1,11 @@
 <?php
 
-class FactoryFR100MetaboxCollection
+class FactoryFR102MetaboxCollection
 {
     private $boxes = array();
     public $plugin;
     
-    public function __construct(FactoryFR100Plugin $plugin ) {
+    public function __construct(FactoryFR102Plugin $plugin ) {
         $this->plugin = $plugin;
     }
     
@@ -19,12 +19,12 @@ class FactoryFR100MetaboxCollection
     
     /**
      * Adds a new metabox to the collection.
-     * @param FactoryFR100Metabox $metabox
+     * @param FactoryFR102Metabox $metabox
      */
-    public function add(FactoryFR100Metabox $metabox) {
+    public function add(FactoryFR102Metabox $metabox) {
         
         if (gettype($metabox) == 'string') {
-            $metabox = new factoryFR100ExistingMetabox($this->factory, $metabox);          
+            $metabox = new factoryFR102ExistingMetabox($this->factory, $metabox);          
         }
         
         $metabox->plugin = $this->plugin;

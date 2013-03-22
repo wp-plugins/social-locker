@@ -4,7 +4,7 @@
  * 
  * The class provides abstraction for custom post type.
  */
-abstract class FactoryFR100Type {
+abstract class FactoryFR102Type {
     
     /**
      * Internal type name.
@@ -35,7 +35,7 @@ abstract class FactoryFR100Type {
     
     /**
      * A view table is used to show type records in the admin area.
-     * @var PFactoryFR100ViewTable 
+     * @var PFactoryFR102ViewTable 
      */
     public $viewTable = null;
     
@@ -48,19 +48,19 @@ abstract class FactoryFR100Type {
     
     /**
      * Scripts that must be included on edit page.
-     * @var PFactoryFR100ScriptList 
+     * @var PFactoryFR102ScriptList 
      */
     public $adminScripts;
     
     /**
      * Styles that must be included on edit page.
-     * @var PFactoryFR100StyleList 
+     * @var PFactoryFR102StyleList 
      */  
     public $adminStyles;
     
     /**
      * Menu configurator for the types.
-     * @var PFactoryFR100TypeMenu 
+     * @var PFactoryFR102TypeMenu 
      */
     public $menu = null;
 
@@ -99,18 +99,18 @@ abstract class FactoryFR100Type {
      */
     public $plugin = null;
     
-    public function __construct( FactoryFR100Plugin $plugin ) {
+    public function __construct( FactoryFR102Plugin $plugin ) {
         
         $this->plugin = $plugin;
-        $this->menu = new FactoryFR100TypeMenu( $this );
-        $this->adminScripts = new FactoryFR100ScriptList( $plugin );
-        $this->adminStyles = new FactoryFR100StyleList( $plugin ); 
+        $this->menu = new FactoryFR102TypeMenu( $this );
+        $this->adminScripts = new FactoryFR102ScriptList( $plugin );
+        $this->adminStyles = new FactoryFR102StyleList( $plugin ); 
     }
     
     public abstract function configure (
-            FactoryFR100Type $type, 
-            FactoryFR100TypeMenu $menu, 
-            FactoryFR100MetaboxCollection $metaboxes);
+            FactoryFR102Type $type, 
+            FactoryFR102TypeMenu $menu, 
+            FactoryFR102MetaboxCollection $metaboxes);
 
     public function useit() { return true; }
     
@@ -152,7 +152,7 @@ abstract class FactoryFR100Type {
         $this->buildLables();
         $this->buildMessages();
 
-        $metaboxes = new FactoryFR100MetaboxCollection( $this->plugin );
+        $metaboxes = new FactoryFR102MetaboxCollection( $this->plugin );
         $this->configure($this, $this->menu, $metaboxes);
 
         // adds metaboxes that needed to load
@@ -170,7 +170,7 @@ abstract class FactoryFR100Type {
         
         // redefines the Publish metabox for non-public types
         if ( $this->template !== 'public') {
-            $saveMetabox = new FactoryFR100SaveMetabox( $this->plugin );
+            $saveMetabox = new FactoryFR102SaveMetabox( $this->plugin );
             $this->plugin->metaboxes->registerFor( $saveMetabox, $this->name );
             add_action('add_meta_boxes', array($this, 'actionAddMetaboxs'));
         }

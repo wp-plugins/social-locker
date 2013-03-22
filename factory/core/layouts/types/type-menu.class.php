@@ -1,16 +1,16 @@
 <?php
 
-class FactoryFR100TypeMenu {
+class FactoryFR102TypeMenu {
     
     public $icon;
     
     /**
      * A custom post type that is configurated by this instance.
-     * @var FactoryFR100Type 
+     * @var FactoryFR102Type 
      */
     public $type = null;
     
-    public function __construct(FactoryFR100Type $type) {
+    public function __construct(FactoryFR102Type $type) {
         $this->type = $type;
     }
     

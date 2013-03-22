@@ -720,3 +720,16 @@ button.onp-btn.onp-btn-mini,input[type="submit"].onp-btn.onp-btn-mini {
 
 }
 
+.onp-activation-tr td {
+
+}
+.onp-activation-message {
+    background-color: #fffbe4;
+    border: 1px solid #dfdfdf;
+    font-weight: bold;
+    margin: 5px;
+    padding: 3px 5px;
+    color: #000;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}

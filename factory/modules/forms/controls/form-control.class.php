@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFormFR100Control {
+abstract class FactoryFormFR101Control {
     
     /**
      * A type of a control.
@@ -16,7 +16,7 @@ abstract class FactoryFormFR100Control {
     
     /**
      * Current factory.
-     * @var FactoryFR100Plugin 
+     * @var FactoryFR102Plugin 
      */
     public $plugin;
     
@@ -34,7 +34,7 @@ abstract class FactoryFormFR100Control {
     
     public $classes = array();
     
-    public function __construct( FactoryFR100Plugin $plugin ) {
+    public function __construct( FactoryFR102Plugin $plugin ) {
         
         if ($this->type == null) 
             throw new Exception('The control must have the defined type propery.');
@@ -47,7 +47,7 @@ abstract class FactoryFormFR100Control {
      * @param type $properties
      * @param IPFactoryValueProvider $provider
      */
-    public function setup( &$properties, IFactoryValueProvider $provider ) {
+    public function setup( &$properties, IFactoryFR102ValueProvider $provider ) {
         
         $this->props = $properties;
         $this->provider = $provider; 

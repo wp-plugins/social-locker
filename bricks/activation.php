@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockerActivate extends OnePressFR100Activation {
+class SocialLockerActivate extends OnePressFR101Activation {
     
     public function activate() {
         parent::activate();

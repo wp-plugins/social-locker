@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100 {
+class FactoryFormFR101 {
     
     public static $controls = array();
 
@@ -50,10 +50,10 @@ class FactoryFormFR100 {
      */
     private $formControls = array();
     
-    public function __construct( FactoryFR100Plugin $plugin, $valueProvider = null ) {
+    public function __construct( FactoryFR102Plugin $plugin, $valueProvider = null ) {
         
         $this->plugin = $plugin;
-        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR100FakeValueProvider();     
+        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR102FakeValueProvider();     
     }
     
     /**
@@ -83,8 +83,8 @@ class FactoryFormFR100 {
         $controlsStack = self::$controls;
 
         // applies filters to the form params before building
-        $this->items = apply_filters('factory_form_fr100', $this->items, $this->scope, $this->name);    
-        $this->items = apply_filters('factory_form_fr100_' . $this->name, $this->items, $this->scope);
+        $this->items = apply_filters('factory_form_fr101', $this->items, $this->scope, $this->name);    
+        $this->items = apply_filters('factory_form_fr101_' . $this->name, $this->items, $this->scope);
                 
         foreach($this->items as $index => $item) {
             if ( !$this->isControl($item) ) continue;
@@ -135,7 +135,7 @@ class FactoryFormFR100 {
         echo '<div class="pi-metabox wpbootstrap">';
         echo '<div class="form-horizontal">';
         
-        $root = new FactoryFormFR100Item(array(), null);
+        $root = new FactoryFormFR101Item(array(), null);
         $currentLevel = $root;
         
         $currentTab = null;
@@ -153,7 +153,7 @@ class FactoryFormFR100 {
                    case 'tab':
 
                        $levelToUse = $currentTab == null ? $root : $currentTab->parent;
-                       $tab = new FactoryFormFR100Tab( $item, $levelToUse );
+                       $tab = new FactoryFormFR101Tab( $item, $levelToUse );
 
                        $currentLevel = $tab;
                        $currentTab = $tab;
@@ -163,7 +163,7 @@ class FactoryFormFR100 {
                    // tab item
                    case 'tab-item':
 
-                       $tabItem = new FactoryFormFR100TabItem( $item, $currentTab );
+                       $tabItem = new FactoryFormFR101TabItem( $item, $currentTab );
                        $currentLevel = $tabItem;
 
                    break;
@@ -173,7 +173,7 @@ class FactoryFormFR100 {
 
                        if ($currentLevel->isGroup) $currentLevel = $currentLevel->parent;
 
-                       $group = new FactoryFormFR100Group( $item, $currentLevel );
+                       $group = new FactoryFormFR101Group( $item, $currentLevel );
                        $currentLevel = $group;
 
                    break;  
@@ -207,7 +207,7 @@ class FactoryFormFR100 {
     
     /**
      * Renders a given item.
-     * @param FactoryFormFR100Item $item
+     * @param FactoryFormFR101Item $item
      */
     private function renderItem( $item ) {
         
@@ -233,7 +233,7 @@ class FactoryFormFR100 {
     
     /**
      * Renders a tab item.
-     * @param FactoryFormFR100Tab $item
+     * @param FactoryFormFR101Tab $item
      */
     private function renderTab( $item ) {
         
@@ -295,7 +295,7 @@ class FactoryFormFR100 {
     
     /**
      * Renders a tab item
-     * @param FactoryFormFR100TabItem $tabItem
+     * @param FactoryFormFR101TabItem $tabItem
      */
     private function renderTabItem( $tabItem ) {
         
@@ -306,7 +306,7 @@ class FactoryFormFR100 {
     
     /**
      * Renders a group of items
-     * @param FactoryFormFR100Group $groupItem
+     * @param FactoryFormFR101Group $groupItem
      */
     private function renderGroup( $groupItem ) {
         ?>
@@ -325,7 +325,7 @@ class FactoryFormFR100 {
     
     /**
      * Render control item
-     * @param FactoryFormFR100TabControl $controlItem
+     * @param FactoryFormFR101TabControl $controlItem
      */
     private function renderControl( $controlItem ) {
         $controlItem->render();

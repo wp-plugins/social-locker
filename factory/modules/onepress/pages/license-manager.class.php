@@ -4,26 +4,27 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
+class OnePressFR101LicenseManagerAdminPage extends FactoryFR102AdminPage  {
         
     public $id = 'license-manager';
     public $menuTitle = 'License Manager';
     
     public $purchaseUrl = '';
     public $purchasePrice = '$';
+    public $pluginTitle = '';
     
     /**
      * [MAGIC] Magic method that configures assets for a page.
      * 
-     * @param FactoryFR100ScriptList $scripts    Scripts that will be included.
-     * @param FactoryFR100StyleList $styles      Styles that will be includes.
+     * @param FactoryFR102ScriptList $scripts    Scripts that will be included.
+     * @param FactoryFR102StyleList $styles      Styles that will be includes.
      */
-    public function assets(FactoryFR100ScriptList $scripts, FactoryFR100StyleList $styles) {
+    public function assets(FactoryFR102ScriptList $scripts, FactoryFR102StyleList $styles) {
         
-        $styles->add(ONEPRESS_FR100_URL . '/assets/css/license-manager.css');
-        $scripts->add(ONEPRESS_FR100_URL . '/assets/js/license-manager.js');   
+        $styles->add(ONEPRESS_FR101_URL . '/assets/css/license-manager.css');
+        $scripts->add(ONEPRESS_FR101_URL . '/assets/js/license-manager.js');   
     }
-    
+
     // ------------------------------------------------------------------
     // Page Actions
     // ------------------------------------------------------------------
@@ -164,13 +165,21 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
                         <?php if ( $licenseManager->hasUpgrade() ) { ?>
                         <a href="<?php echo $this->purchaseUrl ?>" id="purchase-premium">
                             <span class="btn btn-gold btn-inner-wrap">
+                            <?php if ( !empty( $this->purchasePrice ) ) { ?>
                             <i class="icon-star icon-white"></i> Upgrade to Premium for <?php echo $this->purchasePrice ?> <i class="icon-star icon-white"></i>
+                            <?php } else { ?>
+                            <i class="icon-star icon-white"></i> Upgrade to Premium <i class="icon-star icon-white"></i>
+                            <?php } ?>
                             </span>
                         </a>
                         <?php } ?>
                     <?php 
- ?>             
+ ?>   
+                    <?php if ( empty( $this->pluginTitle ) ) { ?>
                     <p>Your current license:</p>
+                    <?php } else { ?>
+                    <p>Your current license for <?php echo $this->pluginTitle ?>:</p>   
+                    <?php } ?>
                     <div class="license-details-block <?php echo $licenseData['Category'] ?>-details-block">
                         
                         <?php if ( $licenseManager->hasKey() ) { ?>
@@ -297,7 +306,7 @@ class OnePressFR100LicenseManagerAdminPage extends FactoryFR100AdminPage  {
                                 image below:
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONEPRESS_FR100_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONEPRESS_FR101_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>

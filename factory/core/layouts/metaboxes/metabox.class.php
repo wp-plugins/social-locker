@@ -3,7 +3,7 @@
 /**
  * @link http://codex.wordpress.org/Function_Reference/add_meta_box
  */
-abstract class FactoryFR100Metabox {
+abstract class FactoryFR102Metabox {
     
     /**
      * Id of the metabox. 
@@ -38,31 +38,31 @@ abstract class FactoryFR100Metabox {
     
     /**
      * Current factory.
-     * @var FactoryFR100Plugin
+     * @var FactoryFR102Plugin
      */
     public $plugin;
     
     /**
      * Currant license manager.
-     * @var FactoryFR100LicenseManager 
+     * @var FactoryFR102LicenseManager 
      */
     public $license;
     
     /**
      * Scripts that required to include.
-     * @var FactoryFR100ScriptList
+     * @var FactoryFR102ScriptList
      */
     public $scripts;
     
     /**
      * Styles that required to include.
-     * @var FactoryFR100StyleList
+     * @var FactoryFR102StyleList
      */  
     public $styles;
     
     private $isRegisted;
     
-    public function __construct( FactoryFR100Plugin $plugin = null ) {
+    public function __construct( FactoryFR102Plugin $plugin = null ) {
         $this->plugin = $plugin;
         $this->id = empty($this->id) ? get_class($this) : $this->id;
     }
@@ -78,7 +78,7 @@ abstract class FactoryFR100Metabox {
        }
     }
     
-    public function configure(FactoryFR100ScriptList $scripts, FactoryFR100StyleList $styles) {
+    public function configure(FactoryFR102ScriptList $scripts, FactoryFR102StyleList $styles) {
         // method must be overriden in the derived classed.
     }
 
@@ -86,8 +86,8 @@ abstract class FactoryFR100Metabox {
         if ( $this->isRegisted ) return;
          $this->isRegisted = true;
            
-        $this->scripts = new FactoryFR100ScriptList( $this->plugin );
-        $this->styles = new FactoryFR100StyleList( $this->plugin );
+        $this->scripts = new FactoryFR102ScriptList( $this->plugin );
+        $this->styles = new FactoryFR102StyleList( $this->plugin );
         
         $this->configure( $this->scripts, $this->styles );
     }
@@ -135,8 +135,8 @@ abstract class FactoryFR100Metabox {
         
         // Verify the nonce before proceeding
         $className = strtolower( get_class($this) );  
-        $nonceName = $className . '_factory_fr100_nonce';
-        $nonceValue = $className  . '_factory_fr100';
+        $nonceName = $className . '_factory_fr102_nonce';
+        $nonceValue = $className  . '_factory_fr102';
         
         if ( !isset( $_POST[$nonceName] ) || !wp_verify_nonce( $_POST[$nonceName], $nonceValue ) )
             return $post_id;
@@ -161,7 +161,7 @@ abstract class FactoryFR100Metabox {
          
         // security nonce
         $className = strtolower( get_class($this) );
-        wp_nonce_field( $className  . '_factory_fr100', $className . '_factory_fr100_nonce' );
+        wp_nonce_field( $className  . '_factory_fr102', $className . '_factory_fr102_nonce' );
         
         ob_start();
         $this->render();

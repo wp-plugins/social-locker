@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100UrlFormControl extends FactoryFormFR100TextboxFormControl 
+class FactoryFormFR101UrlFormControl extends FactoryFormFR101TextboxFormControl 
 {
     public $type = 'url';
         

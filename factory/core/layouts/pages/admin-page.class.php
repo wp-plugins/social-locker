@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR100AdminPage extends FactoryFR100Page {
+class FactoryFR102AdminPage extends FactoryFR102Page {
     
     /**
      * Visible page title.
@@ -52,21 +52,18 @@ class FactoryFR100AdminPage extends FactoryFR100Page {
      */
     public $capabilitiy = null;
     
+    /**
+     * If true, the page will not added to the admin menu.
+     * @var type 
+     */
+    public $internal = false;
+    
 
-    public function __construct(FactoryFR100Plugin $plugin) {
+    public function __construct(FactoryFR102Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
         
         $this->id = empty($this->id) ? str_replace('adminpage', '', strtolower( get_class($this) ) ) : $this->id;
-        
-        if ( isset($_GET['page']) && $_GET['page'] == $this->id ) {
-            $this->assets($this->scripts, $this->styles);
-            
-            // includes styles and scripts
-            if ( !$this->scripts->isEmpty() || !$this->styles->isEmpty() ) {
-                add_action('admin_enqueue_scripts', array($this, 'actionAdminScripts'));
-            }
-        }
     }
     
     /**
@@ -85,10 +82,24 @@ class FactoryFR100AdminPage extends FactoryFR100Page {
         $this->styles->connect(); 
     }
     
+    public function getResultId() {
+        return ( $this->internal ) ? $this->id . '-internal-' . $this->plugin->pluginName : $this->id;
+    }
+    
     /**
      * Registers admin page for the admin menu.
      */
     public function register() {
+        $resultId = $this->getResultId();
+        
+        if ( isset($_GET['page']) && $_GET['page'] == $resultId ) {
+            $this->assets($this->scripts, $this->styles);
+            
+            // includes styles and scripts
+            if ( !$this->scripts->isEmpty() || !$this->styles->isEmpty() ) {
+                add_action('admin_enqueue_scripts', array($this, 'actionAdminScripts'));
+            }
+        }
         
         // if this page for a custom menu page
         if ( $this->menuPostType ) {
@@ -102,33 +113,33 @@ class FactoryFR100AdminPage extends FactoryFR100Page {
         if ( empty( $this->capabilities ) ) {
             $this->capabilitiy = 'manage_options';
         }
-        
+
         $this->pageTitle = !$this->pageTitle ? $this->menuTitle : $this->pageTitle;
         $this->menuTitle = !$this->menuTitle ? $this->pageTitle : $this->menuTitle;
-        
+
         // submenu
         if ( $this->menuTarget ) {
-            
+
             add_submenu_page( 
                 $this->menuTarget, 
                 $this->pageTitle, 
                 $this->menuTitle, 
                 $this->capabilitiy, 
-                $this->id, 
+                $resultId, 
                 array($this, 'show') );
-        
+
         // global menu
         } else {
-            
+
             add_menu_page( 
                 $this->pageTitle, 
                 $this->menuTitle, 
                 $this->capabilitiy, 
-                $this->id, 
+                $resultId, 
                 array($this, 'show'), 
                 null,
-                $this->menuPosition );  
-
+                $this->menuPosition );   
+ 
             add_action( 'admin_head', array($this, 'actionAdminHead'));  
         }
         
@@ -138,9 +149,9 @@ class FactoryFR100AdminPage extends FactoryFR100Page {
         if ( !$controller || $controller !== $this->id ) return;
 
         $plugin = isset( $_GET['fy_plugin'] ) ? $_GET['fy_plugin'] : null; 
-        if ( $this->plugin->pluginName !== $this->plugin->pluginName ) return;
+        if ( $this->plugin->pluginName !== $plugin ) return;
         
-        $action = isset( $_GET['fy_action'] ) ? $_GET['fy_action'] : null;
+        $action = isset( $_GET['fy_action'] ) ? $_GET['fy_action'] : 'index';
         if ( !$controller || $controller !== $this->id ) return;
         
         $this->redirectToAction($action);
@@ -163,29 +174,43 @@ class FactoryFR100AdminPage extends FactoryFR100Page {
     }
     
     protected function getBaseUrl() {
-        
+        $resultId = $this->getResultId();
+                
         if ( $this->menuTarget ) {
-            return $this->menuTarget . '&page=' . $this->id;     
+            return $this->menuTarget . '&page=' . $resultId;     
         } else {
-            return 'admin.php?&page=' . $this->id;     
+            return 'admin.php?&page=' . $resultId;     
         } 
     }
     
     public function actionAdminHead() 
-    {      
-        if (empty($this->menuIcon)) return;
-        $iconUrl = str_replace('~/', $this->plugin->pluginUrl . '/', $this->menuIcon);   
-
-        ?>
-        <style type="text/css" media="screen">
-            a.toplevel_page_<?php echo $this->id ?> .wp-menu-image {
-                background: url('<?php echo $iconUrl ?>') no-repeat 6px -33px !important;
-            }
-            a.toplevel_page_<?php echo $this->id ?>:hover .wp-menu-image, 
-            a.toplevel_page_<?php echo $this->id ?>.current .wp-menu-image {
-                background-position:6px -1px !important;
-            }
-        </style>
-        <?php
+    {     
+        $resultId = $this->getResultId();
+        
+        if (!empty($this->menuIcon)) {
+            $iconUrl = str_replace('~/', $this->plugin->pluginUrl . '/', $this->menuIcon);   
+            
+            ?>
+            <style type="text/css" media="screen">
+                a.toplevel_page_<?php echo $this->id ?> .wp-menu-image {
+                    background: url('<?php echo $iconUrl ?>') no-repeat 6px -33px !important;
+                }
+                a.toplevel_page_<?php echo $this->id ?>:hover .wp-menu-image, 
+                a.toplevel_page_<?php echo $this->id ?>.current .wp-menu-image {
+                    background-position:6px -1px !important;
+                }
+            </style>
+            <?php
+        }
+        
+        if ($this->internal) {
+            ?>
+            <style type="text/css" media="screen">
+                li.toplevel_page_<?php echo $resultId ?> {
+                    display: none;
+                }
+            </style>
+            <?php
+        }
     }
 }

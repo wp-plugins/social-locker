@@ -5,7 +5,7 @@
  * It's a main class for building the plugin.
  * The class allows to isolate a several plugins that use the same version of the Factory.
  */
-class FactoryFR100Plugin {
+class FactoryFR102Plugin {
     
     /**
      * Main file of the plugin.
@@ -60,43 +60,29 @@ class FactoryFR100Plugin {
     
     /**
      * Licenase manger for a plugin.
-     * @var FactoryFR100LicenseManager
+     * @var FactoryFR102LicenseManager
      */
     public $license;
    
     /**
      * Creates an instance of Factory plugin.
-     * 
-     * @param string $pluginPath        An absolute path to the main plugin file.
-     * @param string $pluginName        An unique plugin name.
-     * @param string $version           A version of the plugin.
-     * @param string $build             A build of the plugin.
-     * @param string $factoryItems      A folder placed at $pluginPath that includes Factory items.
-     * @param string $factoryTemplates  A folder placed at $pluginPath that includes Factory templates.
      */
-    public function __construct( 
-            $pluginPath, 
-            $pluginName, 
-            $version,
-            $build,
-            $server,
-            $factoryItems = 'items', 
-            $factoryTemplates = 'templates' ) {
+    public function __construct( $pluginPath, $data ) {
         
         // saves plugin basic paramaters
         $this->mainFile = $pluginPath;
         $this->pluginSlug = basename($pluginPath);
         $this->relativePath = plugin_basename( $pluginPath );
-        $this->itemRoot = dirname( $pluginPath ) . '/' . $factoryItems;  
-        $this->templateRoot = dirname( $pluginPath ) . '/' . $factoryTemplates;  
+        $this->itemRoot = dirname( $pluginPath ) . '/' . ( isset( $data['bricks'] ) ? $data['bricks'] : 'bricks' );  
+        $this->templateRoot = dirname( $pluginPath ) . '/' . isset( $data['templates'] ) ? $data['templates'] : 'templates';   
         $this->pluginUrl = plugins_url( null, $pluginPath );
-        $this->pluginName = $pluginName;
-        $this->version = $version;
-        $this->build = $build;
+        $this->pluginName = $data['name'];
+        $this->version = $data['version'];
+        $this->build = $data['assembly'];
         $this->host = $_SERVER['HTTP_HOST'];  
-        
+
         $this->isAdmin = is_admin();
-        $this->license = new FactoryFR100LicenseManager( $this, $server );
+        $this->license = new FactoryFR102LicenseManager( $this, $data['api'] );
 
         // init actions
         $this->setupActions();
@@ -128,6 +114,8 @@ class FactoryFR100Plugin {
         if ( $dbVersion != $this->build . '-' . $this->version ) {
             $this->activationOrUpdateHook( false );
         }
+        
+        do_action('factory_fr102_init', $this);
     }
     
     /**
@@ -136,17 +124,19 @@ class FactoryFR100Plugin {
      */
     public function actionInit() {
         
-        $this->shortcodes = new FactoryFR100ShortcodeManager( $this );   
-        $this->metaboxes = new FactoryFR100MetaboxManager( $this );   
+        $this->shortcodes = new FactoryFR102ShortcodeManager( $this );   
+        $this->metaboxes = new FactoryFR102MetaboxManager( $this );   
         
         if ( $this->isAdmin ) {
             
-            $this->pages = new FactoryFR100AdminPageManager( $this ); 
+            $this->pages = new FactoryFR102AdminPageManager( $this ); 
         
             // metaboxes
             // just includes class definition
             $metaboxes = $this->loadItem( 'metaboxes', true );
-            $this->metaboxes->register( $metaboxes );
+            if ( !empty( $metaboxes ) ) {
+                $this->metaboxes->register( $metaboxes );
+            }
             
             // view tables
             // just includes class definition
@@ -154,19 +144,25 @@ class FactoryFR100Plugin {
             
             // admin pages
             $pages = $this->loadItem( 'pages', true );
-            $this->pages->register( $pages );
+            if ( !empty( $pages ) ) {
+                $this->pages->register( $pages );
+            }
         }
         
         // types
         $types = $this->loadItem( 'types', true );
-        foreach($types as $type) { 
-            $this->types[$type->name] = $type;
-            $type->register();
+        if ( !empty($types) ) {
+            foreach($types as $type) { 
+                $this->types[$type->name] = $type;
+                $type->register();
+            }
         }
         
         // shortcodes
         $shortcodes = $this->loadItem( 'shortcodes', true ); 
-        $this->shortcodes->register( $shortcodes );
+        if ( !empty($shortcodes) ) {
+            $this->shortcodes->register( $shortcodes );
+        }
     }
     
     public function forceActivationHook() {
@@ -232,23 +228,25 @@ class FactoryFR100Plugin {
     public function activationHook() {
  
         $item = $this->loadItem( 'activation', true );
-        $item->activate();     
+        if ( !empty($item) ) $item->activate();     
         
         // sets type capabilities for roles
         $types = $this->loadItem( 'types', true );
-        foreach($types as $type) {
-            if ( empty( $type->capabilities )) continue;
-            foreach( $type->capabilities as $roleName ) {
-                $role = get_role( $roleName );
-                if ( !$role ) continue;
-                
-                $role->add_cap( 'edit_' . $type->name ); 
-                $role->add_cap( 'read_' . $type->name );
-                $role->add_cap( 'delete_' . $type->name );
-                $role->add_cap( 'edit_' . $type->name . 's' );
-                $role->add_cap( 'edit_others_' . $type->name . 's' );
-                $role->add_cap( 'publish_' . $type->name . 's' ); 
-                $role->add_cap( 'read_private_' . $type->name . 's' );      
+        if ( !empty($types) ) {
+            foreach($types as $type) {
+                if ( empty( $type->capabilities )) continue;
+                foreach( $type->capabilities as $roleName ) {
+                    $role = get_role( $roleName );
+                    if ( !$role ) continue;
+
+                    $role->add_cap( 'edit_' . $type->name ); 
+                    $role->add_cap( 'read_' . $type->name );
+                    $role->add_cap( 'delete_' . $type->name );
+                    $role->add_cap( 'edit_' . $type->name . 's' );
+                    $role->add_cap( 'edit_others_' . $type->name . 's' );
+                    $role->add_cap( 'publish_' . $type->name . 's' ); 
+                    $role->add_cap( 'read_private_' . $type->name . 's' );      
+                }
             }
         }
     }
@@ -266,31 +264,35 @@ class FactoryFR100Plugin {
         $this->license->clearLicenseData();
         
         $item = $this->loadItem( 'activation', true );
-        $item->deactivate();  
-        
+        if ( !empty($item) ) {
+            $item->deactivate();  
+        }
+
         global $wp_roles;
         $all_roles = $wp_roles->roles;
         
         // remove type capabilities for roles
         $types = $this->loadItem( 'types', true );
-        foreach($types as $type) {
-            if ( empty( $type->capabilities )) continue;
-            
-            foreach( $all_roles as $roleName => $roleInfo ) {
+        if ( !empty( $types ) ) {
+            foreach($types as $type) {
+                if ( empty( $type->capabilities )) continue;
 
-                $role = get_role( $roleName );
-                if ( !$role ) continue;
-                
-                $role->remove_cap( 'edit_' . $type->name ); 
-                $role->remove_cap( 'read_' . $type->name );
-                $role->remove_cap( 'delete_' . $type->name );
-                $role->remove_cap( 'edit_' . $type->name . 's' );
-                $role->remove_cap( 'edit_others_' . $type->name . 's' );
-                $role->remove_cap( 'publish_' . $type->name . 's' ); 
-                $role->remove_cap( 'read_private_' . $type->name . 's' );      
-            } 
+                foreach( $all_roles as $roleName => $roleInfo ) {
+
+                    $role = get_role( $roleName );
+                    if ( !$role ) continue;
+
+                    $role->remove_cap( 'edit_' . $type->name ); 
+                    $role->remove_cap( 'read_' . $type->name );
+                    $role->remove_cap( 'delete_' . $type->name );
+                    $role->remove_cap( 'edit_' . $type->name . 's' );
+                    $role->remove_cap( 'edit_others_' . $type->name . 's' );
+                    $role->remove_cap( 'publish_' . $type->name . 's' ); 
+                    $role->remove_cap( 'read_private_' . $type->name . 's' );      
+                } 
+            }
         }
-        
+
         // clears cache that is used to store path and classes of Factory Items.
         $this->clearCache();
     }
@@ -367,25 +369,25 @@ class FactoryFR100Plugin {
     public function actionAdminScripts( $hook ) {
 	global $post;
         
-        wp_enqueue_style('factory-admin-global', FACTORY_FR100_URL . '/assets/css/admin-global.css');
-        wp_enqueue_script('factory-admin-global', FACTORY_FR100_URL . '/assets/js/admin-global.js'); 
+        wp_enqueue_style('factory-admin-global', FACTORY_FR102_URL . '/assets/css/admin-global.css');
+        wp_enqueue_script('factory-admin-global', FACTORY_FR102_URL . '/assets/js/admin-global.js'); 
                         
 	if ( in_array( $hook, array('post.php', 'post-new.php')) && $post )
         {
             if ( !empty( $this->types[$post->post_type] ) ) {
                 
-		wp_enqueue_style('factory-bootstrap', FACTORY_FR100_URL . '/assets/css/bootstrap.css');	
-		wp_enqueue_script('factory-bootstrap', FACTORY_FR100_URL . '/assets/js/bootstrap.js', array('jquery'));
+		wp_enqueue_style('factory-bootstrap', FACTORY_FR102_URL . '/assets/css/bootstrap.css');	
+		wp_enqueue_script('factory-bootstrap', FACTORY_FR102_URL . '/assets/js/bootstrap.js', array('jquery'));
             }
             
         } elseif ( isset($_GET['page']) && in_array($_GET['page'], $this->pages->getIds())) {
             
-            wp_enqueue_style('factory-bootstrap', FACTORY_FR100_URL . '/assets/css/bootstrap.css');	
-            wp_enqueue_script('factory-bootstrap', FACTORY_FR100_URL . '/assets/js/bootstrap.js', array('jquery'));
+            wp_enqueue_style('factory-bootstrap', FACTORY_FR102_URL . '/assets/css/bootstrap.css');	
+            wp_enqueue_script('factory-bootstrap', FACTORY_FR102_URL . '/assets/js/bootstrap.js', array('jquery'));
         }
         
-        $licenseType = defined('FACTORY_FR100_LICENSE_TYPE') ? FACTORY_FR100_LICENSE_TYPE : $this->license->data['Category'];
-        $buildType = defined('FACTORY_FR100_BUILD_TYPE') ? FACTORY_FR100_BUILD_TYPE : $this->license->data['Build'];      
+        $licenseType = defined('FACTORY_FR102_LICENSE_TYPE') ? FACTORY_FR102_LICENSE_TYPE : $this->license->data['Category'];
+        $buildType = defined('FACTORY_FR102_BUILD_TYPE') ? FACTORY_FR102_BUILD_TYPE : $this->license->data['Build'];      
         ?>
         <script>
             window['<?php echo $this->pluginName ?>-license'] = '<?php echo $licenseType ?>';
@@ -399,7 +401,7 @@ class FactoryFR100Plugin {
      * @param type $moduleName
      */
     public function load( $moduleName ) {
-        include_once(FACTORY_FR100_DIR . '../../modules/' . $moduleName . '/start.php');
+        include_once(FACTORY_FR102_DIR . '../../modules/' . $moduleName . '/start.php');
     }
     
     /**
@@ -408,9 +410,10 @@ class FactoryFR100Plugin {
     private function findItems() {
         
         // clears the cache after activation
-        if ( defined('FACTORY_FR100_DEBUG') ) $this->clearCache();
+        if ( defined('FACTORY_FR102_DEBUG') ) $this->clearCache();
         
         $cached = $this->getCache('items');
+
         if ( $cached ) {
             $this->itemMapping = $cached;
             return;
@@ -418,7 +421,7 @@ class FactoryFR100Plugin {
 
         $files = $this->findFiles( $this->itemRoot );
         $folders = $this->findFolders( $this->itemRoot );  
-        
+
         $this->itemMapping = array();
         foreach($files as $file) {
             $this->itemMapping[$file['name']] = $this->extractMapping( $file, false );

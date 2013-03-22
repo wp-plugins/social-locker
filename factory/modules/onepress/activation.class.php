@@ -1,6 +1,6 @@
 <?php
 
-class OnePressFR100Activation extends FactoryFR100Activation {
+class OnePressFR101Activation extends FactoryFR102Activation {
     
     public function activate() {
             

@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR100LicenseManager {
+class FactoryFR102LicenseManager {
     
     public $plugin;
     public $data;
@@ -21,7 +21,7 @@ class FactoryFR100LicenseManager {
      */
     public $versionCheck;
     
-    public function __construct( FactoryFR100Plugin $plugin, $server ) {
+    public function __construct( FactoryFR102Plugin $plugin, $server ) {
         $this->plugin = $plugin;
         $this->server = $server;
         
@@ -95,10 +95,9 @@ class FactoryFR100LicenseManager {
      * Calls from the main plugin class when the plugin is being activated.
      */
     public function runCron() {
-        if ( ( !empty( $this->data ) && $this->data['Build'] != 'free' ) || $this->plugin->build != 'free' ) {
-            if ( !wp_next_scheduled( 'fy_check_upadates_' . $this->plugin->pluginName ) ) { 
-                wp_schedule_event( time(), 'hourly', 'fy_check_upadates_' . $this->plugin->pluginName );    
-            }
+
+        if ( !wp_next_scheduled( 'fy_check_upadates_' . $this->plugin->pluginName ) ) { 
+            wp_schedule_event( time(), 'hourly', 'fy_check_upadates_' . $this->plugin->pluginName );    
         }
     }
     
@@ -218,11 +217,11 @@ class FactoryFR100LicenseManager {
     
     public function clearVersionCheck() {
         delete_option('fy_version_check_' . $this->plugin->pluginName);
-        
+
         $transient = $this->updatePluginAction( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
-            unset($transient->response[$this->plugin->relativePath]); 
-            factory_fr100_set_site_transient('update_plugins', $transient);  
+            unset($transient->response[$this->plugin->relativePath]);
+            factory_fr102_set_site_transient('update_plugins', $transient);  
         }
     }
 
@@ -366,7 +365,7 @@ class FactoryFR100LicenseManager {
      */
     public function updatePluginTransient() {
         $transient = $this->updatePluginAction( get_site_transient('update_plugins') );
-        factory_fr100_set_site_transient('update_plugins', $transient);
+        factory_fr102_set_site_transient('update_plugins', $transient);
     }
     
     /**
@@ -476,9 +475,13 @@ class FactoryFR100LicenseManager {
     
     public function renderPluginUpdateRow( $file, $plugin_data ) {
 	$current = get_site_transient( 'update_plugins' );
-	if ( !isset( $current->response[ $file ] ) )
-		return false;
 
+        // if a new version is available or 
+        // if it's a premium version and a user does't submit any key
+	if ( !isset( $current->response[ $file ] ) && !$this->needKey() ) {
+            return false;
+        }
+        
 	$r = $current->response[ $file ];
 
 	$plugins_allowedtags = array('a' => array('href' => array(),'title' => array()),'abbr' => array('title' => array()),'acronym' => array('title' => array()),'code' => array(),'em' => array(),'strong' => array());
@@ -489,34 +492,47 @@ class FactoryFR100LicenseManager {
 	$wp_list_table = _get_list_table('WP_Plugins_List_Table');
 
 	if ( is_network_admin() || !is_multisite() ) {
-		echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+            
+            if ( $this->needKey() ) {
+
+                echo '<tr class="onp-activation-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="onp-activation-message">';
                 
+                $message = __('You use a premium version of the plugin. Please, verify your license key to unlock all its features.');
+                $message = apply_filters('factory_fr102_activation_message_' . $this->plugin->pluginName, $message);
+                
+                echo $message;
+                
+                echo '</div></td></tr>';
+                
+            } else {
+
+                echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+
                 if ( $this->isInvalidBuild() ) {
-                    
+
                     if ( ! current_user_can('update_plugins') )
-                        
+
                         printf( 
                             __('You changed the license type. Please download the "%1$s" assembly of the plugin to complete the license activation.'), 
                             $this->data['Build']
                         );
-                    
+
                     else if ( empty($r->package) )
-                        
+
                         printf( 
                             __('You changed the license type. Please download the "%1$s" assembly to complete the license activation. <em>Automatic update is unavailable for this plugin.</em>'), 
                             $this->data['Build']
                         );
 
                     else
-                        
+
                         printf( 
                             __('You changed the license type. Please download the "%1$s" assembly to complete the license activation. <a href="%2$s">Download and install automatically</a>.'), 
                             $this->data['Build'],
                             wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=') . $file, 'upgrade-plugin_' . $file)     
                         );
-                    
                 } else {
-                
+
                     if ( ! current_user_can('update_plugins') )
                             printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>.'), $plugin_name, esc_url($details_url), esc_attr($plugin_name), $r->new_version );
                     else if ( empty($r->package) )
@@ -525,9 +541,11 @@ class FactoryFR100LicenseManager {
                             printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a> or <a href="%5$s">update now</a>.'), $plugin_name, esc_url($details_url), esc_attr($plugin_name), $r->new_version, wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=') . $file, 'upgrade-plugin_' . $file) ); 
                 }
 
-		do_action( "in_plugin_update_message-$file", $plugin_data, $r );
+                do_action( "in_plugin_update_message-$file", $plugin_data, $r );
 
-		echo '</div></td></tr>';
+                echo '</div></td></tr>';
+
+            }
 	}
     }
     
@@ -605,6 +623,10 @@ class FactoryFR100LicenseManager {
     
     public function hasKey() {
         return !empty( $this->data['Key'] );
+    }
+    
+    public function needKey() {
+        return $this->plugin->build == 'premium' && !$this->hasKey();
     }
     
     public function hasUpgrade() {

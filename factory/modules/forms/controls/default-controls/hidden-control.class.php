@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100HiddenFormControl extends FactoryFormFR100Control 
+class FactoryFormFR101HiddenFormControl extends FactoryFormFR101Control 
 {
     public $type = 'hidden';
     

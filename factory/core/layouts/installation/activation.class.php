@@ -1,14 +1,14 @@
 <?php
 
-abstract class FactoryFR100Activation {
+abstract class FactoryFR102Activation {
     
     /**
      * Curent plugin.
-     * @var FactoryFR100Plugin
+     * @var FactoryFR102Plugin
      */
     public $plugin;
     
-    public function __construct(FactoryFR100Plugin $plugin) {
+    public function __construct(FactoryFR102Plugin $plugin) {
         $this->plugin = $plugin;
     }
     

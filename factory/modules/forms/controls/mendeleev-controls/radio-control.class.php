@@ -1,11 +1,10 @@
 <?php
 
-class FactoryFormFR100PiRadioFormControl extends FactoryFormFR100StandartFormControl 
+class FactoryFormFR101PiRadioFormControl extends FactoryFormFR101StandartFormControl 
 {
-    public $type = 'pi-radio';
+    public $type = 'mv-radio';
     
     protected function renderInput( $conrolInfo, $value, $fullname ) {
-        
         ?>
            <div class="btn-group pi-radio" data-toggle="buttons-radio">
               <?php foreach($conrolInfo['data'] as $data) { ?>

@@ -1,7 +1,7 @@
 <?php
 #build: free
 
-class SociallockerMoreFeatures extends FactoryFR100Metabox
+class SociallockerMoreFeatures extends FactoryFR102Metabox
 {
     public $title = 'More Features?';
     public $priority = 'core';
@@ -28,7 +28,7 @@ class SociallockerMoreFeatures extends FactoryFR100Metabox
         <?php if ( !get_option('fy_trial_activated_' . $this->plugin->pluginName, false) ) { ?>
             <div class="sl-footer">
                 <p>These features are available in a premium version of the plugin</p>
-                <a href="<?php onepress_fr100_link_license_manager($this->plugin->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
+                <a href="<?php onepress_fr101_link_license_manager($this->plugin->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
                     Try 7-days Trial Version<br /><span>(activate by one click)</span>
                 </a>
                 <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
@@ -39,7 +39,7 @@ class SociallockerMoreFeatures extends FactoryFR100Metabox
                 <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">
                     Get Premium for $21<br /><span>(it will take no more a minute)</span>
                 </a>
-                <a href="<?php onepress_fr100_link_license_manager($this->plugin->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                <a href="<?php onepress_fr101_link_license_manager($this->plugin->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
             </div>
         <?php } ?>
        

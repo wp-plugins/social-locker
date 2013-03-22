@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR100ScriptList extends FactoryFR100AssetsList 
+class FactoryFR102ScriptList extends FactoryFR102AssetsList 
 {
     public function __construct($factory ) {
         parent::__construct($factory, true);
@@ -33,7 +33,7 @@ class FactoryFR100ScriptList extends FactoryFR100AssetsList
                 wp_register_script( $script, str_replace('~/', $aseetUrl, $script), $dep, false, $isFooter);  
 
                 if ( $isFirstScript && $this->useAjax ) {
-                    wp_localize_script( $script, 'factory_fr100', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+                    wp_localize_script( $script, 'factory_fr102', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
                 }
 
                 if ( !empty( $this->localizeData[$script] ) ) {

@@ -1,5 +1,5 @@
 === OnePress Social Locker ===
-Contributors:onepressmedia
+Contributors: onepressmedia, onepress, OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
@@ -71,6 +71,9 @@ The section is empty at the moment.
 4. Created Lockers
 
 == Changelog ==
+
+= 2.1.1 - 19 Mar 2013 =
+FIXED: The bug of oEmbed inside the lockers.
 
 = 2.1.0 - 14 Mar 2013 =
 FIXED: The bug of East European languages in the locker header.  

@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFR100ViewTable {
+abstract class FactoryFR102ViewTable {
     
     /**
      * Current factory.
@@ -16,34 +16,34 @@ abstract class FactoryFR100ViewTable {
     
     /**
      * Table's columns
-     * @var FactoryFR100ViewTableColumns 
+     * @var FactoryFR102ViewTableColumns 
      */
     public $columns;
     
     /**
      * Scripts that must be included on edit page.
-     * @var FactoryFR100ScriptList 
+     * @var FactoryFR102ScriptList 
      */
     public $adminScripts;
     
     /**
      * Styles that must be included on edit page.
-     * @var FactoryFR100StyleList 
+     * @var FactoryFR102StyleList 
      */  
     public $adminStyles;
     
-    public function __construct( FactoryFR100Plugin $plugin = null ) {
+    public function __construct( FactoryFR102Plugin $plugin = null ) {
         $this->plugin = $plugin;
     }
     
-    public function register( FactoryFR100Type $type ) {
+    public function register( FactoryFR102Type $type ) {
         
         $this->type = $type;
         $this->plugin = $type->plugin;
-        $this->columns = new FactoryFR100ViewTableColumns();
+        $this->columns = new FactoryFR102ViewTableColumns();
         
-        $this->adminScripts = new FactoryFR100ScriptList( $type->plugin );
-        $this->adminStyles = new FactoryFR100StyleList( $type->plugin ); 
+        $this->adminScripts = new FactoryFR102ScriptList( $type->plugin );
+        $this->adminStyles = new FactoryFR102StyleList( $type->plugin ); 
         
         $this->configure( $this, $this->adminScripts, $this->adminStyles );
         
@@ -67,9 +67,9 @@ abstract class FactoryFR100ViewTable {
     }
     
     public abstract function configure( 
-            FactoryFR100ViewTable $table, 
-            FactoryFR100ScriptList $scripts, 
-            FactoryFR100StyleList $styles );
+            FactoryFR102ViewTable $table, 
+            FactoryFR102ScriptList $scripts, 
+            FactoryFR102StyleList $styles );
     
     public function actionColumns( $columns ) {
         

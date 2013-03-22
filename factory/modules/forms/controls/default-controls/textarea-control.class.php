@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100TextareaFormControl extends FactoryFormFR100StandartFormControl 
+class FactoryFormFR101TextareaFormControl extends FactoryFormFR101StandartFormControl 
 {
     public $type = 'textarea';
         

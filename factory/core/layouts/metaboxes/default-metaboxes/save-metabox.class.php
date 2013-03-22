@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR100SaveMetabox extends FactoryFR100Metabox
+class FactoryFR102SaveMetabox extends FactoryFR102Metabox
 {
     public $priority = 'high';
     public $context = 'side';

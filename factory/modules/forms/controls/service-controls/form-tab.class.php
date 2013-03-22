@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR100Tab extends FactoryFormFR100Item {
+class FactoryFormFR101Tab extends FactoryFormFR101Item {
     
     /**
      * Is a current form items a tab?

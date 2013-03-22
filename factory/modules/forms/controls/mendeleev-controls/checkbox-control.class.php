@@ -1,8 +1,8 @@
 <?php
 
-class FactoryFormFR100CheckboxFormControl extends FactoryFormFR100StandartFormControl 
+class FactoryFormFR101CheckboxFormControl extends FactoryFormFR101StandartFormControl 
 {
-    public $type = 'checkbox';
+    public $type = 'mv-checkbox';
     
     protected function renderInput( $c, $value, $fullname ) {
         $checked = $value ? 'checked="checked"' : '';

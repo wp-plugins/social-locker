@@ -6,7 +6,7 @@
  * - creating aninstance of Factory Shortcode per every call of the shortcode.
  * - tracking shortcodes in post content.
  */
-class FactoryFR100ShortcodeManager {
+class FactoryFR102ShortcodeManager {
     
     public $plugin;
     public $blanks;
@@ -19,7 +19,7 @@ class FactoryFR100ShortcodeManager {
      */
     private $firstContentSave = true;
 
-    public function __construct(FactoryFR100Plugin $plugin) {
+    public function __construct(FactoryFR102Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -45,7 +45,8 @@ class FactoryFR100ShortcodeManager {
      * Registers shortcodes blanks.
      */
     public function register( $shortcodeBlanks ) {
- 
+        if ( empty($shortcodeBlanks) ) return;
+        
         $this->blanks = $shortcodeBlanks;
         $isAdmin = is_admin();
 
@@ -56,7 +57,7 @@ class FactoryFR100ShortcodeManager {
                 // register shortcodes for tracking
                 if ($blank->tracking) {
                     
-                    factory_fr100_tr_register_shortcode(
+                    factory_fr102_tr_register_shortcode(
                         $blank->shortcode,
                         array($blank, 'trackingCallback')
                     );
@@ -95,19 +96,19 @@ class FactoryFR100ShortcodeManager {
         }  
         
         // runs the shortcode tracking 
-        factory_fr100_tr_check_content($post->post_content, $postid);
+        factory_fr102_tr_check_content($post->post_content, $postid);
     }
     
     /**
      * Checks needs to include assets in the <head> tag of the post page.
-     * @param FactoryFR100Shortcode $blank
+     * @param FactoryFR102Shortcode $blank
      */
     private function checkAssets( $blank, $post, $postid ) {
         
         $blank->assets($blank->scripts, $blank->styles);
 
         $content = $post->post_content;
-        $metaName = 'factory_fr100_' . $blank->shortcode . '_include_assets';
+        $metaName = 'factory_fr102_' . $blank->shortcode . '_include_assets';
 
         delete_post_meta($postid, $metaName);
 
@@ -146,10 +147,10 @@ class FactoryFR100ShortcodeManager {
     public function actionEnqueueScripts() {
        global $post;
        
-       if ( empty($post) || is_home() || is_front_page() ) return;
+       if ( empty($post) ) return;
        
        foreach( $this->blanks as $blank ) {
-           $metaName = 'factory_fr100_' . $blank->shortcode . '_include_assets';
+           $metaName = 'factory_fr102_' . $blank->shortcode . '_include_assets';
            $metaValue = get_post_meta($post->ID, $metaName);
           
            if ( empty($metaValue) ) continue;
