@@ -1,5 +1,5 @@
 === OnePress Social Locker ===
-Contributors: onepressmedia, onepress, OnePressMedia
+Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
