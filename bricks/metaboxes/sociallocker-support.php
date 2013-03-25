@@ -1,6 +1,6 @@
 <?php
 
-class SociallockerSupportMetaBox extends FactoryFR102Metabox
+class SociallockerSupportMetaBox extends FactoryFR103Metabox
 {
     public $title = 'Support';
     public $priority = 'core';

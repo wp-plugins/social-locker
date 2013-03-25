@@ -5,7 +5,7 @@
  * It's a main class for building the plugin.
  * The class allows to isolate a several plugins that use the same version of the Factory.
  */
-class FactoryFR102Plugin {
+class FactoryFR103Plugin {
     
     /**
      * Main file of the plugin.
@@ -16,6 +16,8 @@ class FactoryFR102Plugin {
     public $pluginSlug;
     
     public $relativePath;
+    
+    public $options;
     
     /**
      * Template root.
@@ -57,24 +59,20 @@ class FactoryFR102Plugin {
      * @var array
      */
     public $shortcodes = array();
-    
-    /**
-     * Licenase manger for a plugin.
-     * @var FactoryFR102LicenseManager
-     */
-    public $license;
    
     /**
      * Creates an instance of Factory plugin.
      */
     public function __construct( $pluginPath, $data ) {
+        $this->options = $data;
         
         // saves plugin basic paramaters
         $this->mainFile = $pluginPath;
+        $this->pluginRoot = dirname( $pluginPath );
         $this->pluginSlug = basename($pluginPath);
         $this->relativePath = plugin_basename( $pluginPath );
-        $this->itemRoot = dirname( $pluginPath ) . '/' . ( isset( $data['bricks'] ) ? $data['bricks'] : 'bricks' );  
-        $this->templateRoot = dirname( $pluginPath ) . '/' . isset( $data['templates'] ) ? $data['templates'] : 'templates';   
+        $this->itemRoot = $this->pluginRoot . '/' . ( isset( $data['bricks'] ) ? $data['bricks'] : 'bricks' );  
+        $this->templateRoot = $this->pluginRoot . '/' . isset( $data['templates'] ) ? $data['templates'] : 'templates';   
         $this->pluginUrl = plugins_url( null, $pluginPath );
         $this->pluginName = $data['name'];
         $this->version = $data['version'];
@@ -82,7 +80,6 @@ class FactoryFR102Plugin {
         $this->host = $_SERVER['HTTP_HOST'];  
 
         $this->isAdmin = is_admin();
-        $this->license = new FactoryFR102LicenseManager( $this, $data['api'] );
 
         // init actions
         $this->setupActions();
@@ -101,21 +98,26 @@ class FactoryFR102Plugin {
      * Setups actions related with the Factory Plugin.
      */
     private function setupActions() {
-        add_action('init', array($this, 'actionInit'));      
+        add_action('plugins_loaded', array($this, 'actionPluginLoadded'));  
+        add_action('init', array($this, 'actionInit')); 
+        
         if ( $this->isAdmin ) {
-            add_action('plugins_loaded', array($this, 'actionPluginLoadded'));  
             add_action('admin_enqueue_scripts', array($this, 'actionAdminScripts'));
         }
     }
     
     public function actionPluginLoadded() {
         
-        $dbVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
-        if ( $dbVersion != $this->build . '-' . $this->version ) {
-            $this->activationOrUpdateHook( false );
+        // checks whether the plugin needs to run updates.
+        if ( $this->isAdmin ) {
+            
+            $dbVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
+            if ( $dbVersion != $this->build . '-' . $this->version ) {
+                $this->activationOrUpdateHook( false );
+            }  
         }
         
-        do_action('factory_fr102_init', $this);
+        do_action('factory_fr103_init', $this);
     }
     
     /**
@@ -124,12 +126,12 @@ class FactoryFR102Plugin {
      */
     public function actionInit() {
         
-        $this->shortcodes = new FactoryFR102ShortcodeManager( $this );   
-        $this->metaboxes = new FactoryFR102MetaboxManager( $this );   
+        $this->shortcodes = new FactoryFR103ShortcodeManager( $this );   
+        $this->metaboxes = new FactoryFR103MetaboxManager( $this );   
         
         if ( $this->isAdmin ) {
             
-            $this->pages = new FactoryFR102AdminPageManager( $this ); 
+            $this->pages = new FactoryFR103AdminPageManager( $this ); 
         
             // metaboxes
             // just includes class definition
@@ -174,11 +176,8 @@ class FactoryFR102Plugin {
          // clears cache that is used to store path and classes of Factory Items.
         $this->clearCache();
         $this->findItems();
-
-        // set cron tasks
-        $this->license->runCron();
-        // clear last version check data
-        $this->license->clearVersionCheck();
+        
+        do_action('factory_fr103_activation_or_update');
         
         $dbBuildVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
 
@@ -259,9 +258,7 @@ class FactoryFR102Plugin {
         $this->clearCache();
         $this->findItems();
         
-        // clear cron tasks
-        $this->license->stopCron();
-        $this->license->clearLicenseData();
+        do_action('factory_fr103_deactivation');
         
         $item = $this->loadItem( 'activation', true );
         if ( !empty($item) ) {
@@ -369,39 +366,31 @@ class FactoryFR102Plugin {
     public function actionAdminScripts( $hook ) {
 	global $post;
         
-        wp_enqueue_style('factory-admin-global', FACTORY_FR102_URL . '/assets/css/admin-global.css');
-        wp_enqueue_script('factory-admin-global', FACTORY_FR102_URL . '/assets/js/admin-global.js'); 
+        wp_enqueue_style('factory-admin-global', FACTORY_FR103_URL . '/assets/css/admin-global.css');
+        wp_enqueue_script('factory-admin-global', FACTORY_FR103_URL . '/assets/js/admin-global.js'); 
                         
 	if ( in_array( $hook, array('post.php', 'post-new.php')) && $post )
         {
             if ( !empty( $this->types[$post->post_type] ) ) {
                 
-		wp_enqueue_style('factory-bootstrap', FACTORY_FR102_URL . '/assets/css/bootstrap.css');	
-		wp_enqueue_script('factory-bootstrap', FACTORY_FR102_URL . '/assets/js/bootstrap.js', array('jquery'));
+		wp_enqueue_style('factory-bootstrap', FACTORY_FR103_URL . '/assets/css/bootstrap.css');	
+		wp_enqueue_script('factory-bootstrap', FACTORY_FR103_URL . '/assets/js/bootstrap.js', array('jquery'));
             }
             
         } elseif ( isset($_GET['page']) && in_array($_GET['page'], $this->pages->getIds())) {
             
-            wp_enqueue_style('factory-bootstrap', FACTORY_FR102_URL . '/assets/css/bootstrap.css');	
-            wp_enqueue_script('factory-bootstrap', FACTORY_FR102_URL . '/assets/js/bootstrap.js', array('jquery'));
+            wp_enqueue_style('factory-bootstrap', FACTORY_FR103_URL . '/assets/css/bootstrap.css');	
+            wp_enqueue_script('factory-bootstrap', FACTORY_FR103_URL . '/assets/js/bootstrap.js', array('jquery'));
         }
-        
-        $licenseType = defined('FACTORY_FR102_LICENSE_TYPE') ? FACTORY_FR102_LICENSE_TYPE : $this->license->data['Category'];
-        $buildType = defined('FACTORY_FR102_BUILD_TYPE') ? FACTORY_FR102_BUILD_TYPE : $this->license->data['Build'];      
-        ?>
-        <script>
-            window['<?php echo $this->pluginName ?>-license'] = '<?php echo $licenseType ?>';
-            window['<?php echo $this->pluginName ?>-build'] = '<?php echo $buildType ?>';   
-        </script>
-        <?php
     }
     
     /**
      * Loads a module by its name.
      * @param type $moduleName
      */
-    public function load( $moduleName ) {
-        include_once(FACTORY_FR102_DIR . '../../modules/' . $moduleName . '/start.php');
+    public function load( $path, $name ) {
+        include($this->pluginRoot . '/' . $path . '/start.php');
+        do_action('factory_fr103_load_' . $name, $this);
     }
     
     /**
@@ -410,7 +399,7 @@ class FactoryFR102Plugin {
     private function findItems() {
         
         // clears the cache after activation
-        if ( defined('FACTORY_FR102_DEBUG') ) $this->clearCache();
+        if ( defined('FACTORY_FR103_DEBUG') ) $this->clearCache();
         
         $cached = $this->getCache('items');
 

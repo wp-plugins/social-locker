@@ -14,7 +14,7 @@ function socaillocker_expired_message() {
                 delete the current key to use the free version of the plugin.
             </p>
             <p style="position: relative; left: -2px;">
-                <a href="<?php onepress_fr101_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
+                <a href="<?php onepress_fr103_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
                     Visit the license manager
                 </a>   
             </p>
@@ -58,7 +58,7 @@ function socaillocker_estimate_message( $remained ) {
                 Don't forget to purchase the premium key or 
                 delete the trial key to use the free version of the plugin.</p>
                 <p style="position: relative; left: -2px;">
-                    <a href="<?php onepress_fr101_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
+                    <a href="<?php onepress_fr103_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
                         Visit the license manager
                     </a>
                     <span class="onp-btn onp-btn-small onp-close-alert" data-cookie="estimate_message">or close this message</span>
@@ -74,7 +74,7 @@ function socaillocker_estimate_message( $remained ) {
                     Don't forget to purchase the premium key or 
                     delete the trial key to use the free version of the plugin.</p>
                 <p style="position: relative; left: -2px;">
-                    <a href="<?php onepress_fr101_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
+                    <a href="<?php onepress_fr103_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
                         Visit the license manager
                     </a>
                     <span class="onp-btn onp-btn-small onp-close-alert" data-cookie="estimate_message">or close this message</span>

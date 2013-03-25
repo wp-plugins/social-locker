@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR101 {
+class FactoryForm {
     
     public static $controls = array();
 
@@ -50,10 +50,10 @@ class FactoryFormFR101 {
      */
     private $formControls = array();
     
-    public function __construct( FactoryFR102Plugin $plugin, $valueProvider = null ) {
+    public function __construct( FactoryFR103Plugin $plugin, $valueProvider = null ) {
         
         $this->plugin = $plugin;
-        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR102FakeValueProvider();     
+        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR103FakeValueProvider();     
     }
     
     /**
@@ -83,7 +83,7 @@ class FactoryFormFR101 {
         $controlsStack = self::$controls;
 
         // applies filters to the form params before building
-        $this->items = apply_filters('factory_form_fr101', $this->items, $this->scope, $this->name);    
+        $this->items = apply_filters('factory_fr103_form', $this->items, $this->scope, $this->name);    
         $this->items = apply_filters('factory_form_fr101_' . $this->name, $this->items, $this->scope);
                 
         foreach($this->items as $index => $item) {
@@ -207,7 +207,7 @@ class FactoryFormFR101 {
     
     /**
      * Renders a given item.
-     * @param FactoryFormFR101Item $item
+     * @param FactoryFormItem $item
      */
     private function renderItem( $item ) {
         
@@ -233,7 +233,7 @@ class FactoryFormFR101 {
     
     /**
      * Renders a tab item.
-     * @param FactoryFormFR101Tab $item
+     * @param FactoryFormTab $item
      */
     private function renderTab( $item ) {
         
@@ -295,7 +295,7 @@ class FactoryFormFR101 {
     
     /**
      * Renders a tab item
-     * @param FactoryFormFR101TabItem $tabItem
+     * @param FactoryFormTabItem $tabItem
      */
     private function renderTabItem( $tabItem ) {
         
@@ -306,7 +306,7 @@ class FactoryFormFR101 {
     
     /**
      * Renders a group of items
-     * @param FactoryFormFR101Group $groupItem
+     * @param FactoryFormGroup $groupItem
      */
     private function renderGroup( $groupItem ) {
         ?>
@@ -325,7 +325,7 @@ class FactoryFormFR101 {
     
     /**
      * Render control item
-     * @param FactoryFormFR101TabControl $controlItem
+     * @param FactoryFormTabControl $controlItem
      */
     private function renderControl( $controlItem ) {
         $controlItem->render();

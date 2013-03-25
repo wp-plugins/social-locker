@@ -72,6 +72,9 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.1.2 - 25 Mar 2013 =
+FIXED: Common improvements of the plugin performance.
+
 = 2.1.1 - 19 Mar 2013 =
 FIXED: The bug of oEmbed inside the lockers.
 

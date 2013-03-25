@@ -6,7 +6,7 @@ class SocialLockerBasicOptionsMetaBox extends FactoryFormFR101Metabox
     public $scope = 'sociallocker';
     public $priority = 'core';
     
-    public function form( FactoryFormFR101 $form ) {
+    public function form( FactoryForm $form ) {
         
             $form->add(array(  
 

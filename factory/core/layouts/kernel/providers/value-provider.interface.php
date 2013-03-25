@@ -1,6 +1,6 @@
 <?php
 
-interface IFactoryFR102ValueProvider {
+interface IFactoryFR103ValueProvider {
     
     public function init( $scope, $postId = false );
     public function saveChanges();

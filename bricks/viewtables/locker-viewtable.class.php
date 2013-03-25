@@ -1,11 +1,11 @@
 <?php
 
-class SocialLockerViewTable extends FactoryFR102ViewTable
+class SocialLockerViewTable extends FactoryFR103ViewTable
 {
     public function configure( 
-            FactoryFR102ViewTable $table,
-            FactoryFR102ScriptList $scripts, 
-            FactoryFR102StyleList $styles )
+            FactoryFR103ViewTable $table,
+            FactoryFR103ScriptList $scripts, 
+            FactoryFR103StyleList $styles )
     {
         /**
          * Columns

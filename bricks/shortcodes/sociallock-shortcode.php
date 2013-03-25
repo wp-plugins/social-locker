@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockShortcode extends FactoryFR102Shortcode {
+class SocialLockShortcode extends FactoryFR103Shortcode {
     
     /**
      * Shortcode name
@@ -21,10 +21,10 @@ class SocialLockShortcode extends FactoryFR102Shortcode {
     /**
      * Defines what assets need to include.
      * The method is called separate from the Render method during shortcode registration.
-     * @param FactoryFR102ScriptList $scripts
-     * @param FactoryFR102StyleList $styles
+     * @param FactoryScriptList $scripts
+     * @param FactoryStyleList $styles
      */
-    public function assets(FactoryFR102ScriptList $scripts, FactoryFR102StyleList $styles) {
+    public function assets(FactoryFR103ScriptList $scripts, FactoryFR103StyleList $styles) {
         
         add_action('wp_head', array($this, 'facebookConnect'));
         

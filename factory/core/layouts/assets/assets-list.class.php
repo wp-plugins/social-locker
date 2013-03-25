@@ -1,10 +1,10 @@
 <?php
 
-class FactoryFR102AssetsList 
+class FactoryFR103AssetsList 
 {
     /**
      * Current factory.
-     * @var FactoryFR102Plugin
+     * @var FactoryPlugin
      */
     public $plugin;
     

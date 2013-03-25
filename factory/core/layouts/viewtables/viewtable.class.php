@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFR102ViewTable {
+abstract class FactoryFR103ViewTable {
     
     /**
      * Current factory.
@@ -16,34 +16,34 @@ abstract class FactoryFR102ViewTable {
     
     /**
      * Table's columns
-     * @var FactoryFR102ViewTableColumns 
+     * @var FactoryViewTableColumns 
      */
     public $columns;
     
     /**
      * Scripts that must be included on edit page.
-     * @var FactoryFR102ScriptList 
+     * @var FactoryScriptList 
      */
     public $adminScripts;
     
     /**
      * Styles that must be included on edit page.
-     * @var FactoryFR102StyleList 
+     * @var FactoryStyleList 
      */  
     public $adminStyles;
     
-    public function __construct( FactoryFR102Plugin $plugin = null ) {
+    public function __construct( FactoryFR103Plugin $plugin = null ) {
         $this->plugin = $plugin;
     }
     
-    public function register( FactoryFR102Type $type ) {
+    public function register( FactoryFR103Type $type ) {
         
         $this->type = $type;
         $this->plugin = $type->plugin;
-        $this->columns = new FactoryFR102ViewTableColumns();
+        $this->columns = new FactoryFR103ViewTableColumns();
         
-        $this->adminScripts = new FactoryFR102ScriptList( $type->plugin );
-        $this->adminStyles = new FactoryFR102StyleList( $type->plugin ); 
+        $this->adminScripts = new FactoryFR103ScriptList( $type->plugin );
+        $this->adminStyles = new FactoryFR103StyleList( $type->plugin ); 
         
         $this->configure( $this, $this->adminScripts, $this->adminStyles );
         
@@ -67,9 +67,9 @@ abstract class FactoryFR102ViewTable {
     }
     
     public abstract function configure( 
-            FactoryFR102ViewTable $table, 
-            FactoryFR102ScriptList $scripts, 
-            FactoryFR102StyleList $styles );
+            FactoryFR103ViewTable $table, 
+            FactoryFR103ScriptList $scripts, 
+            FactoryFR103StyleList $styles );
     
     public function actionColumns( $columns ) {
         
