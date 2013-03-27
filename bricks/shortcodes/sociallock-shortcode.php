@@ -33,7 +33,7 @@ class SocialLockShortcode extends FactoryFR103Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020006.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020013.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -103,11 +103,13 @@ class SocialLockShortcode extends FactoryFR103Shortcode {
         
         global $wp_embed;
         $content = $wp_embed->autoembed($content);
-        
         $content = do_shortcode( $content );
         
         $content = preg_replace( '/^<br \/>/', '', $content );
         $content = preg_replace( '/<br \/>$/', '', $content );
+        
+        $headerText = sociallocker_get_meta($id, 'header');
+        $messageText = sociallocker_get_meta($id, 'message');
         
         // Builds array of options to set into the jquery plugin
             
@@ -116,8 +118,8 @@ class SocialLockShortcode extends FactoryFR103Shortcode {
                 'demo' => get_option('sociallocker_debug', false ),
                 
                 'text' => array(
-                    'header' => sociallocker_get_meta($id, 'header'), 
-                    'message' => sociallocker_get_meta($id, 'message')           
+                    'header' => empty($headerText) ? '' : $headerText, 
+                    'message' => empty($messageText) ? '' : $messageText         
                 ),
 
                 'theme' => 'secrets',

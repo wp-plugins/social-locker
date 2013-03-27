@@ -6,10 +6,10 @@
  */
 class PluginManagerAdminPage extends OnePressFR103LicenseManagerAdminPage  {
  
-    public $purchaseUrl = 'http://codecanyon.net/item/social-locker-for-wordpress/3667715/?ref=onepress';
+    public $purchaseUrl = 'http://codecanyon.net/item/social-locker-for-wordpress/3667715/?ref=OnePress';
     public $purchasePrice = '$21';
     
-    public function configure() { global $socialLocker;
+    public function configure() {
             $this->menuPostType = 'social-locker';
         
 

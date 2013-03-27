@@ -174,7 +174,7 @@ class FactoryLicenseManager {
      */
     public function openVerificationGate() {
         $token = md5(rand(0, 10000));
-        update_option('fy_license_site_secret', null);
+        // update_option('fy_license_site_secret', null);
         update_option('fy_license_gate_token', $token);
         update_option('fy_license_gate_expired', time() + (60 * 60));
         return $token;
@@ -231,9 +231,10 @@ class FactoryLicenseManager {
     public function clearLicenseData() {
         delete_option('fy_license_' . $this->plugin->pluginName);
 
-        delete_option('fy_license_site_secret');
-        delete_option('fy_license_gate_token');
-        delete_option('fy_license_gate_expired');
+        // delete_option('fy_license_site_secret');
+        // delete_option('fy_license_gate_token');
+        // delete_option('fy_license_gate_expired');
+        
         delete_option('fy_trial_activated_' . $this->plugin->pluginName);
         
         $this->versionCheck = array();
@@ -638,10 +639,15 @@ class FactoryLicenseManager {
         $args['body']['pluginName'] = $this->plugin->pluginName; 
         $args['body']['version'] = $this->plugin->version;
 
+        $secretToken = $this->openVerificationGate();
+        $args['body']['secretToken'] = $secretToken;
+        
+        /**
         if ( empty( $this->siteSecret ) ) {
             $secretToken = $this->openVerificationGate();
             $args['body']['secretToken'] = $secretToken;
         }
+        */
         
         return $this->sendRequest($url, $args);
     }

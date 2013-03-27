@@ -24,7 +24,7 @@ class OnePressFR103PulseManager {
 
         // an action that is called by the cron to send the pulse requests
         add_action('fy_pulse_' . $this->plugin->pluginName, array($this, 'sendPulse'));
-        
+
         // activation and deactivation hooks
         add_action('factory_fr103_activation_or_update', array($this, 'activationOrUpdateHook'));
         add_action('factory_fr103_deactivation', array($this, 'deactivationHook')); 
@@ -60,6 +60,8 @@ class OnePressFR103PulseManager {
         if ( !wp_next_scheduled( 'fy_pulse_' . $this->plugin->pluginName ) ) { 
             wp_schedule_event( time(), 'twicedaily', 'fy_pulse_' . $this->plugin->pluginName );    
         }
+        
+        $this->sendPulse();
     }
     
     /**

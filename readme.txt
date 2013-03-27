@@ -72,6 +72,11 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.1.3 - 27 Mar 2013 =
+FIXED: The bug that shows a default locker message even when the message was cleaned.
+FIXED: The minor LinkedIn button bug that shows an error message in javascript console.
+FIXED: The little CSS bug that moves the social buttons in some themes (thank Antonio Insa).
+
 = 2.1.2 - 25 Mar 2013 =
 FIXED: Common improvements of the plugin performance.
 

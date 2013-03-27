@@ -83,7 +83,7 @@ class FactoryFR103AdminPage extends FactoryFR103Page {
     }
     
     public function getResultId() {
-        return ( $this->internal ) ? $this->id . '-internal-' . $this->plugin->pluginName : $this->id;
+        return $this->id . '-' . $this->plugin->pluginName;
     }
     
     /**
@@ -192,11 +192,11 @@ class FactoryFR103AdminPage extends FactoryFR103Page {
             
             ?>
             <style type="text/css" media="screen">
-                a.toplevel_page_<?php echo $this->id ?> .wp-menu-image {
+                a.toplevel_page_<?php echo $resultId ?> .wp-menu-image {
                     background: url('<?php echo $iconUrl ?>') no-repeat 6px -33px !important;
                 }
-                a.toplevel_page_<?php echo $this->id ?>:hover .wp-menu-image, 
-                a.toplevel_page_<?php echo $this->id ?>.current .wp-menu-image {
+                a.toplevel_page_<?php echo $resultId ?>:hover .wp-menu-image, 
+                a.toplevel_page_<?php echo $resultId ?>.current .wp-menu-image {
                     background-position:6px -1px !important;
                 }
             </style>
