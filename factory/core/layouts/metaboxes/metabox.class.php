@@ -3,7 +3,7 @@
 /**
  * @link http://codex.wordpress.org/Function_Reference/add_meta_box
  */
-abstract class FactoryFR103Metabox {
+abstract class FactoryFR105Metabox {
     
     /**
      * Id of the metabox. 
@@ -62,7 +62,7 @@ abstract class FactoryFR103Metabox {
     
     private $isRegisted;
     
-    public function __construct( FactoryFR103Plugin $plugin = null ) {
+    public function __construct( FactoryFR105Plugin $plugin = null ) {
         $this->plugin = $plugin;
         $this->id = empty($this->id) ? get_class($this) : $this->id;
     }
@@ -78,7 +78,7 @@ abstract class FactoryFR103Metabox {
        }
     }
     
-    public function configure(FactoryFR103ScriptList $scripts, FactoryFR103StyleList $styles) {
+    public function configure(FactoryFR105ScriptList $scripts, FactoryFR105StyleList $styles) {
         // method must be overriden in the derived classed.
     }
 
@@ -86,8 +86,8 @@ abstract class FactoryFR103Metabox {
         if ( $this->isRegisted ) return;
          $this->isRegisted = true;
            
-        $this->scripts = new FactoryFR103ScriptList( $this->plugin );
-        $this->styles = new FactoryFR103StyleList( $this->plugin );
+        $this->scripts = new FactoryFR105ScriptList( $this->plugin );
+        $this->styles = new FactoryFR105StyleList( $this->plugin );
         
         $this->configure( $this->scripts, $this->styles );
     }

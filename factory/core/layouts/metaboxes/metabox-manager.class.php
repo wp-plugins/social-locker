@@ -6,7 +6,7 @@
  * - register metaboxes for custom posts
  * - process data on post saving
  */
-class FactoryFR103MetaboxManager {
+class FactoryFR105MetaboxManager {
     
     public $plugin;
     
@@ -17,7 +17,7 @@ class FactoryFR103MetaboxManager {
     public $metaboxes = array();
     public $types = array();
     
-    public function __construct(FactoryFR103Plugin $plugin) {
+    public function __construct(FactoryFR105Plugin $plugin) {
         $this->plugin = $plugin;
         
         add_action('add_meta_boxes', array($this, 'actionAddMetabox'));

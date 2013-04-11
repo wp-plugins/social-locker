@@ -5,7 +5,7 @@
  * It's a main class for building the plugin.
  * The class allows to isolate a several plugins that use the same version of the Factory.
  */
-class FactoryFR103Plugin {
+class FactoryFR105Plugin {
     
     /**
      * Main file of the plugin.
@@ -75,6 +75,7 @@ class FactoryFR103Plugin {
         $this->templateRoot = $this->pluginRoot . '/' . isset( $data['templates'] ) ? $data['templates'] : 'templates';   
         $this->pluginUrl = plugins_url( null, $pluginPath );
         $this->pluginName = $data['name'];
+        $this->pluginTitle = $data['title'];
         $this->version = $data['version'];
         $this->build = $data['assembly'];
         $this->host = $_SERVER['HTTP_HOST'];  
@@ -100,8 +101,9 @@ class FactoryFR103Plugin {
     private function setupActions() {
         add_action('plugins_loaded', array($this, 'actionPluginLoadded'));  
         add_action('init', array($this, 'actionInit')); 
-        
+
         if ( $this->isAdmin ) {
+            add_action('admin_init', array($this, 'actionAdminInit'), 20);
             add_action('admin_enqueue_scripts', array($this, 'actionAdminScripts'));
         }
     }
@@ -117,7 +119,7 @@ class FactoryFR103Plugin {
             }  
         }
         
-        do_action('factory_fr103_init', $this);
+        do_action('factory_fr105_init', $this);
     }
     
     /**
@@ -126,12 +128,13 @@ class FactoryFR103Plugin {
      */
     public function actionInit() {
         
-        $this->shortcodes = new FactoryFR103ShortcodeManager( $this );   
-        $this->metaboxes = new FactoryFR103MetaboxManager( $this );   
+        $this->shortcodes = new FactoryFR105ShortcodeManager( $this );   
+        $this->metaboxes = new FactoryFR105MetaboxManager( $this );   
         
         if ( $this->isAdmin ) {
             
-            $this->pages = new FactoryFR103AdminPageManager( $this ); 
+            $this->notices = new FactoryFR105NoticeManager( $this );
+            $this->pages = new FactoryFR105AdminPageManager( $this ); 
         
             // metaboxes
             // just includes class definition
@@ -167,6 +170,11 @@ class FactoryFR103Plugin {
         }
     }
     
+    public function actionAdminInit() {
+        remove_action("after_plugin_row_" . $this->relativePath, 'wp_plugin_update_row');
+        add_action("after_plugin_row_" . $this->relativePath, array($this, 'showCustomPluginRow'), 10, 2);
+    }
+    
     public function forceActivationHook() {
         $this->activationOrUpdateHook(true);
     }
@@ -177,7 +185,7 @@ class FactoryFR103Plugin {
         $this->clearCache();
         $this->findItems();
         
-        do_action('factory_fr103_activation_or_update');
+        do_action('factory_fr105_activation_or_update-' . $this->pluginName);
         
         $dbBuildVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
 
@@ -258,7 +266,7 @@ class FactoryFR103Plugin {
         $this->clearCache();
         $this->findItems();
         
-        do_action('factory_fr103_deactivation');
+        do_action('factory_fr105_deactivation-' . $this->pluginName);;
         
         $item = $this->loadItem( 'activation', true );
         if ( !empty($item) ) {
@@ -366,21 +374,21 @@ class FactoryFR103Plugin {
     public function actionAdminScripts( $hook ) {
 	global $post;
         
-        wp_enqueue_style('factory-admin-global', FACTORY_FR103_URL . '/assets/css/admin-global.css');
-        wp_enqueue_script('factory-admin-global', FACTORY_FR103_URL . '/assets/js/admin-global.js'); 
+        wp_enqueue_style('factory-admin-global', FACTORY_FR105_URL . '/assets/css/admin-global.css');
+        wp_enqueue_script('factory-admin-global', FACTORY_FR105_URL . '/assets/js/admin-global.js'); 
                         
 	if ( in_array( $hook, array('post.php', 'post-new.php')) && $post )
         {
             if ( !empty( $this->types[$post->post_type] ) ) {
                 
-		wp_enqueue_style('factory-bootstrap', FACTORY_FR103_URL . '/assets/css/bootstrap.css');	
-		wp_enqueue_script('factory-bootstrap', FACTORY_FR103_URL . '/assets/js/bootstrap.js', array('jquery'));
+		wp_enqueue_style('factory-bootstrap', FACTORY_FR105_URL . '/assets/css/bootstrap.css');	
+		wp_enqueue_script('factory-bootstrap', FACTORY_FR105_URL . '/assets/js/bootstrap.js', array('jquery'));
             }
             
         } elseif ( isset($_GET['page']) && in_array($_GET['page'], $this->pages->getIds())) {
             
-            wp_enqueue_style('factory-bootstrap', FACTORY_FR103_URL . '/assets/css/bootstrap.css');	
-            wp_enqueue_script('factory-bootstrap', FACTORY_FR103_URL . '/assets/js/bootstrap.js', array('jquery'));
+            wp_enqueue_style('factory-bootstrap', FACTORY_FR105_URL . '/assets/css/bootstrap.css');	
+            wp_enqueue_script('factory-bootstrap', FACTORY_FR105_URL . '/assets/js/bootstrap.js', array('jquery'));
         }
     }
     
@@ -390,7 +398,7 @@ class FactoryFR103Plugin {
      */
     public function load( $path, $name ) {
         include($this->pluginRoot . '/' . $path . '/start.php');
-        do_action('factory_fr103_load_' . $name, $this);
+        do_action('factory_fr105_load_' . $name, $this);
     }
     
     /**
@@ -399,7 +407,7 @@ class FactoryFR103Plugin {
     private function findItems() {
         
         // clears the cache after activation
-        if ( defined('FACTORY_FR103_DEBUG') ) $this->clearCache();
+        if ( defined('FACTORY_FR105_DEBUG') ) $this->clearCache();
         
         $cached = $this->getCache('items');
 
@@ -649,5 +657,29 @@ class FactoryFR103Plugin {
     public function clearCache() {
         $optionName = 'fy_' . $this->pluginName . '_items';
         delete_option($optionName);
+    }
+    
+    // ----------------------------------------------------------------------
+    // Plugin row on plugins.php page
+    // ----------------------------------------------------------------------
+    
+    public function showCustomPluginRow($file, $plugin_data) {
+        if ( !is_network_admin() && is_multisite() ) return;
+        
+        $messages = apply_filters('factory_fr105_plugin_row-' . $this->pluginName, array(), $file, $plugin_data);
+
+        // if nothign to show then, use default handle
+        if ( count($messages) == 0 ) {
+            wp_plugin_update_row($file, $plugin_data);
+            return;
+        } 
+
+        $wp_list_table = _get_list_table('WP_Plugins_List_Table');
+
+        foreach($messages as $message) {
+            echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+            echo $message;
+            echo '</div></td></tr>'; 
+        }
     }
 }

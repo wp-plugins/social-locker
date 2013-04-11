@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockShortcode extends FactoryFR103Shortcode {
+class SocialLockShortcode extends FactoryFR105Shortcode {
     
     /**
      * Shortcode name
@@ -24,7 +24,7 @@ class SocialLockShortcode extends FactoryFR103Shortcode {
      * @param FactoryScriptList $scripts
      * @param FactoryStyleList $styles
      */
-    public function assets(FactoryFR103ScriptList $scripts, FactoryFR103StyleList $styles) {
+    public function assets(FactoryFR105ScriptList $scripts, FactoryFR105StyleList $styles) {
         
         add_action('wp_head', array($this, 'facebookConnect'));
         
@@ -33,7 +33,7 @@ class SocialLockShortcode extends FactoryFR103Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020013.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020014.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -153,8 +153,8 @@ class SocialLockShortcode extends FactoryFR103Shortcode {
         $postTitle = $post != null ? $post->post_title : '';
         $postUrl = $post != null ? get_permalink($post->ID) : '';
         
-        if ( !empty($params['twitter']['text'] ) ) {
-            $params['twitter']['text'] = str_replace('[post_title]', $postTitle, $params['twitter']['text']);
+        if ( !empty($params['twitter']['tweet']['text'] ) ) {
+            $params['twitter']['tweet']['text'] = str_replace('[post_title]', $postTitle, $params['twitter']['tweet']['text']);
         }
         
         if ( !empty($params['text'] ) ) {

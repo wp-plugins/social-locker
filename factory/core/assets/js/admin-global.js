@@ -1,10 +1,35 @@
-jQuery(document).ready(function($){
+(function($){
     
-    $(".onp-close-alert").click(function(){
-        var cookieName = $(this).data('cookie');
-        var exdate=new Date();
-        exdate.setDate(exdate.getDate() + 1);
-        document.cookie = "fy_" + cookieName + "=1; expires="+exdate.toUTCString();
-        $(this).parents('.error').fadeOut();
+    if ( window.fy_hide_notice ) return;
+    
+    $(function(){
+        $(".onp-notice-close").click(function(){
+            var id = $(this).parents(".onp-notice").attr('id');
+            fy_hide_notice(id, false);
+            return false;
+        });
     });
-});
+    
+    $(function(){
+        $(".onp-alert-close").click(function(){
+            var id = $(this).parents(".onp-alert").attr('id');
+            fy_hide_notice(id, false);
+            return false;
+        });
+    });
+    
+    window.fy_hide_notice = function( id, never ) {
+        var item = $("#" + id).fadeOut(300, function(){
+            item.remove();
+            $.ajax({
+                url: ajaxurl,
+                type: "post",
+                data: {
+                    id: id,
+                    action: "fy_hide_notice",
+                    never: never ? true : false
+                }
+            });
+        });
+    }
+})(jQuery);

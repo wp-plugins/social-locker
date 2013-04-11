@@ -1,11 +1,11 @@
 <?php
 
-class FactoryFR103AdminPageManager {
+class FactoryFR105AdminPageManager {
 
     public $plugin;
     public $pages = array();
 
-    public function __construct(FactoryFR103Plugin $plugin) {
+    public function __construct(FactoryFR105Plugin $plugin) {
         $this->plugin = $plugin;
         $this->id = empty($this->id) ? str_replace('', '', strtolower( get_class($this) ) ) : $this->id;
         

@@ -72,6 +72,10 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.1.4 - 11 Apr 2013 =
+FIXED: The bug of the shortcode [page_title] in the tweet message. Thank <a href="http://www.sharifkhalladi.com/" target="_blank">Sharif Khalladi</a> for finding it.
+FIXED: The bug when the message offering to change the plugin assembly appears even if the assemble is correct.  
+
 = 2.1.3 - 27 Mar 2013 =
 FIXED: The bug that shows a default locker message even when the message was cleaned.  
 FIXED: The minor LinkedIn button bug that shows an error message in javascript console.  

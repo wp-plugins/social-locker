@@ -4,14 +4,12 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
+class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
         
     public $id = 'license-manager';
     public $menuTitle = 'License Manager';
     
-    public $purchaseUrl = '';
     public $purchasePrice = '$';
-    public $pluginTitle = '';
     
     /**
      * [MAGIC] Magic method that configures assets for a page.
@@ -19,10 +17,10 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
      * @param FactoryScriptList $scripts    Scripts that will be included.
      * @param FactoryStyleList $styles      Styles that will be includes.
      */
-    public function assets(FactoryFR103ScriptList $scripts, FactoryFR103StyleList $styles) {
+    public function assets(FactoryFR105ScriptList $scripts, FactoryFR105StyleList $styles) {
         
-        $styles->add(ONEPRESS_FR103_URL . '/assets/css/license-manager.css');
-        $scripts->add(ONEPRESS_FR103_URL . '/assets/js/license-manager.js');   
+        $styles->add(ONEPRESS_FR105_URL . '/assets/css/license-manager.css');
+        $scripts->add(ONEPRESS_FR105_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -36,6 +34,7 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
     public function indexAction( $sender = 'index', $error = null ) {
 
         $licenseManager = $license = $this->plugin->license;
+        $updatesManager = $this->plugin->updates;
         $licenseKey = isset( $_POST['licensekey'] ) ? trim( $_POST['licensekey'] ) : null;
         
         if ( isset( $_POST['licensekey'] ) ) {
@@ -147,10 +146,10 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                         <div class="alert alert-normal">
                             <strong>The updates have been checked successfully.</strong>
                             <p>
-                            <?php if ( $licenseManager->isActualVersion() ) { ?>
+                            <?php if ( $updatesManager->isActualVersion() ) { ?>
                                 You use the actual version of the plugin.
                             <?php } else { ?>
-                                The <?php echo $licenseManager->versionCheck['Build'] ?>-<?php echo $licenseManager->versionCheck['Version'] ?> version is available to download.
+                                The <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> version is available to download.
                                 <a href="plugins.php">Click here</a> to get the update.
                             <?php } ?>
                             </p>
@@ -164,7 +163,7 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                 <div class="license-details">
                     <?php ?>
                         <?php if ( $licenseManager->hasUpgrade() ) { ?>
-                        <a href="<?php echo $this->purchaseUrl ?>" id="purchase-premium">
+                        <a href="<?php echo $this->plugin->options['premium'] ?>" id="purchase-premium">
                             <span class="btn btn-gold btn-inner-wrap">
                             <?php if ( !empty( $this->purchasePrice ) ) { ?>
                             <i class="icon-star icon-white"></i> Upgrade to Premium for <?php echo $this->purchasePrice ?> <i class="icon-star icon-white"></i>
@@ -176,10 +175,10 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                         <?php } ?>
                     <?php 
  ?>   
-                    <?php if ( empty( $this->pluginTitle ) ) { ?>
+                    <?php if ( empty( $this->plugin->pluginTitle ) ) { ?>
                     <p>Your current license:</p>
                     <?php } else { ?>
-                    <p>Your current license for <?php echo $this->pluginTitle ?>:</p>   
+                    <p>Your current license for <?php echo $this->plugin->pluginTitle ?>:</p>   
                     <?php } ?>
                     <div class="license-details-block <?php echo $licenseData['Category'] ?>-details-block">
                         
@@ -210,7 +209,7 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                                     Please remember this license covers only free edition of the plugin. Premium versions are distributed with other type of a license.
                                 </p>
                                 <p class="activate-trial-hint">
-                                    Also you can <a href="<?php $this->actionUrl('activateTrial') ?>">activate</a> a premium version for a trial period (7 days). Click <a target="_blank" href="<?php echo $this->purchaseUrl ?>">here</a> to learn more about the premium version.
+                                    Also you can <a href="<?php $this->actionUrl('activateTrial') ?>">activate</a> a premium version for a trial period (7 days). Click <a target="_blank" href="<?php echo $this->plugin->options['premium'] ?>">here</a> to learn more about the premium version.
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
@@ -226,13 +225,13 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                                 </td>   
                                 <td class="license-param license-param-version">
                                     <span class="license-value"><?php echo $this->plugin->version ?> <small>version</small></span>
-                                    <?php if ( $licenseManager->isVersionChecked() ) { ?>
-                                        <?php if ( $licenseManager->isActualVersion() ) { ?>
+                                    <?php if ( $updatesManager->isVersionChecked() ) { ?>
+                                        <?php if ( $updatesManager->isActualVersion() ) { ?>
                                             <span class="license-value-name">up-to-date</span>
                                         <?php } else { ?>
                                             <span class="license-value-name">
                                                 <a href="plugins.php" class="link-to-upgrade">
-                                                <?php echo $licenseManager->versionCheck['Build'] ?>-<?php echo $licenseManager->versionCheck['Version'] ?> available
+                                                <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> available
                                                 </a>
                                             </span>
                                         <?php } ?>
@@ -271,24 +270,24 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                             <input type="text" id="license-key" name="licensekey" value="<?php echo $licenseKey ?>" />
                         </div>
                         <p style="margin-top: 10px;">
-                            <a href="<?php echo $this->purchaseUrl ?>">Leam more</a> about the premium version and get the license key to activate it now!
+                            <a href="<?php echo $this->plugin->options['premium'] ?>">Leam more</a> about the premium version and get the license key to activate it now!
                         </p>
                     </form>
                 </div>
             </div>
             <div id="plugin-update-block">
                 <?php if ( $licenseManager->data['Build'] !== 'free' ) { ?>
-                    <?php if ( !$licenseManager->isVersionChecked() ) { ?>
-                        <?php if ( isset( $licenseManager->versionCheck['Checked'] ) ) { ?>
-                            The upadtes were checked at <strong><?php echo date( 'g:i a, j M y', $licenseManager->versionCheck['Checked'] ) ?></strong>.
+                    <?php if ( !$updatesManager->isVersionChecked() ) { ?>
+                        <?php if ( isset( $updatesManager->lastCheck['Checked'] ) ) { ?>
+                            The upadtes were checked at <strong><?php echo date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ?></strong>.
                         <?php } else { ?>
                             The upadtes were checked <strong>never</strong>.
                         <?php } ?>
                     <?php } else { ?>
-                        <?php if ( $licenseManager->isActualVersion() ) { ?>
-                        The upadtes were checked at <?php echo date( 'g:i a, d M y', $licenseManager->versionCheck['Checked'] ) ?>, you use the up-to-date version. 
+                        <?php if ( $updatesManager->isActualVersion() ) { ?>
+                        The upadtes were checked at <?php echo date( 'g:i a, d M y', $updatesManager->lastCheck['Checked'] ) ?>, you use the up-to-date version. 
                         <?php } else { ?>
-                        The upadtes were checked at <?php echo date( 'g:i a, d M y', $licenseManager->versionCheck['Checked'] ) ?>, <strong><?php echo $licenseManager->versionCheck['Version'] ?> is available</strong>.
+                        The upadtes were checked at <?php echo date( 'g:i a, d M y', $updatesManager->lastCheck['Checked'] ) ?>, <strong><?php echo $updatesManager->lastCheck['Version'] ?> is available</strong>.
                         <?php } ?>
                     <?php } ?>
                     Click <a href="<?php $this->actionUrl('checkUpdates') ?>">here</a> to check new updates manually.
@@ -307,7 +306,7 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
                                 image below:
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONEPRESS_FR103_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONEPRESS_FR105_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
@@ -473,12 +472,13 @@ class OnePressFR103LicenseManagerAdminPage extends FactoryFR103AdminPage  {
     }
     
     public function checkUpdatesAction() {
-        $error = $this->plugin->license->checkUpdates();
+        $error = $this->plugin->updates->checkUpdates();
         $this->indexAction( 'check-updates', $error ); 
     }
     
     public function internalKeysAction( $sender = 'index' ) {
         $licenseManager = $this->plugin->license;
+        
         $saved = false;
         
         if ( isset( $_POST['site_secret'] ) ) {

@@ -4,85 +4,50 @@ include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/common-settings.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/unlocking-statistics.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/tracking.php');
 
-add_action('fy_expired_message_sociallocker-next', 'socaillocker_expired_message', 10);
-function socaillocker_expired_message() {
-    ?>
-        <div class="error onp-alert onp-alert-danger not-visible-in-manager">
-            <h4 class="onp-alert-heading">The license key for "Social Locker" has expired.</h4>
-            <p>
-                Please purchase another key or 
-                delete the current key to use the free version of the plugin.
-            </p>
-            <p style="position: relative; left: -2px;">
-                <a href="<?php onepress_fr103_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
-                    Visit the license manager
-                </a>   
-            </p>
-        </div>
-    <?php
-}
-
-add_action('fy_change_build_message_sociallocker-next', 'socaillocker_change_build_message', 10);
-function socaillocker_change_build_message() {
+/**
+ * Adds scripts and styles in the admin area.
+ */
+function sociallocker_admin_assets() {
+    global $socialLocker;
     
-    ?>
-        <script>
-            jQuery(document).ready(function($){
-
-            });
-        </script>
-        <div class="error onp-alert onp-alert-danger not-visible-in-manager">
-            <h4 class="onp-alert-heading">One small step...</h4>
-            <p>
-                You changed a license type of the <strong>Social Locker</strong> plugin. But the license you use now
-                requries another assembly of the plugin.<br />
-                The plugin will not work fully, until you download the proper assembly. All your data will be saved.
-           </p>
-            <p style="position: relative; left: -2px;">
-               <a href="plugins.php" class="onp-btn onp-btn-danger onp-btn-small">Check available updates</a>        
-           </p>
-        </div>
-    <?php
-}
-
-add_action('fy_estimate_message_sociallocker-next', 'socaillocker_estimate_message', 10, 1);
-function socaillocker_estimate_message( $remained ) {
-    if ( $_COOKIE['fy_estimate_message'] ) return;
-    ?>
-    <?php
-    if ( $remained <= 1 ) {
-    ?>
-        <div class="error onp-alert onp-alert-danger not-visible-in-manager">
-            <h4 class="onp-alert-heading">The trial key for "Social Locker" will expire during the day.</h4>
-                <p>
-                Don't forget to purchase the premium key or 
-                delete the trial key to use the free version of the plugin.</p>
-                <p style="position: relative; left: -2px;">
-                    <a href="<?php onepress_fr103_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
-                        Visit the license manager
-                    </a>
-                    <span class="onp-btn onp-btn-small onp-close-alert" data-cookie="estimate_message">or close this message</span>
-                </p>
-        </div>
-    <?php
-    } else {
-        $remained = round($remained);
+    if ( $socialLocker->license && !$socialLocker->license->hasKey() ) {     
+        if ( $socialLocker->license->default['Build'] == 'premium' ) {
         ?>
-            <div class="error onp-alert onp-alert-danger not-visible-in-manager">
-                <h4 class="onp-alert-heading">The trial key for "Social Locker" will expire in <?php echo $remained ?> day.</h4>
-                <p>
-                    Don't forget to purchase the premium key or 
-                    delete the trial key to use the free version of the plugin.</p>
-                <p style="position: relative; left: -2px;">
-                    <a href="<?php onepress_fr103_link_license_manager('index') ?>" class="onp-btn onp-btn-danger onp-btn-small">
-                        Visit the license manager
-                    </a>
-                    <span class="onp-btn onp-btn-small onp-close-alert" data-cookie="estimate_message">or close this message</span>
-                </p>
-            </div>
-        <?php  
+        <style>
+            .onp-notice.sociallocker-next.onp-offer {  
+                background: #e9ebee url("<?php echo SOCIALLOCKER_PLUGIN_URL . '/assets/admin/img/offer-background-color.png' ?>");
+                color: #262729;
+                -webkit-text-shadow: none;
+                -moz-text-shadow: none;
+                text-shadow: none;
+                border-color: #bbbbbb;
+                padding: 10px;
+            }
+            .onp-notice.sociallocker-next.onp-offer .onp-message-container a {
+                color: #262729;
+            }
+            .onp-notice.sociallocker-next.onp-offer .onp-notice-button-primary {
+                background: #5672ad;
+                border: 1px solid #2e3847;
+                color: #fff;
+            }
+            .onp-notice.sociallocker-next.onp-offer .highlighted {
+                background-color: rgba(0,0,0,0.05);
+            }
+
+            .onp-notice.sociallocker-next .onp-notice-inner-wrap {
+                padding-left: 90px !important;
+                background: url("<?php echo SOCIALLOCKER_PLUGIN_URL . '/assets/admin/img/offer-logo.png' ?>") 5px 5px no-repeat;
+            }
+            .onp-notice.sociallocker-next.onp-offer .onp-notice-buttons {
+                bottom: 15px;
+            }
+        </style>
+        <?php
+        }
     }
 }
+add_action('admin_enqueue_scripts', 'sociallocker_admin_assets');
 
 add_action('admin_menu', 'sociallocker_admin_menu');
 function sociallocker_admin_menu() {

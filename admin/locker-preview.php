@@ -86,7 +86,7 @@
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.core.min.js"></script>     
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect.min.js"></script>
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js"></script>
-         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.020013.js"></script>
+         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.020014.js"></script>
          <link rel="stylesheet" type="text/css" href="./../assets/css/jquery.op.sociallocker.020006.css">  
          
          <script>
