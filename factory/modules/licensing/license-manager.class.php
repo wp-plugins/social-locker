@@ -1,6 +1,6 @@
 <?php
 
-class FactoryLicensingFR105Manager {
+class FactoryLicensingFR106Manager {
     
     public $plugin;
     public $data;
@@ -9,7 +9,7 @@ class FactoryLicensingFR105Manager {
     public $site;
     public $secret;
     
-    public function __construct( FactoryFR105Plugin $plugin ) {
+    public function __construct( FactoryFR106Plugin $plugin ) {
         $this->plugin = $plugin;
         $this->api = $plugin->options['api'];
         
@@ -40,7 +40,7 @@ class FactoryLicensingFR105Manager {
         add_action('init', array($this, 'checkVerificationRequest'));
                 
         if ( is_admin() ) {
-            add_filter('factory_fr105_admin_notices-' . $this->plugin->pluginName, array( $this, 'showKeyMessages'), 10, 2); 
+            add_filter('factory_fr106_admin_notices-' . $this->plugin->pluginName, array( $this, 'showKeyMessages'), 10, 2); 
         }
     }
     

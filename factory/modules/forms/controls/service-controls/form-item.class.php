@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR105Item {
+class FactoryFormFR106Item {
     
     /**
      * Is a current form items a tab?

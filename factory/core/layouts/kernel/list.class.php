@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR105List 
+class FactoryFR106List 
 {
     protected $items = array();
     

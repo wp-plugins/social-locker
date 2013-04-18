@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR105EditorFormControl extends FactoryFormFR105Control 
+class FactoryFormFR106EditorFormControl extends FactoryFormFR106Control 
 {
     public $type = 'editor';
     
@@ -12,7 +12,7 @@ class FactoryFormFR105EditorFormControl extends FactoryFormFR105Control
     if ( !empty( $this->props['eventCallback'] ) )
         $tinymceInit['handle_event_callback'] = $this->props['eventCallback'];
     
-    $tinymceInit['content_css'] = FACTORY_FR105_URL . '/assets/css/editor.css';  
+    $tinymceInit['content_css'] = FACTORY_FR106_URL . '/assets/css/editor.css';  
 
     $aseetUrl = $this->plugin->pluginUrl . '/assets/';
     $hasIcon = !empty( $this->props['icon'] );

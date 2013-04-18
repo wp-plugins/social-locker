@@ -1,6 +1,6 @@
 <?php
 
-class SociallockerPreviewMetaBox extends FactoryFR105Metabox
+class SociallockerPreviewMetaBox extends FactoryFR106Metabox
 {
     public $title = 'Locker Preview';
     public $priority = 'core';

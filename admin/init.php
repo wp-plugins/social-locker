@@ -1,6 +1,5 @@
 <?php
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/common-settings.php');
-
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/unlocking-statistics.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/tracking.php');
 

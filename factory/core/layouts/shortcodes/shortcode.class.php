@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFR105Shortcode {
+abstract class FactoryFR106Shortcode {
     
     /**
      * Shortcode name.
@@ -37,16 +37,16 @@ abstract class FactoryFR105Shortcode {
         'type' => 'wordpress'
     );
         
-    public function __construct( FactoryFR105Plugin $factory ) {
+    public function __construct( FactoryFR106Plugin $factory ) {
         $this->factory = $factory;
-        $this->scripts = new FactoryFR105ScriptList( $factory );
-        $this->styles = new FactoryFR105StyleList( $factory );     
+        $this->scripts = new FactoryFR106ScriptList( $factory );
+        $this->styles = new FactoryFR106StyleList( $factory );     
     }
 
     /**
      * Shortcode configuration.
      */
-    public abstract function assets(FactoryFR105ScriptList $scripts, FactoryFR105StyleList $styles);
+    public abstract function assets(FactoryFR106ScriptList $scripts, FactoryFR106StyleList $styles);
     
     public function registerForPublic() {}    
     public function registerForAdmin() {} 

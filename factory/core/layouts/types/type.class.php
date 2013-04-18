@@ -4,7 +4,7 @@
  * 
  * The class provides abstraction for custom post type.
  */
-abstract class FactoryFR105Type {
+abstract class FactoryFR106Type {
     
     /**
      * Internal type name.
@@ -99,18 +99,18 @@ abstract class FactoryFR105Type {
      */
     public $plugin = null;
     
-    public function __construct( FactoryFR105Plugin $plugin ) {
+    public function __construct( FactoryFR106Plugin $plugin ) {
         
         $this->plugin = $plugin;
-        $this->menu = new FactoryFR105TypeMenu( $this );
-        $this->adminScripts = new FactoryFR105ScriptList( $plugin );
-        $this->adminStyles = new FactoryFR105StyleList( $plugin ); 
+        $this->menu = new FactoryFR106TypeMenu( $this );
+        $this->adminScripts = new FactoryFR106ScriptList( $plugin );
+        $this->adminStyles = new FactoryFR106StyleList( $plugin ); 
     }
     
     public abstract function configure (
-            FactoryFR105Type $type, 
-            FactoryFR105TypeMenu $menu, 
-            FactoryFR105MetaboxCollection $metaboxes);
+            FactoryFR106Type $type, 
+            FactoryFR106TypeMenu $menu, 
+            FactoryFR106MetaboxCollection $metaboxes);
 
     public function useit() { return true; }
     
@@ -152,7 +152,7 @@ abstract class FactoryFR105Type {
         $this->buildLables();
         $this->buildMessages();
 
-        $metaboxes = new FactoryFR105MetaboxCollection( $this->plugin );
+        $metaboxes = new FactoryFR106MetaboxCollection( $this->plugin );
         $this->configure($this, $this->menu, $metaboxes);
 
         // adds metaboxes that needed to load
@@ -170,7 +170,7 @@ abstract class FactoryFR105Type {
         
         // redefines the Publish metabox for non-public types
         if ( $this->template !== 'public') {
-            $saveMetabox = new FactoryFR105SaveMetabox( $this->plugin );
+            $saveMetabox = new FactoryFR106SaveMetabox( $this->plugin );
             $this->plugin->metaboxes->registerFor( $saveMetabox, $this->name );
             add_action('add_meta_boxes', array($this, 'actionAddMetaboxs'));
         }
@@ -255,18 +255,18 @@ abstract class FactoryFR105Type {
         $labels = array(
             'singular_name' => $singularName,
             'name' => $pluralName,          
-            'all_items' => 'All ' . $pluralName,
-            'add_new' => 'Add ' . $singularName,
-            'add_new_item' => 'Add new ' . $singularName,
-            'edit' => 'Edit',
-            'edit_item' => 'Edit ' . $singularName,
-            'new_item' => 'New ' . $singularName,
-            'view' => 'View',
-            'view_item' => 'View ' . $singularName,
-            'search_items' => 'Search ' . $pluralName, 
-            'not_found' => 'No ' . $pluralName . ' found',
-            'not_found_in_trash' => 'No ' . $pluralName . ' found in trash',
-            'parent' => 'Parent ' . $pluralName
+            'all_items' => sprintf( __('All %1$s', 'factory'), $pluralName ),
+            'add_new' => sprintf( __('Add %1$s', 'factory'), $singularName ),
+            'add_new_item' => sprintf( __('Add new %1$s', 'factory'), $singularName ),
+            'edit' => sprintf( __('Edit', 'factory') ),
+            'edit_item' => sprintf( __('Edit %1$s', 'factory'), $singularName ),
+            'new_item' => sprintf( __('New %1$s', 'factory'), $singularName ),
+            'view' => sprintf( __('View', 'factory') ),
+            'view_item' => sprintf( __('View %1$s', 'factory'), $singularName ),
+            'search_items' => sprintf( __('Search %1$s', 'factory'), $pluralName ),
+            'not_found' => sprintf( __('No %1$s found', 'factory'), $pluralName ),
+            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory'), $pluralName ),
+            'parent' => sprintf( __('Parent %1$s', 'factory'), $pluralName )
         );
         
         $this->options['labels'] = $labels;

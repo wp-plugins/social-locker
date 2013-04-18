@@ -1,10 +1,14 @@
 <?php
 
-class FactoryFR105SaveMetabox extends FactoryFR105Metabox
+class FactoryFR106SaveMetabox extends FactoryFR106Metabox
 {
-    public $priority = 'high';
-    public $context = 'side';
-    public $title = 'Control';
+    public function __construct( $plugin = null ) {
+        $this->title = __('Control');
+        $this->context = 'side';
+        $this->priority = 'high';
+        
+        parent::__construct($plugin);
+    }
     
     public function render() {
 	global $action, $post;
@@ -20,7 +24,7 @@ class FactoryFR105SaveMetabox extends FactoryFR105Metabox
 
         <?php // Hidden submit button early on so that the browser chooses the right button when form is submitted with Return key ?>
         <div style="display:none;">
-        <?php submit_button( __( 'Save' ), 'button', 'save' ); ?>
+        <?php submit_button( __( 'Save', 'factory' ), 'button', 'save' ); ?>
         </div>
 
         <div id="misc-publishing-actions">
@@ -89,7 +93,7 @@ class FactoryFR105SaveMetabox extends FactoryFR105Metabox
         <?php
                 endif;
         } else { ?>
-                        <input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e('Update') ?>" />
+                        <input name="original_publish" type="hidden" id="original_publish" value="<?php _e('Update') ?>" />
                         <input name="save" type="submit" class="button-primary" id="publish" tabindex="5" accesskey="p" value="<?php esc_attr_e('Update') ?>" />
         <?php
         } ?>

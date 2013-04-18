@@ -4,12 +4,15 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
-        
-    public $id = 'license-manager';
-    public $menuTitle = 'License Manager';
+class OnePressFR106LicenseManagerAdminPage extends FactoryFR106AdminPage  {
     
+    public $id = 'license-manager';
     public $purchasePrice = '$';
+    
+    public function __construct( $plugin) { 
+        parent::__construct($plugin);
+        $this->menuTitle = __('License Manager', 'onepress');
+    }
     
     /**
      * [MAGIC] Magic method that configures assets for a page.
@@ -17,10 +20,10 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
      * @param FactoryScriptList $scripts    Scripts that will be included.
      * @param FactoryStyleList $styles      Styles that will be includes.
      */
-    public function assets(FactoryFR105ScriptList $scripts, FactoryFR105StyleList $styles) {
+    public function assets(FactoryFR106ScriptList $scripts, FactoryFR106StyleList $styles) {
         
-        $styles->add(ONEPRESS_FR105_URL . '/assets/css/license-manager.css');
-        $scripts->add(ONEPRESS_FR105_URL . '/assets/js/license-manager.js');   
+        $styles->add(ONEPRESS_FR106_URL . '/assets/css/license-manager.css');
+        $scripts->add(ONEPRESS_FR106_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -55,59 +58,70 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                 
                     <?php if ( $code == 'license_invalide_secret') { ?>
                     <div class="alert alert-error">
-                        <h4 class="alert-heading">The request has been rejected by the License Server.</h4>
+                        <h4 class="alert-heading"><?php _e('The request has been rejected by the License Server.', 'onepress') ?></h4>
                         <p><?php echo $error->get_error_message() ?></p>
-                        <p>Try to <a href="<?php $this->actionUrl('siteRegistration', array('redirect' => urlencode( $this->getActionUrl('index') ))) ?>">click here</a> to register your site again.</p>
                     </div>                    
                     <?php } else { ?>
                 
                         <?php if ($sender == 'index' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to connect to the Licensing Server.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
-                            <p>Please <a href="<?php $this->actionUrl('activateKeyManualy', array('key' => $_POST['licensekey'] )) ?>">click here</a> for trying to activate your key manualy.</p>
+                            <p>
+                                <?php printf( 
+                                        __('Please <a href="%1$s">click here</a> for trying to activate your key manualy.', 'onepress'),
+                                        $this->actionUrl('activateKeyManualy', array('key' => $_POST['licensekey'] )) )?>
+                            </p>
                         </div>
                         <?php } elseif ($sender == 'index') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to apply the specified key.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to apply the specified key.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
 
                         <?php if ($sender == 'trial' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to connect to the Licensing Server.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
-                            <p>Please <a href="<?php $this->actionUrl('activateTrialManualy' ) ?>">click here</a> for trying to activate your trial manualy.</p>
+                            <p>
+                                <?php printf( 
+                                        __('Please <a href="%1$s">click here</a> for trying to activate your trial manualy.', 'onepress'),
+                                        $this->actionUrl('activateTrialManualy') )?>
+                            </p>
                         </div>
                         <?php } elseif ($sender == 'trial') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to get a trial license key.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to get a trial license key.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
                 
                         <?php if ($sender == 'delete-key' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to connect to the Licensing Server.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
-                            <p>Please <a href="<?php $this->actionUrl('deleteKeyManualy' ) ?>">click here</a> for trying to delete key manualy.</p>
+                            <p>
+                                <?php printf( 
+                                        __('Please <a href="%1$s">click here</a> for trying to delete key manualy.', 'onepress'),
+                                        $this->actionUrl('deleteKeyManualy') )?>
+                            </p>
                         </div>
                         <?php } elseif ($sender == 'delete-key') { ?>
                         <div class="alert alert-error">
-                            <strong>Unable to delete the license key.</strong>
+                            <strong><?php _e('Unable to delete the license key.', 'onepress') ?></strong>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
                 
                         <?php if ($sender == 'check-updates' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to connect to the Licensing Server.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } elseif ($sender == 'check-updates') { ?>
                         <div class="alert alert-error">
-                            <h4 class="alert-heading">Unable to check updates.</h4>
+                            <h4 class="alert-heading"><?php _e('Unable to check updates.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>                
@@ -118,8 +132,8 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                         <?php if ($sender == 'trial') { ?>
                             <?php ?>
                             <div class="alert alert-normal alert-warning-icon">
-                                <strong>Your trial version has been activated successfully.</strong>
-                                <p>Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete activation if it's needed.</p>                     
+                                <strong><?php _e('Your trial version has been activated successfully.', 'onepress') ?></strong>
+                                <p><?php _e('Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete activation if it\'s needed.', 'onepress') ?></p>                     
                             </div>
                             <?php 
  ?>
@@ -128,8 +142,8 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                         <?php if ($sender == 'index' && isset( $_POST['licensekey']) ) { ?>
                             <?php ?>
                             <div class="alert alert-normal alert-warning-icon">
-                                <strong>The key has been activated successfully.</strong>
-                                <p>Please check the <a href="plugins.php">Plugins page</a> and update the plugin to complete activation if it's needed.</p>                   
+                                <strong><?php _e('The key has been activated successfully.', 'onepress') ?></strong>
+                                <p><?php _e('Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete activation if it\'s needed.', 'onepress') ?></p>                    
                             </div>
                             <?php 
  ?>
@@ -137,20 +151,21 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                 
                         <?php if ($sender == 'delete-key') { ?>
                         <div class="alert alert-normal alert-warning-icon">
-                            <strong>The key has been deleted successfully.</strong>
-                            <p>Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete deletion if it's needed.</p>       
+                            <strong><?php _e('The key has been deleted successfully.', 'onepress') ?></strong>
+                            <p><?php _e('Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete deletion if it\'s needed.', 'onepress') ?></p>    
                         </div>
                         <?php } ?>          
                 
                         <?php if ($sender == 'check-updates') { ?>
                         <div class="alert alert-normal">
-                            <strong>The updates have been checked successfully.</strong>
+                            <strong><?php _e('The updates have been checked successfully.', 'onepress') ?></strong>
                             <p>
                             <?php if ( $updatesManager->isActualVersion() ) { ?>
-                                You use the actual version of the plugin.
+                                <?php _e('You use the actual version of the plugin.', 'onepress') ?>
                             <?php } else { ?>
-                                The <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> version is available to download.
-                                <a href="plugins.php">Click here</a> to get the update.
+                                <?php printf( 
+                                        __('The %1$s version is available to download. <a href="plugins.php">Click here</a> to get the update.', 'onepress'),
+                                        $updatesManager->lastCheck['Build'] . '-' . $updatesManager->lastCheck['Version'] ) ?>
                             <?php } ?>
                             </p>
                         </div>
@@ -166,9 +181,9 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                         <a href="<?php echo $this->plugin->options['premium'] ?>" id="purchase-premium">
                             <span class="btn btn-gold btn-inner-wrap">
                             <?php if ( !empty( $this->purchasePrice ) ) { ?>
-                            <i class="icon-star icon-white"></i> Upgrade to Premium for <?php echo $this->purchasePrice ?> <i class="icon-star icon-white"></i>
+                            <i class="icon-star icon-white"></i> <?php printf( __('Upgrade to Premium for %1$s', 'onepress'), $this->purchasePrice ) ?> <i class="icon-star icon-white"></i>
                             <?php } else { ?>
-                            <i class="icon-star icon-white"></i> Upgrade to Premium <i class="icon-star icon-white"></i>
+                            <i class="icon-star icon-white"></i> <?php _e('Upgrade to Premium', 'onepress') ?> <i class="icon-star icon-white"></i>
                             <?php } ?>
                             </span>
                         </a>
@@ -176,14 +191,14 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                     <?php 
  ?>   
                     <?php if ( empty( $this->plugin->pluginTitle ) ) { ?>
-                    <p>Your current license:</p>
+                    <p><?php _e('Your current license:', 'onepress') ?></p>
                     <?php } else { ?>
-                    <p>Your current license for <?php echo $this->plugin->pluginTitle ?>:</p>   
+                    <p><?php printf( __('Your current license for %1$s:', 'onepress'), $this->plugin->pluginTitle ) ?></p>   
                     <?php } ?>
                     <div class="license-details-block <?php echo $licenseData['Category'] ?>-details-block">
                         
                         <?php if ( $licenseManager->hasKey() ) { ?>
-                        <a href="<?php $this->actionUrl('deleteKey') ?>" class="btn btn-small license-delete-button"><i class="icon-remove-sign"></i> Delete Key</a>
+                        <a href="<?php $this->actionUrl('deleteKey') ?>" class="btn btn-small license-delete-button"><i class="icon-remove-sign"></i> <?php _e('Delete Key', 'onepress') ?></a>
                         <?php } ?>
                         
                         <h3><?php echo $licenseData['Title'] ?></h3>
@@ -194,22 +209,22 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                         <div class="licanse-key-description">
                         <?php if ( $licenseManager->data['Build'] == 'premium' ) { ?>
                             <?php if ( $licenseManager->data['Category'] == 'free' ) { ?>
-                                <p>Please, activate the plugin to get started. Enter a key you received with the plugin 
-                                into the form below. Don't know where the key is? <a href="#" id="open-faq">Click here</a>.
+                                <p>
+                                    <?php _e('Please, activate the plugin to get started. Enter a key you received with the plugin into the form below. Don\'t know where the key is? <a href="#" id="open-faq">Click here</a>.', 'onepress') ?>
                                 </p>
                                 <p class="activate-trial-hint">
-                                    Also you can activate a <a href="<?php $this->actionUrl('activateTrial') ?>">trial version</a> for 7 days to test the plugin on this site.
+                                    <?php printf( __('Also you can activate a <a href="%1$s">trial version</a> for 7 days to test the plugin on this site.', 'onepress'), $this->getActionUrl('activateTrial') ) ?>
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
                             <?php } ?>
                         <?php } else { ?>
                             <?php if ( $licenseManager->data['Category'] == 'free' ) { ?>
-                                <p>Public License is a GPLv2 compatible license. It allows you to change this version of the plugin and to use the plugin free. 
-                                    Please remember this license covers only free edition of the plugin. Premium versions are distributed with other type of a license.
+                                <p><?php _e('Public License is a GPLv2 compatible license allowing you to change and use this version of the plugin for free. Please keep in mind this license covers only free edition of the plugin. Premium versions are distributed with other type of a license.') ?>
                                 </p>
                                 <p class="activate-trial-hint">
-                                    Also you can <a href="<?php $this->actionUrl('activateTrial') ?>">activate</a> a premium version for a trial period (7 days). Click <a target="_blank" href="<?php echo $this->plugin->options['premium'] ?>">here</a> to learn more about the premium version.
+                                    <?php printf( __('Also you can <a href="%1$s">activate</a> a premium version for a trial period (7 days).', 'onepress'), $this->getActionUrl('activateTrial') ) ?>
+                                    <?php printf( __('Click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onepress'), $this->plugin->options['premium'] ) ?>
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
@@ -221,39 +236,39 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                             <tr>
                                 <td class="license-param license-param-domain">
                                     <span class="license-value"><?php echo $this->plugin->license->domain ?></span>
-                                    <span class="license-value-name">domain</span>
+                                    <span class="license-value-name"><?php _e('domain', 'onepress') ?></span>
                                 </td>   
                                 <td class="license-param license-param-version">
-                                    <span class="license-value"><?php echo $this->plugin->version ?> <small>version</small></span>
+                                    <span class="license-value"><?php echo $this->plugin->version ?> <small><?php _e('version', 'onepress') ?></small></span>
                                     <?php if ( $updatesManager->isVersionChecked() ) { ?>
                                         <?php if ( $updatesManager->isActualVersion() ) { ?>
-                                            <span class="license-value-name">up-to-date</span>
+                                            <span class="license-value-name"><?php _e('up-to-date', 'onepress') ?></span>
                                         <?php } else { ?>
                                             <span class="license-value-name">
                                                 <a href="plugins.php" class="link-to-upgrade">
-                                                <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> available
+                                                <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> <?php _e('available', 'onepress') ?>
                                                 </a>
                                             </span>
                                         <?php } ?>
                                     <?php } else { ?>
-                                    <span class="license-value-name"><span>up-to-date</span></span>
+                                    <span class="license-value-name"><span><?php _e('up-to-date', 'onepress') ?></span></span>
                                     <?php } ?>
                                 </td>  
                                 <td class="license-param license-param-days">
                                     <span class="license-value"><?php echo $licenseManager->data['Build'] ?></span>                                   
-                                    <span class="license-value-name">assembly</span>
+                                    <span class="license-value-name"><?php _e('assembly', 'onepress') ?></span>
                                 </td>
                                 <td class="license-param license-param-days">
                                     <?php if ( $licenseManager->isExpired() ) {?>
-                                        <span class="license-value">EXPIRED!</span>
-                                        <span class="license-value-name">please update the key</span>
+                                        <span class="license-value"><?php _e('EXPIRED!', 'onepress') ?></span>
+                                        <span class="license-value-name"><?php _e('please update the key', 'onepress') ?></span>
                                     <?php } else { ?>  
                                         <span class="license-value">                               
-                                            <?php if ( $isInfinity ) {?>infinity<?php } else { ?>
-                                                <?php echo $remained; ?><small> day(s)</small>
+                                            <?php if ( $isInfinity ) {?><?php _e('infinity', 'onepress') ?><?php } else { ?>
+                                                <?php echo $remained; ?><small> <?php _e('day(s)', 'onepress') ?></small>
                                             <?php } ?>
                                         </span>
-                                        <span class="license-value-name">remained</span>
+                                        <span class="license-value-name"><?php _e('remained', 'onepress') ?></span>
                                     <?php } ?>    
                                 </td>
                             </tr>
@@ -262,15 +277,15 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                 </div>
                 <div class="license-input">
                     <form action="<?php $this->actionUrl("index") ?>" method="post">
-                        <p>Have a key to activate the premium version? Paste it here:<p>
+                        <p><?php _e('Have a key to activate the premium version? Paste it here:', 'onepress') ?><p>
                             <a href="#" class="btn" id="license-submit">
-                                <i class="icon-ok-sign"></i> Submit Key
+                                <i class="icon-ok-sign"></i> <?php _e('Submit Key', 'onepress') ?>
                             </a>  
                         <div class="license-key-wrap">
                             <input type="text" id="license-key" name="licensekey" value="<?php echo $licenseKey ?>" />
                         </div>
                         <p style="margin-top: 10px;">
-                            <a href="<?php echo $this->plugin->options['premium'] ?>">Leam more</a> about the premium version and get the license key to activate it now!
+                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onepress'), $this->plugin->options['premium'] ) ?>
                         </p>
                     </form>
                 </div>
@@ -279,51 +294,55 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                 <?php if ( $licenseManager->data['Build'] !== 'free' ) { ?>
                     <?php if ( !$updatesManager->isVersionChecked() ) { ?>
                         <?php if ( isset( $updatesManager->lastCheck['Checked'] ) ) { ?>
-                            The upadtes were checked at <strong><?php echo date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ?></strong>.
+                            <?php printf( __('The upadtes were checked at <strong>%1$s</strong>.', 'onepress'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ) ?>
                         <?php } else { ?>
-                            The upadtes were checked <strong>never</strong>.
+                            <?php _e('The updates were checked <strong>never</strong>.', 'onepress') ?>
                         <?php } ?>
                     <?php } else { ?>
                         <?php if ( $updatesManager->isActualVersion() ) { ?>
-                        The upadtes were checked at <?php echo date( 'g:i a, d M y', $updatesManager->lastCheck['Checked'] ) ?>, you use the up-to-date version. 
+                            <?php printf( __('The updates were checked at <strong>%1$s</strong>, you use the up-to-date version. ', 'onepress'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ) ?>
                         <?php } else { ?>
-                        The upadtes were checked at <?php echo date( 'g:i a, d M y', $updatesManager->lastCheck['Checked'] ) ?>, <strong><?php echo $updatesManager->lastCheck['Version'] ?> is available</strong>.
+                            <?php printf( __('The updates were checked at <strong>%1$s</strong>, <strong>%2$s</strong>. ', 'onepress'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ), $updatesManager->lastCheck['Version'] ) ?>
                         <?php } ?>
                     <?php } ?>
-                    Click <a href="<?php $this->actionUrl('checkUpdates') ?>">here</a> to check new updates manually.
+                    <?php printf( __('Click <a href="%1$s">here</a> to check updates manually.', 'onepress'), $this->getActionUrl('checkUpdates') ) ?>
                 <?php } ?>
-                <span class="gray-link">[ <a href="<?php echo $this->actionUrl('internalKeys') ?>">internal keys</a> ]</span>       
+                <span class="gray-link">[ <a href="<?php echo $this->getActionUrl('internalKeys') ?>"><?php _e('internal keys', 'onepress') ?></a> ]</span>       
             </div>
             <div id="faq-block">
                 <ul>
                     <li>
-                        <a class="faq-header" id="how-to-find-the-key">I purchased the plugin, but I cannot find the license key. Where I can find it?</a>
+                        <a class="faq-header" id="how-to-find-the-key">
+                            <?php _e('I purchased the plugin, but I cannot find the license key. Where is it?', 'onepress') ?>
+                        </a>
                         <div>
                             <p>
-                                The premium version of the plugin is sold on <a href="http://onepress-media.com/portfolio" target="_blank">CodeCanyon</a>. 
-                                After purchase visit your Downloads section and click Licence Certificate. 
-                                Find Item Purchase Code in the document and paste it into the form. Please, see 
-                                image below:
+                                <?php _e('The premium version of the plugin is sold on <a href="http://onepress-media.com/portfolio" target="_blank">CodeCanyon</a>.', 'onepress') ?>
+                                <?php _e('After purchasing visit your Downloads section and click Licence Certificate.', 'onepress') ?>
+                                <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONEPRESS_FR105_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONEPRESS_FR106_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
                     <li>
-                        <a class="faq-header">The plugin I purchased comes with the bonus. Where I can find a key to activate the bonus?</a>
+                        <a class="faq-header">
+                            <?php _e('The plugin I purchased comes with the bonus. Where I can find a key to activate the bonus?', 'onepress') ?>
+                        </a>
                         <div>
                             <p>
-                                You can activate the bonus plugin via the key you got for the principal plugin.
+                                <?php _e('You can activate the bonus plugin via the key you got for the principal plugin.', 'onepress') ?>
                             </p>
                         </div>
                     </li>
                     <li>
-                        <a class="faq-header">Is it possible to get the premium version without the License Manager?</a>
+                        <a class="faq-header">
+                            <?php _e('Is it possible to get the premium version without the License Manager?', 'onepress') ?>
+                        </a>
                         <div>
                             <p>
-                                Yes, it's possible if you want to add the plugin to a template for sale or want to distribute the plugin as a part of your product. 
-                                Please contact us to discuss details: support@onepress-media.com
+                                <?php _e('Yes, it\'s possible if you want to distribute the plugin as a part of your product. Please contact us to discuss details: support@onepress-media.com', 'onepress') ?>
                             </p>
                         </div>
                     </li>    
@@ -380,19 +399,19 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
         <div class="wpbootstrap license-manager-content" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateKeyManualy') ?>" method="post">
             <div class="license-manager-box">
-                <h2 style="margin-bottom: 10px;">Key Activation</h2>
-                <p style="margin-top: 0px;">Please perfome the following steps to activate the plugin manualy.</p>
+                <h2 style="margin-bottom: 10px;"><?php _e('Key Activation', 'onepress') ?></h2>
+                <p style="margin-top: 0px;"><?php _e('Please perfome the following steps to activate the plugin manualy.', 'onepress') ?></p>
                 <ul>
                     <li>
-                        1. <a target="_blank" href="<?php echo $url ?>">Click here</a> to send activation request.
+                        1. <?php printf( __('<a href="%1%s">Click here</a> to send the activation request.', 'onepress'), $url ) ?>
                     </li>
                     <li>
-                        2. Copy the code from the field on the site and paste it below, then submit the form:
-                        <textarea name="response" class="license-reponse-code" placeholder="Response code from the Licensing Server"></textarea>
+                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
+                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onepress') ?>"></textarea>
                     </li>
                 </ul>
                 <a href="#" class="btn btn-large btn-inverse btn-uppercase" id="manual-trial-submit">
-                    <i class="icon-ok-sign icon-white"></i> verify code
+                    <i class="icon-ok-sign icon-white"></i> <?php _e('verify code') ?>
                 </a>  
             </div>
             </form>
@@ -417,15 +436,15 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
         <div class="wpbootstrap license-manager-content" id="activate-key-manual">
             <form action="<?php $this->actionUrl('deleteKeyManualy') ?>" method="post">
             <div class="license-manager-box">
-                <h2 style="margin-bottom: 10px;">Key Deactivation</h2>
-                <p style="margin-top: 0px;">Please perfome the following steps to activate the plugin manualy.</p>
+                <h2 style="margin-bottom: 10px;"><?php _e('Key Deactivation', 'onepress') ?></h2>
+                <p style="margin-top: 0px;"><?php _e('Please perfome the following steps to activate the plugin manualy.', 'onepress') ?></p>
                 <ul>
                     <li>
-                        1. <a target="_blank" href="<?php echo $url ?>">Click here</a> to send deactivation request.
+                        1. <?php printf( __('<a href="%1%s">Click here</a> to send the deactivation request.', 'onepress'), $url ) ?>
                     </li>
                     <li>
-                        2. Copy the code from the field on the site and paste it below, then submit the form:
-                        <textarea name="response" class="license-reponse-code" placeholder="Response code from the Licensing Server"></textarea>
+                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
+                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onepress') ?>"></textarea>
                     </li>
                 </ul>
                 <a href="#" class="btn btn-large btn-inverse btn-uppercase" id="manual-trial-submit">
@@ -455,11 +474,11 @@ class OnePressFR105LicenseManagerAdminPage extends FactoryFR105AdminPage  {
                 <p style="margin-top: 0px;">Please perfome the following steps to activate the plugin manualy.</p>
                 <ul>
                     <li>
-                        1. <a target="_blank" href="<?php echo $url ?>">Click here</a> to send activation request.
+                        1. <?php printf( __('<a href="%1%s">Click here</a> to send the activation request.', 'onepress'), $url ) ?>
                     </li>
                     <li>
-                        2. Copy the code from the field on the site and paste it below, then submit the form:
-                        <textarea name="response" class="license-reponse-code" placeholder="Response code from the Licensing Server"></textarea>
+                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
+                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onepress') ?>"></textarea>
                     </li>
                 </ul>
                 <a href="#" class="btn btn-large btn-inverse btn-uppercase" id="manual-trial-submit">

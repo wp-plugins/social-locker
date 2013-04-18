@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockShortcode extends FactoryFR105Shortcode {
+class SocialLockShortcode extends FactoryFR106Shortcode {
     
     /**
      * Shortcode name
@@ -24,7 +24,7 @@ class SocialLockShortcode extends FactoryFR105Shortcode {
      * @param FactoryScriptList $scripts
      * @param FactoryStyleList $styles
      */
-    public function assets(FactoryFR105ScriptList $scripts, FactoryFR105StyleList $styles) {
+    public function assets(FactoryFR106ScriptList $scripts, FactoryFR106StyleList $styles) {
         
         add_action('wp_head', array($this, 'facebookConnect'));
         
@@ -33,7 +33,7 @@ class SocialLockShortcode extends FactoryFR105Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020014.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020015.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -211,38 +211,34 @@ class SocialLockShortcode extends FactoryFR105Shortcode {
         -->
         <script>
             (function($){
-                $(function(){
-                    
-                    var onpSL = <?php echo json_encode( $params ) ?>;
-                    <?php if ( isset($call['params']['buttons'])) { ?>
-                        
-                    onpSL['buttons'] = {};
-                    onpSL['buttons']['order'] = <?php echo json_encode( $call['params']['buttons']['order'] ) ?>;
-                    <?php } ?>
-                        
-                    <?php if (!empty($call['ajax'])) { ?>
-                        
-                    onpSL.content = {
-                        url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
-                        type: 'POST',
-                        data: {
-                            lockerId: '<?php echo $call['id'] ?>',
-                            action: 'sociallocker_loader',
-                            hash: '<?php echo $call['contentHash'] ?>'
-                        }
+                var onpSL = <?php echo json_encode( $params ) ?>;
+                <?php if ( isset($call['params']['buttons'])) { ?>
+
+                onpSL['buttons'] = {};
+                onpSL['buttons']['order'] = <?php echo json_encode( $call['params']['buttons']['order'] ) ?>;
+                <?php } ?>
+
+                <?php if (!empty($call['ajax'])) { ?>
+
+                onpSL.content = {
+                    url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
+                    type: 'POST',
+                    data: {
+                        lockerId: '<?php echo $call['id'] ?>',
+                        action: 'sociallocker_loader',
+                        hash: '<?php echo $call['contentHash'] ?>'
                     }
-                    <?php } ?>
-                
-                    onpSL.events = {
-                        ready: <?php echo $readyEvent ?>,
-                        lock: <?php echo $lockEvent ?>,
-                        unlock: <?php echo $unlockEvent ?>
-                        
-                    };
-                    
-                    $("<?php echo $call['selector'] ?>").socialLock( onpSL );
-                    
-                })
+                }
+                <?php } ?>
+
+                onpSL.events = {
+                    ready: <?php echo $readyEvent ?>,
+                    lock: <?php echo $lockEvent ?>,
+                    unlock: <?php echo $unlockEvent ?>
+
+                };
+
+                $("<?php echo $call['selector'] ?>").socialLock( onpSL );     
             })(jQuery);
         </script>
         <!-- / -->

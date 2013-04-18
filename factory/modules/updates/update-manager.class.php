@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR105UpdateFR105Manager {
+class FactoryFR106UpdateFR106Manager {
     
     /**
      * Current factory plugin.
@@ -53,8 +53,8 @@ class FactoryFR105UpdateFR105Manager {
             if ( $this->needChangeAssembly() ) {
 
                 $this->updatePluginTransient();
-                add_filter('factory_fr105_plugin_row-' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
-                add_filter('factory_fr105_admin_notices-' . $this->plugin->pluginName, array( $this, 'showAssemblyMessages'), 10, 2);    
+                add_filter('factory_fr106_plugin_row-' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
+                add_filter('factory_fr106_admin_notices-' . $this->plugin->pluginName, array( $this, 'showAssemblyMessages'), 10, 2);    
             }
             
             
@@ -69,8 +69,8 @@ class FactoryFR105UpdateFR105Manager {
             }
 
             // activation and deactivation hooks
-            add_action('factory_fr105_activation_or_update-' . $plugin->pluginName, array($this, 'activationOrUpdateHook'));
-            add_action('factory_fr105_deactivation-' . $plugin->pluginName, array($this, 'deactivationHook')); 
+            add_action('factory_fr106_activation_or_update-' . $plugin->pluginName, array($this, 'activationOrUpdateHook'));
+            add_action('factory_fr106_deactivation-' . $plugin->pluginName, array($this, 'deactivationHook')); 
         }
     }
     
@@ -187,7 +187,7 @@ class FactoryFR105UpdateFR105Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            factory_fr105_set_site_transient('update_plugins', $transient);  
+            factory_fr106_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -209,7 +209,7 @@ class FactoryFR105UpdateFR105Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        factory_fr105_set_site_transient('update_plugins', $transient);
+        factory_fr106_set_site_transient('update_plugins', $transient);
     }
     
     /**

@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFR105Activation {
+abstract class FactoryFR106Activation {
     
     /**
      * Curent plugin.
@@ -8,7 +8,7 @@ abstract class FactoryFR105Activation {
      */
     public $plugin;
     
-    public function __construct(FactoryFR105Plugin $plugin) {
+    public function __construct(FactoryFR106Plugin $plugin) {
         $this->plugin = $plugin;
     }
     

@@ -5,7 +5,7 @@
  * It's a main class for building the plugin.
  * The class allows to isolate a several plugins that use the same version of the Factory.
  */
-class FactoryFR105Plugin {
+class FactoryFR106Plugin {
     
     /**
      * Main file of the plugin.
@@ -109,7 +109,8 @@ class FactoryFR105Plugin {
     }
     
     public function actionPluginLoadded() {
-        
+         load_plugin_textdomain('factory', false, basename( dirname( $this->relativePath ) ) . '/factory/core/langs'); 
+         
         // checks whether the plugin needs to run updates.
         if ( $this->isAdmin ) {
             
@@ -119,7 +120,7 @@ class FactoryFR105Plugin {
             }  
         }
         
-        do_action('factory_fr105_init', $this);
+        do_action('factory_fr106_init', $this);
     }
     
     /**
@@ -128,13 +129,13 @@ class FactoryFR105Plugin {
      */
     public function actionInit() {
         
-        $this->shortcodes = new FactoryFR105ShortcodeManager( $this );   
-        $this->metaboxes = new FactoryFR105MetaboxManager( $this );   
+        $this->shortcodes = new FactoryFR106ShortcodeManager( $this );   
+        $this->metaboxes = new FactoryFR106MetaboxManager( $this );   
         
         if ( $this->isAdmin ) {
             
-            $this->notices = new FactoryFR105NoticeManager( $this );
-            $this->pages = new FactoryFR105AdminPageManager( $this ); 
+            $this->notices = new FactoryFR106NoticeManager( $this );
+            $this->pages = new FactoryFR106AdminPageManager( $this ); 
         
             // metaboxes
             // just includes class definition
@@ -185,7 +186,7 @@ class FactoryFR105Plugin {
         $this->clearCache();
         $this->findItems();
         
-        do_action('factory_fr105_activation_or_update-' . $this->pluginName);
+        do_action('factory_fr106_activation_or_update-' . $this->pluginName);
         
         $dbBuildVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
 
@@ -266,7 +267,7 @@ class FactoryFR105Plugin {
         $this->clearCache();
         $this->findItems();
         
-        do_action('factory_fr105_deactivation-' . $this->pluginName);;
+        do_action('factory_fr106_deactivation-' . $this->pluginName);;
         
         $item = $this->loadItem( 'activation', true );
         if ( !empty($item) ) {
@@ -374,21 +375,21 @@ class FactoryFR105Plugin {
     public function actionAdminScripts( $hook ) {
 	global $post;
         
-        wp_enqueue_style('factory-admin-global', FACTORY_FR105_URL . '/assets/css/admin-global.css');
-        wp_enqueue_script('factory-admin-global', FACTORY_FR105_URL . '/assets/js/admin-global.js'); 
+        wp_enqueue_style('factory-admin-global', FACTORY_FR106_URL . '/assets/css/admin-global.css');
+        wp_enqueue_script('factory-admin-global', FACTORY_FR106_URL . '/assets/js/admin-global.js'); 
                         
 	if ( in_array( $hook, array('post.php', 'post-new.php')) && $post )
         {
             if ( !empty( $this->types[$post->post_type] ) ) {
                 
-		wp_enqueue_style('factory-bootstrap', FACTORY_FR105_URL . '/assets/css/bootstrap.css');	
-		wp_enqueue_script('factory-bootstrap', FACTORY_FR105_URL . '/assets/js/bootstrap.js', array('jquery'));
+		wp_enqueue_style('factory-bootstrap', FACTORY_FR106_URL . '/assets/css/bootstrap.css');	
+		wp_enqueue_script('factory-bootstrap', FACTORY_FR106_URL . '/assets/js/bootstrap.js', array('jquery'));
             }
             
         } elseif ( isset($_GET['page']) && in_array($_GET['page'], $this->pages->getIds())) {
             
-            wp_enqueue_style('factory-bootstrap', FACTORY_FR105_URL . '/assets/css/bootstrap.css');	
-            wp_enqueue_script('factory-bootstrap', FACTORY_FR105_URL . '/assets/js/bootstrap.js', array('jquery'));
+            wp_enqueue_style('factory-bootstrap', FACTORY_FR106_URL . '/assets/css/bootstrap.css');	
+            wp_enqueue_script('factory-bootstrap', FACTORY_FR106_URL . '/assets/js/bootstrap.js', array('jquery'));
         }
     }
     
@@ -398,7 +399,7 @@ class FactoryFR105Plugin {
      */
     public function load( $path, $name ) {
         include($this->pluginRoot . '/' . $path . '/start.php');
-        do_action('factory_fr105_load_' . $name, $this);
+        do_action('factory_fr106_load_' . $name, $this);
     }
     
     /**
@@ -407,7 +408,7 @@ class FactoryFR105Plugin {
     private function findItems() {
         
         // clears the cache after activation
-        if ( defined('FACTORY_FR105_DEBUG') ) $this->clearCache();
+        if ( defined('FACTORY_FR106_DEBUG') ) $this->clearCache();
         
         $cached = $this->getCache('items');
 
@@ -666,7 +667,7 @@ class FactoryFR105Plugin {
     public function showCustomPluginRow($file, $plugin_data) {
         if ( !is_network_admin() && is_multisite() ) return;
         
-        $messages = apply_filters('factory_fr105_plugin_row-' . $this->pluginName, array(), $file, $plugin_data);
+        $messages = apply_filters('factory_fr106_plugin_row-' . $this->pluginName, array(), $file, $plugin_data);
 
         // if nothign to show then, use default handle
         if ( count($messages) == 0 ) {

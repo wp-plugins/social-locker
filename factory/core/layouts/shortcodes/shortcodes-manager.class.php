@@ -6,7 +6,7 @@
  * - creating aninstance of Factory Shortcode per every call of the shortcode.
  * - tracking shortcodes in post content.
  */
-class FactoryFR105ShortcodeManager {
+class FactoryFR106ShortcodeManager {
     
     public $plugin;
     public $blanks;
@@ -19,7 +19,7 @@ class FactoryFR105ShortcodeManager {
      */
     private $firstContentSave = true;
 
-    public function __construct(FactoryFR105Plugin $plugin) {
+    public function __construct(FactoryFR106Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -57,7 +57,7 @@ class FactoryFR105ShortcodeManager {
                 // register shortcodes for tracking
                 if ($blank->tracking) {
                     
-                    factory_fr105_tr_register_shortcode(
+                    factory_fr106_tr_register_shortcode(
                         $blank->shortcode,
                         array($blank, 'trackingCallback')
                     );
@@ -96,7 +96,7 @@ class FactoryFR105ShortcodeManager {
         }  
         
         // runs the shortcode tracking 
-        factory_fr105_tr_check_content($post->post_content, $postid);
+        factory_fr106_tr_check_content($post->post_content, $postid);
     }
     
     /**
@@ -108,7 +108,7 @@ class FactoryFR105ShortcodeManager {
         $blank->assets($blank->scripts, $blank->styles);
 
         $content = $post->post_content;
-        $metaName = 'factory_fr105_' . $blank->shortcode . '_include_assets';
+        $metaName = 'factory_fr106_' . $blank->shortcode . '_include_assets';
 
         delete_post_meta($postid, $metaName);
 
@@ -150,7 +150,7 @@ class FactoryFR105ShortcodeManager {
        if ( empty($post) ) return;
        
        foreach( $this->blanks as $blank ) {
-           $metaName = 'factory_fr105_' . $blank->shortcode . '_include_assets';
+           $metaName = 'factory_fr106_' . $blank->shortcode . '_include_assets';
            $metaValue = get_post_meta($post->ID, $metaName);
           
            if ( empty($metaValue) ) continue;

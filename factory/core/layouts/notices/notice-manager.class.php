@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR105NoticeManager {
+class FactoryFR106NoticeManager {
     
     public function __construct( $plugin ) {
         $this->plugin = $plugin;
@@ -10,7 +10,7 @@ class FactoryFR105NoticeManager {
     
     public function show_notices() {
         
-        $notices = apply_filters('factory_fr105_admin_notices-' . $this->plugin->pluginName, array(), $this->plugin);
+        $notices = apply_filters('factory_fr106_admin_notices-' . $this->plugin->pluginName, array(), $this->plugin);
         if ( count($notices) == 0 ) return;
 
         if ( 
@@ -38,7 +38,7 @@ class FactoryFR105NoticeManager {
         $hasMessage = !empty( $message );
         $class = empty( $data['class'] ) ? '' : $data['class'];
         
-        if ( factory_fr105_starts_with($type, 'alert') ) {
+        if ( factory_fr106_starts_with($type, 'alert') ) {
             $class = $class . ' onp-alert ';
         }
         
@@ -47,7 +47,7 @@ class FactoryFR105NoticeManager {
         ?>
         <div class="updated onp-notice <?php echo $class ?>" id="<?php echo $data['id'] ?>">
             <div class="onp-notice-inner-wrap"> 
-                <?php if ( !factory_fr105_starts_with($type, 'alert') ) { ?>
+                <?php if ( !factory_fr106_starts_with($type, 'alert') ) { ?>
                 <a href="#" class="onp-notice-close" title="Dismiss this message."></a>
                 <?php } ?>
                 <div class="onp-message-container">

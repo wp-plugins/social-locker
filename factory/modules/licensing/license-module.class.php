@@ -3,7 +3,7 @@
 /**
  * Class is used to manage the module data.
  */
-class FactoryLicensingFR105Module {
+class FactoryLicensingFR106Module {
     
     /**
      * Current plugin
@@ -15,7 +15,7 @@ class FactoryLicensingFR105Module {
 
         // licensing
         $this->plugin = $plugin;
-        $this->license = new FactoryLicensingFR105Manager( $plugin );
+        $this->license = new FactoryLicensingFR106Manager( $plugin );
         $this->plugin->license = $this->license;
         add_action('admin_enqueue_scripts', array($this, 'actionAdminScripts'));
     }
@@ -33,7 +33,7 @@ class FactoryLicensingFR105Module {
     }
 }
 
-add_action('factory_fr105_load_licensing', 'factory_licensing_fr105_module_load');
-function factory_licensing_fr105_module_load( $plugin ) {
-    new FactoryLicensingFR105Module( $plugin ); 
+add_action('factory_fr106_load_licensing', 'factory_licensing_fr106_module_load');
+function factory_licensing_fr106_module_load( $plugin ) {
+    new FactoryLicensingFR106Module( $plugin ); 
 }

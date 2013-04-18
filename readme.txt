@@ -72,6 +72,10 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.1.5 - 18 Apr 2013 =
+NEW: Increased reliability against conflicts with other plugins.  
+FIXED: Minor bugs of the google buttons.
+
 = 2.1.4 - 11 Apr 2013 =
 FIXED: The bug of the shortcode [page_title] in the tweet message. Thank <a href="http://www.sharifkhalladi.com/" target="_blank">Sharif Khalladi</a> for finding it.  
 FIXED: The bug when the message offering to change the plugin assembly appears even if the assemble is correct.  
