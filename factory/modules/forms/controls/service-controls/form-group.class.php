@@ -6,7 +6,7 @@ class FactoryFormFR106Group extends FactoryFormFR106Item {
      * Is a current form items a group?
      * @var boolean 
      */
-    public $isgroup = true;
+    public $isGroup = true;
     
     /**
      * A form type of a current item.
@@ -14,15 +14,7 @@ class FactoryFormFR106Group extends FactoryFormFR106Item {
      */
     public $itemType = 'group';
     
-    /**
-     * Returns whether a group has a legend.
-     * @var type 
-     */
-    public $hasLegend = false;
-    
     function __construct($itemData, $parent = null) {
-        parent::__construct($itemData, $parent);
-        
-        if (!empty($itemData['title'])) $this->typeType = true;
+        parent::__construct($itemData, $parent);      
     }
 }

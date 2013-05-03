@@ -16,8 +16,7 @@
             $strValue = $value;
             if ($value === 'false') $strValue = false;
             if ($value === 'true') $strValue = true;
-            if (preg_match('/^\d+$/', $value)) $strValue = intval($value);
-            
+  
             if ($indep) {
                 echo 'var ' . $var . ' = ' . jsValue( $strValue ) . ';';       
             } else {
@@ -27,19 +26,20 @@
     }
     
     function jsValue( $value ) {
-        
-        $type = gettype($value);
-        
-        switch ($type) {
-            case 'boolean':
-                return ($value ? 'true' : 'false');
-                break;
-            case 'integer':
-                return $value;
-                break;
-            default:
-                return '"' . $value . '"';
-                break;
+
+        if (preg_match('/^\d{1,8}$/', $value)) {
+            return $value;
+        }else {
+            
+            $type = gettype($value);
+            switch ($type) {
+                case 'boolean':
+                    return ($value ? 'true' : 'false');
+                    break;
+                default:
+                    return '"' . $value . '"';
+                    break;
+            }  
         }
     }
 ?>
@@ -86,7 +86,7 @@
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.core.min.js"></script>     
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect.min.js"></script>
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js"></script>
-         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.020015.js"></script>
+         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.020016.js"></script>
          <link rel="stylesheet" type="text/css" href="./../assets/css/jquery.op.sociallocker.020006.css">  
          
          <script>
@@ -145,12 +145,17 @@
                     'locker.close',
                     'locker.mobile',
                     
-                    'facebook.appid',
+                    'facebook.appId',
                     'facebook.lang',
                     'facebook.like.url',
                     'facebook.like.title',
                     'facebook.share.url',
                     'facebook.share.title',
+                    'facebook.share.name',
+                    'facebook.share.caption',
+                    'facebook.share.description',
+                    'facebook.share.image',   
+                    'facebook.share.counter',  
                     
                     'twitter.lang',
                     'twitter.tweet.url',

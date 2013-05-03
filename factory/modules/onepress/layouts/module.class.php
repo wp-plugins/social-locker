@@ -30,7 +30,7 @@ class OnePressFR106Module {
     }
     
     function langs() {
-        load_plugin_textdomain('onepress', false, basename( dirname( $this->plugin->relativePath ) ) . '/factory/modules/onepress/langs'); 
+        // load_plugin_textdomain('onepress', false, basename( dirname( $this->plugin->relativePath ) ) . '/factory/modules/onepress/langs'); 
     }
         
     function notices( $notices ) {

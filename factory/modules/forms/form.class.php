@@ -171,11 +171,17 @@ class FactoryFormFR106 {
                    // group
                    case 'group':
 
-                       if ($currentLevel->isGroup) $currentLevel = $currentLevel->parent;
-
                        $group = new FactoryFormFR106Group( $item, $currentLevel );
                        $currentLevel = $group;
+                       
+                    break;
+                
+                   // group
+                   case 'collapsed':
 
+                       $collapsed = new FactoryFormFR106Collapsed( $item, $currentLevel );
+                       $currentLevel = $collapsed;
+                       
                    break;  
                } 
     
@@ -224,6 +230,11 @@ class FactoryFormFR106 {
             case 'group':
                 $this->renderGroup($item);
                 break;
+            
+             case 'collapsed':
+                 
+                $this->renderCollapsed($item);
+                break;           
             
             case 'control':
                 $this->renderControl($item);
@@ -308,15 +319,20 @@ class FactoryFormFR106 {
      * Renders a group of items
      * @param FactoryFormGroup $groupItem
      */
-    private function renderGroup( $groupItem ) {
+    private function renderGroup( $item ) {
         ?>
-        <fieldset class='pi-content-group' id='group-<?php echo $groupItem->name ?>'>
-            <?php if ( $groupItem->hasLegend ) { ?>
-            <legend><?php echo $groupItem->title ?></legend>
+        <fieldset class='fy-group' id='group-<?php echo $groupItem->name ?>'>
+            <?php if ( $item->title ) { ?>
+            <legend class='fy-group-legend'>
+                <p class='fy-group-title'><?php echo $item->title ?></p>
+                <?php if ( $item->hint ) { ?>
+                <p class='fy-group-hint'><?php echo $item->hint ?></p>
+                <?php } ?>
+            </legend>
             <?php } ?>
             <?php
-                foreach($groupItem->items as $item) {
-                    $this->renderItem($item);  
+                foreach($item->items as $sub) {
+                    $this->renderItem($sub);  
                 } 
             ?>
         </fieldset>
@@ -324,6 +340,31 @@ class FactoryFormFR106 {
     }
     
     /**
+     * Renders a collapsed group.
+     * @param FactoryFormCollapsed $groupItem
+     */
+    private function renderCollapsed( $item ) {
+        $id = rand(100000, 999999);
+        ?>
+        <div class="fy-collapsed-group">
+            <?php if ( $item->count ) { ?>
+            <a href="#collapsed-<?php echo $id ?>" class="fy-collapsed-show"><?php echo $item->title ?> (<?php echo $item->count ?>)</a>
+            <?php } else { ?>
+            <a href="#collapsed-<?php echo $id ?>" class="fy-collapsed-show"><?php echo $item->title ?></a>
+            <?php } ?>
+            <div class='fy-collapsed-content' id="collapsed-<?php echo $id ?>" style="display: none;">
+                <a href="#collapsed-<?php echo $id ?>" class='fy-collapsed-hide'>hide extra options</a>
+                <?php
+                    foreach($item->items as $sub) {
+                        $this->renderItem($sub);  
+                    } 
+                ?>
+            </div>
+        </div>
+        <?php 
+    }
+
+     /**
      * Render control item
      * @param FactoryFormTabControl $controlItem
      */
@@ -338,7 +379,7 @@ class FactoryFormFR106 {
     private function isControl($item) {
         
         if (gettype($item) === 'string' ) return false;
-        if ( in_array( $item['type'], array( 'tab', 'tab-item', 'group' ) ) ) return false;
+        if ( in_array( $item['type'], array( 'tab', 'tab-item', 'group', 'collapsed' ) ) ) return false;
         return true;
     }
 }

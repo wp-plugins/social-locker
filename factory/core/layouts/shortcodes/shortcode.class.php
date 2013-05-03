@@ -41,6 +41,10 @@ abstract class FactoryFR106Shortcode {
         $this->factory = $factory;
         $this->scripts = new FactoryFR106ScriptList( $factory );
         $this->styles = new FactoryFR106StyleList( $factory );     
+        
+        if ( !is_array( $this->shortcode )) {
+            $this->shortcode = array( $this->shortcode );
+        }
     }
 
     /**

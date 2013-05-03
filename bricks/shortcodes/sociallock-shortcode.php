@@ -6,7 +6,13 @@ class SocialLockShortcode extends FactoryFR106Shortcode {
      * Shortcode name
      * @var string
      */
-    public $shortcode = 'sociallocker';
+    public $shortcode = array( 
+        'sociallocker', 
+        'sociallocker-1', 
+        'sociallocker-2', 
+        'sociallocker-3',
+        'sociallocker-4',
+        'sociallocker-5');  
         
     // -------------------------------------------------------------------------------------
     // Includes assets
@@ -33,7 +39,7 @@ class SocialLockShortcode extends FactoryFR106Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020015.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020016.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -92,7 +98,7 @@ class SocialLockShortcode extends FactoryFR106Shortcode {
         // - Options loading 
 
         // locker id
-        $id = isset( $attr['id'] ) ? (int)$attr['id'] : get_option('default_' . $this->shortcode . '_locker_id');
+        $id = isset( $attr['id'] ) ? (int)$attr['id'] : get_option('default_sociallocker_locker_id');
 
         if ( empty($id) ) {
             echo '<div><strong>[Social Locker] The locked doesn\'t exist or the default lockers was deleted.</strong></div>'; 
@@ -107,6 +113,34 @@ class SocialLockShortcode extends FactoryFR106Shortcode {
         
         $content = preg_replace( '/^<br \/>/', '', $content );
         $content = preg_replace( '/<br \/>$/', '', $content );
+        
+        // - Stats
+        // Check tracking request
+
+        $unlockEvent = sociallocker_get_meta($id, 'events_unlock');
+        $isTracking = get_option('sociallocker_tracking', true);
+        $postId =  !empty($post) ? $post->ID : false;
+
+        if ($isTracking && $postId) {
+            $trackingAjax = "
+            if ( $.inArray(sender, ['cross', 'button', 'timer']) >= 0 ) {
+
+                $.ajax({
+                    url: '" . admin_url( 'admin-ajax.php' ) . "',
+                    type: 'POST',
+                    data: {
+                        action: 'sociallocker_tracking',
+                        targetId: '" . $postId . "',
+                        sender: sender,
+                        senderName: senderName
+                    }
+                });
+            }";
+
+            $unlockEvent = (!empty($unlockEvent))
+                ? $trackingAjax . $unlockEvent 
+                : $trackingAjax;
+        }
         
         $headerText = sociallocker_get_meta($id, 'header');
         $messageText = sociallocker_get_meta($id, 'message');
@@ -141,7 +175,7 @@ class SocialLockShortcode extends FactoryFR106Shortcode {
                 'events' => array(
                     'ready' => 'function(state){}',             
                     'lock' => 'function(sender, senderName){}',
-                    'unlock' => 'function(sender, senderName){}',    
+                    'unlock' => 'function(sender, senderName){' . $unlockEvent . '}'  
                 )     
             );
 
@@ -312,7 +346,7 @@ class SocialLockShortcode extends FactoryFR106Shortcode {
  
         $id = isset( $attr['id'] ) 
             ? (int)$attr['id'] 
-            : get_option('default_' . $shortcode . '2_locker_id');
+            : get_option('default_sociallocker_locker_id');
         
         $lockerMeta = get_post_meta($id, '');
         if (empty($lockerMeta)) return;

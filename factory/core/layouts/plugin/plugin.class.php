@@ -109,7 +109,7 @@ class FactoryFR106Plugin {
     }
     
     public function actionPluginLoadded() {
-         load_plugin_textdomain('factory', false, basename( dirname( $this->relativePath ) ) . '/factory/core/langs'); 
+         // load_plugin_textdomain('factory', false, basename( dirname( $this->relativePath ) ) . '/factory/core/langs'); 
          
         // checks whether the plugin needs to run updates.
         if ( $this->isAdmin ) {

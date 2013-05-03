@@ -168,7 +168,7 @@ function sociallocker_settings() {
         <div class="controls">
             <input type="text" class="short"  name="sociallocker_facebook_appid" id="sociallocker_facebook_appid" value="<?php echo get_option('sociallocker_facebook_appid') ?>" style="width: 180px;" />
             <span class="help-block">
-                A facebook app id. By default, a developer app id is used. It's recommended to use your own app id.<br />
+                A facebook app id. By default, a developer app id is used. If you want to use a Facebook Share button you should register another app id specially for your domain.<br />
                 Please read <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> to learn how to register one.
             </span>
         </div>

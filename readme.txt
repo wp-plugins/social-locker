@@ -72,6 +72,9 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.1.6 - 03 May 2013 =
+FIXED: The bug of the statistical tools. Thank you <a href="http://www.filezdownload.com">bosemajor</a>.
+
 = 2.1.5 - 18 Apr 2013 =
 NEW: Increased reliability against conflicts with other plugins.  
 FIXED: Minor bugs of the google buttons.

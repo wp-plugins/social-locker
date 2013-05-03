@@ -45,6 +45,7 @@ include(FACTORY_FORM_FR106_DIR. '/controls/service-controls/form-item.class.php'
 include(FACTORY_FORM_FR106_DIR. '/controls/service-controls/form-group.class.php');
 include(FACTORY_FORM_FR106_DIR. '/controls/service-controls/form-tab-item.class.php');
 include(FACTORY_FORM_FR106_DIR. '/controls/service-controls/form-tab.class.php');
+include(FACTORY_FORM_FR106_DIR. '/controls/service-controls/form-collapsed.class.php');
 
 // register form controls
 FactoryFormFR106::register('textbox', 'FactoryFormFR106TextboxFormControl');
@@ -57,3 +58,9 @@ FactoryFormFR106::register('editor', 'FactoryFormFR106EditorFormControl');
 
 FactoryFormFR106::register('mv-radio', 'FactoryFormFR106PiRadioFormControl');
 FactoryFormFR106::register('mv-checkbox', 'FactoryFormFR106CheckboxFormControl');
+
+add_action('admin_enqueue_scripts', 'factory_form_fr106_admin_scripts');
+function factory_form_fr106_admin_scripts() {
+    wp_enqueue_style('forms-style', FACTORY_FORM_FR106_URL . '/assets/css/forms.css'); 
+    wp_enqueue_script('forms-script', FACTORY_FORM_FR106_URL . '/assets/js/forms.js'); 
+}
