@@ -1,11 +1,11 @@
 <?php
 
-class FactoryFR106AdminPageManager {
+class FactoryFR107AdminPageManager {
 
     public $plugin;
     public $pages = array();
 
-    public function __construct(FactoryFR106Plugin $plugin) {
+    public function __construct(FactoryFR107Plugin $plugin) {
         $this->plugin = $plugin;
         $this->id = empty($this->id) ? str_replace('', '', strtolower( get_class($this) ) ) : $this->id;
         
@@ -25,7 +25,6 @@ class FactoryFR106AdminPageManager {
     
     public function actionAdminMenu() {
         if ( empty($this->pages) ) return;
-        
         foreach($this->pages as $page) {
             $page->register();
         }

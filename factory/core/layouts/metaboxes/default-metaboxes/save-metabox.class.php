@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR106SaveMetabox extends FactoryFR106Metabox
+class FactoryFR107SaveMetabox extends FactoryFR107Metabox
 {
     public function __construct( $plugin = null ) {
         $this->title = __('Control');

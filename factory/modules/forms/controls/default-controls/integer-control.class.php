@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR106IntegerFormControl extends FactoryFormFR106TextboxFormControl 
+class FactoryFormFR107IntegerFormControl extends FactoryFormFR107TextboxFormControl 
 {
     public $type = 'integer';
         

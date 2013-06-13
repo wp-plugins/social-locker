@@ -7,7 +7,7 @@ $tr_shortcodes = array();
  * Registes a new shortcode to process.
  * @param string $shortcodeName
  */
-function factory_fr106_tr_register_shortcode( $shortcodeName, $callback ) {
+function factory_fr107_tr_register_shortcode( $shortcodeName, $callback ) {
     global $tr_shortcodes_data, $tr_shortcodes;
     
     $tr_shortcodes_data[$shortcodeName] = array(
@@ -23,7 +23,7 @@ function factory_fr106_tr_register_shortcode( $shortcodeName, $callback ) {
  * @param string $content
  * @param integer $postId
  */
-function factory_fr106_tr_check_content( $content, $postId ) {
+function factory_fr107_tr_check_content( $content, $postId ) {
     global $tr_shortcodes_data, $tr_shortcodes;
     if (count($tr_shortcodes) == 0 ) return;
     

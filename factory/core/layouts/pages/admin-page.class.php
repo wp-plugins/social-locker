@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR106AdminPage extends FactoryFR106Page {
+class FactoryFR107AdminPage extends FactoryFR107Page {
     
     /**
      * Visible page title.
@@ -15,6 +15,12 @@ class FactoryFR106AdminPage extends FactoryFR106Page {
      * @var string 
      */
     public $menuTitle = null;
+	
+    /**
+     * If set, an extra sub menu will be created with another title.
+     * @var type 
+     */
+    public $menuSubTitle = null;
     
     /**
      * Menu icon (only if a page is placed as a main menu).
@@ -59,7 +65,7 @@ class FactoryFR106AdminPage extends FactoryFR106Page {
     public $internal = false;
     
 
-    public function __construct(FactoryFR106Plugin $plugin) {
+    public function __construct(FactoryFR107Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
         
@@ -91,7 +97,47 @@ class FactoryFR106AdminPage extends FactoryFR106Page {
      */
     public function register() {
         $resultId = $this->getResultId();
+       
+        // makes redirect to the page
+        $controller = isset( $_GET['fy_page'] ) ? $_GET['fy_page'] : null;
+        if ( $controller && $controller == $this->id ) {
+            $plugin = isset( $_GET['fy_plugin'] ) ? $_GET['fy_plugin'] : null; 
+
+            if ( $this->plugin->pluginName == $plugin ) {
+                $action = isset( $_GET['fy_action'] ) ? $_GET['fy_action'] : 'index';
+                $isAjax = isset( $_GET['fy_ajax'] );
+                
+                if ( $isAjax ) {
+
+                    $this->executeByName( $action );
+                    exit;
+                    
+                } else {
+                    
+                    $params = array();
+                    foreach ($_GET as $key => $value) {
+                        $params[$key] = $value;
+                    }
+
+                    unset($params['fy_page']);
+                    unset($params['fy_plugin']);
+                    unset($params['fy_action']);
+
+                    $this->redirectToAction($action, $params);
+                }
+            }
+        }
         
+        // executes an action
+        if ( $this->current() ) {
+            ob_start();
+            $action = isset( $_GET['action'] ) ? $_GET['action'] : 'index';
+            $this->executeByName( $action );
+            $this->result = ob_get_contents();
+            ob_end_clean();
+        }
+        
+        // calls scripts and styles, adds pages to menu
         if ( isset($_GET['page']) && $_GET['page'] == $resultId ) {
             $this->assets($this->scripts, $this->styles);
             
@@ -139,24 +185,30 @@ class FactoryFR106AdminPage extends FactoryFR106Page {
                 array($this, 'show'), 
                 null,
                 $this->menuPosition );   
+				
+            if ( !empty( $this->menuSubTitle ) ) {
+
+                add_submenu_page( 
+                    $resultId, 
+                    $this->menuSubTitle, 
+                    $this->menuSubTitle, 
+                    $this->capabilitiy,
+                    $resultId,
+                    array($this, 'show') );
+            }
  
             add_action( 'admin_head', array($this, 'actionAdminHead'));  
         }
-        
-        // makes redirect to the page
-
-        $controller = isset( $_GET['fy_page'] ) ? $_GET['fy_page'] : null;
-        if ( !$controller || $controller !== $this->id ) return;
-
-        $plugin = isset( $_GET['fy_plugin'] ) ? $_GET['fy_plugin'] : null; 
-        if ( $this->plugin->pluginName !== $plugin ) return;
-        
-        $action = isset( $_GET['fy_action'] ) ? $_GET['fy_action'] : 'index';
-        if ( !$controller || $controller !== $this->id ) return;
-        
-        $this->redirectToAction($action);
     }
     
+    protected function current() {
+        
+        if (!isset($_GET['page']) ) return false;
+        $resultId = $this->getResultId();
+        if ( $resultId == $_GET['page'] ) return true;
+        return false;
+    }
+
     protected function redirectToAction($action, $queryArgs = array()) {
         wp_redirect( $this->getActionUrl($action, $queryArgs) );     
         exit;

@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR106 {
+class FactoryFormFR107 {
     
     public static $controls = array();
 
@@ -50,10 +50,10 @@ class FactoryFormFR106 {
      */
     private $formControls = array();
     
-    public function __construct( FactoryFR106Plugin $plugin, $valueProvider = null ) {
+    public function __construct( FactoryFR107Plugin $plugin, $valueProvider = null ) {
         
         $this->plugin = $plugin;
-        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR106FakeValueProvider();     
+        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR107FakeValueProvider();     
     }
     
     /**
@@ -83,8 +83,8 @@ class FactoryFormFR106 {
         $controlsStack = self::$controls;
 
         // applies filters to the form params before building
-        $this->items = apply_filters('factory_fr106_form', $this->items, $this->scope, $this->name);    
-        $this->items = apply_filters('factory_form_fr106_' . $this->name, $this->items, $this->scope);
+        $this->items = apply_filters('factory_fr107_form', $this->items, $this->scope, $this->name);    
+        $this->items = apply_filters('factory_form_fr107_' . $this->name, $this->items, $this->scope);
                 
         foreach($this->items as $index => $item) {
             if ( !$this->isControl($item) ) continue;
@@ -135,7 +135,7 @@ class FactoryFormFR106 {
         echo '<div class="pi-metabox wpbootstrap">';
         echo '<div class="form-horizontal">';
         
-        $root = new FactoryFormFR106Item(array(), null);
+        $root = new FactoryFormFR107Item(array(), null);
         $currentLevel = $root;
         
         $currentTab = null;
@@ -153,7 +153,7 @@ class FactoryFormFR106 {
                    case 'tab':
 
                        $levelToUse = $currentTab == null ? $root : $currentTab->parent;
-                       $tab = new FactoryFormFR106Tab( $item, $levelToUse );
+                       $tab = new FactoryFormFR107Tab( $item, $levelToUse );
 
                        $currentLevel = $tab;
                        $currentTab = $tab;
@@ -163,7 +163,7 @@ class FactoryFormFR106 {
                    // tab item
                    case 'tab-item':
 
-                       $tabItem = new FactoryFormFR106TabItem( $item, $currentTab );
+                       $tabItem = new FactoryFormFR107TabItem( $item, $currentTab );
                        $currentLevel = $tabItem;
 
                    break;
@@ -171,7 +171,7 @@ class FactoryFormFR106 {
                    // group
                    case 'group':
 
-                       $group = new FactoryFormFR106Group( $item, $currentLevel );
+                       $group = new FactoryFormFR107Group( $item, $currentLevel );
                        $currentLevel = $group;
                        
                     break;
@@ -179,7 +179,7 @@ class FactoryFormFR106 {
                    // group
                    case 'collapsed':
 
-                       $collapsed = new FactoryFormFR106Collapsed( $item, $currentLevel );
+                       $collapsed = new FactoryFormFR107Collapsed( $item, $currentLevel );
                        $currentLevel = $collapsed;
                        
                    break;  
@@ -321,7 +321,7 @@ class FactoryFormFR106 {
      */
     private function renderGroup( $item ) {
         ?>
-        <fieldset class='fy-group' id='group-<?php echo $groupItem->name ?>'>
+        <fieldset class='fy-group' id='group-<?php echo $item->name ?>'>
             <?php if ( $item->title ) { ?>
             <legend class='fy-group-legend'>
                 <p class='fy-group-title'><?php echo $item->title ?></p>

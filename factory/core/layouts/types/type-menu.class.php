@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR106TypeMenu {
+class FactoryFR107TypeMenu {
     
     public $icon;
     
@@ -10,7 +10,7 @@ class FactoryFR106TypeMenu {
      */
     public $type = null;
     
-    public function __construct(FactoryFR106Type $type) {
+    public function __construct(FactoryFR107Type $type) {
         $this->type = $type;
     }
     

@@ -139,7 +139,7 @@ function sociallocker_save_settings()
         update_option('sociallocker_debug', true);  
     } else {
         delete_option('sociallocker_debug');    
-    }
+    } 
 }
 
 // function that reders the form

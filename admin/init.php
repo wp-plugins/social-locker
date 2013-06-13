@@ -1,6 +1,23 @@
 <?php
+
+// actiovation
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/activation.php');
+
+// metaboxes
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/sociallocker-basic-options.php');
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/sociallocker-support.php');
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/socialocker-preview.php');
+    include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/sociallocker-more-features.php');
+
+
+
+// view tables
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/viewtables/locker-viewtable.class.php');
+
+// pages and ajax calls
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/common-settings.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/unlocking-statistics.php');
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/license-manager.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/tracking.php');
 
 /**

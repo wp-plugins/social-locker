@@ -4,7 +4,7 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnePressFR106LicenseManagerAdminPage extends FactoryFR106AdminPage  {
+class OnePressFR107LicenseManagerAdminPage extends FactoryFR107AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -20,10 +20,10 @@ class OnePressFR106LicenseManagerAdminPage extends FactoryFR106AdminPage  {
      * @param FactoryScriptList $scripts    Scripts that will be included.
      * @param FactoryStyleList $styles      Styles that will be includes.
      */
-    public function assets(FactoryFR106ScriptList $scripts, FactoryFR106StyleList $styles) {
+    public function assets(FactoryFR107ScriptList $scripts, FactoryFR107StyleList $styles) {
         
-        $styles->add(ONEPRESS_FR106_URL . '/assets/css/license-manager.css');
-        $scripts->add(ONEPRESS_FR106_URL . '/assets/js/license-manager.js');   
+        $styles->add(ONEPRESS_FR107_URL . '/assets/css/license-manager.css');
+        $scripts->add(ONEPRESS_FR107_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -322,7 +322,7 @@ class OnePressFR106LicenseManagerAdminPage extends FactoryFR106AdminPage  {
                                 <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONEPRESS_FR106_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONEPRESS_FR107_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>

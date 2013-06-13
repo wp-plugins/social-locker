@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR106ScriptList extends FactoryFR106AssetsList 
+class FactoryFR107ScriptList extends FactoryFR107AssetsList 
 {
     public function __construct($factory ) {
         parent::__construct($factory, true);

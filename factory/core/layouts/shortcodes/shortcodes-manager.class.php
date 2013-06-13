@@ -6,7 +6,7 @@
  * - creating aninstance of Factory Shortcode per every call of the shortcode.
  * - tracking shortcodes in post content.
  */
-class FactoryFR106ShortcodeManager {
+class FactoryFR107ShortcodeManager {
     
     public $plugin;
     public $blanks;
@@ -19,7 +19,7 @@ class FactoryFR106ShortcodeManager {
      */
     private $firstContentSave = true;
 
-    public function __construct(FactoryFR106Plugin $plugin) {
+    public function __construct(FactoryFR107Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -60,7 +60,7 @@ class FactoryFR106ShortcodeManager {
                 if ($blank->tracking) {
                     
                     foreach($blank->shortcode as $shortcode) {
-                        factory_fr106_tr_register_shortcode(
+                        factory_fr107_tr_register_shortcode(
                             $shortcode, array($blank, 'trackingCallback')
                         ); 
                     }
@@ -101,7 +101,7 @@ class FactoryFR106ShortcodeManager {
         }  
         
         // runs the shortcode tracking 
-        factory_fr106_tr_check_content($post->post_content, $postid);
+        factory_fr107_tr_check_content($post->post_content, $postid);
     }
     
     /**
@@ -114,7 +114,7 @@ class FactoryFR106ShortcodeManager {
 
         $content = $post->post_content;
         foreach($blank->shortcode as $shortcode) {
-            $metaName = 'factory_fr106_' . $shortcode . '_include_assets';
+            $metaName = 'factory_fr107_' . $shortcode . '_include_assets';
 
             delete_post_meta($postid, $metaName);
 
@@ -158,7 +158,7 @@ class FactoryFR106ShortcodeManager {
        
        foreach( $this->blanks as $blank ) {
             foreach($blank->shortcode as $shortcode) {
-                $metaName = 'factory_fr106_' . $shortcode . '_include_assets';
+                $metaName = 'factory_fr107_' . $shortcode . '_include_assets';
                 $metaValue = get_post_meta($post->ID, $metaName);
 
                 if ( empty($metaValue) ) continue;

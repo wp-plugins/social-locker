@@ -1448,460 +1448,7 @@ input[type="submit"].btn.btn-mini {
   color: #333333;
   text-decoration: none;
 }
-.wpbootstrap [class^="icon-"],
-.wpbootstrap [class*=" icon-"] {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  *margin-right: .3em;
-  line-height: 14px;
-  vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
-  background-position: 14px 14px;
-  background-repeat: no-repeat;
-  margin-top: 1px;
-}
-/* White icons with optional class, or on hover/active states of certain elements */
-.wpbootstrap .icon-white,
-.nav-tabs > .active > a > [class^="icon-"],
-.nav-tabs > .active > a > [class*=" icon-"],
-.nav-pills > .active > a > [class^="icon-"],
-.nav-pills > .active > a > [class*=" icon-"],
-.nav-list > .active > a > [class^="icon-"],
-.nav-list > .active > a > [class*=" icon-"],
-.navbar-inverse .nav > .active > a > [class^="icon-"],
-.navbar-inverse .nav > .active > a > [class*=" icon-"],
-.dropdown-menu > li > a:hover > [class^="icon-"],
-.dropdown-menu > li > a:hover > [class*=" icon-"],
-.dropdown-menu > .active > a > [class^="icon-"],
-.dropdown-menu > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
-}
-.nav-tabs > li > a {
-    text-decoration: none;
-}
-.wpbootstrap .icon-glass {
-  background-position: 0      0;
-}
-.wpbootstrap .icon-music {
-  background-position: -24px 0;
-}
-.wpbootstrap .icon-search {
-  background-position: -48px 0;
-}
-.wpbootstrap .icon-envelope {
-  background-position: -72px 0;
-}
-.wpbootstrap .icon-heart {
-  background-position: -96px 0;
-}
-.wpbootstrap .icon-star {
-  background-position: -120px 0;
-}
-.wpbootstrap .icon-star-empty {
-  background-position: -144px 0;
-}
-.wpbootstrap .icon-user {
-  background-position: -168px 0;
-}
-.wpbootstrap .icon-film {
-  background-position: -192px 0;
-}
-.wpbootstrap .icon-th-large {
-  background-position: -216px 0;
-}
-.wpbootstrap .icon-th {
-  background-position: -240px 0;
-}
-.wpbootstrap .icon-th-list {
-  background-position: -264px 0;
-}
-.wpbootstrap .icon-ok {
-  background-position: -288px 0;
-}
-.wpbootstrap .icon-remove {
-  background-position: -312px 0;
-}
-.wpbootstrap .icon-zoom-in {
-  background-position: -336px 0;
-}
-.wpbootstrap .icon-zoom-out {
-  background-position: -360px 0;
-}
-.wpbootstrap .icon-off {
-  background-position: -384px 0;
-}
-.wpbootstrap .icon-signal {
-  background-position: -408px 0;
-}
-.wpbootstrap .icon-cog {
-  background-position: -432px 0;
-}
-.wpbootstrap .icon-trash {
-  background-position: -456px 0;
-}
-.wpbootstrap .icon-home {
-  background-position: 0 -24px;
-}
-.wpbootstrap .icon-file {
-  background-position: -24px -24px;
-}
-.wpbootstrap .icon-time {
-  background-position: -48px -24px;
-}
-.wpbootstrap .icon-road {
-  background-position: -72px -24px;
-}
-.wpbootstrap .icon-download-alt {
-  background-position: -96px -24px;
-}
-.wpbootstrap .icon-download {
-  background-position: -120px -24px;
-}
-.wpbootstrap .icon-upload {
-  background-position: -144px -24px;
-}
-.wpbootstrap .icon-inbox {
-  background-position: -168px -24px;
-}
-.wpbootstrap .icon-play-circle {
-  background-position: -192px -24px;
-}
-.wpbootstrap .icon-repeat {
-  background-position: -216px -24px;
-}
-.wpbootstrap .icon-refresh {
-  background-position: -240px -24px;
-}
-.wpbootstrap .icon-list-alt {
-  background-position: -264px -24px;
-}
-.wpbootstrap .icon-lock {
-  background-position: -287px -24px;
-}
-.wpbootstrap .icon-flag {
-  background-position: -312px -24px;
-}
-.wpbootstrap .icon-headphones {
-  background-position: -336px -24px;
-}
-.wpbootstrap .icon-volume-off {
-  background-position: -360px -24px;
-}
-.wpbootstrap .icon-volume-down {
-  background-position: -384px -24px;
-}
-.wpbootstrap .icon-volume-up {
-  background-position: -408px -24px;
-}
-.wpbootstrap .icon-qrcode {
-  background-position: -432px -24px;
-}
-.wpbootstrap .icon-barcode {
-  background-position: -456px -24px;
-}
-.wpbootstrap .icon-tag {
-  background-position: 0 -48px;
-}
-.wpbootstrap .icon-tags {
-  background-position: -25px -48px;
-}
-.wpbootstrap .icon-book {
-  background-position: -48px -48px;
-}
-.wpbootstrap .icon-bookmark {
-  background-position: -72px -48px;
-}
-.wpbootstrap .icon-print {
-  background-position: -96px -48px;
-}
-.wpbootstrap .icon-camera {
-  background-position: -120px -48px;
-}
-.wpbootstrap .icon-font {
-  background-position: -144px -48px;
-}
-.wpbootstrap .icon-bold {
-  background-position: -167px -48px;
-}
-.wpbootstrap .icon-italic {
-  background-position: -192px -48px;
-}
-.wpbootstrap .icon-text-height {
-  background-position: -216px -48px;
-}
-.wpbootstrap .icon-text-width {
-  background-position: -240px -48px;
-}
-.wpbootstrap .icon-align-left {
-  background-position: -264px -48px;
-}
-.wpbootstrap .icon-align-center {
-  background-position: -288px -48px;
-}
-.wpbootstrap .icon-align-right {
-  background-position: -312px -48px;
-}
-.wpbootstrap .icon-align-justify {
-  background-position: -336px -48px;
-}
-.wpbootstrap .icon-list {
-  background-position: -360px -48px;
-}
-.wpbootstrap .icon-indent-left {
-  background-position: -384px -48px;
-}
-.wpbootstrap .icon-indent-right {
-  background-position: -408px -48px;
-}
-.wpbootstrap .icon-facetime-video {
-  background-position: -432px -48px;
-}
-.wpbootstrap .icon-picture {
-  background-position: -456px -48px;
-}
-.wpbootstrap .icon-pencil {
-  background-position: 0 -72px;
-}
-.wpbootstrap .icon-map-marker {
-  background-position: -24px -72px;
-}
-.wpbootstrap .icon-adjust {
-  background-position: -48px -72px;
-}
-.wpbootstrap .icon-tint {
-  background-position: -72px -72px;
-}
-.wpbootstrap .icon-edit {
-  background-position: -96px -72px;
-}
-.wpbootstrap .icon-share {
-  background-position: -120px -72px;
-}
-.wpbootstrap .icon-check {
-  background-position: -144px -72px;
-}
-.wpbootstrap .icon-move {
-  background-position: -168px -72px;
-}
-.wpbootstrap .icon-step-backward {
-  background-position: -192px -72px;
-}
-.wpbootstrap .icon-fast-backward {
-  background-position: -216px -72px;
-}
-.wpbootstrap .icon-backward {
-  background-position: -240px -72px;
-}
-.wpbootstrap .icon-play {
-  background-position: -264px -72px;
-}
-.wpbootstrap .icon-pause {
-  background-position: -288px -72px;
-}
-.wpbootstrap .icon-stop {
-  background-position: -312px -72px;
-}
-.wpbootstrap .icon-forward {
-  background-position: -336px -72px;
-}
-.wpbootstrap .icon-fast-forward {
-  background-position: -360px -72px;
-}
-.wpbootstrap .icon-step-forward {
-  background-position: -384px -72px;
-}
-.wpbootstrap .icon-eject {
-  background-position: -408px -72px;
-}
-.wpbootstrap .icon-chevron-left {
-  background-position: -432px -72px;
-}
-.wpbootstrap .icon-chevron-right {
-  background-position: -456px -72px;
-}
-.wpbootstrap .icon-plus-sign {
-  background-position: 0 -96px;
-}
-.wpbootstrap .icon-minus-sign {
-  background-position: -24px -96px;
-}
-.wpbootstrap .icon-remove-sign {
-  background-position: -48px -96px;
-}
-.wpbootstrap .icon-ok-sign {
-  background-position: -72px -96px;
-}
-.wpbootstrap .icon-question-sign {
-  background-position: -96px -96px;
-}
-.wpbootstrap .icon-info-sign {
-  background-position: -120px -96px;
-}
-.wpbootstrap .icon-screenshot {
-  background-position: -144px -96px;
-}
-.wpbootstrap .icon-remove-circle {
-  background-position: -168px -96px;
-}
-.wpbootstrap .icon-ok-circle {
-  background-position: -192px -96px;
-}
-.wpbootstrap .icon-ban-circle {
-  background-position: -216px -96px;
-}
-.wpbootstrap .icon-arrow-left {
-  background-position: -240px -96px;
-}
-.wpbootstrap .icon-arrow-right {
-  background-position: -264px -96px;
-}
-.wpbootstrap .icon-arrow-up {
-  background-position: -289px -96px;
-}
-.wpbootstrap .icon-arrow-down {
-  background-position: -312px -96px;
-}
-.wpbootstrap .icon-share-alt {
-  background-position: -336px -96px;
-}
-.wpbootstrap .icon-resize-full {
-  background-position: -360px -96px;
-}
-.wpbootstrap .icon-resize-small {
-  background-position: -384px -96px;
-}
-.wpbootstrap .icon-plus {
-  background-position: -408px -96px;
-}
-.wpbootstrap .icon-minus {
-  background-position: -433px -96px;
-}
-.wpbootstrap .icon-asterisk {
-  background-position: -456px -96px;
-}
-.wpbootstrap .icon-exclamation-sign {
-  background-position: 0 -120px;
-}
-.wpbootstrap .icon-gift {
-  background-position: -24px -120px;
-}
-.wpbootstrap .icon-leaf {
-  background-position: -48px -120px;
-}
-.icon-fire {
-  background-position: -72px -120px;
-}
-.icon-eye-open {
-  background-position: -96px -120px;
-}
-.icon-eye-close {
-  background-position: -120px -120px;
-}
-.wpbootstrap .icon-warning-sign {
-  background-position: -144px -120px;
-}
-.wpbootstrap .icon-plane {
-  background-position: -168px -120px;
-}
-.wpbootstrap .icon-calendar {
-  background-position: -192px -120px;
-}
-.wpbootstrap .icon-random {
-  background-position: -216px -120px;
-  width: 16px;
-}
-.wpbootstrap .icon-comment {
-  background-position: -240px -120px;
-}
-.wpbootstrap .icon-magnet {
-  background-position: -264px -120px;
-}
-.wpbootstrap .icon-chevron-up {
-  background-position: -288px -120px;
-}
-.wpbootstrap .icon-chevron-down {
-  background-position: -313px -119px;
-}
-.wpbootstrap .icon-retweet {
-  background-position: -336px -120px;
-}
-.wpbootstrap .icon-shopping-cart {
-  background-position: -360px -120px;
-}
-.wpbootstrap .icon-folder-close {
-  background-position: -384px -120px;
-}
-.wpbootstrap .icon-folder-open {
-  background-position: -408px -120px;
-  width: 16px;
-}
-.wpbootstrap .icon-resize-vertical {
-  background-position: -432px -119px;
-}
-.wpbootstrap .icon-resize-horizontal {
-  background-position: -456px -118px;
-}
-.wpbootstrap .icon-hdd {
-  background-position: 0 -144px;
-}
-.wpbootstrap .icon-bullhorn {
-  background-position: -24px -144px;
-}
-.wpbootstrap .icon-bell {
-  background-position: -48px -144px;
-}
-.wpbootstrap .icon-certificate {
-  background-position: -72px -144px;
-}
-.wpbootstrap .icon-thumbs-up {
-  background-position: -96px -144px;
-}
-.wpbootstrap .icon-thumbs-down {
-  background-position: -120px -144px;
-}
-.wpbootstrap .icon-hand-right {
-  background-position: -144px -144px;
-}
-.wpbootstrap .icon-hand-left {
-  background-position: -168px -144px;
-}
-.wpbootstrap .icon-hand-up {
-  background-position: -192px -144px;
-}
-.wpbootstrap .icon-hand-down {
-  background-position: -216px -144px;
-}
-.wpbootstrap .icon-circle-arrow-right {
-  background-position: -240px -144px;
-}
-.wpbootstrap .icon-circle-arrow-left {
-  background-position: -264px -144px;
-}
-.wpbootstrap .icon-circle-arrow-up {
-  background-position: -288px -144px;
-}
-.wpbootstrap .icon-circle-arrow-down {
-  background-position: -312px -144px;
-}
-.wpbootstrap .icon-globe {
-  background-position: -336px -144px;
-}
-.wpbootstrap .icon-wrench {
-  background-position: -360px -144px;
-}
-.wpbootstrap .icon-tasks {
-  background-position: -384px -144px;
-}
-.wpbootstrap .icon-filter {
-  background-position: -408px -144px;
-}
-.wpbootstrap .icon-briefcase {
-  background-position: -432px -144px;
-}
-.wpbootstrap .icon-fullscreen {
-  background-position: -456px -144px;
-}
+
 .btn-group {
   position: relative;
   font-size: 0;
@@ -3699,4 +3246,276 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+}
+
+.wpbootstrap .table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.wpbootstrap .table th,
+.wpbootstrap .table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.wpbootstrap .table th {
+  font-weight: bold;
+}
+
+.wpbootstrap .table thead th {
+  vertical-align: bottom;
+}
+
+.wpbootstrap .table caption + thead tr:first-child th,
+.wpbootstrap .table caption + thead tr:first-child td,
+.wpbootstrap .table colgroup + thead tr:first-child th,
+.wpbootstrap .table colgroup + thead tr:first-child td,
+.wpbootstrap .table thead:first-child tr:first-child th,
+.wpbootstrap .table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.wpbootstrap .table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.wpbootstrap .table .table {
+  background-color: #ffffff;
+}
+
+.wpbootstrap .table-condensed th,
+.wpbootstrap .table-condensed td {
+  padding: 4px 5px;
+}
+
+.wpbootstrap .table-bordered {
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.wpbootstrap .table-bordered th,
+.wpbootstrap .table-bordered td {
+  border-left: 1px solid #dddddd;
+}
+
+.wpbootstrap .table-bordered caption + thead tr:first-child th,
+.wpbootstrap .table-bordered caption + tbody tr:first-child th,
+.wpbootstrap .table-bordered caption + tbody tr:first-child td,
+.wpbootstrap .table-bordered colgroup + thead tr:first-child th,
+.wpbootstrap .table-bordered colgroup + tbody tr:first-child th,
+.wpbootstrap .table-bordered colgroup + tbody tr:first-child td,
+.wpbootstrap .table-bordered thead:first-child tr:first-child th,
+.wpbootstrap .table-bordered tbody:first-child tr:first-child th,
+.wpbootstrap .table-bordered tbody:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.wpbootstrap .table-bordered thead:first-child tr:first-child > th:first-child,
+.wpbootstrap .table-bordered tbody:first-child tr:first-child > td:first-child,
+.wpbootstrap .table-bordered tbody:first-child tr:first-child > th:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.wpbootstrap .wpbootstrap .table-bordered thead:first-child tr:first-child > th:last-child,
+.wpbootstrap .wpbootstrap .table-bordered tbody:first-child tr:first-child > td:last-child,
+.wpbootstrap .wpbootstrap .table-bordered tbody:first-child tr:first-child > th:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.wpbootstrap .table-bordered thead:last-child tr:last-child > th:first-child,
+.wpbootstrap .table-bordered tbody:last-child tr:last-child > td:first-child,
+.wpbootstrap .table-bordered tbody:last-child tr:last-child > th:first-child,
+.wpbootstrap .table-bordered tfoot:last-child tr:last-child > td:first-child,
+.wpbootstrap .table-bordered tfoot:last-child tr:last-child > th:first-child {
+  -webkit-border-bottom-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+}
+
+.wpbootstrap .table-bordered thead:last-child tr:last-child > th:last-child,
+.wpbootstrap .table-bordered tbody:last-child tr:last-child > td:last-child,
+.wpbootstrap .table-bordered tbody:last-child tr:last-child > th:last-child,
+.wpbootstrap .table-bordered tfoot:last-child tr:last-child > td:last-child,
+.wpbootstrap .table-bordered tfoot:last-child tr:last-child > th:last-child {
+  -webkit-border-bottom-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+.wpbootstrap .table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+}
+
+.wpbootstrap .table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+}
+
+.wpbootstrap .table-bordered caption + thead tr:first-child th:first-child,
+.wpbootstrap .table-bordered caption + tbody tr:first-child td:first-child,
+.wpbootstrap .table-bordered colgroup + thead tr:first-child th:first-child,
+.wpbootstrap .table-bordered colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.wpbootstrap .table-bordered caption + thead tr:first-child th:last-child,
+.wpbootstrap .table-bordered caption + tbody tr:first-child td:last-child,
+.wpbootstrap .table-bordered colgroup + thead tr:first-child th:last-child,
+.wpbootstrap .table-bordered colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.wpbootstrap .table-striped tbody > tr:nth-child(odd) > td,
+.wpbootstrap .table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.wpbootstrap .table-hover tbody tr:hover > td,
+.wpbootstrap .table-hover tbody tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+.wpbootstrap table td[class*="span"],
+.wpbootstrap table th[class*="span"],
+.wpbootstrap .row-fluid table td[class*="span"],
+.wpbootstrap .row-fluid table th[class*="span"] {
+  display: table-cell;
+  float: none;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span1,
+.wpbootstrap .table th.span1 {
+  float: none;
+  width: 44px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span2,
+.wpbootstrap .table th.span2 {
+  float: none;
+  width: 124px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span3,
+.wpbootstrap .table th.span3 {
+  float: none;
+  width: 204px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span4,
+.wpbootstrap .table th.span4 {
+  float: none;
+  width: 284px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span5,
+.wpbootstrap .table th.span5 {
+  float: none;
+  width: 364px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span6,
+.wpbootstrap .table th.span6 {
+  float: none;
+  width: 444px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span7,
+.wpbootstrap .table th.span7 {
+  float: none;
+  width: 524px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span8,
+.wpbootstrap .table th.span8 {
+  float: none;
+  width: 604px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span9,
+.wpbootstrap .table th.span9 {
+  float: none;
+  width: 684px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span10,
+.wpbootstrap .table th.span10 {
+  float: none;
+  width: 764px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span11,
+.wpbootstrap .table th.span11 {
+  float: none;
+  width: 844px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table td.span12,
+.wpbootstrap .table th.span12 {
+  float: none;
+  width: 924px;
+  margin-left: 0;
+}
+
+.wpbootstrap .table tbody tr.success > td {
+  background-color: #dff0d8;
+}
+
+.wpbootstrap .table tbody tr.error > td {
+  background-color: #f2dede;
+}
+
+.wpbootstrap .table tbody tr.warning > td {
+  background-color: #fcf8e3;
+}
+
+.wpbootstrap .table tbody tr.info > td {
+  background-color: #d9edf7;
+}
+
+.wpbootstrap .table-hover tbody tr.success:hover > td {
+  background-color: #d0e9c6;
+}
+
+.wpbootstrap .table-hover tbody tr.error:hover > td {
+  background-color: #ebcccc;
+}
+
+.wpbootstrap .table-hover tbody tr.warning:hover > td {
+  background-color: #faf2cc;
+}
+
+.wpbootstrap .table-hover tbody tr.info:hover > td {
+  background-color: #c4e3f3;
 }

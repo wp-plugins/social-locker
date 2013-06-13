@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR106ViewTableColumns 
+class FactoryFR107ViewTableColumns 
 {
     public $isClearn = false;
     public $columns;

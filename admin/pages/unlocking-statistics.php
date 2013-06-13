@@ -48,7 +48,7 @@ function sociallocker_unlocking_statistics_scripts($hook) {
  * Function that renders statistic pages
  */
 function sociallocker_statistics() {
-    include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/classes/statistics-viewer.class.php');
+    include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/classes/statistics-viewer.class.php');
     
     $postId = isset($_REQUEST['sPost']) ? intval($_REQUEST['sPost']) : false;
     $post = ($postId) ? get_post($postId) : false;

@@ -72,6 +72,11 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.1.6 - 13 Jun 2013 =
+FIXED: A bug when it was impossible to use at the same time Social Locker and Like 2 Unlock for some sites.  
+FIXED: A bug when the activation is failed because the default location of wordpress files are changed.  
+IMPROVED: Add support of servers where the php function token_get_all is not available.  
+
 = 2.1.6 - 03 May 2013 =
 FIXED: The bug of the statistical tools. Thank you <a href="http://www.filezdownload.com">bosemajor</a>.
 

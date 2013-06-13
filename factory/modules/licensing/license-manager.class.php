@@ -1,6 +1,6 @@
 <?php
 
-class FactoryLicensingFR106Manager {
+class FactoryLicensingFR107Manager {
     
     public $plugin;
     public $data;
@@ -9,7 +9,7 @@ class FactoryLicensingFR106Manager {
     public $site;
     public $secret;
     
-    public function __construct( FactoryFR106Plugin $plugin ) {
+    public function __construct( FactoryFR107Plugin $plugin ) {
         $this->plugin = $plugin;
         $this->api = $plugin->options['api'];
         
@@ -25,22 +25,22 @@ class FactoryLicensingFR106Manager {
         
         // sets default license if a license is empty
         if ( empty( $this->data) ) $this->data = $this->default;
-        
+
         // sets a license type what is used by the plugin
-        $this->type = ( !isset($this->data['Category']) || $this->isExpired() ) 
-                ? $this->default['Category'] 
+        $this->type = ( !array_key_exists('Category', $this->data) || $this->isExpired() ) 
+                ? @$this->default['Category'] 
                 : $this->data['Category'];
         
         $this->site = site_url();
         $this->domain = parse_url( $this->site, PHP_URL_HOST );
         $this->secret = get_option('fy_license_site_secret', null);
-        $this->build = $this->data['Build'];
-        $this->key = $this->data['Key'];
+        $this->build = @$this->data['Build'];
+        $this->key = @$this->data['Key'];
         
         add_action('init', array($this, 'checkVerificationRequest'));
                 
         if ( is_admin() ) {
-            add_filter('factory_fr106_admin_notices-' . $this->plugin->pluginName, array( $this, 'showKeyMessages'), 10, 2); 
+            add_filter('factory_fr107_admin_notices-' . $this->plugin->pluginName, array( $this, 'showKeyMessages'), 10, 2); 
         }
     }
     
