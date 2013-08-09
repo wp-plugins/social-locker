@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFR107ViewTable {
+abstract class FactoryFR108ViewTable {
     
     /**
      * Current factory.
@@ -32,18 +32,18 @@ abstract class FactoryFR107ViewTable {
      */  
     public $adminStyles;
     
-    public function __construct( FactoryFR107Plugin $plugin = null ) {
+    public function __construct( FactoryFR108Plugin $plugin = null ) {
         $this->plugin = $plugin;
     }
     
-    public function register( FactoryFR107Type $type ) {
+    public function register( FactoryFR108Type $type ) {
         
         $this->type = $type;
         $this->plugin = $type->plugin;
-        $this->columns = new FactoryFR107ViewTableColumns();
+        $this->columns = new FactoryFR108ViewTableColumns();
         
-        $this->adminScripts = new FactoryFR107ScriptList( $type->plugin );
-        $this->adminStyles = new FactoryFR107StyleList( $type->plugin ); 
+        $this->adminScripts = new FactoryFR108ScriptList( $type->plugin );
+        $this->adminStyles = new FactoryFR108StyleList( $type->plugin ); 
         
         $this->configure( $this, $this->adminScripts, $this->adminStyles );
         
@@ -67,9 +67,9 @@ abstract class FactoryFR107ViewTable {
     }
     
     public abstract function configure( 
-            FactoryFR107ViewTable $table, 
-            FactoryFR107ScriptList $scripts, 
-            FactoryFR107StyleList $styles );
+            FactoryFR108ViewTable $table, 
+            FactoryFR108ScriptList $scripts, 
+            FactoryFR108StyleList $styles );
     
     public function actionColumns( $columns ) {
         

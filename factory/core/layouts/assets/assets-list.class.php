@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR107AssetsList 
+class FactoryFR108AssetsList 
 {
     /**
      * Current factory.

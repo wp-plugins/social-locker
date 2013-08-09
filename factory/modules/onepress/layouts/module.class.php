@@ -3,7 +3,7 @@
 /**
  * A module that loads and manages OnePress releated services.
  */
-class OnePressFR107Module {
+class OnePressFR108Module {
     
     public $plugin;
     
@@ -11,19 +11,19 @@ class OnePressFR107Module {
         $this->plugin = $plugin;
 
         if ( $plugin->license ) {
-            $plugin->license->licenseManagerUrl = onepress_fr107_get_link_license_manager($plugin->pluginName);
+            $plugin->license->licenseManagerUrl = onepress_fr108_get_link_license_manager($plugin->pluginName);
         }
 
         add_action('plugins_loaded', array( $this, 'langs' ));
         add_filter('plugin_action_links_' . $plugin->relativePath, array( $this, 'add_license_link' ) );
-        add_filter('factory_fr107_plugin_row-' . $plugin->pluginName, array($this, 'pluginRow'));
-        add_filter('factory_fr107_admin_notices-' . $plugin->pluginName, array($this, 'notices'));
+        add_filter('factory_fr108_plugin_row-' . $plugin->pluginName, array($this, 'pluginRow'));
+        add_filter('factory_fr108_admin_notices-' . $plugin->pluginName, array($this, 'notices'));
     }
     
     function add_license_link($links) {
         if ( !$this->plugin->license ) return $links;
         
-        $url = onepress_fr107_get_link_license_manager( $this->plugin->pluginName );
+        $url = onepress_fr108_get_link_license_manager( $this->plugin->pluginName );
         array_unshift($links, '<a href="' . $url . '" style="font-weight: bold;">License</a>');
         unset($links['edit']);
         return $links; 
@@ -56,7 +56,7 @@ class OnePressFR107Module {
     }
 }
 
-add_action('factory_fr107_load_onepress', 'onepress_fr107_module_load');
-function onepress_fr107_module_load( $plugin ) {
-    new OnePressFR107Module( $plugin ); 
+add_action('factory_fr108_load_onepress', 'onepress_fr108_module_load');
+function onepress_fr108_module_load( $plugin ) {
+    new OnePressFR108Module( $plugin ); 
 }

@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFormFR107Metabox extends FactoryFR107Metabox {
+abstract class FactoryFormFR108Metabox extends FactoryFR108Metabox {
 
     /**
      * Value provider for the metabox form.
@@ -17,14 +17,14 @@ abstract class FactoryFormFR107Metabox extends FactoryFR107Metabox {
     public function __construct( $plugin = null, $valueProvider = null ) {
         parent::__construct($plugin);
         
-        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR107MetaValueProvider();
+        $this->valueProvider = $valueProvider ? $valueProvider : new FactoryFR108MetaValueProvider();
         $this->scope = ( !$this->scope ) ? get_class($this) : $this->scope;
     }
     
     private function getForm( $post_id = null ) {
         
         $this->valueProvider->init( $this->scope, $post_id );
-        $form = new FactoryFormFR107( $this->plugin, $this->valueProvider );
+        $form = new FactoryFormFR108( $this->plugin, $this->valueProvider );
         $this->form( $form );
         if ( !$form->scope ) $form->scope = $this->formatCamelCase( $this->scope );
               
@@ -81,19 +81,19 @@ abstract class FactoryFormFR107Metabox extends FactoryFR107Metabox {
     /**
      * Form method that must be overridden in the derived classes.
      */
-    public abstract function form(FactoryFormFR107 $form);
+    public abstract function form(FactoryFormFR108 $form);
     
     /**
      * Method executed before rendering the form.
      */
-    public function beforeForm(FactoryFormFR107 $form) {
+    public function beforeForm(FactoryFormFR108 $form) {
         return;
     }
     
     /**
      * Method executed after rendering the form.
      */
-    public function afterForm(FactoryFormFR107 $form) {
+    public function afterForm(FactoryFormFR108 $form) {
         return;
     }
         

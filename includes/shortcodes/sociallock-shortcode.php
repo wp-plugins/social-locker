@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockerShortcode extends FactoryFR107Shortcode {
+class SocialLockerShortcode extends FactoryFR108Shortcode {
     
     /**
      * Shortcode name
@@ -17,12 +17,6 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
     // -------------------------------------------------------------------------------------
     // Includes assets
     // -------------------------------------------------------------------------------------
-    
-    /**
-     * Array used to store js params to call the jquery plugin.
-     * @var type
-     */
-    public $jsCalls = array();
 
     /**
      * Defines what assets need to include.
@@ -30,9 +24,12 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
      * @param FactoryScriptList $scripts
      * @param FactoryStyleList $styles
      */
-    public function assets(FactoryFR107ScriptList $scripts, FactoryFR107StyleList $styles) {
+    public function assets(FactoryFR108ScriptList $scripts, FactoryFR108StyleList $styles) {
         
-        add_action('wp_head', array($this, 'facebookConnect'));
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+        if ( $dynamicTheme ) return;
+        
+        add_action('wp_head', 'onp_sociallocker_facebook_sdk');
         
    	$facebookSDK = array( 
             'appId' => get_option('sociallocker_facebook_appid', '117100935120196' ),
@@ -47,40 +44,6 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
         $styles->add('~/css/jquery.op.sociallocker.020006.css');
     }
     
-    public function facebookConnect() {
-
-        $appId = get_option('sociallocker_facebook_appid', '117100935120196' );
-        $lang = get_option('sociallocker_lang', 'en_US' );
-        $shortLang = get_option('sociallocker_short_lang', 'en' );
-        
-        ?>
-        <!-- 
-            Social Locker (Facebook SDK)
-            for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get
-            for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get
-        -->
-        <script>
-            window.fbAsyncInit = function() {
-                window.FB.init({
-                    appId: <?php echo $appId ?>,
-                    status: true,
-                    cookie: true,
-                    xfbml: true
-                });
-                window.FB.init = function(){};
-            };
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/<?php echo $lang ?>/all.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-        <!-- / -->
-        <?php
-    }
-    
     // -------------------------------------------------------------------------------------
     // Content render
     // -------------------------------------------------------------------------------------
@@ -88,18 +51,23 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
     public function render($attr, $content) { 
         global $post;
         
+        $lockData = array();
+        $lockData['ajaxUrl'] = admin_url( 'admin-ajax.php' );
+        
         if (!function_exists('sociallocker_get_meta')) {
-            function sociallocker_get_meta($id, $name) {
+            function sociallocker_get_meta($id, $name, $default = null) {
                 $value = get_post_meta($id, 'sociallocker_' . $name, true);
-                return empty( $value ) ? $value : stripslashes( $value );
+                return empty( $value ) ? $default : stripslashes( $value );
             }
         }
         
         // - Options loading 
 
         // locker id
-        $id = isset( $attr['id'] ) ? (int)$attr['id'] : get_option('default_sociallocker_locker_id');
-
+        $lockData['lockerId'] = $id = isset( $attr['id'] ) 
+            ? (int)$attr['id'] 
+            : get_option('default_sociallocker_locker_id');
+        
         if ( empty($id) ) {
             echo '<div><strong>[Social Locker] The locked doesn\'t exist or the default lockers was deleted.</strong></div>'; 
             return;
@@ -113,39 +81,25 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
         
         $content = preg_replace( '/^<br \/>/', '', $content );
         $content = preg_replace( '/<br \/>$/', '', $content );
-        
-        // - Stats
-        // Check tracking request
 
-        $unlockEvent = sociallocker_get_meta($id, 'events_unlock');
-        $isTracking = get_option('sociallocker_tracking', true);
-        $postId =  !empty($post) ? $post->ID : false;
-
-        if ($isTracking && $postId) {
-            $trackingAjax = "
-            if ( $.inArray(sender, ['cross', 'button', 'timer']) >= 0 ) {
-
-                $.ajax({
-                    url: '" . admin_url( 'admin-ajax.php' ) . "',
-                    type: 'POST',
-                    data: {
-                        action: 'sociallocker_tracking',
-                        targetId: '" . $postId . "',
-                        sender: sender,
-                        senderName: senderName
-                    }
-                });
-            }";
-
-            $unlockEvent = (!empty($unlockEvent))
-                ? $trackingAjax . $unlockEvent 
-                : $trackingAjax;
-        }
+        $isAjax = false;
+        $lockData['ajax'] = false;
         
         $headerText = sociallocker_get_meta($id, 'header');
         $messageText = sociallocker_get_meta($id, 'message');
         
+        // - Stats
+        // Check tracking request
+
+        $lockData['tracking'] = get_option('sociallocker_tracking', true);
+        $lockData['postId'] = !empty($post) ? $post->ID : false;
+        
         // Builds array of options to set into the jquery plugin
+            
+            $url = sociallocker_get_meta($id, 'common_url' );
+            if ( empty($url) && !empty($post) ) {
+                $url = get_permalink( $post->ID );
+            }
             
             // FREE build options
             $params = array(
@@ -159,28 +113,31 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
                 'theme' => 'secrets',
 
                 'facebook' => array(
-                    'url' => sociallocker_get_meta($id, 'common_url' ),
+                    'url' => $url,
                     'appId' => get_option('sociallocker_facebook_appid', '117100935120196' ),
                     'lang' => get_option('sociallocker_lang', 'en_GB' ),
                 ),
                 'twitter' => array(
-                    'url' => sociallocker_get_meta($id, 'common_url' ),     
+                    'url' => $url,     
                     'lang' => get_option('sociallocker_short_lang', 'en' ),
                     'counturl' => sociallocker_get_meta($id, 'twitter_counturl' )
                 ),  
                 'google' => array(
-                    'url' => sociallocker_get_meta($id, 'common_url' ),    
-                    'lang' => get_option('sociallocker_short_lang', 'en' ),
-                ),        
-                'events' => array(
-                    'ready' => 'function(state){}',             
-                    'lock' => 'function(sender, senderName){}',
-                    'unlock' => 'function(sender, senderName){' . $unlockEvent . '}'  
-                )     
+                    'url' => $url,    
+                    'lang' => get_option('sociallocker_google_lang', get_option('sociallocker_short_lang', 'en' ))
+                )  
             );
 
         
 
+        
+        if ( 
+           !isset( $params['buttons'] ) || 
+           !isset( $params['buttons']['order'] ) || 
+            empty( $params['buttons']['order'] ) ) {
+            
+            unset( $params['buttons'] );
+        }
         
         // - Replaces shortcodes in the locker message and twitter text
         
@@ -201,82 +158,37 @@ class SocialLockerShortcode extends FactoryFR107Shortcode {
         }
 	
         $this->clearParams( $params );
-
-        // - Markup and script generation 
-
-        $blockId = "lock-" . rand(100000, 999999);
-        $resultSelector = '#' . $blockId;
-            
-            ?>
-              <div id='<?php echo $blockId ?>' style="display: none;">
-              <p><?php echo  $content ?></p>
-              </div>
-            <?php
-            
-            $this->jsCalls = array(
-                'id' => $id,
-                'ajax'      => false,
-                'selector'  => $resultSelector,
-                'params'    => $params
-            );
+        $lockData['options'] = $params;
         
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+        $this->lockId = "onpLock" . rand(100000, 999999);
+        $this->lockData = $lockData;
+        
+        if ($isAjax) { ?>
+            <div class="onp-sociallocker-call" style="display: none;" data-lock-id="<?php echo $this->lockId ?>"></div>
+        <?php } else { ?>
+            <div class="onp-sociallocker-call" style="display: none;" data-lock-id="<?php echo $this->lockId ?>">
+                <p><?php echo  $content ?></p>
+            </div>
+        <?php } ?> 
 
-
-        add_action('wp_footer', array(&$this, 'callLocker'), 1000);
+        <?php 
+        
+        if ( $dynamicTheme ) { ?>
+            <div class="onp-sociallocker-params" style="display: none;">
+                <?php echo json_encode( $lockData ) ?>
+            </div>
+        <?php } else {
+            add_action('wp_footer', array($this, 'print_options'), 999);
+        }
     }
-
-    public function callLocker() {
-        $call = $this->jsCalls;
-        
-        $readyEvent = $call['params']['events']['ready'];
-        $lockEvent = $call['params']['events']['lock'];
-        $unlockEvent = $call['params']['events']['unlock'];
-
-        unset($call['params']['events']);
-
-        $params = $call['params'];
-        unset($params['buttons']);
-        ?>
-              
-        <!-- 
-            Social Locker
-            for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get
-            for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get
-        -->
+    
+    public function print_options() { 
+    ?>
         <script>
-            (function($){
-                var onpSL = <?php echo json_encode( $params ) ?>;
-                <?php if ( isset($call['params']['buttons'])) { ?>
-
-                onpSL['buttons'] = {};
-                onpSL['buttons']['order'] = <?php echo json_encode( $call['params']['buttons']['order'] ) ?>;
-                <?php } ?>
-
-                <?php if (!empty($call['ajax'])) { ?>
-
-                onpSL.content = {
-                    url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
-                    type: 'POST',
-                    data: {
-                        lockerId: '<?php echo $call['id'] ?>',
-                        action: 'sociallocker_loader',
-                        hash: '<?php echo $call['contentHash'] ?>'
-                    }
-                }
-                <?php } ?>
-
-                onpSL.events = {
-                    ready: <?php echo $readyEvent ?>,
-                    lock: <?php echo $lockEvent ?>,
-                    unlock: <?php echo $unlockEvent ?>
-
-                };
-
-                $("<?php echo $call['selector'] ?>").socialLock( onpSL );     
-            })(jQuery);
+            window['<?php echo $this->lockId; ?>'] = <?php echo json_encode( $this->lockData ) ?>;
         </script>
-        <!-- / -->
-        <?php
+    <?php
     }
     
     public function clearParams( &$params ) {

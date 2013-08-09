@@ -16,13 +16,20 @@ function sociallocker_common_settings_scripts($hook) {
         wp_enqueue_style( 
             'sociallocker-bootstrap', 
             SOCIALLOCKER_PLUGIN_URL . '/factory/core/assets/css/bootstrap.css'
-        );    
+        );  
+        
+        wp_enqueue_script( 
+            'onp-common-settings', 
+            SOCIALLOCKER_PLUGIN_URL . '/assets/admin/js/common-settings.020020.js', 
+            array('jquery'), 
+            false, true
+        );  
     }
 }
 
 // list of available languages
 $sociallockerLangs = array(
-    array('ca_ES', 'Catalan '),
+    array('ca_ES', 'Catalan'),
     array('cs_CZ', 'Czech'),
     array('cy_GB', 'Welsh'),
     array('da_DK', 'Danish'),
@@ -40,8 +47,8 @@ $sociallockerLangs = array(
     array('nb_NO', 'Norwegian'),
     array('nl_NL', 'Dutch'),
     array('pl_PL', 'Polish'),
-    array('pt_BR', 'Portuguese (Brazil)'),
-    array('pt_PT', 'Portuguese (Portugal)'),
+    array('pt_BR', 'Portuguese (Brazil)', 'pt-BR'),
+    array('pt_PT', 'Portuguese (Portugal)', 'pt-PT'),
     array('ro_RO', 'Romanian'),
     array('ru_RU', 'Russian'),
     array('sk_SK', 'Slovak'),  
@@ -50,9 +57,9 @@ $sociallockerLangs = array(
     array('th_TH', 'Thai'),
     array('tr_TR', 'Turkish'), 
     array('ku_TR', 'Kurdish'), 
-    array('zh_CN', 'Simplified Chinese (China)'), 
-    array('zh_HK', 'Traditional Chinese (Hong Kong)'),
-    array('zh_TW', 'Traditional Chinese (Taiwan)'), 
+    array('zh_CN', 'Simplified Chinese (China)', 'zh-CN'), 
+    array('zh_HK', 'Traditional Chinese (Hong Kong)', 'zh-HK'),
+    array('zh_TW', 'Traditional Chinese (Taiwan)', 'zh-TW'), 
     array('af_ZA', 'Afrikaans'),
     array('sq_AL', 'Albanian'),
     array('hy_AM', 'Armenian'),
@@ -122,11 +129,29 @@ $sociallockerLangs = array(
 function sociallocker_save_settings()
 {
     update_option('sociallocker_facebook_appid', $_POST['sociallocker_facebook_appid']);
-    update_option('sociallocker_lang', $_POST['sociallocker_lang']);
-     
-    if (!empty($_POST['sociallocker_lang'])) {
-        $parts = explode('_', $_POST['sociallocker_lang']);
+    
+    $selectedLang = $_POST['sociallocker_lang'];
+    update_option('sociallocker_lang', $selectedLang);
+        
+    if ( !empty( $selectedLang ) ) {
+        
+        $langItem = null;
+        global $sociallockerLangs;
+        foreach( $sociallockerLangs as $lang ) {
+            if ( $lang[0] == $selectedLang ) {
+                $langItem = $lang;
+                break;
+            }
+        }
+        
+        $parts = explode('_', $selectedLang);
         update_option('sociallocker_short_lang', $parts[0]);
+        
+        if ( $langItem && isset( $langItem[2] ) ) {
+            update_option('sociallocker_google_lang', $langItem[2] );   
+        } else {
+            delete_option('sociallocker_google_lang');   
+        }
     }
     
     if ( isset($_POST['sociallocker_tracking']) ) {
@@ -140,6 +165,14 @@ function sociallocker_save_settings()
     } else {
         delete_option('sociallocker_debug');    
     } 
+    
+    if ( isset($_POST['sociallocker_dynamic_theme']) ) {
+        update_option('sociallocker_dynamic_theme', true);  
+    } else {
+        delete_option('sociallocker_dynamic_theme');    
+    }   
+    
+    update_option('sociallocker_dynamic_theme_event', $_POST['sociallocker_dynamic_theme_event']);    
 }
 
 // function that reders the form
@@ -189,6 +222,47 @@ function sociallocker_settings() {
             </span>
         </div>
     </div> 
+    <?php ?>
+     
+    <div style="border-top: 1px solid #eee; padding-bottom: 25px;"></div>
+
+    <div class="control-group">
+        <label class="control-label" for="sociallocker_dynamic_theme">I use a dynamic theme</label>
+        <?php 
+        $checked = get_option('sociallocker_dynamic_theme') ? 'checked="checked"' : '';
+        ?>
+        <div class="controls">
+            
+            <div class="btn-group pi-checkbox" data-toggle="buttons-radio">
+                <button type="button" class="btn true <?php if ($checked) echo 'active' ?>" data-value="true">Yes</button>
+                <button type="button" class="btn false <?php if (!$checked) echo 'active' ?>" data-value="false">No</button>                 
+            </div>
+
+            <input style="display: none;" type='checkbox' value='1' <?php echo $checked ?> name='sociallocker_dynamic_theme' id='sociallocker_dynamic_theme' /> 
+            
+            <span class="help-block">
+                If your theme loads pages dynamically via ajax, say "yes" to get the lockers working.
+            </span>
+        </div>
+    </div>
+     
+    <div id="onp-dynamic-theme-options" style="display:none;">
+        <div class="control-group">
+            <label class="control-label" for="sociallocker_dynamic_theme_event">jQuery Event</label>
+
+            <div class="controls">
+
+                <input type="text" class="short"  name="sociallocker_dynamic_theme_event" id="sociallocker_dynamic_theme_event" value="<?php echo get_option('sociallocker_dynamic_theme_event') ?>" style="width: 180px;" />
+
+                <span class="help-block">
+                    If pages of your site are loaded dynamically via ajax, it's nesssary to catch the moment when the page is loaded in order to appear the locker.<br />Type here the javascript event that triggers after the page loading.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div style="border-top: 1px solid #eee; padding-bottom: 25px;"></div>
+    
     <div class="control-group">
         <label class="control-label" for="sociallocker_debug">Debug</label>
         <?php 
@@ -208,7 +282,7 @@ function sociallocker_settings() {
             </span>
         </div>
     </div>
-    <?php ?>
+
 </fieldset>
         
 <div class="form-actions">

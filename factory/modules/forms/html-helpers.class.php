@@ -15,7 +15,7 @@ class FactoryHtmlHelpers {
                 value="<?php echo $value['value'] ?>" 
                 <?php if ( !isset( $value['disabled'] ) && isset( $value['icon'] ) ) { ?>data-icon="<?php echo $value['icon'] ?>"<?php } ?> 
                 <?php if ( $selected == $value['value'] ) { ?>selected="selected"<?php } ?>
-                <?php if ( isset( $value['disabled'] ) ) { ?>disabled="disabled"<?php } ?>>
+                <?php if ( isset( $value['disabled'] ) && $value['disabled'] ) { ?>disabled="disabled"<?php } ?>>
                 <?php echo $value['title'] ?>
             </option>
             <?php } ?>

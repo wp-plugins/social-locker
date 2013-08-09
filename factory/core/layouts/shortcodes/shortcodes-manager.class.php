@@ -6,7 +6,7 @@
  * - creating aninstance of Factory Shortcode per every call of the shortcode.
  * - tracking shortcodes in post content.
  */
-class FactoryFR107ShortcodeManager {
+class FactoryFR108ShortcodeManager {
     
     public $plugin;
     public $blanks;
@@ -19,7 +19,7 @@ class FactoryFR107ShortcodeManager {
      */
     private $firstContentSave = true;
 
-    public function __construct(FactoryFR107Plugin $plugin) {
+    public function __construct(FactoryFR108Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -51,6 +51,16 @@ class FactoryFR107ShortcodeManager {
         
         $this->blanks = $shortcodeBlanks;
         $isAdmin = is_admin();
+        
+        // registers shortcodes when we are in the public area
+        foreach($this->blanks as $blank) {
+            foreach($blank->shortcode as $shortcode) {
+                add_shortcode($shortcode, array($this, 'shortcode_' . get_class($blank)));
+            }
+        }
+
+        // includes scripts and styles for shortcodes
+        add_action('wp_enqueue_scripts', array($this, 'actionEnqueueScripts'));
 
         if ($isAdmin) { 
             
@@ -60,7 +70,7 @@ class FactoryFR107ShortcodeManager {
                 if ($blank->tracking) {
                     
                     foreach($blank->shortcode as $shortcode) {
-                        factory_fr107_tr_register_shortcode(
+                        factory_fr108_tr_register_shortcode(
                             $shortcode, array($blank, 'trackingCallback')
                         ); 
                     }
@@ -70,18 +80,6 @@ class FactoryFR107ShortcodeManager {
             }
             
             add_action('save_post', array($this, 'actionSavePost'));            
-        }
-        else
-        {
-            // registers shortcodes when we are in the public area
-            foreach($this->blanks as $blank) {
-                foreach($blank->shortcode as $shortcode) {
-                    add_shortcode($shortcode, array($this, 'shortcode_' . get_class($blank)));
-                }
-            }
-            
-            // includes scripts and styles for shortcodes
-            add_action('wp_enqueue_scripts', array($this, 'actionEnqueueScripts'));
         }
     }
        
@@ -101,7 +99,7 @@ class FactoryFR107ShortcodeManager {
         }  
         
         // runs the shortcode tracking 
-        factory_fr107_tr_check_content($post->post_content, $postid);
+        factory_fr108_tr_check_content($post->post_content, $postid);
     }
     
     /**
@@ -114,7 +112,7 @@ class FactoryFR107ShortcodeManager {
 
         $content = $post->post_content;
         foreach($blank->shortcode as $shortcode) {
-            $metaName = 'factory_fr107_' . $shortcode . '_include_assets';
+            $metaName = 'factory_fr108_' . $shortcode . '_include_assets';
 
             delete_post_meta($postid, $metaName);
 
@@ -158,7 +156,7 @@ class FactoryFR107ShortcodeManager {
        
        foreach( $this->blanks as $blank ) {
             foreach($blank->shortcode as $shortcode) {
-                $metaName = 'factory_fr107_' . $shortcode . '_include_assets';
+                $metaName = 'factory_fr108_' . $shortcode . '_include_assets';
                 $metaValue = get_post_meta($post->ID, $metaName);
 
                 if ( empty($metaValue) ) continue;

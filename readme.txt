@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.5.1
+Tested up to: 3.6.0
 Stable tag: trunk
 License: GPLv2
 
@@ -71,6 +71,11 @@ The section is empty at the moment.
 4. Created Lockers
 
 == Changelog ==
+
+= 2.2.1 - 9 Aug 2013 =
+ADDED: Support for dynamic themes (that load pages on the fly via ajax).  
+FIXED: The bug of chinese languages.  
+IMPROVED: Support for pagination of posts.  
 
 = 2.1.8 - 13 Jun 2013 =
 FIXED: A bug when it was impossible to use at the same time Social Locker and Like 2 Unlock for some sites.  

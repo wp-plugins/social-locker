@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR107Group extends FactoryFormFR107Item {
+class FactoryFormFR108Group extends FactoryFormFR108Item {
     
     /**
      * Is a current form items a group?

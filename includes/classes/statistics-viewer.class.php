@@ -99,8 +99,15 @@ class StatisticViewer {
         return $resultData;
     }
     
-    public function getViewTable($count = 50, $order = 'total_count') {
+    public function getViewTable( $options ) {
         global $wpdb;
+        
+        $per = isset( $options['per'] ) ? $options['per'] : 50;
+        $page = isset( $options['page'] ) ? $options['page'] : 1;    
+        $total = isset( $options['total'] ) ? $options['total'] : true;
+        $order = isset( $options['order'] ) ? $options['order'] : 'total_count';
+        
+        $start = ( $page - 1 ) * $per;
         
         $extraWhere = '';
         if ($this->postId) {
@@ -109,6 +116,16 @@ class StatisticViewer {
         
         // rows
         
+        $sqlBase = "
+            FROM 
+                {$wpdb->prefix}so_tracking AS t
+            INNER JOIN
+                {$wpdb->prefix}posts AS p ON p.ID = t.PostID
+            WHERE 
+                (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}') $extraWhere";
+       
+        $count = ( $total ) ? $wpdb->get_var('SELECT COUNT(Distinct t.PostID) ' . $sqlBase) : 0;
+    
         $sql = "
             SELECT 
                 t.PostID AS ID,
@@ -123,18 +140,15 @@ class StatisticViewer {
                 SUM(t.linkedin_share_count) AS linkedin_share_count, 
                 SUM(t.timer_count) AS timer_count,
                 SUM(t.cross_count) AS cross_count           
-            FROM 
-                {$wpdb->prefix}so_tracking AS t
-            INNER JOIN
-                {$wpdb->prefix}posts AS p ON p.ID = t.PostID
-            WHERE 
-                (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}') $extraWhere
-            GROUP BY 
-                t.PostID
+            " . $sqlBase . "
+            GROUP BY t.PostID 
             ORDER BY $order DESC
-            LIMIT $count";
+            LIMIT $start, $per";
     
         $data = $wpdb->get_results($sql, ARRAY_A);
-        return $data;
+        return array(
+            'data' => $data,
+            'count' => $count
+        );
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-class SocialLockerBasicOptionsMetaBox extends FactoryFormFR107Metabox
+class SocialLockerBasicOptionsMetaBox extends FactoryFormFR108Metabox
 {
     public $title = 'Basic Options';
     public $scope = 'sociallocker';
     public $priority = 'core';
     
-    public function form( FactoryFormFR107 $form ) {
+    public function form( FactoryFormFR108 $form ) {
         
             $form->add(array(  
 

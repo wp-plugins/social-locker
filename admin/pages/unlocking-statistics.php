@@ -76,9 +76,20 @@ function sociallocker_statistics() {
 
     // gets data for the chart
     $chartData = $statistic->getChartData();
+    
+    $page = ( isset( $_GET['n'] ) ) ? intval( $_GET['n'] ) : 1;
+    if ( $page <= 0 ) $page = 1;
 
     // gets table to view
-    $tableRows = $statistic->getViewTable(50);
+    $viewTable = $statistic->getViewTable(array(
+        'per' => 50,
+        'total' => true,
+        'page' => $page,
+        'order' => 'total_count'
+    ));
+    $tableRows = $viewTable['data'];
+    $totalRows = $viewTable['count'];
+    $pagesCount = ceil( $totalRows / 50 );
     
     $dateStart = date('m/d/Y', $dateRangeStart);
     $dateEnd = date('m/d/Y', $dateRangeEnd); 
@@ -125,7 +136,9 @@ function sociallocker_statistics() {
             The page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with the lockers.<br />
             By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.</p>
 
-        <form method="post"> 
+        <form method="get"> 
+        <input type="hidden" name="post_type" value="social-locker" />
+        <input type="hidden" name="page" value="sociallocker_statistics" /> 
         <div id="chart-settings-bar">
             <div id="chart-type-select">
                <div class="btn-group" id="chart-type-group" data-toggle="buttons-radio">
@@ -206,6 +219,14 @@ function sociallocker_statistics() {
             <?php } ?>
             </tbody>
         </table>
+            
+            <div class="pagination pagination-right">
+                <ul>
+                <?php for( $i = 1; $i <= $pagesCount; $i++ ) { ?>
+                    <li <?php if ( $i == $page ) { ?>class="active"<?php } ?>><a href="?sDateStart=<?php echo $dateStart ?>&sDateEnd=<?php echo $dateEnd ?>&post_type=social-locker&page=sociallocker_statistics&n=<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php } ?>
+                </ul>
+            </div>
 
         </div>
     </div>

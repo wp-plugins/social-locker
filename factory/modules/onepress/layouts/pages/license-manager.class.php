@@ -4,7 +4,7 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnePressFR107LicenseManagerAdminPage extends FactoryFR107AdminPage  {
+class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -20,10 +20,10 @@ class OnePressFR107LicenseManagerAdminPage extends FactoryFR107AdminPage  {
      * @param FactoryScriptList $scripts    Scripts that will be included.
      * @param FactoryStyleList $styles      Styles that will be includes.
      */
-    public function assets(FactoryFR107ScriptList $scripts, FactoryFR107StyleList $styles) {
+    public function assets(FactoryFR108ScriptList $scripts, FactoryFR108StyleList $styles) {
         
-        $styles->add(ONEPRESS_FR107_URL . '/assets/css/license-manager.css');
-        $scripts->add(ONEPRESS_FR107_URL . '/assets/js/license-manager.js');   
+        $styles->add(ONEPRESS_FR108_URL . '/assets/css/license-manager.css');
+        $scripts->add(ONEPRESS_FR108_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -322,7 +322,7 @@ class OnePressFR107LicenseManagerAdminPage extends FactoryFR107AdminPage  {
                                 <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONEPRESS_FR107_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONEPRESS_FR108_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
@@ -502,11 +502,11 @@ class OnePressFR107LicenseManagerAdminPage extends FactoryFR107AdminPage  {
         
         if ( isset( $_POST['site_secret'] ) ) {
             update_option('fy_license_site_secret', trim( $_POST['site_secret'] ));
-            $licenseManager->siteSecret = trim( $_POST['site_secret'] );
+            $licenseManager->secret = trim( $_POST['site_secret'] );
             $saved = true;
         }
         
-        $siteSecret = $licenseManager->siteSecret;
+        $siteSecret = $licenseManager->secret;
         $keySecret = !empty($licenseManager->data) ? $licenseManager->data['KeySecret'] : '';
         
         ?>
