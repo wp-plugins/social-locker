@@ -36,7 +36,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020016.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020202.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -179,7 +179,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
                 <?php echo json_encode( $lockData ) ?>
             </div>
         <?php } else {
-            add_action('wp_footer', array($this, 'print_options'), 999);
+            $this->print_options();
         }
     }
     

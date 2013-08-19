@@ -72,6 +72,9 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.2.2 - 20 Aug 2013 =
+IMPROVED: Compatibility with W3 Total Cache.  
+
 = 2.2.1 - 9 Aug 2013 =
 ADDED: Support for dynamic themes (that load pages on the fly via ajax).  
 FIXED: The bug of chinese languages.  

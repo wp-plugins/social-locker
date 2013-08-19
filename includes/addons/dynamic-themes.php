@@ -4,7 +4,7 @@
 
 add_action('init', 'onp_sociallocker_dt_init');
 function onp_sociallocker_dt_init() {
-    add_action( 'wp_footer', 'onp_sociallocker_dt_calls', 1000 ); 
+    add_action( 'wp_head', 'onp_sociallocker_dt_calls', 1000 ); 
     
     $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
     if ( !$dynamicTheme ) return;
@@ -25,7 +25,7 @@ function onp_sociallocker_dt_enqueue_scripts() {
 
     wp_enqueue_script( 
         'onp-sociallocker', 
-        SOCIALLOCKER_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.020016.js', 
+        SOCIALLOCKER_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.020202.js', 
         array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
     );  
     
@@ -82,65 +82,8 @@ function onp_sociallocker_dt_calls() {
     $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
     ?>
     <script>
-        (function($){
-            function onp_create_sociallcoker( $target ) {
-                var lockId = $target.data('lock-id');
-                var data = window[lockId] ? window[lockId] : $.parseJSON( $target.next().text() );
-
-                var options = data.options;
-
-                if ( data.ajax ) {
-                    options.content = {
-                        url: data.ajaxUrl, type: 'POST', data: {
-                            lockerId: data.lockerId,
-                            action: 'sociallocker_loader',
-                            hash: data.contentHash
-                        }
-                    }
-                }
-
-                if ( data.postId && data.tracking ) {
-                    if ( !options.events ) options.events = {};
-
-                    options.events.unlock = function(sender, senderName){
-                        if ( $.inArray(sender, ['cross', 'button', 'timer']) == -1 ) return;
- 
-                        $.ajax({ url: data.ajaxUrl, type: 'POST', data: {
-                            action: 'sociallocker_tracking',
-                            targetId: data.postId,
-                            sender: sender,
-                            senderName: senderName
-                            }
-                        });
-                    }
-                }
-
-                $target.removeClass("onp-sociallocker-call");
-                if ( !window[lockId] ) $target.next().remove();
-                
-                $target.sociallocker( options );
-            }
-        
-            $(".onp-sociallocker-call").each(function(){
-                onp_create_sociallcoker( $(this) );
-            });
-            
-            <?php if ( $dynamicTheme ) { ?>
-                <?php if ( !empty($dynamicThemeEvent) ) { ?> 
-                $(document).bind('<?php echo $dynamicThemeEvent ?>', function(){
-                    $(".onp-sociallocker-call").each(function(){
-                        onp_create_sociallcoker( $(this) );
-                    });
-                });
-                <?php } else { ?>
-                $(document).ajaxComplete(function() {
-                    $(".onp-sociallocker-call").each(function(){
-                        onp_create_sociallcoker( $(this) );
-                    });
-                });
-                <?php } ?>
-            <?php } ?>
-        })(jQuery);
+        window.onpDynamicTheme = '<?php echo $dynamicTheme ?>';
+        window.onpDynamicThemeEvent = '<?php echo $dynamicThemeEvent ?>';
     </script>
     <?php
 }
