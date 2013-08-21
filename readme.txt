@@ -72,6 +72,9 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.2.3 - 21 Aug 2013 =
+FIXED: The bug of appearing the lockers after updating to the version 2.2.2 on some sites.  
+
 = 2.2.2 - 20 Aug 2013 =
 IMPROVED: Compatibility with W3 Total Cache.  
 

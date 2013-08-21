@@ -163,7 +163,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
         $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
         $this->lockId = "onpLock" . rand(100000, 999999);
         $this->lockData = $lockData;
-        
+
         if ($isAjax) { ?>
             <div class="onp-sociallocker-call" style="display: none;" data-lock-id="<?php echo $this->lockId ?>"></div>
         <?php } else { ?>
@@ -179,8 +179,13 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
                 <?php echo json_encode( $lockData ) ?>
             </div>
         <?php } else {
-            $this->print_options();
+           add_action('wp_footer', array($this, 'wp_footer'), 1);
         }
+    }
+    
+    public function wp_footer() {
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+        if ( !$dynamicTheme ) $this->print_options();
     }
     
     public function print_options() { 
