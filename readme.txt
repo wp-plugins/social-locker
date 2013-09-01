@@ -72,6 +72,12 @@ The section is empty at the moment.
 
 == Changelog ==
 
+= 2.2.4 - 1 Sep 2013 =
+FIXED: A bug when the locker doesn't show content after liking because the URL for liking doesn't have a traling slash.  
+FIXED: A conflict with W3 Total Cache when the locker doesn't appear.  
+
+<strong>Important:</strong> if you use CDN, please refresh files on your CDN server after installing the update.  
+
 = 2.2.3 - 21 Aug 2013 =
 FIXED: The bug of appearing the lockers after updating to the version 2.2.2 on some sites.  
 

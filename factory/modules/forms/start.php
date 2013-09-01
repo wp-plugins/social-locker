@@ -59,10 +59,3 @@ FactoryFormFR108::register('editor', 'FactoryFormFR108EditorFormControl');
 
 FactoryFormFR108::register('mv-radio', 'FactoryFormFR108PiRadioFormControl');
 FactoryFormFR108::register('mv-checkbox', 'FactoryFormFR108CheckboxFormControl');
-
-add_action('admin_enqueue_scripts', 'factory_form_fr108_admin_scripts');
-function factory_form_fr108_admin_scripts() {
-    wp_enqueue_style('forms-style', FACTORY_FORM_FR108_URL . '/assets/css/forms.css'); 
-    wp_enqueue_style('forms-controls', FACTORY_FORM_FR108_URL . '/assets/css/controls.css'); 
-    wp_enqueue_script('forms-controls', FACTORY_FORM_FR108_URL . '/assets/js/controls.js'); 
-}

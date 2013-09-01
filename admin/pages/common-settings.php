@@ -255,7 +255,7 @@ function sociallocker_settings() {
                 <input type="text" class="short"  name="sociallocker_dynamic_theme_event" id="sociallocker_dynamic_theme_event" value="<?php echo get_option('sociallocker_dynamic_theme_event') ?>" style="width: 180px;" />
 
                 <span class="help-block">
-                    If pages of your site are loaded dynamically via ajax, it's nesssary to catch the moment when the page is loaded in order to appear the locker.<br />Type here the javascript event that triggers after the page loading.
+                    If pages of your site are loaded dynamically via ajax, it's necessary to catch the moment when the page is loaded in order to appear the locker.<br />Type here the javascript event that triggers after the page loading.
                 </span>
             </div>
         </div>

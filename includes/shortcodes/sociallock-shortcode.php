@@ -36,7 +36,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
             'lang' => get_option('sociallocker_lang', 'en_US' ) 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020202.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020204.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -219,27 +219,6 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
                 $this->clearParams( $params[$key] );
             }
         }
-    }
-    
-    // -------------------------------------------------------------------------------------
-    // Loading content via ajax if required
-    // -------------------------------------------------------------------------------------
-    
-    public function registerForAdmin() {
-
-        add_action('wp_ajax_sociallocker_loader', array($this, 'loadAjaxContent'));
-        add_action('wp_ajax_nopriv_sociallocker_loader', array($this, 'loadAjaxContent'));
-    }
-    
-    public function loadAjaxContent() {
-
-        $hash = $_POST['hash'];
-        $lockerId = @intval( $_POST['lockerId'] );
-        
-        if (empty($hash) || empty($lockerId)) return "";
-        
-        echo get_post_meta($lockerId, 'sociallocker_locker_content_hash_' . $hash, true);
-        die();
     }
     
     // -------------------------------------------------------------------------------------

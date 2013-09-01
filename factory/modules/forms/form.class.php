@@ -383,3 +383,10 @@ class FactoryFormFR108 {
         return true;
     }
 }
+
+add_action('admin_enqueue_scripts', 'factory_form_fr108_admin_scripts2');
+function factory_form_fr108_admin_scripts2() {
+    wp_enqueue_style('forms-style', FACTORY_FORM_FR108_URL . '/assets/css/forms.css'); 
+    wp_enqueue_style('forms-controls', FACTORY_FORM_FR108_URL . '/assets/css/controls.css'); 
+    wp_enqueue_script('forms-controls', FACTORY_FORM_FR108_URL . '/assets/js/controls.js'); 
+}

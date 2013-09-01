@@ -661,14 +661,15 @@
 }
 .onp-facebook-share .onp-facebook-share-count {
     height: 16px;
-    font-family: Arial, Helvetica, sans-serif;
     border: 1px solid #d3d3d3;
     background-color: #fff;
     margin-left: 62px;
-    font-family: tahoma, sans-serif;
+    font-family: tahoma, sans-serif !important;
     font-size: 11px;
     line-height: 15px;
     padding: 0 4px 0 5px;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
 .onp-facebook-share-count-none .onp-facebook-share-icon {
     width: 57px;

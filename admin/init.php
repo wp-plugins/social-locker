@@ -19,6 +19,8 @@ include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/common-settings.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/unlocking-statistics.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/license-manager.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/tracking.php');
+include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/shortcode.php');
+
 
 /**
  * Adds scripts and styles in the admin area.
@@ -67,8 +69,9 @@ add_action('admin_enqueue_scripts', 'sociallocker_admin_assets');
 
 add_action('admin_menu', 'sociallocker_admin_menu');
 function sociallocker_admin_menu() {
+
     if ( current_user_can('edit_social-locker') ) {
-    
+  
         add_submenu_page( 
             'edit.php?post_type=social-locker', 
             'Settings', 
