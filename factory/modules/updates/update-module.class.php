@@ -3,14 +3,14 @@
 /**
  * Class is used to manage the updates data.
  */
-class FactoryFR108UpdateFR108Module {
+class FactoryFR110UpdateFR110Module {
     
     public function __construct( $plugin ) {
-        $plugin->updates = new FactoryFR108UpdateFR108Manager( $plugin );
+        $plugin->updates = new FactoryFR110UpdateFR110Manager( $plugin );
     }
 }
 
-add_action('factory_fr108_load_updates', 'factory_update_fr108s_module_load');
-function factory_update_fr108s_module_load( $plugin ) {
-    new FactoryFR108UpdateFR108Module( $plugin ); 
+add_action('factory_fr110_load_updates', 'factory_update_fr110s_module_load');
+function factory_update_fr110s_module_load( $plugin ) {
+    new FactoryFR110UpdateFR110Module( $plugin ); 
 }

@@ -17,7 +17,10 @@ include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/viewtables/locker-viewtable.c
 // pages and ajax calls
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/common-settings.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/unlocking-statistics.php');
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/license-manager.php');
+    include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/license-manager.php');
+
+
+
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/tracking.php');
 include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/shortcode.php');
 

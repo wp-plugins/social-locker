@@ -1,6 +1,6 @@
 <?php
 
-function factory_fr108_set_site_transient( $transient, $value, $expiration = 0, $actions = false ) {
+function factory_fr110_set_site_transient( $transient, $value, $expiration = 0, $actions = false ) {
 	global $_wp_using_ext_object_cache;
 
         if ( $actions ) {
@@ -13,7 +13,7 @@ function factory_fr108_set_site_transient( $transient, $value, $expiration = 0, 
 		$transient_timeout = '_site_transient_timeout_' . $transient;
 		$transient = '_site_transient_' . $transient;
 
-		if ( false === get_site_option( $transient ) ) {
+		if ( false === get_site_option($transient) ) {
 			if ( $expiration )
 				add_site_option( $transient_timeout, time() + $expiration );
 			$result = add_site_option( $transient, $value );

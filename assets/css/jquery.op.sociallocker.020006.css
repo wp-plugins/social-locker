@@ -333,6 +333,8 @@
 .onp-sociallocker-secrets .onp-sociallocker-button {
     padding: 4px;
     background: rgba(0, 0, 0, 0.05);
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-inner-wrap, 
 .onp-sociallocker-secrets .onp-sociallocker-button-overlay {

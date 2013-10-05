@@ -7,7 +7,7 @@ function onp_sociallocker_dt_init() {
     add_action( 'wp_head', 'onp_sociallocker_dt_calls', 1000 ); 
     add_action( 'wp_footer', 'onp_sociallocker_script', 9999 );
     
-    $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+    $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
     if ( !$dynamicTheme ) return;
     
     add_action( 'wp_enqueue_scripts', 'onp_sociallocker_dt_enqueue_scripts' );
@@ -26,13 +26,13 @@ function onp_sociallocker_dt_enqueue_scripts() {
 
     wp_enqueue_script( 
         'onp-sociallocker', 
-        SOCIALLOCKER_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.020204.js', 
+        SOCIALLOCKER_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.020205.js', 
         array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
     );  
     
     $facebookSDK = array( 
-        'appId' => get_option('sociallocker_facebook_appid' ),
-        'lang' => get_option('sociallocker_lang', 'en_US' ) 
+        'appId' => get_option('sociallocker_facebook_appid'),
+        'lang' => get_option('sociallocker_lang', 'en_US') 
     ); 
     
     wp_localize_script( 'onp-sociallocker', 'facebookSDK', $facebookSDK );
@@ -43,8 +43,8 @@ function onp_sociallocker_dt_enqueue_scripts() {
  */
 function onp_sociallocker_facebook_sdk() {
     
-    $appId = get_option('sociallocker_facebook_appid' );
-    $lang = get_option('sociallocker_lang', 'en_US' );
+    $appId = get_option('sociallocker_facebook_appid');
+    $lang = get_option('sociallocker_lang', 'en_US');
 
     ?>
     <!-- 
@@ -83,12 +83,12 @@ function onp_sociallocker_script() {
     (function($){
         if ( window.onp_create_sociallcoker ) {
             $(".onp-sociallocker-call").each(function(){
-                onp_create_sociallcoker( $(this) );
+                window.onp_create_sociallcoker( $(this) );
             });  
         } else {
             $(function(){
                 $(".onp-sociallocker-call").each(function(){
-                    onp_create_sociallcoker( $(this) );
+                    window.onp_create_sociallcoker( $(this) );
                 });  
             })
         }
@@ -103,7 +103,7 @@ function onp_sociallocker_script() {
  */
 function onp_sociallocker_dt_calls() {
     $dynamicThemeEvent = get_option('sociallocker_dynamic_theme_event', false);
-    $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+    $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
     ?>
     <script>
         window.onpDynamicTheme = '<?php echo $dynamicTheme ?>';

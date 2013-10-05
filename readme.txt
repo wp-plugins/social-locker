@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.6.0
+Tested up to: 3.6.1
 Stable tag: trunk
 License: GPLv2
 
@@ -71,6 +71,11 @@ The section is empty at the moment.
 4. Created Lockers
 
 == Changelog ==
+
+= 2.2.7 - 5 Oct 2013 =
+IMPROVED: Performance optimization. 
+IMPROVED: Added several new internal hints and tips. 
+FIXED: A bug of not being able to activate a license key manually. 
 
 = 2.2.4 - 1 Sep 2013 =
 FIXED: A bug when the locker doesn't show content after liking because the URL for liking doesn't have a traling slash.  

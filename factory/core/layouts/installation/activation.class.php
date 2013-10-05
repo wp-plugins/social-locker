@@ -1,6 +1,6 @@
 <?php
 
-abstract class FactoryFR108Activation {
+abstract class FactoryFR110Activation {
     
     /**
      * Curent plugin.
@@ -8,7 +8,7 @@ abstract class FactoryFR108Activation {
      */
     public $plugin;
     
-    public function __construct(FactoryFR108Plugin $plugin) {
+    public function __construct(FactoryFR110Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -106,20 +106,18 @@ abstract class FactoryFR108Activation {
         $slug = $postInfo['post_name'];
         $postType = $postInfo['post_type'];
         
-        $postId = $wpdb->get_var(
-                "SELECT ID FROM " . $wpdb->posts . " WHERE post_name = '$slug' AND 
+        $postId = $wpdb->get_var("SELECT ID FROM " . $wpdb->posts . " WHERE post_name = '$slug' AND 
                     post_type = '" . $postType . "' LIMIT 1");
         
-        $optionValue = get_option( $optionName );
+        $optionValue = get_option($optionName);
 
         if ( !$postId )
         {
             $create = true;
 
             if ( !empty( $optionValue ) ) {
-                $post_id = $wpdb->get_var(
-                        "SELECT ID FROM " . $wpdb->posts . " WHERE ID = '$optionValue' AND 
-                            post_type = '" . $postType . "' LIMIT 1" );
+                $post_id = $wpdb->get_var("SELECT ID FROM " . $wpdb->posts . " WHERE ID = '$optionValue' AND 
+                            post_type = '" . $postType . "' LIMIT 1");
                 if ( $post_id ) $create = false;
             };
 

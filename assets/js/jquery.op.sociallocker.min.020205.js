@@ -187,20 +187,29 @@ if(!jQuery.uaMatch){jQuery.uaMatch=function(b){b=b.toLowerCase();var a=/(chrome)
 
         $target.sociallocker( options );
     }
+    
+    var bindFunction = function(){
+        if ( window.onpDynamicTheme != '' ) {
+            if ( window.onpDynamicThemeEvent != '' ) {
+                $(document).bind(window.onpDynamicThemeEvent, function(){
+                    $(".onp-sociallocker-call").each(function(){
+                        window.onp_create_sociallcoker( $(this) );
+                    });
+                });
+            } else {
+                $(document).ajaxComplete(function() {
+                    $(".onp-sociallocker-call").each(function(){
+                        window.onp_create_sociallcoker( $(this) );
+                    });
+                });
+            }
+        }  
+    };
 
-    if ( window.onpDynamicTheme != '' ) {
-        if ( window.onpDynamicThemeEvent != '' ) {
-            $(document).bind(window.onpDynamicThemeEvent, function(){
-                $(".onp-sociallocker-call").each(function(){
-                    onp_create_sociallcoker( $(this) );
-                });
-            });
-        } else {
-            $(document).ajaxComplete(function() {
-                $(".onp-sociallocker-call").each(function(){
-                    onp_create_sociallcoker( $(this) );
-                });
-            });
-        }
+    if ( window.onpDynamicTheme ) {
+        bindFunction();
+    } else {
+        $(function(){ bindFunction(); })
     }
+
 })(jQuery);

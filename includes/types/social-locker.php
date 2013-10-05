@@ -4,7 +4,7 @@
  * Declaration for custom post type of Social Locler.
  * @link http://codex.wordpress.org/Post_Types
  */
-class SocialLockerType extends FactoryFR108Type {
+class SocialLockerType extends FactoryFR110Type {
     
     /**
      * Custom post name.
@@ -62,9 +62,9 @@ if ( in_array( $socialLocker->license->type, array( 'paid','trial' ) ) ) {
      * @param FactoryMetaboxCollection $metaboxes
      */
     public function configure( 
-            FactoryFR108Type $type, 
-            FactoryFR108TypeMenu $menu, 
-            FactoryFR108MetaboxCollection $metaboxes ) {
+            FactoryFR110Type $type, 
+            FactoryFR110TypeMenu $menu, 
+            FactoryFR110MetaboxCollection $metaboxes ) {
 
         /**
          * Menu

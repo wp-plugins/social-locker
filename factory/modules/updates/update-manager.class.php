@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFR108UpdateFR108Manager {
+class FactoryFR110UpdateFR110Manager {
     
     /**
      * Current factory plugin.
@@ -44,7 +44,7 @@ class FactoryFR108UpdateFR108Manager {
         if ( $this->needCheckUpdates() ) {
             
             // an action that is called by the cron to check updates
-            add_action('fy_check_upadates_' . $this->plugin->pluginName, array($this, 'checkUpdates')); 
+            add_action('fy_check_upadates_' . $this->plugin->pluginName, array($this, 'checkUpdatesAuto')); 
         }
         
         if ( is_admin() ) {
@@ -53,8 +53,8 @@ class FactoryFR108UpdateFR108Manager {
             if ( $this->needChangeAssembly() ) {
 
                 $this->updatePluginTransient();
-                add_filter('factory_fr108_plugin_row-' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
-                add_filter('factory_fr108_admin_notices-' . $this->plugin->pluginName, array( $this, 'showAssemblyMessages'), 10, 2);    
+                add_filter('factory_fr110_plugin_row-' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
+                add_filter('factory_fr110_admin_notices-' . $this->plugin->pluginName, array( $this, 'showAssemblyMessages'), 10, 2);    
             }
             
             
@@ -69,9 +69,10 @@ class FactoryFR108UpdateFR108Manager {
             }
 
             // activation and deactivation hooks
-            add_action('factory_fr108_activation_or_update-' . $plugin->pluginName, array($this, 'activationOrUpdateHook'));
-            add_action('factory_fr108_deactivation-' . $plugin->pluginName, array($this, 'deactivationHook')); 
+            add_action('factory_fr110_activation_or_update-' . $plugin->pluginName, array($this, 'activationOrUpdateHook'));
+            add_action('factory_fr110_deactivation-' . $plugin->pluginName, array($this, 'deactivationHook')); 
         }
+
     }
     
     /**
@@ -149,6 +150,16 @@ class FactoryFR108UpdateFR108Manager {
     // Checking updates
     // -------------------------------------------------------------------------------------
     
+    public function checkUpdatesAuto() {
+        $lastTime = intval( get_option( 'fy_last_dcheck_' . $this->plugin->pluginName ) );
+        if ( !$lastTime ) $lastTime = 0;
+    
+        if ( time() > $lastTime + 10800 )  {
+            $this->checkUpdates();
+            update_option( 'fy_last_dcheck_' . $this->plugin->pluginName, time() );
+        }
+    }
+    
     public function checkUpdates() {
 
         $query = array(
@@ -157,8 +168,11 @@ class FactoryFR108UpdateFR108Manager {
             'version'   => $this->plugin->version,
             'site'      => $this->site,
             'key'       => $this->license ? $this->license->key : null,
-            'secret'    => $this->secret
+            'secret'    => $this->secret,
+            'tracker'   => $this->plugin->tracker
         );
+        
+        if ( defined('FACTORY_BETA') && FACTORY_BETA ) $query['beta'] = true;
         
         $data = $this->sendRequest( $this->api . 'GetCurrentVersion', array('body' => $query ) );
 
@@ -175,6 +189,8 @@ class FactoryFR108UpdateFR108Manager {
         }
 
         $this->updatePluginTransient();
+        
+        return $data;
     }
     
     /**
@@ -187,7 +203,7 @@ class FactoryFR108UpdateFR108Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            factory_fr108_set_site_transient('update_plugins', $transient);  
+            factory_fr110_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -209,7 +225,7 @@ class FactoryFR108UpdateFR108Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        factory_fr108_set_site_transient('update_plugins', $transient);
+        factory_fr110_set_site_transient('update_plugins', $transient);
     }
     
     /**
@@ -225,13 +241,17 @@ class FactoryFR108UpdateFR108Manager {
             $obj->slug = $this->plugin->pluginSlug;  
             $obj->new_version = '[ migrate-to-' . $this->license->build . ' ]';  
             
-            $obj->package = $this->api . 'GetPackage?' . http_build_query(array(
+            $queryArgs = array(
                 'plugin'   => $this->plugin->pluginName,
                 'assembly' => $this->license->build,   
                 'site'     => $this->site,
-                'secret'   => $this->secret
-            ));
+                'secret'   => $this->secret,
+                'tracker'  => $this->plugin->tracker
+            );
             
+            if ( defined('FACTORY_BETA') && FACTORY_BETA ) $queryArgs['beta'] = true;
+        
+            $obj->package = $this->api . 'GetPackage?' . http_build_query($queryArgs);
             $obj->changeAssembly = true;
             
             $transient->response[$this->plugin->relativePath] = $obj; 
@@ -270,11 +290,15 @@ class FactoryFR108UpdateFR108Manager {
                 'version' => $this->lastCheck['Id']
             ));  
             
-            $obj->package = $this->api . 'GetPackage?' . http_build_query(array(
+            $queryArgs = array(
                 'versionId' => $this->lastCheck['Id'],  
                 'site'      => $this->site,
-                'secret'    => $this->secret
-            ));
+                'secret'    => $this->secret,
+                'tracker'   => $this->plugin->tracker
+            );
+            
+            if ( defined('FACTORY_BETA') && FACTORY_BETA ) $queryArgs['beta'] = true;
+            $obj->package = $this->api . 'GetPackage?' . http_build_query($queryArgs);
  
             $transient->response[$this->plugin->relativePath] = $obj; 
             return $transient;
@@ -413,7 +437,7 @@ class FactoryFR108UpdateFR108Manager {
         $args['timeout'] = 15;
         
         if ( !isset($args['body']) ) $args['body'] = array();
-        $response = wp_remote_request ( $url, $args ); 
+        $response = wp_remote_request ($url, $args); 
 
         if ( is_wp_error($response) ) {
             

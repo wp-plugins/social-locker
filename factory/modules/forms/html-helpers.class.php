@@ -1,6 +1,6 @@
 <?php
 
-class FactoryHtmlHelpers {
+class FactoryFormFR110HtmlHelpers {
 
     public static function radio($values, $options = array()) {
         $theme = isset( $options['theme'] ) ? $options['theme'] : 'standard';

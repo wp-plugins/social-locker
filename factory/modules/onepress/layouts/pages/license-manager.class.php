@@ -4,7 +4,7 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
+class OnePressFR110LicenseManagerAdminPage extends FactoryFR110AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -20,10 +20,10 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
      * @param FactoryScriptList $scripts    Scripts that will be included.
      * @param FactoryStyleList $styles      Styles that will be includes.
      */
-    public function assets(FactoryFR108ScriptList $scripts, FactoryFR108StyleList $styles) {
+    public function assets(FactoryFR110ScriptList $scripts, FactoryFR110StyleList $styles) {
         
-        $styles->add(ONEPRESS_FR108_URL . '/assets/css/license-manager.css');
-        $scripts->add(ONEPRESS_FR108_URL . '/assets/js/license-manager.js');   
+        $styles->add(ONEPRESS_FR110_URL . '/assets/css/license-manager.css');
+        $scripts->add(ONEPRESS_FR110_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -34,18 +34,29 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
     /**
      * Shows current license type.
      */
-    public function indexAction( $sender = 'index', $error = null ) {
+    public function indexAction() {
 
         $licenseManager = $license = $this->plugin->license;
         $updatesManager = $this->plugin->updates;
         $licenseKey = isset( $_POST['licensekey'] ) ? trim( $_POST['licensekey'] ) : null;
         
+        $scope = isset( $_GET['scope'] ) ? $_GET['scope'] : null;  
+        
         if ( isset( $_POST['licensekey'] ) ) {
+            $scope = 'submit-key';
             $licenseKey = $_POST['licensekey'];
             $error = $licenseManager->activateKey( trim( $licenseKey ) );
             if ( !is_wp_error($error) ) $licenseKey = null;
+        } else {
+            $code = isset( $_GET['code'] ) ? $_GET['code'] : null;
+            $message = isset( $_GET['message'] ) ? $_GET['message'] : null; 
+            $error = null;
+            
+            if ( $code && $message ) {
+                $error = new WP_Error($code, base64_decode($message));
+            }
         }
-        
+
         $licenseData = $licenseManager->data;
         $remained = round( ( $licenseData['Expired'] - time() ) / (60 * 60 * 24), 2 );
         $isInfinity = empty( $licenseData['Expired']);
@@ -60,66 +71,76 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                     <div class="alert alert-error">
                         <h4 class="alert-heading"><?php _e('The request has been rejected by the License Server.', 'onepress') ?></h4>
                         <p><?php echo $error->get_error_message() ?></p>
-                    </div>                    
+                        <p>
+                            <?php printf( 
+                                    __('Please <a href="%1$s">click here</a> for trying to activate your key manualy.', 'onepress'),
+                                    $this->getActionUrl('activateKeyManualy', array('key' => $_POST['licensekey'] )) )?>
+                        </p>
+                    </div>      
+                    <?php } elseif ( $code == 'invalid_license_data' ) { ?>        
+                        <div class="alert alert-error">
+                            <h4 class="alert-heading"><?php _e('The license data is invalid', 'onepress') ?></h4>
+                            <p><?php _e('The server returned invalid license data. If you tried to submit or delete key manually please make sure that you copied and pasted the server response code entirely.', 'onepress') ?></p>
+                        </div>
                     <?php } else { ?>
                 
-                        <?php if ($sender == 'index' && substr($code, 0, 4) == 'http') { ?>
+                        <?php if ($scope == 'submit-key' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                             <p>
                                 <?php printf( 
                                         __('Please <a href="%1$s">click here</a> for trying to activate your key manualy.', 'onepress'),
-                                        $this->actionUrl('activateKeyManualy', array('key' => $_POST['licensekey'] )) )?>
+                                        $this->getActionUrl('activateKeyManualy', array('key' => $_POST['licensekey'] )) )?>
                             </p>
                         </div>
-                        <?php } elseif ($sender == 'index') { ?>
+                        <?php } elseif ($scope == 'submit-key') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to apply the specified key.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
 
-                        <?php if ($sender == 'trial' && substr($code, 0, 4) == 'http') { ?>
+                        <?php if ($scope == 'trial' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                             <p>
                                 <?php printf( 
                                         __('Please <a href="%1$s">click here</a> for trying to activate your trial manualy.', 'onepress'),
-                                        $this->actionUrl('activateTrialManualy') )?>
+                                        $this->getActionUrl('activateTrialManualy') )?>
                             </p>
                         </div>
-                        <?php } elseif ($sender == 'trial') { ?>
+                        <?php } elseif ($scope == 'trial') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to get a trial license key.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
                 
-                        <?php if ($sender == 'delete-key' && substr($code, 0, 4) == 'http') { ?>
+                        <?php if ($scope == 'delete-key' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                             <p>
                                 <?php printf( 
                                         __('Please <a href="%1$s">click here</a> for trying to delete key manualy.', 'onepress'),
-                                        $this->actionUrl('deleteKeyManualy') )?>
+                                        $this->getActionUrl('deleteKeyManualy') )?>
                             </p>
                         </div>
-                        <?php } elseif ($sender == 'delete-key') { ?>
+                        <?php } elseif ($scope == 'delete-key') { ?>
                         <div class="alert alert-error">
                             <strong><?php _e('Unable to delete the license key.', 'onepress') ?></strong>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
                         <?php } ?>
                 
-                        <?php if ($sender == 'check-updates' && substr($code, 0, 4) == 'http') { ?>
+                        <?php if ($scope == 'check-updates' && substr($code, 0, 4) == 'http') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
                         </div>
-                        <?php } elseif ($sender == 'check-updates') { ?>
+                        <?php } elseif ($scope == 'check-updates') { ?>
                         <div class="alert alert-error">
                             <h4 class="alert-heading"><?php _e('Unable to check updates.', 'onepress') ?></h4>
                             <p><?php echo $error->get_error_message() ?></p>
@@ -129,7 +150,7 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                     <?php } ?>
                 <?php } else { ?>
                 
-                        <?php if ($sender == 'trial') { ?>
+                        <?php if ($scope == 'trial') { ?>
                             <?php ?>
                             <div class="alert alert-normal alert-warning-icon">
                                 <strong><?php _e('Your trial version has been activated successfully.', 'onepress') ?></strong>
@@ -139,7 +160,7 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
  ?>
                         <?php } ?> 
                 
-                        <?php if ($sender == 'index' && isset( $_POST['licensekey']) ) { ?>
+                        <?php if ($scope == 'submit-key' ) { ?>
                             <?php ?>
                             <div class="alert alert-normal alert-warning-icon">
                                 <strong><?php _e('The key has been activated successfully.', 'onepress') ?></strong>
@@ -149,23 +170,28 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
  ?>
                         <?php } ?>
                 
-                        <?php if ($sender == 'delete-key') { ?>
+                        <?php if ($scope == 'delete-key') { ?>
                         <div class="alert alert-normal alert-warning-icon">
                             <strong><?php _e('The key has been deleted successfully.', 'onepress') ?></strong>
                             <p><?php _e('Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete deletion if it\'s needed.', 'onepress') ?></p>    
                         </div>
                         <?php } ?>          
                 
-                        <?php if ($sender == 'check-updates') { ?>
+                        <?php if ($scope == 'check-updates') { ?>
                         <div class="alert alert-normal">
                             <strong><?php _e('The updates have been checked successfully.', 'onepress') ?></strong>
                             <p>
                             <?php if ( $updatesManager->isActualVersion() ) { ?>
                                 <?php _e('You use the actual version of the plugin.', 'onepress') ?>
                             <?php } else { ?>
+                                <?php if ( $updatesManager->needChangeAssembly() ) { ?>
+                                <?php printf( 
+                                        __('You need to upgrade to the %1$s version. <a href="plugins.php">Click here</a> to get the update.', 'onepress'), $this->plugin->license->build  ) ?>
+                                <?php } else { ?>
                                 <?php printf( 
                                         __('The %1$s version is available to download. <a href="plugins.php">Click here</a> to get the update.', 'onepress'),
                                         $updatesManager->lastCheck['Build'] . '-' . $updatesManager->lastCheck['Version'] ) ?>
+                                <?php } ?>
                             <?php } ?>
                             </p>
                         </div>
@@ -244,11 +270,19 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                                         <?php if ( $updatesManager->isActualVersion() ) { ?>
                                             <span class="license-value-name"><?php _e('up-to-date', 'onepress') ?></span>
                                         <?php } else { ?>
+                                            <?php if ( $updatesManager->needChangeAssembly() ) { ?>
+                                            <span class="license-value-name">
+                                                <a href="plugins.php" class="link-to-upgrade">
+                                                <?php printf( __('upgrade to %s', 'onepress'), $this->plugin->license->build ) ?>
+                                                </a>
+                                            </span>    
+                                            <?php } else { ?>
                                             <span class="license-value-name">
                                                 <a href="plugins.php" class="link-to-upgrade">
                                                 <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> <?php _e('available', 'onepress') ?>
                                                 </a>
                                             </span>
+                                            <?php } ?>
                                         <?php } ?>
                                     <?php } else { ?>
                                     <span class="license-value-name"><span><?php _e('up-to-date', 'onepress') ?></span></span>
@@ -322,7 +356,7 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                                 <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONEPRESS_FR108_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONEPRESS_FR110_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
@@ -366,8 +400,14 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
         $licenseManager = $license = $this->plugin->license;
         if ( $licenseManager->hasKey()) {
             $error = $licenseManager->deleteKey();
-            $this->indexAction( 'delete-key', $error ); 
-            return;
+            
+            if (is_wp_error($error)) {
+                $this->redirectToAction('index', array(
+                    'scope' => 'delete-key', 
+                    'code' => $error->get_error_code(), 
+                    'message' => base64_encode( $error->get_error_message())));
+            }
+            $this->redirectToAction('index', array('scope' => 'delete-key'));
         }
         
         $this->indexAction(); 
@@ -378,8 +418,15 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
      */
     public function activateTrialAction() {
         $licenseManager = $this->plugin->license;
-        $error = $licenseManager->activateTrial();            
-        $this->indexAction( 'trial', $error ); 
+        $error = $licenseManager->activateTrial();   
+        
+        if (is_wp_error($error)) {
+            $this->redirectToAction('index', array(
+                'scope' => 'trial', 
+                'code' => $error->get_error_code(), 
+                'message' => base64_encode( $error->get_error_message())));
+        }
+        $this->redirectToAction('index', array('scope' => 'trial'));
     }
     
     /**
@@ -387,12 +434,19 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
      */
     public function activateKeyManualyAction() {
         $licenseManager = $this->plugin->license;
-        $url = $licenseManager->getLinkToActivateKey( $_GET['key']);
+
 
         if ( isset( $_POST['response'] ) ) {
             $error = $licenseManager->activateKeyManualy( $_POST['response'] );
-            $this->indexAction( 'index', $error );
-            exit;
+            if (is_wp_error($error)) {
+                $this->redirectToAction('index', array(
+                    'scope' => 'submit-key', 
+                    'code' => $error->get_error_code(), 
+                    'message' => base64_encode( $error->get_error_message())));
+            }
+            $this->redirectToAction('index', array('scope' => 'submit-key'));
+        } else {
+            $this->requestUrl = $licenseManager->getLinkToActivateKey( $_GET['key'] );  
         }
         
         ?>
@@ -403,7 +457,7 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                 <p style="margin-top: 0px;"><?php _e('Please perfome the following steps to activate the plugin manualy.', 'onepress') ?></p>
                 <ul>
                     <li>
-                        1. <?php printf( __('<a href="%1%s">Click here</a> to send the activation request.', 'onepress'), $url ) ?>
+                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the activation request.', 'onepress'), $this->requestUrl ) ?>
                     </li>
                     <li>
                         2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
@@ -424,12 +478,18 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
      */
     public function deleteKeyManualyAction() {
         $licenseManager = $this->plugin->license;
-        $url = $licenseManager->getLinkToDeleteKey();
+        $this->requestUrl = $licenseManager->getLinkToDeleteKey();
 
         if ( isset( $_POST['response'] ) ) {
             $error = $licenseManager->deleteKeyManualy( $_POST['response'] );
-            $this->indexAction( 'delete-key', $error );
-            exit;
+            
+            if (is_wp_error($error)) {
+                $this->redirectToAction('index', array(
+                    'scope' => 'delete-key', 
+                    'code' => $error->get_error_code(), 
+                    'message' => base64_encode( $error->get_error_message())));
+            }
+            $this->redirectToAction('index', array('scope' => 'delete-key', 'code' => 'ok'));
         }
         
         ?>
@@ -440,7 +500,7 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                 <p style="margin-top: 0px;"><?php _e('Please perfome the following steps to activate the plugin manualy.', 'onepress') ?></p>
                 <ul>
                     <li>
-                        1. <?php printf( __('<a href="%1%s">Click here</a> to send the deactivation request.', 'onepress'), $url ) ?>
+                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the deactivation request.', 'onepress'), $this->requestUrl ) ?>
                     </li>
                     <li>
                         2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
@@ -458,12 +518,19 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
     
     public function activateTrialManualyAction() {
         $licenseManager = $this->plugin->license;
-        $url = $licenseManager->getLinkToActivateTrial();
+        
+        $this->requestUrl = $licenseManager->getLinkToActivateTrial();
 
         if ( isset( $_POST['response'] ) ) {
             $error = $licenseManager->activateKeyManualy( $_POST['response'] );
-            $this->indexAction( 'trial', $error );
-            exit;
+            
+            if (is_wp_error($error)) {
+                $this->redirectToAction('index', array(
+                    'scope' => 'trial', 
+                    'code' => $error->get_error_code(), 
+                    'message' => base64_encode( $error->get_error_message())));
+            }
+            $this->redirectToAction('index', array('scope' => 'trial'));
         }
         
         ?>
@@ -474,7 +541,7 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                 <p style="margin-top: 0px;">Please perfome the following steps to activate the plugin manualy.</p>
                 <ul>
                     <li>
-                        1. <?php printf( __('<a href="%1%s">Click here</a> to send the activation request.', 'onepress'), $url ) ?>
+                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the activation request.', 'onepress'), $this->requestUrl ) ?>
                     </li>
                     <li>
                         2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
@@ -492,7 +559,14 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
     
     public function checkUpdatesAction() {
         $error = $this->plugin->updates->checkUpdates();
-        $this->indexAction( 'check-updates', $error ); 
+        
+        if (is_wp_error($error)) {
+            $this->redirectToAction('index', array(
+                'scope' => 'check-updates', 
+                'code' => $error->get_error_code(), 
+                'message' => base64_encode( $error->get_error_message())));
+        }
+        $this->redirectToAction('index', array('scope' => 'check-updates'));
     }
     
     public function internalKeysAction( $sender = 'index' ) {
@@ -507,7 +581,9 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
         }
         
         $siteSecret = $licenseManager->secret;
-        $keySecret = !empty($licenseManager->data) ? $licenseManager->data['KeySecret'] : '';
+        $keySecret = ( !empty($licenseManager->data ) && isset($licenseManager->data['KeySecret']) ) 
+                ? $licenseManager->data['KeySecret'] 
+                : '';
         
         ?>
             <div class="wpbootstrap" style="max-width: 800px;">
@@ -545,7 +621,6 @@ class OnePressFR108LicenseManagerAdminPage extends FactoryFR108AdminPage  {
                
                     <div class="form-actions">
                         <input name="save-action" class="button-primary" type="submit" value="Save changes"/>
-                        <a style="margin-left: 10px;" href="<?php echo $this->actionUrl('clearLicenseData') ?>">Reset license</a>
                     </div>
 
                     <div style="clear: both;"></div>

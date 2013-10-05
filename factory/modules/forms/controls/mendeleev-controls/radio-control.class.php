@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR108PiRadioFormControl extends FactoryFormFR108StandartFormControl 
+class FactoryFormFR110PiRadioFormControl extends FactoryFormFR110StandartFormControl 
 {
     public $type = 'mv-radio';
     

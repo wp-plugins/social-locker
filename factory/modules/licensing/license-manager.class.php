@@ -1,6 +1,6 @@
 <?php
 
-class FactoryLicensingFR108Manager {
+class FactoryLicensingFR110Manager {
     
     public $plugin;
     public $data;
@@ -9,7 +9,7 @@ class FactoryLicensingFR108Manager {
     public $site;
     public $secret;
     
-    public function __construct( FactoryFR108Plugin $plugin ) {
+    public function __construct( FactoryFR110Plugin $plugin ) {
         $this->plugin = $plugin;
         $this->api = $plugin->options['api'];
         
@@ -18,11 +18,11 @@ class FactoryLicensingFR108Manager {
         $this->default = get_option('fy_default_license_' . $this->plugin->pluginName, array());
     
         // a bit fix if some incorrect data goes from a databae
-        if ( !is_array($this->data)) { 
+        if ( !$this->checkDataCorrectness($this->data) ) { 
             delete_option('fy_license_' . $this->plugin->pluginName);
             $this->data = array();
         }
-        
+
         // sets default license if a license is empty
         if ( empty( $this->data) ) $this->data = $this->default;
 
@@ -38,10 +38,18 @@ class FactoryLicensingFR108Manager {
         $this->key = @$this->data['Key'];
         
         add_action('init', array($this, 'checkVerificationRequest'));
-                
+
         if ( is_admin() ) {
-            add_filter('factory_fr108_admin_notices-' . $this->plugin->pluginName, array( $this, 'showKeyMessages'), 10, 2); 
+            add_filter('factory_fr110_admin_notices-' . $this->plugin->pluginName, array( $this, 'showKeyMessages'), 10, 2); 
         }
+    }
+    
+    private function checkDataCorrectness( $data ) {
+        if ( !is_array( $data ) ) return false;
+        if ( !isset($data['Category'])) return false;
+        if ( !isset($data['Title'])) return false;
+        if ( !isset($data['Description'])) return false;   
+        return true;
     }
     
     public function showKeyMessages( $notices, $plugin ) {
@@ -194,11 +202,14 @@ class FactoryLicensingFR108Manager {
         $data = $this->sendPostRequest( $this->api . 'ActivateKey', array('body' => $query) );
         
         if (is_wp_error($data) ) return $data;
+        
+        if ( !$this->checkDataCorrectness($data) )
+            return new WP_Error('invalid_license_data', 'The server returned invalid license data.');
 
         update_option('fy_license_' . $this->plugin->pluginName, $data);
         $this->data = $data;
         
-        if ( $this->updates ) $this->updates->checkUpdates();
+        if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
     }
     
@@ -208,6 +219,9 @@ class FactoryLicensingFR108Manager {
         $data = array();
         parse_str($response, $data);
 
+        if ( !$this->checkDataCorrectness($data) )
+            return new WP_Error('invalid_license_data', 'The server returned invalid license data.');
+        
         $data['Description'] = base64_decode( str_replace( ' ', '+', $data['Description'] ));
         update_option('fy_license_' . $this->plugin->pluginName, $data);     
         
@@ -217,7 +231,7 @@ class FactoryLicensingFR108Manager {
         }
         
         $this->data = $data;
-        if ( $this->updates ) $this->updates->checkUpdates();
+        if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
     }
     
@@ -229,12 +243,15 @@ class FactoryLicensingFR108Manager {
         
         $data = $this->sendPostRequest( $this->api . 'ActivateTrial');
         if (is_wp_error($data) ) return $data;
-
+        
+        if ( !$this->checkDataCorrectness($data) )
+            return new WP_Error('invalid_license_data', 'The server returned invalid license data.');
+        
         update_option('fy_license_' . $this->plugin->pluginName, $data);
         update_option('fy_trial_activated_' . $this->plugin->pluginName, true);
         $this->data = $data;
         
-        if ( $this->updates ) $this->updates->checkUpdates();
+        if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
     }
     
@@ -249,7 +266,7 @@ class FactoryLicensingFR108Manager {
         delete_option('fy_license_' . $this->plugin->pluginName);
         $this->data = get_option('fy_default_license_' . $this->plugin->pluginName, array());
         
-        if ( $this->updates ) $this->updates->checkUpdates();
+        if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
     }
     
@@ -265,7 +282,7 @@ class FactoryLicensingFR108Manager {
             return true;
         };
         
-        if ( $this->updates ) $this->updates->checkUpdates();
+        if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return false;
     }    
     
@@ -277,6 +294,7 @@ class FactoryLicensingFR108Manager {
             'secret'    => $this->secret,
             'assembly'  => $this->plugin->build,
             'version'   => $this->plugin->version,
+            'tracker'   => $this->plugin->tracker
         );
         
         $secretToken = $this->openVerificationGate();
@@ -294,7 +312,8 @@ class FactoryLicensingFR108Manager {
             'site'      => $this->site,
             'secret'    => $this->secret,
             'assembly'  => $this->plugin->build,
-            'version'   => $this->plugin->version, 
+            'version'   => $this->plugin->version,
+            'tracker'   => $this->plugin->tracker
         );
         
         $secretToken = $this->openVerificationGate();
@@ -311,7 +330,8 @@ class FactoryLicensingFR108Manager {
             'site'      => $this->site,
             'secret'    => $this->secret,
             'assembly'  => $this->plugin->build,
-            'version'   => $this->plugin->version
+            'version'   => $this->plugin->version,
+            'tracker'   => $this->plugin->tracker
         );
         
         $request = base64_encode( http_build_query($query) );
@@ -330,7 +350,7 @@ class FactoryLicensingFR108Manager {
      * @return \WP_Error
      */
     private function sendRequest( $url, $args = array() ) {
-        $response = wp_remote_request ( $url, $args ); 
+        $response = wp_remote_request ($url, $args); 
 
         if ( is_wp_error($response) ) {
             
@@ -379,6 +399,7 @@ class FactoryLicensingFR108Manager {
         $args['body']['plugin'] = $this->plugin->pluginName; 
         $args['body']['assembly'] = $this->plugin->build;
         $args['body']['version'] = $this->plugin->version;
+        $args['body']['tracker'] = $this->plugin->tracker;
 
         $secretToken = $this->openVerificationGate();
         $args['body']['secretToken'] = $secretToken;

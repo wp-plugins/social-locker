@@ -1,6 +1,6 @@
 <?php
 
-class FactoryFormFR108Collapsed extends FactoryFormFR108Item {
+class FactoryFormFR110Collapsed extends FactoryFormFR110Item {
     
     /**
      * Is a current form items a collapsed item?

@@ -5,7 +5,7 @@
  * It's a main class for building the plugin.
  * The class allows to isolate a several plugins that use the same version of the Factory.
  */
-class FactoryFR108Plugin {
+class FactoryFR110Plugin {
     
     /**
      * Main file of the plugin.
@@ -77,6 +77,7 @@ class FactoryFR108Plugin {
         $this->pluginTitle = $data['title'];
         $this->version = $data['version'];
         $this->build = $data['assembly'];
+        $this->tracker = isset ( $data['tracker'] ) ? $data['tracker'] : null;    
         $this->host = $_SERVER['HTTP_HOST'];  
 
         $this->isAdmin = is_admin();
@@ -116,7 +117,7 @@ class FactoryFR108Plugin {
             }  
         }
         
-        do_action('factory_fr108_init', $this);
+        do_action('factory_fr110_init', $this);
     }
     
     /**
@@ -125,13 +126,13 @@ class FactoryFR108Plugin {
      */
     public function actionInit() {
         
-        $this->shortcodes = new FactoryFR108ShortcodeManager( $this );   
-        $this->metaboxes = new FactoryFR108MetaboxManager( $this );   
+        $this->shortcodes = new FactoryFR110ShortcodeManager( $this );   
+        $this->metaboxes = new FactoryFR110MetaboxManager( $this );   
         
         if ( $this->isAdmin ) {
             
-            $this->notices = new FactoryFR108NoticeManager( $this );
-            $this->pages = new FactoryFR108AdminPageManager( $this ); 
+            $this->notices = new FactoryFR110NoticeManager( $this );
+            $this->pages = new FactoryFR110AdminPageManager( $this ); 
         
             // metaboxes
             // just includes class definition
@@ -177,7 +178,7 @@ class FactoryFR108Plugin {
     }
     
     public function activationOrUpdateHook( $forceActivation = false ) {
-        do_action('factory_fr108_activation_or_update-' . $this->pluginName);
+        do_action('factory_fr110_activation_or_update-' . $this->pluginName);
         
         $dbBuildVersion = get_option('fy_plugin_version_' . $this->pluginName, false);
 
@@ -238,13 +239,13 @@ class FactoryFR108Plugin {
                     $role = get_role( $roleName );
                     if ( !$role ) continue;
 
-                    $role->add_cap( 'edit_' . $type->name ); 
-                    $role->add_cap( 'read_' . $type->name );
-                    $role->add_cap( 'delete_' . $type->name );
-                    $role->add_cap( 'edit_' . $type->name . 's' );
-                    $role->add_cap( 'edit_others_' . $type->name . 's' );
-                    $role->add_cap( 'publish_' . $type->name . 's' ); 
-                    $role->add_cap( 'read_private_' . $type->name . 's' );      
+                    $role->add_cap('edit_' . $type->name); 
+                    $role->add_cap('read_' . $type->name);
+                    $role->add_cap('delete_' . $type->name);
+                    $role->add_cap('edit_' . $type->name . 's');
+                    $role->add_cap('edit_others_' . $type->name . 's');
+                    $role->add_cap('publish_' . $type->name . 's'); 
+                    $role->add_cap('read_private_' . $type->name . 's');      
                 }
             }
         }
@@ -255,7 +256,7 @@ class FactoryFR108Plugin {
      * Don't excite it directly.
      */
     public function deactivationHook() {
-        do_action('factory_fr108_deactivation-' . $this->pluginName);;
+        do_action('factory_fr110_deactivation-' . $this->pluginName);;
         
         $item = $this->loadItem( 'activation', true );
         if ( !empty($item) ) {
@@ -360,21 +361,21 @@ class FactoryFR108Plugin {
     public function actionAdminScripts( $hook ) {
 	global $post;
         
-        wp_enqueue_style('factory-admin-global', FACTORY_FR108_URL . '/assets/css/admin-global.css');
-        wp_enqueue_script('factory-admin-global', FACTORY_FR108_URL . '/assets/js/admin-global.js'); 
+        wp_enqueue_style('factory-admin-global', FACTORY_FR110_URL . '/assets/css/admin-global.css');
+        wp_enqueue_script('factory-admin-global', FACTORY_FR110_URL . '/assets/js/admin-global.js'); 
                         
 	if ( in_array( $hook, array('post.php', 'post-new.php')) && $post )
         {
             if ( !empty( $this->types[$post->post_type] ) ) {
                 
-		wp_enqueue_style('factory-bootstrap', FACTORY_FR108_URL . '/assets/css/bootstrap.css');	
-		wp_enqueue_script('factory-bootstrap', FACTORY_FR108_URL . '/assets/js/bootstrap.js', array('jquery'));
+		wp_enqueue_style('factory-bootstrap', FACTORY_FR110_URL . '/assets/css/bootstrap.css');	
+		wp_enqueue_script('factory-bootstrap', FACTORY_FR110_URL . '/assets/js/bootstrap.js', array('jquery'));
             }
             
         } elseif ( isset($_GET['page']) && in_array($_GET['page'], $this->pages->getIds())) {
             
-            wp_enqueue_style('factory-bootstrap', FACTORY_FR108_URL . '/assets/css/bootstrap.css');	
-            wp_enqueue_script('factory-bootstrap', FACTORY_FR108_URL . '/assets/js/bootstrap.js', array('jquery'));
+            wp_enqueue_style('factory-bootstrap', FACTORY_FR110_URL . '/assets/css/bootstrap.css');	
+            wp_enqueue_script('factory-bootstrap', FACTORY_FR110_URL . '/assets/js/bootstrap.js', array('jquery'));
         }
     }
     
@@ -388,7 +389,7 @@ class FactoryFR108Plugin {
      */
     public function load( $path, $name ) {
         include($this->pluginRoot . '/' . $path . '/start.php');
-        do_action('factory_fr108_load_' . $name, $this);
+        do_action('factory_fr110_load_' . $name, $this);
     }
     
     private $itemMapping = array();
@@ -565,7 +566,7 @@ class FactoryFR108Plugin {
      */
     private function getClasses( $path ) {
 
-        $phpCode = file_get_contents( $path );
+        $phpCode = file_get_contents($path);
         
         $classes = array();
         $tokens = token_get_all($phpCode);
@@ -609,7 +610,7 @@ class FactoryFR108Plugin {
     public function showCustomPluginRow($file, $plugin_data) {
         if ( !is_network_admin() && is_multisite() ) return;
         
-        $messages = apply_filters('factory_fr108_plugin_row-' . $this->pluginName, array(), $file, $plugin_data);
+        $messages = apply_filters('factory_fr110_plugin_row-' . $this->pluginName, array(), $file, $plugin_data);
 
         // if nothign to show then, use default handle
         if ( count($messages) == 0 ) {

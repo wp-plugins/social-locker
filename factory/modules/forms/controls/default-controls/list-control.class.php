@@ -1,6 +1,6 @@
 <?php
 
-class factoryFormFR108ListFormControl extends FactoryFormFR108StandartFormControl 
+class factoryFormFR110ListFormControl extends FactoryFormFR110StandartFormControl 
 {
     public $type = 'list';
         

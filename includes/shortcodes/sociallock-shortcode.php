@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockerShortcode extends FactoryFR108Shortcode {
+class SocialLockerShortcode extends FactoryFR110Shortcode {
     
     /**
      * Shortcode name
@@ -24,19 +24,19 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
      * @param FactoryScriptList $scripts
      * @param FactoryStyleList $styles
      */
-    public function assets(FactoryFR108ScriptList $scripts, FactoryFR108StyleList $styles) {
+    public function assets(FactoryFR110ScriptList $scripts, FactoryFR110StyleList $styles) {
         
-        $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
         if ( $dynamicTheme ) return;
         
         add_action('wp_head', 'onp_sociallocker_facebook_sdk');
         
    	$facebookSDK = array( 
-            'appId' => get_option('sociallocker_facebook_appid', '117100935120196' ),
-            'lang' => get_option('sociallocker_lang', 'en_US' ) 
+            'appId' => get_option('sociallocker_facebook_appid', '117100935120196'),
+            'lang' => get_option('sociallocker_lang', 'en_US') 
 	); 
         
-        $scripts->add('~/js/jquery.op.sociallocker.min.020204.js')
+        $scripts->add('~/js/jquery.op.sociallocker.min.020205.js')
                 ->request('jquery', 'jquery-effects-core', 'jquery-effects-highlight')
                 ->localize('facebookSDK', $facebookSDK);
 
@@ -103,7 +103,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
             
             // FREE build options
             $params = array(
-                'demo' => get_option('sociallocker_debug', false ),
+                'demo' => get_option('sociallocker_debug', false),
                 
                 'text' => array(
                     'header' => empty($headerText) ? '' : $headerText, 
@@ -114,12 +114,12 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
 
                 'facebook' => array(
                     'url' => $url,
-                    'appId' => get_option('sociallocker_facebook_appid', '117100935120196' ),
-                    'lang' => get_option('sociallocker_lang', 'en_GB' ),
+                    'appId' => get_option('sociallocker_facebook_appid', '117100935120196'),
+                    'lang' => get_option('sociallocker_lang', 'en_GB'),
                 ),
                 'twitter' => array(
                     'url' => $url,     
-                    'lang' => get_option('sociallocker_short_lang', 'en' ),
+                    'lang' => get_option('sociallocker_short_lang', 'en'),
                     'counturl' => sociallocker_get_meta($id, 'twitter_counturl' )
                 ),  
                 'google' => array(
@@ -160,7 +160,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
         $this->clearParams( $params );
         $lockData['options'] = $params;
         
-        $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
         $this->lockId = "onpLock" . rand(100000, 999999);
         $this->lockData = $lockData;
 
@@ -184,7 +184,7 @@ class SocialLockerShortcode extends FactoryFR108Shortcode {
     }
     
     public function wp_footer() {
-        $dynamicTheme = get_option('sociallocker_dynamic_theme', false );
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
         if ( !$dynamicTheme ) $this->print_options();
     }
     

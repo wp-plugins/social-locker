@@ -6,7 +6,7 @@
  * @param type $pluginName
  * @param type $action
  */
-function onepress_fr108_link_license_manager( $pluginName, $action = null ) {
+function onepress_fr110_link_license_manager( $pluginName, $action = null ) {
     
     $args = array(
         'fy_page'      => 'license-manager',
@@ -23,7 +23,7 @@ function onepress_fr108_link_license_manager( $pluginName, $action = null ) {
  * @param type $pluginName
  * @param type $action
  */
-function onepress_fr108_get_link_license_manager( $pluginName, $action = null ) {
+function onepress_fr110_get_link_license_manager( $pluginName, $action = null ) {
     
     $args = array(
         'fy_page'      => 'license-manager',

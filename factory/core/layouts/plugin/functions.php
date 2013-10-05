@@ -1,6 +1,6 @@
 <?php
 /**
- * A number of global functions with the prefix 'factory_fr108_', 
+ * A number of global functions with the prefix 'factory_fr110_', 
  * that are used to manage Factory instances.
  */
 
@@ -8,15 +8,15 @@
  * A Factory gateway to create an instance of the plugin. 
  * It should be invoked first in plugin file.
  */
-function factory_fr108_create_plugin( $pluginPath, $data ) {
-    $plugin = new FactoryFR108Plugin($pluginPath, $data );
+function factory_fr110_create_plugin( $pluginPath, $data ) {
+    $plugin = new FactoryFR110Plugin($pluginPath, $data );
     return $plugin;
 }
 
 /**
  * Returns nonce based on a current wordpress blog options.
  */
-function factory_fr108_get_nonce() {
+function factory_fr110_get_nonce() {
     $values = array('name', 'description', 'admin_email', 'url', 'language', 'version');
     $line = '';
     
@@ -27,20 +27,20 @@ function factory_fr108_get_nonce() {
 /**
  * Prints nonce based on a current wordpress blog options.
  */
-function factory_fr108_nonce() {
-    echo factory_fr108_get_nonce();
+function factory_fr110_nonce() {
+    echo factory_fr110_get_nonce();
 }
 
 // ------------------------------
 // Json functions
 // ------------------------------
 
-function factory_fr108_json_error($error) {
+function factory_fr110_json_error($error) {
     echo json_encode(array('error' => $error));
     exit;
 }
 
-function factory_fr108_json_success( $data = array() ) {
+function factory_fr110_json_success( $data = array() ) {
     $data['error'] = false;
     echo json_encode( $data );
     exit;
@@ -50,11 +50,11 @@ function factory_fr108_json_success( $data = array() ) {
 // String functions
 // ------------------------------
 
-function factory_fr108_starts_with($haystack, $needle) {
+function factory_fr110_starts_with($haystack, $needle) {
     return !strncmp($haystack, $needle, strlen($needle));
 }
 
-function factory_fr108_ends_with($haystack, $needle) {
+function factory_fr110_ends_with($haystack, $needle) {
     $length = strlen($needle);
     if ($length == 0) return true;
     return (substr($haystack, -$length) === $needle);
@@ -64,13 +64,13 @@ function factory_fr108_ends_with($haystack, $needle) {
 // File functions
 // ------------------------------
 
-function factory_fr108_pathinfo( $path ) {
+function factory_fr110_pathinfo( $path ) {
     $data = pathinfo($path);
-    $data['filename'] = factory_fr108_filename_without_ext($data['basename']);
+    $data['filename'] = factory_fr110_filename_without_ext($data['basename']);
     return $data;
 }
 
-function factory_fr108_filename_without_ext($filename){
+function factory_fr110_filename_without_ext($filename){
     $pos = strripos($filename, '.');
     if($pos === false){
         return $filename;
@@ -79,13 +79,13 @@ function factory_fr108_filename_without_ext($filename){
     }
 }
 
-function factory_fr108_filename_ext($filename){
+function factory_fr110_filename_ext($filename){
     $result = explode('.', $filename);
     if ( empty($result) ) return null;
     return $result[count($result)-1];
 }
 
-function factory_fr108_copy_dir($source, $dest, $permissions = 0755)
+function factory_fr110_copy_dir($source, $dest, $permissions = 0755)
 {
     // Check for symlinks
     if (is_link($source)) {
@@ -111,7 +111,7 @@ function factory_fr108_copy_dir($source, $dest, $permissions = 0755)
         }
 
         // Deep copy directories
-        factory_fr108_copy_dir("$source/$entry", "$dest/$entry");
+        factory_fr110_copy_dir("$source/$entry", "$dest/$entry");
     }
 
     // Clean up
@@ -119,7 +119,7 @@ function factory_fr108_copy_dir($source, $dest, $permissions = 0755)
     return true;
 }
 
-function factory_fr108_remove_dir($directory, $empty = false)
+function factory_fr110_remove_dir($directory, $empty = false)
 {
 	// if the path has a slash at the end we remove it here
 	if(substr($directory,-1) == '/')
@@ -159,7 +159,7 @@ function factory_fr108_remove_dir($directory, $empty = false)
 				if(is_dir($path)) 
 				{
 					// we call this function with the new path
-					factory_fr108_remove_dir($path);
+					factory_fr110_remove_dir($path);
 
 				// if the new path is a file
 				}else{
@@ -190,12 +190,12 @@ function factory_fr108_remove_dir($directory, $empty = false)
 // Date functions
 // ------------------------------
 
-function factory_fr108_get_days( $startDate, $endDate ) {
+function factory_fr110_get_days( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24) ) + 1;
 }
 
-function factory_fr108_get_weeks( $startDate, $endDate ) {
-    $days = factory_fr108_get_days( $startDate, $endDate );
+function factory_fr110_get_weeks( $startDate, $endDate ) {
+    $days = factory_fr110_get_days( $startDate, $endDate );
     
     $startDay = date( "w", $startDate );
     $endDay = date( "w", $endDate );
@@ -211,7 +211,7 @@ function factory_fr108_get_weeks( $startDate, $endDate ) {
     }
 }
 
-function factory_fr108_get_months( $startDate, $endDate ) {
+function factory_fr110_get_months( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24*30) );
 }
 
@@ -219,7 +219,7 @@ function factory_fr108_get_months( $startDate, $endDate ) {
 // Page functions
 // ------------------------------
 
-function factory_fr108_get_ajax_action_url( $plugin, $page, $action, $args = array() ) {
+function factory_fr110_get_ajax_action_url( $plugin, $page, $action, $args = array() ) {
     
     $args = array_merge( $args, array(
         'fy_page'      => $page,
@@ -231,11 +231,11 @@ function factory_fr108_get_ajax_action_url( $plugin, $page, $action, $args = arr
     return '?' . http_build_query( $args );
 }
 
-function factory_fr108_ajax_action_url( $plugin, $page, $action, $args = array() ) {
-    echo factory_fr108_get_ajax_action_url( $plugin, $page, $action, $args );
+function factory_fr110_ajax_action_url( $plugin, $page, $action, $args = array() ) {
+    echo factory_fr110_get_ajax_action_url( $plugin, $page, $action, $args );
 }
 
-function factory_fr108_get_action_url( $plugin, $page, $action, $args = array() ) {
+function factory_fr110_get_action_url( $plugin, $page, $action, $args = array() ) {
     
     $args = array_merge( $args, array(
         'fy_page'      => $page,
@@ -246,6 +246,6 @@ function factory_fr108_get_action_url( $plugin, $page, $action, $args = array() 
     return '?' . http_build_query( $args );
 }
 
-function factory_fr108_action_url( $plugin, $page, $action, $args = array() ) {
-    echo factory_fr108_get_action_url( $plugin, $page, $action, $args );
+function factory_fr110_action_url( $plugin, $page, $action, $args = array() ) {
+    echo factory_fr110_get_action_url( $plugin, $page, $action, $args );
 }
