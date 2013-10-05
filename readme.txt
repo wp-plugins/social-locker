@@ -73,9 +73,9 @@ The section is empty at the moment.
 == Changelog ==
 
 = 2.2.7 - 5 Oct 2013 =
-IMPROVED: Performance optimization. 
-IMPROVED: Added several new internal hints and tips. 
-FIXED: A bug of not being able to activate a license key manually. 
+IMPROVED: Performance optimization.  
+IMPROVED: Added several new internal hints and tips.  
+FIXED: A bug of not being able to activate a license key manually.  
 
 = 2.2.4 - 1 Sep 2013 =
 FIXED: A bug when the locker doesn't show content after liking because the URL for liking doesn't have a traling slash.  
