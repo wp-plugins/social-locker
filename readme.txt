@@ -61,23 +61,23 @@ Use the shortcode **\[sociallocker\]** *your content* **\[/sociallocker\]** in p
 
 == Frequently Asked Questions ==
 
-= What differences between the free, premium and trial versions? =
-
-The free version allows:
-- To lock any part of the post content behind the Social Locker that will ask people to pay for your content with a tweet, plus one, or a like.
-- To set messages for the locker that people will see instead of the content
-- To view social impact by using the built-in statistics tools
-
-The premium version allows:
+= What differences between the free, premium and trial versions? =  
+  
+The free version allows:  
+- To lock any part of the post content behind the Social Locker that will ask people to pay for your content with a tweet, plus one, or a like.  
+- To set messages for the locker that people will see instead of the content  
+- To view social impact by using the built-in statistics tools  
+  
+The premium version allows:  
 - To do the same things as the free version  
-- To set a separate URL for each social button.
+- To set a separate URL for each social button.  
 For example, you can set an URL to like for your Facebook Page (in order to send likes to your Facebook page and make users subscribers), set an URL to tweet for current page and set an URL to plus one for main page in order to increase your site SEO scores.
-- To choose one of 3 locker styles (Secrets, Dandyish and Glass) that will be more suitable for your site style.
-- To set visibility options for your lockers. For example, you can hide lockers and reveal locked content automatically for registered users.
-- To use  advanced features like the Countdown Timer, the Close Icon, the Ajax option and more.
-<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" target="_blank" >Lean more about the premium version</a>
-
-The trial version is the exactly same like the premium version but works within 7 days.
+- To choose one of 3 locker styles (Secrets, Dandyish and Glass) that will be more suitable for your site style.  
+- To set visibility options for your lockers. For example, you can hide lockers and reveal locked content automatically for registered users.  
+- To use  advanced features like the Countdown Timer, the Close Icon, the Ajax option and more.  
+<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" target="_blank" >Lean more about the premium version</a>  
+  
+The trial version is the exactly same like the premium version but works within 7 days.  
 
 == Screenshots ==
 
