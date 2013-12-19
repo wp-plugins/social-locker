@@ -61,7 +61,7 @@ Use the shortcode **\[sociallocker\]** *your content* **\[/sociallocker\]** in p
 
 == Frequently Asked Questions ==
 
-= What differences between the free, premium and trial versions? =  
+<strong>What differences between the free, premium and trial versions?</strong>  
   
 The free version allows:  
 - To lock any part of the post content behind the Social Locker that will ask people to pay for your content with a tweet, plus one, or a like.  
