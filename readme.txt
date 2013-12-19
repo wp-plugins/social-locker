@@ -7,7 +7,7 @@ Tested up to: 3.8.0
 Stable tag: trunk
 License: GPLv2
 
-Social Locker is a plugin designed to help increase social media presence by asking visitors to pay for your content with a tweet, plus one, or a like.
+Helps increase social media presence by asking visitors to pay for your content with a tweet, plus one, or a like.
 
 == Description ==
 
