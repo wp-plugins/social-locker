@@ -48,7 +48,7 @@ $sociallocker = new Factory300_Plugin(__FILE__, array(
     'api'       => 'http://api.byonepress.com/1.1/',
     'premium'   => 'http://codecanyon.net/item/social-locker-for-wordpress/3667715/?ref=OnePress',
     'updates'   => ONP_SL_PLUGIN_DIR . '/includes/updates/',
-    'tracker'   => /*@var:tracker*/'0900124461779baebd4e030b813535ac'/*@*/,
+    'tracker'   => /*@var:tracker*/'0ec2f14c9e007ba464c230b3ddd98384'/*@*/,
 ));
 
 // loading other files
