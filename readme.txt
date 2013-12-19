@@ -96,10 +96,6 @@ FIXED: A lot of minor bugs.
 
 <strong>Important:</strong> if you use CDN, please refresh files on your CDN server after installing the update.
 
-IMPROVED: Performance optimization.  
-IMPROVED: Added several new internal hints and tips.  
-FIXED: A bug of not being able to activate a license key manually. 
-
 = 2.2.7 - 5 Oct 2013 =
 IMPROVED: Performance optimization.  
 IMPROVED: Added several new internal hints and tips.  
