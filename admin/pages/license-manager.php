@@ -4,7 +4,7 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class SocialLockerPluginManagerAdminPage extends OnePressFR110LicenseManagerAdminPage  {
+class OnpSL_LicenseManagerPage extends OnpLicensing300_LicenseManagerPage  {
  
     public $purchaseUrl = 'http://codecanyon.net/item/social-locker-for-wordpress/3667715/?ref=OnePress';
     public $purchasePrice = '$21';
@@ -16,4 +16,4 @@ class SocialLockerPluginManagerAdminPage extends OnePressFR110LicenseManagerAdmi
     }
 }
 
-$socialLocker->registerPage('SocialLockerPluginManagerAdminPage');
+FactoryPages300::register($sociallocker, 'OnpSL_LicenseManagerPage');

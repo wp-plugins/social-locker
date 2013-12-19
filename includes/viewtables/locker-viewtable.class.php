@@ -1,30 +1,26 @@
 <?php
 
-class SocialLockerViewTable extends FactoryFR110ViewTable
+class SocialLockerViewTable extends FactoryViewtables300_Viewtable
 {
-    public function configure( 
-            FactoryFR110ViewTable $table,
-            FactoryFR110ScriptList $scripts, 
-            FactoryFR110StyleList $styles )
+    public function configure()
     {
         /**
          * Columns
          */
         
-        $columns = $table->columns;
-        
-        $columns->clear();
-        $columns->add('title', 'Title');
-        $columns->add('shortcode', 'Shortcode'); 
-        $columns->add('theme', 'Theme');
-        $columns->add('created', 'Created');
+        $this->columns->clear();
+        $this->columns->add('title', 'Title');
+        $this->columns->add('shortcode', 'Shortcode'); 
+        $this->columns->add('bulk', 'Bulk Locking');   
+        $this->columns->add('theme', 'Theme');
+        $this->columns->add('created', 'Created');
         
         /**
          * Scripts & styles
          */
                 
-        $scripts->add('~/admin/js/locker-table.020006.js');       
-        $styles->add('~/admin/css/locker-table.020006.css');
+        $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.viewtable.030000.js');       
+        $this->styles->add(ONP_SL_PLUGIN_URL . '/assets//admin/css/sociallocker.viewtable.030000.css');
     }
     
     /**
@@ -63,6 +59,17 @@ class SocialLockerViewTable extends FactoryFR110ViewTable
             <?php  
             
         }
+    }
+    
+    /**
+     * Column 'Shortcode'
+     */ 
+    public function columnBulk( $post, $isFullMode ) {
+        ?>
+        <div class='onp-sl-inner-wrap'>
+            <?php echo onp_sl_print_bulk_locking_state( $post->ID ); ?>
+        </div>
+        <?php
     }
     
     /**
@@ -108,5 +115,3 @@ class SocialLockerViewTable extends FactoryFR110ViewTable
         echo '<abbr title="' . esc_attr( $t_time ) . '">' . $h_time . '</abbr><br />';
     }
 }
-
-$socialLocker->registerViewtable('SocialLockerViewTable');

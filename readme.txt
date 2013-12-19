@@ -3,11 +3,11 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.6.1
+Tested up to: 3.8.0
 Stable tag: trunk
 License: GPLv2
 
-Adds a set of very crafty social buttons on your site (Facebook, Twitter, Google). Give people a reason why they need to click the social buttons!
+Social Locker is a plugin designed to help increase social media presence by asking visitors to pay for your content with a tweet, plus one, or a like.
 
 == Description ==
 
@@ -61,7 +61,23 @@ Use the shortcode **\[sociallocker\]** *your content* **\[/sociallocker\]** in p
 
 == Frequently Asked Questions ==
 
-The section is empty at the moment.
+= What differences between the free, premium and trial versions? =
+
+The free version allows:
+- To lock any part of the post content behind the Social Locker that will ask people to pay for your content with a tweet, plus one, or a like.
+- To set messages for the locker that people will see instead of the content
+- To view social impact by using the built-in statistics tools
+
+The premium version allows:
+- To do the same things as the free version  
+- To set a separate URL for each social button.
+For example, you can set an URL to like for your Facebook Page (in order to send likes to your Facebook page and make users subscribers), set an URL to tweet for current page and set an URL to plus one for main page in order to increase your site SEO scores.
+- To choose one of 3 locker styles (Secrets, Dandyish and Glass) that will be more suitable for your site style.
+- To set visibility options for your lockers. For example, you can hide lockers and reveal locked content automatically for registered users.
+- To use  advanced features like the Countdown Timer, the Close Icon, the Ajax option and more.
+<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" target="_blank" >Lean more about the premium version</a>
+
+The trial version is the exactly same like the premium version but works within 7 days.
 
 == Screenshots ==
 
@@ -71,6 +87,18 @@ The section is empty at the moment.
 4. Created Lockers
 
 == Changelog ==
+
+= 3.0.0 - 19 Dec 2013 =
+NEW: The Bulk Locking Option that allows to apply a locker shortcode to all posts automatically by using 3 different modes (Skip & Lock, More Tag, CSS Selector).  
+NEW: The Lock Delay Option that shows the locker only in posts older than specified age.  
+NEW: User interface fully compatible with the recently released WP 3.8.  
+FIXED: A lot of minor bugs.  
+
+<strong>Important:</strong> if you use CDN, please refresh files on your CDN server after installing the update.
+
+IMPROVED: Performance optimization.  
+IMPROVED: Added several new internal hints and tips.  
+FIXED: A bug of not being able to activate a license key manually. 
 
 = 2.2.7 - 5 Oct 2013 =
 IMPROVED: Performance optimization.  

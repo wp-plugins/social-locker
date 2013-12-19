@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockerActivate extends OnePressFR110Activation {
+class OnpSL_Activation extends OnpLicensing300_Activator {
     
     public function activate() {
         parent::activate();
@@ -14,7 +14,7 @@ class SocialLockerActivate extends OnePressFR110Activation {
         // pages and posts
         
         $baseLockerInfo = $this->addPost(
-            'default_sociallocker_locker_id',
+            'onp_sl_default_locker_id',
             array(
                 'post_type' => 'social-locker',
                 'post_title' => 'Default Locker',
@@ -24,9 +24,9 @@ class SocialLockerActivate extends OnePressFR110Activation {
                 'sociallocker_text_header' => 'This content is locked!',       
                 'sociallocker_text_message' => 'Please support us, use one of the buttons below to unlock the content.',
                 'sociallocker_style' => 'secrets',
-                'sociallocker_mobile' => true,          
-                'sociallocker_highlight' => true,                   
-                'sociallocker_is_system' => true,
+                'sociallocker_mobile' => 1,          
+                'sociallocker_highlight' => 1,                   
+                'sociallocker_is_system' => 1,
                 'sociallocker_is_default' => 'block'
             )
         );
@@ -62,4 +62,4 @@ class SocialLockerActivate extends OnePressFR110Activation {
     } 
 }
 
-$socialLocker->registerActivation('SocialLockerActivate');
+$sociallocker->registerActivation('OnpSL_Activation');

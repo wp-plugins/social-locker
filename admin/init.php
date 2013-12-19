@@ -1,42 +1,44 @@
 <?php
 
 // actiovation
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/activation.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/activation.php');
 
 // metaboxes
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/sociallocker-basic-options.php');
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/sociallocker-support.php');
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/socialocker-preview.php');
-    include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/metaboxes/sociallocker-more-features.php');
+include_once(ONP_SL_PLUGIN_DIR . '/includes/metaboxes/basic-options.php');
+include_once(ONP_SL_PLUGIN_DIR . '/includes/metaboxes/preview.php');
+include_once(ONP_SL_PLUGIN_DIR . '/includes/metaboxes/manual-locking.php');
+include_once(ONP_SL_PLUGIN_DIR . '/includes/metaboxes/bulk-locking.php');
+    include_once(ONP_SL_PLUGIN_DIR . '/includes/metaboxes/more-features.php');
 
 
 
 // view tables
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/includes/viewtables/locker-viewtable.class.php');
+include_once(ONP_SL_PLUGIN_DIR . '/includes/viewtables/locker-viewtable.class.php');
 
 // pages and ajax calls
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/common-settings.php');
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/unlocking-statistics.php');
-    include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/pages/license-manager.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/common-settings.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/statistics.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/preview.php');
+    include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/license-manager.php');
 
 
 
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/tracking.php');
-include_once(SOCIALLOCKER_PLUGIN_ROOT . '/admin/ajax/shortcode.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/ajax/tracking.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/ajax/shortcode.php');
 
 
 /**
  * Adds scripts and styles in the admin area.
  */
 function sociallocker_admin_assets() {
-    global $socialLocker;
+    global $sociallocker;
     
-    if ( $socialLocker->license && !$socialLocker->license->hasKey() ) {     
-        if ( $socialLocker->license->default['Build'] == 'premium' ) {
+    if ( $sociallocker->license && !$sociallocker->license->hasKey() ) {     
+        if ( $sociallocker->license->default['Build'] == 'premium' ) {
         ?>
         <style>
-            .onp-notice.sociallocker-next.onp-offer {  
-                background: #e9ebee url("<?php echo SOCIALLOCKER_PLUGIN_URL . '/assets/admin/img/offer-background-color.png' ?>");
+            .factory-notices-300-notice.sociallocker-next.factory-offer {  
+                background: #e9ebee url("<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/offer-background-color.png' ?>");
                 color: #262729;
                 -webkit-text-shadow: none;
                 -moz-text-shadow: none;
@@ -44,23 +46,22 @@ function sociallocker_admin_assets() {
                 border-color: #bbbbbb;
                 padding: 10px;
             }
-            .onp-notice.sociallocker-next.onp-offer .onp-message-container a {
+            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-message-container a {
                 color: #262729;
             }
-            .onp-notice.sociallocker-next.onp-offer .onp-notice-button-primary {
+            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-button-primary {
                 background: #5672ad;
                 border: 1px solid #2e3847;
                 color: #fff;
             }
-            .onp-notice.sociallocker-next.onp-offer .highlighted {
+            .factory-notices-300-notice.sociallocker-next.factory-offer .highlighted {
                 background-color: rgba(0,0,0,0.05);
             }
-
-            .onp-notice.sociallocker-next .onp-notice-inner-wrap {
+            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-inner-wrap {
                 padding-left: 90px !important;
-                background: url("<?php echo SOCIALLOCKER_PLUGIN_URL . '/assets/admin/img/offer-logo.png' ?>") 5px 5px no-repeat;
+                background: url("<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/offer-logo.png' ?>") 5px center no-repeat;
             }
-            .onp-notice.sociallocker-next.onp-offer .onp-notice-buttons {
+            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-buttons {
                 bottom: 15px;
             }
         </style>
@@ -70,41 +71,18 @@ function sociallocker_admin_assets() {
 }
 add_action('admin_enqueue_scripts', 'sociallocker_admin_assets');
 
-add_action('admin_menu', 'sociallocker_admin_menu');
-function sociallocker_admin_menu() {
-
-    if ( current_user_can('edit_social-locker') ) {
-  
-        add_submenu_page( 
-            'edit.php?post_type=social-locker', 
-            'Settings', 
-            'Common Settings', 
-            'manage_options', 
-            'sociallocker_settings', 
-            'sociallocker_settings' );
-
-
-        add_submenu_page( 
-            'edit.php?post_type=social-locker', 
-            'Settings', 
-            'Usage Statistics', 
-            'manage_options', 
-            'sociallocker_statistics', 
-            'sociallocker_statistics' );  
-
-    }  
-}
-
 add_filter('mce_buttons', 'sociallocker_register_button'); 
 add_filter('mce_external_plugins', 'sociallocker_add_plugin'); 
 
 function sociallocker_register_button($buttons) {  
+   if ( !current_user_can('edit_social-locker') ) return $buttons;
    array_push($buttons, "sociallocker");
    return $buttons;  
 }  
 
 function sociallocker_add_plugin($plugin_array) {  
-   $plugin_array['sociallocker'] = SOCIALLOCKER_PLUGIN_URL . '/assets/admin/js/sociallocker.tinymce.js';  
+   if ( !current_user_can('edit_social-locker') ) return $plugin_array;
+   $plugin_array['sociallocker'] = ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.tinymce.js';  
    return $plugin_array;  
 }  
     
