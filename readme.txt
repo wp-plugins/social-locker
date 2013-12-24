@@ -88,6 +88,12 @@ The trial version is the exactly same like the premium version but works within 
 
 == Changelog ==
 
+<strong>v.3.0.2 - 24 Dev 2013</strong><br />
+<ul>
+<li>FIXED: The Asset Manager fatal error that occurs on some websites.</li>
+<li>FIXED: The bug when lockers appears every time when page is loaded if they were unlocked already.</li>
+</ul>
+
 = 3.0.0 - 19 Dec 2013 =
 NEW: The Bulk Locking Option that allows to apply a locker shortcode to all posts automatically by using 3 different modes (Skip & Lock, More Tag, CSS Selector).  
 NEW: The Lock Delay Option that shows the locker only in posts older than specified age.  

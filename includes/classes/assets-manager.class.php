@@ -339,10 +339,20 @@ class OnpSL_AssetsManager {
             if ( $item === 'true' ) {
                 $params[$key] = true;
                 continue;
-            }            
+            }      
+            
+            if ( $item === '1' ) {
+                $params[$key] = 1;
+                continue;
+            }  
 
             if ( $item === 'false' ) {
                 $params[$key] = false;
+                continue;
+            }   
+            
+            if ( $item === '0' ) {
+                $params[$key] = 0;
                 continue;
             }               
 
@@ -558,4 +568,4 @@ class OnpSL_AssetsManager {
     }
 }
 
-add_action('wp', 'OnpSL_AssetsManager::init');
+if ( !is_admin() ) add_action('wp', 'OnpSL_AssetsManager::init');

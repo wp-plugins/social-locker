@@ -7355,6 +7355,11 @@ html .factory-bootstrap-300  {
   border-bottom: 2px solid #b23e3a;
 }
 
+.factory-bootstrap-300 .alert-error a,
+.factory-bootstrap-300 .alert-danger a {
+  color: #fff;
+}
+
 .factory-bootstrap-300 .progress {
   background-image: -webkit-linear-gradient(top, #ebebeb 0%, #f5f5f5 100%);
   background-image: linear-gradient(to bottom, #ebebeb 0%, #f5f5f5 100%);

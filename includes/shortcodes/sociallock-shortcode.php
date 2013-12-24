@@ -27,6 +27,7 @@ class OnpSL_Shortcode extends FactoryShortcodes300_Shortcode {
      * The method is called separate from the Render method during shortcode registration.
      */
     public function assets( $fromBody = false, $fromHook = false ) {
+        if ( is_admin() ) return;
         OnpSL_AssetsManager::requestAssets( $fromBody, $fromHook );
     }
     
