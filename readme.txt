@@ -7,7 +7,7 @@ Tested up to: 3.8.0
 Stable tag: trunk
 License: GPLv2
 
-Helps increase social media presence by asking visitors to pay for your content with a tweet, plus one, or a like.
+Helps increase social media presence by asking visitors "to pay" for your content with a tweet, plus one, or a like.
 
 == Description ==
 
@@ -61,14 +61,14 @@ Use the shortcode **\[sociallocker\]** *your content* **\[/sociallocker\]** in p
 
 == Frequently Asked Questions ==
 
-<strong>What differences between the free, premium and trial versions?</strong>  
+= What differences between the free, premium and trial versions? = 
   
-The free version allows:  
-- To lock any part of the post content behind the Social Locker that will ask people to pay for your content with a tweet, plus one, or a like.  
+<strong>The free version allows:</strong>  
+- To lock any part of the post content behind the Social Locker that will ask people "to pay" for your content with a tweet, plus one, or a like.  
 - To set messages for the locker that people will see instead of the content  
 - To view social impact by using the built-in statistics tools  
   
-The premium version allows:  
+<strong>The premium version allows:</strong>  
 - To do the same things as the free version  
 - To set a separate URL for each social button.  
 For example, you can set an URL to like for your Facebook Page (in order to send likes to your Facebook page and make users subscribers), set an URL to tweet for current page and set an URL to plus one for main page in order to increase your site SEO scores.
@@ -77,7 +77,7 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 - To use  advanced features like the Countdown Timer, the Close Icon, the Ajax option and more.  
 <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" target="_blank" >Lean more about the premium version</a>  
   
-The trial version is the exactly same like the premium version but works within 7 days.  
+<strong>The trial version is the exactly same like the premium version but works within 7 days.</strong>    
 
 == Screenshots ==
 
