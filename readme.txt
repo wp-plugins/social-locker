@@ -88,24 +88,28 @@ The trial version is the exactly same like the premium version but works within 
 
 == Changelog ==
 
-<strong>v.3.0.2 - 24 Dev 2013</strong><br />
+<strong>v.3.0.2 - 24 Dec 2013</strong><br />
 <ul>
 <li>FIXED: The Asset Manager fatal error that occurs on some websites.</li>
-<li>FIXED: The bug when lockers appears every time when page is loaded if they were unlocked already.</li>
+<li>FIXED: The bug when lockers appear every time even if they were unlocked already.</li>
 </ul>
 
-= 3.0.0 - 19 Dec 2013 =
-NEW: The Bulk Locking Option that allows to apply a locker shortcode to all posts automatically by using 3 different modes (Skip & Lock, More Tag, CSS Selector).  
-NEW: The Lock Delay Option that shows the locker only in posts older than specified age.  
-NEW: User interface fully compatible with the recently released WP 3.8.  
-FIXED: A lot of minor bugs.  
+<strong>3.0.0 - 19 Dec 2013</strong><br />
+<ul>
+<li>NEW: The Bulk Locking Option that allows to apply a locker shortcode to all posts automatically by using 3 different modes (Skip & Lock, More Tag, CSS Selector).</li> 
+<li>NEW: The Lock Delay Option that shows the locker only in posts older than specified age.</li>
+<li>NEW: User interface fully compatible with the recently released WP 3.8.</li>
+<li>FIXED: A lot of minor bugs.</li>
+</ul>
 
 <strong>Important:</strong> if you use CDN, please refresh files on your CDN server after installing the update.
 
-= 2.2.7 - 5 Oct 2013 =
-IMPROVED: Performance optimization.  
-IMPROVED: Added several new internal hints and tips.  
-FIXED: A bug of not being able to activate a license key manually.  
+<strong>2.2.7 - 5 Oct 2013</strong><br />
+<ul>
+<li>IMPROVED: Performance optimization.</li>
+<li>IMPROVED: Added several new internal hints and tips.</li>
+<li>FIXED: A bug of not being able to activate a license key manually.</li>
+</ul>
 
 = 2.2.4 - 1 Sep 2013 =
 FIXED: A bug when the locker doesn't show content after liking because the URL for liking doesn't have a traling slash.  
