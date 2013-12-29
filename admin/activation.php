@@ -21,8 +21,8 @@ class OnpSL_Activation extends OnpLicensing300_Activator {
                 'post_name' => 'default_sociallocker_locker'
             ),
             array(
-                'sociallocker_text_header' => 'This content is locked!',       
-                'sociallocker_text_message' => 'Please support us, use one of the buttons below to unlock the content.',
+                'sociallocker_header' => 'This content is locked!',       
+                'sociallocker_message' => 'Please support us, use one of the buttons below to unlock the content.',
                 'sociallocker_style' => 'secrets',
                 'sociallocker_mobile' => 1,          
                 'sociallocker_highlight' => 1,                   

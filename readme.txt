@@ -88,6 +88,17 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.0.5 - 30 Dec 2013</strong><br />
+<ul>
+<li>IMPROVED: Images of the plugin were put into a sprite (a single image). Using image sprites reduces the number of server requests and saves bandwidth.</li>
+<li>IMPROVED: The Facebook Share button was updated and became localizable.</li>
+<li>IMPROVED: Better support for IE 11.</li>
+<li>FIXED: A bug of impossibility to unlock content in IE 11.</li>
+<li>FIXED: A bug of the locker preview in the admin panel.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.0.2 - 24 Dec 2013</strong><br />
 <ul>
 <li>FIXED: The Asset Manager fatal error that occurs on some websites.</li>

@@ -27,7 +27,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
      * @since 1.0.0
      * @var string
      */
-    public $title = 'Bulk Locking';
+    public $title = 'Batch Locking';
     
     /**
      * The priority within the context where the boxes should show ('high', 'core', 'default' or 'low').
@@ -152,7 +152,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
   
         <div class="onp-sl-visibility-options-disabled" style="display: none;">
             <div class="alert alert-warning">
-                <?php _e( 'You set the the bulk locking based on CSS Selector. The visibility options don\'t support CSS selectors.', 'sociallocker') ?>
+                <?php _e( 'You set the the batch locking based on CSS Selector. The visibility options don\'t support CSS selectors.', 'sociallocker') ?>
             </div>
         </div>
         
@@ -169,14 +169,14 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
 
         <div class="factory-bootstrap-300 factory-fontawesome-300">
             <div class="onp-sl-description-section">
-                <?php _e('Bulk Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
+                <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
             <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
                 
                 <div class="onp-sl-empty-content">
-                    <span class="onp-sl-nolock"><?php _e('No bulk locking') ?></span>
+                    <span class="onp-sl-nolock"><?php _e('No batch lock') ?></span>
                     <a class="btn btn-default" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="modal">
-                        <i class="fa fa-cog"></i> <?php _e('Setup Bulk Lock', 'sociallocker') ?>
+                        <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'sociallocker') ?>
                     </a>
                 </div>
                 
@@ -220,7 +220,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                             <i class="fa fa-times-circle"></i> <?php _e('Cancel', 'sociallocker') ?>
                         </a>
                         <a class="btn btn-primary onp-sl-setup-bulk-locking" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="modal">
-                            <i class="fa fa-cog"></i> <?php _e('Setup Bulk Lock', 'sociallocker') ?>
+                            <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'sociallocker') ?>
                         </a>
                     </div>
                 </div> 
@@ -236,7 +236,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel"><?php _e('Select a way of bulk locking') ?></h4>
+                    <h4 class="modal-title" id="myModalLabel"><?php _e('Select Way Of Batch Locking') ?></h4>
                   </div>
                   <div class="modal-body">
                       
@@ -283,7 +283,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                                     <div class='onp-sl-post-types'>
                                         <strong>Posts types to lock</strong>
                                         <div class="help-block">
-                                            <?php _e('Choose post types for bulk locking.', 'sociallocker') ?>
+                                            <?php _e('Choose post types for batch locking.', 'sociallocker') ?>
                                         </div>
                                         <ul>
                                         <?php foreach($types as $type) {?>
@@ -355,7 +355,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                                 <div class='onp-sl-post-types'>
                                     <strong>Posts types to lock</strong>
                                     <div class="help-block">
-                                        <?php _e('Choose post types for bulk locking.', 'sociallocker') ?>
+                                        <?php _e('Choose post types for batch locking.', 'sociallocker') ?>
                                     </div>
                                     <ul>
                                     <?php foreach($types as $type) {?>

@@ -140,12 +140,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030000.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030005.min.css'
         );  
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030000.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030005.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
@@ -267,16 +267,16 @@ class OnpSL_AssetsManager {
             $params['twitter']['tweet']['text'] = str_replace('[post_title]', $postTitle, $params['twitter']['tweet']['text']);
         }
 
-        if ( !empty($params['text'] ) ) {
-            $params['text'] = str_replace('[post_title]', $postTitle, $params['text']);
-            $params['text'] = str_replace('[post_url]', $postUrl, $params['text']);  
-        }
-
-        if (empty( $params['text']['header'] )) {
-            $params['text'] = $params['text']['message'];
+        if ( !empty( $params['text']['message'] ) ) {
+            $params['text']['message'] = str_replace('[post_title]', $postTitle, $params['text']['message']);
+            $params['text']['message'] = str_replace('[post_url]', $postUrl, $params['text']['message']);  
         }
 
         self::_normilizeLockerOptions( $params );
+        
+        if ( !isset($params['text']['header']) ) $params['text']['header'] = '';
+        if ( !isset($params['text']['message']) ) $params['text']['message'] = '';  
+        
         $lockData['options'] = $params;
 
         return $lockData;

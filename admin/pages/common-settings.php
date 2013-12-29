@@ -233,8 +233,9 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
                 <?php $form->html(); ?>
                 </div>
                     
-                <div class="form-actions form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                <div class="form-group form-horizontal">
+                    <label class="col-sm-2 control-label"> </label>
+                    <div class="control-group controls col-sm-10">
                     <input name="save-action" class="btn btn-primary" type="submit" value="Save changes"/>
                     </div>
                 </div>

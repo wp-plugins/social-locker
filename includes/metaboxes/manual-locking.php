@@ -27,7 +27,7 @@ class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes300_Metabox
      * @since 1.0.0
      * @var string
      */
-    public $title = 'Manual Locking';
+    public $title = 'Manual Locking <i>(recommended)</i>';
     
     /**
      * The priority within the context where the boxes should show ('high', 'core', 'default' or 'low').
@@ -71,7 +71,7 @@ class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes300_Metabox
         ?>
         <div class="factory-bootstrap-300 factory-fontawesome-300">
            <p class="onp-sl-description-section">
-               <?php _e('Wrap content you want to lock via following shortcode in your post editor:') ?>
+               <?php _e('Wrap content you want to lock via the following shortcode in your post editor:') ?>
                <input class="onp-sl-shortcode" type="text" value='<?php echo $shortcode ?>' />
            </p>
         </div>
