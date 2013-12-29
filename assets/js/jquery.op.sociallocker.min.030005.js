@@ -243,10 +243,8 @@ var URL=function(){var a=this;return a&&a.hasOwnProperty&&a instanceof URL||(a=n
         }
 
         if ( data.postId && data.tracking ) {
-            if ( !options.events ) options.events = {};
-
-            options.events.unlock = function(sender, senderName){
-                if ( $.inArray(sender, ['cross', 'button', 'timer']) == -1 ) return;
+            $target.on('unlock.sociallocker.onp', function(e, sender, senderName){
+                if ( $.inArray(sender, ['cross', 'button', 'timer']) === -1 ) return;
 
                 $.ajax({ url: data.ajaxUrl, type: 'POST', data: {
                     action: 'sociallocker_tracking',
@@ -255,7 +253,7 @@ var URL=function(){var a=this;return a&&a.hasOwnProperty&&a instanceof URL||(a=n
                     senderName: senderName
                     }
                 });
-            }
+            });
         }
 
         $target.removeClass("onp-sociallocker-call");
