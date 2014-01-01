@@ -91,7 +91,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <strong>v.3.0.6 - 2 Jan 2014</strong><br />
 <ul>
 <li>IMPROVED: Unlocking content after clicking the Like button got more quickly.</li>
-<li>FIXED: A minor bug of vertical alignment of the Facebook Share button.</li>
 </ul>
 
 <strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
