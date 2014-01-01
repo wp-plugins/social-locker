@@ -4,7 +4,7 @@ Plugin Name: OnePress Social Locker
 Plugin URI: http://onepress-media.com/plugin/social-locker-for-wordpress/get
 Description: Social Locker is a set of social buttons and a locker in one bottle. <strong>Give people a reason</strong> why they need to click your social buttons. Ask people to “pay” with a Like/Tweet/+1 to get access to your content, to get discount, to download, to watch a video, to view a funny picture or so. And it will help you to get more likes/tweets/+1s, traffic and customers!
 Author: OnePress
-Version: 3.0.5
+Version: 3.0.6
 Author URI: http://onepress-media.com/portfolio
 */
 
@@ -43,7 +43,7 @@ global $sociallocker;
 $sociallocker = new Factory300_Plugin(__FILE__, array(
     'name'      => 'sociallocker-next',
     'title'     => 'Social Locker',
-    'version'   => '3.0.5',
+    'version'   => '3.0.6',
     'assembly'  => 'free',
     'api'       => 'http://api.byonepress.com/1.1/',
     'premium'   => 'http://codecanyon.net/item/social-locker-for-wordpress/3667715/?ref=OnePress',

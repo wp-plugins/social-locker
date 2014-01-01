@@ -86,8 +86,8 @@
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.core.min.js"></script>     
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect.min.js"></script>
          <script type="text/javascript" src="./../../../../wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js"></script>
-         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.030005.js"></script>
-         <link rel="stylesheet" type="text/css" href="./../assets/css/jquery.op.sociallocker.030005.min.css">  
+         <script type="text/javascript" src="./../assets/js/jquery.op.sociallocker.min.030006.js"></script>
+         <link rel="stylesheet" type="text/css" href="./../assets/css/jquery.op.sociallocker.030006.min.css">  
          
          <script>
              function alertSize() {

@@ -140,12 +140,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030005.min.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030006.min.css'
         );  
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030005.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030006.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
