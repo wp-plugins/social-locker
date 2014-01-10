@@ -98,8 +98,8 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/json2.js');
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/preview.030000.js');
-        $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030006.js')->request('jquery-ui-sortable');       
-        $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030006.css');
+        $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030008.js')->request('jquery-ui-sortable');       
+        $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030008.css');
             $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/jquery.qtip.min.js');       
             $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/jquery.qtip.min.css');
         

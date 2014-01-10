@@ -59,8 +59,11 @@ class FactoryForms300_Bootstrap3FormLayout extends FactoryForms300_FormLayout {
         
         $themeClass = '';
         if ( isset($control->options['theme']) ) $themeClass = $control->options['theme'];
+        
+        $controlName = $control->getName();
+        $controlNameClass = $controlName ? 'factory-control-' . $controlName : '';
     ?>
-    <div class="form-group <?php echo $themeClass ?>">
+    <div class="form-group <?php echo $themeClass ?> <?php echo $controlNameClass ?>">
         <label for="<?php $control->printNameOnForm() ?>" class="col-sm-2 control-label">
             <?php if ( $control->hasIcon() ) { ?>
             <img class="control-icon" src="<?php $control->icon() ?>" />

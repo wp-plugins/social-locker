@@ -164,12 +164,15 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
                 'hint'      => 'Choose the language that will be used for social buttons.'
             ),
             array(
-                'type'      => 'checkbox',
-                'name'      => 'tracking',
-                'title'     => __( 'Tracking', 'sociallocker' ),
-                'data'      => $this->languages,
-                'hint'      => 'Allows to track of unlocking events on your site and provides statistics.'
+                'type' => 'separator'
             ),
+            array(
+                'type'      => 'checkbox',
+                'name'      => 'interrelation',
+                'title'     => 'Interrelation',
+                'hint'      => 'Set On to make lockers interrelated. When any interrelated locker on your site is unlocked, the rest others will be unlocked too.<br />If Off, only lockers having the same URLs to like/tweet/+1/share will be unlocked.',
+                'default'   => false
+            ),   
             array(
                 'type' => 'separator'
             ),
@@ -178,7 +181,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
                 'name'      => 'dynamic_theme',
                 'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
                 'data'      => $this->languages,
-                'hint'      => 'If your theme loads pages dynamically via ajax, say "yes" to get the lockers working.'
+                'hint'      => 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working.'
             ),
             array(
                 'type'      => 'div',
@@ -202,6 +205,30 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
                 'type' => 'separator'
             ),
             array(
+                'type'      => 'html',
+                'html'      => array($this, 'statsHtml')
+            ),
+            array(
+                'type'      => 'checkbox',
+                'name'      => 'tracking',
+                'title'     => __( 'Tracking', 'sociallocker' ),
+                'data'      => $this->languages,
+                'hint'      => 'Track how users interact with lockers placed on pages of your site. Makes the statistical data available.'
+            ),
+            array(
+                'type' => 'separator'
+            ),  
+            array(
+                'type'      => 'checkbox',
+                'name'      => 'rss',
+                'title'     => 'Content for RSS',
+                'hint'      => 'Set On to make locked content visible in the RSS feed.',
+                'default'   => false
+            ),
+            array(
+                'type' => 'separator'
+            ),
+            array(
                 'type'      => 'checkbox',
                 'name'      => 'debug',
                 'title'     => __( 'Debug', 'sociallocker' ),
@@ -217,8 +244,8 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
 
         ?>
         <div class="wrap ">
-            <h2>Common Settings</h2>
-            <p style="margin-top: 0px;">Common settings for all social lockers.</p>
+            <h2><?php _e('Common Settings', 'sociallocker') ?></h2>
+            <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
             <div class="factory-bootstrap-300">
             <form method="post" class="form-horizontal">
@@ -243,6 +270,85 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
             </form>
             </div>  
                 
+        </div>
+        <?php
+    }
+    
+    public function statsHtml() {
+        global $wpdb;
+        
+        $dataSizeInBytes = $wpdb->get_var(
+            "SELECT round(data_length + index_length) as 'size_in_bytes' FROM information_schema.TABLES WHERE " . 
+            "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
+        
+        $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
+        $humanDataSize = factory_300_get_human_filesize( $dataSizeInBytes );
+        
+        ?>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><?php _e('Statistical Data', 'sociallocker') ?></label>
+                <div class="control-group controls col-sm-10">
+                    <p class="onp-sl-inline">
+                        <?php if ( $count == 0 ) { ?>
+                        <?php printf( __( 'The statistical data is <strong>empty</strong>.', 'sociallocker' ), $humanDataSize ); ?>
+                        <?php } else { ?>
+                        <?php printf( __( 'The statistical data takes <strong>%s</strong> on your server', 'sociallocker' ), $humanDataSize ); ?>
+                        (<a href="<?php $this->actionUrl('clearStatsData') ?>"><?php _e('remove', 'sociallocker') ?></a>)
+                        <?php } ?>
+                    </p>
+                </div>
+            </div>
+        <?php
+    }
+    
+    /**
+     * Clears the table of scan results.
+     */
+    public function clearStatsDataAction() {
+        
+        if ( !isset( $_REQUEST['onp_confirmed'] ) ) {
+            return $this->confirm(array(
+                'title' => __('Are you sure that you want to clear the current statistical data?', 'wppolice'),
+                'description' => __('All the statistical data will be removed.', 'wppolice'),
+                'actions' => array(
+                    'onp_confirm' => array(
+                        'class' => 'btn btn-danger',
+                        'title' => __("Yes, I'm sure", 'wppolice'),
+                        'url' => $this->getActionUrl('clearStatsData', array(
+                            'onp_confirmed' => true
+                        ))
+                    ),
+                    'onp_cancel' => array(
+                        'class' => 'btn btn-default',
+                        'title' => __("No, return back", 'wppolice'),
+                        'url' => $this->getActionUrl('index')
+                    ),
+                )
+            ));
+        }
+        
+        global $wpdb;
+        $wpdb->query("DELETE FROM {$wpdb->prefix}so_tracking");
+        return $this->redirectToAction('index', array('onp_table_cleared' => true));
+    }
+    
+    /**
+     * Show a confirmation dialog.
+     */
+    public function confirm( $data ) {
+        ?>
+        <div class="onp-page-wrap factory-bootstrap-300" id="onp-confirm-dialog">
+            <div id="onp-confirm-dialog-wrap">
+                <h1><?php echo $data['title'] ?></h1>
+                <p><?php echo $data['description'] ?></p>
+                <div class='onp-actions'>
+                    <?php foreach( $data['actions'] as $action ) { ?>
+                        <a href='<?php echo $action['url'] ?>' class='<?php echo $action['class'] ?>'>
+                           <?php echo $action['title'] ?>
+                        </a>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
         <?php
     }

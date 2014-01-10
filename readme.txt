@@ -88,12 +88,22 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.0.8 - 10 Jan 2014</strong><br />
+<ul>
+<li>NEW: Added the Interrelation option. When set On, it makes lockers interrelated. When any interrelated locker on your site is unlocked, the rest others will be unlocked too. You can find this option on the Common Settings page.</li>
+<li>NEW: Added an ability to clear statistical data. You can find this option on the Common Settings page.</li>
+</ul>
+<ul>
+<li>FIXED: The bug that breaks lockers on using some complex configurations of the W3 Total Cache plugin.</li>
+<li>FIXED: The bug that shows incorrect statistical data on the Usage Statistics page.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.0.6 - 2 Jan 2014</strong><br />
 <ul>
 <li>IMPROVED: Unlocking content after clicking the Like button got more quickly.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.0.5 - 30 Dec 2013</strong><br />
 <ul>
@@ -103,8 +113,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>FIXED: A bug of impossibility to unlock content in IE 11.</li>
 <li>FIXED: A bug of the locker preview in the admin panel.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.0.2 - 24 Dec 2013</strong><br />
 <ul>
@@ -119,8 +127,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>NEW: User interface fully compatible with the recently released WP 3.8.</li>
 <li>FIXED: A lot of minor bugs.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please refresh files on your CDN server after installing the update.
 
 <strong>2.2.7 - 5 Oct 2013</strong><br />
 <ul>

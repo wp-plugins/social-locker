@@ -131,6 +131,10 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
 
         $types = get_post_types( array('public' => true), 'objects' );
 
+        // get interrelated option
+        $interrelated = get_option('sociallocker_interrelation', false);
+        $interrelatedClass = ( !$interrelated ) ? 'onp-sl-not-interrelation' : '';
+        
         ?>
         <script>
             if ( !window.onpsl ) window.onpsl = {};
@@ -225,7 +229,11 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                     </div>
                 </div> 
             </div>
-
+            
+            <div class="<?php echo $setupStateClass ?> <?php echo $interrelatedClass ?> onp-sl-interrelation-hint">
+                <?php _e('Recommended to turn on the Interrelation option on the <a target="_blank" href="./edit.php?post_type=social-locker&page=common-settings-sociallocker-next">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'sociallocker') ?>
+            </div>
+            
             <div class="onp-sl-after-change-hint">
                 <i class="fa fa-exclamation-triangle"></i>
                 <?php _e('Don\'t forget to apply made changes via the Update button above.', 'sociallocker') ?>

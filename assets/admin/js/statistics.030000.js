@@ -69,54 +69,63 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
         initButtonSelector: function() {
             var self = this;
             
-            // sets check boxes
-            var index, className, isActive;
+            var activeButtons = this.getPreSelectedButtons();
             
-            // default values
-            for(index in this.defaultButtons) {
-                className = this.defaultButtons[index];
-                $(".onp-sl-chart-item." + className).addClass('active');
-            }
-            
-            for(className in this.availableButtons) {
-                    
-                // the previous user selection
-                if ( window.localStorage ) {
+            for(var buttonName in this.availableButtons) {
+                var item = $(".onp-sl-chart-item." + buttonName);
                 
-                    isActive = localStorage.getItem('sociallocker-chart-' + className);
-                    var item = $(".onp-sl-chart-item." + className);
-                    
-                    if ( isActive ) {
-                        if ( isActive == "yes" ) { 
-                            item.addClass('active');
-                            $("#onp-sl-posts .col-" + className).show();
-                        }
-                        else { 
-                            item.removeClass('active');
-                            $("#onp-sl-posts .col-" + className).hide();
-                        }
-                    }
+                if ( $.inArray( buttonName, activeButtons ) > -1 ) {
+                    item.addClass('active');
+                    $("#onp-sl-posts .col-" + buttonName).show();
+                } else {
+                    item.removeClass('active');
+                    $("#onp-sl-posts .col-" + buttonName).hide();
                 }
                 
-                item.data('className', className);
-                    
-                // and the click event
-                item.click(function(){
-                    var className = $(this).data('className');
-                    
-                    if ( $(this).hasClass('active') ) {
-                        $(this).removeClass('active');
-                        $("#onp-sl-posts .col-" + className).hide();
-                        if ( window.localStorage ) localStorage.setItem('sociallocker-chart-' + className, "no");
-                    } else { 
-                        $(this).addClass('active');
-                        $("#onp-sl-posts .col-" + className).show();
-                        if ( window.localStorage ) localStorage.setItem('sociallocker-chart-' + className, "yes");
-                    }
-                    
-                    self.drawChart();
-                });
+                item.data('button', buttonName);
             }
+            
+            $(".onp-sl-chart-item").click(function(){
+                var buttonName = $(this).data("button");
+
+                if ( $(this).hasClass('active') ) {
+                    $(this).removeClass('active');
+                    $("#onp-sl-posts .col-" + buttonName).hide();
+                } else { 
+                    $(this).addClass('active');
+                    $("#onp-sl-posts .col-" + buttonName).show();
+                }
+                
+                self.savePreSelectedButtons();
+                self.drawChart();
+            });
+        },
+        
+        savePreSelectedButtons: function() {
+            if ( !window.localStorage ) return;
+            
+            var buttons = [];
+            $(".onp-sl-chart-item.active").each(function(){
+                var buttonName = $(this).data("button");
+                buttons.push(buttonName);
+            });
+            localStorage.setItem('onp-sl-chart-buttons', JSON.stringify(buttons) );
+        },
+        
+        getPreSelectedButtons: function() {
+            if ( !window.localStorage ) return this.defaultButtons;
+            
+            var buttons = localStorage.getItem( 'onp-sl-chart-buttons' );
+            if ( !buttons ) return this.defaultButtons;
+            
+            try {
+                buttons = JSON.parse( buttons );
+                if ( buttons.length === 0 ) return this.defaultButtons;
+            } catch(ex) {
+                return this.defaultButtons;
+            }
+            
+            return buttons;
         },
         
         /**
@@ -168,11 +177,10 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
          * Returns selected by user social buttons to show.
          */
         getActiveButtons: function() {
-            
             var result = [];
             var activeItems = $(".onp-sl-chart-item.active");
             activeItems.each(function(){
-                var className = $(this).data('className');
+                var className = $(this).data('button');
                 result.push(className);
             });
             return result;

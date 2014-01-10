@@ -177,6 +177,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                 },
                 
                 buttons: {
+                    counter: $("#sociallocker_show_counters").is(":checked"),
                     order: buttons ? buttons.split(",") : buttons
                 },
                 
@@ -186,7 +187,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                 },
                 
                 locker: {
-                    timer: ( !timer || timer == 0 ) ? null : timer,		
+                    timer: ( !timer || timer === 0 ) ? null : timer,		
                     close: $("#sociallocker_close").is(':checked'),
                     mobile: $("#sociallocker_mobile").is(':checked')
                 },
@@ -214,7 +215,8 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                         url: $("#sociallocker_twitter_tweet_url").val(),
                         text: $("#sociallocker_twitter_tweet_text").val(),
                         title: $("#sociallocker_twitter_tweet_title").val(),
-                        counturl: $("#sociallocker_twitter_tweet_counturl").val()
+                        counturl: $("#sociallocker_twitter_tweet_counturl").val(),
+                        via: $("#sociallocker_twitter_tweet_via").val()              
                     },
                     follow: {
                         url: $("#sociallocker_twitter_follow_url").val(),
@@ -358,6 +360,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                         .addClass("onp-sl-empty-state");
                 
                     self.wrap.addClass("onp-sl-changed"); 
+                    self.wrap.find(".onp-sl-interrelation-hint").removeClass("onp-sl-has-options-state");                     
                     self.wrap.find(".onp-sl-setup-section").fadeIn(500);
                 });
             },
@@ -483,6 +486,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
 
                     self.wrap.find(".onp-sl-setup-section").fadeIn(500);
                     self.wrap.addClass("onp-sl-changed");
+                    self.wrap.find(".onp-sl-interrelation-hint").addClass("onp-sl-has-options-state");                    
                 });
 
                 return false;
@@ -564,9 +568,18 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                         $("#onp-sl-lock-delay-options").hide().removeClass('hide');
                         $("#onp-sl-lock-delay-options").fadeIn();
                     } else {
-                        $("#onp-sl-lock-delay-options").fadeOut();
+                        $("#onp-sl-lock-delay-options").hide();
                     }
                 });
+                
+                $("#sociallocker_relock").change(function(){
+                    if ( $(this).is(":checked") ) {
+                        $("#onp-sl-relock-options").hide().removeClass('hide');
+                        $("#onp-sl-relock-options").fadeIn();
+                    } else {
+                        $("#onp-sl-relock-options").hide();
+                    }
+                });    
             }
         }
     };

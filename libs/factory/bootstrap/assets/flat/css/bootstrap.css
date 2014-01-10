@@ -2268,19 +2268,14 @@ html .factory-bootstrap-300  {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+.factory-bootstrap-300 .btn {
+    text-decoration: none;
+}
 
 .factory-bootstrap-300 .btn:hover,
 .factory-bootstrap-300 .btn:focus {
   color: #333333;
   text-decoration: none;
-}
-
-.factory-bootstrap-300 .btn:active,
-.factory-bootstrap-300 .btn.active {
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
 .factory-bootstrap-300 .btn.disabled,
@@ -7568,6 +7563,7 @@ html .factory-bootstrap-300  {
 
 .factory-bootstrap-300 .factory-tab {
     overflow: hidden;
+    margin-bottom: 25px;
 }
 .factory-bootstrap-300 .form-group {
     overflow: hidden;

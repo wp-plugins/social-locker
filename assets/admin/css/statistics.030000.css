@@ -100,10 +100,6 @@
     margin-bottom: 20px;
     margin-top: 20px;
 }
-.alert.alert-warning{
-    border-bottom: 2px solid #f5e79e !important;
-    border-radius: 0px !important;
-}
 
 /**
 * Charts selector

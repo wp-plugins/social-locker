@@ -21,8 +21,6 @@ class OnpSL_AssetsManager {
 
         if ( self::$_requested ) return;
         self::$_requested = true;
-        
-        add_action( 'wp_footer', 'OnpSL_AssetsManager::printCreaterScript', 9999 );
 
         if ( $fromBody || $fromHook ) {
             OnpSL_AssetsManager::connectAssets(); 
@@ -35,30 +33,6 @@ class OnpSL_AssetsManager {
         } else {
             add_action( 'wp_footer', 'OnpSL_AssetsManager::printFacebookScript', 1 );  
         }
-    }
-        
-    /**
-     * Prints a script that creates social lockers via css selectors
-     * 
-     * @since 1.0.0
-     * @return void
-     */
-    public static function printCreaterScript() {
-        if ( self::$_createrScriptPrinted ) return;
-        self::$_createrScriptPrinted = true;
-    ?>
-        <!-- 
-            Creater Script
-        
-            Created by the Social Locker plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/social-locker-for-wordpress/get
-        -->
-        <script>
-            (function($){ if ( window.onpsl && window.onpsl.lockers ) { window.onpsl.lockers(); } else 
-            { $(function(){ window.onpsl.lockers(); }); } })(jQuery);
-        </script>
-        <!-- / -->
-    <?php
     }
     
     /**
@@ -140,12 +114,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030006.min.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030008.min.css'
         );  
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030006.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030008.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
@@ -207,6 +181,8 @@ class OnpSL_AssetsManager {
                     
         $lockData['ajaxUrl'] = admin_url( 'admin-ajax.php' );
         $lockData['lockerId'] = $id;
+        
+        $hasScope = get_option('sociallocker_interrelation', false);
 
         // Check tracking request
 
@@ -230,6 +206,10 @@ class OnpSL_AssetsManager {
                 ),
 
                 'theme' => 'secrets',
+                
+                'locker' => array(
+                    'scope' => $hasScope ? 'global' : ''
+                ),
 
                 'facebook' => array(
                     'url' => $url,
@@ -316,7 +296,7 @@ class OnpSL_AssetsManager {
         $options = self::getLockerOptions($lockerId);
         $value = isset( $options['sociallocker_' . $name] ) ? $options['sociallocker_' . $name] : null;
 
-        return empty( $value ) 
+        return ($value === null || $value === '')
             ? $default 
             : ( $isArray ? maybe_unserialize($value) : stripslashes( $value ) ); 
     }
