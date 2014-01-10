@@ -177,7 +177,9 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                 },
                 
                 buttons: {
-                    counter: $("#sociallocker_show_counters").is(":checked"),
+                    counter: ( $("#sociallocker_show_counters").length === 1 ) 
+                                ? $("#sociallocker_show_counters").is(':checked') 
+                                : true,
                     order: buttons ? buttons.split(",") : buttons
                 },
                 

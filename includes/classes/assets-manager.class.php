@@ -208,7 +208,8 @@ class OnpSL_AssetsManager {
                 'theme' => 'secrets',
                 
                 'locker' => array(
-                    'scope' => $hasScope ? 'global' : ''
+                    'scope' => $hasScope ? 'global' : '',
+                    'counter' => self::getLockerOption($id, 'show_counters', false, 1)
                 ),
 
                 'facebook' => array(
