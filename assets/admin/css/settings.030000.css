@@ -1,0 +1,46 @@
+/**
+ * CSS for Social Locker Settings
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2013, OnePress Ltd
+ * 
+ * @package sociallocker 
+ * @since 1.0.0
+ */
+
+.alert.alert-success {
+    margin: 0px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    font-weight: bold;
+    padding: 10px;
+}
+.alert.alert-success p {
+    margin: 0px;
+}
+
+
+#sociallocker_facebook_appid {
+    width: 250px;
+}
+#sociallocker_dynamic_theme_event {
+    width: 250px;  
+}
+#sociallocker_lang {
+    width: 250px;     
+}
+
+.help-block {
+    position: relative;
+    margin-top: 12px !important;
+    line-height: 160%;
+}
+.form-horizontal {
+    max-width: 1200px;
+}
+.btn-group {
+    border: 0px !important;
+}
+.factory-bootstrap-300 .btn-group { 
+    margin-bottom: 0px;
+}
