@@ -88,6 +88,13 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.0.9 - 15 Jan 2014</strong><br />
+<ul>
+<li>FIXED: The bug of disappearing of lockers on using the W3 Total Cache plugin.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.0.8 - 10 Jan 2014</strong><br />
 <ul>
 <li>NEW: Added the Interrelation option. When set On, it makes lockers interrelated. When any interrelated locker on your site is unlocked, the rest others will be unlocked too. You can find this option on the Common Settings page.</li>
@@ -97,8 +104,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>FIXED: The bug that breaks lockers on using some complex configurations of the W3 Total Cache plugin.</li>
 <li>FIXED: The bug that shows incorrect statistical data on the Usage Statistics page.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.0.6 - 2 Jan 2014</strong><br />
 <ul>

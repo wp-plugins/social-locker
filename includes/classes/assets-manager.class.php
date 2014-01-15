@@ -22,6 +22,8 @@ class OnpSL_AssetsManager {
         if ( self::$_requested ) return;
         self::$_requested = true;
 
+        add_action( 'wp_footer', 'OnpSL_AssetsManager::printCreaterScript', 9999 );
+        
         if ( $fromBody || $fromHook ) {
             OnpSL_AssetsManager::connectAssets(); 
         } else {
@@ -105,6 +107,29 @@ class OnpSL_AssetsManager {
     }
     
     /**
+     * Prints a script that creates social lockers via css selectors
+     * 
+     * @since 1.0.0
+     * @return void
+     */
+    public static function printCreaterScript() {
+        if ( self::$_createrScriptPrinted ) return;
+        self::$_createrScriptPrinted = true;
+    ?>
+        <!-- 
+            Creater Script for Social Locker
+        
+            Created by the Social Locker plugin (c) OnePress Ltd
+            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+        -->
+        <script>
+            (function($){ if ( window.onpsl && window.onpsl.lockers ) window.onpsl.lockers(); })(jQuery);
+        </script>
+        <!-- / -->
+    <?php
+    }
+    
+    /**
      * Conencts scripts and styles of Social Locker.
      * 
      * @sincee 1.0.0
@@ -119,7 +144,7 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030008.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030009.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 

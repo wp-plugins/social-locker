@@ -290,5 +290,6 @@ var URL=function(){var a=this;return a&&a.hasOwnProperty&&a instanceof URL||(a=n
  * Creater Script  
  * Copyright 2014, OnePress, http://byonepress.com
 */
-(function($){ if ( window.onpsl && window.onpsl.lockers ) { window.onpsl.lockers(); } else 
-{ $(function(){ window.onpsl.lockers(); }); } })(jQuery);
+(function($){ 
+    $(function(){ window.onpsl.lockers(); });
+})(jQuery);
