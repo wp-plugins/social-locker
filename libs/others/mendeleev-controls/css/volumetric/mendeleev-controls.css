@@ -1,0 +1,26 @@
+
+/**
+* Mendeleev Checkbox
+*/
+.mendeleev-300 .mendeleev-checkbox button {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.mendeleev-300 .mendeleev-checkbox .true.active {
+    background-color: #4691b1;
+    color: #fff;
+    text-shadow: none;
+}
+.mendeleev-300 .mendeleev-checkbox .false.active {
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #8f8f8f;
+}
+.mendeleev-300 .btn-group {
+    border: 0px;
+}
+#side-sortables .mendeleev-300 .mendeleev-checkbox {
+    float: right;
+    position: relative;
+    top: -25px;
+}
