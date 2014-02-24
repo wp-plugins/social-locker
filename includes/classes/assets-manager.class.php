@@ -139,12 +139,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030008.min.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030200.min.css'
         );  
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030009.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030200.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
@@ -389,8 +389,8 @@ class OnpSL_AssetsManager {
                 
         foreach($bulkLockers as $id => $options) {
             
-            // if we have bulk lockers based on css selectors, then we have include
-            // assets on every page and also print which css selectors we will use for
+            // if we have bulk lockers based on css selectors, then we have to include
+            // assets on every page and also print which css selectors we will use for the
             // social locker creater script
             
             if ( $options['way'] == 'css-selector' ) {
@@ -493,7 +493,7 @@ class OnpSL_AssetsManager {
                     $counter = 0;
                     $offset = 0;
 
-                    while( preg_match('/[^\s]+((\n\r){2,}|(\r\n){2,}|(\n){2,}|(\r){2,})/i', $content, $matches, PREG_OFFSET_CAPTURE, $offset ) ) {
+                    while( preg_match('/[^\s]+((<\/p>)|(\n\r){2,}|(\r\n){2,}|(\n){2,}|(\r){2,})/i', $content, $matches, PREG_OFFSET_CAPTURE, $offset ) ) {
                         $counter++;
                         $offset = $matches[0][1] + strlen( $matches[0][0] );
                       

@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.8.0
+Tested up to: 3.8.1
 Stable tag: trunk
 License: GPLv2
 
@@ -88,12 +88,24 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.2.0 - 24 Feb 2014</strong><br />
+<ul>
+<li>NEW: A new menu item "How to use?" containing an instruction and recommendations on how to use the plugin.</li>
+<li>NEW: Customer accounts that allow to move license keys between sites, and view where they were activated.</li>
+</ul>
+<ul>
+<li>FIXED: Shifting of the Facebook Like button.</li>
+<li>FIXED: The bug of the preview in the locker editor.</li>
+<li>FIXED: The bug of the trimmed social buttons on Polish and Spanish sites.</li>
+<li>FIXED: Minor bug of the batch locking feature.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.0.9 - 15 Jan 2014</strong><br />
 <ul>
 <li>FIXED: The bug of disappearing of lockers on using the W3 Total Cache plugin.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.0.8 - 10 Jan 2014</strong><br />
 <ul>

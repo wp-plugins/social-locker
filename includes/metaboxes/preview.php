@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_PreviewMetaBox extends FactoryMetaboxes300_Metabox
+class OnpSL_PreviewMetaBox extends FactoryMetaboxes305_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -43,7 +43,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes300_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes300_Metabox
+     * @see FactoryMetaboxes305_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -61,7 +61,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes300_Metabox
              data-lang="<?php echo get_option('sociallocker_lang') ?>" 
              data-short-lang="<?php echo get_option('sociallocker_short_lang') ?>" 
              data-facebook-appid="<?php echo get_option('sociallocker_facebook_appid') ?>" 
-             data-url="<?php echo admin_url('admin-ajax.php') . '/?onp_sl_preview=1' ?>">
+             data-url="<?php echo admin_url('admin-ajax.php') . '?onp_sl_preview=1' ?>">
             <iframe 
                 allowtransparency="1" 
                 frameborder="0" 
@@ -78,4 +78,4 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes300_Metabox
     }
 }
 
-FactoryMetaboxes300::register('OnpSL_PreviewMetaBox');
+FactoryMetaboxes305::register('OnpSL_PreviewMetaBox');

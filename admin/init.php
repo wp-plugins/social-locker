@@ -19,6 +19,7 @@ include_once(ONP_SL_PLUGIN_DIR . '/includes/viewtables/locker-viewtable.class.ph
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/common-settings.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/statistics.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/preview.php');
+include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/how-to-use.php');
     include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/license-manager.php');
 
 
@@ -30,44 +31,10 @@ include_once(ONP_SL_PLUGIN_DIR . '/admin/ajax/shortcode.php');
 /**
  * Adds scripts and styles in the admin area.
  */
-function sociallocker_admin_assets() {
-    global $sociallocker;
+function sociallocker_admin_assets( $hook ) {
     
-    if ( $sociallocker->license && !$sociallocker->license->hasKey() ) {     
-        if ( $sociallocker->license->default['Build'] == 'premium' ) {
-        ?>
-        <style>
-            .factory-notices-300-notice.sociallocker-next.factory-offer {  
-                background: #e9ebee url("<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/offer-background-color.png' ?>");
-                color: #262729;
-                -webkit-text-shadow: none;
-                -moz-text-shadow: none;
-                text-shadow: none;
-                border-color: #bbbbbb;
-                padding: 10px;
-            }
-            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-message-container a {
-                color: #262729;
-            }
-            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-button-primary {
-                background: #5672ad;
-                border: 1px solid #2e3847;
-                color: #fff;
-            }
-            .factory-notices-300-notice.sociallocker-next.factory-offer .highlighted {
-                background-color: rgba(0,0,0,0.05);
-            }
-            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-inner-wrap {
-                padding-left: 90px !important;
-                background: url("<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/offer-logo.png' ?>") 5px center no-repeat;
-            }
-            .factory-notices-300-notice.sociallocker-next.factory-offer .factory-buttons {
-                bottom: 15px;
-            }
-        </style>
-        <?php
-        }
-    }
+    if ( $hook == 'index.php' || $hook == 'plugins.php' )
+        wp_enqueue_style( 'onp-sl-notices', ONP_SL_PLUGIN_URL . '/assets/admin/css/notices.030100.css' ); 
 }
 add_action('admin_enqueue_scripts', 'sociallocker_admin_assets');
 
@@ -117,3 +84,30 @@ function sociallocker_quicktags()
 <?php 
 }
 
+/**
+ * Returns an URL where we should redirect a user after success activation of the plugin.
+ * 
+ * @since 3.1.0
+ * @return string
+ */
+function onp_sl_license_manager_success_button() {
+    return 'Learn how to use the plugin <i class="fa fa-lightbulb-o"></i>';
+}
+add_action('onp_license_manager_success_button_sociallocker-next', 'onp_sl_license_manager_success_button');
+
+/**
+ * Returns an URL where we should redirect a user after success activation of the plugin.
+ * 
+ * @since 3.1.0
+ * @return string
+ */
+function onp_sl_license_manager_success_redirect() {
+    $args = array(
+        'fy_page'      => 'how-to-use',
+        'fy_action'    => 'index',  
+        'fy_plugin'    => 'sociallocker-next'
+    );
+    
+    return '?' . http_build_query( $args );
+}
+add_action('onp_license_manager_success_redirect_sociallocker-next',  'onp_sl_license_manager_success_redirect');

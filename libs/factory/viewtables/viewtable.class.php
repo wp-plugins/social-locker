@@ -1,16 +1,16 @@
 <?php
 
-abstract class FactoryViewtables300_Viewtable {
+abstract class FactoryViewtables305_Viewtable {
 
     /**
      * A type used to display the table.
-     * @var FactoryTypes300_Type 
+     * @var FactoryTypes305_Type 
      */
     public $type;
     
     /**
      * Table's columns
-     * @var FactoryViewtables300_Columns 
+     * @var FactoryViewtables305_Columns 
      */
     public $columns;
     
@@ -26,13 +26,13 @@ abstract class FactoryViewtables300_Viewtable {
      */  
     public $styles;
     
-    public function connect( FactoryTypes300_Type $type ) {
+    public function connect( FactoryTypes305_Type $type ) {
         
         $this->type = $type;
-        $this->columns = new FactoryViewtables300_Columns();
+        $this->columns = new FactoryViewtables305_Columns();
         
-        $this->scripts = new Factory300_ScriptList();
-        $this->styles = new Factory300_StyleList(); 
+        $this->scripts = new Factory305_ScriptList();
+        $this->styles = new Factory305_StyleList(); 
         
         $this->configure();
         

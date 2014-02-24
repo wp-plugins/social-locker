@@ -15,7 +15,7 @@
  * @link http://codex.wordpress.org/Function_Reference/add_meta_box
  * @since 1.0.0
  */
-abstract class FactoryMetaboxes300_Metabox {
+abstract class FactoryMetaboxes305_Metabox {
     
     /**
      * Id of the metabox. 
@@ -64,7 +64,7 @@ abstract class FactoryMetaboxes300_Metabox {
      * Scripts that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory300_ScriptList
+     * @var Factory305_ScriptList
      */
     public $scripts;
     
@@ -72,7 +72,7 @@ abstract class FactoryMetaboxes300_Metabox {
      * Styles that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory300_StyleList
+     * @var Factory305_StyleList
      */  
     public $styles;
     
@@ -109,11 +109,11 @@ abstract class FactoryMetaboxes300_Metabox {
      * Configures a metabox.
      * 
      * @since 1.0.0
-     * @param Factory300_ScriptList $scripts A set of scripts to include.
-     * @param Factory300_StyleList $styles A set of style to include.
+     * @param Factory305_ScriptList $scripts A set of scripts to include.
+     * @param Factory305_StyleList $styles A set of style to include.
      * @return void
      */
-    public function configure(Factory300_ScriptList $scripts, Factory300_StyleList $styles) {
+    public function configure(Factory305_ScriptList $scripts, Factory305_StyleList $styles) {
         // method must be overriden in the derived classed.
     }
 
@@ -127,8 +127,8 @@ abstract class FactoryMetaboxes300_Metabox {
         if ( $this->isConnected ) return;
          $this->isConnected = true;
            
-        $this->scripts = new Factory300_ScriptList();
-        $this->styles = new Factory300_StyleList();
+        $this->scripts = new Factory305_ScriptList();
+        $this->styles = new Factory305_StyleList();
         
         $this->configure( $this->scripts, $this->styles );
         $this->includeScriptsAndStyles();

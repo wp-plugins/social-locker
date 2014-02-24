@@ -4,7 +4,7 @@
      * Mendeleev Checkbox
      */
     
-    $.fn.mendeleev300_checkbox = function( param1, param2 ){
+    $.fn.mendeleev305_checkbox = function( param1, param2 ){
         this.each(function(){
             var $element = $(this);
             $element.hide();
@@ -61,7 +61,7 @@
     }
     
     $(function(){
-        $(".mendeleev-300 input[type=checkbox]").mendeleev300_checkbox(); 
+        $(".mendeleev-305 input[type=checkbox]").mendeleev305_checkbox(); 
     });
     
 })(jQuery);

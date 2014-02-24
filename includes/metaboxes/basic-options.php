@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes300_FormMetabox
+class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
 {
     /**
      * A visible title of the metabox.
@@ -53,16 +53,16 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes300_FormMetabox
     /**
      * Configures a form that will be inside the metabox.
      * 
-     * @see FactoryMetaboxes300_FormMetabox
+     * @see FactoryMetaboxes305_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms300_Form $form A form object to configure.
+     * @param FactoryForms305_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {
 
         // sets a control theme by default for this form
-        $form->controlTheme = 'mendeleev-300';
+        $form->controlTheme = 'mendeleev-305';
         
             $form->add(array(  
 
@@ -111,4 +111,4 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes300_FormMetabox
     }
 }
 
-FactoryMetaboxes300::register('OnpSL_BasicOptionsMetaBox');
+FactoryMetaboxes305::register('OnpSL_BasicOptionsMetaBox');

@@ -13,20 +13,20 @@
  * @since 1.0.0
  */
 
-if (defined('FACTORY_300_LOADED')) return;
-define('FACTORY_300_LOADED', true);
+if (defined('FACTORY_305_LOADED')) return;
+define('FACTORY_305_LOADED', true);
 
-define('FACTORY_300_DIR', dirname(__FILE__));
-define('FACTORY_300_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_305_DIR', dirname(__FILE__));
+define('FACTORY_305_URL', plugins_url(null,  __FILE__ ));
 
 #comp merge
-require(FACTORY_300_DIR . '/includes/assets-managment/assets-list.class.php');
-require(FACTORY_300_DIR . '/includes/assets-managment/script-list.class.php');
-require(FACTORY_300_DIR . '/includes/assets-managment/style-list.class.php');
+require(FACTORY_305_DIR . '/includes/assets-managment/assets-list.class.php');
+require(FACTORY_305_DIR . '/includes/assets-managment/script-list.class.php');
+require(FACTORY_305_DIR . '/includes/assets-managment/style-list.class.php');
 
-require(FACTORY_300_DIR . '/includes/functions.php');
-require(FACTORY_300_DIR . '/includes/plugin.class.php');
+require(FACTORY_305_DIR . '/includes/functions.php');
+require(FACTORY_305_DIR . '/includes/plugin.class.php');
 
-require(FACTORY_300_DIR . '/includes/activation/activator.class.php');
-require(FACTORY_300_DIR . '/includes/activation/update.class.php');
+require(FACTORY_305_DIR . '/includes/activation/activator.class.php');
+require(FACTORY_305_DIR . '/includes/activation/update.class.php');
 #endcomp

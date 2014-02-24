@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryTypes300_Type {
+abstract class FactoryTypes305_Type {
     
     /**
      * Internal type name.
@@ -62,7 +62,7 @@ abstract class FactoryTypes300_Type {
      * A view table is used to show type records in the admin area.
      * 
      * @since 1.0.0
-     * @var FactoryViewtables300_Viewtable 
+     * @var FactoryViewtables305_Viewtable 
      */
     public $viewTable;
     
@@ -80,7 +80,7 @@ abstract class FactoryTypes300_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory300_ScriptList 
+     * @var Factory305_ScriptList 
      */
     public $scripts;
     
@@ -88,14 +88,14 @@ abstract class FactoryTypes300_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory300_StyleList 
+     * @var Factory305_StyleList 
      */  
     public $styles;
     
     /**
      * A menu configurator for a type.
      * 
-     * @var FactoryTypes300_Menu 
+     * @var FactoryTypes305_Menu 
      */
     public $menu;
 
@@ -148,11 +148,11 @@ abstract class FactoryTypes300_Type {
      */
     public function __construct() {
         
-        $this->menu = new FactoryTypes300_Menu( $this );
+        $this->menu = new FactoryTypes305_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory300_ScriptList();
-        $this->styles = new Factory300_StyleList(); 
+        $this->scripts = new Factory305_ScriptList();
+        $this->styles = new Factory305_StyleList(); 
         
         add_action('init', array($this, 'register'));
     }
@@ -209,7 +209,7 @@ abstract class FactoryTypes300_Type {
 
         // adds metaboxes that needed to load
         foreach($this->metaboxes as $metabox) {
-            FactoryMetaboxes300::registerFor($metabox, $this->name);
+            FactoryMetaboxes305::registerFor($metabox, $this->name);
         }
         
         // includes styles and scripts
@@ -222,7 +222,7 @@ abstract class FactoryTypes300_Type {
         
         // redefines the Publish metabox for non-public types
         if ( $this->template !== 'public') {
-            //FactoryMetaboxes300::registerFor('FactoryMetaboxes300_PublishMetabox', $this->name);
+            //FactoryMetaboxes305::registerFor('FactoryMetaboxes305_PublishMetabox', $this->name);
             add_action('add_meta_boxes', array($this, 'actionAddMetaboxs'));
         }
         

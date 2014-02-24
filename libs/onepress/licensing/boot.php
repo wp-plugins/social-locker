@@ -11,16 +11,16 @@
 
 // Checks if the one is already loaded.
 // We prevent to load the same version of the module twice.
-if (defined('ONP_LICENSING_300_LOADED')) return;
-define('ONP_LICENSING_300_LOADED', true);
+if (defined('ONP_LICENSING_305_LOADED')) return;
+define('ONP_LICENSING_305_LOADED', true);
 
 // Absolute path and URL to the files and resources of the module.
-define('ONP_LICENSING_300_DIR', dirname(__FILE__));
-define('ONP_LICENSING_300_URL', plugins_url(null,  __FILE__ ));
+define('ONP_LICENSING_305_DIR', dirname(__FILE__));
+define('ONP_LICENSING_305_URL', plugins_url(null,  __FILE__ ));
 
-include(ONP_LICENSING_300_DIR. '/licensing.php');
+include(ONP_LICENSING_305_DIR. '/licensing.php');
 if ( !is_admin() ) return;
 
-include(ONP_LICENSING_300_DIR. '/includes/activator.class.php');
-    include(ONP_LICENSING_300_DIR. '/includes/license-manager.class.php');
+include(ONP_LICENSING_305_DIR. '/includes/activator.class.php');
+    include(ONP_LICENSING_305_DIR. '/includes/license-manager.class.php');
 

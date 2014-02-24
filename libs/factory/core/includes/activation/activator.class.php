@@ -14,15 +14,15 @@
  * 
  * @since 1.0.0
  */
-abstract class Factory300_Activator {
+abstract class Factory305_Activator {
     
     /**
      * Curent plugin.
-     * @var Factory300_Plugin
+     * @var Factory305_Plugin
      */
     public $plugin;
     
-    public function __construct(Factory300_Plugin $plugin) {
+    public function __construct(Factory305_Plugin $plugin) {
         $this->plugin = $plugin;
     }
     

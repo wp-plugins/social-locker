@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryShortcodes300 {
+class FactoryShortcodes305 {
     
     private static $manager = false;
     
@@ -27,7 +27,7 @@ class FactoryShortcodes300 {
      * @return void
      */
     public static function register( $className ) {
-        if ( !self::$manager ) self::$manager = new FactoryShortcodes300_ShortcodeManager();
+        if ( !self::$manager ) self::$manager = new FactoryShortcodes305_ShortcodeManager();
         self::$manager->register( $className );
     }
 }
@@ -39,13 +39,13 @@ class FactoryShortcodes300 {
  * - creating aninstance of Factory Shortcode per every call of the shortcode.
  * - tracking shortcodes in post content.
  */
-class FactoryShortcodes300_ShortcodeManager {
+class FactoryShortcodes305_ShortcodeManager {
     
     /**
      * A set of registered shortcodes.
      * 
      * @since 1.0.0
-     * @var FactoryShortcodes300_Shortcode[] 
+     * @var FactoryShortcodes305_Shortcode[] 
      */
     private $shortcodes = array();
     

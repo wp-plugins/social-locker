@@ -1,6 +1,6 @@
 <?php
 
-class FactoryPages300_AdminPage extends FactoryPages300_Page {
+class FactoryPages305_AdminPage extends FactoryPages305_Page {
     
     /**
      * Visible page title.
@@ -65,7 +65,7 @@ class FactoryPages300_AdminPage extends FactoryPages300_Page {
     public $internal = false;
     
 
-    public function __construct(Factory300_Plugin $plugin) {
+    public function __construct(Factory305_Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
 
@@ -210,6 +210,7 @@ class FactoryPages300_AdminPage extends FactoryPages300_Page {
     }
 
     protected function redirectToAction($action, $queryArgs = array()) {
+ 
         wp_redirect( $this->getActionUrl($action, $queryArgs) );     
         exit;
     }

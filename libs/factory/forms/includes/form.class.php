@@ -12,7 +12,7 @@
 /**
  * An abstraction for forms.
  */
-class FactoryForms300_Form {
+class FactoryForms305_Form {
     
     // ----------------------------------------------------
     // Static fields and methods
@@ -43,7 +43,7 @@ class FactoryForms300_Form {
     /**
      * Registers a set of new controls.
      * 
-     * @see FactoryForms300_Form::registerControl()
+     * @see FactoryForms305_Form::registerControl()
      * 
      * @since 1.0.0
      * @return void
@@ -78,7 +78,7 @@ class FactoryForms300_Form {
     /**
      * Registers a set of new holder controls.
      * 
-     * @see FactoryForms300_Form::registerHolder()
+     * @see FactoryForms305_Form::registerHolder()
      * 
      * @since 1.0.0
      * @return void
@@ -109,7 +109,7 @@ class FactoryForms300_Form {
     /**
      * Registers a set of new custom form elements.
      * 
-     * @see FactoryForms300_Form::registerCustomElement()
+     * @see FactoryForms305_Form::registerCustomElement()
      * 
      * @since 1.0.0
      * @return void
@@ -238,7 +238,7 @@ class FactoryForms300_Form {
      * A current form layout used to render a form.
      * 
      * @since 1.0.0
-     * @var FactoryForms300_FormLayout 
+     * @var FactoryForms305_FormLayout 
      */
     public $layout;
     
@@ -273,7 +273,7 @@ class FactoryForms300_Form {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms300_ValueProvider $provider
+     * @param IFactoryForms305_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -432,7 +432,7 @@ class FactoryForms300_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms300_ControlHolder A control holder object.
+     * @return FactoryForms305_ControlHolder A control holder object.
      */
     public function createHolder( $item ) {
         $object = null;
@@ -459,7 +459,7 @@ class FactoryForms300_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms300_FormElement A custom form element object.
+     * @return FactoryForms305_FormElement A custom form element object.
      */
     public function createCustomElement( $item ) {
         $object = null;

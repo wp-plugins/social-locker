@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Shortcode extends FactoryShortcodes300_Shortcode {
+class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
     
     public $track = true;
     
@@ -136,4 +136,4 @@ class OnpSL_Shortcode extends FactoryShortcodes300_Shortcode {
     }
 }
 
-FactoryShortcodes300::register( 'OnpSL_Shortcode' );
+FactoryShortcodes305::register( 'OnpSL_Shortcode' );

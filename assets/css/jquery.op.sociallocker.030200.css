@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.4.2, 2014-01-08 
+ * Social Locker - v1.4.3, 2014-02-23 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 
@@ -91,14 +91,14 @@
     -moz-box-sizing: border-box;  
     box-sizing: border-box;
 }
-.onp-sociallocker-buttons-fixed .onp-sociallocker-button-inner-wrap {
-    width: 120px;
+.onp-social-button {
+    min-width: 104px;
 }
 /* facebook buttons, google buttons and tweet button always has the fixed size */
-.onp-sociallocker-button-facebook, 
-.onp-sociallocker-button-google, 
-.onp-sociallocker-button-twitter-tweet {
-    width: 120px;
+.onp-facebook-button, 
+.onp-google-button, 
+.onp-twitter-tweet {
+    width: 104px;
 }
 .onp-sociallocker-button-overlay {
     width: 100%;
@@ -133,6 +133,9 @@
     position: relative;
     top: -2px;
 }
+.onp-sociallocker-button-facebook-like .fb-like span {
+    vertical-align: top !important;
+}
 
 /* facebook share button */
 .onp-facebook-share-button {
@@ -147,7 +150,7 @@
     right: 0px;
     bottom: 0px;
     left: 0px;
-   background-color: rgba(255,255,255,0); 
+    background-color: rgba(255,255,255,0); 
     cursor: pointer;
 }
 .onp-facebook-share-button-overlay:hover {
@@ -201,6 +204,10 @@
     top: 4px;
     right: 4px;
     z-index: 2;
+}
+.onp-sociallocker:hover .onp-sociallocker-cross {
+    opacity: 0.2;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=20);
 }
 .onp-sociallocker .onp-sociallocker-cross:hover {
     opacity: 0.8;
@@ -646,6 +653,27 @@
 * Like Button Widget styles
 */
 
+/**
+.onp-sociallocker-button-facebook, 
+.onp-sociallocker-button-google, 
+.onp-sociallocker-button-twitter-tweet {
+    width: 120px;
+}
+
+*/
+.onp-sociallocker .onp-facebook-like-es_ES,
+.onp-sociallocker .onp-facebook-share-es_ES {
+    width: 114px;
+}
+.onp-sociallocker .onp-facebook-like-ru_RU,
+.onp-sociallocker .onp-facebook-share-ru_RU {
+    width: 124px;
+}
+.onp-sociallocker .onp-facebook-like-pl_PL,
+.onp-sociallocker .onp-facebook-share-pl_PL {
+    width: 120px;
+}
+
 .onp-sociallocker .onp-facebook-like-count-none .fb-like {
     overflow: hidden;
     width: 50px;
@@ -684,173 +712,9 @@
 .onp-sociallocker .onp-facebook-share-count-none.onp-facebook-share-fi_FI .fb-share-button {
     width: 43px;
 }
-
-/**
-* Facebook api like button
-*/
-
-/* horizontal */
-
-.onp-facebook-like-api {
-    display: inline-block;
-    height: 18px;
-    vertical-align: top;
-    position: relative;
-    top: 1px;
-    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
-    font-size: 11px;
+.onp-sociallocker .onp-facebook-like-count-none.onp-facebook-like-pl_PL .fb-like {
+    width: 77px;
 }
-.onp-facebook-like-api .onp-facebook-like-api-label {
-    height: 20px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    float: left;
-    cursor: pointer;
-    background: #eceef5 url("../img/like-icons.png") 3px 2px no-repeat;
-    -webkit-border-radius: 3px;
-    border: 1px solid #cad4e7;
-    border-radius: 3px;
-    line-height: 11px;
-    text-decoration: none;
-    cursor: pointer;
-    padding: 3px 4px 2px 19px;
-    white-space: nowrap;
-    color: #3b5998;
-    margin-right: 6px;
-}
-.onp-facebook-like-api .onp-facebook-like-api-label:hover {
-    border-color:#9dacce
-}
-.onp-facebook-like-api .onp-facebook-like-api-count {
-    height: 18px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    float: left;
-    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
-    font-size: 11px;
-    line-height: 16px;
-    background-color: #fff;
-    padding: 0 4px;
-    border: 1px solid #c1c1c1;
-    position: relative;
-    top: 1px;
-}
-.onp-facebook-like-api .onp-facebook-like-api-count:after, 
-.onp-facebook-like-api .onp-facebook-like-api-count:before {
-    right: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-}
-
-.onp-facebook-like-api .onp-facebook-like-api-count:after {
-    border-color: rgba(255, 255, 255, 0);
-    border-right-color: #fff;
-    border-width: 3px;
-    top: 50%;
-    margin-top: -3px;
-}
-.onp-facebook-like-api .onp-facebook-like-api-count:before {
-    border-color: rgba(193, 193, 193, 0);
-    border-right-color: #a1a1a1;
-    border-width: 4px;
-    top: 50%;
-    margin-top: -4px;
-}
-.onp-facebook-like-api-count-none .onp-facebook-like-api-icon {
-    width: 57px;
-    position: relative;
-    display: block;
-    background: url('../img/facebook-share-no-counter.png') top left no-repeat; 
-}
-.onp-facebook-like-api-count-none .onp-facebook-share-count{
-    display: none;   
-}
-
-/* vertial */
-
-.onp-facebook-share.onp-facebook-layout-vertical {
-    width: 57px;
-    height: 60px;
-}
-.onp-facebook-share.onp-facebook-layout-vertical .onp-facebook-share-icon {
-    width: 57px;
-    height: 28px;
-    top: 31px;
-    position: absolute;
-    cursor: pointer;
-    background: url('../img/facebook-share-vertical.png') top left no-repeat; 
-}
-.onp-facebook-share.onp-facebook-layout-vertical .onp-facebook-share-count {
-    margin: 0px;
-    height: 30px;
-    font-size: 15px;
-    line-height: 30px;
-}
-
-/**
-* Facebook share button
-*/
-
-/* horizontal */
-
-.onp-facebook-share {
-    display: inline-block;
-    height: 18px;
-    vertical-align: top;
-    position: relative;
-    top: 1px;
-}
-.onp-facebook-share .onp-facebook-share-icon {
-    width: 64px;
-    height: 18px;
-    position: absolute;
-    cursor: pointer;
-    left: 0px;
-    background: url('../img/facebook-share.png') top left no-repeat; 
-}
-.onp-facebook-share .onp-facebook-share-count {
-    height: 16px;
-    border: 1px solid #d3d3d3;
-    background-color: #fff;
-    margin-left: 62px;
-    font-family: tahoma, sans-serif !important;
-    font-size: 11px;
-    line-height: 15px;
-    padding: 0 4px 0 5px;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-.onp-facebook-share-count-none .onp-facebook-share-icon {
-    width: 57px;
-    position: relative;
-    display: block;
-    background: url('../img/facebook-share-no-counter.png') top left no-repeat; 
-}
-.onp-facebook-share-count-none .onp-facebook-share-count{
-    display: none;   
-}
-
-/* vertial */
-
-.onp-facebook-share.onp-facebook-layout-vertical {
-    width: 57px;
-    height: 60px;
-}
-.onp-facebook-share.onp-facebook-layout-vertical .onp-facebook-share-icon {
-    width: 57px;
-    height: 28px;
-    top: 31px;
-    position: absolute;
-    cursor: pointer;
-    background: url('../img/facebook-share-vertical.png') top left no-repeat; 
-}
-.onp-facebook-share.onp-facebook-layout-vertical .onp-facebook-share-count {
-    margin: 0px;
-    height: 30px;
-    font-size: 15px;
-    line-height: 30px;
+.onp-sociallocker .onp-facebook-share-count-none.onp-facebook-share-pl_PL .fb-share-button {
+    width: 87px;
 }

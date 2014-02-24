@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class OnpLicensing300_Activator extends Factory300_Activator {
+class OnpLicensing305_Activator extends Factory305_Activator {
     
     public function activate() {
 

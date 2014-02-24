@@ -17,7 +17,7 @@
  * @since 1.0.0
  * @return string
  */
-function factory_300_get_nonce() {
+function factory_305_get_nonce() {
     $values = array('name', 'description', 'admin_email', 'url', 'language', 'version');
     $line = '';
     
@@ -31,8 +31,8 @@ function factory_300_get_nonce() {
  * @since 1.0.0
  * @return string
  */
-function factory_300_nonce() {
-    echo factory_300_get_nonce();
+function factory_305_nonce() {
+    echo factory_305_get_nonce();
 }
 
 // ------------------------------
@@ -47,7 +47,7 @@ function factory_300_nonce() {
  * @param string $needle
  * @return bool
  */
-function factory_300_starts_with($haystack, $needle) {
+function factory_305_starts_with($haystack, $needle) {
     return !strncmp($haystack, $needle, strlen($needle));
 }
 
@@ -59,7 +59,7 @@ function factory_300_starts_with($haystack, $needle) {
  * @param string $needle
  * @return bool
  */
-function factory_300_ends_with($haystack, $needle) {
+function factory_305_ends_with($haystack, $needle) {
     $length = strlen($needle);
     if ($length == 0) return true;
     return (substr($haystack, -$length) === $needle);
@@ -76,9 +76,9 @@ function factory_300_ends_with($haystack, $needle) {
  * @param type $path A path to get data.
  * @return string[]
  */
-function factory_300_pathinfo( $path ) {
+function factory_305_pathinfo( $path ) {
     $data = pathinfo($path);
-    $data['filename'] = factory_300_filename_without_ext($data['basename']);
+    $data['filename'] = factory_305_filename_without_ext($data['basename']);
     return $data;
 }
 
@@ -89,7 +89,7 @@ function factory_300_pathinfo( $path ) {
  * @param string $filename A file name to process.
  * @return string
  */
-function factory_300_filename_without_ext($filename){
+function factory_305_filename_without_ext($filename){
     $pos = strripos($filename, '.');
     if($pos === false){
         return $filename;
@@ -105,7 +105,7 @@ function factory_300_filename_without_ext($filename){
  * @param string $filename A file name to get an extention.
  * @return string
  */
-function factory_300_filename_ext($filename){
+function factory_305_filename_ext($filename){
     $result = explode('.', $filename);
     if ( empty($result) ) return null;
     return $result[count($result)-1];
@@ -117,7 +117,7 @@ function factory_300_filename_ext($filename){
  * @since 1.0.0
  * @return bool
  */
-function factory_300_copy_dir($source, $dest, $permissions = 0755)
+function factory_305_copy_dir($source, $dest, $permissions = 0755)
 {
     // Check for symlinks
     if (is_link($source)) {
@@ -143,7 +143,7 @@ function factory_300_copy_dir($source, $dest, $permissions = 0755)
         }
 
         // Deep copy directories
-        factory_300_copy_dir("$source/$entry", "$dest/$entry");
+        factory_305_copy_dir("$source/$entry", "$dest/$entry");
     }
 
     // Clean up
@@ -157,7 +157,7 @@ function factory_300_copy_dir($source, $dest, $permissions = 0755)
  * @since 1.0.0
  * @return bool
  */
-function factory_300_remove_dir($directory, $empty = false)
+function factory_305_remove_dir($directory, $empty = false)
 {
 	// if the path has a slash at the end we remove it here
 	if(substr($directory,-1) == '/')
@@ -197,7 +197,7 @@ function factory_300_remove_dir($directory, $empty = false)
 				if(is_dir($path)) 
 				{
 					// we call this function with the new path
-					factory_300_remove_dir($path);
+					factory_305_remove_dir($path);
 
 				// if the new path is a file
 				}else{
@@ -224,12 +224,12 @@ function factory_300_remove_dir($directory, $empty = false)
 	}
 }
 
-function factory_300_get_human_filesize_by_path( $path ) {
+function factory_305_get_human_filesize_by_path( $path ) {
     $bytes = filesize( $path );
     return factory_get_human_filesize( $bytes );
 }
 
-function factory_300_get_human_filesize( $bytes ) {
+function factory_305_get_human_filesize( $bytes ) {
     if ($bytes >= 1073741824)
     {
         $bytes = number_format($bytes / 1073741824, 2) . ' GB';
@@ -265,15 +265,15 @@ function factory_300_get_human_filesize( $bytes ) {
 /**
  * @since 1.0.0
  */
-function factory_300_get_days( $startDate, $endDate ) {
+function factory_305_get_days( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24) ) + 1;
 }
 
 /**
  * @since 1.0.0
  */
-function factory_300_get_weeks( $startDate, $endDate ) {
-    $days = factory_300_get_days( $startDate, $endDate );
+function factory_305_get_weeks( $startDate, $endDate ) {
+    $days = factory_305_get_days( $startDate, $endDate );
     
     $startDay = date( "w", $startDate );
     $endDay = date( "w", $endDate );
@@ -292,6 +292,16 @@ function factory_300_get_weeks( $startDate, $endDate ) {
 /**
  * @since 1.0.0
  */
-function factory_300_get_months( $startDate, $endDate ) {
+function factory_305_get_months( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24*30) );
+}
+
+/**
+ * Checks if a user is an administrator.
+ * 
+ * @since 1.5.0
+ * @return type
+ */
+function factory_305_is_administrator() {
+    return current_user_can( 'manage_options' );
 }

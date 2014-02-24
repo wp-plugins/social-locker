@@ -15,7 +15,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
             this.trackInputChanges();
             this.recreatePreview();
 
-            if ( window['sociallocker-next-build'] == 'free' ) {
+            if ( window['sociallocker-next-build'] === 'free' ) {
                 this.initTrialBox();
             }
         },
@@ -402,7 +402,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap305_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

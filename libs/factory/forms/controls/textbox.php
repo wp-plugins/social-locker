@@ -16,7 +16,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms300_TextboxControl extends FactoryForms300_Control 
+class FactoryForms305_TextboxControl extends FactoryForms305_Control 
 {
     public $type = 'textbox';
     

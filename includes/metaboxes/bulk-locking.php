@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
+class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes305_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -54,7 +54,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes300_Metabox
+     * @see FactoryMetaboxes305_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -171,7 +171,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
             <?php } ?>
         </div>
 
-        <div class="factory-bootstrap-300 factory-fontawesome-300">
+        <div class="factory-bootstrap-305 factory-fontawesome-305">
             <div class="onp-sl-description-section">
                 <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
@@ -179,7 +179,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                 
                 <div class="onp-sl-empty-content">
                     <span class="onp-sl-nolock"><?php _e('No batch lock') ?></span>
-                    <a class="btn btn-default" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="modal">
+                    <a class="btn btn-default" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="factory-modal">
                         <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'sociallocker') ?>
                     </a>
                 </div>
@@ -223,7 +223,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
                         <a class="btn btn-primary onp-sl-cancel" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="modal" id="onp-sl-setup-bult-locking-btn">
                             <i class="fa fa-times-circle"></i> <?php _e('Cancel', 'sociallocker') ?>
                         </a>
-                        <a class="btn btn-primary onp-sl-setup-bulk-locking" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="modal">
+                        <a class="btn btn-primary onp-sl-setup-bulk-locking" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="factory-modal">
                             <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'sociallocker') ?>
                         </a>
                     </div>
@@ -500,7 +500,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes300_Metabox
     }
 }
 
-FactoryMetaboxes300::register('OnpSL_BulkLockingMetaBox');
+FactoryMetaboxes305::register('OnpSL_BulkLockingMetaBox');
 
 /**
  * Prints bulk lock status.
@@ -566,7 +566,7 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
 
     ?>
 
-    <div class="factory-bootstrap-300 factory-fontawesome-300">
+    <div class="factory-bootstrap-305 factory-fontawesome-305">
         
         <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
 

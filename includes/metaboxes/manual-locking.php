@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes300_Metabox
+class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes305_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -55,7 +55,7 @@ class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes300_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes300_Metabox
+     * @see FactoryMetaboxes305_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -69,7 +69,7 @@ class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes300_Metabox
         if (!$isSystem) $shortcode = '[sociallocker id="' . $post->ID . '"] [/sociallocker]';
  
         ?>
-        <div class="factory-bootstrap-300 factory-fontawesome-300">
+        <div class="factory-bootstrap-305 factory-fontawesome-305">
            <p class="onp-sl-description-section">
                <?php _e('Wrap content you want to lock via the following shortcode in your post editor:') ?>
                <input class="onp-sl-shortcode" type="text" value='<?php echo $shortcode ?>' />
@@ -79,4 +79,4 @@ class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes300_Metabox
     }
 }
 
-FactoryMetaboxes300::register('OnpSL_ManualLockingMetaBox');
+FactoryMetaboxes305::register('OnpSL_ManualLockingMetaBox');

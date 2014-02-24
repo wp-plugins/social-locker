@@ -15,7 +15,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
+class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes305_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -53,7 +53,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes300_Metabox
+     * @see FactoryMetaboxes305_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -63,7 +63,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
         global $sociallocker;
         
     ?>
-        <div class="factory-bootstrap-300 factory-fontawesome-300">
+        <div class="factory-bootstrap-305 factory-fontawesome-305">
             
         <div class="sl-header">
             <strong>More Features?</strong>
@@ -92,7 +92,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
         <?php if ( FACTORY_FLAT_ADMIN_030800 ) { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <a href="<?php onp_licensing_300_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-primary btn-large">
+                    <a href="<?php onp_licensing_305_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-primary btn-large">
                         Try 7-days Trial Version<br /><span>(activate by one click)</span>
                     </a>
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
@@ -102,13 +102,13 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-primary btn-large">
                         Get Premium for $21<br /><span>(it will take no more a minute)</span>
                     </a>
-                    <a href="<?php onp_licensing_300_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                    <a href="<?php onp_licensing_305_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
                 </div>
             <?php } ?>
         <?php } else { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <a href="<?php onp_licensing_300_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
+                    <a href="<?php onp_licensing_305_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
                         Try 7-days Trial Version<br /><span>(activate by one click)</span>
                     </a>
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
@@ -118,7 +118,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">
                         Get Premium for $21<br /><span>(it will take no more a minute)</span>
                     </a>
-                    <a href="<?php onp_licensing_300_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                    <a href="<?php onp_licensing_305_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
                 </div>
             <?php } ?>
         <?php } ?>
@@ -135,4 +135,4 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes300_Metabox
     }
 }
 
-FactoryMetaboxes300::register('OnpSL_MoreFeaturesMetaBox');
+FactoryMetaboxes305::register('OnpSL_MoreFeaturesMetaBox');

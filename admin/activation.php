@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Activation extends OnpLicensing300_Activator {
+class OnpSL_Activation extends OnpLicensing305_Activator {
     
     public function activate() {
         parent::activate();

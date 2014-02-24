@@ -12,7 +12,7 @@
 /**
  * Common Settings
  */
-class OnpSL_StatisticsPage extends FactoryPages300_AdminPage  {
+class OnpSL_StatisticsPage extends FactoryPages305_AdminPage  {
  
     public $menuTitle = 'Usage Statistics';
     public $menuPostType = 'social-locker';
@@ -117,7 +117,7 @@ class OnpSL_StatisticsPage extends FactoryPages300_AdminPage  {
         <div class="wrap">
             <h2 style="margin-bottom: 10px;">Usage Statistics</h2>
 
-            <div class="factory-bootstrap-300 factory-fontawesome-300">
+            <div class="factory-bootstrap-305 factory-fontawesome-305">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
                 This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br />
@@ -232,4 +232,4 @@ class OnpSL_StatisticsPage extends FactoryPages300_AdminPage  {
     }
 }
 
-FactoryPages300::register($sociallocker, 'OnpSL_StatisticsPage');
+FactoryPages305::register($sociallocker, 'OnpSL_StatisticsPage');

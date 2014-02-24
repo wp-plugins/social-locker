@@ -13,12 +13,12 @@
  * @since 1.0.0
  */
 
-if (defined('FACTORY_SHORTCODES_300_LOADED')) return;
-define('FACTORY_SHORTCODES_300_LOADED', true);
+if (defined('FACTORY_SHORTCODES_305_LOADED')) return;
+define('FACTORY_SHORTCODES_305_LOADED', true);
 
-define('FACTORY_SHORTCODES_300_DIR', dirname(__FILE__));
+define('FACTORY_SHORTCODES_305_DIR', dirname(__FILE__));
 
 #comp merge
-require(FACTORY_SHORTCODES_300_DIR . '/shortcodes.php');
-require(FACTORY_SHORTCODES_300_DIR . '/shortcode.class.php');
+require(FACTORY_SHORTCODES_305_DIR . '/shortcodes.php');
+require(FACTORY_SHORTCODES_305_DIR . '/shortcode.class.php');
 #endcomp

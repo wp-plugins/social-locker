@@ -21,8 +21,8 @@ define('MENDEELEV_000_LOADED', true);
 define('MENDEELEV_000_LOADED_URL', plugins_url(null,  __FILE__ ));
 
 // registration of control themes
-FactoryForms300_Form::registerControlTheme( array(
-    'name'      => 'mendeleev-300',
+FactoryForms305_Form::registerControlTheme( array(
+    'name'      => 'mendeleev-305',
     'style'     => MENDEELEV_000_LOADED_URL. '/css/{temper}/mendeleev-controls.css',
     'script'    => MENDEELEV_000_LOADED_URL. '/js/mendeleev-controls.js',
 ));

@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms300_CheckboxControl extends FactoryForms300_Control 
+class FactoryForms305_CheckboxControl extends FactoryForms305_Control 
 {
     public $type = 'checkbox';
     

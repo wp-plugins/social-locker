@@ -10,9 +10,9 @@
  */
 
 // creating an update manager for each plugin created via the factory
-add_action('factory_300_plugin_created', 'factory_updates_000_plugin_created');
+add_action('factory_305_plugin_created', 'factory_updates_000_plugin_created');
 function factory_updates_000_plugin_created( $plugin ) {
-    $manager = new OnpUpdates300_Manager( $plugin );
+    $manager = new OnpUpdates305_Manager( $plugin );
     $plugin->updates = $manager;
 }
 
@@ -21,13 +21,13 @@ function factory_updates_000_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpUpdates300_Manager {
+class OnpUpdates305_Manager {
     
     /**
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory300_Plugin 
+     * @var Factory305_Plugin 
      */
     public $plugin;
     
@@ -40,31 +40,21 @@ class OnpUpdates300_Manager {
     public $lastCheck;
 
     /**
-     * Current site secret.
-     * 
-     * @since 1.0.0
-     * @var string 
-     */
-    protected $secret;
-
-    /**
      * Creates an instance of the update manager.
      * @param type $plugin
      */
     public function __construct( $plugin ) {
         $this->plugin = $plugin; 
-
         $this->lastCheck = get_option('onp_version_check_' . $this->plugin->pluginName, null);
 
-        $this->secret = $this->siteSecret = get_option('onp_site_secret', null);
-        $this->site = site_url();
-        $this->api = $this->plugin->options['api'];
-                
         // if a plugin is not licensed, or a user has a license key
         if ( $this->needCheckUpdates() ) {
             
             // an action that is called by the cron to check updates
             add_action('onp_check_upadates_' . $this->plugin->pluginName, array($this, 'checkUpdatesAuto')); 
+            
+            // if a special constant set, then forced to check updates
+            if ( defined('ONP_SL_CHECK_UPDATES') && ONP_SL_CHECK_UPDATES ) $this->checkUpdates();
         }
         
         if ( is_admin() ) {
@@ -74,7 +64,7 @@ class OnpUpdates300_Manager {
 
                 $this->updatePluginTransient();
                 add_filter('factory_plugin_row_' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
-                add_filter('factory_notices_' . $this->plugin->pluginName, array( $this, 'showAssemblyMessages'), 10, 2);    
+                add_filter('factory_notices_305', array( $this, 'addNotices'), 10, 2);    
             }
             
             add_action('admin_notices', array($this, 'clearTransient'));
@@ -180,20 +170,7 @@ class OnpUpdates300_Manager {
     }
     
     public function checkUpdates() {
-
-        $query = array(
-            'plugin'    => $this->plugin->pluginName,
-            'assembly'  => $this->plugin->build,
-            'version'   => $this->plugin->version,
-            'site'      => $this->site,
-            'key'       => $this->plugin->license ? $this->plugin->license->key : null,
-            'secret'    => $this->secret,
-            'tracker'   => $this->plugin->tracker
-        );
-        
-        if ( defined('FACTORY_BETA') && FACTORY_BETA ) $query['beta'] = true;
-        
-        $data = $this->sendRequest( $this->api . 'GetCurrentVersion', array('body' => $query ) );
+        $data = $this->sendRequest( 'GetCurrentVersion' );
 
         if ( is_wp_error( $data ) )  {
             $result = array();
@@ -204,11 +181,12 @@ class OnpUpdates300_Manager {
         } else {
             $data['Checked'] = time();
             update_option('onp_version_check_' . $this->plugin->pluginName, $data);
-            $this->lastCheck = $data;        
+            $this->lastCheck = $data; 
+            
+            do_action('onp_api_ping_' . $this->plugin->pluginName, $data);
         }
 
         $this->updatePluginTransient();
-        
         return $data;
     }
     
@@ -222,7 +200,7 @@ class OnpUpdates300_Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            onp_updates_300_set_site_transient('update_plugins', $transient);  
+            onp_updates_305_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -244,7 +222,7 @@ class OnpUpdates300_Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        onp_updates_300_set_site_transient('update_plugins', $transient);
+        onp_updates_305_set_site_transient('update_plugins', $transient);
     }
     
     /**
@@ -263,14 +241,14 @@ class OnpUpdates300_Manager {
             $queryArgs = array(
                 'plugin'   => $this->plugin->pluginName,
                 'assembly' => $this->plugin->license->build,   
-                'site'     => $this->site,
-                'secret'   => $this->secret,
+                'site'     => site_url(),
+                'secret'   => get_option('onp_site_secret', null),
                 'tracker'  => $this->plugin->tracker
             );
             
             if ( defined('FACTORY_BETA') && FACTORY_BETA ) $queryArgs['beta'] = true;
         
-            $obj->package = $this->api . 'GetPackage?' . http_build_query($queryArgs);
+            $obj->package = $this->plugin->options['api'] . 'GetPackage?' . http_build_query($queryArgs);
             $obj->changeAssembly = true;
             
             $transient->response[$this->plugin->relativePath] = $obj; 
@@ -305,19 +283,19 @@ class OnpUpdates300_Manager {
             $obj = new stdClass();  
             $obj->slug = $this->plugin->pluginSlug;  
 
-            $obj->url = $this->api . 'GetDetails?' . http_build_query(array(
+            $obj->url = $this->plugin->options['api'] . 'GetDetails?' . http_build_query(array(
                 'version' => $this->lastCheck['Id']
             ));  
             
             $queryArgs = array(
                 'versionId' => $this->lastCheck['Id'],  
-                'site'      => $this->site,
-                'secret'    => $this->secret,
+                'site'      => site_url(),
+                'secret'    => get_option('onp_site_secret', null),
                 'tracker'   => $this->plugin->tracker
             );
             
             if ( defined('FACTORY_BETA') && FACTORY_BETA ) $queryArgs['beta'] = true;
-            $obj->package = $this->api . 'GetPackage?' . http_build_query($queryArgs);
+            $obj->package = $this->plugin->options['api'] . 'GetPackage?' . http_build_query($queryArgs);
  
             $transient->response[$this->plugin->relativePath] = $obj; 
             return $transient;
@@ -342,17 +320,15 @@ class OnpUpdates300_Manager {
                 return $false;
             }
             
-            $url = $this->api . 'GetDetails?' . http_build_query(array(
-                'version' => $this->lastCheck['Id']
-            ));  
-            
-            $package = $this->api . 'GetPackage?' . http_build_query(array(
+            $package = $this->plugin->options['api'] . 'GetPackage?' . http_build_query(array(
                 'versionId' => $this->lastCheck['Id'],  
-                'site' => $this->site,
-                'secret' => $this->secret
+                'site' => site_url(),
+                'secret' => get_option('onp_site_secret', null)
             ));
 
-            $data = $this->sendRequest( $url );
+            $data = $this->sendRequest( 'GetDetails?' . http_build_query(array(
+                'version' => $this->lastCheck['Id']
+            )));
 
             if ( is_wp_error( $data ) ) {
                 ?>
@@ -414,7 +390,7 @@ class OnpUpdates300_Manager {
         return array($message);
     }
     
-    public function showAssemblyMessages( $notices, $plugin ) {
+    public function addNotices( $notices ) {
         
         if ( $this->needChangeAssembly() ) {
             
@@ -423,17 +399,18 @@ class OnpUpdates300_Manager {
                 'where'     => array('dashboard', 'edit', 'post'),
                 
                 // content and color
-                'type'      => 'alert-danger',
-                'header'    => 'One small step...',
+                'class'     => 'alert alert-danger onp-need-change-assembly',
+                'header'    => 'Please update the plugin',
                 'message'   => 'You changed a license type for <strong>' . $this->plugin->pluginTitle . '</strong>. 
-                                But the license you use now requries another plugin assembly.<br />
-                                The plugin will not work fully until you download the proper assembly. 
+                                But the license you use\'re currently requires another plugin assembly.<br />
+                                The plugin won\'t work fully until you download the proper assembly. 
                                 Don\'t worry it takes only 5 seconds and all your data will be saved.',   
 
                 // buttons and links
                 'buttons'   => array(
                     array(
-                        'title'     => 'Visit Plugins page',
+                        'title'     => 'Visit the Plugins page',
+                        'class'     => 'btn btn-danger',
                         'action'    => "plugins.php"
                     )
                 )
@@ -450,41 +427,9 @@ class OnpUpdates300_Manager {
     /** 
      * Sends request to the update server.
      */
-    protected function sendRequest($url, $args = array()) {
-        
-        $args['method'] = 'POST';
-        $args['timeout'] = 15;
-        
-        if ( !isset($args['body']) ) $args['body'] = array();
-        $response = wp_remote_request ($url, $args); 
-
-        if ( is_wp_error($response) ) {
-            
-            if ( $response->get_error_code() == 'http_request_failed')
-                return new WP_Error( 
-                    $response->get_error_code(), 
-                    'The Update server is not found or unresponsive at the moment.' );
-            
-            return new WP_Error( 'http_' . $response->get_error_code(), $response->get_error_message() );
-        }
-
-	$response_code = wp_remote_retrieve_response_code( $response );
-	$response_message = wp_remote_retrieve_response_message( $response );
-
-        // checks http errors
-	if ( 200 != $response_code && ! empty( $response_message ) )
-            return new WP_Error( 'http_' . $response_code, $response_message );
-
-	elseif ( 200 != $response_code )
-            return new WP_Error( 'http_' . $response_code, 'Unknown error occurred' );
-
-        // check licensing server errors
-        $data = json_decode( $response['body'], true );
-        
-        if ( isset( $data['ErrorCode'] ) ) 
-            return new WP_Error( 'license_' . $data['ErrorCode'], $data['ErrorText'] );
-        
-        return $data;
+    protected function sendRequest($action, $args = array()) {
+        $args['timeout'] = 8;
+        return $this->plugin->api->request( $action, $args );
     }
 }
 

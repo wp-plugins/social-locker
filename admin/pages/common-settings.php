@@ -1,6 +1,6 @@
 <?php
 /**
- * The file contains a page that shows settings for the plugin.
+ * The file contains a page that shows the common settings for the plugin.
  * 
  * @author Paul Kashtanoff <paul@byonepress.com>
  * @copyright (c) 2013, OnePress Ltd
@@ -10,13 +10,41 @@
  */
 
 /**
- * Common Settings
+ * The page Common Settings.
+ * 
+ * @since 1.0.0
  */
-class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
+class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
  
+    /**
+     * The title of the page in the admin menu.
+     * 
+     * @see FactoryPages305_AdminPage
+     * 
+     * @since 1.0.0
+     * @var string 
+     */
     public $menuTitle = 'Common Settings';
+    
+    /**
+     * The parent menu of the page in the admin menu.
+     * 
+     * @see FactoryPages305_AdminPage
+     * 
+     * @since 1.0.0
+     * @var string 
+     */
     public $menuPostType = 'social-locker';
     
+    /**
+     * The id of the page in the admin menu.
+     * 
+     * Mainly used to navigate between pages.
+     * @see FactoryPages305_AdminPage
+     * 
+     * @since 1.0.0
+     * @var string 
+     */
     public $id = "common-settings";
     
     /**
@@ -33,7 +61,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
         array('de_DE', 'German'),
         array('eu_ES', 'Basque'),
         array('en_US', 'English'),
-        array('es_LA', 'Spanish'),
+        array('es_ES', 'Spanish'),
         array('fi_FI', 'Finnish'), 
         array('fr_FR', 'French'), 
         array('gl_ES', 'Galician'), 
@@ -122,6 +150,14 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
         array('ps_AF', 'Pashto')
     );
     
+    /**
+     * Requests assets (js and css) for the page.
+     * 
+     * @see FactoryPages305_AdminPage
+     * 
+     * @since 1.0.0
+     * @return void 
+     */
     public function assets() {
         $this->scripts->request('jquery');
         $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/settings.030000.js');
@@ -129,7 +165,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
     }
     
     /**
-     * Shows an index page where a user can set settings.
+     * Renders the page 
      * 
      * @sinve 1.0.0
      * @return void
@@ -138,12 +174,12 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
         
         global $sociallockerLangs;
         
-        $form = new FactoryForms300_Form(array(
+        $form = new FactoryForms305_Form(array(
             'scope' => 'sociallocker'
         ));
         
-        $form->controlTheme = 'mendeleev-300';
-        $form->setProvider( new FactoryForms300_OptionsValueProvider(array(
+        $form->controlTheme = 'mendeleev-305';
+        $form->setProvider( new FactoryForms305_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
@@ -247,7 +283,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
             <h2><?php _e('Common Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-300">
+            <div class="factory-bootstrap-305">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -274,6 +310,12 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
         <?php
     }
     
+    /**
+     * Render the html block on how much the statistics data takes places.
+     * 
+     * @sinve 1.0.0
+     * @return void
+     */
     public function statsHtml() {
         global $wpdb;
         
@@ -282,7 +324,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_300_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_305_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -302,7 +344,10 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
     }
     
     /**
-     * Clears the table of scan results.
+     * Clears the statisticals data.
+     * 
+     * @sinve 1.0.0
+     * @return void
      */
     public function clearStatsDataAction() {
         
@@ -333,11 +378,14 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
     }
     
     /**
-     * Show a confirmation dialog.
+     * Shows the html block with a confirmation dialog.
+     * 
+     * @sinve 1.0.0
+     * @return void
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-300" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-305" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>
@@ -354,4 +402,4 @@ class OnpSL_CommonSettingsPage extends FactoryPages300_AdminPage  {
     }
 }
 
-FactoryPages300::register($sociallocker, 'OnpSL_CommonSettingsPage');
+FactoryPages305::register($sociallocker, 'OnpSL_CommonSettingsPage');

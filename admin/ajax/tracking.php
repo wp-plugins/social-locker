@@ -1,15 +1,30 @@
 <?php
+/**
+ * Ajax requests linked with collecting statistics.
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2014, OnePress Ltd
+ * 
+ * @package core 
+ * @since 1.0.0
+ */
 
-add_action('wp_ajax_sociallocker_tracking', 'sociallocker_tracking');
-add_action('wp_ajax_nopriv_sociallocker_tracking', 'sociallocker_tracking');
+add_action('wp_ajax_sociallocker_tracking', 'onp_sl_tracking');
+add_action('wp_ajax_nopriv_sociallocker_tracking', 'onp_sl_tracking');
 
-function sociallocker_tracking() {
+/**
+ * Increases counters in a database after unlocking content.
+ * 
+ * @since 1.0.0
+ * @return void
+ */
+function onp_sl_tracking() {
     global $wpdb;
     
-    $postId = intval($_POST['targetId']);
+    $postId = isset( $_POST['targetId'] ) ? intval($_POST['targetId']) : 0;
     if (!$postId) exit;
 
-    $sender = $_POST['sender']; 
+    $sender = isset( $_POST['sender'] ) ? $_POST['sender'] : null;
     if (empty($sender) || !in_array($sender, array('button', 'timer', 'cross'))) exit;
 
     $senderName = !empty($_POST['senderName']) ? $_POST['senderName'] : false;

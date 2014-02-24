@@ -16,15 +16,15 @@
 // module provides function only for the admin area
 if ( !is_admin() ) return;
 
-if (defined('FACTORY_METABOXES_300_LOADED')) return;
-define('FACTORY_METABOXES_300_LOADED', true);
+if (defined('FACTORY_METABOXES_305_LOADED')) return;
+define('FACTORY_METABOXES_305_LOADED', true);
 
-define('FACTORY_METABOXES_300_DIR', dirname(__FILE__));
-define('FACTORY_METABOXES_300_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_METABOXES_305_DIR', dirname(__FILE__));
+define('FACTORY_METABOXES_305_URL', plugins_url(null,  __FILE__ ));
 
 #comp merge
-require(FACTORY_METABOXES_300_DIR . '/metaboxes.php');
-require(FACTORY_METABOXES_300_DIR . '/metabox.class.php');
-require(FACTORY_METABOXES_300_DIR . '/includes/form-metabox.class.php');
-require(FACTORY_METABOXES_300_DIR . '/includes/publish-metabox.class.php');
+require(FACTORY_METABOXES_305_DIR . '/metaboxes.php');
+require(FACTORY_METABOXES_305_DIR . '/metabox.class.php');
+require(FACTORY_METABOXES_305_DIR . '/includes/form-metabox.class.php');
+require(FACTORY_METABOXES_305_DIR . '/includes/publish-metabox.class.php');
 #endcomp
