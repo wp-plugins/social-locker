@@ -10,8 +10,8 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_305_plugin_created', 'factory_licensing_000_plugin_created');
-function factory_licensing_000_plugin_created( $plugin ) {
+add_action('factory_305_plugin_created', 'onp_licensing_305_plugin_created');
+function onp_licensing_305_plugin_created( $plugin ) {
     $manager = new OnpLicensing305_Manager( $plugin );
     $plugin->license = $manager;
 }

@@ -17,7 +17,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForm000_FormHelpers {
+class FactoryForms305_FormHelpers {
     
     /**
      * Renders a form element.

@@ -9,8 +9,8 @@
  */
 
 // creating an api manager for each plugin created via the factory
-add_action('factory_305_plugin_created', 'factory_api_000_plugin_created');
-function factory_api_000_plugin_created( $plugin ) {
+add_action('factory_305_plugin_created', 'onp_api_305_plugin_created');
+function onp_api_305_plugin_created( $plugin ) {
     $manager = new OnpApi305_Manager( $plugin );
     $plugin->api = $manager;
 }

@@ -11,13 +11,13 @@
 
 // Checks if the one is already loaded.
 // We prevent to load the same version of the module twice.
-if (defined('ONEPRESS_UPDATES_000_LOADED')) return;
-define('ONEPRESS_UPDATES_000_LOADED', true);
+if (defined('ONP_UPDATES_305_LOADED')) return;
+define('ONP_UPDATES_305_LOADED', true);
 
 // Absolute path and URL to the files and resources of the module.
-define('ONEPRESS_UPDATES_000_DIR', dirname(__FILE__));
+define('ONP_UPDATES_305_DIR', dirname(__FILE__));
 
 #comp merge
-include(ONEPRESS_UPDATES_000_DIR. '/includes/transient.functions.php');
-include(ONEPRESS_UPDATES_000_DIR. '/updates.php');
+include(ONP_UPDATES_305_DIR. '/includes/transient.functions.php');
+include(ONP_UPDATES_305_DIR. '/updates.php');
 #endcomp
