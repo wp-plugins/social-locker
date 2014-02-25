@@ -88,6 +88,13 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.2.1 - 25 Feb 2014</strong><br />
+<ul>
+<li>FIXED: Unable to change the language of the Twitter and Google buttons.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.2.0 - 24 Feb 2014</strong><br />
 <ul>
 <li>NEW: A new menu item "How to use?" containing an instruction and recommendations on how to use the plugin.</li>
@@ -99,8 +106,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>FIXED: The bug of the trimmed social buttons on Polish and Spanish sites.</li>
 <li>FIXED: Minor bug of the batch locking feature.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.0.9 - 15 Jan 2014</strong><br />
 <ul>

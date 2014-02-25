@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.4.3, 2014-02-23 
+ * Social Locker - v1.4.3, 2014-02-25 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 

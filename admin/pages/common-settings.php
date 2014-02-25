@@ -275,6 +275,31 @@ class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
         
         if ( isset( $_POST['save-action'] ) ) {
             $form->save();
+            
+            $selectedLang = $_POST['sociallocker_lang'];
+            update_option('sociallocker_lang', $selectedLang);
+            
+            if ( !empty( $selectedLang ) ) {
+
+                $langItem = null;
+                global $sociallockerLangs;
+                foreach( $sociallockerLangs as $lang ) {
+                    if ( $lang[0] == $selectedLang ) {
+                        $langItem = $lang;
+                        break;
+                    }
+                }
+
+                $parts = explode('_', $selectedLang);
+                update_option('sociallocker_short_lang', $parts[0]);
+
+                if ( $langItem && isset( $langItem[2] ) ) {
+                    update_option('sociallocker_google_lang', $langItem[2] );   
+                } else {
+                    delete_option('sociallocker_google_lang');   
+                }
+            }
+            
             return $this->redirectToAction('index', array('saved' => 1));
         }
 

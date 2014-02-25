@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.4.3, 2014-02-23 
+ * Social Locker - v1.4.3, 2014-02-25 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 
@@ -549,12 +549,22 @@
     margin: 14px 7px 0 7px;
     width: 85px;
 }
+.onp-sociallocker.onp-sociallocker-dandyish .onp-social-button {
+    min-width: 0px;
+    width: auto;
+}
+
 .onp-sociallocker-dandyish .onp-linkedin-button {
     position: relative;
 }
 .onp-sociallocker-dandyish .onp-google-button {
     position: relative;
     top: 2px;
+}
+.onp-sociallocker-dandyish .onp-facebook-button, 
+.onp-sociallocker-dandyish .onp-google-button, 
+.onp-sociallocker-dandyish .onp-twitter-tweet {
+    width: auto;
 }
 .onp-sociallocker-dandyish .fb-like {
     position: top;
