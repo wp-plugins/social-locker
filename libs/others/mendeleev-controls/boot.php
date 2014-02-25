@@ -14,15 +14,15 @@ if ( !is_admin() ) return;
 
 // checks if the module is already loaded in order to
 // prevent loading the same version of the module twice.
-if (defined('MENDEELEV_000_LOADED')) return;
-define('MENDEELEV_000_LOADED', true);
+if (defined('MENDELEEV_305_LOADED')) return;
+define('MENDELEEV_305_LOADED', true);
 
 // absolute path and URL to the files and resources of the module.
-define('MENDEELEV_000_LOADED_URL', plugins_url(null,  __FILE__ ));
+define('MENDELEEV_305_LOADED_URL', plugins_url(null,  __FILE__ ));
 
 // registration of control themes
 FactoryForms305_Form::registerControlTheme( array(
     'name'      => 'mendeleev-305',
-    'style'     => MENDEELEV_000_LOADED_URL. '/css/{temper}/mendeleev-controls.css',
-    'script'    => MENDEELEV_000_LOADED_URL. '/js/mendeleev-controls.js',
+    'style'     => MENDELEEV_305_LOADED_URL. '/css/{temper}/mendeleev-controls.css',
+    'script'    => MENDELEEV_305_LOADED_URL. '/js/mendeleev-controls.js',
 ));
