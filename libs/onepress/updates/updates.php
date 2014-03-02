@@ -10,7 +10,7 @@
  */
 
 // creating an update manager for each plugin created via the factory
-add_action('factory_305_plugin_created', 'onp_updates_305_plugin_created');
+add_action('factory_306_plugin_created', 'onp_updates_305_plugin_created');
 function onp_updates_305_plugin_created( $plugin ) {
     $manager = new OnpUpdates305_Manager( $plugin );
     $plugin->updates = $manager;
@@ -27,7 +27,7 @@ class OnpUpdates305_Manager {
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory305_Plugin 
+     * @var Factory306_Plugin 
      */
     public $plugin;
     
@@ -54,7 +54,7 @@ class OnpUpdates305_Manager {
             add_action('onp_check_upadates_' . $this->plugin->pluginName, array($this, 'checkUpdatesAuto')); 
             
             // if a special constant set, then forced to check updates
-            if ( defined('ONP_SL_CHECK_UPDATES') && ONP_SL_CHECK_UPDATES ) $this->checkUpdates();
+            if ( defined('ONP_DEBUG_CHECK_UPDATES') && ONP_DEBUG_CHECK_UPDATES ) $this->checkUpdates();
         }
         
         if ( is_admin() ) {

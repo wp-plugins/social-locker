@@ -88,6 +88,12 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.2.3 - 02 Mar 2014</strong><br />
+<ul>
+<li>FIXED: A lot of minor bugs.</li>
+<li>FIXED: A conflict with the FormCraft plugin.</li>
+</ul>
+
 <strong>v.3.2.1 - 25 Feb 2014</strong><br />
 <ul>
 <li>FIXED: Unable to change the language of the Twitter and Google buttons.</li>

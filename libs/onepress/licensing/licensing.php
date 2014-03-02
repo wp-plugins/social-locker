@@ -10,9 +10,9 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_305_plugin_created', 'onp_licensing_305_plugin_created');
-function onp_licensing_305_plugin_created( $plugin ) {
-    $manager = new OnpLicensing305_Manager( $plugin );
+add_action('factory_306_plugin_created', 'onp_licensing_306_plugin_created');
+function onp_licensing_306_plugin_created( $plugin ) {
+    $manager = new OnpLicensing306_Manager( $plugin );
     $plugin->license = $manager;
 }
 
@@ -21,13 +21,13 @@ function onp_licensing_305_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpLicensing305_Manager {
+class OnpLicensing306_Manager {
     
     /**
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory305_Plugin
+     * @var Factory306_Plugin
      */
     public $plugin;
     
@@ -44,7 +44,7 @@ class OnpLicensing305_Manager {
      * 
      * @since 1.0.0
      */
-    public function __construct( Factory305_Plugin $plugin ) {
+    public function __construct( Factory306_Plugin $plugin ) {
         $this->plugin = $plugin;
 
         // gets a current license data
@@ -68,25 +68,110 @@ class OnpLicensing305_Manager {
         $this->build = isset( $this->data['Build'] ) ? $this->data['Build'] : null;
         $this->key = isset( $this->data['Key'] ) ? $this->data['Key'] : null;
         
-        add_action('admin_enqueue_scripts', array($this, 'addLicenseInfoIntoSouceCode'));
-
-        // adding links below the plugin title on the page plugins.php
-        add_filter('plugin_action_links_' . $plugin->relativePath, array( $this, 'addLicenseLinks' ) );
-        
-        // adding messages to the plugin row on the page plugins.php
-        add_filter('factory_plugin_row_' . $plugin->pluginName, array($this, 'addMessagesToPluginRow'));
-        
         // checks data returned from the api server
         add_action('onp_api_ping_' . $plugin->pluginName, array($this, 'apiPing'));
         
         // dectivates key if we got a request from the api server
         add_action('onp_api_action_deactivate-key', array($this, 'apiActionDeactivateKey'));
         
-        // adding notices to display
         if ( is_admin() ) {
+        
+            add_action('admin_enqueue_scripts', array($this, 'addLicenseInfoIntoSouceCode'));
+
+            // adding links below the plugin title on the page plugins.php
+            add_filter('plugin_action_links_' . $plugin->relativePath, array( $this, 'addLicenseLinks' ) );
+
+            // adding messages to the plugin row on the page plugins.php
+            add_filter('factory_plugin_row_' . $plugin->pluginName, array($this, 'addMessagesToPluginRow'));
+        
+            // adding notices to display
             add_filter('factory_notices_305', array( $this, 'addNotices'), 10, 2); 
             add_action('admin_enqueue_scripts', array( $this, 'printStylesForNotices'));
+            
+            // activation and deactivation hooks
+            add_action('factory_plugin_activation_' . $plugin->pluginName, array($this, 'activationHook'));
         }
+    }
+    
+    /**
+     * Checks if the activation.json file exists, read and processes it.
+     * 
+     * @since 3.0.6
+     * @return void
+     */
+    public function activationHook() {
+        $licenseData = get_option('onp_license_' . $this->plugin->pluginName, array());
+        if ( !empty($licenseData) ) return;
+        
+        $filepath = $this->plugin->pluginRoot . '/activation.json';
+        if ( !file_exists( $filepath ) ) return;
+        
+        $data = json_decode( file_get_contents($filepath), true );
+
+        // activate trial if it's needed
+        
+        if ( isset( $data['activate-trial'] ) && $data['activate-trial'] === true ) {
+            
+            $args = array(
+                'fy_page'      => 'license-manager',
+                'fy_action'    => 'activateTrial',  
+                'fy_plugin'    => $this->plugin->pluginName
+            );
+
+            $urlToRedirect =  '?' . http_build_query( $args );
+            factory_306_set_lazy_redirect($urlToRedirect);
+                
+            //@unlink( $filepath );  
+            return;
+        }
+        
+        // applying an embedded key
+        
+        if ( isset( $data['embedded-key'] ) && !empty( $data['embedded-key'] ) ) {
+            $dataToSave = $data['embedded-key'];
+            $dataToSave['Embedded'] = true;
+            $this->setLicense( $dataToSave );
+        }   
+    }
+    
+    /**
+     * Sets the active license.
+     * 
+     * @since 3.0.6
+     * @param type $data licenase data.
+     * @return void
+     */
+    public function setLicense( $data ) {
+        update_option('onp_license_' . $this->plugin->pluginName, $this->normilizeLicenseData( $data )); 
+        
+        $this->data = get_option('onp_license_' . $this->plugin->pluginName, array());
+        $this->build = isset( $this->data['Build'] ) ? $this->data['Build'] : null;
+        $this->key = isset( $this->data['Key'] ) ? $this->data['Key'] : null;
+    }
+    
+    /**
+     * Sets the default license.
+     * 
+     * @since 3.0.6
+     * @param type $data license data.
+     * @return void
+     */
+    public function setDefaultLicense( $data ) {        
+        $defaultLicense = get_option('onp_default_license_' . $this->plugin->pluginName, null);
+
+        if ( empty($defaultLicense) ) {
+            update_option('onp_default_license_' . $this->plugin->pluginName, $this->normilizeLicenseData( $data ));    
+        }
+    }
+    
+    /**
+     * Deletes the active license data and applies the default license data.
+     * 
+     * @return void
+     */
+    public function resetLicense() {
+        delete_option('onp_license_' . $this->plugin->pluginName);
+        $this->data = get_option('onp_default_license_' . $this->plugin->pluginName, array());
     }
     
     /**
@@ -102,6 +187,26 @@ class OnpLicensing305_Manager {
         if ( !isset($data['Title'])) return false;
         if ( !isset($data['Description'])) return false;   
         return true;
+    }
+    
+    /**
+     * Removes impurities in license data.
+     * 
+     * @since 3.0.6
+     * @param mixed $data
+     * @return mixed
+     */
+    private function normilizeLicenseData( $data ) {
+        $keys = array('Key', 'KeySecret', 'Category', 'Build', 'Title', 'Description', 'Expired', 'Embedded', 'KeyBound');
+        $dataToReturn = array();
+        
+        foreach($data as $itemKey => $itemValue) {
+            if ( !in_array( $itemKey, $keys )) continue;
+            $dataToReturn[$itemKey] = $itemValue;
+        } 
+        
+        if ( !isset( $dataToReturn['Expired'] )) $dataToReturn['Expired'] = 0;
+        return $dataToReturn;
     }
     
     /**
@@ -130,6 +235,7 @@ class OnpLicensing305_Manager {
      * @return void
      */
     public function apiPing( $data ) {
+
         if ( isset( $data['DeleteLicense'] ) && !empty( $data['DeleteLicense'] ) ) $this->resetLicense();
 
         if ( isset( $data['KeyNotBound'] ) && !empty( $data['KeyNotBound'] ) ) {
@@ -166,7 +272,7 @@ class OnpLicensing305_Manager {
      */
     public function activateKey( $key) {
         
-        if ( defined('ONP_SL_NETWORK_DISABLED') && ONP_SL_NETWORK_DISABLED )
+        if ( defined('ONP_DEBUG_NETWORK_DISABLED') && ONP_DEBUG_NETWORK_DISABLED )
             return new WP_Error('HTTP:NetworkDisabled', 'The network is disabled.');
             
         $data = $this->plugin->api->request( 
@@ -186,10 +292,7 @@ class OnpLicensing305_Manager {
         if ( !$this->checkLicenseDataCorrectness($data) )
             return new WP_Error('FORM:InvalidLicenseData', 'The server returned invalid license data. If you tried to submit or delete key manually please make sure that you copied and pasted the server response code entirely.');
 
-        update_option('onp_license_' . $this->plugin->pluginName, $data);
-        $this->data = $data;
-        $this->build = isset( $this->data['Build'] ) ? $this->data['Build'] : null;
-        $this->key = isset( $this->data['Key'] ) ? $this->data['Key'] : null;
+        $this->setLicense( $data );
         
         if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
@@ -208,11 +311,7 @@ class OnpLicensing305_Manager {
             return new WP_Error('FORM:InvalidLicenseData', 'The server returned invalid license data. If you tried to submit or delete key manually please make sure that you copied and pasted the server response code entirely.');
         
         $data['Description'] = base64_decode( str_replace( ' ', '+', $data['Description'] ));
-        update_option('onp_license_' . $this->plugin->pluginName, $data);     
-
-        $this->data = $data;
-        $this->build = isset( $this->data['Build'] ) ? $this->data['Build'] : null;
-        $this->key = isset( $this->data['Key'] ) ? $this->data['Key'] : null;
+        $this->setLicense( $data );
         
         if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
@@ -224,7 +323,7 @@ class OnpLicensing305_Manager {
      */
     public function activateTrial() {
         
-        if ( defined('ONP_SL_NETWORK_DISABLED') && ONP_SL_NETWORK_DISABLED )
+        if ( defined('ONP_DEBUG_NETWORK_DISABLED') && ONP_DEBUG_NETWORK_DISABLED )
             return new WP_Error('HTTP:NetworkDisabled', 'The network is disabled.');
         
         $data = $this->plugin->api->request( 
@@ -233,18 +332,14 @@ class OnpLicensing305_Manager {
                 'verification' => true
             )
         );
-        
+    
         if (is_wp_error($data) ) return $data;
         
         if ( !$this->checkLicenseDataCorrectness($data) )
             return new WP_Error('FORM:InvalidLicenseData', 'The server returned invalid license data. If you tried to submit or delete key manually please make sure that you copied and pasted the server response code entirely.');
         
-        update_option('onp_license_' . $this->plugin->pluginName, $data);
         update_option('onp_trial_activated_' . $this->plugin->pluginName, true);
-        
-        $this->data = $data;
-        $this->build = isset( $this->data['Build'] ) ? $this->data['Build'] : null;
-        $this->key = isset( $this->data['Key'] ) ? $this->data['Key'] : null;
+        $this->setLicense( $data );
         
         if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
@@ -255,7 +350,7 @@ class OnpLicensing305_Manager {
      */
     public function deleteKey() {
         
-        if ( defined('ONP_SL_NETWORK_DISABLED') && ONP_SL_NETWORK_DISABLED )
+        if ( defined('ONP_DEBUG_NETWORK_DISABLED') && ONP_DEBUG_NETWORK_DISABLED )
             return new WP_Error('HTTP:NetworkDisabled', 'The network is disabled.');
         
         $data = $this->plugin->api->request( 
@@ -271,12 +366,7 @@ class OnpLicensing305_Manager {
         if ( $this->plugin->updates ) $this->plugin->updates->checkUpdates();
         return true;
     }
-    
-    public function resetLicense() {
-        delete_option('onp_license_' . $this->plugin->pluginName);
-        $this->data = get_option('onp_default_license_' . $this->plugin->pluginName, array());
-    }
-    
+        
     public function deleteKeyManualy( $response ) {
         $response = base64_decode( $response );
 
@@ -354,7 +444,7 @@ class OnpLicensing305_Manager {
      */
     public function createAccount( $email, $subscribe ) {
         
-        if ( defined('ONP_SL_NETWORK_DISABLED') && ONP_SL_NETWORK_DISABLED )
+        if ( defined('ONP_DEBUG_NETWORK_DISABLED') && ONP_DEBUG_NETWORK_DISABLED )
             return new WP_Error('HTTP:NetworkDisabled', 'The network is disabled.');
         
         $data = $this->plugin->api->request( 
@@ -383,7 +473,7 @@ class OnpLicensing305_Manager {
      */
     public function bindKey( $email ) {
         
-        if ( defined('ONP_SL_NETWORK_DISABLED') && ONP_SL_NETWORK_DISABLED )
+        if ( defined('ONP_DEBUG_NETWORK_DISABLED') && ONP_DEBUG_NETWORK_DISABLED )
             return new WP_Error('HTTP:NetworkDisabled', 'The network is disabled.');
         
         $data = $this->plugin->api->request( 
@@ -409,7 +499,7 @@ class OnpLicensing305_Manager {
      */
     public function cancelAccount( $cancelCode, $confirmationId ) {
         
-        if ( defined('ONP_SL_NETWORK_DISABLED') && ONP_SL_NETWORK_DISABLED )
+        if ( defined('ONP_DEBUG_NETWORK_DISABLED') && ONP_DEBUG_NETWORK_DISABLED )
             return new WP_Error('HTTP:NetworkDisabled', 'The network is disabled.');
         
         $data = $this->plugin->api->request( 
@@ -454,6 +544,19 @@ class OnpLicensing305_Manager {
         return $this->data['Expired'] - time() <= 0;
     }
     
+    public function isTrial() {
+        if ( !isset( $this->data['Category'] ) ) return false;
+        return $this->data['Category']  === 'trial';
+    }
+    
+    public function isEmbedded() {
+        if ( !isset( $this->data['Embedded'] ) ) return false;   
+        return $this->data['Embedded'];
+    }
+    
+    public function needToProtect() {
+        return !$this->isTrial() && !$this->isEmbedded();
+    }
     
     // -------------------------------------------------------------------------------------
     // Links, messages, notices and so on ...
@@ -469,7 +572,7 @@ class OnpLicensing305_Manager {
      * @return mixed[]
      */
     function addLicenseLinks($links) {
-        $url = onp_licensing_305_get_manager_link( $this->plugin->pluginName );
+        $url = onp_licensing_306_get_manager_link( $this->plugin->pluginName );
         array_unshift($links, '<a href="' . $url . '" style="font-weight: bold;">License</a>');
         unset($links['edit']);
         return $links; 
@@ -512,7 +615,7 @@ class OnpLicensing305_Manager {
     function addNotices( $notices ) {       
         
         // show messages only for administrators
-        if ( !factory_305_is_administrator() ) return $notices;
+        if ( !factory_306_is_administrator() ) return $notices;
         
         $closed = get_option('factory_notices_closed', array());
         
@@ -522,42 +625,53 @@ class OnpLicensing305_Manager {
         }
 
         // shows the key binding message only if changing the assembly is not required
+        
+        $forceBindingMessage = defined('ONP_DEBUG_SHOW_BINDING_MESSAGE') && ONP_DEBUG_SHOW_BINDING_MESSAGE;
     
-        if ( $time + 60*60*24 <= time() && ( !$this->plugin->updates || !$this->plugin->updates->needChangeAssembly() ) ) {        
+        if ( ( $time + 60*60*24 <= time() && ( !$this->plugin->updates || !$this->plugin->updates->needChangeAssembly() )) || $forceBindingMessage ) {        
         
             $keyBound = get_option('onp_bound_message_' . $this->plugin->pluginName, false);
-            if ( $keyBound && $this->plugin->license && $this->plugin->license->key ) {
+            if ( ( $keyBound && $this->plugin->license && $this->plugin->license->key && $this->needToProtect() ) || $forceBindingMessage ) {
 
                 $notices[] = array(
                     'id'        => $this->plugin->pluginName . '-key-not-bound',
 
                     // content and color
-                    'class'     => 'alert alert-danger onp-alert-key-not-bound',
+                    'class'     => 'call-to-action',
+                    'icon'      => 'fa fa-frown-o',  
                     'header'    => 'Your license key is not protected!',
                     'message'   => 'Bind your license key (for ' . $this->plugin->options['title'] . ') to your email address in order to avoid theft (it will take just a couple of seconds).',   
                     'plugin'    => $this->plugin->pluginName,
-                    'close'     => true,
 
                     // buttons and links
                     'buttons'   => array(
                         array(
-                            'class'     => 'btn btn-danger',
+                            'class'     => 'btn btn-primary',
                             'title'     => '<i class="fa fa-key"></i> Protect my key: <i>' . $this->plugin->license->key . '</i>',
                             'action'    => '?' . http_build_query(array(
                                 'fy_page'      => 'license-manager',
                                 'fy_action'    => 'createAccount',  
                                 'fy_plugin'    => $this->plugin->pluginName
                             ))
+                        ),
+                        array(
+                            'title'     => 'Hide this message',
+                            'class'     => 'btn btn-default',
+                            'action'    => 'x'
                         )
                     )
                 );
             }
         }
+        
+        $forceTrialNotices = defined('ONP_DEBUG_TRIAL_EXPIRES') && ONP_DEBUG_TRIAL_EXPIRES !== false;
 
         $exipred = floatval($this->data['Expired']); 
-        if ( $exipred != 0 ) {
+        if ( $exipred != 0 || $forceTrialNotices ) {
 
             $remained = round( ( $this->data['Expired'] - time() ) / (60 * 60 * 24), 2 );
+            if ( $forceTrialNotices ) $remained = ONP_DEBUG_TRIAL_EXPIRES;
+                
             if ( $remained < 5 && $remained > 0 ) {
                 
                 $time = 0;
@@ -565,9 +679,9 @@ class OnpLicensing305_Manager {
                     $time = $closed[$this->plugin->pluginName . '-key-estimate']['time'];
                 }
                 
-                if ( $time + 60*60*24 <= time() ) {
+                if ( $time + 60*60*24 <= time() || $forceTrialNotices ) {
                     
-                    if ( $this->type == 'trial' ) {
+                    if ( $this->type == 'trial' || $forceTrialNotices ) {
                     
                         if ( $remained <= 1  ) {
 
@@ -575,19 +689,24 @@ class OnpLicensing305_Manager {
                                 'id'        => $this->plugin->pluginName . '-key-estimate',
 
                                 // content and color
-                                'class'     => 'alert alert-danger',
-                                'header'    => 'The trial key for "' . $this->plugin->pluginTitle . '" will expire during the day!',
+                                'class'     => 'call-to-action',
+                                'icon'      => 'fa fa-clock-o',   
+                                'header'    => 'The trial key for the ' . $this->plugin->pluginTitle . ' will expire during the day!',
                                 'message'   => 'Don\'t forget to purchase the premium key or delete the trial key to use the free version of the plugin.',   
                                 'plugin'    => $this->plugin->pluginName,
-                                'close'     => true,
                                 
                                 // buttons and links
                                 'buttons'   => array(
                                     array(
-                                        'class'     => 'btn btn-danger btn-large btn-lg',
-                                        'title'     => '<i class="fa fa-heart"></i> Buy a premium key now!',
+                                        'title'     => '<i class="fa fa-arrow-circle-o-up"></i> Buy a premium key now!',
+                                        'class'     => 'btn btn-primary',
                                         'action'    => $this->plugin->options['premium']
-                                    )
+                                    ),
+                                    array(
+                                        'title'     => 'Hide this message',
+                                        'class'     => 'btn btn-default',
+                                        'action'    => 'x'
+                                    ),
                                 )
                             );
 
@@ -597,19 +716,24 @@ class OnpLicensing305_Manager {
                                 'id'        => $this->plugin->pluginName . '-key-estimate',
 
                                 // content and color
-                                'class'     => 'alert alert-danger',
-                                'header'    => 'The trial key for "' . $this->plugin->pluginTitle . '" will expire in ' . $remained . ' days.',
+                                'class'     => 'call-to-action',
+                                'icon'      => 'fa fa-clock-o',
+                                'header'    => 'The trial key for the ' . $this->plugin->pluginTitle . ' will expire in ' . $remained . ' days.',
                                 'message'   => 'Please don\'t forget to purchase the premium key or delete the trial key to use the free version of the plugin.',   
                                 'plugin'    => $this->plugin->pluginName,
-                                'close'     => true,
                                 
                                 // buttons and links
                                 'buttons'   => array(
                                     array(
-                                        'class'     => 'btn btn-danger btn-large btn-lg',
-                                        'title'     => '<i class="fa fa-heart"></i> Buy a premium key now!',
+                                        'title'     => '<i class="fa fa-arrow-circle-o-up"></i> Buy a premium key now!',
+                                        'class'     => 'btn btn-primary',
                                         'action'    => $this->plugin->options['premium']
-                                    )
+                                    ),
+                                    array(
+                                        'title'     => 'Hide this message',
+                                        'class'     => 'btn btn-default',
+                                        'action'    => 'x'
+                                    ),
                                 )
                             );
                         }  
@@ -618,24 +742,30 @@ class OnpLicensing305_Manager {
                 }
             }
             
-            if ( $this->isExpired() ) {
+            if ( $this->isExpired() || $forceTrialNotices ) {
                 
                 $notices[] = array(
                     'id'        => $this->plugin->pluginName . '-key-expired',
 
                     // content and color
-                    'class'     => 'alert alert-danger',
-                    'header'    => 'The trial key for "' . $this->plugin->pluginTitle . '" has expired.',
+                    'class'     => 'call-to-action',
+                    'icon'      => 'fa fa-arrow-circle-o-up',
+                    'header'    => 'The trial key for the ' . $this->plugin->pluginTitle . ' has expired.',
                     'message'   => 'Please purchase another key or delete the current key to use the free version of the plugin.',   
                     'plugin'    => $this->plugin->pluginName,
                     
                     // buttons and links
                     'buttons'   => array(
                         array(
-                            'title'     => '<i class="fa fa-heart"></i> Buy a premium key now!',
-                            'class'     => 'btn btn-danger btn-large btn-lg',
+                            'title'     => '<i class="fa fa-arrow-circle-o-up"></i> Buy a premium key now!',
+                            'class'     => 'btn btn-primary',
                             'action'    => $this->plugin->options['premium']
-                        )
+                        ),
+                        array(
+                            'title'     => 'Visit the license manager',
+                            'class'     => 'btn btn-default',
+                            'action'    => onp_licensing_306_get_manager_link($this->plugin->pluginName, 'index')
+                        ),
                     )
                 );
             }
@@ -648,7 +778,11 @@ class OnpLicensing305_Manager {
         if ( $hook !== 'index.php' && $hook !== 'plugins.php' ) return;
         ?>
         <style>
-
+            .alert-danger.onp-alert-trial {
+                background-color: #fafafa !important;
+                color: #111 !important;
+                border: 2px solid #0074a2 !important;
+            }
         </style>
         <?php
     }
@@ -661,7 +795,7 @@ class OnpLicensing305_Manager {
  * @param type $pluginName
  * @param type $action
  */
-function onp_licensing_305_manager_link( $pluginName, $action = null ) {
+function onp_licensing_306_manager_link( $pluginName, $action = null ) {
     
     $args = array(
         'fy_page'      => 'license-manager',
@@ -679,7 +813,7 @@ function onp_licensing_305_manager_link( $pluginName, $action = null ) {
  * @param type $pluginName
  * @param type $action
  */
-function onp_licensing_305_get_manager_link( $pluginName, $action = null ) {
+function onp_licensing_306_get_manager_link( $pluginName, $action = null ) {
     
     $args = array(
         'fy_page'      => 'license-manager',

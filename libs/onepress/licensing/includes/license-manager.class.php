@@ -15,7 +15,7 @@
  * 
  * @since 1.0.0
  */
-class OnpLicensing305_LicenseManagerPage extends FactoryPages305_AdminPage  {
+class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -24,6 +24,11 @@ class OnpLicensing305_LicenseManagerPage extends FactoryPages305_AdminPage  {
         parent::__construct($plugin);
         
         if ( !$this->menuTitle ) $this->menuTitle = __('License Manager', 'onepress');
+        
+        // turns off the license manager if we use the embedded license key
+        if ( $plugin->license && $plugin->license->isEmbedded() ) {
+            $this->hidden = true;
+        }
         
         $this->site = site_url();
         $this->domain = parse_url( $this->site, PHP_URL_HOST );
@@ -34,8 +39,8 @@ class OnpLicensing305_LicenseManagerPage extends FactoryPages305_AdminPage  {
      */
     public function assets() {
         
-        $this->styles->add(ONP_LICENSING_305_URL . '/assets/css/license-manager.css');
-        $this->scripts->add(ONP_LICENSING_305_URL . '/assets/js/license-manager.js');   
+        $this->styles->add(ONP_LICENSING_306_URL . '/assets/css/license-manager.css');
+        $this->scripts->add(ONP_LICENSING_306_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -293,7 +298,7 @@ class OnpLicensing305_LicenseManagerPage extends FactoryPages305_AdminPage  {
                                 <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONP_LICENSING_305_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONP_LICENSING_306_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
@@ -344,13 +349,9 @@ class OnpLicensing305_LicenseManagerPage extends FactoryPages305_AdminPage  {
 
             <div class='onp-header'>  
                 <?php if ( $ref == 'trial' || $ref == 'manual-trial-activation' ) { ?>
-                    <h4><?php _e('Congratulations! you\'ve successfully activated a trial key', 'sociallocker') ?></h4>
-                    <p><?php _e('Your trial key will expire in ', 'sociallocker') ?>
-                        <?php
-                            $licenseData = $licenseManager->data;
-                            $remained = round( ( $licenseData['Expired'] - time() ) / (60 * 60 * 24), 2 );
-                        ?>
-                        <?php echo $remained; ?> <?php _e('day(s)', 'onepress') ?>
+                    <h4><?php _e('Congratulations! you\'ve successfully activated a trial version', 'sociallocker') ?></h4>
+                    <p>
+                        <?php printf( __('Thank you for using %s. The plugin is ready.', 'sociallocker'), $this->plugin->options['title'] ) ?>
                     </p>
                 <?php } elseif ( $ref == 'binding' ) { ?>    
                     <h4><?php _e('Good job!', 'sociallocker') ?></h4>
@@ -365,7 +366,14 @@ class OnpLicensing305_LicenseManagerPage extends FactoryPages305_AdminPage  {
             
             <div class="onp-container">
                 <?php if ( $ref == 'trial' || $ref == 'manual-trial-activation' ) { ?>
-                    <p>Thank you for activating a trial version of the plugin.</p>
+                    <p>
+                        <?php _e('Your trial key will expire in ', 'sociallocker') ?>
+                        <?php
+                            $licenseData = $licenseManager->data;
+                            $remained = round( ( $licenseData['Expired'] - time() ) / (60 * 60 * 24), 2 );
+                        ?>
+                        <?php echo $remained; ?> <?php _e('day(s).', 'onepress') ?>
+                    </p>
                 <?php } elseif ( $ref == 'binding' ) { ?>  
                     <p><?php printf( __('The key has been bound to your account (<strong>%s</strong>).', 'sociallocker'), $email ) ?></p>
                     <p>

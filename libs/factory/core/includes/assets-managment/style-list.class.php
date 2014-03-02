@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory305_StyleList extends Factory305_AssetsList 
+class Factory306_StyleList extends Factory306_AssetsList 
 {
     public function connect() {
 

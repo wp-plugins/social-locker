@@ -120,3 +120,53 @@
     color: #b23e3a;
     text-shadow: none;
 }
+.factory-notices-305-notices .alert .factory-button {
+    margin-right: 5px;
+}
+
+/**
+* Call to action
+*/
+
+
+.factory-notices-305-notices .call-to-action {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    color: #111;
+    border: 2px solid #0074a2;
+}
+.factory-notices-305-notices2 .call-to-action .factory-inner-wrap {
+    min-height: 90px;
+    padding-left: 110px;
+    background: url("../img/call-to-action-icon-4.png") no-repeat top left;
+}
+.factory-notices-305-notices .call-to-action h4 {
+    margin-top: 0;
+    color: inherit;
+    margin-bottom: 10px;
+}
+.factory-notices-305-notices .call-to-action .actions {
+    padding-top: 10px;
+}
+.factory-notices-305-notices .call-to-action .close {
+    position: relative;
+    top: -8px;
+    right: -7px;
+}
+.factory-notices-305-notices .call-to-action .factory-button {
+    margin-right: 5px;
+}
+.factory-notices-305-notices .call-to-action .factory-icon {
+    font-size: 100px;
+    line-height: 100px;
+    height: 100%;
+    float: left;
+    margin-right: 15px;
+    color: #2ea2cc;
+    position: relative;
+    top: -5px;
+    text-shadow: 0 1px 0 #fff;
+}

@@ -1,10 +1,25 @@
 <?php
 
-class OnpSL_Activation extends OnpLicensing305_Activator {
+class OnpSL_Activation extends Factory306_Activator {
     
     public function activate() {
-        parent::activate();
+
+        // sets the default licence
+        // the default license is a license that is used when a license key is not activated
+
+            $this->plugin->license->setDefaultLicense( array(
+                'Category'      => 'free',
+                'Build'         => 'free',
+                'Title'         => 'OnePress Public License',
+                'Description'   => 'Public License is a GPLv2 compatible license. 
+                                    It allows you to change this version of the plugin and to
+                                    use the plugin free. Please remember this license 
+                                    covers only free edition of the plugin. Premium versions are 
+                                    distributed with other type of a license.'
+            ));
         
+
+
         // options
         
 	add_option('sociallocker_facebook_appid', '117100935120196');

@@ -14,12 +14,12 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
+class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
  
     /**
      * The title of the page in the admin menu.
      * 
-     * @see FactoryPages305_AdminPage
+     * @see FactoryPages306_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -29,7 +29,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
     /**
      * The parent menu of the page in the admin menu.
      * 
-     * @see FactoryPages305_AdminPage
+     * @see FactoryPages306_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -40,7 +40,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
      * The id of the page in the admin menu.
      * 
      * Mainly used to navigate between pages.
-     * @see FactoryPages305_AdminPage
+     * @see FactoryPages306_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -153,7 +153,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
     /**
      * Requests assets (js and css) for the page.
      * 
-     * @see FactoryPages305_AdminPage
+     * @see FactoryPages306_AdminPage
      * 
      * @since 1.0.0
      * @return void 
@@ -349,7 +349,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_305_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_306_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -427,4 +427,4 @@ class OnpSL_CommonSettingsPage extends FactoryPages305_AdminPage  {
     }
 }
 
-FactoryPages305::register($sociallocker, 'OnpSL_CommonSettingsPage');
+FactoryPages306::register($sociallocker, 'OnpSL_CommonSettingsPage');

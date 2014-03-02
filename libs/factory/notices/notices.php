@@ -78,18 +78,23 @@ class FactoryNotices305 {
         $hasHeader = !empty( $header );
         $hasMessage = !empty( $message );
         $hasClose = isset( $data['close'] ) ? $data['close'] : false;
+        $hasIcon = isset( $data['icon'] );      
         
         $classes = array();
         if ( !empty( $data['class'] ) ) $classes[] = $data['class'];
         if ( !empty( $data['plugin'] ) ) $classes[] = 'notice-' . $data['plugin'];
-         
+        if ( $hasIcon ) $classes[] = 'factory-has-icon';  
+        
         ?>
             <div class="factory-notice <?php echo implode(' ', $classes) ?>" id="<?php echo $data['id'] ?>">
             <div class="factory-inner-wrap"> 
                 <?php if ( $hasClose ) { ?>
                 <a href="#" class="factory-close close" title="Dismiss this message."><i class="fa fa-times"></i></a>
                 <?php } ?>
-                <div class="factory-message-container">
+                <?php if ( $hasIcon ) { ?>
+                    <i class="factory-icon <?php echo $data['icon'] ?>"></i>
+                <?php } ?>                
+                <div class="factory-message-container">                   
                     <?php if ( $hasHeader ) { ?>
                     <h4 class="factory-header alert-heading"><?php echo $header ?></h4>
                     <?php } ?>

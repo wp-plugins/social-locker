@@ -52,8 +52,14 @@ class FactoryForms305_TextboxControl extends FactoryForms305_Control
      * @return void
      */
     public function html( ) {
+        $units = $this->getOption('units', false );
         ?>
+        <?php if ( $units ) { ?><div class="input-group"><?php } ?>
         <input <?php $this->attrs() ?>/>
+        <?php if ( $units ) { ?>
+            <span class="input-group-addon"><?php echo $units ?></span>
+        <?php }?>
+        <?php if ( $units ) { ?></div><?php } ?>
         <?php
     }
 }

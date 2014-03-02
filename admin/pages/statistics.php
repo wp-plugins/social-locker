@@ -12,7 +12,7 @@
 /**
  * Common Settings
  */
-class OnpSL_StatisticsPage extends FactoryPages305_AdminPage  {
+class OnpSL_StatisticsPage extends FactoryPages306_AdminPage  {
  
     public $menuTitle = 'Usage Statistics';
     public $menuPostType = 'social-locker';
@@ -232,4 +232,4 @@ class OnpSL_StatisticsPage extends FactoryPages305_AdminPage  {
     }
 }
 
-FactoryPages305::register($sociallocker, 'OnpSL_StatisticsPage');
+FactoryPages306::register($sociallocker, 'OnpSL_StatisticsPage');

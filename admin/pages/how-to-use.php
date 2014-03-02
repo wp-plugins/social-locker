@@ -12,7 +12,7 @@
 /**
  * Common Settings
  */
-class OnpSL_HowToUsePage extends FactoryPages305_AdminPage  {
+class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
  
     public $menuTitle = 'How to use?';
     public $menuPostType = 'social-locker';
@@ -227,7 +227,7 @@ class OnpSL_HowToUsePage extends FactoryPages305_AdminPage  {
                    
                     <p>
                         This plugin is a free edition of the popular <a target="_blank" href="<?php echo $this->plugin->options['premium'] ?>"> Social Locker plugin</a> sold on CodeCanyon. 
-                        You can activate premium features for a trial period <a href="<?php onp_licensing_305_manager_link($this->plugin->pluginName ) ?>">inside the plugin</a>.</strong>
+                        You can activate premium features for a trial period <a href="<?php onp_licensing_306_manager_link($this->plugin->pluginName ) ?>">inside the plugin</a>.</strong>
                     </p>
                 </div>
                 
@@ -263,7 +263,7 @@ class OnpSL_HowToUsePage extends FactoryPages305_AdminPage  {
                     <h1>How to activate the trial version?</h1>
                    
                     <p>
-                        You can make that on the License Manager page or just <a href="<?php onp_licensing_305_manager_link($this->plugin->pluginName, 'activateTrial') ?>">click here</a> to activate the trial version.
+                        You can make that on the License Manager page or just <a href="<?php onp_licensing_306_manager_link($this->plugin->pluginName, 'activateTrial') ?>">click here</a> to activate the trial version.
                     </p>
                 </div>
                 
@@ -282,4 +282,4 @@ class OnpSL_HowToUsePage extends FactoryPages305_AdminPage  {
     }    
 }
 
-FactoryPages305::register($sociallocker, 'OnpSL_HowToUsePage');
+FactoryPages306::register($sociallocker, 'OnpSL_HowToUsePage');

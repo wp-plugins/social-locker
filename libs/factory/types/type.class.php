@@ -80,7 +80,7 @@ abstract class FactoryTypes305_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory305_ScriptList 
+     * @var Factory306_ScriptList 
      */
     public $scripts;
     
@@ -88,7 +88,7 @@ abstract class FactoryTypes305_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory305_StyleList 
+     * @var Factory306_StyleList 
      */  
     public $styles;
     
@@ -151,8 +151,8 @@ abstract class FactoryTypes305_Type {
         $this->menu = new FactoryTypes305_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory305_ScriptList();
-        $this->styles = new Factory305_StyleList(); 
+        $this->scripts = new Factory306_ScriptList();
+        $this->styles = new Factory306_StyleList(); 
         
         add_action('init', array($this, 'register'));
     }

@@ -1,6 +1,6 @@
 <?php
 
-class FactoryPages305_AdminPage extends FactoryPages305_Page {
+class FactoryPages306_AdminPage extends FactoryPages306_Page {
     
     /**
      * Visible page title.
@@ -60,12 +60,19 @@ class FactoryPages305_AdminPage extends FactoryPages305_Page {
     
     /**
      * If true, the page will not added to the admin menu.
-     * @var type 
+     * @var bool 
      */
     public $internal = false;
     
-
-    public function __construct(Factory305_Plugin $plugin) {
+    /**
+     * If true, the page will not be cretaed.
+     * 
+     * @since 3.0.6
+     * @var bool 
+     */
+    public $hidden = false;
+    
+    public function __construct(Factory306_Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
 
@@ -96,6 +103,8 @@ class FactoryPages305_AdminPage extends FactoryPages305_Page {
      * Registers admin page for the admin menu.
      */
     public function connect() {
+        if ( $this->hidden ) return;
+        
         $resultId = $this->getResultId();
 
         // makes redirect to the page
