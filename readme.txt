@@ -94,6 +94,8 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>NEW: added the "onp_sl_locker_options" filter for developers to change the locker options through php.</li>
 </ul>
 
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.2.3 - 02 Mar 2014</strong><br />
 <ul>
 <li>FIXED: A lot of minor bugs.</li>
@@ -104,8 +106,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <ul>
 <li>FIXED: Unable to change the language of the Twitter and Google buttons.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.2.0 - 24 Feb 2014</strong><br />
 <ul>
