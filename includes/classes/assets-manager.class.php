@@ -139,12 +139,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030201.min.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030204.min.css'
         );  
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030201.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030204.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
@@ -232,6 +232,7 @@ class OnpSL_AssetsManager {
 
                 'theme' => 'secrets',
                 
+                
                 'locker' => array(
                     'scope' => $hasScope ? 'global' : '',
                     'counter' => self::getLockerOption($id, 'show_counters', false, 1)
@@ -263,6 +264,8 @@ class OnpSL_AssetsManager {
 
             unset( $params['buttons'] );
         }
+        
+        $params = apply_filters('onp_sl_locker_options', $params, $id );
 
         // - Replaces shortcodes in the locker message and twitter text
 
