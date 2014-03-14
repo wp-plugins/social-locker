@@ -349,7 +349,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_306_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_307_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">

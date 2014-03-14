@@ -15,7 +15,7 @@
  * 
  * @since 1.0.0
  */
-class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
+class OnpLicensing307_LicenseManagerPage extends FactoryPages306_AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -39,8 +39,8 @@ class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
      */
     public function assets() {
         
-        $this->styles->add(ONP_LICENSING_306_URL . '/assets/css/license-manager.css');
-        $this->scripts->add(ONP_LICENSING_306_URL . '/assets/js/license-manager.js');   
+        $this->styles->add(ONP_LICENSING_307_URL . '/assets/css/license-manager.css');
+        $this->scripts->add(ONP_LICENSING_307_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -146,7 +146,7 @@ class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
                 <div class="license-details">
                     <?php ?>
                         <?php if ( $licenseManager->hasUpgrade() ) { ?>
-                        <a href="<?php echo $this->plugin->options['premium'] ?>" id="purchase-premium">
+                        <a href="<?php onp_licensing_307_purchase_url( $this->plugin ) ?>" id="purchase-premium">
                             <span class="btn btn-gold btn-inner-wrap">
                             <?php if ( !empty( $this->purchasePrice ) ) { ?>
                             <i class="fa fa-star"></i> <?php printf( __('Upgrade to Premium for %1$s', 'onepress'), $this->purchasePrice ) ?> <i class="fa fa-star"></i></i>
@@ -192,7 +192,7 @@ class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
                                 </p>
                                 <p class="activate-trial-hint">
                                     <?php printf( __('You can <a href="%1$s">activate</a> a premium version for a trial period (7 days).', 'onepress'), $this->getActionUrl('activateTrial') ) ?>
-                                    <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onepress'), $this->plugin->options['premium'] ) ?>
+                                    <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onepress'), onp_licensing_307_get_purchase_url( $this->plugin ) ) ?>
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
@@ -261,7 +261,7 @@ class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
                             <input type="text" id="license-key" name="licensekey" value="<?php echo $licenseKey ?>" class="form-control" />
                         </div>
                         <p style="margin-top: 10px;">
-                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onepress'), $this->plugin->options['premium'] ) ?>
+                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onepress'), onp_licensing_307_get_purchase_url( $this->plugin ) ) ?>
                         </p>
                     </form>
                 </div>
@@ -298,7 +298,7 @@ class OnpLicensing306_LicenseManagerPage extends FactoryPages306_AdminPage  {
                                 <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONP_LICENSING_306_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONP_LICENSING_307_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>

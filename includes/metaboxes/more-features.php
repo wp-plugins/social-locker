@@ -92,7 +92,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes305_Metabox
         <?php if ( FACTORY_FLAT_ADMIN_030800 ) { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <a href="<?php onp_licensing_306_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-primary btn-large">
+                    <a href="<?php onp_licensing_307_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-primary btn-large">
                         Try 7-days Trial Version<br /><span>(activate by one click)</span>
                     </a>
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
@@ -102,13 +102,13 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes305_Metabox
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-primary btn-large">
                         Get Premium for $21<br /><span>(it will take no more a minute)</span>
                     </a>
-                    <a href="<?php onp_licensing_306_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                    <a href="<?php onp_licensing_307_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
                 </div>
             <?php } ?>
         <?php } else { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <a href="<?php onp_licensing_306_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
+                    <a href="<?php onp_licensing_307_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
                         Try 7-days Trial Version<br /><span>(activate by one click)</span>
                     </a>
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
@@ -118,7 +118,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes305_Metabox
                     <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">
                         Get Premium for $21<br /><span>(it will take no more a minute)</span>
                     </a>
-                    <a href="<?php onp_licensing_306_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                    <a href="<?php onp_licensing_307_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
                 </div>
             <?php } ?>
         <?php } ?>

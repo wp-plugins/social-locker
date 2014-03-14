@@ -10,9 +10,9 @@
  */
 
 // creating an update manager for each plugin created via the factory
-add_action('factory_306_plugin_created', 'onp_updates_305_plugin_created');
-function onp_updates_305_plugin_created( $plugin ) {
-    $manager = new OnpUpdates305_Manager( $plugin );
+add_action('factory_307_plugin_created', 'onp_updates_306_plugin_created');
+function onp_updates_306_plugin_created( $plugin ) {
+    $manager = new OnpUpdates306_Manager( $plugin );
     $plugin->updates = $manager;
 }
 
@@ -21,13 +21,13 @@ function onp_updates_305_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpUpdates305_Manager {
+class OnpUpdates306_Manager {
     
     /**
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory306_Plugin 
+     * @var Factory307_Plugin 
      */
     public $plugin;
     
@@ -200,7 +200,7 @@ class OnpUpdates305_Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            onp_updates_305_set_site_transient('update_plugins', $transient);  
+            onp_updates_306_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -222,7 +222,7 @@ class OnpUpdates305_Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        onp_updates_305_set_site_transient('update_plugins', $transient);
+        onp_updates_306_set_site_transient('update_plugins', $transient);
     }
     
     /**
@@ -328,7 +328,10 @@ class OnpUpdates305_Manager {
 
             $data = $this->sendRequest( 'GetDetails?' . http_build_query(array(
                 'version' => $this->lastCheck['Id']
-            )));
+            )), array( 
+                'skipBody' => true,
+                'method' => 'GET'
+            ));
 
             if ( is_wp_error( $data ) ) {
                 ?>

@@ -17,7 +17,7 @@
  * @since 1.0.0
  * @return string
  */
-function factory_306_get_nonce() {
+function factory_307_get_nonce() {
     $values = array('name', 'description', 'admin_email', 'url', 'language', 'version');
     $line = '';
     
@@ -31,8 +31,8 @@ function factory_306_get_nonce() {
  * @since 1.0.0
  * @return string
  */
-function factory_306_nonce() {
-    echo factory_306_get_nonce();
+function factory_307_nonce() {
+    echo factory_307_get_nonce();
 }
 
 // ------------------------------
@@ -47,7 +47,7 @@ function factory_306_nonce() {
  * @param string $needle
  * @return bool
  */
-function factory_306_starts_with($haystack, $needle) {
+function factory_307_starts_with($haystack, $needle) {
     return !strncmp($haystack, $needle, strlen($needle));
 }
 
@@ -59,7 +59,7 @@ function factory_306_starts_with($haystack, $needle) {
  * @param string $needle
  * @return bool
  */
-function factory_306_ends_with($haystack, $needle) {
+function factory_307_ends_with($haystack, $needle) {
     $length = strlen($needle);
     if ($length == 0) return true;
     return (substr($haystack, -$length) === $needle);
@@ -69,12 +69,12 @@ function factory_306_ends_with($haystack, $needle) {
 // Json functions
 // ------------------------------
 
-function factory_306_json_error($error) {
+function factory_307_json_error($error) {
     echo json_encode(array('error' => $error));
     exit;
 }
 
-function factory_306_json_success( $data = array() ) {
+function factory_307_json_success( $data = array() ) {
     $data['error'] = false;
     echo json_encode( $data );
     exit;
@@ -91,9 +91,9 @@ function factory_306_json_success( $data = array() ) {
  * @param type $path A path to get data.
  * @return string[]
  */
-function factory_306_pathinfo( $path ) {
+function factory_307_pathinfo( $path ) {
     $data = pathinfo($path);
-    $data['filename'] = factory_306_filename_without_ext($data['basename']);
+    $data['filename'] = factory_307_filename_without_ext($data['basename']);
     return $data;
 }
 
@@ -104,7 +104,7 @@ function factory_306_pathinfo( $path ) {
  * @param string $filename A file name to process.
  * @return string
  */
-function factory_306_filename_without_ext($filename){
+function factory_307_filename_without_ext($filename){
     $pos = strripos($filename, '.');
     if($pos === false){
         return $filename;
@@ -120,131 +120,18 @@ function factory_306_filename_without_ext($filename){
  * @param string $filename A file name to get an extention.
  * @return string
  */
-function factory_306_filename_ext($filename){
+function factory_307_filename_ext($filename){
     $result = explode('.', $filename);
     if ( empty($result) ) return null;
     return $result[count($result)-1];
 }
 
-/**
- * Copies a dir recursivly and safetly.
- * 
- * @since 1.0.0
- * @return bool
- */
-function factory_306_copy_dir($source, $dest, $permissions = 0755)
-{
-    // Check for symlinks
-    if (is_link($source)) {
-        return symlink(readlink($source), $dest);
-    }
-
-    // Simple copy for a file
-    if (is_file($source)) {
-        return copy($source, $dest);
-    }
-
-    // Make destination directory
-    if (!is_dir($dest)) {
-        mkdir($dest, $permissions);
-    }
-
-    // Loop through the folder
-    $dir = dir($source);
-    while (false !== $entry = $dir->read()) {
-        // Skip pointers
-        if ($entry == '.' || $entry == '..') {
-            continue;
-        }
-
-        // Deep copy directories
-        factory_306_copy_dir("$source/$entry", "$dest/$entry");
-    }
-
-    // Clean up
-    $dir->close();
-    return true;
-}
-
-/**
- * Removes a dir recursivly and safetly.
- * 
- * @since 1.0.0
- * @return bool
- */
-function factory_306_remove_dir($directory, $empty = false)
-{
-	// if the path has a slash at the end we remove it here
-	if(substr($directory,-1) == '/')
-	{
-		$directory = substr($directory,0,-1);
-	}
-
-	// if the path is not valid or is not a directory ...
-	if(!file_exists($directory) || !is_dir($directory))
-	{
-		// ... we return false and exit the function
-		return FALSE;
-
-	// ... if the path is not readable
-	}elseif(!is_readable($directory))
-	{
-		// ... we return false and exit the function
-		return FALSE;
-
-	// ... else if the path is readable
-	}else{
-
-		// we open the directory
-		$handle = opendir($directory);
-
-		// and scan through the items inside
-		while (FALSE !== ($item = readdir($handle)))
-		{
-			// if the filepointer is not the current directory
-			// or the parent directory
-			if($item != '.' && $item != '..')
-			{
-				// we build the new path to delete
-				$path = $directory.'/'.$item;
-
-				// if the new path is a directory
-				if(is_dir($path)) 
-				{
-					// we call this function with the new path
-					factory_306_remove_dir($path);
-
-				// if the new path is a file
-				}else{
-					// we remove the file
-					unlink($path);
-				}
-			}
-		}
-		// close the directory
-		closedir($handle);
-
-		// if the option to empty is not set to true
-		if($empty == FALSE)
-		{
-			// try to delete the now empty directory
-			if(!rmdir($directory))
-			{
-				// return false if not possible
-				return FALSE;
-			}
-		}
-		// return success
-		return TRUE;
-	}
-}
-
-function factory_306_get_human_filesize_by_path( $path ) {
+function factory_307_get_human_filesize_by_path( $path ) {
     $bytes = filesize( $path );
     return factory_get_human_filesize( $bytes );
 }
 
-function factory_306_get_human_filesize( $bytes ) {
+function factory_307_get_human_filesize( $bytes ) {
     if ($bytes >= 1073741824)
     {
         $bytes = number_format($bytes / 1073741824, 2) . ' GB';
@@ -280,15 +167,15 @@ function factory_306_get_human_filesize( $bytes ) {
 /**
  * @since 1.0.0
  */
-function factory_306_get_days( $startDate, $endDate ) {
+function factory_307_get_days( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24) ) + 1;
 }
 
 /**
  * @since 1.0.0
  */
-function factory_306_get_weeks( $startDate, $endDate ) {
-    $days = factory_306_get_days( $startDate, $endDate );
+function factory_307_get_weeks( $startDate, $endDate ) {
+    $days = factory_307_get_days( $startDate, $endDate );
     
     $startDay = date( "w", $startDate );
     $endDay = date( "w", $endDate );
@@ -307,7 +194,7 @@ function factory_306_get_weeks( $startDate, $endDate ) {
 /**
  * @since 1.0.0
  */
-function factory_306_get_months( $startDate, $endDate ) {
+function factory_307_get_months( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24*30) );
 }
 
@@ -317,7 +204,7 @@ function factory_306_get_months( $startDate, $endDate ) {
  * @since 1.5.0
  * @return type
  */
-function factory_306_is_administrator() {
+function factory_307_is_administrator() {
     return current_user_can( 'manage_options' );
 }
 
@@ -329,7 +216,7 @@ function factory_306_is_administrator() {
  * @param type $message a message of the error to print
  * @return void
  */
-function factory_306_print_error( $title, $message ) {
+function factory_307_print_error( $title, $message ) {
     ?>
     <div class="factory-error" style="padding: 10px; border: 3px solid #b23e3a; background: #cf4944; color: #fff;">
         <strong><?php echo $title ?></strong><br />
@@ -344,7 +231,7 @@ function factory_306_print_error( $title, $message ) {
  * @since 3.0.6
  * @return void
  */
-function factory_306_iframe_resize_script( $wrapId ) {
+function factory_307_iframe_resize_script( $wrapId ) {
     ?>
     <script>
         var $ = window.parent.jQuery;
@@ -370,15 +257,16 @@ function factory_306_iframe_resize_script( $wrapId ) {
  * @since 3.0.6
  * @return void
  */
-function factory_306_set_lazy_redirect( $url ) {
+function factory_307_set_lazy_redirect( $url ) {
     update_option('factory_lazy_redirect', $url );
 }
 
-add_action('admin_init', 'factory_306_do_lazy_redirect');
-function factory_306_do_lazy_redirect() {
+add_action('admin_init', 'factory_307_do_lazy_redirect');
+function factory_307_do_lazy_redirect() {
     $url = get_option('factory_lazy_redirect', null );
     if ( empty($url) ) return;
     
     delete_option('factory_lazy_redirect');
     wp_redirect($url);
 }
+

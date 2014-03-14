@@ -4,7 +4,7 @@ class FactoryPages306_Page {
     
     /**
      * Current Factory Plugin.
-     * @var Factory306_Plugin
+     * @var Factory307_Plugin
      */
     public $plugin;
     
@@ -16,8 +16,8 @@ class FactoryPages306_Page {
     
     public function __construct( $plugin = null ) {
         $this->plugin = $plugin;
-        $this->scripts = new Factory306_ScriptList( $plugin );
-        $this->styles = new Factory306_StyleList( $plugin ); 
+        $this->scripts = new Factory307_ScriptList( $plugin );
+        $this->styles = new Factory307_StyleList( $plugin ); 
     }
 
     public function assets($scripts, $styles) {}

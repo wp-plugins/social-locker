@@ -31,8 +31,8 @@ abstract class FactoryViewtables305_Viewtable {
         $this->type = $type;
         $this->columns = new FactoryViewtables305_Columns();
         
-        $this->scripts = new Factory306_ScriptList();
-        $this->styles = new Factory306_StyleList(); 
+        $this->scripts = new Factory307_ScriptList();
+        $this->styles = new Factory307_StyleList(); 
         
         $this->configure();
         

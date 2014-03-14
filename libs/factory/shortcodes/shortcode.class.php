@@ -45,7 +45,7 @@ abstract class FactoryShortcodes305_Shortcode {
      * Scripts to include on the same page.
      * 
      * @since 1.0.0
-     * @var Factory306_ScriptList 
+     * @var Factory307_ScriptList 
      */
     public $scripts;
     
@@ -53,7 +53,7 @@ abstract class FactoryShortcodes305_Shortcode {
      * Styles to include on the same page.
      * 
      * @since 1.0.0
-     * @var Factory306_StyleList 
+     * @var Factory307_StyleList 
      */
     public $styles;
     
@@ -82,8 +82,8 @@ abstract class FactoryShortcodes305_Shortcode {
      */
     public function __construct() {
 
-        $this->scripts = new Factory306_ScriptList();
-        $this->styles = new Factory306_StyleList();     
+        $this->scripts = new Factory307_ScriptList();
+        $this->styles = new Factory307_StyleList();     
         
         if ( !is_array( $this->shortcodeName )) {
             $this->shortcodeName = array( $this->shortcodeName );

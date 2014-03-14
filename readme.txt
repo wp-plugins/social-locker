@@ -88,13 +88,19 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.2.5 - 14 Mar 2014</strong><br />
+<ul>
+<li>FIXED: The issue of the box-sizing css rule for some websites.</li>
+<li>FIXED: 'Unexpected error' while trying to get version details.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.2.4 - 05 Mar 2014</strong><br />
 <ul>
 <li>FIXED: a bug of the Interrelation option.</li>
 <li>NEW: added the "onp_sl_locker_options" filter for developers to change the locker options through php.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.2.3 - 02 Mar 2014</strong><br />
 <ul>

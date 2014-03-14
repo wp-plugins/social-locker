@@ -72,7 +72,7 @@ class FactoryPages306_AdminPage extends FactoryPages306_Page {
      */
     public $hidden = false;
     
-    public function __construct(Factory306_Plugin $plugin) {
+    public function __construct(Factory307_Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
 

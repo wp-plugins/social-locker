@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.4.4, 2014-03-05 
+ * Social Locker - v1.5.0, 2014-03-13 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 
@@ -131,6 +131,37 @@
         },
         effects: {
             flip: false
+        }
+    };
+    
+    /* secrets theme */
+    
+    $.onepress.sociallocker.presets['flat'] = {
+
+        buttons: {
+            layout: 'horizontal',
+            counter: true
+        },
+        effects: {
+            flip: true
+        },
+        
+        triggers: {
+            overlayRender: function(options, networkName, buttonName, isTouch){
+                var overlay = $("<a></a>");
+                var title = options.title || $.onepress.sociallocker.lang[networkName + "_" + buttonName];
+                
+                overlay.addClass("onp-sociallocker-button-overlay") 
+                      .append(
+                       $("<div class='onp-sociallocker-overlay-front'></div>")
+                            .append($("<div class='onp-sociallocker-overlay-icon'></div>"))
+                            .append($("<div class='onp-sociallocker-overlay-text'>" + title + "</div>"))
+                       )
+                      .append($("<div class='onp-sociallocker-overlay-header'></div>"))
+                      .append($("<div class='onp-sociallocker-overlay-back'></div>"));
+                
+                return overlay;
+            }
         }
     };
 

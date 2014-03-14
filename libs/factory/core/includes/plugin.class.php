@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory306_Plugin {
+class Factory307_Plugin {
     
     /**
      * Is a current page one of the admin pages?
@@ -68,7 +68,7 @@ class Factory306_Plugin {
             register_deactivation_hook( $this->mainFile, array($this, 'deactivationHook') );
         }
         
-        do_action('factory_306_plugin_created', $this);
+        do_action('factory_307_plugin_created', $this);
     }
    
     /**
@@ -232,7 +232,7 @@ class Factory306_Plugin {
             $activator->activate();
         }
         
-        do_action('factory_306_plugin_activation', $this);     
+        do_action('factory_307_plugin_activation', $this);     
         do_action('factory_plugin_activation_' . $this->pluginName, $this);
     }
     
@@ -244,7 +244,7 @@ class Factory306_Plugin {
      */
     public function deactivationHook() {
 
-        do_action('factory_306_plugin_deactivation', $this);     
+        do_action('factory_307_plugin_deactivation', $this);     
         do_action('factory_plugin_deactivation-' . $this->pluginName, $this);
         
         if ( !empty( $this->activatorClass )) {

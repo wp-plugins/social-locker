@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Activation extends Factory306_Activator {
+class OnpSL_Activation extends Factory307_Activator {
     
     public function activate() {
 

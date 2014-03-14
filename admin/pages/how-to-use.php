@@ -226,8 +226,8 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
                     <h1>Premium Version</h1>
                    
                     <p>
-                        This plugin is a free edition of the popular <a target="_blank" href="<?php echo $this->plugin->options['premium'] ?>"> Social Locker plugin</a> sold on CodeCanyon. 
-                        You can activate premium features for a trial period <a href="<?php onp_licensing_306_manager_link($this->plugin->pluginName ) ?>">inside the plugin</a>.</strong>
+                        This plugin is a free edition of the popular <a target="_blank" href="<?php onp_licensing_307_purchase_url( $this->plugin ) ?>"> Social Locker plugin</a> sold on CodeCanyon. 
+                        You can activate premium features for a trial period <a href="<?php onp_licensing_307_manager_link($this->plugin->pluginName ) ?>">inside the plugin</a>.</strong>
                     </p>
                 </div>
                 
@@ -263,7 +263,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
                     <h1>How to activate the trial version?</h1>
                    
                     <p>
-                        You can make that on the License Manager page or just <a href="<?php onp_licensing_306_manager_link($this->plugin->pluginName, 'activateTrial') ?>">click here</a> to activate the trial version.
+                        You can make that on the License Manager page or just <a href="<?php onp_licensing_307_manager_link($this->plugin->pluginName, 'activateTrial') ?>">click here</a> to activate the trial version.
                     </p>
                 </div>
                 
@@ -271,7 +271,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
                     <h1>How to buy the premium version?</h1>
                    
                     <p>
-                        Move to the <a target="_blank" href="<?php echo $this->plugin->options['premium'] ?>">plugin page</a> on CodeCanyon and click the Purchase button on the right sidebar.
+                        Move to the <a target="_blank" href="<?php onp_licensing_307_purchase_url( $this->plugin ) ?>">plugin page</a> on CodeCanyon and click the Purchase button on the right sidebar.
                     </p>
                 </div> 
                 

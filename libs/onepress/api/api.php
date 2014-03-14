@@ -9,9 +9,9 @@
  */
 
 // creating an api manager for each plugin created via the factory
-add_action('factory_306_plugin_created', 'onp_api_306_plugin_created');
-function onp_api_306_plugin_created( $plugin ) {
-    $manager = new OnpApi306_Manager( $plugin );
+add_action('factory_307_plugin_created', 'onp_api_307_plugin_created');
+function onp_api_307_plugin_created( $plugin ) {
+    $manager = new OnpApi307_Manager( $plugin );
     $plugin->api = $manager;
 }
 
@@ -20,13 +20,13 @@ function onp_api_306_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpApi306_Manager {
+class OnpApi307_Manager {
     
     /**
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory306_Plugin
+     * @var Factory307_Plugin
      */
     public $plugin;
     
@@ -43,7 +43,7 @@ class OnpApi306_Manager {
      * 
      * @since 1.0.0
      */
-    public function __construct( Factory306_Plugin $plugin ) {
+    public function __construct( Factory307_Plugin $plugin ) {
         $this->plugin = $plugin;
         $this->entryPoint = $plugin->options['api'];
                 
@@ -175,21 +175,24 @@ class OnpApi306_Manager {
         if ( !isset($args['timeout'] ) ) $args['timeout'] = 60;
         if ( !isset($args['body']) ) $args['body'] = array();
         
-        if ( !isset( $args['body']['secret'] ) ) $args['body']['secret'] = get_option('onp_site_secret', null);
-        if ( !isset( $args['body']['site'] ) ) $args['body']['site'] = site_url();
-        if ( !isset( $args['body']['key'] ) ) $args['body']['key'] = $this->plugin->license ? $this->plugin->license->key : null;
-        if ( !isset( $args['body']['plugin'] ) ) $args['body']['plugin'] = $this->plugin->pluginName; 
-        if ( !isset( $args['body']['assembly'] ) ) $args['body']['assembly'] = $this->plugin->build;
-        if ( !isset( $args['body']['version'] ) ) $args['body']['version'] = $this->plugin->version;
-        if ( !isset( $args['body']['tracker'] ) ) $args['body']['tracker'] = $this->plugin->tracker;
-        
-        if ( !isset( $args['body']['embedded'] ) ) 
-            $args['body']['embedded'] = ( $this->plugin->license && $this->plugin->license->isEmbedded() ) ? 'true' : 'false';    
-        
-        if ( defined('FACTORY_BETA') && FACTORY_BETA ) $args['body']['beta'] = 'true';
+        if ( !isset( $args['skipBody']) || !$args['skipBody'] ) {
+            
+            if ( !isset( $args['body']['secret'] ) ) $args['body']['secret'] = get_option('onp_site_secret', null);
+            if ( !isset( $args['body']['site'] ) ) $args['body']['site'] = site_url();
+            if ( !isset( $args['body']['key'] ) ) $args['body']['key'] = $this->plugin->license ? $this->plugin->license->key : null;
+            if ( !isset( $args['body']['plugin'] ) ) $args['body']['plugin'] = $this->plugin->pluginName; 
+            if ( !isset( $args['body']['assembly'] ) ) $args['body']['assembly'] = $this->plugin->build;
+            if ( !isset( $args['body']['version'] ) ) $args['body']['version'] = $this->plugin->version;
+            if ( !isset( $args['body']['tracker'] ) ) $args['body']['tracker'] = $this->plugin->tracker;
 
-        $secretToken = $this->openVerificationGate();
-        $args['body']['secretToken'] = $secretToken;
+            if ( !isset( $args['body']['embedded'] ) ) 
+                $args['body']['embedded'] = ( $this->plugin->license && $this->plugin->license->isEmbedded() ) ? 'true' : 'false';    
+
+            if ( defined('FACTORY_BETA') && FACTORY_BETA ) $args['body']['beta'] = 'true';
+
+            $secretToken = $this->openVerificationGate();
+            $args['body']['secretToken'] = $secretToken;  
+        }
 
         return $this->_request($url, $args, $options);
     }
