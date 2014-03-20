@@ -3,7 +3,7 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnpSL_LicenseManagerPage extends OnpLicensing307_LicenseManagerPage  {
+class OnpSL_LicenseManagerPage extends OnpLicensing308_LicenseManagerPage  {
  
     public $purchasePrice = '$23';
     

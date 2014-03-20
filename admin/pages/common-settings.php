@@ -216,7 +216,6 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
                 'type'      => 'checkbox',
                 'name'      => 'dynamic_theme',
                 'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
-                'data'      => $this->languages,
                 'hint'      => 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working.'
             ),
             array(
@@ -228,7 +227,6 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
                         'type'      => 'textbox',
                         'name'      => 'dynamic_theme_event',
                         'title'     => __( 'jQuery Events', 'sociallocker' ),
-                        'data'      => $this->languages,
                         'hint'      => 'If pages of your site are loaded dynamically via ajax, it\'s necessary to catch ' . 
                                        'the moment when the page is loaded in order to appear the locker.<br />By default the plugin covers ' .
                                        '99% possible events. So <strong>you don\'t need to set any value here</strong>.<br />' .
@@ -239,6 +237,12 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ), 
             array(
                 'type' => 'separator'
+            ),
+            array(
+                'type'      => 'checkbox',
+                'name'      => 'google_analytics',
+                'title'     => __( 'Google Analytics', 'sociallocker' ),
+                'hint'      => 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.'
             ),
             array(
                 'type'      => 'html',

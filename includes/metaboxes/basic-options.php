@@ -75,7 +75,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
                     'hint'  => 'Enter an URL to like, tweet and +1 or leave this 
                                 field empty in order to use an URL of a page where the locker will be placed.' .
                                '<br />Need a separate URL for each button? Try a ' .
-                               '<a href="' . onp_licensing_307_get_purchase_url( $sociallocker ) . '">' .
+                               '<a href="' . onp_licensing_308_get_purchase_url( $sociallocker ) . '">' .
                                'premium version</a> of the plugin.',
                     'placeholder'   => 'http://url-to-share.com'
                 ),

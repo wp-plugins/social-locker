@@ -88,13 +88,19 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.2.6 - 20 Mar 2014</strong><br />
+<ul>
+<li>NEW: Added integration with the Google Analytics (you can turn on that on the Common Settings page).</li>
+<li>FIXED: A minor bug that can appear within upgrading the plugin from one version to another.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.2.5 - 14 Mar 2014</strong><br />
 <ul>
 <li>FIXED: The issue of the box-sizing css rule for some websites.</li>
 <li>FIXED: 'Unexpected error' while trying to get version details.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.2.4 - 05 Mar 2014</strong><br />
 <ul>
