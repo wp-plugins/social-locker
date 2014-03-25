@@ -88,13 +88,18 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.2.7 - 25 Mar 2014</strong><br />
+<ul>
+<li>FIXED: The HTML and CSS structure of the Secrets theme was simplified. From now, it's possible to change the color of the covers of the social buttons via CSS.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.2.6 - 20 Mar 2014</strong><br />
 <ul>
 <li>NEW: Added integration with the Google Analytics (you can turn on this option on the Common Settings page).</li>
 <li>FIXED: A minor bug that can appear within upgrading the plugin from one version to another.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.2.5 - 14 Mar 2014</strong><br />
 <ul>

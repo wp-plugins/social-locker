@@ -53,7 +53,7 @@ class OnpSL_AssetsManager {
             Facebook SDK
         
             Created by the Social Locker plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+            http://sociallocker.org
         -->
         <script>
             window.fbAsyncInit = function() {
@@ -83,7 +83,7 @@ class OnpSL_AssetsManager {
             Social Locker CSS Selectors (Bulk Locking)
 
             Created by the Social Locker plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+            http://sociallocker.org
         -->
         <script>
             if ( !window.onpsl ) window.onpsl = {};
@@ -120,7 +120,7 @@ class OnpSL_AssetsManager {
             Creater Script for Social Locker
         
             Created by the Social Locker plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+            http://sociallocker.org
         -->
         <script>
             (function($){ if ( window.onpsl && window.onpsl.lockers ) window.onpsl.lockers(); })(jQuery);
@@ -139,12 +139,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030206.min.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030207.min.css'
         );  
 
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030206.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030207.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
@@ -186,7 +186,7 @@ class OnpSL_AssetsManager {
             Options of Bulk Lockers
         
             Created by the Social Locker plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+            http://sociallocker.org
         -->
         <script>
         if ( !window.onpsl ) window.onpsl = {};
@@ -565,7 +565,7 @@ class OnpSL_AssetsManager {
             Support for Dynamic Themes
         
             Created by the Social Locker plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+            http://sociallocker.org
         -->
         <script>
         if ( !window.onpsl ) window.onpsl = {};
