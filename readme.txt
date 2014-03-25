@@ -90,7 +90,7 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 <strong>v.3.2.7 - 25 Mar 2014</strong><br />
 <ul>
-<li>FIXED: The HTML and CSS structure of the Secrets theme was simplified. From now, it's possible to change the color of the covers of the social buttons via CSS.</li>
+<li>IMPROVED: The HTML and CSS structure of the Secrets theme was simplified. From now, it's possible to change the color of the covers of the social buttons via CSS.</li>
 </ul>
 
 <strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
