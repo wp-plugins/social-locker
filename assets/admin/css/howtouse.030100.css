@@ -1,0 +1,120 @@
+/**
+ * CSS for the How To Use section of the Social Locker
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2014, OnePress Ltd
+ * 
+ * @package sociallocker 
+ * @since 1.0.0
+ */
+
+.wrap {
+    width: 950px;
+    margin: 18px auto;
+}
+.wrap * {
+    font-family: 'helvetica neue',helvetica,arial,'lucida grande',sans-serif;
+}
+.onp-help-nav,
+.onp-help-content  {
+    background: #fff;
+    border-bottom: 2px solid #e9e9e9;
+    border-radius: 3px;
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+.onp-help-nav {
+    background-color: #f9f9f9;
+    float: left;
+    width: 192px;
+    position: fixed;
+    border-bottom: 2px solid #e9e9e9;
+}
+.factory-volumetric .onp-help-content {
+    border: 1px solid #f9f9f9;
+}
+.factory-volumetric .onp-help-nav {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #f1f1f1;
+}
+.onp-help-nav ul,
+.onp-help-nav li {
+    margin: 0px;
+}
+.onp-help-nav li + li {
+    border-top: 1px solid #f1f1f1;
+}
+.onp-help-nav li a {
+    display: block;
+    color: #141823;
+    padding: 14px 12px; 
+    text-decoration: none;
+}
+.onp-help-nav li a:hover {
+    background-color: #fcfcfc;
+}
+
+.onp-help-content {
+    margin-left: 210px;
+    width: 725px;
+}
+.onp-help-content p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+}
+.onp-help-content .onp-help-section p:last-child {
+    margin-bottom: 0px;
+}
+.onp-help-content .onp-help-section {
+    color: #4e5665;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 30px;
+}
+.onp-help-content .onp-help-section + .onp-help-section {
+    border-top: 1px solid #f9f9f9;
+}
+.onp-help-content .onp-help-section h1,
+.onp-help-content .onp-help-section h2 {
+    margin: 0;
+    padding: 0px;
+}
+
+.onp-help-content .onp-help-section h1,
+.onp-help-content .onp-help-section h2,
+.onp-help-content .onp-help-section h3,
+.onp-help-content .onp-help-section h4 {
+    color: #4e5665;
+}
+.onp-help-content .onp-help-section h1 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    margin-bottom: 12px;
+}
+.onp-help-content .onp-help-section h2 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+
+.onp-help-content .onp-remark {
+    background: #f9f9f9;
+    border-radius: 3px;
+}
+.onp-help-content .onp-remark .onp-inner-wrap {
+    display: block;
+    padding: 10px 10px 10px 15px;
+}
+
+.onp-help-content .onp-img i {
+    display: block;
+}
+.onp-help-content strong {
+    font-weight: bold;
+}
+.onp-help-content ul {
+    padding-left: 20px;
+    list-style: inside;
+}
