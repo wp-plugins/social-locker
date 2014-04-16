@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.8.1
+Tested up to: 3.9.0
 Stable tag: trunk
 License: GPLv2
 
