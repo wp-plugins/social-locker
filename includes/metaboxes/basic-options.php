@@ -56,19 +56,17 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
      * @see FactoryMetaboxes305_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms305_Form $form A form object to configure.
+     * @param FactoryForms307_Form $form A form object to configure.
      * @return void
      */
-    public function form( $form ) {
+    public function form( $form ) {        
 
-        // sets a control theme by default for this form
-        $form->controlTheme = 'mendeleev-305';
-        
             global $sociallocker;
             
             $form->add(array(  
 
                 array(
+
                     'type'  => 'textbox',
                     'name'  => 'common_url',
                     'title' => 'URL to share',
@@ -78,9 +76,8 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
                                '<a href="' . onp_licensing_308_get_purchase_url( $sociallocker ) . '">' .
                                'premium version</a> of the plugin.',
                     'placeholder'   => 'http://url-to-share.com'
-                ),
-            )); 
-        
+              ),
+          ));
         
 
         
@@ -109,7 +106,8 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
                     'hint-position' => 'left'
                 )
             ),
-        ));
+        ));    
+      
     }
 }
 

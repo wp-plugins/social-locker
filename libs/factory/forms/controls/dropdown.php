@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms305_DropdownControl extends FactoryForms305_Control 
+class FactoryForms307_DropdownControl extends FactoryForms307_Control 
 {
     public $type = 'dropdown';
     
@@ -47,19 +47,6 @@ class FactoryForms305_DropdownControl extends FactoryForms305_Control
     }
     
     /**
-     * Preparing html attributes before rendering html of the control. 
-     * 
-     * @since 1.0.0
-     * @return void
-     */
-    protected function beforeHtml() {
-        $nameOnForm = $this->getNameOnForm();  
-        $this->addHtmlAttr('id', $nameOnForm);
-        $this->addHtmlAttr('name', $nameOnForm);
-        $this->addCssClass('form-control');
-    }
-    
-    /**
      * Shows the html markup of the control.
      * 
      * @since 1.0.0
@@ -68,12 +55,19 @@ class FactoryForms305_DropdownControl extends FactoryForms305_Control
     public function html( ) {
         $items = $this->getItems();
         $value = $this->getValue();
+        
+        $nameOnForm = $this->getNameOnForm();  
+        
+        $this->addHtmlAttr('id', $nameOnForm);
+        $this->addHtmlAttr('name', $nameOnForm);
+        $this->addCssClass('form-control');
+        
         ?>
         <select <?php $this->attrs() ?>/>
         <?php foreach($items as $item) {
             $selected = ( $item[0] == $value ) ? 'selected="selected"' : '';
             ?>
-            <option value="<?php echo $item[0] ?>" <?php echo $selected ?>>
+            <option value='<?php echo $item[0] ?>' <?php echo $selected ?>>
                 <?php echo $item[1] ?>
             </option>
         <?php } ?>

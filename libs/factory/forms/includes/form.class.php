@@ -12,7 +12,7 @@
 /**
  * An abstraction for forms.
  */
-class FactoryForms305_Form {
+class FactoryForms307_Form {
     
     // ----------------------------------------------------
     // Static fields and methods
@@ -37,20 +37,20 @@ class FactoryForms305_Form {
      * @return void
      */
     public static function registerControl( $item ) {
-        self::$_registeredControls[$data['type']] = $item;
+        self::$_registeredControls[$item['type']] = $item;
+        require_once $item['include'];
     }
     
     /**
      * Registers a set of new controls.
      * 
-     * @see FactoryForms305_Form::registerControl()
+     * @see FactoryForms307_Form::registerControl()
      * 
      * @since 1.0.0
      * @return void
      */
     public static function registerControls( $data ) {
-        foreach($data as $item)
-            self::$_registeredControls[$item['type']] = $item;
+        foreach($data as $item) self::registerControl($item);
     }  
     
     /**
@@ -72,20 +72,20 @@ class FactoryForms305_Form {
      * @return void
      */
     public static function registerHolder( $item ) {
-        self::$_registeredHolders[$data['type']] = $item;
+        self::$_registeredHolders[$item['type']] = $item;
+        require_once $item['include'];
     }
 
     /**
      * Registers a set of new holder controls.
      * 
-     * @see FactoryForms305_Form::registerHolder()
+     * @see FactoryForms307_Form::registerHolder()
      * 
      * @since 1.0.0
      * @return void
      */
     public static function registerHolders( $data ) {
-        foreach($data as $item)
-            self::$_registeredHolders[$item['type']] = $item;
+        foreach($data as $item) self::registerHolder( $item );
     }  
     
     /**
@@ -104,43 +104,21 @@ class FactoryForms305_Form {
      */
     public static function registerCustomElement( $item ) {
         self::$_registeredCustomElements[$item['type']] = $item;
+        require_once $item['include'];
     }
 
     /**
      * Registers a set of new custom form elements.
      * 
-     * @see FactoryForms305_Form::registerCustomElement()
+     * @see FactoryForms307_Form::registerCustomElement()
      * 
      * @since 1.0.0
      * @return void
      */
     public static function registerCustomElements( $data ) {
-        foreach($data as $item)
-            self::$_registeredCustomElements[$item['type']] = $item;
+        foreach($data as $item) self::registerCustomElement( $item );
     }  
-    
-    /**
-     * Contains a set of theme registered for controls.
-     * 
-     * @since 1.0.0
-     * @var mixed[] 
-     */
-    private static $_controlThemes = array();
-    
-    /**
-     * Registers a new theme for controls.
-     * 
-     * @since 1.0.0
-     * @param type $data A theme data. Has the following format:
-     *                      name      => a name of the theme
-     *                      class     => a theme php class
-     *                      include   => a path to include theme code
-     * @return void
-     */
-    public static function registerControlTheme( $data ) {
-        self::$_controlThemes[$data['name']] = $data;
-    }
-    
+        
     /**
      * Contains a set of layouts registered for forms.
      * 
@@ -170,6 +148,14 @@ class FactoryForms305_Form {
      * @var string 
      */
     public static $temper;
+    
+    /**
+     * A flat to register control only once.
+     * 
+     * @since 3.0.7
+     * @var bool
+     */
+    private static $_controlsRegistered = false;
     
     // ----------------------------------------------------
     // Object fields and methods
@@ -227,18 +213,10 @@ class FactoryForms305_Form {
     public $formLayout;
     
     /**
-     * A default theme for controls.
-     * 
-     * @since 1.0.0
-     * @var string 
-     */
-    public $controlTheme;
-    
-    /**
      * A current form layout used to render a form.
      * 
      * @since 1.0.0
-     * @var FactoryForms305_FormLayout 
+     * @var FactoryForms307_FormLayout 
      */
     public $layout;
     
@@ -251,9 +229,18 @@ class FactoryForms305_Form {
      */
     public function __construct( $options = array () ) {
         global $wp_version;
-        $isFlat = version_compare( $wp_version, '3.8', '>='  );
+        
+        // register controls once, when the first form is created
+        if ( !FactoryForms307_Form::$_controlsRegistered ) {
+            do_action('factory_forms_307_register_controls');
+            FactoryForms307_Form::$_controlsRegistered = true;
+        }
+
+        //$isFlat = version_compare( $wp_version, '3.8', '>='  );
+        $isFlat = true;
         
         $this->scope = isset( $options['scope'] ) ? $options['scope'] : null;
+        $this->name = isset( $options['name'] ) ? $options['name'] : $this->name;
         
         if ( isset( $options['formLayout'] ) ) {
             $this->formLayout = $options['formLayout'];
@@ -266,14 +253,13 @@ class FactoryForms305_Form {
         }
         
         if ( !self::$temper ) self::$temper = $isFlat ? 'flat' : 'volumetric';
-        $this->controlTheme = isset( $options['controlTheme'] ) ? $options['controlTheme'] : null; 
     }
     
     /**
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms305_ValueProvider $provider
+     * @param IFactoryForms307_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -333,8 +319,13 @@ class FactoryForms305_Form {
 
         foreach($items as $item ) {
             
+            if ( $this->isControlHolder( $item ) && $this->isControl( $item ) ) {
+                
+                $this->controls[] = $this->createControl( $item );
+                $this->createControls( $item );
+                
             // if a current item is a control holder
-            if ( $this->isControlHolder( $item ) ) {
+            } elseif ( $this->isControlHolder( $item ) ) {
                 
                 $this->createControls( $item );
             
@@ -386,8 +377,8 @@ class FactoryForms305_Form {
      * @param mixed[] $item Data of items.
      * @return FactoryFrom_FormElement[] Created elements.
      */
-    public function createElements( $items = array() ) {
-        $objects = array();
+    public function createElements( $items = array() ) {      
+        $objects = array();       
         foreach( $items as $item ) $objects[] = $this->createElement($item);
         return $objects;
     }
@@ -405,15 +396,12 @@ class FactoryForms305_Form {
         if ( is_array( $item ) ) {
 
             $controlData = self::$_registeredControls[$item['type']];
+           
             require_once ($controlData['include']);
 
             $options = $item;
             $options['scope'] = $this->scope;
             
-            $theme = isset( $options['theme'] ) ? $options['theme'] : null;
-            if ( !$theme ) $theme = $this->controlTheme;
-
-            $options['theme'] = $theme;
             $object = new $controlData['class']( $options, $this );   
 
         } elseif ( gettype( $item ) == 'object' ) {
@@ -432,7 +420,7 @@ class FactoryForms305_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms305_ControlHolder A control holder object.
+     * @return FactoryForms307_Holder A control holder object.
      */
     public function createHolder( $item ) {
         $object = null;
@@ -459,7 +447,7 @@ class FactoryForms305_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms305_FormElement A custom form element object.
+     * @return FactoryForms307_FormElement A custom form element object.
      */
     public function createCustomElement( $item ) {
         $object = null;
@@ -500,6 +488,7 @@ class FactoryForms305_Form {
 
         $this->connectAssets();
         
+        if ( $this->provider ) $this->provider->init();        
         $layout = new $layoutData['class']( $options, $this );
         $this->layout = $layout;
         $this->layout->render();
@@ -528,9 +517,6 @@ class FactoryForms305_Form {
             if ( isset( $layoutData['script'] ) )
                 wp_enqueue_script('factory-form-layout-' . $layoutData['name'], $layoutData['script']);  
         }
-        
-        if ( !$this->controlTheme ) return;
-        self::connectThemeAssets( $this->controlTheme );
     }
     
     
@@ -553,7 +539,7 @@ class FactoryForms305_Form {
      * @return void
      */
     public static function connectAssetsForItem( $item ) {
-        if ( !is_array( $item ) ) continue;
+        if ( !is_array( $item ) ) return;
 
         $type = $item['type'];
 
@@ -572,39 +558,10 @@ class FactoryForms305_Form {
                  if ( !wp_script_is( $script ) ) 
                      wp_enqueue_script('factory-form-control-' . $type, $script, array('jquery')); 
              }
-             
-             if ( isset( $item['theme'] ) ) {
-                 self::connectThemeAssets( $item['theme'] );
-             }
         }
 
         if ( isset($item['items'] ))
             self::connectAssetsForItem( $item['items'] );
-    }
-    
-    /**
-     * Connects theme assets and styles.
-     * 
-     * @since 1.0.0
-     * @param string $theme A theme name to connect.
-     * @return void
-     */
-    public static function connectThemeAssets( $theme ) {
-        
-        if ( !isset( self::$_controlThemes[$theme]) ) {
-            die( sprintf( '[ERROR] Control theme <strong>%s</strong> was not found.', $theme ));
-        }
-        
-        $themeData = self::$_controlThemes[$theme];
-
-        $styleUrl = str_replace('{temper}', self::$temper, $themeData['style']);
-        $scriptUrl = str_replace('{temper}', self::$temper, $themeData['script']);
-        
-        if ( isset( $themeData['style'] ) )
-            wp_enqueue_style('factory-control-theme-' . $themeData['name'], $styleUrl); 
-
-        if ( isset( $themeData['script'] ) )
-            wp_enqueue_script('factory-control-theme-' . $themeData['name'], $scriptUrl); 
     }
     
     /**
@@ -621,12 +578,27 @@ class FactoryForms305_Form {
         foreach($controls as $control) {
             
             $name = $control->getName();
-
             $value = $control->getSubmitValue($name);
-            $this->provider->setValue($name, $value);
+
+            $index = 0;
+            if (is_array($name) ) {
+                //echo $name . '-';
+                foreach($name as $singeName) {
+                    $this->provider->setValue($name[$index], $value[$index]);
+                    $index++;
+                }
+
+            } else {
+                $this->provider->setValue($name, $value);
+            }
+            
+            $nameOption = $control->getOption('name') . '_is_active';
+            $isActive = ( isset( $_POST[$nameOption] ) && intval( $_POST[$nameOption] ) == 0 ) ? 0 : 1;
+            $this->provider->setValue($nameOption, $isActive );
+            
         }
-        
-        $this->provider->saveChanges();
+
+        return $this->provider->saveChanges();
     }
 
     /**

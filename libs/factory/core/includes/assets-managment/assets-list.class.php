@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory307_AssetsList 
+class Factory308_AssetsList 
 {
     protected $all = array();
     public $headerPlace = array();
@@ -91,14 +91,18 @@ class Factory307_AssetsList
      * Adds new items to the requried collection.
      * @param mixed
      */
-    public function request() {
+    public function request( $items, $source = 'wordpress' ) {
         
         $bindTo = count( $this->all ) == 0 ? '_global_' : end( $this->all );
         
-        foreach(func_get_args() as $item) {
-            $this->required[$bindTo][] = $item;
-        }       
-        
+        if ( is_array( $items ) ) {
+            foreach($items as $item) {
+                $this->required[$bindTo][] = array( $item, $source );
+            }  
+        } else {
+            $this->required[$bindTo][] = array( $items, $source );
+        }
+     
         return $this;
     }    
 }

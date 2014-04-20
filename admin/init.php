@@ -27,31 +27,55 @@ include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/how-to-use.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/ajax/tracking.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/ajax/shortcode.php');
 
-
 /**
  * Adds scripts and styles in the admin area.
+ * 
+ * @see the 'admin_enqueue_scripts' action
+ * 
+ * @since 1.0.0
+ * @return void
  */
 function sociallocker_admin_assets( $hook ) {
-    
+
+    // sytles for the plugin notices
     if ( $hook == 'index.php' || $hook == 'plugins.php' )
         wp_enqueue_style( 'onp-sl-notices', ONP_SL_PLUGIN_URL . '/assets/admin/css/notices.030100.css' ); 
+    
+    // styles for the plugin shorcodes
+    if ( in_array( $hook, array('edit.php', 'post.php', 'post-new.php')) ) {
+        ?>
+        <style>
+            i.onp-sl-shortcode-icon {
+                background: url("<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/img/shortcode-icon.png");
+            }
+        </style>
+        <?php
+    }
 }
 add_action('admin_enqueue_scripts', 'sociallocker_admin_assets');
 
-add_filter('mce_buttons', 'sociallocker_register_button'); 
 add_filter('mce_external_plugins', 'sociallocker_add_plugin'); 
+add_filter('mce_buttons', 'sociallocker_register_button'); 
 
 function sociallocker_register_button($buttons) {  
-   if ( !current_user_can('edit_social-locker') ) return $buttons;
-   array_push($buttons, "sociallocker");
-   return $buttons;  
+    if ( !current_user_can('edit_social-locker') ) return $buttons;
+    array_push($buttons, "sociallocker");
+    return $buttons;
 }  
 
 function sociallocker_add_plugin($plugin_array) {  
-   if ( !current_user_can('edit_social-locker') ) return $plugin_array;
-   $plugin_array['sociallocker'] = ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.tinymce.js';  
-   return $plugin_array;  
-}  
+    if ( !current_user_can('edit_social-locker') ) return $plugin_array;
+    global $wp_version;
+
+    if ( version_compare( $wp_version, '3.9', '<' ) ) {
+        $plugin_array['sociallocker'] = ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.tinymce3.js';  
+    } else {
+        $plugin_array['sociallocker'] = ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.tinymce4.js';  
+    }
+
+    return $plugin_array;  
+}
+
     
 add_action('wp_ajax_get_sociallocker_lockers', 'sociallocker_get_lockers');
 function sociallocker_get_lockers() {

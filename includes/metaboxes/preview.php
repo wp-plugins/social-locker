@@ -49,19 +49,23 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes305_Metabox
      * @return void
      */ 
     public function html()
-    {
+    {        
+        global $sociallocker;
+        $query_string = '?action=onp_sl_preview'; 
+        $query_string = apply_filters('onp_sl_preview_url', $query_string); 
         ?>
         <script>
             function onp_sl_update_preview_height(height) {
                 jQuery("#lock-preview-wrap iframe").height(height);
             }
+            var pluginName = '<?php echo $sociallocker->pluginName; ?>';
         </script>
         <p class="note"><strong>Note</strong>: It's just a preview. The locker and the social buttons don't work correctly in the admin area.</p>
         <div id="lock-preview-wrap" 
              data-lang="<?php echo get_option('sociallocker_lang') ?>" 
              data-short-lang="<?php echo get_option('sociallocker_short_lang') ?>" 
              data-facebook-appid="<?php echo get_option('sociallocker_facebook_appid') ?>" 
-             data-url="<?php echo admin_url('admin-ajax.php') . '?onp_sl_preview=1' ?>">
+             data-url="<?php echo admin_url('admin-ajax.php') . $query_string ?>">
             <iframe 
                 allowtransparency="1" 
                 frameborder="0" 
@@ -72,7 +76,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes305_Metabox
                 vspace="0"
                 width="100%">
                 Your browser doen't support the iframe tag.
-            </iframe>
+            </iframe>           
         </div>
         <?php
     }

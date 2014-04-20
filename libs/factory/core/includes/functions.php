@@ -17,7 +17,7 @@
  * @since 1.0.0
  * @return string
  */
-function factory_307_get_nonce() {
+function factory_308_get_nonce() {
     $values = array('name', 'description', 'admin_email', 'url', 'language', 'version');
     $line = '';
     
@@ -31,8 +31,8 @@ function factory_307_get_nonce() {
  * @since 1.0.0
  * @return string
  */
-function factory_307_nonce() {
-    echo factory_307_get_nonce();
+function factory_308_nonce() {
+    echo factory_308_get_nonce();
 }
 
 // ------------------------------
@@ -47,7 +47,7 @@ function factory_307_nonce() {
  * @param string $needle
  * @return bool
  */
-function factory_307_starts_with($haystack, $needle) {
+function factory_308_starts_with($haystack, $needle) {
     return !strncmp($haystack, $needle, strlen($needle));
 }
 
@@ -59,7 +59,7 @@ function factory_307_starts_with($haystack, $needle) {
  * @param string $needle
  * @return bool
  */
-function factory_307_ends_with($haystack, $needle) {
+function factory_308_ends_with($haystack, $needle) {
     $length = strlen($needle);
     if ($length == 0) return true;
     return (substr($haystack, -$length) === $needle);
@@ -69,12 +69,12 @@ function factory_307_ends_with($haystack, $needle) {
 // Json functions
 // ------------------------------
 
-function factory_307_json_error($error) {
+function factory_308_json_error($error) {
     echo json_encode(array('error' => $error));
     exit;
 }
 
-function factory_307_json_success( $data = array() ) {
+function factory_308_json_success( $data = array() ) {
     $data['error'] = false;
     echo json_encode( $data );
     exit;
@@ -91,9 +91,9 @@ function factory_307_json_success( $data = array() ) {
  * @param type $path A path to get data.
  * @return string[]
  */
-function factory_307_pathinfo( $path ) {
+function factory_308_pathinfo( $path ) {
     $data = pathinfo($path);
-    $data['filename'] = factory_307_filename_without_ext($data['basename']);
+    $data['filename'] = factory_308_filename_without_ext($data['basename']);
     return $data;
 }
 
@@ -104,7 +104,7 @@ function factory_307_pathinfo( $path ) {
  * @param string $filename A file name to process.
  * @return string
  */
-function factory_307_filename_without_ext($filename){
+function factory_308_filename_without_ext($filename){
     $pos = strripos($filename, '.');
     if($pos === false){
         return $filename;
@@ -120,18 +120,18 @@ function factory_307_filename_without_ext($filename){
  * @param string $filename A file name to get an extention.
  * @return string
  */
-function factory_307_filename_ext($filename){
+function factory_308_filename_ext($filename){
     $result = explode('.', $filename);
     if ( empty($result) ) return null;
     return $result[count($result)-1];
 }
 
-function factory_307_get_human_filesize_by_path( $path ) {
+function factory_308_get_human_filesize_by_path( $path ) {
     $bytes = filesize( $path );
     return factory_get_human_filesize( $bytes );
 }
 
-function factory_307_get_human_filesize( $bytes ) {
+function factory_308_get_human_filesize( $bytes ) {
     if ($bytes >= 1073741824)
     {
         $bytes = number_format($bytes / 1073741824, 2) . ' GB';
@@ -167,15 +167,15 @@ function factory_307_get_human_filesize( $bytes ) {
 /**
  * @since 1.0.0
  */
-function factory_307_get_days( $startDate, $endDate ) {
+function factory_308_get_days( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24) ) + 1;
 }
 
 /**
  * @since 1.0.0
  */
-function factory_307_get_weeks( $startDate, $endDate ) {
-    $days = factory_307_get_days( $startDate, $endDate );
+function factory_308_get_weeks( $startDate, $endDate ) {
+    $days = factory_308_get_days( $startDate, $endDate );
     
     $startDay = date( "w", $startDate );
     $endDay = date( "w", $endDate );
@@ -194,7 +194,7 @@ function factory_307_get_weeks( $startDate, $endDate ) {
 /**
  * @since 1.0.0
  */
-function factory_307_get_months( $startDate, $endDate ) {
+function factory_308_get_months( $startDate, $endDate ) {
     return floor( abs( $endDate - $startDate ) / (60*60*24*30) );
 }
 
@@ -204,7 +204,7 @@ function factory_307_get_months( $startDate, $endDate ) {
  * @since 1.5.0
  * @return type
  */
-function factory_307_is_administrator() {
+function factory_308_is_administrator() {
     return current_user_can( 'manage_options' );
 }
 
@@ -216,7 +216,7 @@ function factory_307_is_administrator() {
  * @param type $message a message of the error to print
  * @return void
  */
-function factory_307_print_error( $title, $message ) {
+function factory_308_print_error( $title, $message ) {
     ?>
     <div class="factory-error" style="padding: 10px; border: 3px solid #b23e3a; background: #cf4944; color: #fff;">
         <strong><?php echo $title ?></strong><br />
@@ -231,7 +231,7 @@ function factory_307_print_error( $title, $message ) {
  * @since 3.0.6
  * @return void
  */
-function factory_307_iframe_resize_script( $wrapId ) {
+function factory_308_iframe_resize_script( $wrapId ) {
     ?>
     <script>
         var $ = window.parent.jQuery;
@@ -257,12 +257,12 @@ function factory_307_iframe_resize_script( $wrapId ) {
  * @since 3.0.6
  * @return void
  */
-function factory_307_set_lazy_redirect( $url ) {
+function factory_308_set_lazy_redirect( $url ) {
     update_option('factory_lazy_redirect', $url );
 }
 
-add_action('admin_init', 'factory_307_do_lazy_redirect');
-function factory_307_do_lazy_redirect() {
+add_action('admin_init', 'factory_308_do_lazy_redirect');
+function factory_308_do_lazy_redirect() {
     $url = get_option('factory_lazy_redirect', null );
     if ( empty($url) ) return;
     

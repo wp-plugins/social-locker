@@ -19,8 +19,13 @@ class OnpSL_StatisticsPage extends FactoryPages306_AdminPage  {
     
     public $id = "statistics";
         
-    public function assets() {
+    public function assets($scripts, $styles) {
         $this->scripts->request('jquery');
+        
+        $this->styles->request( array( 
+            'bootstrap.core'
+            ), 'bootstrap' ); 
+        
         $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/datepicker.js');  
         $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/datepicker.css');      
         $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/statistics.030000.js');
@@ -117,7 +122,7 @@ class OnpSL_StatisticsPage extends FactoryPages306_AdminPage  {
         <div class="wrap">
             <h2 style="margin-bottom: 10px;">Usage Statistics</h2>
 
-            <div class="factory-bootstrap-305 factory-fontawesome-305">
+            <div class="factory-bootstrap-308 factory-fontawesome-305">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
                 This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br />

@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory307_ScriptList extends Factory307_AssetsList 
+class Factory308_ScriptList extends Factory308_AssetsList 
 {
     public $localizeData = array();
     public $useAjax = false;
@@ -24,7 +24,8 @@ class Factory307_ScriptList extends Factory307_AssetsList
         // register all global required scripts
         if ( !empty( $this->required['_global_'] ) ) {
             foreach ($this->required['_global_'] as $script) {
-                wp_enqueue_script( $script );
+                if ( 'wordpress' === $script[1] ) wp_enqueue_script( $script[0] );
+                elseif ( 'bootstrap' === $script[1] ) factory_bootstrap_308_enqueue_script( $script[0] );
             }     
         }
         
@@ -37,8 +38,13 @@ class Factory307_ScriptList extends Factory307_AssetsList
             foreach($scriptPlace as $script) {
                 
                 $dep = !empty( $this->required[$script] ) ? $this->required[$script] : array();
+                  
+                foreach( $dep as $depScript ) {    
+                    if ( 'wordpress' === $depScript[1] ) wp_enqueue_script( $depScript[0] );
+                    elseif ( 'bootstrap' === $depScript[1] ) factory_bootstrap_308_enqueue_script( $depScript[0] ); 
+                }
                 
-                wp_register_script( $script, $script, $dep, false, $isFooter);  
+                wp_register_script( $script, $script, array(), false, $isFooter);  
 
                 if ( $isFirstScript && $this->useAjax ) {
                     wp_localize_script( $script, 'factory', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );

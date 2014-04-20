@@ -80,7 +80,7 @@ abstract class FactoryTypes305_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory307_ScriptList 
+     * @var Factory308_ScriptList 
      */
     public $scripts;
     
@@ -88,7 +88,7 @@ abstract class FactoryTypes305_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory307_StyleList 
+     * @var Factory308_StyleList 
      */  
     public $styles;
     
@@ -151,8 +151,8 @@ abstract class FactoryTypes305_Type {
         $this->menu = new FactoryTypes305_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory307_ScriptList();
-        $this->styles = new Factory307_StyleList(); 
+        $this->scripts = new Factory308_ScriptList();
+        $this->styles = new Factory308_StyleList(); 
         
         add_action('init', array($this, 'register'));
     }
@@ -394,7 +394,8 @@ abstract class FactoryTypes305_Type {
         $iconUrl = $this->menu->icon;
         $iconUrl32 = str_replace('.png', '-32.png', $iconUrl);
         
-        if ( FACTORY_FLAT_ADMIN_030800 ) {
+        global $wp_version;
+        if ( version_compare( $wp_version, '3.8', '>='  ) ) {
         ?>
         <style type="text/css" media="screen">
             #menu-posts-<?php echo $this->name ?> .wp-menu-image {

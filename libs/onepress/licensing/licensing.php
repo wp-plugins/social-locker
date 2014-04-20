@@ -10,7 +10,7 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_307_plugin_created', 'onp_licensing_308_plugin_created');
+add_action('factory_308_plugin_created', 'onp_licensing_308_plugin_created');
 function onp_licensing_308_plugin_created( $plugin ) {
     $manager = new OnpLicensing308_Manager( $plugin );
     $plugin->license = $manager;
@@ -27,7 +27,7 @@ class OnpLicensing308_Manager {
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory307_Plugin
+     * @var Factory308_Plugin
      */
     public $plugin;
     
@@ -44,7 +44,7 @@ class OnpLicensing308_Manager {
      * 
      * @since 1.0.0
      */
-    public function __construct( Factory307_Plugin $plugin ) {
+    public function __construct( Factory308_Plugin $plugin ) {
         $this->plugin = $plugin;
 
         // gets a current license data
@@ -119,7 +119,7 @@ class OnpLicensing308_Manager {
             );
 
             $urlToRedirect =  '?' . http_build_query( $args );
-            factory_307_set_lazy_redirect($urlToRedirect);
+            factory_308_set_lazy_redirect($urlToRedirect);
                 
             //@unlink( $filepath );  
             return;
@@ -615,7 +615,7 @@ class OnpLicensing308_Manager {
     function addNotices( $notices ) {       
         
         // show messages only for administrators
-        if ( !factory_307_is_administrator() ) return $notices;
+        if ( !factory_308_is_administrator() ) return $notices;
         
         $closed = get_option('factory_notices_closed', array());
         
@@ -828,7 +828,7 @@ function onp_licensing_308_get_manager_link( $pluginName, $action = null ) {
  * Prints a purchasing link with a set of tracking query arguments.
  * 
  * @since 3.0.7
- * @param Factory307_Plugin $plugin
+ * @param Factory308_Plugin $plugin
  * @return void
  */
 function onp_licensing_308_purchase_url( $plugin ) {
@@ -839,7 +839,7 @@ function onp_licensing_308_purchase_url( $plugin ) {
  * Returns a purchasing link with a set of tracking query arguments.
  * 
  * @since 3.0.7
- * @param Factory307_Plugin $plugin
+ * @param Factory308_Plugin $plugin
  * @return string
  */
 function onp_licensing_308_get_purchase_url( $plugin, $content = null ) {

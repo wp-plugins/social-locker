@@ -171,7 +171,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes305_Metabox
             <?php } ?>
         </div>
 
-        <div class="factory-bootstrap-305 factory-fontawesome-305">
+        <div class="factory-bootstrap-308 factory-fontawesome-305">
             <div class="onp-sl-description-section">
                 <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
@@ -566,7 +566,7 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
 
     ?>
 
-    <div class="factory-bootstrap-305 factory-fontawesome-305">
+    <div class="factory-bootstrap-308 factory-fontawesome-305">
         
         <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
 

@@ -10,7 +10,7 @@
  */
 
 // creating an update manager for each plugin created via the factory
-add_action('factory_307_plugin_created', 'onp_updates_306_plugin_created');
+add_action('factory_308_plugin_created', 'onp_updates_306_plugin_created');
 function onp_updates_306_plugin_created( $plugin ) {
     $manager = new OnpUpdates306_Manager( $plugin );
     $plugin->updates = $manager;
@@ -27,7 +27,7 @@ class OnpUpdates306_Manager {
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory307_Plugin 
+     * @var Factory308_Plugin 
      */
     public $plugin;
     

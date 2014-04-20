@@ -1,9 +1,8 @@
 <?php
 
-class OnpSL_Activation extends Factory307_Activator {
+class OnpSL_Activation extends Factory308_Activator {
     
-    public function activate() {
-
+    public function activate() {       
         // sets the default licence
         // the default license is a license that is used when a license key is not activated
 
@@ -73,7 +72,7 @@ class OnpSL_Activation extends Factory307_Activator {
             );";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+        dbDelta($sql); 
     } 
 }
 

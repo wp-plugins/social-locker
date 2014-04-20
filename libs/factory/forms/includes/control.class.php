@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
+abstract class FactoryForms307_Control extends FactoryForms307_FormElement {
     
     /**
      * Is this element a control?
@@ -23,6 +23,14 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
      * @var bool 
      */
     public $isControl = true;
+    
+    /**
+     * Is this element a complex control?
+     * 
+     * @since 1.0.0
+     * @var bool 
+     */
+    public $isComplexControl = false;
     
     /**
      * A provider that is used to get values.
@@ -47,7 +55,7 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms305_ValueProvider $provider
+     * @param IFactoryForms307_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -141,11 +149,11 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
      * Returns a value of the control got after submitting a form.
      * 
      * @since 1.0.0
-     * @return mixed;
+     * @return mixed
      */
     public function getSubmitValue() {
         $nameOnForm = $this->getNameOnForm();
-        
+
         if (is_array($nameOnForm)) {
             $values = array();
             foreach($nameOnForm as $item) {
@@ -164,7 +172,6 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
      * @return mixed;
      */
     public function getValue( $index = null ) {
-        
         if ( isset( $this->options['value'] ) ) {
             if ( is_array( $this->options['value'] ) ) {
                 if ( $index !== null ) return $this->options['value'][$index];
@@ -185,12 +192,26 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
         } 
         
         if ( $this->provider ) {
-            $value = $this->provider->getValue( $this->getName(), $default );
-            if ( is_array($value) && $index !== null ) return $value[$index];
-            return $value;
+            $name = $this->getName();
+       
+            if ( is_array( $name )) {
+                
+                $i = 0;
+                $values = array();
+                
+                foreach($name as $singleName) {
+                    $values[] = $this->provider->getValue( $singleName, $default[$i] ); 
+                    $i++;
+                }
+                
+                if ( $index !== null ) return $values[$index];
+                return $values;
+            } else {
+                return $this->provider->getValue( $this->getName(), $default );  
+            }
         }
         
-        return null;
+        return $default;
     }
     
     /**
@@ -200,11 +221,15 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
      * @return void
      */
     public function render() {
-        $this->addCssClass('factory-from-control-' . $this->type);
+        $this->addCssClass('factory-from-control-' . $this->type);     
+        $isActive = $this->provider->getValue( $this->getOption('name') . '_is_active', $this->getOption('isActive', 1) );  
+        ?>
+        <input type="hidden" class="factory-control-is-active" name="<?php echo $this->getOption('name') ?>_is_active" value="<?php echo $isActive ?>" />
+        <?php
         
         $this->beforeHtml();
         $this->html();
-        $this->afterHtml(); 
+        $this->afterHtml();
     }
     
     /**
@@ -229,7 +254,7 @@ abstract class FactoryForms305_Control extends FactoryForms305_FormElement {
      * @since 1.0.0
      * @return void
      */
-    public abstract function html();
+    public function html(){}
     
     /**
      * Returns a layout option.

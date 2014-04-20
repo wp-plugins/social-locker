@@ -70,7 +70,7 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
 
         if ($isAjax) { ?>
             <div class="onp-sociallocker-call" style="display: none;" data-lock-id="<?php echo $this->lockId ?>"></div>
-        <?php } else { ?>
+        <?php } else { ?>           
             <div class="onp-sociallocker-call" style="display: none;" data-lock-id="<?php echo $this->lockId ?>">
                 <p><?php echo  $content ?></p>
             </div>
@@ -89,16 +89,17 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
     
     public function wp_footer() {
         $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
-        if ( !$dynamicTheme ) $this->print_options();
+        if ( !$dynamicTheme ) $this->printOptions();
     }
     
-    public function print_options() { 
+    public function printOptions() { 
     ?>
         <script>
             if ( !window.onpsl ) window.onpsl = {};
             if ( !window.onpsl.lockerOptions ) window.onpsl.lockerOptions = {};
             window.onpsl.lockerOptions['<?php echo $this->lockId; ?>'] = <?php echo json_encode( $this->lockData ) ?>;
         </script>
+        <?php  do_action('onp_front_preview_print_scripts', $this->lockData['lockerId']); ?>
     <?php
     }
         

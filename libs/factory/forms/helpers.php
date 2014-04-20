@@ -17,7 +17,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms305_FormHelpers {
+class FactoryForms307_FormHelpers {
     
     /**
      * Renders a form element.
@@ -30,9 +30,9 @@ class FactoryForms305_FormHelpers {
     public static function render( $type, $options = array() ) {
         $options['type'] = $type;
         
-        if ( FactoryForms305_Form::isControl($type) ) {
+        if ( FactoryForms307_Form::isControl($type) ) {
             self::renderControl($type, $options);
-        } elseif ( FactoryForms305_Form::isControlHolder($type) ) {
+        } elseif ( FactoryForms307_Form::isControlHolder($type) ) {
             self::renderHolder($type, $options);
         } else {
             print_r($options);
@@ -49,7 +49,7 @@ class FactoryForms305_FormHelpers {
      * @return void
      */
     public static function renderControl($type, $options) {
-        FactoryForms305_Form::connectAssetsForItem( $options );
+        FactoryForms307_Form::connectAssetsForItem( $options );
         
         $data = self::$_registeredControls[$type];
         require_once ($data['include']);
@@ -66,12 +66,37 @@ class FactoryForms305_FormHelpers {
      * @return void
      */
     public static function renderHolder($type, $options) {
-        FactoryForms305_Form::connectAssetsForItem( $options );
+        FactoryForms307_Form::connectAssetsForItem( $options );
         
         $data = self::$_registeredHolders[$type];
         require_once ($data['include']);
         $object = new $data['class']( $options );   
         $object->html();
+    }
+    
+    /**
+     * A helper method to extract control options (items) by a given name.
+     * 
+     * @since 3.0.5
+     * @param string $controlName a control name to search
+     * @param mixed $options a set of contol options
+     * @return null|string 
+     */
+    public static function extractControlOptions( $controlName, $options = array() ) {
+              
+        foreach($options as $itemOptions) {
+
+            if ( isset( $itemOptions['name'] ) && $itemOptions['name'] == $controlName ) {
+                return $itemOptions;
+            }
+            
+            if ( isset( $itemOptions['items'] ) && is_array( $itemOptions['items'] ) ) {
+                $result = self::extractControlOptions( $controlName, $itemOptions['items'] );
+                if ( $result ) return $result;
+            }
+        }
+        
+        return null;        
     }
 }
 ?>

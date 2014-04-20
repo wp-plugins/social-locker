@@ -72,7 +72,7 @@ class FactoryPages306_AdminPage extends FactoryPages306_Page {
      */
     public $hidden = false;
     
-    public function __construct(Factory307_Plugin $plugin) {
+    public function __construct(Factory308_Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
 
@@ -159,13 +159,13 @@ class FactoryPages306_AdminPage extends FactoryPages306_Page {
         // if this page for a custom menu page
         if ( $this->menuPostType ) {
             $this->menuTarget = 'edit.php?post_type=' . $this->menuPostType;
-            if ( empty( $this->capabilities ) ) {
+            if ( empty( $this->capabilitiy ) ) {
                 $this->capabilitiy = 'edit_' . $this->menuPostType;
             }
         } 
 
         // sets default capabilities
-        if ( empty( $this->capabilities ) ) {
+        if ( empty( $this->capabilitiy ) ) {
             $this->capabilitiy = 'manage_options';
         }
 
@@ -251,13 +251,20 @@ class FactoryPages306_AdminPage extends FactoryPages306_Page {
         
         if (!empty($this->menuIcon))
             $iconUrl = str_replace('~/', $this->plugin->pluginUrl . '/', $this->menuIcon);   
-            
-        if ( FACTORY_FLAT_ADMIN_030800 ) {
+        
+        global $wp_version;
+        if ( version_compare( $wp_version, '3.8', '>='  ) ) {
         ?>
             <style type="text/css" media="screen">
+
+                <?php if ( !empty($iconUrl) ) { ?>
+
                 a.toplevel_page_<?php echo $resultId ?> .wp-menu-image {
                     background: url('<?php echo $iconUrl ?>') no-repeat 10px -30px !important;
                 }
+
+                <?php } ?>
+
                 a.toplevel_page_<?php echo $resultId ?> .wp-menu-image:before {
                     content: "" !important;
                 }

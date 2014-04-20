@@ -6,6 +6,7 @@
     text-shadow: none;
     border-color: #bbbbbb;
     padding: 10px;
+    display: none;
 }
 #sociallocker-next-activate-premium-key .factory-message-container a {
     color: #262729;
@@ -35,4 +36,65 @@
     padding-left: 90px !important;
     background: url("../img/offer-logo.png") 5px center no-repeat;
 }
+
+
+
+#sociallocker-styler-promo-immediately {
+    background: #292929 url("../img/style-addon-bg-2.png") -28px -28px no-repeat;
+    color: #ddd;
+    border: 1px solid #292929;
+    border-bottom: 3px solid #292929;
+    border-radius: 4px;
+    padding-left: 310px;
+    font-size: 16px;
+    line-height: 140%;
+}
+#sociallocker-styler-promo-immediately .factory-buttons {
+    margin-top: 5px;
+}
+
+#sociallocker-styler-promo-immediately .btn {
+    padding: 8px 30px;
+    background-color: #ecf0f1;
+    border-bottom: 2px solid #bec3c7;
+    font-size: 16px;
+}
+#sociallocker-styler-promo-immediately .btn-primary {
+    background-color: #1bbc9d;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 0px;
+    border-bottom: 2px solid #16a086;
+}
+#sociallocker-styler-promo-immediately .btn:hover {
+    background-color: #f6f8f8;
+}
+#sociallocker-styler-promo-immediately .btn-primary:hover {
+    background-color: #20d1af;
+}
+#sociallocker-styler-promo-immediately .factory-inner-wrap {
+}
+#sociallocker-styler-promo-immediately .factory-icon {
+    display: none;
+}
+#sociallocker-styler-promo-immediately .factory-header {
+    font-weight: bolder;
+    font-size: 20px;
+}
+#sociallocker-styler-promo-immediately .hightlight {
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0 5px;
+    color: #fff;
+    font-weight: bolder;
+}
+#sociallocker-styler-promo-immediately .hightlight-yellow {
+    background-color: #f49914;
+}
+#sociallocker-styler-promo-immediately .hightlight-red {
+    background-color: rgba(255,255,255,0.07);
+}
+
 

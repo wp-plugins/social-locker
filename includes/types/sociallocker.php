@@ -92,9 +92,29 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         
         /**
          * Scripts & styles
-         */
+        */  
         
-        $this->scripts->request('jquery', 'jquery-effects-highlight');
+        $this->scripts->request( array( 'jquery', 'jquery-effects-highlight' ) );
+        
+        $this->scripts->request( array( 
+            'bootstrap.transition',
+            'bootstrap.tab',
+            'holder.more-link',
+            'control.checkbox',
+            'bootstrap.modal',
+            ), 'bootstrap' );
+        
+        $this->styles->request( array( 
+            'bootstrap.core', 
+            'bootstrap.form-group', 
+            'bootstrap.form-metabox', 
+            'bootstrap.tab', 
+            'bootstrap.modal', 
+            'bootstrap.wp-editor', 
+            'bootstrap.separator',
+            'control.checkbox',
+            'holder.more-link'
+            ), 'bootstrap' ); 
         
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/json2.js');
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/preview.030000.js');
@@ -104,6 +124,8 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
             $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/jquery.qtip.min.css');
         
 
+        
+        do_action( 'onp_sl_sociallocker_type_scripts', $this->scripts, $this->styles );   
     }
 }
 

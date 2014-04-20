@@ -1,7 +1,6 @@
 <?php
-
-if ( !isset( $_GET['onp_sl_preview'] ) ) return;
-
+add_action("wp_ajax_onp_sl_preview", 'onp_lock_preview');
+function onp_lock_preview() {
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,26 +36,25 @@ if ( !isset( $_GET['onp_sl_preview'] ) ) return;
                  padding: 20px 40px;
              }
          </style>
-                  
          <script type="text/javascript" src="<?php echo get_site_url() ?>/wp-includes/js/jquery/jquery.js"></script>
          <script type="text/javascript" src="<?php echo get_site_url() ?>/wp-includes/js/jquery/ui/jquery.ui.core.min.js"></script>     
          <script type="text/javascript" src="<?php echo get_site_url() ?>/wp-includes/js/jquery/ui/jquery.ui.effect.min.js"></script>
          <script type="text/javascript" src="<?php echo get_site_url() ?>/wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js"></script>
          
-         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/js/json2.js"></script>       
-         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.min.030209.js"></script>
+         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/js/json2.js"></script>    
+         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.min.030300.js"></script>  
+         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030300.min.css">  
          
-         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030209.min.css">  
-         
+         <?php do_action('onp_sl_preview_print_scripts', !empty( $_GET ) ? $_GET : null); ?>  
+
          <script>
-             (function($){
-                 
+             (function($){  
                 var callback = '<?php echo ( isset( $_POST['callback'] ) ? $_POST['callback'] : '' ) ?>';
                 
                 window.setOptions = function( options ) {
                     $(".sociallocker-next").remove();
                     var $clone = $(".content-to-lock");
-                    $("#wrap").html("");
+                    $("#wrap").html("");                                     
                     
                     options.demo = true;
                     $clone.appendTo("#wrap");
@@ -122,24 +120,28 @@ if ( !isset( $_GET['onp_sl_preview'] ) ) return;
                 $(function(){
                     $(".content-to-lock").sociallocker(options);            
                 });
+                
+                jQuery(document).click(function(){
+                    if( parent && window.removeProfilerSelector ) window.removeProfilerSelector();
+                });
              })(jQuery);
          </script>
     </head>
     <body>
         <div id="wrap">
-        <div class="content-to-lock">
-            <p>
-                Nulla mi odio, posuere <a href="#">commodo elementum varius</a>, sodales in justo. 
-                Nunc convallis rhoncus odio, in cursus massa eleifend sit amet. 
-                Morbi sed erat tortor. Maecenas turpis neque, sollicitudin eget auctor in, 
-                porta non justo.
-            </p>
-        </div>
-        
-        <div style="clear: both;"></div>
+            <div class="content-to-lock">
+                <p>
+                    Nulla mi odio, posuere <a href="#">commodo elementum varius</a>, sodales in justo. 
+                    Nunc convallis rhoncus odio, in cursus massa eleifend sit amet. 
+                    Morbi sed erat tortor. Maecenas turpis neque, sollicitudin eget auctor in, 
+                    porta non justo.
+                </p>
+            </div>
+            <div style="clear: both;"></div>
         </div>
     </body>
 </html>
 
 <?php
 exit;
+}

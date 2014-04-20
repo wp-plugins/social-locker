@@ -139,12 +139,12 @@ class OnpSL_AssetsManager {
 
         wp_enqueue_style( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030209.min.css'
+            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030300.min.css'
         );  
-
+        
         wp_enqueue_script( 
             'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030209.js', 
+            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030300.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );  
 
@@ -155,7 +155,7 @@ class OnpSL_AssetsManager {
 
         wp_localize_script( 'onp-sociallocker', 'facebookSDK', $facebookSDK );
     }
-    
+        
     // -----------------------------------------------
     // Working with locker options.
     // -----------------------------------------------
@@ -183,18 +183,19 @@ class OnpSL_AssetsManager {
         }
         ?>
         <!-- 
-            Options of Bulk Lockers
-        
+            Options of Bulk Lockers        
             Created by the Social Locker plugin (c) OnePress Ltd
-            http://sociallocker.org
-        -->
-        <script>
-        if ( !window.onpsl ) window.onpsl = {};
-        if ( !window.onpsl.lockerOptions ) window.onpsl.lockerOptions = {};
-        <?php foreach( $data as $item ) { ?>
-            window.onpsl.lockerOptions['<?php echo $item['name'] ?>'] = <?php echo json_encode( $item['options'] ) ?>;
-        <?php } ?>
-        </script>
+            http://onepress-media.com/plugin/social-locker-for-wordpress/get
+        -->        
+            <script>
+            if ( !window.onpsl ) window.onpsl = {};
+            if ( !window.onpsl.lockerOptions ) window.onpsl.lockerOptions = {};
+            <?php foreach( $data as $item ) { ?>
+                window.onpsl.lockerOptions['<?php echo $item['name'] ?>'] = <?php echo json_encode( $item['options'] ) ?>;
+            <?php } ?>
+            </script>
+            <?php  do_action('onp_sl_bulk_print_scripts'); ?>          
+
         <!-- / -->
         <?php
         
@@ -213,7 +214,7 @@ class OnpSL_AssetsManager {
 
         $lockData['tracking'] = get_option('sociallocker_tracking', true);
         $lockData['postId'] = !empty($post) ? $post->ID : false;
-
+                  
         // Builds array of options to set into the jquery plugin
 
             $url = self::getLockerOption($id, 'common_url' );
@@ -266,7 +267,7 @@ class OnpSL_AssetsManager {
         }
         
         $params = apply_filters('onp_sl_locker_options', $params, $id );
-
+       
         // - Replaces shortcodes in the locker message and twitter text
 
         $postTitle = $post != null ? $post->post_title : '';
@@ -544,10 +545,10 @@ class OnpSL_AssetsManager {
      * @return void
      */
     public static function iniDynamicThemes() {
-        $dynamicTheme = get_option('onp_sl_dynamic_theme', false);
+        $dynamicTheme = get_option('sociallocker_dynamic_theme', false);
         if ( !$dynamicTheme ) return;
         
-        add_action( 'wp_head', array($this, 'printDynamicThemesOptions') );
+        add_action( 'wp_head', 'OnpSL_AssetsManager::printDynamicThemesOptions' );
         self::requestAssets();
     }
     
@@ -558,8 +559,8 @@ class OnpSL_AssetsManager {
      * @return void
      */
     public static function printDynamicThemesOptions() {
-        $isDynamic = get_option('onp_sl_is_dynamic_theme', false);
-        $event = get_option('onp_sl_dynamic_theme_event', '');
+        $isDynamic = get_option('sociallocker_dynamic_theme', false);
+        $event = get_option('sociallocker_dynamic_theme_event', '');       
         ?>
         <!-- 
             Support for Dynamic Themes
@@ -571,8 +572,9 @@ class OnpSL_AssetsManager {
         if ( !window.onpsl ) window.onpsl = {};
         window.onpsl.dynamicThemeSupport = '<?php echo $isDynamic ?>';
         window.onpsl.dynamicThemeEvent = '<?php echo $event ?>';
-        </script>
-        <!-- / -->
+        </script>     
+        <?php  do_action('onp_sl_dynamic_themes_print_scripts'); ?>  
+        <!-- / -->     
         <?php
     }
 }

@@ -63,12 +63,12 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes305_Metabox
         global $sociallocker;
         
     ?>
-        <div class="factory-bootstrap-305 factory-fontawesome-305">
+        <div class="factory-bootstrap-308 factory-fontawesome-305">
             
         <div class="sl-header">
             <strong>More Features?</strong>
             <p>You Use Only 30% of Social Locker!</p>
-            <?php if ( FACTORY_FLAT_ADMIN_030800 ) { ?>
+            <?php if ( FACTORY_FLAT_ADMIN ) { ?>
             <div class="progress progress-striped"">
               <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
                 <span class="sr-only">30% Complete</span>
@@ -89,7 +89,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes305_Metabox
         </ul>
         <div class="sl-seporator"></div>
         
-        <?php if ( FACTORY_FLAT_ADMIN_030800 ) { ?>
+        <?php if ( FACTORY_FLAT_ADMIN ) { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
                     <a href="<?php onp_licensing_308_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-primary btn-large">

@@ -14,13 +14,13 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement {
+abstract class FactoryForms307_ControlHolder extends FactoryForms307_Control {
     
     /**
      * Holder Elements.
      * 
      * @since 1.0.0
-     * @var FactoryForms305_FormElement[] 
+     * @var FactoryForms307_FormElement[] 
      */
     protected $elements = array();
     
@@ -37,18 +37,21 @@ abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms305_Form $form A parent form.
+     * @param FactoryForms307_Form $form A parent form.
      */
     public function __construct($options, $form) {
-        parent::__construct($options, $form);
+        parent::__construct($options, $form);         
         $this->elements = $form->createElements( $options['items'] );
+        foreach( $this->elements as $val ) {
+            $val->parent = $this;
+        }
     }
     
     /**
      * Returns holder elements.
      * 
      * @since 1.0.0
-     * @return FactoryForms305_FormElement[].
+     * @return FactoryForms307_FormElement[].
      */
     public function getElements() {
         return $this->elements;
@@ -110,7 +113,7 @@ abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement
      * @since 1.0.0
      * @return void
      */
-    protected function beforeRendering(){}
+    public function beforeRendering(){}
     
     /**
      * Rendering an end of a holder.
@@ -118,7 +121,7 @@ abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement
      * @since 1.0.0
      * @return void
      */
-    protected function afterRendering(){}
+    public function afterRendering(){}
     
     /**
      * Rendering some html before an inner holder.
@@ -126,7 +129,7 @@ abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement
      * @since 1.0.0
      * @return void
      */
-    protected function beforeInnerHolder(){}
+    public function beforeInnerHolder(){}
     
     /**
      * Rendering some html after an inner holder.
@@ -134,10 +137,10 @@ abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement
      * @since 1.0.0
      * @return void
      */
-    protected function afterInnerHolder(){}
+    public function afterInnerHolder(){}
     
 
-    protected function beforeInnerElement(){}
+    public function beforeInnerElement(){}
     
     /**
      * Rendering some html after an inner element.
@@ -145,5 +148,5 @@ abstract class FactoryForms305_ControlHolder extends FactoryForms305_FormElement
      * @since 1.0.0
      * @return void
      */
-    protected function afterInnerElement(){} 
+    public function afterInnerElement(){} 
 }

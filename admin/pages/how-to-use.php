@@ -19,7 +19,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     
     public $id = "how-to-use";
   
-    public function assets() {
+    public function assets($scripts, $styles) {
         $this->scripts->request('jquery');
         $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/howtouse.030100.css');   
     }
@@ -50,7 +50,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     public function indexAction() {
             
         ?>
-        <div class="wrap factory-bootstrap-305 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -171,7 +171,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     public function reviewAction() {
         
         ?>
-        <div class="wrap factory-bootstrap-305 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -193,7 +193,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     
     public function troubleshootingAction() {
         ?>
-        <div class="wrap factory-bootstrap-305 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -216,7 +216,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     
     public function premiumAction() {
         ?>
-        <div class="wrap factory-bootstrap-305 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
             
             <?php $this->showNav('getting-started') ?>
             

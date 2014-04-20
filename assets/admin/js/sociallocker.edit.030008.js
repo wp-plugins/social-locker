@@ -5,24 +5,25 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
     
     window.onpsl.lockerEditor = {
         
-        init: function() {
-            
+        init: function() {  
+ 
             this.initSocialTabs();
+            
             this.manualLocking.init();
             this.bulkLocking.init();
             this.visability.init();
-            
+
             this.trackInputChanges();
             this.recreatePreview();
 
             if ( window['sociallocker-next-build'] === 'free' ) {
                 this.initTrialBox();
-            }
-        },
-        
+            }      
+        }, 
+
         /**
          * Inits social tabs.
-         */
+        */
         initSocialTabs: function() {
             var self = this;
             var socialTabWrap = $(".factory-align-vertical .nav-tabs");
@@ -154,10 +155,9 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
         /**
          * Recreates the preview, submmits forms to the preview frame.
          */
-        recreatePreview: function() {
-
-            var url = $("#lock-preview-wrap").data('url');
-            var options = this.getPreviewOptions();
+        recreatePreview: function() {          
+            var url = $("#lock-preview-wrap").data('url');            
+            var options = this.getPreviewOptions();             
             window.onpsl.preview.refresh( url, 'preview', options, 'onp_sl_update_preview_height' );
         },
         
@@ -183,7 +183,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                     order: buttons ? buttons.split(",") : buttons
                 },
                 
-                theme: 'secrets',
+                theme: 'secrets',                
                 effects: { 
                     highlight: $("#sociallocker_highlight").is(':checked')
                 },
@@ -250,6 +250,10 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
 
             if ( window['sociallocker-next-build'] != 'free' ) {
                 options['theme'] = $("#sociallocker_style").val();
+            }
+            
+            if ( window.onpsl.lockerEditor.filterOptions ) {
+                options = window.onpsl.lockerEditor.filterOptions( options );
             }
             
             return options;
@@ -402,7 +406,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap305_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap308_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

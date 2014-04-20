@@ -9,10 +9,9 @@
  * @since 1.0.0
  */
 
-add_action('admin_notices', 'factory_notices_305_admin_notices');
+add_action('admin_init', 'factory_notices_305_admin_notices', 99);
 function factory_notices_305_admin_notices() {
     $manager = new FactoryNotices305();
-    $manager->showNotices();
 }
 
 /**
@@ -22,23 +21,32 @@ function factory_notices_305_admin_notices() {
  */
 class FactoryNotices305 {
     
+    public function __construct() {
+        $this->notices = apply_filters('factory_notices_305', array());
+
+        add_action('admin_enqueue_scripts', array( $this, 'enqueueScripts' ));        
+        add_action('admin_notices', array( $this, 'showNotices' ));
+    }
+    
+    public function enqueueScripts() {
+        factory_bootstrap_308_enqueue_style(array('bootstrap.core'));
+        wp_enqueue_style('factory-notices-305-css', FACTORY_NOTICES_305_URL . '/assets/css/notices.css');      
+        wp_enqueue_script('factory-notices-305-js', FACTORY_NOTICES_305_URL . '/assets/js/notices.js');
+    }
+    
     public function showNotices() {
-        
-        $notices = apply_filters('factory_notices_305', array());
-        if ( count($notices) == 0 ) return;
+
+        if ( count( $this->notices ) == 0 ) return;
 
         if ( 
             !current_user_can('activate_plugins') || 
             !current_user_can('edit_plugins') || 
             !current_user_can('install_plugins')) return;
-
-        wp_enqueue_style('factory-notices-305-css', FACTORY_NOTICES_305_URL . '/assets/css/notices.css');      
-        wp_enqueue_script('factory-notices-305-js', FACTORY_NOTICES_305_URL . '/assets/js/notices.js');
         
         ?>
-        <div class="updated factory-bootstrap-305 factory-fontawesome-305 factory-notices-305-notices">
+        <div class="updated factory-bootstrap-308 factory-fontawesome-305 factory-notices-305-notices">
         <?php
-        foreach ($notices as $notice) {
+        foreach ($this->notices as $notice) {
             $this->showNotice($notice);
         }
         ?>

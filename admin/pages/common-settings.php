@@ -158,8 +158,21 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
      * @since 1.0.0
      * @return void 
      */
-    public function assets() {
+    public function assets($scripts, $styles) {
+        
         $this->scripts->request('jquery');
+        
+        $this->scripts->request( array( 
+            'control.checkbox'
+            ), 'bootstrap' );
+        
+        $this->styles->request( array( 
+            'bootstrap.core', 
+            'bootstrap.form-group',
+            'bootstrap.separator', 
+            'control.checkbox'
+            ), 'bootstrap' ); 
+        
         $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/settings.030000.js');
         $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/settings.030000.css');   
     }
@@ -174,12 +187,12 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
         
         global $sociallockerLangs;
         
-        $form = new FactoryForms305_Form(array(
+        $form = new FactoryForms307_Form(array(
             'scope' => 'sociallocker'
         ));
         
-        $form->controlTheme = 'mendeleev-305';
-        $form->setProvider( new FactoryForms305_OptionsValueProvider(array(
+        $form->controlTheme = 'mendeleev-000';
+        $form->setProvider( new FactoryForms307_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
@@ -204,6 +217,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ),
             array(
                 'type'      => 'checkbox',
+                'way'       => 'buttons',
                 'name'      => 'interrelation',
                 'title'     => 'Interrelation',
                 'hint'      => 'Set On to make lockers interrelated. When any interrelated locker on your site is unlocked, the rest others will be unlocked too.<br />If Off, only lockers having the same URLs to like/tweet/+1/share will be unlocked.',
@@ -214,6 +228,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ),
             array(
                 'type'      => 'checkbox',
+                'way'       => 'buttons',
                 'name'      => 'dynamic_theme',
                 'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
                 'hint'      => 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working.'
@@ -240,6 +255,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ),
             array(
                 'type'      => 'checkbox',
+                'way'       => 'buttons',
                 'name'      => 'google_analytics',
                 'title'     => __( 'Google Analytics', 'sociallocker' ),
                 'hint'      => 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.'
@@ -250,6 +266,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ),
             array(
                 'type'      => 'checkbox',
+                'way'       => 'buttons',  
                 'name'      => 'tracking',
                 'title'     => __( 'Tracking', 'sociallocker' ),
                 'data'      => $this->languages,
@@ -260,6 +277,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ),  
             array(
                 'type'      => 'checkbox',
+                'way'       => 'buttons',
                 'name'      => 'rss',
                 'title'     => 'Content for RSS',
                 'hint'      => 'Set On to make locked content visible in the RSS feed.',
@@ -270,6 +288,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             ),
             array(
                 'type'      => 'checkbox',
+                'way'       => 'buttons',
                 'name'      => 'debug',
                 'title'     => __( 'Debug', 'sociallocker' ),
                 'data'      => $this->languages,
@@ -312,7 +331,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             <h2><?php _e('Common Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-305">
+            <div class="factory-bootstrap-308">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -353,7 +372,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_307_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_308_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -414,7 +433,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages306_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-305" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-308" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>

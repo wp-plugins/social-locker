@@ -14,15 +14,15 @@
  * 
  * @since 1.0.0
  */
-abstract class Factory307_Activator {
+abstract class Factory308_Activator {
     
     /**
      * Curent plugin.
-     * @var Factory307_Plugin
+     * @var Factory308_Plugin
      */
     public $plugin;
     
-    public function __construct(Factory307_Plugin $plugin) {
+    public function __construct(Factory308_Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -63,9 +63,10 @@ abstract class Factory307_Activator {
         $postInfo = array_merge($postInfoBase, $postInfo);
         $metaInfo = array_merge($metaInfoBase, $metaInfo);
         
-        $this->createPost($postInfo, $metaInfo, $optionName);
+        $insert_id = $this->createPost($postInfo, $metaInfo, $optionName);
         
         return array(
+            'post_id' => $insert_id,
             'post' => $postInfo,
             'meta' => $metaInfo
         );

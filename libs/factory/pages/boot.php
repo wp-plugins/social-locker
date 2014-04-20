@@ -24,8 +24,8 @@ define('FACTORY_PAGES_306_URL', plugins_url(null,  __FILE__ ));
 
 if ( is_admin() ) {
     global $wp_version;
-    if ( !defined('FACTORY_FLAT_ADMIN_030800')) {
-        define('FACTORY_FLAT_ADMIN_030800', version_compare( $wp_version, '3.8', '>='  ));
+    if ( !defined('FACTORY_FLAT_ADMIN')) {
+        define('FACTORY_FLAT_ADMIN', version_compare( $wp_version, '3.8', '>='  ));
     }
 }
 

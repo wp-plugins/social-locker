@@ -9,7 +9,7 @@
  */
 
 // creating an api manager for each plugin created via the factory
-add_action('factory_307_plugin_created', 'onp_api_307_plugin_created');
+add_action('factory_308_plugin_created', 'onp_api_307_plugin_created');
 function onp_api_307_plugin_created( $plugin ) {
     $manager = new OnpApi307_Manager( $plugin );
     $plugin->api = $manager;
@@ -26,7 +26,7 @@ class OnpApi307_Manager {
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory307_Plugin
+     * @var Factory308_Plugin
      */
     public $plugin;
     
@@ -43,7 +43,7 @@ class OnpApi307_Manager {
      * 
      * @since 1.0.0
      */
-    public function __construct( Factory307_Plugin $plugin ) {
+    public function __construct( Factory308_Plugin $plugin ) {
         $this->plugin = $plugin;
         $this->entryPoint = $plugin->options['api'];
                 

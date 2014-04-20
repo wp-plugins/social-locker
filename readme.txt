@@ -88,12 +88,19 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.3.0 - 21 Apr 2014</strong><br />
+<ul>
+<li>IMPROVED: Full compatibility with WP 3.9.</li>
+<li>IMPROVED: The Like button works a bit faster.</li>
+<li>FIXED: The IE10 issue.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.2.9 - 31 Mar 2014</strong><br />
 <ul>
 <li>FIXED: The IE8 issue.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.2.8 - 26 Mar 2014</strong><br />
 <ul>

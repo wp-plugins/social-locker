@@ -64,7 +64,7 @@ abstract class FactoryMetaboxes305_Metabox {
      * Scripts that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory307_ScriptList
+     * @var Factory308_ScriptList
      */
     public $scripts;
     
@@ -72,7 +72,7 @@ abstract class FactoryMetaboxes305_Metabox {
      * Styles that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory307_StyleList
+     * @var Factory308_StyleList
      */  
     public $styles;
     
@@ -109,11 +109,11 @@ abstract class FactoryMetaboxes305_Metabox {
      * Configures a metabox.
      * 
      * @since 1.0.0
-     * @param Factory307_ScriptList $scripts A set of scripts to include.
-     * @param Factory307_StyleList $styles A set of style to include.
+     * @param Factory308_ScriptList $scripts A set of scripts to include.
+     * @param Factory308_StyleList $styles A set of style to include.
      * @return void
      */
-    public function configure(Factory307_ScriptList $scripts, Factory307_StyleList $styles) {
+    public function configure(Factory308_ScriptList $scripts, Factory308_StyleList $styles) {
         // method must be overriden in the derived classed.
     }
 
@@ -127,8 +127,8 @@ abstract class FactoryMetaboxes305_Metabox {
         if ( $this->isConnected ) return;
          $this->isConnected = true;
            
-        $this->scripts = new Factory307_ScriptList();
-        $this->styles = new Factory307_StyleList();
+        $this->scripts = new Factory308_ScriptList();
+        $this->styles = new Factory308_StyleList();
         
         $this->configure( $this->scripts, $this->styles );
         $this->includeScriptsAndStyles();
