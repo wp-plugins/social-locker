@@ -12,7 +12,7 @@
 /**
  * Common Settings
  */
-class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
+class OnpSL_HowToUsePage extends FactoryPages308_AdminPage  {
  
     public $menuTitle = 'How to use?';
     public $menuPostType = 'social-locker';
@@ -50,7 +50,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     public function indexAction() {
             
         ?>
-        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-309 factory-fontawesome-306">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -171,7 +171,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     public function reviewAction() {
         
         ?>
-        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-309 factory-fontawesome-306">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -193,7 +193,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     
     public function troubleshootingAction() {
         ?>
-        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-309 factory-fontawesome-306">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -216,7 +216,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     
     public function premiumAction() {
         ?>
-        <div class="wrap factory-bootstrap-308 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-309 factory-fontawesome-306">
             
             <?php $this->showNav('getting-started') ?>
             
@@ -226,8 +226,8 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
                     <h1>Premium Version</h1>
                    
                     <p>
-                        This plugin is a free edition of the popular <a target="_blank" href="<?php onp_licensing_308_purchase_url( $this->plugin ) ?>"> Social Locker plugin</a> sold on CodeCanyon. 
-                        You can activate premium features for a trial period <a href="<?php onp_licensing_308_manager_link($this->plugin->pluginName ) ?>">inside the plugin</a>.</strong>
+                        This plugin is a free edition of the popular <a target="_blank" href="<?php onp_licensing_310_purchase_url( $this->plugin ) ?>"> Social Locker plugin</a> sold on CodeCanyon. 
+                        You can activate premium features for a trial period <a href="<?php onp_licensing_310_manager_link($this->plugin->pluginName ) ?>">inside the plugin</a>.</strong>
                     </p>
                 </div>
                 
@@ -263,7 +263,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
                     <h1>How to activate the trial version?</h1>
                    
                     <p>
-                        You can make that on the License Manager page or just <a href="<?php onp_licensing_308_manager_link($this->plugin->pluginName, 'activateTrial') ?>">click here</a> to activate the trial version.
+                        You can make that on the License Manager page or just <a href="<?php onp_licensing_310_manager_link($this->plugin->pluginName, 'activateTrial') ?>">click here</a> to activate the trial version.
                     </p>
                 </div>
                 
@@ -271,7 +271,7 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
                     <h1>How to buy the premium version?</h1>
                    
                     <p>
-                        Move to the <a target="_blank" href="<?php onp_licensing_308_purchase_url( $this->plugin ) ?>">plugin page</a> on CodeCanyon and click the Purchase button on the right sidebar.
+                        Move to the <a target="_blank" href="<?php onp_licensing_310_purchase_url( $this->plugin ) ?>">plugin page</a> on CodeCanyon and click the Purchase button on the right sidebar.
                     </p>
                 </div> 
                 
@@ -282,4 +282,4 @@ class OnpSL_HowToUsePage extends FactoryPages306_AdminPage  {
     }    
 }
 
-FactoryPages306::register($sociallocker, 'OnpSL_HowToUsePage');
+FactoryPages308::register($sociallocker, 'OnpSL_HowToUsePage');

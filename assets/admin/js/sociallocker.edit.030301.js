@@ -127,6 +127,24 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
         },
         
         /**
+         * Binds the change event of the WP editor.
+         */
+        bindWpEditorChange: function( ed ) {
+            var self = this;
+            
+            var changed = function() {
+                tinyMCE.activeEditor.save();
+                self.refreshPreview();
+            };
+            
+            if ( tinymce.majorVersion <= 3 ) {
+                ed.onChange.add(function(){ changed(); });
+            } else {
+                ed.on("change", function(){ changed(); });
+            }
+        },
+        
+        /**
          * Refreshes the preview after short delay.
          */
         refreshPreview: function( force ) {
@@ -406,7 +424,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap308_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap309_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

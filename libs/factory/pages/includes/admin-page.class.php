@@ -1,6 +1,6 @@
 <?php
 
-class FactoryPages306_AdminPage extends FactoryPages306_Page {
+class FactoryPages308_AdminPage extends FactoryPages308_Page {
     
     /**
      * Visible page title.
@@ -72,7 +72,7 @@ class FactoryPages306_AdminPage extends FactoryPages306_Page {
      */
     public $hidden = false;
     
-    public function __construct(Factory308_Plugin $plugin) {
+    public function __construct(Factory309_Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
 
@@ -253,7 +253,7 @@ class FactoryPages306_AdminPage extends FactoryPages306_Page {
             $iconUrl = str_replace('~/', $this->plugin->pluginUrl . '/', $this->menuIcon);   
         
         global $wp_version;
-        if ( version_compare( $wp_version, '3.8', '>='  ) ) {
+        if ( version_compare( $wp_version, '3.7', '>'  ) ) {
         ?>
             <style type="text/css" media="screen">
 

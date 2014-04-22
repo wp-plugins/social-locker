@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
+class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
 {
     /**
      * A visible title of the metabox.
@@ -50,13 +50,15 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
      */
     public $priority = 'core';
     
+    public $cssClass = 'factory-bootstrap-309';
+    
     /**
      * Configures a form that will be inside the metabox.
      * 
-     * @see FactoryMetaboxes305_FormMetabox
+     * @see FactoryMetaboxes307_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms307_Form $form A form object to configure.
+     * @param FactoryForms308_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {        
@@ -73,7 +75,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
                     'hint'  => 'Enter an URL to like, tweet and +1 or leave this 
                                 field empty in order to use an URL of a page where the locker will be placed.' .
                                '<br />Need a separate URL for each button? Try a ' .
-                               '<a href="' . onp_licensing_308_get_purchase_url( $sociallocker ) . '">' .
+                               '<a href="' . onp_licensing_310_get_purchase_url( $sociallocker ) . '">' .
                                'premium version</a> of the plugin.',
                     'placeholder'   => 'http://url-to-share.com'
               ),
@@ -99,7 +101,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
                                'Shortcodes: [post_title], [post_url].',
                 'default'   => 'Please support us, use one of the buttons below to unlock the content.',
                 'tinymce'   => array(
-                    'handle_event_callback' => 'sociallocker_editor_callback',
+                    'setup' => 'function(ed){ window.onpsl.lockerEditor.bindWpEditorChange( ed ); }',
                     'height' => 100
                 ),
                 'layout'    => array(
@@ -111,4 +113,4 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes305_FormMetabox
     }
 }
 
-FactoryMetaboxes305::register('OnpSL_BasicOptionsMetaBox');
+FactoryMetaboxes307::register('OnpSL_BasicOptionsMetaBox');

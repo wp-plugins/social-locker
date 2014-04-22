@@ -4,7 +4,7 @@
  * Declaration for custom post type of Social Locler.
  * @link http://codex.wordpress.org/Post_Types
  */
-class OnpSL_SocialLockerType extends FactoryTypes305_Type {
+class OnpSL_SocialLockerType extends FactoryTypes307_Type {
     
     /**
      * Custom post name.
@@ -118,8 +118,8 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/json2.js');
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/preview.030000.js');
-        $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030008.js')->request('jquery-ui-sortable');       
-        $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030008.css');
+        $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030301.js')->request('jquery-ui-sortable');       
+        $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030301.css');
             $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/jquery.qtip.min.js');       
             $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/jquery.qtip.min.css');
         
@@ -129,4 +129,4 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
     }
 }
 
-FactoryTypes305::register('OnpSL_SocialLockerType', $sociallocker);
+FactoryTypes307::register('OnpSL_SocialLockerType', $sociallocker);

@@ -1,6 +1,6 @@
 <?php
 
-function onp_updates_306_set_site_transient( $transient, $value, $expiration = 0, $actions = false ) {
+function onp_updates_307_set_site_transient( $transient, $value, $expiration = 0, $actions = false ) {
 	global $_wp_using_ext_object_cache;
 
         if ( $actions ) {

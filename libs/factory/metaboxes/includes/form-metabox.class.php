@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryMetaboxes305_FormMetabox extends FactoryMetaboxes305_Metabox {
+abstract class FactoryMetaboxes307_FormMetabox extends FactoryMetaboxes307_Metabox {
 
     /**
      * A scope of metadata. By default the current class name used.
@@ -24,6 +24,14 @@ abstract class FactoryMetaboxes305_FormMetabox extends FactoryMetaboxes305_Metab
      */
     public $scope;
     
+    /**
+     * CSS class that addes to the form.
+     * 
+     * @since 3.0.6
+     * @var string 
+     */
+    public $cssClass;
+    
     public function __construct() {
         parent::__construct();
         $this->scope = ( !$this->scope ) ? $this->formatCamelCase( get_class($this) ) : $this->scope;
@@ -32,16 +40,17 @@ abstract class FactoryMetaboxes305_FormMetabox extends FactoryMetaboxes305_Metab
     private function getForm( $post_id = null ) {
         
         // creating a value provider
-        $this->provider = new FactoryForms307_MetaValueProvider( array(
+        $this->provider = new FactoryForms308_MetaValueProvider( array(
             'scope' => $this->scope                            
         ));
         $this->provider->init( $post_id );
         
         // creating a form
-        $form = new FactoryForms307_Form( array(
+        $form = new FactoryForms308_Form( array(
             'scope' => $this->scope,
-            'name' => $this->id,
+            'name' => $this->id
         ));
+
         $form->setProvider( $this->provider );
 
         $this->form( $form ); 
@@ -57,7 +66,9 @@ abstract class FactoryMetaboxes305_FormMetabox extends FactoryMetaboxes305_Metab
         
         echo '<div class="factory-form-metabox">';
         $this->beforeForm( $form );
-        $form->html();
+        $form->html( array(
+            'cssClass' => $this->cssClass
+        ));
         $this->afterForm( $form );
         echo '</div>';
     }
@@ -85,14 +96,14 @@ abstract class FactoryMetaboxes305_FormMetabox extends FactoryMetaboxes305_Metab
     /**
      * Method executed before rendering the form.
      */
-    public function beforeForm(FactoryForms307_Form $form) {
+    public function beforeForm(FactoryForms308_Form $form) {
         return;
     }
     
     /**
      * Method executed after rendering the form.
      */
-    public function afterForm(FactoryForms307_Form $form) {
+    public function afterForm(FactoryForms308_Form $form) {
         return;
     }
         

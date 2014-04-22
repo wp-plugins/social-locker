@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms307_FormElement {
+abstract class FactoryForms308_FormElement {
     
     /**
      * A type of an elemnt.
@@ -30,7 +30,7 @@ abstract class FactoryForms307_FormElement {
      * An html attribute builder.
      * 
      * @since 1.0.0
-     * @var FactoryForms307_HtmlAttributeBuilder 
+     * @var FactoryForms308_HtmlAttributeBuilder 
      */
     private $htmlBuilder;
     
@@ -46,7 +46,7 @@ abstract class FactoryForms307_FormElement {
      * A parent form.
      * 
      * @since 1.0.0
-     * @var FactoryForms307_Form 
+     * @var FactoryForms308_Form 
      */
     protected $form;
     
@@ -54,7 +54,7 @@ abstract class FactoryForms307_FormElement {
      * A form layout.
      * 
      * @since 1.0.0
-     * @var FactoryForms307_FormLayout 
+     * @var FactoryForms308_FormLayout 
      */
     protected $layout;
     
@@ -87,14 +87,14 @@ abstract class FactoryForms307_FormElement {
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms307_Form $form A parent form.
+     * @param FactoryForms308_Form $form A parent form.
      */
     public function __construct( $options, $form ) {
         $this->options = $options;
         $this->form = $form;
         $this->layout = $form->layout;
         
-        $this->htmlBuilder = new FactoryForms307_HtmlAttributeBuilder();
+        $this->htmlBuilder = new FactoryForms308_HtmlAttributeBuilder();
         
         if ( isset( $this->options['cssClass']) ) {
             $this->htmlBuilder->addCssClass( $this->options['cssClass'] );

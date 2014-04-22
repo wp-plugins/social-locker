@@ -16,17 +16,17 @@
 // module provides function only for the admin area
 if ( !is_admin() ) return;
 
-if (defined('FACTORY_BOOTSTRAP_308_LOADED')) return;
-define('FACTORY_BOOTSTRAP_308_LOADED', true);
+if (defined('FACTORY_BOOTSTRAP_309_LOADED')) return;
+define('FACTORY_BOOTSTRAP_309_LOADED', true);
 
-define('FACTORY_BOOTSTRAP_308_DIR', dirname(__FILE__));
-define('FACTORY_BOOTSTRAP_308_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_BOOTSTRAP_309_DIR', dirname(__FILE__));
+define('FACTORY_BOOTSTRAP_309_URL', plugins_url(null,  __FILE__ ));
 
-define('FACTORY_BOOTSTRAP_308_VERSION', '300008');
+define('FACTORY_BOOTSTRAP_309_VERSION', '300008');
 
 // sets version of admin interface
 
-define('FACTORY_FLAT_ADMIN', true);
+if ( !defined('FACTORY_FLAT_ADMIN')) define('FACTORY_FLAT_ADMIN', true);
 
 /*
 if ( is_admin() ) {
@@ -37,5 +37,5 @@ if ( is_admin() ) {
 }
 */
 
-include_once(FACTORY_BOOTSTRAP_308_DIR . '/includes/functions.php');
+include_once(FACTORY_BOOTSTRAP_309_DIR . '/includes/functions.php');
 

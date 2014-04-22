@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms307_FontControl extends FactoryForms307_ComplexControl 
+class FactoryForms308_FontControl extends FactoryForms308_ComplexControl 
 {
     public $type = 'font';
     
@@ -55,8 +55,8 @@ class FactoryForms307_FontControl extends FactoryForms307_ComplexControl
             array( 'Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif', 'Palatino, Book Antiqua, Georgia' ),
         );
         
-        $fonts = apply_filters('factory_forms_307_fonts', $fonts);
-        $fonts = apply_filters('factory_forms_307_fonts-' . $this->options['name'], $fonts);
+        $fonts = apply_filters('factory_forms_308_fonts', $fonts);
+        $fonts = apply_filters('factory_forms_308_fonts-' . $this->options['name'], $fonts);
         
         $optionFontFamily = array(
             'name' => $this->options['name'] . '__family',
@@ -70,9 +70,9 @@ class FactoryForms307_FontControl extends FactoryForms307_ComplexControl
             'pickerTarget' => '.factory-control-' . $this->options['name'] . ' .factory-picker-target'
         );
         
-        $this->size = new FactoryForms307_IntegerControl( $optionFontSize, $form, $provider );
-        $this->family = new FactoryForms307_DropdownControl( $optionFontFamily, $form, $provider );
-        $this->color = new FactoryForms307_ColorControl( $optionFontColor, $form, $provider );
+        $this->size = new FactoryForms308_IntegerControl( $optionFontSize, $form, $provider );
+        $this->family = new FactoryForms308_DropdownControl( $optionFontFamily, $form, $provider );
+        $this->color = new FactoryForms308_ColorControl( $optionFontColor, $form, $provider );
         
         $this->innerControls = array( $this->family, $this->size, $this->color );   
     }

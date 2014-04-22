@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_PreviewMetaBox extends FactoryMetaboxes305_Metabox
+class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -43,7 +43,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes305_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes305_Metabox
+     * @see FactoryMetaboxes307_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -82,4 +82,4 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes305_Metabox
     }
 }
 
-FactoryMetaboxes305::register('OnpSL_PreviewMetaBox');
+FactoryMetaboxes307::register('OnpSL_PreviewMetaBox');

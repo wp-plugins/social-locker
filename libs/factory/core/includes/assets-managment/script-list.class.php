@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory308_ScriptList extends Factory308_AssetsList 
+class Factory309_ScriptList extends Factory309_AssetsList 
 {
     public $localizeData = array();
     public $useAjax = false;
@@ -25,7 +25,7 @@ class Factory308_ScriptList extends Factory308_AssetsList
         if ( !empty( $this->required['_global_'] ) ) {
             foreach ($this->required['_global_'] as $script) {
                 if ( 'wordpress' === $script[1] ) wp_enqueue_script( $script[0] );
-                elseif ( 'bootstrap' === $script[1] ) factory_bootstrap_308_enqueue_script( $script[0] );
+                elseif ( 'bootstrap' === $script[1] ) factory_bootstrap_309_enqueue_script( $script[0] );
             }     
         }
         
@@ -41,7 +41,7 @@ class Factory308_ScriptList extends Factory308_AssetsList
                   
                 foreach( $dep as $depScript ) {    
                     if ( 'wordpress' === $depScript[1] ) wp_enqueue_script( $depScript[0] );
-                    elseif ( 'bootstrap' === $depScript[1] ) factory_bootstrap_308_enqueue_script( $depScript[0] ); 
+                    elseif ( 'bootstrap' === $depScript[1] ) factory_bootstrap_309_enqueue_script( $depScript[0] ); 
                 }
                 
                 wp_register_script( $script, $script, array(), false, $isFooter);  

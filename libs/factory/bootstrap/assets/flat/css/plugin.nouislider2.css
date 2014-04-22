@@ -153,7 +153,7 @@
 .noUi-state-blocked .noUi-connect {
 	background: #4FDACF;
 }
-.factory-bootstrap-308 input[type="text"].factory-ui-result {      
+.factory-bootstrap-309 input[type="text"].factory-ui-result {      
     width:40px; 
     border-radius:3px;
     -moz-border-radius:3px;
@@ -161,11 +161,11 @@
     text-align:center;
 }
 
-.factory-bootstrap-308 .factory-ui-slider-int {
+.factory-bootstrap-309 .factory-ui-slider-int {
     position:absolute;
     top:-7px; right:-45px;
 }
-.factory-bootstrap-308 .factory-integer-units {
+.factory-bootstrap-309 .factory-integer-units {
     margin-left:5px;
     color:#fff;
 }

@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms307_AccordionHolder extends FactoryForms307_Holder {
+class FactoryForms308_AccordionHolder extends FactoryForms308_Holder {
     
     /**
      * A holder type.

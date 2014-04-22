@@ -1,15 +1,15 @@
-.factory-bootstrap-308 .factory-background-select-preview {
+.factory-bootstrap-309 .factory-background-select-preview {
     vertical-align: middle;
 }
-.factory-bootstrap-308 .factory-select-preview-image-wrap,
-.factory-bootstrap-308 .factory-select-preview-button-upload {
+.factory-bootstrap-309 .factory-select-preview-image-wrap,
+.factory-bootstrap-309 .factory-select-preview-button-upload {
     display: inline-block;
     vertical-align: middle;
 }
-.factory-bootstrap-308 .factory-select-preview-button-upload {
+.factory-bootstrap-309 .factory-select-preview-button-upload {
     margin-left: 10px;
 }
-.factory-bootstrap-308 .factory-select-preview-image {
+.factory-bootstrap-309 .factory-select-preview-image {
 
     width:100px; height:25px;
     background:transparent url('../assets/images/color_picker_pattern.jpg') repeat;
@@ -21,10 +21,10 @@
 .factory-select-preview-button-upload {
     
 }
-.factory-bootstrap-308 .factory-select-preview-image.reset {
+.factory-bootstrap-309 .factory-select-preview-image.reset {
     background:transparent url('../assets/images/color_picker_pattern.jpg') repeat !important;
 }
-.factory-bootstrap-308 .factory-select-preview-image > span {
+.factory-bootstrap-309 .factory-select-preview-image > span {
     position:absolute;
     top:0; 
     left:76px;    
@@ -36,7 +36,7 @@
     -webkit-border-radius:0 3px 3px 0;
     z-index:99;
 }
-.factory-bootstrap-308 .factory-select-preview-image > span:after {
+.factory-bootstrap-309 .factory-select-preview-image > span:after {
     content: '';
     width: 0;
     height: 0;
@@ -48,30 +48,30 @@
     z-index: 1;
 }
 
-.factory-bootstrap-308 .factory-bgimage-pack {
+.factory-bootstrap-309 .factory-bgimage-pack {
     display: none;
     margin-top: 10px;
     padding: 2px 0 0;
     border-top: 1px solid #272727;
     overflow: visible;
 }
-.factory-bootstrap-308 .factory-bgimage-pack-item,
-.factory-bootstrap-308 .factory-bgimage-pack-item div {
+.factory-bootstrap-309 .factory-bgimage-pack-item,
+.factory-bootstrap-309 .factory-bgimage-pack-item div {
     width: 44px;
     height: 44px;
 }
-.factory-bootstrap-308 .factory-bgimage-pack-item {    
+.factory-bootstrap-309 .factory-bgimage-pack-item {    
     float:left;
     margin: 10px 10px 0 0;
     cursor: pointer;
     position: relative;
 }
-.factory-bootstrap-308 .factory-bgimage-pack-item div {
+.factory-bootstrap-309 .factory-bgimage-pack-item div {
     position: absolute;
     border-radius: 100%;
     border: 4px solid #333;
 }
-.factory-bootstrap-308 .factory-bgimage-pack-item:hover .factory-pattern-holder {
+.factory-bootstrap-309 .factory-bgimage-pack-item:hover .factory-pattern-holder {
     width: 54px;
     height: 54px;
     top: -5px;
@@ -79,10 +79,10 @@
     border: 1px solid #333;
 }
 
-.factory-bootstrap-308 .not-pattern div {
+.factory-bootstrap-309 .not-pattern div {
     background: url('../assets/images/color_picker_pattern.jpg') repeat !important;
 }
-.factory-bootstrap-308 .not-pattern .factory-cross {    
+.factory-bootstrap-309 .not-pattern .factory-cross {    
     display:block;
     width:40px;
     height:40px;

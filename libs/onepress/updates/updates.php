@@ -9,10 +9,8 @@
  * @since 1.0.0
  */
 
-// creating an update manager for each plugin created via the factory
-add_action('factory_308_plugin_created', 'onp_updates_306_plugin_created');
-function onp_updates_306_plugin_created( $plugin ) {
-    $manager = new OnpUpdates306_Manager( $plugin );
+function onp_updates_307_plugin_created( $plugin ) {
+    $manager = new OnpUpdates307_Manager( $plugin );
     $plugin->updates = $manager;
 }
 
@@ -21,13 +19,13 @@ function onp_updates_306_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpUpdates306_Manager {
+class OnpUpdates307_Manager {
     
     /**
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory308_Plugin 
+     * @var Factory309_Plugin 
      */
     public $plugin;
     
@@ -64,7 +62,7 @@ class OnpUpdates306_Manager {
 
                 $this->updatePluginTransient();
                 add_filter('factory_plugin_row_' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
-                add_filter('factory_notices_305', array( $this, 'addNotices'), 10, 2);    
+                add_filter('factory_notices_307', array( $this, 'addNotices'), 10, 2);    
             }
             
             add_action('admin_notices', array($this, 'clearTransient'));
@@ -200,7 +198,7 @@ class OnpUpdates306_Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            onp_updates_306_set_site_transient('update_plugins', $transient);  
+            onp_updates_307_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -222,7 +220,7 @@ class OnpUpdates306_Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        onp_updates_306_set_site_transient('update_plugins', $transient);
+        onp_updates_307_set_site_transient('update_plugins', $transient);
     }
     
     /**

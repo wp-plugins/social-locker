@@ -9,9 +9,9 @@
  * @since 1.0.0
  */
 
-add_action('add_meta_boxes', 'FactoryMetaboxes305::actionAddMetaboxes');
-add_action('admin_enqueue_scripts', 'FactoryMetaboxes305::actionAdminEnqueueScripts');
-add_action('save_post', 'FactoryMetaboxes305::actionSavePost');
+add_action('add_meta_boxes', 'FactoryMetaboxes307::actionAddMetaboxes');
+add_action('admin_enqueue_scripts', 'FactoryMetaboxes307::actionAdminEnqueueScripts');
+add_action('save_post', 'FactoryMetaboxes307::actionSavePost');
 
 /**
  * A base class to manage metaboxes. 
@@ -22,13 +22,13 @@ add_action('save_post', 'FactoryMetaboxes305::actionSavePost');
  * 
  * @since 1.0.0
  */
-class FactoryMetaboxes305 {
+class FactoryMetaboxes307 {
     
     /**
      * A variable to store metaboxes per type they defined for.
      * 
      * @since 1.0.0
-     * @var FactoryMetaboxes305_Metabox[]
+     * @var FactoryMetaboxes307_Metabox[]
      */
     public static $metaboxes = array();
     
@@ -45,7 +45,7 @@ class FactoryMetaboxes305 {
      * 
      * @since 1.0.0
      * @param type $className A metabox class name.
-     * @return FactoryMetaboxes305_Metabox
+     * @return FactoryMetaboxes307_Metabox
      */
     public static function register( $className ) {
         $metabox = new $className();
@@ -65,7 +65,7 @@ class FactoryMetaboxes305 {
      * @since 1.0.0
      * @param type $className A metabox class name.
      * @param type $postType A post type for which a given metabox should be registered. 
-     * @return FactoryMetaboxes305_Metabox
+     * @return FactoryMetaboxes307_Metabox
      */
     public static function registerFor( $className, $postType ) {
         $metabox = self::register( $className );

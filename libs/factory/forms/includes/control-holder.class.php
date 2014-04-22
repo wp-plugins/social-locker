@@ -14,13 +14,13 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms307_ControlHolder extends FactoryForms307_Control {
+abstract class FactoryForms308_ControlHolder extends FactoryForms308_Control {
     
     /**
      * Holder Elements.
      * 
      * @since 1.0.0
-     * @var FactoryForms307_FormElement[] 
+     * @var FactoryForms308_FormElement[] 
      */
     protected $elements = array();
     
@@ -37,7 +37,7 @@ abstract class FactoryForms307_ControlHolder extends FactoryForms307_Control {
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms307_Form $form A parent form.
+     * @param FactoryForms308_Form $form A parent form.
      */
     public function __construct($options, $form) {
         parent::__construct($options, $form);         
@@ -51,7 +51,7 @@ abstract class FactoryForms307_ControlHolder extends FactoryForms307_Control {
      * Returns holder elements.
      * 
      * @since 1.0.0
-     * @return FactoryForms307_FormElement[].
+     * @return FactoryForms308_FormElement[].
      */
     public function getElements() {
         return $this->elements;

@@ -9,9 +9,9 @@
  * @since 1.0.0
  */
 
-add_action('admin_init', 'factory_notices_305_admin_notices', 99);
-function factory_notices_305_admin_notices() {
-    $manager = new FactoryNotices305();
+add_action('admin_init', 'factory_notices_307_admin_notices', 99);
+function factory_notices_307_admin_notices() {
+    $manager = new FactoryNotices307();
 }
 
 /**
@@ -19,19 +19,34 @@ function factory_notices_305_admin_notices() {
  * 
  * @since 1.0.0
  */
-class FactoryNotices305 {
-    
+class FactoryNotices307 {
+
     public function __construct() {
-        $this->notices = apply_filters('factory_notices_305', array());
+        $this->notices = apply_filters('factory_notices_307', array());
 
         add_action('admin_enqueue_scripts', array( $this, 'enqueueScripts' ));        
         add_action('admin_notices', array( $this, 'showNotices' ));
     }
     
     public function enqueueScripts() {
-        factory_bootstrap_308_enqueue_style(array('bootstrap.core'));
-        wp_enqueue_style('factory-notices-305-css', FACTORY_NOTICES_305_URL . '/assets/css/notices.css');      
-        wp_enqueue_script('factory-notices-305-js', FACTORY_NOTICES_305_URL . '/assets/js/notices.js');
+        if ( count( $this->notices ) == 0 ) return;
+        
+        $this->hasNotices = false;
+        foreach ($this->notices as $notice) {
+            $where = empty( $notice['where'] ) ? array('plugins','dashboard') : $notice['where'];
+            $screen = get_current_screen();
+            
+            if ( in_array($screen->base, $where) ) {
+                $this->hasNotices = true;
+                break;
+            };
+        }
+        
+        if ( $this->hasNotices ) {
+            factory_bootstrap_309_enqueue_style(array('bootstrap.core'));
+            wp_enqueue_style('factory-notices-307-css', FACTORY_NOTICES_307_URL . '/assets/css/notices.css');      
+            wp_enqueue_script('factory-notices-307-js', FACTORY_NOTICES_307_URL . '/assets/js/notices.js');
+        }
     }
     
     public function showNotices() {
@@ -44,13 +59,16 @@ class FactoryNotices305 {
             !current_user_can('install_plugins')) return;
         
         ?>
-        <div class="updated factory-bootstrap-308 factory-fontawesome-305 factory-notices-305-notices">
+
+        <?php if ( $this->hasNotices ) { ?>
+        <div class="updated factory-bootstrap-309 factory-fontawesome-306 factory-notices-307-notices">
         <?php
         foreach ($this->notices as $notice) {
             $this->showNotice($notice);
         }
         ?>
         </div>
+        <?php } ?>
         <?php
     }
     
@@ -134,13 +152,13 @@ class FactoryNotices305 {
         
         $onclick = '';
         if ( $action == 'x' ) { 
-            $onclick = "factory_notices_305_hide_notice('$id', false); return false;";
+            $onclick = "factory_notices_307_hide_notice('$id', false); return false;";
             $action = '#';
         }
 
         if ( $action == 'xx' ) { 
             $action = '#';
-            $onclick = "factory_notices_305_hide_notice('$id', true); return false;"; 
+            $onclick = "factory_notices_307_hide_notice('$id', true); return false;"; 
         }
 
         ?>

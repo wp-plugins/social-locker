@@ -29,16 +29,16 @@
         var picketTarget = this.$element.data('picker-target');
         if ( picketTarget ) irisOptions.target = $(picketTarget);
         
-        this.$picker.factoryBootstrap308_iris(irisOptions); 
+        this.$picker.factoryBootstrap309_iris(irisOptions); 
         this.$picker.off('focus');
         
         $(document).on("click.color.factory", function(){
-           self.$picker.factoryBootstrap308_iris("hide");  
+           self.$picker.factoryBootstrap309_iris("hide");  
         });
         
         this.$picker.add(this.$background).on("click.color.factory", function(e){
            e.stopPropagation();
-           self.$picker.factoryBootstrap308_iris("show");  
+           self.$picker.factoryBootstrap309_iris("show");  
         });  
     };
 
@@ -53,18 +53,18 @@
     
     ColorControl.prototype.hidePicker = function() {
         this.$element.removeClass('factory-picker-active');
-        this.$picker.factoryBootstrap308_iris( 'hide' );
+        this.$picker.factoryBootstrap309_iris( 'hide' );
     }; 
     
     ColorControl.prototype.showPicker = function() {
         this.$element.addClass('factory-picker-active');
-        this.$picker.factoryBootstrap308_iris( 'show' );
+        this.$picker.factoryBootstrap309_iris( 'show' );
     }; 
     
     // COLOR CONTROL DEFINITION
     // ================================
     
-    $.fn.factoryBootstrap308_colorControl = function (option) {
+    $.fn.factoryBootstrap309_colorControl = function (option) {
         return this.each(function () {
             var $this = $(this);
             var data  = $this.data('factory.color-control')
@@ -73,13 +73,13 @@
         });
     };
 
-    $.fn.factoryBootstrap308_colorControl.Constructor = ColorControl;
+    $.fn.factoryBootstrap309_colorControl.Constructor = ColorControl;
     
     // AUTO CREATING
     // ================================
     
     $(function(){
-        $(".factory-bootstrap-308 .factory-color").factoryBootstrap308_colorControl();
+        $(".factory-bootstrap-309 .factory-color").factoryBootstrap309_colorControl();
     });
     
 }( jQuery ) );

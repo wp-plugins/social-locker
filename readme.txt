@@ -88,14 +88,20 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.3.1 - 23 Apr 2014</strong><br />
+<ul>
+<li>FIXED: A bug when the locker preview is not updating while editing the locker message.</li>
+<li>FIXED: Some internal infrastructure issues.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.3.0 - 21 Apr 2014</strong><br />
 <ul>
 <li>IMPROVED: Full compatibility with WP 3.9.</li>
 <li>IMPROVED: The Like button works a bit faster.</li>
 <li>FIXED: The IE10 issue.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.2.9 - 31 Mar 2014</strong><br />
 <ul>

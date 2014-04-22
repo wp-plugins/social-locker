@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryTypes305_Type {
+abstract class FactoryTypes307_Type {
     
     /**
      * Internal type name.
@@ -62,7 +62,7 @@ abstract class FactoryTypes305_Type {
      * A view table is used to show type records in the admin area.
      * 
      * @since 1.0.0
-     * @var FactoryViewtables305_Viewtable 
+     * @var FactoryViewtables306_Viewtable 
      */
     public $viewTable;
     
@@ -80,7 +80,7 @@ abstract class FactoryTypes305_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory308_ScriptList 
+     * @var Factory309_ScriptList 
      */
     public $scripts;
     
@@ -88,14 +88,14 @@ abstract class FactoryTypes305_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory308_StyleList 
+     * @var Factory309_StyleList 
      */  
     public $styles;
     
     /**
      * A menu configurator for a type.
      * 
-     * @var FactoryTypes305_Menu 
+     * @var FactoryTypes307_Menu 
      */
     public $menu;
 
@@ -148,11 +148,11 @@ abstract class FactoryTypes305_Type {
      */
     public function __construct() {
         
-        $this->menu = new FactoryTypes305_Menu( $this );
+        $this->menu = new FactoryTypes307_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory308_ScriptList();
-        $this->styles = new Factory308_StyleList(); 
+        $this->scripts = new Factory309_ScriptList();
+        $this->styles = new Factory309_StyleList(); 
         
         add_action('init', array($this, 'register'));
     }
@@ -209,7 +209,7 @@ abstract class FactoryTypes305_Type {
 
         // adds metaboxes that needed to load
         foreach($this->metaboxes as $metabox) {
-            FactoryMetaboxes305::registerFor($metabox, $this->name);
+            FactoryMetaboxes307::registerFor($metabox, $this->name);
         }
         
         // includes styles and scripts
@@ -222,7 +222,7 @@ abstract class FactoryTypes305_Type {
         
         // redefines the Publish metabox for non-public types
         if ( $this->template !== 'public') {
-            //FactoryMetaboxes305::registerFor('FactoryMetaboxes305_PublishMetabox', $this->name);
+            //FactoryMetaboxes307::registerFor('FactoryMetaboxes307_PublishMetabox', $this->name);
             add_action('add_meta_boxes', array($this, 'actionAddMetaboxs'));
         }
         
@@ -395,7 +395,7 @@ abstract class FactoryTypes305_Type {
         $iconUrl32 = str_replace('.png', '-32.png', $iconUrl);
         
         global $wp_version;
-        if ( version_compare( $wp_version, '3.8', '>='  ) ) {
+        if ( version_compare( $wp_version, '3.7', '>'  ) ) {
         ?>
         <style type="text/css" media="screen">
             #menu-posts-<?php echo $this->name ?> .wp-menu-image {

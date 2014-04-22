@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryMetaboxes305_PublishMetabox extends FactoryMetaboxes305_Metabox
+class FactoryMetaboxes307_PublishMetabox extends FactoryMetaboxes307_Metabox
 {
     public function __construct( $plugin = null ) {
         $this->title = __('Control');

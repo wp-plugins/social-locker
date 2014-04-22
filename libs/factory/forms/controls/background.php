@@ -21,7 +21,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms307_BackgroundControl extends FactoryForms307_Control 
+class FactoryForms308_BackgroundControl extends FactoryForms308_Control 
 {
     public $type = 'background';
     
@@ -37,8 +37,8 @@ class FactoryForms307_BackgroundControl extends FactoryForms307_Control
         
         // filters to get available patterns for the given background contols
         $this->patterns = $this->getOption('patterns', array());
-        $this->patterns = apply_filters('factory_forms_307_background_patterns', $this->patterns);
-        $this->patterns = apply_filters('factory_forms_307_background_patterns-' . $name, $this->patterns);
+        $this->patterns = apply_filters('factory_forms_308_background_patterns', $this->patterns);
+        $this->patterns = apply_filters('factory_forms_308_background_patterns-' . $name, $this->patterns);
         
         $patterns = $this->getOption('patterns', array());
         if ( !empty( $patterns ) ) {

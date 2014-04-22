@@ -3,7 +3,7 @@
 /**
  * License page is a place where a user can check updated and manage the license.
  */
-class OnpSL_LicenseManagerPage extends OnpLicensing308_LicenseManagerPage  {
+class OnpSL_LicenseManagerPage extends OnpLicensing310_LicenseManagerPage  {
  
     public $purchasePrice = '$23';
     
@@ -14,4 +14,4 @@ class OnpSL_LicenseManagerPage extends OnpLicensing308_LicenseManagerPage  {
     }
 }
 
-FactoryPages306::register($sociallocker, 'OnpSL_LicenseManagerPage');
+FactoryPages308::register($sociallocker, 'OnpSL_LicenseManagerPage');

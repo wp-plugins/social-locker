@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms307_ControlGroupItem extends FactoryForms307_Holder {
+class FactoryForms308_ControlGroupItem extends FactoryForms308_Holder {
     
     /**
      * A holder type.

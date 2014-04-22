@@ -12,7 +12,7 @@
 /**
  * An abstraction for forms.
  */
-class FactoryForms307_Form {
+class FactoryForms308_Form {
     
     // ----------------------------------------------------
     // Static fields and methods
@@ -44,7 +44,7 @@ class FactoryForms307_Form {
     /**
      * Registers a set of new controls.
      * 
-     * @see FactoryForms307_Form::registerControl()
+     * @see FactoryForms308_Form::registerControl()
      * 
      * @since 1.0.0
      * @return void
@@ -79,7 +79,7 @@ class FactoryForms307_Form {
     /**
      * Registers a set of new holder controls.
      * 
-     * @see FactoryForms307_Form::registerHolder()
+     * @see FactoryForms308_Form::registerHolder()
      * 
      * @since 1.0.0
      * @return void
@@ -110,7 +110,7 @@ class FactoryForms307_Form {
     /**
      * Registers a set of new custom form elements.
      * 
-     * @see FactoryForms307_Form::registerCustomElement()
+     * @see FactoryForms308_Form::registerCustomElement()
      * 
      * @since 1.0.0
      * @return void
@@ -216,7 +216,7 @@ class FactoryForms307_Form {
      * A current form layout used to render a form.
      * 
      * @since 1.0.0
-     * @var FactoryForms307_FormLayout 
+     * @var FactoryForms308_FormLayout 
      */
     public $layout;
     
@@ -231,9 +231,9 @@ class FactoryForms307_Form {
         global $wp_version;
         
         // register controls once, when the first form is created
-        if ( !FactoryForms307_Form::$_controlsRegistered ) {
-            do_action('factory_forms_307_register_controls');
-            FactoryForms307_Form::$_controlsRegistered = true;
+        if ( !FactoryForms308_Form::$_controlsRegistered ) {
+            do_action('factory_forms_308_register_controls');
+            FactoryForms308_Form::$_controlsRegistered = true;
         }
 
         //$isFlat = version_compare( $wp_version, '3.8', '>='  );
@@ -245,11 +245,7 @@ class FactoryForms307_Form {
         if ( isset( $options['formLayout'] ) ) {
             $this->formLayout = $options['formLayout'];
         } else {
-            if ( $isFlat ) {
-                $this->formLayout = 'bootstrap-3';
-            } else {
-                $this->formLayout = 'bootstrap-2';
-            }
+            $this->formLayout = 'bootstrap-3';
         }
         
         if ( !self::$temper ) self::$temper = $isFlat ? 'flat' : 'volumetric';
@@ -259,7 +255,7 @@ class FactoryForms307_Form {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms307_ValueProvider $provider
+     * @param IFactoryForms308_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -420,7 +416,7 @@ class FactoryForms307_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms307_Holder A control holder object.
+     * @return FactoryForms308_Holder A control holder object.
      */
     public function createHolder( $item ) {
         $object = null;
@@ -447,7 +443,7 @@ class FactoryForms307_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms307_FormElement A custom form element object.
+     * @return FactoryForms308_FormElement A custom form element object.
      */
     public function createCustomElement( $item ) {
         $object = null;

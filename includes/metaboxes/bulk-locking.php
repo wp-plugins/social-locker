@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes305_Metabox
+class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -54,7 +54,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes305_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes305_Metabox
+     * @see FactoryMetaboxes307_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -171,7 +171,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes305_Metabox
             <?php } ?>
         </div>
 
-        <div class="factory-bootstrap-308 factory-fontawesome-305">
+        <div class="factory-bootstrap-309 factory-fontawesome-306">
             <div class="onp-sl-description-section">
                 <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
@@ -500,7 +500,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes305_Metabox
     }
 }
 
-FactoryMetaboxes305::register('OnpSL_BulkLockingMetaBox');
+FactoryMetaboxes307::register('OnpSL_BulkLockingMetaBox');
 
 /**
  * Prints bulk lock status.
@@ -566,7 +566,7 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
 
     ?>
 
-    <div class="factory-bootstrap-308 factory-fontawesome-305">
+    <div class="factory-bootstrap-309 factory-fontawesome-306">
         
         <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
 

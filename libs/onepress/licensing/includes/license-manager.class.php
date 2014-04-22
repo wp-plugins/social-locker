@@ -15,7 +15,7 @@
  * 
  * @since 1.0.0
  */
-class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
+class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -43,8 +43,8 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
             'bootstrap.core'
             ), 'bootstrap' ); 
         
-        $this->styles->add(ONP_LICENSING_308_URL . '/assets/css/license-manager.css');
-        $this->scripts->add(ONP_LICENSING_308_URL . '/assets/js/license-manager.js');   
+        $this->styles->add(ONP_LICENSING_310_URL . '/assets/css/license-manager.css');
+        $this->scripts->add(ONP_LICENSING_310_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -111,7 +111,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-308 factory-fontawesome-305 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
+        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
 
             <?php if ( $error ) { ?>
                 <?php $this->showError($error, $scope) ?>
@@ -150,7 +150,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
                 <div class="license-details">
                     <?php ?>
                         <?php if ( $licenseManager->hasUpgrade() ) { ?>
-                        <a href="<?php onp_licensing_308_purchase_url( $this->plugin ) ?>" id="purchase-premium">
+                        <a href="<?php onp_licensing_310_purchase_url( $this->plugin ) ?>" id="purchase-premium">
                             <span class="btn btn-gold btn-inner-wrap">
                             <?php if ( !empty( $this->purchasePrice ) ) { ?>
                             <i class="fa fa-star"></i> <?php printf( __('Upgrade to Premium for %1$s', 'onepress'), $this->purchasePrice ) ?> <i class="fa fa-star"></i></i>
@@ -196,7 +196,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
                                 </p>
                                 <p class="activate-trial-hint">
                                     <?php printf( __('You can <a href="%1$s">activate</a> a premium version for a trial period (7 days).', 'onepress'), $this->getActionUrl('activateTrial') ) ?>
-                                    <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onepress'), onp_licensing_308_get_purchase_url( $this->plugin ) ) ?>
+                                    <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onepress'), onp_licensing_310_get_purchase_url( $this->plugin ) ) ?>
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
@@ -265,7 +265,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
                             <input type="text" id="license-key" name="licensekey" value="<?php echo $licenseKey ?>" class="form-control" />
                         </div>
                         <p style="margin-top: 10px;">
-                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onepress'), onp_licensing_308_get_purchase_url( $this->plugin ) ) ?>
+                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onepress'), onp_licensing_310_get_purchase_url( $this->plugin ) ) ?>
                         </p>
                     </form>
                 </div>
@@ -302,7 +302,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
                                 <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONP_LICENSING_308_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONP_LICENSING_310_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
@@ -349,7 +349,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         $btnText = apply_filters('onp_license_manager_success_button_' . $this->plugin->pluginName, __('Okay, I got it', 'sociallocker') );
         
         ?>
-        <div class="factory-bootstrap-308 factory-fontawesome-305 onp-page-wrap onp-single-block" id="finish">
+        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="finish">
 
             <div class='onp-header'>  
                 <?php if ( $ref == 'trial' || $ref == 'manual-trial-activation' ) { ?>
@@ -468,7 +468,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
  
         ?>
         <form method="POST">
-        <div class="factory-bootstrap-308 factory-fontawesome-305 onp-page-wrap onp-single-block" id="create-account">
+        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="create-account">
             
             <?php if ( $ref == 'key-activation' ) { ?>
             <div class='onp-header'>  
@@ -565,7 +565,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         
         ?>
         <form method="POST">
-        <div class="factory-bootstrap-308 factory-fontawesome-305 onp-page-wrap onp-single-block" id="account-already-created">
+        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="account-already-created">
             
             <div class='onp-header'>
                 <h4><?php _e('A customer with the specified email already registered. Are you sure to bind your key to this email?', 'sociallocker') ?></h4>
@@ -603,7 +603,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         if ( $code && $message ) $error = new WP_Error($code, base64_decode($message));
         
         ?>
-        <div class="factory-bootstrap-308 factory-fontawesome-305 onp-page-wrap onp-single-block" id="account-created">
+        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="account-created">
 
             <div class='onp-header'>
                 <h4><?php _e('Your customer account has been successfully created!', 'sociallocker') ?></h4>
@@ -790,7 +790,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-308 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-309 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateKeyManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;"><?php _e('Key Activation', 'onepress') ?></h2>
@@ -833,7 +833,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-308 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-309 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('deleteKeyManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;"><?php _e('Key Deactivation', 'onepress') ?></h2>
@@ -874,7 +874,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-308 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-309 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateTrialManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;">Trial Activation</h2>
@@ -929,7 +929,7 @@ class OnpLicensing308_LicenseManagerPage extends FactoryPages306_AdminPage  {
             <h2>License Manager Internal Keys</h2>
             <p style="margin-top: 0px; margin-bottom: 30px;">You actually don't need to change something here. Please change the values below only if OnePress supports ask you to do it.</p>
             
-            <div class="factory-bootstrap-308" style="max-width: 800px;">
+            <div class="factory-bootstrap-309" style="max-width: 800px;">
                 <form method="post" class="form-horizontal" action="<?php echo $this->actionUrl('internalKeys') ?>">
 
                 <div>

@@ -4,7 +4,7 @@
 ;(function ( $, window, document, undefined ) {
     "use strict"; // jshint ;_;
     
-    $.fn.factoryBootstrap308_background = function(){         
+    $.fn.factoryBootstrap309_background = function(){         
         return this.each(function () {             
 
             var _custom_media = true,
@@ -63,7 +63,7 @@
   }  
   
   $(function(){
-    $('.factory-bootstrap-308 .factory-background-select').factoryBootstrap308_background();
+    $('.factory-bootstrap-309 .factory-background-select').factoryBootstrap309_background();
   });
   
 })( jQuery, window, document );
