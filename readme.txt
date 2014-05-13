@@ -91,7 +91,7 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <strong>v.3.4.1 - 13 May 2014</strong><br />
 <ul>
 <li>NEW: Added preloaders for the social buttons.</li>
-<li>NEW: Detecting some browser extensions like Avast, PrivDog, AdBlock and others which can block scripts of social networks and break the locker. If these extensions are detected, the plugin notifies the user about that and offers to turn them off.</li>
+<li>NEW: Compatibility with some browser extensions like Avast!, PrivDog, AdBlock and others which can block social networks. If these extensions are detected and they break the locker, the plugin offers the user to turn them off.</li>
 <li>IMPROVED: Better support for Portuguese language.</li>
 <li>IMPROVED: Better support for German language.</li>
 <li>FIXED: The issue of the confirmation dialog of the Like button.</li>
