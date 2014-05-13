@@ -1,0 +1,99 @@
+#sociallocker-next-activate-premium-key {  
+    background: #e9ebee url("../img/offer-background-color.png");
+    color: #262729;
+    -webkit-text-shadow: none;
+    -moz-text-shadow: none;
+    text-shadow: none;
+    border-color: #bbbbbb;
+    padding: 10px;
+}
+#sociallocker-next-activate-premium-key .factory-message-container a {
+    color: #262729;
+}
+#sociallocker-next-activate-premium-key .factory-button {
+    background: #5672ad;
+    border: 1px solid #2e3847;
+    color: #fff;
+}
+#sociallocker-next-activate-premium-key .factory-button:hover {
+    color: #fff !important;
+    background-color: #f0a000;
+    border-color: #c87800;
+    -webkit-transition-duration: .3s;
+    outline: none;
+    -moz-box-shadow: inset 0 0 2px #fff, 0 1px 7px rgba(240,160,0,0.5);
+    -webkit-box-shadow: inset 0 0 2px #fff, 0 1px 7px rgba(240,160,0,0.5);
+    box-shadow: inset 0 0 2px #fff, 0 1px 7spx rgba(240,160,0,0.5);
+}
+#sociallocker-next-activate-premium-key .highlighted {
+    background-color: rgba(0,0,0,0.05);
+}
+#sociallocker-next-activate-premium-key .highlighted:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+#sociallocker-next-activate-premium-key .factory-inner-wrap {
+    padding-left: 90px !important;
+    background: url("../img/offer-logo.png") 5px center no-repeat;
+}
+
+
+
+#sociallocker-styler-promo-immediately {
+    background: #292929 url("../img/style-addon-bg-2.png") -28px -28px no-repeat;
+    color: #ddd;
+    border: 1px solid #292929;
+    border-bottom: 3px solid #292929;
+    border-radius: 4px;
+    padding-left: 310px;
+    font-size: 16px;
+    line-height: 140%;
+}
+#sociallocker-styler-promo-immediately .factory-buttons {
+    margin-top: 5px;
+}
+
+#sociallocker-styler-promo-immediately .btn {
+    padding: 8px 30px;
+    background-color: #ecf0f1;
+    border-bottom: 2px solid #bec3c7;
+    font-size: 16px;
+}
+#sociallocker-styler-promo-immediately .btn-primary {
+    background-color: #1bbc9d;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 0px;
+    border-bottom: 2px solid #16a086;
+}
+#sociallocker-styler-promo-immediately .btn:hover {
+    background-color: #f6f8f8;
+}
+#sociallocker-styler-promo-immediately .btn-primary:hover {
+    background-color: #20d1af;
+}
+#sociallocker-styler-promo-immediately .factory-inner-wrap {
+}
+#sociallocker-styler-promo-immediately .factory-icon {
+    display: none;
+}
+#sociallocker-styler-promo-immediately .factory-header {
+    font-weight: bolder;
+    font-size: 20px;
+}
+#sociallocker-styler-promo-immediately .hightlight {
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0 5px;
+    color: #fff;
+    font-weight: bolder;
+}
+#sociallocker-styler-promo-immediately .hightlight-yellow {
+    background-color: #f49914;
+}
+#sociallocker-styler-promo-immediately .hightlight-red {
+    background-color: rgba(255,255,255,0.07);
+}
+
+

@@ -1,0 +1,33 @@
+/**
+* More Link
+*/
+
+.factory-bootstrap-309 .factory-more-link-content {
+    border-top: 1px dashed #DDD;
+    padding-top: 25px;
+    width: 100%;
+    padding-right: 20px;
+    position: relative;
+}
+.factory-bootstrap-309 .factory-tab .factory-more-link-show {
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px dotted #21759b;
+    margin-left: 15px;
+    position: relative;
+}
+.factory-bootstrap-309 .factory-tab .factory-more-link-show:hover {
+    border-color: #d54e21;
+}
+.factory-bootstrap-309 .factory-tab .factory-more-link-hide {
+    position: absolute;
+    margin-top: -34px;
+    background-color: #fff;
+    padding: 0 5px;
+    right: 20px;
+    color: #bbb;
+    text-decoration: none;
+}
+.factory-bootstrap-309 .factory-tab .factory-more-link-hide:hover {
+    color: #999;
+}
