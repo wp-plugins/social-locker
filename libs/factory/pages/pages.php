@@ -9,14 +9,14 @@
  * @since 1.0.0
  */
 
-add_action('admin_menu', 'FactoryPages308::actionAdminMenu');
+add_action('admin_menu', 'FactoryPages310::actionAdminMenu');
 
 /**
  * A base class to manage pages. 
  * 
  * @since 1.0.0
  */
-class FactoryPages308 {
+class FactoryPages310 {
 
     private static $pages = array();
 
@@ -27,7 +27,7 @@ class FactoryPages308 {
         
     public static function actionAdminMenu() {
         if ( empty(self::$pages) ) return;
-        
+
         foreach(self::$pages as $pluginPages) {
             foreach($pluginPages as $page) {
                 $page->connect();
@@ -43,4 +43,3 @@ class FactoryPages308 {
         return $result;
     }
 }
-?>

@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms308_ColorAndOpacityControl extends FactoryForms308_ComplexControl 
+class FactoryForms311_ColorAndOpacityControl extends FactoryForms311_ComplexControl 
 {
     public $type = 'color-and-opacity';
     
@@ -24,21 +24,21 @@ class FactoryForms308_ColorAndOpacityControl extends FactoryForms308_ComplexCont
         if ( !isset( $options['color']) ) $options['color'] = array();
         $options['color'] = array_merge($options['color'], array(
             'name'  => $this->options['name'] . '__color',
-            'default' => isset( $this->options['default'] ) ? $this->options['default'][0] : null,
+            'default' => isset( $this->options['default'] ) ? $this->options['default']['color'] : '#1e8cbe',
             'pickerTarget' => '.factory-control-' . $this->options['name'] . ' .factory-picker-target'
         ));
         
         if ( !isset( $options['opacity']) ) $options['opacity'] = array();
         $options['opacity'] = array_merge($options['opacity'], array(
             'name'  => $this->options['name'] . '__opacity',
-            'default' => isset( $this->options['default'] ) ? $this->options['default'][1] : null,
+            'default' => isset( $this->options['default'] ) ? $this->options['default']['opacity'] : 100,
             'units' => '%',
             'range' => array(0, 100),
             'way' => 'slider'
         ));
         
-        $this->color = new FactoryForms308_ColorControl( $options['color'], $form, $provider );
-        $this->opacity = new FactoryForms308_IntegerControl( $options['opacity'], $form, $provider );
+        $this->color = new FactoryForms311_ColorControl( $options['color'], $form, $provider );
+        $this->opacity = new FactoryForms311_IntegerControl( $options['opacity'], $form, $provider );
         
         $this->innerControls = array( $this->color, $this->opacity );
     }

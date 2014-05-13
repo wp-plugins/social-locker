@@ -27,7 +27,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
      * @since 1.0.0
      * @var string
      */
-    public $title = 'Batch Locking';
+    public $title;
     
     /**
      * The priority within the context where the boxes should show ('high', 'core', 'default' or 'low').
@@ -50,6 +50,12 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
      * @var string
      */
     public $context = 'side';
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->title = __('Batch Locking', 'sociallocker');
+    }
     
     /**
      * Renders content of the metabox.
@@ -171,14 +177,14 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
             <?php } ?>
         </div>
 
-        <div class="factory-bootstrap-309 factory-fontawesome-306">
+        <div class="factory-bootstrap-312 factory-fontawesome-305">
             <div class="onp-sl-description-section">
                 <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
             <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
                 
                 <div class="onp-sl-empty-content">
-                    <span class="onp-sl-nolock"><?php _e('No batch lock') ?></span>
+                    <span class="onp-sl-nolock"><?php _e('No batch lock', 'sociallocker') ?></span>
                     <a class="btn btn-default" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="factory-modal">
                         <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'sociallocker') ?>
                     </a>
@@ -244,7 +250,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel"><?php _e('Select Way Of Batch Locking') ?></h4>
+                    <h4 class="modal-title" id="myModalLabel"><?php _e('Select Way Of Batch Locking', 'sociallocker') ?></h4>
                   </div>
                   <div class="modal-body">
                       
@@ -263,7 +269,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
                             <div class="onp-sl-form">
 
                                 <div class='onp-sl-skip-number-row'>
-                                    <label><?php _e('The number of paragraphs to skip') ?></label>
+                                    <label><?php _e('The number of paragraphs to skip', 'sociallocker') ?></label>
                                     <input type="text" class="form-control onp-sl-skip-number" maxlength="3" min="0" value="<?php echo $skipNumber; ?>" />
                                     <div class="help-block help-block-error">
                                         <?php _e('Please enter a positive integer value.') ?>
@@ -273,23 +279,23 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
                                 <div class="onp-sl-limits">
                                     <div class='onp-sl-exclude'>
                                         <div class='onp-sl-row'>
-                                            <label><?php _e('Exclude Posts') ?></label>
+                                            <label><?php _e('Exclude Posts', 'sociallocker') ?></label>
                                             <input type="text" class="form-control onp-sl-exclude-posts" value="<?php echo $excludePosts; ?>" />
                                             <div class="help-block">
-                                                <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".') ?>
+                                                <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".', 'sociallocker') ?>
                                             </div>
                                         </div>
                                         <div class='onp-sl-row'>
-                                            <label><?php _e('Exclude Categories') ?></label>
+                                            <label><?php _e('Exclude Categories', 'sociallocker') ?></label>
                                             <input type="text" class="form-control onp-sl-exclude-categories" value="<?php echo $excludeCategories; ?>" />
                                             <div class="help-block">
-                                                <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".') ?>
+                                                <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".', 'sociallocker') ?>
                                             </div>
                                         </div>                        
                                     </div>
 
                                     <div class='onp-sl-post-types'>
-                                        <strong>Posts types to lock</strong>
+                                        <strong><?php _e('Posts types to lock', 'sociallocker') ?></strong>
                                         <div class="help-block">
                                             <?php _e('Choose post types for batch locking.', 'sociallocker') ?>
                                         </div>
@@ -345,23 +351,23 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
                             <div class="onp-sl-form onp-sl-limits">
                                 <div class='onp-sl-exclude'>
                                     <div class='onp-sl-row'>
-                                        <label><?php _e('Exclude Posts') ?></label>
+                                        <label><?php _e('Exclude Posts', 'sociallocker') ?></label>
                                         <input type="text" class="form-control onp-sl-exclude-posts" value="<?php echo $excludePosts; ?>" />
                                         <div class="help-block">
-                                            <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".') ?>
+                                            <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".', 'sociallocker') ?>
                                         </div>
                                     </div>
                                     <div class='onp-sl-row'>
-                                        <label><?php _e('Exclude Categories') ?></label>
+                                        <label><?php _e('Exclude Categories', 'sociallocker') ?></label>
                                         <input type="text" class="form-control onp-sl-exclude-categories" value="<?php echo $excludeCategories; ?>" />
                                         <div class="help-block">
-                                            <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".') ?>
+                                            <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".', 'sociallocker') ?>
                                         </div>
                                     </div>                        
                                 </div>
 
                                 <div class='onp-sl-post-types'>
-                                    <strong>Posts types to lock</strong>
+                                    <strong><?php _e('Posts types to lock', 'sociallocker') ?></strong>
                                     <div class="help-block">
                                         <?php _e('Choose post types for batch locking.', 'sociallocker') ?>
                                     </div>
@@ -401,13 +407,13 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes307_Metabox
                         </div>
                         <div class="onp-sl-content">
                             <div class="onp-sl-form">
-                                <label><?php _e('CSS Selector') ?></label>
+                                <label><?php _e('CSS Selector', 'sociallocker') ?></label>
                                 <input type="text" class="form-control onp-sl-css-selector" value="<?php echo htmlentities($cssSelector); ?>" />
                                 <div class="help-block">
                                     <?php _e('For example, "#somecontent .my-class, .my-another-class"', 'sociallocker') ?>
                                 </div>                     
                                 <div class="help-block help-block-error">
-                                    <?php _e('Please enter a css selector to lock.') ?>
+                                    <?php _e('Please enter a css selector to lock.', 'sociallocker') ?>
                                 </div>
                             </div>
                         </div>
@@ -566,7 +572,7 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
 
     ?>
 
-    <div class="factory-bootstrap-309 factory-fontawesome-306">
+    <div class="factory-bootstrap-312 factory-fontawesome-305">
         
         <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
 

@@ -14,28 +14,22 @@
  * 
  * @since 1.0.0
  */
-class Factory309_StyleList extends Factory309_AssetsList 
+class Factory310_StyleList extends Factory310_AssetsList 
 {
-    public function connect() {
+    public function connect( $source = 'wordpress' ) {
 
-        // register all global required styles
-        if ( !empty( $this->required['_global_'] ) ) {
-            foreach ($this->required['_global_'] as $style) {
-                if ( 'wordpress' === $style[1] ) wp_enqueue_style( $style[0] );
-                elseif ( 'bootstrap' === $style[1] ) factory_bootstrap_309_enqueue_style( $style[0] );
+        // register all global required scripts
+        if ( !empty( $this->required[$source] ) ) {
+            foreach ($this->required[$source] as $style) {
+                if ( 'wordpress' === $source ) wp_enqueue_style( $style );
+                elseif ( 'bootstrap' === $source ) factory_bootstrap_312_enqueue_style( $style );
             }     
         }
         
+        if ( $source == 'bootstrap' ) return;
+        
         // register all other styles
         foreach($this->all as $style) {
-            
-            $dep = !empty( $this->required[$style] ) ? $this->required[$style] : array();  
-            
-            foreach( $dep as $depStyle ) {
-                if ( 'wordpress' === $depStyle[1] ) wp_enqueue_style( $depStyle[0] );
-                elseif ( 'bootstrap' === $depStyle[1] ) factory_bootstrap_309_enqueue_style( $depStyle[0] );
-            }
-            
             wp_enqueue_style( $style, $style, array());
         }   
     }

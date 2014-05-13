@@ -1,6 +1,6 @@
 <?php
 
-class FactoryPages308_AdminPage extends FactoryPages308_Page {
+class FactoryPages310_AdminPage extends FactoryPages310_Page {
     
     /**
      * Visible page title.
@@ -72,7 +72,7 @@ class FactoryPages308_AdminPage extends FactoryPages308_Page {
      */
     public $hidden = false;
     
-    public function __construct(Factory309_Plugin $plugin) {
+    public function __construct(Factory310_Plugin $plugin) {
         parent::__construct($plugin);
         $this->configure();
 
@@ -85,12 +85,23 @@ class FactoryPages308_AdminPage extends FactoryPages308_Page {
     public function configure(){}
     
     /**
-     * Actions that includes registered fot this type scritps and styles.
-     * @global type $post
-     * @param type $hook
+     * Includes the Factory Bootstrap assets for a current page.
+     * 
+     * @param string $hook
+     * @return void
+     */
+    public function actionAdminBootstrapScripts( $hook ) {
+        $this->scripts->connect('bootstrap');
+        $this->styles->connect('bootstrap'); 
+    } 
+    
+    /**
+     * Includes the assets for a current page (all assets except Factory Bootstrap assets). 
+     * 
+     * @param string $hook
+     * @return void
      */
     public function actionAdminScripts( $hook ) {
-
         $this->scripts->connect();
         $this->styles->connect(); 
     }
@@ -149,6 +160,10 @@ class FactoryPages308_AdminPage extends FactoryPages308_Page {
         // calls scripts and styles, adds pages to menu
         if ( isset($_GET['page']) && $_GET['page'] == $resultId ) {
             $this->assets($this->scripts, $this->styles);
+            
+            if ( !$this->scripts->isEmpty('bootstrap')|| !$this->styles->isEmpty('bootstrap') ) {
+                add_action('factory_bootstrap_312_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
+            }
             
             // includes styles and scripts
             if ( !$this->scripts->isEmpty() || !$this->styles->isEmpty() ) {
@@ -253,7 +268,7 @@ class FactoryPages308_AdminPage extends FactoryPages308_Page {
             $iconUrl = str_replace('~/', $this->plugin->pluginUrl . '/', $this->menuIcon);   
         
         global $wp_version;
-        if ( version_compare( $wp_version, '3.7', '>'  ) ) {
+        if ( version_compare( $wp_version, '3.7.3', '>'  ) ) {
         ?>
             <style type="text/css" media="screen">
 

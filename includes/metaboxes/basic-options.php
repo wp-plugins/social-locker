@@ -27,7 +27,8 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
      * @since 1.0.0
      * @var string
      */
-    public $title = 'Basic Options';
+    public $title;    
+    
     
     /**
      * A prefix that will be used for names of input fields in the form.
@@ -49,8 +50,14 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
      * @var string
      */
     public $priority = 'core';
-    
-    public $cssClass = 'factory-bootstrap-309';
+	
+    public $cssClass = 'factory-bootstrap-312';
+
+    public function __construct() {
+        parent::__construct();
+        
+        $this->title = __('Basic Options', 'sociallocker');
+    }
     
     /**
      * Configures a form that will be inside the metabox.
@@ -58,7 +65,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
      * @see FactoryMetaboxes307_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms308_Form $form A form object to configure.
+     * @param FactoryForms311_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {        
@@ -71,12 +78,12 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
 
                     'type'  => 'textbox',
                     'name'  => 'common_url',
-                    'title' => 'URL to share',
-                    'hint'  => 'Enter an URL to like, tweet and +1 or leave this 
-                                field empty in order to use an URL of a page where the locker will be placed.' .
-                               '<br />Need a separate URL for each button? Try a ' .
-                               '<a href="' . onp_licensing_310_get_purchase_url( $sociallocker ) . '">' .
-                               'premium version</a> of the plugin.',
+                    'title' => __('URL to share', 'sociallocker'),
+                    'hint'  => sprintf(__('Enter an URL to like, tweet and +1 or leave this 
+                                field empty in order to use an URL of a page where the locker will be placed.
+                               <br />Need a separate URL for each button? Try a 
+                               <a href="%s">
+                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_311_get_purchase_url( $sociallocker )),
                     'placeholder'   => 'http://url-to-share.com'
               ),
           ));
@@ -88,18 +95,18 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
             array(
                 'type'      => 'textbox',
                 'name'      => 'header',
-                'title'     => 'Locker header',
-                'hint'      => 'Enter a header of the locker. You can leave this field empty.',
-                'default'   => 'This content is locked!'
+                'title'     => __('Locker header', 'sociallocker'),
+                'hint'      => __('Enter a header of the locker. You can leave this field empty.', 'sociallocker'),
+                'default'   => __('This content is locked!', 'sociallocker')
             ),
             
             array(
                 'type'      => 'wp-editor',
                 'name'      => 'message',
-                'title'     => 'Locker message',
-                'hint'      => 'Enter a message that appears under the header.<br /><br />' . 
-                               'Shortcodes: [post_title], [post_url].',
-                'default'   => 'Please support us, use one of the buttons below to unlock the content.',
+                'title'     => __('Locker message', 'sociallocker'),
+                'hint'      => __('Enter a message that appears under the header.', 'sociallocker').'<br /><br />'. 
+                               __('Shortcodes: [post_title], [post_url].', 'sociallocker'),
+                'default'   => __('Please support us, use one of the buttons below to unlock the content.', 'sociallocker'),
                 'tinymce'   => array(
                     'setup' => 'function(ed){ window.onpsl.lockerEditor.bindWpEditorChange( ed ); }',
                     'height' => 100

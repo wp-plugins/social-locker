@@ -1,5 +1,4 @@
 <?php
-
 // actiovation
 include_once(ONP_SL_PLUGIN_DIR . '/admin/activation.php');
 
@@ -135,3 +134,28 @@ function onp_sl_license_manager_success_redirect() {
     return '?' . http_build_query( $args );
 }
 add_action('onp_license_manager_success_redirect_sociallocker-next',  'onp_sl_license_manager_success_redirect');
+
+/**
+ * Registers default themes.
+ * 
+ * We don't need to include the file containing the file OnpSL_ThemeManager because this function will
+ * be called from the hook defined inside the class OnpSL_ThemeManager.
+ * 
+ * @see onp_sl_register_themes
+ * @see OnpSL_ThemeManager
+ * 
+ * @since 3.3.3
+ * @return void 
+ */
+function onp_sl_register_default_themes() {
+        
+        OnpSL_ThemeManager::registerTheme(array(
+            'name' => 'secrets',
+            'title' => 'Secrets',
+            'path' => ONP_SL_PLUGIN_DIR . '/themes/secrets'
+        )); 
+        
+    
+
+}
+add_action('onp_sl_register_themes', 'onp_sl_register_default_themes');

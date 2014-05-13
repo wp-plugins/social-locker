@@ -1,85 +1,88 @@
-( function( $ ){
-    
-    // COLOR CONTROL CLASS DEFINITION
-    // ================================
-    
-    var ColorControl = function (el) {
-        this.$element = $(el);
+/**
+ * Factory Botstrap Color Control
+ * 
+ * @uses plugin.iris.js
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2013-2014, OnePress Ltd
+ * 
+ * @package factory-forms 
+ * @since 3.1.0
+ */
 
-        this.$picker = this.$element.find('.factory-color-hex');
-        this.$preview = this.$element.find('.factory-preview');
-        this.$background = this.$element.find('.factory-background');
-
-        this.init();
-    };
+;( function( $ ){
     
-    ColorControl.prototype.init = function() {
-        var self = this;
+    $.widget( "factoryBootstrap312.colorControl", {
 
-        var irisOptions = {
-            width: 216,
-            palettes: ['#16a086', '#27ae61', '#2a80b9', '#8f44ad', '#2d3e50', '#f49c14', '#c1392b', '#bec3c7'],
-            hide: true,
-            change: function(event, ui) {  
-                self.$background.css({ background: ui.color.toString() });
-                self.$picker.trigger('keyup');
-            }
-        };
+        _create: function() {
+            
+            this.$element = this.element;
+            this.$picker = this.$element.find('.factory-color-hex');
+            this.$preview = this.$element.find('.factory-preview');
+            this.$background = this.$element.find('.factory-background');
+
+            this._init();
+        },
         
-        var picketTarget = this.$element.data('picker-target');
-        if ( picketTarget ) irisOptions.target = $(picketTarget);
-        
-        this.$picker.factoryBootstrap309_iris(irisOptions); 
-        this.$picker.off('focus');
-        
-        $(document).on("click.color.factory", function(){
-           self.$picker.factoryBootstrap309_iris("hide");  
-        });
-        
-        this.$picker.add(this.$background).on("click.color.factory", function(e){
-           e.stopPropagation();
-           self.$picker.factoryBootstrap309_iris("show");  
-        });  
-    };
+        _init: function( event ) {
+            var self = this;
 
-    ColorControl.prototype.togglePicker = function() {
+            var irisOptions = {
+                width: 216,
+                palettes: ['#16a086', '#27ae61', '#2a80b9', '#8f44ad', '#2d3e50', '#f49c14', '#c1392b', '#bec3c7'],
+                hide: true,
+                change: function(event, ui) { 
+                    self.$background.css({ background: ui.color.toString() });
+                    
+                    self.$element.trigger('change.color.factory', [ ui.color.toString() ]);
+                    self.$element.trigger('updated.color.factory', [ ui.color.toString() ]);
+                }
+            };
+            
+            var picketTarget = this.$element.data('picker-target');
+            if ( picketTarget ) irisOptions.target = $(picketTarget);
 
-         if( this.$element.hasClass('factory-picker-active') ) {            
-             this.hidePicker();
-         } else {
-             this.showPicker();
-         }
-    };
-    
-    ColorControl.prototype.hidePicker = function() {
-        this.$element.removeClass('factory-picker-active');
-        this.$picker.factoryBootstrap309_iris( 'hide' );
-    }; 
-    
-    ColorControl.prototype.showPicker = function() {
-        this.$element.addClass('factory-picker-active');
-        this.$picker.factoryBootstrap309_iris( 'show' );
-    }; 
-    
-    // COLOR CONTROL DEFINITION
-    // ================================
-    
-    $.fn.factoryBootstrap309_colorControl = function (option) {
-        return this.each(function () {
-            var $this = $(this);
-            var data  = $this.data('factory.color-control')
-            if (!data) $this.data('factory.color-control', (data = new ColorControl(this)));
-           // if (typeof option === 'string') data[option].call(data);
-        });
-    };
+            this.$picker.factoryBootstrap312_iris(irisOptions); 
+            this.$picker.off('focus');
 
-    $.fn.factoryBootstrap309_colorControl.Constructor = ColorControl;
-    
-    // AUTO CREATING
-    // ================================
+            $(document).on("click.color.factory", function(){
+               self.$picker.factoryBootstrap312_iris("hide");  
+            });
+
+            this.$picker.add(this.$background).on("click.color.factory", function(e){
+               e.stopPropagation();
+               self.$picker.factoryBootstrap312_iris("show");  
+            });  
+        },
+        
+        togglePicker: function() {
+            if( this.$element.hasClass('factory-picker-active') ) this.hidePicker();
+            else this.showPicker();
+        },
+
+        hidePicker: function() {
+            this.$element.removeClass('factory-picker-active');
+            this.$picker.factoryBootstrap312_iris( 'hide' );
+        }, 
+
+        showPicker: function() {
+            this.$element.addClass('factory-picker-active');
+            this.$picker.factoryBootstrap312_iris( 'show' );
+        },
+        
+        getValue: function() {
+            return this.$picker.val();
+        },
+        
+        setValue: function( value, trigger ) {
+            this.$picker.val(value);
+            if ( trigger ) self.$picker.trigger('change');
+        }
+    });
     
     $(function(){
-        $(".factory-bootstrap-309 .factory-color").factoryBootstrap309_colorControl();
+        $.widget.bridge( "factoryBootstrap312_colorControl", $.factoryBootstrap312.colorControl );
+        $(".factory-bootstrap-312 .factory-color").factoryBootstrap312_colorControl({});
     });
     
 }( jQuery ) );

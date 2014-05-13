@@ -14,13 +14,13 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms308_Holder extends FactoryForms308_FormElement {
+abstract class FactoryForms311_Holder extends FactoryForms311_FormElement {
     
     /**
      * Holder Elements.
      * 
      * @since 1.0.0
-     * @var FactoryForms308_FormElement[] 
+     * @var FactoryForms311_FormElement[] 
      */
     protected $elements = array();
     
@@ -37,7 +37,7 @@ abstract class FactoryForms308_Holder extends FactoryForms308_FormElement {
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms308_Form $form A parent form.
+     * @param FactoryForms311_Form $form A parent form.
      */
     public function __construct($options, $form) {
         parent::__construct($options, $form);        
@@ -48,7 +48,7 @@ abstract class FactoryForms308_Holder extends FactoryForms308_FormElement {
      * Returns holder elements.
      * 
      * @since 1.0.0
-     * @return FactoryForms308_FormElement[].
+     * @return FactoryForms311_FormElement[].
      */
     public function getElements() {
         return $this->elements;
@@ -71,7 +71,7 @@ abstract class FactoryForms308_Holder extends FactoryForms308_FormElement {
             $element->setOption('isFirst', $isFirstItem);
             if ( $isFirstItem ) $isFirstItem = false;
 
-            do_action('factory_form_before_element_' . $element->getName() );
+            do_action('factory_form_before_element_' . $element->getOption('name') );
             
             // if a current item is a control holder
             if ( $element->isHolder ) {
@@ -98,7 +98,7 @@ abstract class FactoryForms308_Holder extends FactoryForms308_FormElement {
                 echo( '[ERROR] Invalid item.' ); 
             }
             
-            do_action('factory_form_after_element_' . $element->getName() );
+            do_action('factory_form_after_element_' . $element->getOption('name') );
         } 
         
         $this->afterRendering();

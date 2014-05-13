@@ -1,5 +1,5 @@
 if ( !window.onpsl ) window.onpsl = {};
-if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
+if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
 
 (function($){
     
@@ -15,10 +15,9 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
 
             this.trackInputChanges();
             this.recreatePreview();
-
-            if ( window['sociallocker-next-build'] === 'free' ) {
                 this.initTrialBox();
-            }      
+            
+      
         }, 
 
         /**
@@ -73,10 +72,11 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
             socialTabWrap.find('li').each(function(){
                 var tabId = $(this).data('tab-id');
                 var item = $(this);
-                var checkbox = $("#sociallocker_" + tabId + "_available");
+                var checkbox = $("#sociallocker_" + tabId + "_available");              
                 
                 checkbox.change(function(){
-                    var isAvailable = checkbox.is(':checked');
+                    var isAvailable = checkbox.is(':checked'); 
+                                       
                     if (!isAvailable) {
                         item.addClass('factory-disabled');
                     } else {
@@ -266,7 +266,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                 options.text = options.text.message;
             }
 
-            if ( window['sociallocker-next-build'] != 'free' ) {
+            if ( window['sociallocker-rus-build'] != 'free' ) {
                 options['theme'] = $("#sociallocker_style").val();
             }
             
@@ -424,7 +424,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap309_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap312_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

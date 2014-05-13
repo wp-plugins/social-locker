@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Activation extends Factory309_Activator {
+class OnpSL_Activation extends Factory310_Activator {
     
     public function activate() {       
         // sets the default licence
@@ -9,12 +9,12 @@ class OnpSL_Activation extends Factory309_Activator {
             $this->plugin->license->setDefaultLicense( array(
                 'Category'      => 'free',
                 'Build'         => 'free',
-                'Title'         => 'OnePress Public License',
-                'Description'   => 'Public License is a GPLv2 compatible license. 
+                'Title'         => __('OnePress Public License', 'sociallocker'),
+                'Description'   => __('Public License is a GPLv2 compatible license. 
                                     It allows you to change this version of the plugin and to
                                     use the plugin free. Please remember this license 
                                     covers only free edition of the plugin. Premium versions are 
-                                    distributed with other type of a license.'
+                                    distributed with other type of a license.', 'sociallocker')
             ));
         
 
@@ -31,12 +31,12 @@ class OnpSL_Activation extends Factory309_Activator {
             'onp_sl_default_locker_id',
             array(
                 'post_type' => 'social-locker',
-                'post_title' => 'Default Locker',
+                'post_title' => __('Default Locker', 'sociallocker'),
                 'post_name' => 'default_sociallocker_locker'
             ),
             array(
-                'sociallocker_header' => 'This content is locked!',       
-                'sociallocker_message' => 'Please support us, use one of the buttons below to unlock the content.',
+                'sociallocker_header' => __('This content is locked!', 'sociallocker'),       
+                'sociallocker_message' => __('Please support us, use one of the buttons below to unlock the content.', 'sociallocker'),
                 'sociallocker_style' => 'secrets',
                 'sociallocker_mobile' => 1,          
                 'sociallocker_highlight' => 1,                   
@@ -50,7 +50,7 @@ class OnpSL_Activation extends Factory309_Activator {
 
         // tables
         global $wpdb;
-
+            
         $sql = "
             CREATE TABLE {$wpdb->prefix}so_tracking (
               ID BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -70,6 +70,8 @@ class OnpSL_Activation extends Factory309_Activator {
               KEY IX_wp_so_tracking_PostID (PostID),
               UNIQUE KEY UK_wp_so_tracking (AggregateDate,PostID)
             );";
+        
+
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql); 

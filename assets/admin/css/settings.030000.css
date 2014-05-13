@@ -20,7 +20,7 @@
 }
 
 
-#sociallocker_facebook_appid {
+#sociallocker_facebook_appid, #sociallocker_vk_appid {
     width: 250px;
 }
 #sociallocker_dynamic_theme_event {
@@ -41,7 +41,7 @@
 .btn-group {
     border: 0px !important;
 }
-.factory-bootstrap-309 .btn-group { 
+.factory-bootstrap-312 .btn-group { 
     margin-bottom: 0px;
 }
 

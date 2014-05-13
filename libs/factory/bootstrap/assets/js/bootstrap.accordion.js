@@ -5,7 +5,7 @@
 ;(function ( $, window, document, undefined ) {
     "use strict"; // jshint ;_;
     
-    $.fn.factoryBootstrap309_accordion = function(){         
+    $.fn.factoryBootstrap312_accordion = function(){         
         return this.each(function () {           
             var $self = $(this); 
             var startAnimation = false;
@@ -25,9 +25,15 @@
 
                     $('.'+$self.attr('class')+' > h3').removeClass('active');               
                     selfOn.addClass('active');                
-                    target.addClass('active').slideDown(500, function(){
-                        startAnimation = false;
-                        $self.trigger('shown.bs.accordion');
+                    target.addClass('active').slideDown({
+                        duration: 500,
+                        complete: function(){
+                            startAnimation = false;
+                            $self.trigger('shown.bs.accordion', [selfOn]);
+                        },
+                        progress: function() {
+                            $self.trigger('progress.bs.accordion', [selfOn]);
+                        }
                     });
                 }    
 
@@ -37,7 +43,7 @@
   }  
   
   $(function(){
-    $('.factory-bootstrap-309 .factory-accordion').factoryBootstrap309_accordion();
+    $('.factory-bootstrap-312 .factory-accordion').factoryBootstrap312_accordion();
   });
   
 })( jQuery, window, document );

@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.9.0
+Tested up to: 3.9.1
 Stable tag: trunk
 License: GPLv2
 
@@ -88,13 +88,24 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.4.1 - 13 May 2014</strong><br />
+<ul>
+<li>NEW: Added preloaders for the social buttons.</li>
+<li>NEW: Detecting some browser extensions like Avast, PrivDog, AdBlock and others which can block scripts of social networks and break the locker. If these extensions are detected, the plugin notifies the user about that and offers to turn them off.</li>
+<li>IMPROVED: Better support for Portuguese language.</li>
+<li>IMPROVED: Better support for German language.</li>
+<li>FIXED: The issue of the confirmation dialog of the Like button.</li>
+<li>FIXED: The issue of the Google +1 button when the locker doesn't reveal content for some locker configurations.</li>
+<li>FIXED: The QuotaExceededError issue.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.3.1 - 23 Apr 2014</strong><br />
 <ul>
 <li>FIXED: A bug when the locker preview is not updating while editing the locker message.</li>
 <li>FIXED: Some internal infrastructure issues.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.3.0 - 21 Apr 2014</strong><br />
 <ul>

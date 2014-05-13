@@ -5,7 +5,7 @@
 ;(function ( $, window, document, undefined ) {
     "use strict"; // jshint ;_;
   
-    var pluginName = 'factoryBootstrap309_moreLink';
+    var pluginName = 'factoryBootstrap312_moreLink';
 
     $.fn[pluginName] = function ( param1, param2 ) {
         
@@ -21,7 +21,7 @@
             $this.find(".factory-more-link-hide").click(function(){
                 var content = $( $(this).attr('href') );
                 content.fadeOut(300, function(){
-                    content.prev().show();
+                    content.parents(".factory-more-link").find(".factory-more-link-show").show();
                 });
                 return false;
             });
@@ -31,7 +31,7 @@
     // auto init
  
     $(function(){
-        $('.factory-bootstrap-309 .factory-more-link').factoryBootstrap309_moreLink();  
+        $('.factory-bootstrap-312 .factory-more-link').factoryBootstrap312_moreLink();  
     });
     
 })( jQuery, window, document );

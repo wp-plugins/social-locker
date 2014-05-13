@@ -10,8 +10,8 @@
  */
 
 // creating an update manager for each plugin created via the factory
-if ( !has_action('factory_309_plugin_created', 'onp_updates_307_plugin_created') )
-    add_action('factory_309_plugin_created', 'onp_updates_307_plugin_created');
+if ( !has_action('factory_310_plugin_created', 'onp_updates_307_plugin_created') )
+    add_action('factory_310_plugin_created', 'onp_updates_307_plugin_created');
 
 // Checks if the one is already loaded.
 // We prevent to load the same version of the module twice.

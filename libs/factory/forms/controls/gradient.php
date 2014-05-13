@@ -19,7 +19,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms308_GradientControl extends FactoryForms308_Control 
+class FactoryForms311_GradientControl extends FactoryForms311_Control 
 {
     public $type = 'gradient';
         

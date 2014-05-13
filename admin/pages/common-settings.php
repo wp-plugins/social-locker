@@ -14,12 +14,12 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
+class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
  
     /**
      * The title of the page in the admin menu.
      * 
-     * @see FactoryPages308_AdminPage
+     * @see FactoryPages310_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -29,7 +29,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
     /**
      * The parent menu of the page in the admin menu.
      * 
-     * @see FactoryPages308_AdminPage
+     * @see FactoryPages310_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -40,7 +40,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
      * The id of the page in the admin menu.
      * 
      * Mainly used to navigate between pages.
-     * @see FactoryPages308_AdminPage
+     * @see FactoryPages310_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -53,107 +53,114 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
      * @since 1.0.0
      * @var mixed[] 
      */
-    protected $languages = array(
-        array('ca_ES', 'Catalan'),
-        array('cs_CZ', 'Czech'),
-        array('cy_GB', 'Welsh'),
-        array('da_DK', 'Danish'),
-        array('de_DE', 'German'),
-        array('eu_ES', 'Basque'),
-        array('en_US', 'English'),
-        array('es_ES', 'Spanish'),
-        array('fi_FI', 'Finnish'), 
-        array('fr_FR', 'French'), 
-        array('gl_ES', 'Galician'), 
-        array('hu_HU', 'Hungarian'),
-        array('it_IT', 'Italian'),
-        array('ja_JP', 'Japanese'),
-        array('ko_KR', 'Korean'),
-        array('nb_NO', 'Norwegian'),
-        array('nl_NL', 'Dutch'),
-        array('pl_PL', 'Polish'),
-        array('pt_BR', 'Portuguese (Brazil)', 'pt-BR'),
-        array('pt_PT', 'Portuguese (Portugal)', 'pt-PT'),
-        array('ro_RO', 'Romanian'),
-        array('ru_RU', 'Russian'),
-        array('sk_SK', 'Slovak'),  
-        array('sl_SI', 'Slovenian'), 
-        array('sv_SE', 'Swedish'),
-        array('th_TH', 'Thai'),
-        array('tr_TR', 'Turkish'), 
-        array('ku_TR', 'Kurdish'), 
-        array('zh_CN', 'Simplified Chinese (China)', 'zh-CN'), 
-        array('zh_HK', 'Traditional Chinese (Hong Kong)', 'zh-HK'),
-        array('zh_TW', 'Traditional Chinese (Taiwan)', 'zh-TW'), 
-        array('af_ZA', 'Afrikaans'),
-        array('sq_AL', 'Albanian'),
-        array('hy_AM', 'Armenian'),
-        array('az_AZ', 'Azeri'),
-        array('be_BY', 'Belarusian'),
-        array('bn_IN', 'Bengali'),
-        array('bs_BA', 'Bosnian'),
-        array('bg_BG', 'Bulgarian'),
-        array('hr_HR', 'Croatian'),
-        array('nl_BE', 'Dutch (België)'),
-        array('eo_EO', 'Esperanto'),
-        array('et_EE', 'Estonian'),
-        array('fo_FO', 'Faroese'),
-        array('ka_GE', 'Georgian'),
-        array('el_GR', 'Greek'),
-        array('gu_IN', 'Gujarati'),
-        array('hi_IN', 'Hindi'),
-        array('is_IS', 'Icelandic'),
-        array('id_ID', 'Indonesian'),
-        array('ga_IE', 'Irish'),
-        array('jv_ID', 'Javanese'),
-        array('kn_IN', 'Kannada'),
-        array('kk_KZ', 'Kazakh'),
-        array('la_VA', 'Latin'),
-        array('lv_LV', 'Latvian'),
-        array('li_NL', 'Limburgish'),
-        array('lt_LT', 'Lithuanian'), 
-        array('mk_MK', 'Macedonian'), 
-        array('mg_MG', 'Malagasy'),
-        array('ms_MY', 'Malay'),
-        array('mt_MT', 'Maltese'),
-        array('mr_IN', 'Marathi'),
-        array('mn_MN', 'Mongolian'),
-        array('ne_NP', 'Nepali'),
-        array('pa_IN', 'Punjabi'),
-        array('rm_CH', 'Romansh'),
-        array('sa_IN', 'Sanskrit'),
-        array('sr_RS', 'Serbian'),
-        array('so_SO', 'Somali'),
-        array('sw_KE', 'Swahili'),
-        array('tl_PH', 'Filipino'),
-        array('ta_IN', 'Tamil'),
-        array('tt_RU', 'Tatar'), 
-        array('te_IN', 'Telugu'),
-        array('ml_IN', 'Malayalam'),
-        array('uk_UA', 'Ukrainian'),
-        array('uz_UZ', 'Uzbek'),
-        array('vi_VN', 'Vietnamese'),
-        array('xh_ZA', 'Xhosa'),
-        array('zu_ZA', 'Zulu'),
-        array('km_KH', 'Khmer'),
-        array('tg_TJ', 'Tajik'),
-        array('ar_AR', 'Arabic'), 
-        array('he_IL', 'Hebrew'),
-        array('ur_PK', 'Urdu'),
-        array('fa_IR', 'Persian'),
-        array('sy_SY', 'Syriac'),  
-        array('yi_DE', 'Yiddish'),
-        array('gn_PY', 'Guaraní'),
-        array('qu_PE', 'Quechua'),
-        array('ay_BO', 'Aymara'),
-        array('se_NO', 'Northern Sámi'),
-        array('ps_AF', 'Pashto')
-    );
+    protected $languages;
+    
+    public function __construct(Factory310_Plugin $plugin) {   
+        parent::__construct($plugin);
+        
+        $this->menuTitle = __('Common Settings', 'sociallocker');
+        $this->languages = array(
+            array('ca_ES', __('Catalan', 'sociallocker')),
+            array('cs_CZ', __('Czech', 'sociallocker')),
+            array('cy_GB', __('Welsh', 'sociallocker')),
+            array('da_DK', __('Danish', 'sociallocker')),
+            array('de_DE', __('German', 'sociallocker')),
+            array('eu_ES', __('Basque', 'sociallocker')),
+            array('en_US', __('English', 'sociallocker')),
+            array('es_ES', __('Spanish', 'sociallocker')),
+            array('fi_FI', __('Finnish', 'sociallocker')), 
+            array('fr_FR', __('French', 'sociallocker')), 
+            array('gl_ES', __('Galician', 'sociallocker')), 
+            array('hu_HU', __('Hungarian', 'sociallocker')),
+            array('it_IT', __('Italian', 'sociallocker')),
+            array('ja_JP', __('Japanese', 'sociallocker')),
+            array('ko_KR', __('Korean', 'sociallocker')),
+            array('nb_NO', __('Norwegian', 'sociallocker')),
+            array('nl_NL', __('Dutch', 'sociallocker')),
+            array('pl_PL', __('Polish', 'sociallocker')),
+            array('pt_BR', __('Portuguese (Brazil)', 'sociallocker')),
+            array('pt_PT', __('Portuguese (Portugal)', 'sociallocker')),
+            array('ro_RO', __('Romanian', 'sociallocker')),
+            array('ru_RU', __('Russian', 'sociallocker')),
+            array('sk_SK', __('Slovak', 'sociallocker')),  
+            array('sl_SI', __('Slovenian', 'sociallocker')), 
+            array('sv_SE', __('Swedish', 'sociallocker')),
+            array('th_TH', __('Thai', 'sociallocker')),
+            array('tr_TR', __('Turkish', 'sociallocker')), 
+            array('ku_TR', __('Kurdish', 'sociallocker')), 
+            array('zh_CN', __('Simplified Chinese (China)', 'sociallocker')), 
+            array('zh_HK', __('Traditional Chinese (Hong Kong)', 'sociallocker')),
+            array('zh_TW', __('Traditional Chinese (Taiwan)', 'sociallocker')), 
+            array('af_ZA', __('Afrikaans', 'sociallocker')),
+            array('sq_AL', __('Albanian', 'sociallocker')),
+            array('hy_AM', __('Armenian', 'sociallocker')),
+            array('az_AZ', __('Azeri', 'sociallocker')),
+            array('be_BY', __('Belarusian', 'sociallocker')),
+            array('bn_IN', __('Bengali', 'sociallocker')),
+            array('bs_BA', __('Bosnian', 'sociallocker')),
+            array('bg_BG', __('Bulgarian', 'sociallocker')),
+            array('hr_HR', __('Croatian', 'sociallocker')),
+            array('nl_BE', __('Dutch (België)', 'sociallocker')),
+            array('eo_EO', __('Esperanto', 'sociallocker')),
+            array('et_EE', __('Estonian', 'sociallocker')),
+            array('fo_FO', __('Faroese', 'sociallocker')),
+            array('ka_GE', __('Georgian', 'sociallocker')),
+            array('el_GR', __('Greek', 'sociallocker')),
+            array('gu_IN', __('Gujarati', 'sociallocker')),
+            array('hi_IN', __('Hindi', 'sociallocker')),
+            array('is_IS', __('Icelandic', 'sociallocker')),
+            array('id_ID', __('Indonesian', 'sociallocker')),
+            array('ga_IE', __('Irish', 'sociallocker')),
+            array('jv_ID', __('Javanese', 'sociallocker')),
+            array('kn_IN', __('Kannada', 'sociallocker')),
+            array('kk_KZ', __('Kazakh', 'sociallocker')),
+            array('la_VA', __('Latin', 'sociallocker')),
+            array('lv_LV', __('Latvian', 'sociallocker')),
+            array('li_NL', __('Limburgish', 'sociallocker')),
+            array('lt_LT', __('Lithuanian', 'sociallocker')), 
+            array('mk_MK', __('Macedonian', 'sociallocker')), 
+            array('mg_MG', __('Malagasy', 'sociallocker')),
+            array('ms_MY', __('Malay', 'sociallocker')),
+            array('mt_MT', __('Maltese', 'sociallocker')),
+            array('mr_IN', __('Marathi', 'sociallocker')),
+            array('mn_MN', __('Mongolian', 'sociallocker')),
+            array('ne_NP', __('Nepali', 'sociallocker')),
+            array('pa_IN', __('Punjabi', 'sociallocker')),
+            array('rm_CH', __('Romansh', 'sociallocker')),
+            array('sa_IN', __('Sanskrit', 'sociallocker')),
+            array('sr_RS', __('Serbian', 'sociallocker')),
+            array('so_SO', __('Somali', 'sociallocker')),
+            array('sw_KE', __('Swahili', 'sociallocker')),
+            array('tl_PH', __('Filipino', 'sociallocker')),
+            array('ta_IN', __('Tamil', 'sociallocker')),
+            array('tt_RU', __('Tatar', 'sociallocker')), 
+            array('te_IN', __('Telugu', 'sociallocker')),
+            array('ml_IN', __('Malayalam', 'sociallocker')),
+            array('uk_UA', __('Ukrainian', 'sociallocker')),
+            array('uz_UZ', __('Uzbek', 'sociallocker')),
+            array('vi_VN', __('Vietnamese', 'sociallocker')),
+            array('xh_ZA', __('Xhosa', 'sociallocker')),
+            array('zu_ZA', __('Zulu', 'sociallocker')),
+            array('km_KH', __('Khmer', 'sociallocker')),
+            array('tg_TJ', __('Tajik', 'sociallocker')),
+            array('ar_AR', __('Arabic', 'sociallocker')), 
+            array('he_IL', __('Hebrew', 'sociallocker')),
+            array('ur_PK', __('Urdu', 'sociallocker')),
+            array('fa_IR', __('Persian', 'sociallocker')),
+            array('sy_SY', __('Syriac', 'sociallocker')),  
+            array('yi_DE', __('Yiddish', 'sociallocker')),
+            array('gn_PY', __('Guaraní', 'sociallocker')),
+            array('qu_PE', __('Quechua', 'sociallocker')),
+            array('ay_BO', __('Aymara', 'sociallocker')),
+            array('se_NO', __('Northern Sámi', 'sociallocker')),
+            array('ps_AF', __('Pashto', 'sociallocker'))
+        );
+    }
     
     /**
      * Requests assets (js and css) for the page.
      * 
-     * @see FactoryPages308_AdminPage
+     * @see FactoryPages310_AdminPage
      * 
      * @since 1.0.0
      * @return void 
@@ -187,12 +194,12 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
         
         global $sociallockerLangs;
         
-        $form = new FactoryForms308_Form(array(
+        $form = new FactoryForms311_Form(array(
             'scope' => 'sociallocker'
         ));
         
         $form->controlTheme = 'mendeleev-000';
-        $form->setProvider( new FactoryForms308_OptionsValueProvider(array(
+        $form->setProvider( new FactoryForms311_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
@@ -202,27 +209,30 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 'type'      => 'textbox',
                 'name'      => 'facebook_appid',
                 'title'     => __( 'Facebook App ID', 'sociallocker' ),
-                'hint'      => 'A facebook app id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specially for your domain.
-                                Please read <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> to learn how to register one.'
+                'hint'      => __( 'A facebook app id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specially for your domain. Please read <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> to learn how to register one.', 'sociallocker' )
             ),
             array(
                 'type'      => 'dropdown',
                 'name'      => 'lang',
                 'title'     => __( 'Language of buttons', 'sociallocker' ),
                 'data'      => $this->languages,
-                'hint'      => 'Choose the language that will be used for social buttons.'
+                'hint'      => __( 'Choose the language that will be used for social buttons.', 'sociallocker' ),
             ),
             array(
                 'type' => 'separator'
-            ),
+            ))
+        );
+        
+        $form->add(array(
+            
             array(
                 'type'      => 'checkbox',
                 'way'       => 'buttons',
                 'name'      => 'interrelation',
-                'title'     => 'Interrelation',
-                'hint'      => 'Set On to make lockers interrelated. When any interrelated locker on your site is unlocked, the rest others will be unlocked too.<br />If Off, only lockers having the same URLs to like/tweet/+1/share will be unlocked.',
+                'title'     => __( 'Interrelation', 'sociallocker' ),
+                'hint'      => __( 'Set On to make lockers interrelated. When any interrelated locker on your site is unlocked, the rest others will be unlocked too.<br />If Off, only lockers having the same URLs to like/tweet/+1/share will be unlocked.', 'sociallocker' ),
                 'default'   => false
-            ),   
+            ), 
             array(
                 'type' => 'separator'
             ),
@@ -231,7 +241,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 'way'       => 'buttons',
                 'name'      => 'dynamic_theme',
                 'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
-                'hint'      => 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working.'
+                'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working.', 'sociallocker' )
             ),
             array(
                 'type'      => 'div',
@@ -242,11 +252,11 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                         'type'      => 'textbox',
                         'name'      => 'dynamic_theme_event',
                         'title'     => __( 'jQuery Events', 'sociallocker' ),
-                        'hint'      => 'If pages of your site are loaded dynamically via ajax, it\'s necessary to catch ' . 
+                        'hint'      => __( 'If pages of your site are loaded dynamically via ajax, it\'s necessary to catch ' . 
                                        'the moment when the page is loaded in order to appear the locker.<br />By default the plugin covers ' .
                                        '99% possible events. So <strong>you don\'t need to set any value here</strong>.<br />' .
                                        'But if you know how it works and sure that it will help, you can put here the javascript event ' .
-                                       'that triggers after loading of pages on your site.'
+                                       'that triggers after loading of pages on your site.', 'sociallocker' )
                     )   
                 )
             ), 
@@ -258,7 +268,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 'way'       => 'buttons',
                 'name'      => 'google_analytics',
                 'title'     => __( 'Google Analytics', 'sociallocker' ),
-                'hint'      => 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.'
+                'hint'      => __( 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.', 'sociallocker' )
             ),
             array(
                 'type'      => 'html',
@@ -270,7 +280,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 'name'      => 'tracking',
                 'title'     => __( 'Tracking', 'sociallocker' ),
                 'data'      => $this->languages,
-                'hint'      => 'Track how users interact with lockers placed on pages of your site. Makes the statistical data available.'
+                'hint'      => __( 'Track how users interact with lockers placed on pages of your site. Makes the statistical data available.', 'sociallocker' )
             ),
             array(
                 'type' => 'separator'
@@ -279,8 +289,8 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 'type'      => 'checkbox',
                 'way'       => 'buttons',
                 'name'      => 'rss',
-                'title'     => 'Content for RSS',
-                'hint'      => 'Set On to make locked content visible in the RSS feed.',
+                'title'     => __( 'Content for RSS', 'sociallocker' ),
+                'hint'      => __( 'Set On to make locked content visible in the RSS feed.', 'sociallocker' ),
                 'default'   => false
             ),
             array(
@@ -292,7 +302,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 'name'      => 'debug',
                 'title'     => __( 'Debug', 'sociallocker' ),
                 'data'      => $this->languages,
-                'hint'      => 'if On, lockers will appear always even if they were unlocked already.'
+                'hint'      => __( 'if On, lockers will appear always even if they were unlocked already.', 'sociallocker' )
             ),
         ));
         
@@ -331,7 +341,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
             <h2><?php _e('Common Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-309">
+            <div class="factory-bootstrap-312">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -347,7 +357,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
                 <div class="form-group form-horizontal">
                     <label class="col-sm-2 control-label"> </label>
                     <div class="control-group controls col-sm-10">
-                    <input name="save-action" class="btn btn-primary" type="submit" value="Save changes"/>
+                    <input name="save-action" class="btn btn-primary" type="submit" value="<?php _e('Save changes', 'sociallocker') ?>"/>
                     </div>
                 </div>
             
@@ -372,7 +382,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_309_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_310_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -433,7 +443,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-309" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-312" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>
@@ -450,4 +460,4 @@ class OnpSL_CommonSettingsPage extends FactoryPages308_AdminPage  {
     }
 }
 
-FactoryPages308::register($sociallocker, 'OnpSL_CommonSettingsPage');
+FactoryPages310::register($sociallocker, 'OnpSL_CommonSettingsPage');

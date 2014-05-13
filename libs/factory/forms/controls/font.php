@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms308_FontControl extends FactoryForms308_ComplexControl 
+class FactoryForms311_FontControl extends FactoryForms311_ComplexControl 
 {
     public $type = 'font';
     
@@ -25,70 +25,104 @@ class FactoryForms308_FontControl extends FactoryForms308_ComplexControl
         $optionFontSize = array(
             'name' => $this->options['name'] . '__size',
             'units' => $this->options['units'],
-            'default' => isset( $this->options['default'] ) ? $this->options['default'][0] : null            
+            'default' => isset( $this->options['default'] ) ? $this->options['default']['size'] : null            
         );
             
         $fonts = array(
-                
-            // sans-serif
-            array( 'inherit', __( '(use website font)', 'sociallocker' ) ),
-            array( 'Arial, "Helvetica Neue", Helvetica, sans-serif', 'Arial, Helvetica Neue, Helvetica' ),
-            array( '"Helvetica Neue", Helvetica, Arial, sans-serif', 'Helvetica Neue, Helvetica, Arial' ),   
-            array( 'Tahoma, Geneva, Verdana, sans-serif', 'Tahoma, Geneva, Verdana' ),
-            array( 'Geneva, Tahoma, Verdana, sans-serif', 'Geneva, Tahoma, Verdana' ), 
-            array( '"Segoe UI", Segoe, Tahoma, Geneva, sans-serif', 'Segoe UI, Segoe, Tahoma, Geneva' ),
-            array( 'Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;', 'Optima, Segoe, Candara, Calibri' ),                
-            array( 'Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;', 'Calibri, Candara, Segoe' ),
-            array( '"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif', 'Lucida Grande, Lucida Sans, Geneva' ),
-            array( '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;', 'Trebuchet MS, Lucida Grande, Tahoma' ),  
-            array( '"Gill Sans", "Gill Sans MT, Calibri", sans-serif;', 'Gill Sans, Gill Sans MT, Calibri' ),   
+ 
+            array( 'inherit', __( '(use default website font)', 'sociallocker' ) ),
+            
+            array( 'group', __('Sans Serif:', 'sociallocker'), array(
+                array( 'Arial, "Helvetica Neue", Helvetica, sans-serif', 'Arial' ),
+                array( '"Arial Black", "Arial Bold", Gadget, sans-serif', 'Arial Black' ), 
+                array( '"Arial Narrow", Arial, sans-serif', 'Arial Narrow' ),
+                array( '"Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif', 'Arial Rounded MT Bold' ),
+                array( '"Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif', 'Avant Garde' ),
+                array( 'Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif', 'Calibri' ),
+                array( 'Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif', 'Candara' ), 
+                array( '"Century Gothic", CenturyGothic, AppleGothic, sans-serif', 'Century Gothic' ), 
+                array( '"Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif', 'Franklin Gothic Medium' ),
+                array( 'Futura, "Trebuchet MS", Arial, sans-serif', 'Futura' ),
+                array( 'Geneva, Tahoma, Verdana, sans-serif', 'Geneva' ),
+                array( '"Gill Sans", "Gill Sans MT", Calibri, sans-serif', 'Gill Sans' ),
+                array( '"Helvetica Neue", Helvetica, Arial, sans-serif', 'Helvetica' ),
+                array( 'Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif', 'Impact' ),
+                array( '"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif', 'Lucida Grande' ),
+                array( 'Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif', 'Optima' ),
+                array( '"Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif', 'Segoe UI' ),
+                array( 'Tahoma, Verdana, Segoe, sans-serif', 'Tahoma' ),
+                array( '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif', 'Trebuchet MS' ),
+                array( 'Verdana, Geneva, sans-serif', 'Verdana' ),        
+            )),
+            
+            array( 'group', __('Serif:', 'sociallocker'), array(
+                array( 'Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif', 'Baskerville' ),
+                array( '"Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif', 'Big Caslon' ), 
+                array( '"Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif', 'Bodoni MT' ),
+                array( '"Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif', 'Book Antiqua' ),
+                array( '"Calisto MT", "Bookman Old Style", Bookman, "Goudy Old Style", Garamond, "Hoefler Text", "Bitstream Charter", Georgia, serif', 'Calisto MT' ),
+                array( 'Cambria, Georgia, serif', 'Cambria' ),
+                array( 'Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif', 'Didot' ), 
+                array( 'Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif', 'Garamond' ), 
+                array( 'Georgia, Times, "Times New Roman", serif', 'Georgia' ),
+                array( '"Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif', 'Goudy Old Style' ),
+                array( '"Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif', 'Hoefler Text' ),
+                array( '"Lucida Bright", Georgia, serif', 'Lucida Bright' ),
+                array( 'Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif', 'Palatino' ),
+                array( 'Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif', 'Perpetua' ),
+                array( 'Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif', 'Rockwell' ),
+                array( '"Rockwell Extra Bold", "Rockwell Bold", monospace', 'Rockwell Extra Bold' ),
+                array( 'TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif', 'Times New Roman' )
+            )),
+            
+            array( 'group', __('Monospaced:', 'sociallocker'), array(
+                array( '"Andale Mono", AndaleMono, monospace', 'Andale Mono' ),
+                array( 'Consolas, monaco, monospace', 'Consolas' ), 
+                array( '"Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace', 'Courier New' ),
+                array( '"Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace', 'Lucida Console' ),
+                array( '"Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace', 'Lucida Sans Typewriter' ),
+                array( 'Monaco, Consolas, "Lucida Console", monospace', 'Monaco' )
+            ))
 
-            // serif
-            array( 'Cambria, Georgia, serif', 'Cambria, Georgia' ), 
-            array( 'Georgia, Cambria, "Times New Roman", Times, serif', 'Georgia, Cambria, Times New Roman' ),
-            array( '"Lucida Bright", Georgia, serif', 'Lucida Bright, Georgia' ),
-            array( 'Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif', 'Didot, Hoefler Text, Garamond' ), 
-            array( '"Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif', 'Goudy Old Style, Garamond, Big Caslon' ),   
-            array( 'Baskerville, "Baskerville old face", "Hoefler Text", Garamond, "Times New Roman", serif;', 'Baskerville, Hoefler, Garamond' ),
-            array( '"Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif', 'Big Caslon, Book Antiqua, Palatino Linotype' ), 
-            array( '"Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif', 'Bodoni MT, Didot, Hoefler Text' ),
-            array( 'Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif', 'Palatino, Book Antiqua, Georgia' ),
         );
         
-        $fonts = apply_filters('factory_forms_308_fonts', $fonts);
-        $fonts = apply_filters('factory_forms_308_fonts-' . $this->options['name'], $fonts);
+        $fonts = apply_filters('factory_forms_311_fonts', $fonts);
+        $fonts = apply_filters('factory_forms_311_fonts-' . $this->options['name'], $fonts);
         
         $optionFontFamily = array(
             'name' => $this->options['name'] . '__family',
             'data' => $fonts,
-            'default' => isset( $this->options['default'] ) ? $this->options['default'][1] : null            
+            'default' => isset( $this->options['default'] ) ? $this->options['default']['family'] : null            
         );        
         
         $optionFontColor = array(
             'name' => $this->options['name'] . '__color',           
-            'default' => isset( $this->options['default'] ) ? $this->options['default'][2] : null,
+            'default' => isset( $this->options['default'] ) ? $this->options['default']['color'] : null,
             'pickerTarget' => '.factory-control-' . $this->options['name'] . ' .factory-picker-target'
         );
         
-        $this->size = new FactoryForms308_IntegerControl( $optionFontSize, $form, $provider );
-        $this->family = new FactoryForms308_DropdownControl( $optionFontFamily, $form, $provider );
-        $this->color = new FactoryForms308_ColorControl( $optionFontColor, $form, $provider );
+        $this->size = new FactoryForms311_IntegerControl( $optionFontSize, $form, $provider );
+        $this->family = new FactoryForms311_DropdownControl( $optionFontFamily, $form, $provider );
+        $this->color = new FactoryForms311_ColorControl( $optionFontColor, $form, $provider );
         
         $this->innerControls = array( $this->family, $this->size, $this->color );   
     }
     
     /**
-     * Fixes the font value as it can contains \".
+     * Removes \" in the font family value.
      * 
-     * @since 1.0.0
-     * @return mixed
+     * @since 3.1.0
+     * @return mixed[]
      */
-    public function getSubmitValue() {
-        $values = parent::getSubmitValue();
-        $values[0] = stripcslashes( $values[0] );
+    public function getValuesToSave() {
+        $values = parent::getValuesToSave();
+        
+        $familyKey = $this->options['name'] . '__family';
+        $values[$familyKey] = stripcslashes( $values[$familyKey] );
+  
         return $values;
     }
-     
+    
     /**
      * Shows the html markup of the control.
      * 

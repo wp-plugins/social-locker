@@ -47,7 +47,7 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
         }
 
         if ( empty($id) || empty($lockerMeta) ) {
-            printf( '<div><strong>[Social Locker] The locker [id=%d] doesn\'t exist or the default lockers was deleted.</strong></div>', $id );
+            printf( __('<div><strong>[Social Locker] The locker [id=%d] doesn\'t exist or the default lockers was deleted.</strong></div>', 'sociallocker'), $id );
             return;
         }
         
@@ -99,7 +99,7 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
             if ( !window.onpsl.lockerOptions ) window.onpsl.lockerOptions = {};
             window.onpsl.lockerOptions['<?php echo $this->lockId; ?>'] = <?php echo json_encode( $this->lockData ) ?>;
         </script>
-        <?php  do_action('onp_front_preview_print_scripts', $this->lockData['lockerId']); ?>
+        <?php  do_action('onp_sl_print_locker_assets', $this->lockData['lockerId'], $this->lockData ); ?>
     <?php
     }
         

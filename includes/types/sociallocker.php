@@ -4,7 +4,7 @@
  * Declaration for custom post type of Social Locler.
  * @link http://codex.wordpress.org/Post_Types
  */
-class OnpSL_SocialLockerType extends FactoryTypes307_Type {
+class OnpSL_SocialLockerType extends FactoryTypes309_Type {
     
     /**
      * Custom post name.
@@ -38,20 +38,10 @@ class OnpSL_SocialLockerType extends FactoryTypes307_Type {
      */
     public $capabilities = array('administrator');
     
-    public function useit() { return true;
-// Dear user, who's reading this text now, the condition below is responsible for checking a license key.
-// Sure you can change that and all features unlocked for free. Do it if you want.
-// But please keep in mind, we could encrypt the code better. There are two reasons why we did not make that.
-// The 1st reason is that the better encryption will slow the plugin.
-// We make plugins for the people and want our plugins to work ideally for you.
-// The 2nd reason is that we entrusted you, the user who're using our plugin, and we hope you will enjoy it.
-// Thank you! Yours faithfully, OnePress.
-// < condition start
-global $sociallocker;
+    public function useit() { return true; global $sociallocker;
 if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
  return true; 
 }
-// condition end >
 
         return false;
     }
@@ -120,13 +110,16 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/preview.030000.js');
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030301.js')->request('jquery-ui-sortable');       
         $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030301.css');
+            $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030301-en_US.css');  
+        
+
             $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/jquery.qtip.min.js');       
             $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/jquery.qtip.min.css');
         
 
         
-        do_action( 'onp_sl_sociallocker_type_scripts', $this->scripts, $this->styles );   
+        do_action( 'onp_sl_sociallocker_type_assets', $this->scripts, $this->styles );   
     }
 }
 
-FactoryTypes307::register('OnpSL_SocialLockerType', $sociallocker);
+FactoryTypes309::register('OnpSL_SocialLockerType', $sociallocker);

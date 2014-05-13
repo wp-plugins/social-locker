@@ -1,4 +1,5 @@
-<?php  /**
+<?php  #comp-page builds: free
+/**
  * The file contains a class to configure the metabox "More Features?".
  * 
  * Created via the Factory Metaboxes.
@@ -26,7 +27,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
      * @since 1.0.0
      * @var string
      */
-    public $title = 'More Features?';
+    public $title;
     
     /**
      * The priority within the context where the boxes should show ('high', 'core', 'default' or 'low').
@@ -50,6 +51,12 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
      */
     public $context = 'side';
     
+    public function __construct() {
+        parent::__construct();
+        
+        $this->title = __('More Features?', 'sociallocker');
+    }
+    
     /**
      * Renders content of the metabox.
      * 
@@ -63,15 +70,15 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
         global $sociallocker;
         
     ?>
-        <div class="factory-bootstrap-309 factory-fontawesome-306">
+        <div class="factory-bootstrap-312 factory-fontawesome-305">
             
         <div class="sl-header">
-            <strong>More Features?</strong>
-            <p>You Use Only 30% of Social Locker!</p>
+            <strong><?php _e('More Features?', 'sociallocker'); ?></strong>
+            <p><?php _e('You Use Only 30% of Social Locker!', 'sociallocker'); ?></p>
             <?php if ( FACTORY_FLAT_ADMIN ) { ?>
-            <div class="progress progress-striped"">
+            <div class="progress progress-striped">
               <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                <span class="sr-only">30% Complete</span>
+                <span class="sr-only"><?php _e('30% Complete', 'sociallocker'); ?></span>
               </div>
             </div>
             <?php } else { ?>
@@ -82,43 +89,31 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
         </div>
         <div class="sl-seporator"></div>
         <ul>
-            <li><span data-target="demo-social-options">Extra social buttons (+4)</span></li>
-            <li><span data-target="demo-themes">Extra themes (+2)</span></li>
-            <li><span data-target="demo-visibility-options">Visibility options (+3)</span></li>
-            <li><span data-target="demo-advanced-options">Advanced options (+5)</span></li>
+            <li><span data-target="demo-social-options"><?php _e('Extra social buttons (+4)', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-themes"><?php _e('Extra themes (+3)', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-visibility-options"><?php _e('Visibility options (+4)', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-advanced-options"><?php _e('Advanced options (+5)', 'sociallocker'); ?></span></li>
         </ul>
         <div class="sl-seporator"></div>
         
         <?php if ( FACTORY_FLAT_ADMIN ) { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <a href="<?php onp_licensing_310_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-primary btn-large">
-                        Try 7-days Trial Version<br /><span>(activate by one click)</span>
-                    </a>
-                    <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
+                    <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_311_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } else { ?>
                 <div class="sl-footer">
-                    <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-primary btn-large">
-                        Get Premium for $21<br /><span>(it will take no more a minute)</span>
-                    </a>
-                    <a href="<?php onp_licensing_310_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                    <?php sprintf(__('<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-primary btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span>,</a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_311_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } ?>
         <?php } else { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <a href="<?php onp_licensing_310_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="btn btn-danger btn-large">
-                        Try 7-days Trial Version<br /><span>(activate by one click)</span>
-                    </a>
-                    <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy">or <strong>buy</strong> the full premium version now!</a>
+                    <?php sprintf(__('<a href="%s" class="btn btn-danger btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a> <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_311_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } else { ?>
                 <div class="sl-footer">
-                    <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">
-                        Get Premium for $21<br /><span>(it will take no more a minute)</span>
-                    </a>
-                    <a href="<?php onp_licensing_310_manager_link($sociallocker->pluginName, 'activateTrial') ?>" class="sl-buy">or <strong>try</strong> the trial version</a>
+                    <?php sprintf(__('<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span></a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_311_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } ?>
         <?php } ?>

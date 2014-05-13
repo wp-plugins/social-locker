@@ -16,13 +16,13 @@
 // module provides function only for the admin area
 if ( !is_admin() ) return;
 
-if (defined('FACTORY_NOTICES_307_LOADED')) return;
-define('FACTORY_NOTICES_307_LOADED', true);
+if (defined('FACTORY_NOTICES_308_LOADED')) return;
+define('FACTORY_NOTICES_308_LOADED', true);
 
-define('FACTORY_NOTICES_307_DIR', dirname(__FILE__));
-define('FACTORY_NOTICES_307_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_NOTICES_308_DIR', dirname(__FILE__));
+define('FACTORY_NOTICES_308_URL', plugins_url(null,  __FILE__ ));
 
 #comp merge
-require(FACTORY_NOTICES_307_DIR . '/ajax.php');
-require(FACTORY_NOTICES_307_DIR . '/notices.php');
+require(FACTORY_NOTICES_308_DIR . '/ajax.php');
+require(FACTORY_NOTICES_308_DIR . '/notices.php');
 #endcomp

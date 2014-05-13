@@ -13,7 +13,10 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
             "twitter-follow": '#1c95c3', 
             "google-plus": '#e26f61', 
             "google-share": '#ba5145', 
-            "linkedin-share": '#006080'
+            "linkedin-share": '#006080',
+            "vk-like": '#517296', 
+            "vk-subscribe": '#517296',
+            "ok-klass": '#f3800d'
         },
         
         // charts selected by default
@@ -203,7 +206,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 
                 options.legend.position = 'in';
                 options.areaOpacity = 0.1;
-                options.colors = [ window.onpsl.factoryBootstrap309.colors.primaryDark ];
+                options.colors = [ window.onpsl.factoryBootstrap312.colors.primaryDark ];
                 
                 dataTable.addColumn('number', 'Total social impact');
                 dataTable.addColumn({type:'string',role:'tooltip'});
@@ -252,7 +255,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 chartFunction = 'ColumnChart';
                 
                 options.legend.position = 'in';
-                options.colors = [window.onpsl.factoryBootstrap309.colors.primaryDark, '#333', '#ddd'];    
+                options.colors = [window.onpsl.factoryBootstrap312.colors.primaryDark, '#333', '#ddd'];    
                 
                 dataTable.addColumn('number', 'Unlocked by Buttons');
                 dataTable.addColumn('number', 'Unlocked by Timer');

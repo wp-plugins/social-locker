@@ -1,4 +1,5 @@
-<?php /**
+<?php #comp-page build: free, premium, trial-7
+/**
  * The file contains a page for showing the OnePress licensing manager.
  * 
  * @author Paul Kashtanoff <paul@byonepress.com>
@@ -15,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
+class OnpLicensing311_LicenseManagerPage extends FactoryPages310_AdminPage  {
     
     public $id = 'license-manager';
     public $purchasePrice = '$';
@@ -23,7 +24,7 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
     public function __construct( $plugin) { 
         parent::__construct($plugin);
         
-        if ( !$this->menuTitle ) $this->menuTitle = __('License Manager', 'onepress');
+        if ( !$this->menuTitle ) $this->menuTitle = __('License Manager', 'onp_licensing_311');
         
         // turns off the license manager if we use the embedded license key
         if ( $plugin->license && $plugin->license->isEmbedded() ) {
@@ -43,8 +44,8 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             'bootstrap.core'
             ), 'bootstrap' ); 
         
-        $this->styles->add(ONP_LICENSING_310_URL . '/assets/css/license-manager.css');
-        $this->scripts->add(ONP_LICENSING_310_URL . '/assets/js/license-manager.js');   
+        $this->styles->add(ONP_LICENSING_311_URL . '/assets/css/license-manager.css');
+        $this->scripts->add(ONP_LICENSING_311_URL . '/assets/js/license-manager.js');   
     }
 
     // ------------------------------------------------------------------
@@ -72,7 +73,7 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             $licenseKey = trim( $_POST['licensekey'] );
             
             if ( empty( $licenseKey ) ) {
-                $error = new WP_Error('FORM:KeyEmpty', __('Please enter your license key to continue.', 'sociallocker'));
+                $error = new WP_Error('FORM:KeyEmpty', __('Please enter your license key to continue.', 'onp_licensing_311'));
             } else {
                 $response = $licenseManager->activateKey( $licenseKey );
                 if ( is_wp_error( $response ) ) $error = $response;
@@ -111,7 +112,7 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
+        <div class="factory-bootstrap-312 factory-fontawesome-305 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
 
             <?php if ( $error ) { ?>
                 <?php $this->showError($error, $scope) ?>
@@ -119,24 +120,24 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                 <div class="license-message <?php echo $licenseData['Category'] ?>-license-message">
                     <?php if ($scope == 'delete-key') { ?>
                     <div class="alert alert-normal alert-warning-icon">
-                        <strong><?php _e('The key has been deleted successfully.', 'onepress') ?></strong>
-                        <p><?php _e('Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete deletion if it\'s needed.', 'onepress') ?></p>    
+                        <strong><?php _e('The key has been deleted successfully.', 'onp_licensing_311') ?></strong>
+                        <p><?php _e('Please check the <a href="plugins.php">Plugins</a> page and update the plugin to complete deletion if it\'s needed.', 'onp_licensing_311') ?></p>    
                     </div>
                     <?php } ?>          
 
                     <?php if ($scope == 'check-updates') { ?>
                     <div class="alert alert-normal">
-                        <strong><?php _e('The updates have been checked successfully.', 'onepress') ?></strong>
+                        <strong><?php _e('The updates have been checked successfully.', 'onp_licensing_311') ?></strong>
                         <p>
                         <?php if ( $updatesManager->isActualVersion() ) { ?>
-                            <?php _e('You use the actual version of the plugin.', 'onepress') ?>
+                            <?php _e('You use the actual version of the plugin.', 'onp_licensing_311') ?>
                         <?php } else { ?>
                             <?php if ( $updatesManager->needChangeAssembly() ) { ?>
                             <?php printf( 
-                                    __('You need to upgrade to the %1$s version. <a href="plugins.php">Click here</a> to get the update.', 'onepress'), $this->plugin->license->build  ) ?>
+                                    __('You need to upgrade to the %1$s version. <a href="plugins.php">Click here</a> to get the update.', 'onp_licensing_311'), $this->plugin->license->build  ) ?>
                             <?php } else { ?>
                             <?php printf( 
-                                    __('The %1$s version is available to download. <a href="plugins.php">Click here</a> to get the update.', 'onepress'),
+                                    __('The %1$s version is available to download. <a href="plugins.php">Click here</a> to get the update.', 'onp_licensing_311'),
                                     $updatesManager->lastCheck['Build'] . '-' . $updatesManager->lastCheck['Version'] ) ?>
                             <?php } ?>
                         <?php } ?>
@@ -150,12 +151,12 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                 <div class="license-details">
                     <?php ?>
                         <?php if ( $licenseManager->hasUpgrade() ) { ?>
-                        <a href="<?php onp_licensing_310_purchase_url( $this->plugin ) ?>" id="purchase-premium">
+                        <a href="<?php onp_licensing_311_purchase_url( $this->plugin ) ?>" id="purchase-premium">
                             <span class="btn btn-gold btn-inner-wrap">
                             <?php if ( !empty( $this->purchasePrice ) ) { ?>
-                            <i class="fa fa-star"></i> <?php printf( __('Upgrade to Premium for %1$s', 'onepress'), $this->purchasePrice ) ?> <i class="fa fa-star"></i></i>
+                            <i class="fa fa-star"></i> <?php printf( __('Upgrade to Premium for %1$s', 'onp_licensing_311'), $this->purchasePrice ) ?> <i class="fa fa-star"></i></i>
                             <?php } else { ?>
-                            <i class="fa fa-star"></i> <?php _e('Upgrade to Premium', 'onepress') ?> <i class="fa fa-star"></i></i>
+                            <i class="fa fa-star"></i> <?php _e('Upgrade to Premium', 'onp_licensing_311') ?> <i class="fa fa-star"></i></i>
                             <?php } ?>
                             </span>
                         </a>
@@ -163,14 +164,14 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                     <?php 
  ?>   
                     <?php if ( empty( $this->plugin->pluginTitle ) ) { ?>
-                    <p><?php _e('Your current license:', 'onepress') ?></p>
+                    <p><?php _e('Your current license:', 'onp_licensing_311') ?></p>
                     <?php } else { ?>
-                    <p><?php printf( __('Your current license for %1$s:', 'onepress'), $this->plugin->pluginTitle ) ?></p>   
+                    <p><?php printf( __('Your current license for %1$s:', 'onp_licensing_311'), $this->plugin->pluginTitle ) ?></p>   
                     <?php } ?>
                     <div class="license-details-block <?php echo $licenseData['Category'] ?>-details-block">
                         
                         <?php if ( $licenseManager->hasKey() ) { ?>
-                        <a href="<?php $this->actionUrl('deleteKey') ?>" class="btn btn-default btn-small license-delete-button"><i class="icon-remove-sign"></i> <?php _e('Delete Key', 'onepress') ?></a>
+                        <a href="<?php $this->actionUrl('deleteKey') ?>" class="btn btn-default btn-small license-delete-button"><i class="icon-remove-sign"></i> <?php _e('Delete Key', 'onp_licensing_311') ?></a>
                         <?php } ?>
                         
                         <h3><?php echo $licenseData['Title'] ?></h3>
@@ -182,10 +183,10 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                         <?php if ( $licenseManager->data['Build'] == 'premium' ) { ?>
                             <?php if ( $licenseManager->data['Category'] == 'free' ) { ?>
                                 <p>
-                                    <?php _e('Please, activate the plugin to get started. Enter a key you received with the plugin into the form below. Don\'t know where the key is? <a href="#" id="open-faq">Click here</a>.', 'onepress') ?>
+                                    <?php _e('Please, activate the plugin to get started. Enter a key you received with the plugin into the form below. Don\'t know where the key is? <a href="#" id="open-faq">Click here</a>.', 'onp_licensing_311') ?>
                                 </p>
                                 <p class="activate-trial-hint">
-                                    <?php printf( __('Also you can activate a <a href="%1$s">trial version</a> for 7 days to test the plugin on this site.', 'onepress'), $this->getActionUrl('activateTrial') ) ?>
+                                    <?php printf( __('Also you can activate a <a href="%1$s">trial version</a> for 7 days to test the plugin on this site.', 'onp_licensing_311'), $this->getActionUrl('activateTrial') ) ?>
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
@@ -195,8 +196,8 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                                 <p><?php _e('Public License is a GPLv2 compatible license allowing you to change and use this version of the plugin for free. Please keep in mind this license covers only free edition of the plugin. Premium versions are distributed with other type of a license.') ?>
                                 </p>
                                 <p class="activate-trial-hint">
-                                    <?php printf( __('You can <a href="%1$s">activate</a> a premium version for a trial period (7 days).', 'onepress'), $this->getActionUrl('activateTrial') ) ?>
-                                    <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onepress'), onp_licensing_310_get_purchase_url( $this->plugin ) ) ?>
+                                    <?php printf( __('You can <a href="%1$s">activate</a> a premium version for a trial period (7 days).', 'onp_licensing_311'), $this->getActionUrl('activateTrial') ) ?>
+                                    <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onp_licensing_311'), onp_licensing_311_get_purchase_url( $this->plugin ) ) ?>
                                 </p>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
@@ -208,47 +209,47 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                             <tr>
                                 <td class="license-param license-param-domain">
                                     <span class="license-value"><?php echo $this->domain ?></span>
-                                    <span class="license-value-name"><?php _e('domain', 'onepress') ?></span>
+                                    <span class="license-value-name"><?php _e('domain', 'onp_licensing_311') ?></span>
                                 </td>   
                                 <td class="license-param license-param-version">
-                                    <span class="license-value"><?php echo $this->plugin->version ?> <small><?php _e('version', 'onepress') ?></small></span>
+                                    <span class="license-value"><?php echo $this->plugin->version ?> <small><?php _e('version', 'onp_licensing_311') ?></small></span>
                                     <?php if ( $updatesManager->isVersionChecked() ) { ?>
                                         <?php if ( $updatesManager->isActualVersion() ) { ?>
-                                            <span class="license-value-name"><?php _e('up-to-date', 'onepress') ?></span>
+                                            <span class="license-value-name"><?php _e('up-to-date', 'onp_licensing_311') ?></span>
                                         <?php } else { ?>
                                             <?php if ( $updatesManager->needChangeAssembly() ) { ?>
                                             <span class="license-value-name">
                                                 <a href="plugins.php" class="link-to-upgrade">
-                                                <?php printf( __('upgrade to %s', 'onepress'), $this->plugin->license->build ) ?>
+                                                <?php printf( __('upgrade to %s', 'onp_licensing_311'), $this->plugin->license->build ) ?>
                                                 </a>
                                             </span>    
                                             <?php } else { ?>
                                             <span class="license-value-name">
                                                 <a href="plugins.php" class="link-to-upgrade">
-                                                <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> <?php _e('available', 'onepress') ?>
+                                                <?php echo $updatesManager->lastCheck['Build'] ?>-<?php echo $updatesManager->lastCheck['Version'] ?> <?php _e('available', 'onp_licensing_311') ?>
                                                 </a>
                                             </span>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } else { ?>
-                                    <span class="license-value-name"><span><?php _e('up-to-date', 'onepress') ?></span></span>
+                                    <span class="license-value-name"><span><?php _e('up-to-date', 'onp_licensing_311') ?></span></span>
                                     <?php } ?>
                                 </td>  
                                 <td class="license-param license-param-days">
                                     <span class="license-value"><?php echo $licenseManager->data['Build'] ?></span>                                   
-                                    <span class="license-value-name"><?php _e('assembly', 'onepress') ?></span>
+                                    <span class="license-value-name"><?php _e('assembly', 'onp_licensing_311') ?></span>
                                 </td>
                                 <td class="license-param license-param-days">
                                     <?php if ( $licenseManager->isExpired() ) {?>
-                                        <span class="license-value"><?php _e('EXPIRED!', 'onepress') ?></span>
-                                        <span class="license-value-name"><?php _e('please update the key', 'onepress') ?></span>
+                                        <span class="license-value"><?php _e('EXPIRED!', 'onp_licensing_311') ?></span>
+                                        <span class="license-value-name"><?php _e('please update the key', 'onp_licensing_311') ?></span>
                                     <?php } else { ?>  
                                         <span class="license-value">                               
-                                            <?php if ( $isInfinity ) {?><?php _e('infinity', 'onepress') ?><?php } else { ?>
-                                                <?php echo $remained; ?><small> <?php _e('day(s)', 'onepress') ?></small>
+                                            <?php if ( $isInfinity ) {?><?php _e('infinity', 'onp_licensing_311') ?><?php } else { ?>
+                                                <?php echo $remained; ?><small> <?php _e('day(s)', 'onp_licensing_311') ?></small>
                                             <?php } ?>
                                         </span>
-                                        <span class="license-value-name"><?php _e('remained', 'onepress') ?></span>
+                                        <span class="license-value-name"><?php _e('remained', 'onp_licensing_311') ?></span>
                                     <?php } ?>    
                                 </td>
                             </tr>
@@ -257,15 +258,15 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                 </div>
                 <div class="license-input">
                     <form action="<?php $this->actionUrl("index") ?>" method="post">
-                        <p><?php _e('Have a key to activate the premium version? Paste it here:', 'onepress') ?><p>
+                        <p><?php _e('Have a key to activate the premium version? Paste it here:', 'onp_licensing_311') ?><p>
                             <a href="#" class="btn btn-default" id="license-submit">
-                                <?php _e('Submit Key', 'onepress') ?>
+                                <?php _e('Submit Key', 'onp_licensing_311') ?>
                             </a>  
                         <div class="license-key-wrap">
                             <input type="text" id="license-key" name="licensekey" value="<?php echo $licenseKey ?>" class="form-control" />
                         </div>
                         <p style="margin-top: 10px;">
-                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onepress'), onp_licensing_310_get_purchase_url( $this->plugin ) ) ?>
+                            <?php printf( __('<a href="%1$s">Lean more</a> about the premium version and get the license key to activate it now!', 'onp_licensing_311'), onp_licensing_311_get_purchase_url( $this->plugin ) ) ?>
                         </p>
                     </form>
                 </div>
@@ -274,60 +275,67 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                 <?php if ( $licenseManager->data['Build'] !== 'free' ) { ?>
                     <?php if ( !$updatesManager->isVersionChecked() ) { ?>
                         <?php if ( isset( $updatesManager->lastCheck['Checked'] ) ) { ?>
-                            <?php printf( __('The upadtes were checked at <strong>%1$s</strong>.', 'onepress'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ) ?>
+                            <?php printf( __('The upadtes were checked at <strong>%1$s</strong>.', 'onp_licensing_311'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ) ?>
                         <?php } else { ?>
-                            <?php _e('The updates were checked <strong>never</strong>.', 'onepress') ?>
+                            <?php _e('The updates were checked <strong>never</strong>.', 'onp_licensing_311') ?>
                         <?php } ?>
                     <?php } else { ?>
                         <?php if ( $updatesManager->isActualVersion() ) { ?>
-                            <?php printf( __('The updates were checked at <strong>%1$s</strong>, you use the up-to-date version. ', 'onepress'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ) ?>
+                            <?php printf( __('The updates were checked at <strong>%1$s</strong>, you use the up-to-date version. ', 'onp_licensing_311'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ) ) ?>
                         <?php } else { ?>
-                            <?php printf( __('The updates were checked at <strong>%1$s</strong>, <strong>%2$s</strong>. ', 'onepress'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ), $updatesManager->lastCheck['Version'] ) ?>
+                            <?php printf( __('The updates were checked at <strong>%1$s</strong>, <strong>%2$s</strong>. ', 'onp_licensing_311'), date( 'g:i a, j M y', $updatesManager->lastCheck['Checked'] ), $updatesManager->lastCheck['Version'] ) ?>
                         <?php } ?>
                     <?php } ?>
-                    <?php printf( __('Click <a href="%1$s">here</a> to check updates manually.', 'onepress'), $this->getActionUrl('checkUpdates') ) ?>
+                    <?php printf( __('Click <a href="%1$s">here</a> to check updates manually.', 'onp_licensing_311'), $this->getActionUrl('checkUpdates') ) ?>
                 <?php } ?>
-                <span class="gray-link">[ <a href="<?php echo $this->getActionUrl('internalKeys') ?>"><?php _e('internal keys', 'onepress') ?></a> ]</span>       
+                <span class="gray-link">[ <a href="<?php echo $this->getActionUrl('internalKeys') ?>"><?php _e('internal keys', 'onp_licensing_311') ?></a> ]</span>       
             </div>
+            
+            <?php ?>
+            
             <div id="faq-block">
                 <ul>
                     <li>
                         <a class="faq-header" id="how-to-find-the-key">
-                            <?php _e('I purchased the plugin, but I cannot find the license key. Where is it?', 'onepress') ?>
+                            <?php _e('I purchased the plugin, but I cannot find the license key. Where is it?', 'onp_licensing_311') ?>
                         </a>
                         <div>
                             <p>
-                                <?php _e('The premium version of the plugin is sold on <a href="http://onepress-media.com/portfolio" target="_blank">CodeCanyon</a>.', 'onepress') ?>
-                                <?php _e('After purchasing visit your Downloads section and click Licence Certificate.', 'onepress') ?>
-                                <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onepress') ?>
+                                <?php _e('The premium version of the plugin is sold on <a href="http://onepress-media.com/portfolio" target="_blank">CodeCanyon</a>.', 'onp_licensing_311') ?>
+                                <?php _e('After purchasing visit your Downloads section and click Licence Certificate.', 'onp_licensing_311') ?>
+                                <?php _e('Find Item Purchase Code in the text document and paste it into the form above.', 'onp_licensing_311') ?>
                             </p>
                             <p style="text-align: center;">
-                                <img src="<?php echo ONP_LICENSING_310_URL . '/assets/img/how-to-find-key.png' ?>" />
+                                <img src="<?php echo ONP_LICENSING_311_URL . '/assets/img/how-to-find-key.png' ?>" />
                             </p>
                         </div>
                     </li>
                     <li>
                         <a class="faq-header">
-                            <?php _e('The plugin I purchased comes with the bonus. Where I can find a key to activate the bonus?', 'onepress') ?>
+                            <?php _e('The plugin I purchased comes with the bonus. Where I can find a key to activate the bonus?', 'onp_licensing_311') ?>
                         </a>
                         <div>
                             <p>
-                                <?php _e('You can activate the bonus plugin via the key you got for the principal plugin.', 'onepress') ?>
+                                <?php _e('You can activate the bonus plugin via the key you got for the principal plugin.', 'onp_licensing_311') ?>
                             </p>
                         </div>
                     </li>
                     <li>
                         <a class="faq-header">
-                            <?php _e('Is it possible to get the premium version without the License Manager?', 'onepress') ?>
+                            <?php _e('Is it possible to get the premium version without the License Manager?', 'onp_licensing_311') ?>
                         </a>
                         <div>
                             <p>
-                                <?php _e('Yes, it\'s possible if you want to distribute the plugin as a part of your product. Please contact us to discuss details: support@onepress-media.com', 'onepress') ?>
+                                <?php _e('Yes, it\'s possible if you want to distribute the plugin as a part of your product. Please contact us to discuss details: support@onepress-media.com', 'onp_licensing_311') ?>
                             </p>
                         </div>
                     </li>    
                 </ul>
             </div>
+            
+            <?php 
+ ?>
+
         </div>
         <?php
     }
@@ -346,24 +354,24 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         $email = isset( $_GET['email'] ) ? $_REQUEST['email'] : null;
                 
         $urlToRedirect = apply_filters('onp_license_manager_success_redirect_' . $this->plugin->pluginName, $this->getActionUrl('index') );
-        $btnText = apply_filters('onp_license_manager_success_button_' . $this->plugin->pluginName, __('Okay, I got it', 'sociallocker') );
+        $btnText = apply_filters('onp_license_manager_success_button_' . $this->plugin->pluginName, __('Okay, I got it', 'onp_licensing_311') );
         
         ?>
-        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="finish">
+        <div class="factory-bootstrap-312 factory-fontawesome-305 onp-page-wrap onp-single-block" id="finish">
 
             <div class='onp-header'>  
                 <?php if ( $ref == 'trial' || $ref == 'manual-trial-activation' ) { ?>
-                    <h4><?php _e('Congratulations! you\'ve successfully activated a trial version', 'sociallocker') ?></h4>
+                    <h4><?php _e('Congratulations! you\'ve successfully activated a trial version', 'onp_licensing_311') ?></h4>
                     <p>
-                        <?php printf( __('Thank you for using %s. The plugin is ready.', 'sociallocker'), $this->plugin->options['title'] ) ?>
+                        <?php printf( __('Thank you for using %s. The plugin is ready.', 'onp_licensing_311'), $this->plugin->options['title'] ) ?>
                     </p>
                 <?php } elseif ( $ref == 'binding' ) { ?>    
-                    <h4><?php _e('Good job!', 'sociallocker') ?></h4>
-                    <p><?php _e('The plugin is ready to use.', 'sociallocker') ?></p>
+                    <h4><?php _e('Good job!', 'onp_licensing_311') ?></h4>
+                    <p><?php _e('The plugin is ready to use.', 'onp_licensing_311') ?></p>
                 <?php } else { ?>
-                    <h4><?php _e('Congratulations! you\'ve successfully activated your key', 'sociallocker') ?></h4>
+                    <h4><?php _e('Congratulations! you\'ve successfully activated your key', 'onp_licensing_311') ?></h4>
                     <?php if ( $ref !== 'manual-key-activation' ) { ?>
-                        <p><?php _e('You can transfer your key to another site at any time via your customer account.', 'sociallocker') ?></p>
+                        <p><?php _e('You can transfer your key to another site at any time via your customer account.', 'onp_licensing_311') ?></p>
                     <?php } ?>
                 <?php } ?>
             </div>
@@ -371,25 +379,25 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             <div class="onp-container">
                 <?php if ( $ref == 'trial' || $ref == 'manual-trial-activation' ) { ?>
                     <p>
-                        <?php _e('Your trial key will expire in ', 'sociallocker') ?>
+                        <?php _e('Your trial key will expire in ', 'onp_licensing_311') ?>
                         <?php
                             $licenseData = $licenseManager->data;
                             $remained = round( ( $licenseData['Expired'] - time() ) / (60 * 60 * 24), 2 );
                         ?>
-                        <?php echo $remained; ?> <?php _e('day(s).', 'onepress') ?>
+                        <?php echo $remained; ?> <?php _e('day(s).', 'onp_licensing_311') ?>
                     </p>
                 <?php } elseif ( $ref == 'binding' ) { ?>  
-                    <p><?php printf( __('The key has been bound to your account (<strong>%s</strong>).', 'sociallocker'), $email ) ?></p>
+                    <p><?php printf( __('The key has been bound to your account (<strong>%s</strong>).', 'onp_licensing_311'), $email ) ?></p>
                     <p>
-                        <?php _e('You can log in to your account at any time to manage your key by using the login details sent you via email earlier:', 'sociallocker') ?>
+                        <?php _e('You can log in to your account at any time to manage your key by using the login details sent you via email earlier:', 'onp_licensing_311') ?>
                         <a href="<?php echo $this->plugin->options['account'] ?>" target="_blank"><?php echo $this->plugin->options['account'] ?></a>
                     </p>
                 <?php } else { ?>
-                    <p><?php _e('Thank you for activating your license key.', 'sociallocker') ?></p>
+                    <p><?php _e('Thank you for activating your license key.', 'onp_licensing_311') ?></p>
                 <?php } ?>
                 <?php if ( $updatesManager->needChangeAssembly() ) { ?>
                     <p style="background-color: #fafafa; padding: 10px;">
-                        <?php _e('Please move to the Plugins page and download the update to complete activation.', 'onepress') ?>
+                        <?php _e('Please move to the Plugins page and download the update to complete activation.', 'onp_licensing_311') ?>
                     </p>
                     <div class='onp-actions'>
                         <a href="plugins.php" class="btn btn-lg btn-primary btn-large">Open the Plugins page <i class="fa fa-cloud-download"></i></a>
@@ -435,7 +443,7 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             $subscribe = isset( $_REQUEST['subscribe'] ) ? true: false;
 
             if ( empty($email) ) {
-                $error = new WP_Error('FORM:EmailEmpty', __('Please enter your email adress to create a customer account.', 'sociallocker'));
+                $error = new WP_Error('FORM:EmailEmpty', __('Please enter your email adress to create a customer account.', 'onp_licensing_311'));
             } else {
                 $result = $licenseManager->createAccount( $email, $subscribe );    
                 if ( is_wp_error( $result ) ) $error = $result;
@@ -468,16 +476,16 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
  
         ?>
         <form method="POST">
-        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="create-account">
+        <div class="factory-bootstrap-312 factory-fontawesome-305 onp-page-wrap onp-single-block" id="create-account">
             
             <?php if ( $ref == 'key-activation' ) { ?>
             <div class='onp-header'>  
-                <h4><?php _e('Congratulations! you\'ve successfully activated your key', 'sociallocker') ?></h4>
-                <p><?php _e('You can start using the plugin right now, but we recommend you to make one more step ...', 'sociallocker' ) ?></p>
+                <h4><?php _e('Congratulations! you\'ve successfully activated your key', 'onp_licensing_311') ?></h4>
+                <p><?php _e('You can start using the plugin right now, but we recommend you to make one more step ...', 'onepress' ) ?></p>
             </div>
             <?php } else { ?>
             <div class='onp-header'>  
-                <h4><?php _e('Your license key is not bound to your email address!', 'sociallocker') ?></h4>
+                <h4><?php _e('Your license key is not bound to your email address!', 'onp_licensing_311') ?></h4>
             </div>
             <?php } ?>   
             
@@ -486,8 +494,8 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             <?php if ( $ref == 'cancel-account' ) { ?>
             <div class="license-message">
               <div class="alert alert-success">
-                  <h4 class="alert-heading"><?php _e('The incorrect account has been canceled successfully', 'onepress') ?></h4>
-                  <p><?php _e('Please be careful when typing your email address.', 'onepress') ?></p>
+                  <h4 class="alert-heading"><?php _e('The incorrect account has been canceled successfully', 'onp_licensing_311') ?></h4>
+                  <p><?php _e('Please be careful when typing your email address.', 'onp_licensing_311') ?></p>
               </div>    
             </div>
             <?php } ?>
@@ -495,17 +503,17 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             <div class="onp-container">
 
                 <div class="onp-container-header">
-                    <h4><?php _e('It\'s time to protect your license key', 'sociallocker' ) ?></h4>
+                    <h4><?php _e('It\'s time to protect your license key', 'onepress' ) ?></h4>
                     <div class="onp-key-info">
                         <i class="fa fa-key"></i> <?php echo $key ?> (<i><?php echo $pluginName ?></i>)
                     </div>
                 </div>
 
-                <p><?php _e('Enter your email address to bind the license key. We will create a customer account for you by using your email address. After that, you will be able to:', 'sociallocker' ) ?></p>
+                <p><?php _e('Enter your email address to bind the license key. We will create a customer account for you by using your email address. After that, you will be able to:', 'onepress' ) ?></p>
                 <ul class='onp-benefits'>
-                    <li><?php _e('View where your key is used.', 'sociallocker' ) ?></li>
-                    <li><?php _e('Remove the key for sites where it\'s activated.', 'sociallocker' ) ?></li> 
-                    <li><?php _e('Transfer the key to another sites.', 'sociallocker' ) ?></li>                     
+                    <li><?php _e('View where your key is used.', 'onepress' ) ?></li>
+                    <li><?php _e('Remove the key for sites where it\'s activated.', 'onepress' ) ?></li> 
+                    <li><?php _e('Transfer the key to another sites.', 'onepress' ) ?></li>                     
                 </ul>
                 
                 <div class='onp-form'>
@@ -513,14 +521,14 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
                       <div class="checkbox">
                           <label>
                               <input type="checkbox" name='subscribe' id='subscribe' checked='checked' value="1" /> 
-                              <?php echo sprintf( __('I want to get news regarding the <strong>%s</strong> plugin and exclusive offers from OnePress (a few emails a month).', 'sociallocker'), $this->plugin->pluginTitle ) ?>
+                              <?php echo sprintf( __('I want to get news regarding the <strong>%s</strong> plugin and exclusive offers from OnePress (a few emails a month).', 'onp_licensing_311'), $this->plugin->pluginTitle ) ?>
                           </label>
                       </div>
                   </div>
                 
                 <div class='onp-actions'>
-                    <input type="submit" class='btn btn-lg btn-large btn-primary' name="submit" value='Protect & Create Account' />
-                    <?php _e('(The login details will be sent via email)', 'sociallocker' ) ?>
+                    <input type="submit" class='btn btn-lg btn-large btn-primary' name="submit" value='<?php _e('Protect & Create Account', 'onepress' ) ?>' />
+                    <?php _e('(The login details will be sent via email)', 'onepress' ) ?>
                 </div>
             </div>
         </div>
@@ -543,7 +551,7 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         if ( isset( $_POST['submit'] ) ) {
             
             if ( empty($email) ) {
-                $error = new WP_Error('FORM:EmailEmpty', __('Please enter your email adress.', 'sociallocker'));
+                $error = new WP_Error('FORM:EmailEmpty', __('Please enter your email adress.', 'onp_licensing_311'));
             } else {
                 $result = $licenseManager->bindKey( $email );    
                 if ( is_wp_error( $result ) ) $error = $result;
@@ -565,22 +573,22 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         
         ?>
         <form method="POST">
-        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="account-already-created">
+        <div class="factory-bootstrap-312 factory-fontawesome-305 onp-page-wrap onp-single-block" id="account-already-created">
             
             <div class='onp-header'>
-                <h4><?php _e('A customer with the specified email already registered. Are you sure to bind your key to this email?', 'sociallocker') ?></h4>
+                <h4><?php _e('A customer with the specified email already registered. Are you sure to bind your key to this email?', 'onp_licensing_311') ?></h4>
             </div>
             
             <?php $this->showError( $error ); ?>
     
             <div class="onp-container">
-                <p><?php _e( 'On all probability, you created a customer account in past to bind another key. If  it\'s your email, no problem, just click the confirmation button below.', 'sociallocker') ?><p>
-                <p><?php _e( 'If it\'s not email (you entered  your email incorrectly), return back.', 'sociallocker') ?>
-                <p><?php _e('Email:', 'sociallocker') ?> <strong style='font-size: 16px;'><?php echo $email ?></strong>
-                <p><?php printf( __('You can try to log in via this email <a href="%s" target="_blank">here</a>.', 'sociallocker'), $this->plugin->options['account'] ) ?></p>
+                <p><?php _e( 'On all probability, you created a customer account in past to bind another key. If  it\'s your email, no problem, just click the confirmation button below.', 'onp_licensing_311') ?><p>
+                <p><?php _e( 'If it\'s not email (you entered  your email incorrectly), return back.', 'onp_licensing_311') ?>
+                <p><?php _e('Email:', 'onp_licensing_311') ?> <strong style='font-size: 16px;'><?php echo $email ?></strong>
+                <p><?php printf( __('You can try to log in via this email <a href="%s" target="_blank">here</a>.', 'onp_licensing_311'), $this->plugin->options['account'] ) ?></p>
                 <div class='onp-actions'>
-                    <input type="submit" class='btn btn-lg btn-large btn-primary' name="submit" value='Yes, this is my email' />
-                    <a href='<?php $this->actionUrl('createAccount', array('email' => $email )) ?>' class='btn btn-lg btn-large btn-default'><?php _e('No, return back', 'sociallocker') ?></a>
+                    <input type="submit" class='btn btn-lg btn-large btn-primary' name="submit" value='<?php _e('Yes, this is my email', 'onp_licensing_311') ?>' />
+                    <a href='<?php $this->actionUrl('createAccount', array('email' => $email )) ?>' class='btn btn-lg btn-large btn-default'><?php _e('No, return back', 'onp_licensing_311') ?></a>
                 </div>
             </div>
             
@@ -603,11 +611,11 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         if ( $code && $message ) $error = new WP_Error($code, base64_decode($message));
         
         ?>
-        <div class="factory-bootstrap-309 factory-fontawesome-306 onp-page-wrap onp-single-block" id="account-created">
+        <div class="factory-bootstrap-312 factory-fontawesome-305 onp-page-wrap onp-single-block" id="account-created">
 
             <div class='onp-header'>
-                <h4><?php _e('Your customer account has been successfully created!', 'sociallocker') ?></h4>
-                <p><?php _e('We have sent the login details and the confirmation link to your email address.', 'sociallocker' ) ?></p>
+                <h4><?php _e('Your customer account has been successfully created!', 'onp_licensing_311') ?></h4>
+                <p><?php _e('We have sent the login details and the confirmation link to your email address.', 'onepress' ) ?></p>
             </div>
             
             <?php $this->showError( $error ); ?>
@@ -615,24 +623,24 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             <div class="onp-container">
 
                 <p>
-                    <?php _e('Please perform these simple final steps:', 'sociallocker') ?>
+                    <?php _e('Please perform these simple final steps:', 'onp_licensing_311') ?>
                 </p>
                 
                 <div class="onp-steps">
                     <p class="onp-step">
                         <strong class="onp-num">1</strong>
-                        <span class="onp-desc"><?php printf( __('Visit your email box <strong>%s</strong>.', 'sociallocker'), $email ) ?></span>
+                        <span class="onp-desc"><?php printf( __('Visit your email box <strong>%s</strong>.', 'onp_licensing_311'), $email ) ?></span>
                     </p>
                     <p class="onp-step">
                         <strong class="onp-num">2</strong>
-                        <span class="onp-desc"><?php printf( __('Confirm your email address by clicking the link inside the email we sent.', 'sociallocker'), $email ) ?></span>
+                        <span class="onp-desc"><?php printf( __('Confirm your email address by clicking the link inside the email we sent.', 'onp_licensing_311'), $email ) ?></span>
                     </p>
                 </div>
                 
                  <div class='onp-actions'>
-                     <a href="<?php $this->actionUrl('finish', array('onp_ref' => 'binding', 'email' => rawurlencode( $email ))) ?>" class='btn btn-lg btn-large btn-primary'><?php _e('Okay, done', 'sociallocker') ?></a>
+                     <a href="<?php $this->actionUrl('finish', array('onp_ref' => 'binding', 'email' => rawurlencode( $email ))) ?>" class='btn btn-lg btn-large btn-primary'><?php _e('Okay, done', 'onp_licensing_311') ?></a>
                     <a class="onp-cancel" href="<?php $this->actionUrl('cancelAccount', array('email' => rawurlencode( $email ), 'cancelCode' => $cancelCode, 'confirmationId' => $confirmationId) ) ?>">
-                        <i class="fa fa-trash-o"></i> <?php _e("I've mistaken. It's not my email address.", 'sociallocker') ?>
+                        <i class="fa fa-trash-o"></i> <?php _e("I've mistaken. It's not my email address.", 'onp_licensing_311') ?>
                     </a>
                 </div>
             </div>
@@ -688,39 +696,39 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             <div class="license-message">
                 <?php if ( $errorSource == 'API' ) { ?>
                 <div class="alert alert-danger">
-                    <h4 class="alert-heading"><?php _e('The request has been rejected by the Licensing Server', 'onepress') ?></h4>
+                    <h4 class="alert-heading"><?php _e('The request has been rejected by the Licensing Server', 'onp_licensing_311') ?></h4>
                     <p><?php echo $error->get_error_message() ?></p>
                 </div>    
                 <?php } elseif ( $errorSource == 'HTTP' ) { ?>
                 <div class="alert alert-danger">
-                    <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server', 'onepress') ?></h4>
+                    <h4 class="alert-heading"><?php _e('Unable to connect to the Licensing Server', 'onp_licensing_311') ?></h4>
                     <p><?php echo $error->get_error_message() ?></p>
                     <p>
                     <?php if ($action == 'submit-key' ) {      
                           printf( 
-                              __('Please <a href="%s">click here</a> for trying to activate your key manualy.', 'onepress'),
+                              __('Please <a href="%s">click here</a> for trying to activate your key manualy.', 'onp_licensing_311'),
                               $this->getActionUrl('activateKeyManualy', array('key' => $_POST['licensekey'] ))
                           );
                       } elseif ($action == 'trial') {
                           printf( 
-                              __('Please <a href="%s">click here</a> for trying to activate your trial manualy.', 'onepress'),
+                              __('Please <a href="%s">click here</a> for trying to activate your trial manualy.', 'onp_licensing_311'),
                               $this->getActionUrl('activateTrialManualy') 
                           );
                       } elseif ($action == 'delete-key') {
                           printf( 
-                              __('Please <a href="%s">click here</a> for trying to delete key manualy.', 'onepress'),
+                              __('Please <a href="%s">click here</a> for trying to delete key manualy.', 'onp_licensing_311'),
                               $this->getActionUrl('deleteKeyManualy')
                           );
                       } else {
                           ?>
-                        <i><?php _e('Please contact OnePress support if you need to perform this action.', 'onepress') ?></i> 
+                        <i><?php _e('Please contact OnePress support if you need to perform this action.', 'onp_licensing_311') ?></i> 
                           <?php
                       } ?>
                       </p>
                 </div>
                 <?php } else { ?>
                 <div class="alert alert-danger">
-                    <h4 class="alert-heading"><?php _e('Unable to apply the specified key', 'onepress') ?></h4>
+                    <h4 class="alert-heading"><?php _e('Unable to apply the specified key', 'onp_licensing_311') ?></h4>
                     <p><?php echo $error->get_error_message() ?></p>
                 </div>  
                 <?php } ?>
@@ -790,22 +798,22 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-309 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-312 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateKeyManualy') ?>" method="post">
             <div class="onp-container">
-                <h2 style="margin-bottom: 10px;"><?php _e('Key Activation', 'onepress') ?></h2>
-                <p style="margin-top: 0px;"><?php _e('Please perform the following steps to activate the plugin manually.', 'onepress') ?></p>
+                <h2 style="margin-bottom: 10px;"><?php _e('Key Activation', 'onp_licensing_311') ?></h2>
+                <p style="margin-top: 0px;"><?php _e('Please perform the following steps to activate the plugin manually.', 'onp_licensing_311') ?></p>
                 <ul>
                     <li>
-                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to get an activation code.', 'onepress'), $this->requestUrl ) ?>
+                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to get an activation code.', 'onp_licensing_311'), $this->requestUrl ) ?>
                     </li>
                     <li>
-                        2. <?php _e('Copy the code and paste it below, then submit the form:', 'onepress') ?>
-                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Activation Code', 'onepress') ?>"></textarea>
+                        2. <?php _e('Copy the code and paste it below, then submit the form:', 'onp_licensing_311') ?>
+                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Activation Code', 'onp_licensing_311') ?>"></textarea>
                     </li>
                 </ul>
                 <a href="#" class="btn btn-primary" id="manual-trial-submit">
-                    <i class="icon-ok-sign icon-white"></i> <?php _e('Verify Code', 'sociallocker') ?>
+                    <i class="icon-ok-sign icon-white"></i> <?php _e('Verify Code', 'onp_licensing_311') ?>
                 </a>  
             </div>
             </form>
@@ -833,18 +841,18 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-309 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-312 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('deleteKeyManualy') ?>" method="post">
             <div class="onp-container">
-                <h2 style="margin-bottom: 10px;"><?php _e('Key Deactivation', 'onepress') ?></h2>
-                <p style="margin-top: 0px;"><?php _e('Please perfome the following steps to activate the plugin manualy.', 'onepress') ?></p>
+                <h2 style="margin-bottom: 10px;"><?php _e('Key Deactivation', 'onp_licensing_311') ?></h2>
+                <p style="margin-top: 0px;"><?php _e('Please perfome the following steps to activate the plugin manualy.', 'onp_licensing_311') ?></p>
                 <ul>
                     <li>
-                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the deactivation request.', 'onepress'), $this->requestUrl ) ?>
+                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the deactivation request.', 'onp_licensing_311'), $this->requestUrl ) ?>
                     </li>
                     <li>
-                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
-                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onepress') ?>"></textarea>
+                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onp_licensing_311') ?>
+                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onp_licensing_311') ?>"></textarea>
                     </li>
                 </ul>
                 <a href="#" class="btn btn-primary" id="manual-trial-submit">
@@ -874,18 +882,18 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-309 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-312 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateTrialManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;">Trial Activation</h2>
                 <p style="margin-top: 0px;">Please perfome the following steps to activate the plugin manualy.</p>
                 <ul>
                     <li>
-                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the activation request.', 'onepress'), $this->requestUrl ) ?>
+                        1. <?php printf( __('<a href="%s" target="_blank">Click here</a> to send the activation request.', 'onp_licensing_311'), $this->requestUrl ) ?>
                     </li>
                     <li>
-                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onepress') ?>
-                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onepress') ?>"></textarea>
+                        2. <?php _e('Copy the code from the field on the site and paste it below, then submit the form:', 'onp_licensing_311') ?>
+                        <textarea name="response" class="license-reponse-code" placeholder="<?php _e('Response code from the Licensing Server', 'onp_licensing_311') ?>"></textarea>
                     </li>
                 </ul>
                 <a href="#" class="btn btn-primary" id="manual-trial-submit">
@@ -929,7 +937,7 @@ class OnpLicensing310_LicenseManagerPage extends FactoryPages308_AdminPage  {
             <h2>License Manager Internal Keys</h2>
             <p style="margin-top: 0px; margin-bottom: 30px;">You actually don't need to change something here. Please change the values below only if OnePress supports ask you to do it.</p>
             
-            <div class="factory-bootstrap-309" style="max-width: 800px;">
+            <div class="factory-bootstrap-312" style="max-width: 800px;">
                 <form method="post" class="form-horizontal" action="<?php echo $this->actionUrl('internalKeys') ?>">
 
                 <div>

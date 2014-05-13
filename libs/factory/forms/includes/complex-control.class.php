@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms308_ComplexControl extends FactoryForms308_Control {
+abstract class FactoryForms311_ComplexControl extends FactoryForms311_Control {
     
     /**
      * Is this element a complex control?
@@ -28,7 +28,7 @@ abstract class FactoryForms308_ComplexControl extends FactoryForms308_Control {
      * Contains a set of internal controls.
      * 
      * @since 1.0.0
-     * @var FactoryForms308_Control[]
+     * @var FactoryForms311_Control[]
      */
     public $innerControls = array();
     
@@ -36,7 +36,7 @@ abstract class FactoryForms308_ComplexControl extends FactoryForms308_Control {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms308_ValueProvider $provider
+     * @param IFactoryForms311_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -67,19 +67,28 @@ abstract class FactoryForms308_ComplexControl extends FactoryForms308_Control {
         
         return $names;
     }
-
+    
     /**
-     * Returns a value of the control got after submitting a form.
+     * Returns an array of value to save received after submission of a form.
      * 
-     * @since 1.0.0
-     * @return mixed;
+     * @see getSubmitValue
+     * 
+     * The array has the following format:
+     * array(
+     *    'control-name1' => 'value1',
+     *    'control-name2__sub-name1' => 'value2'
+     *    'control-name2__sub-name2' => 'value3'
+     * )
+     * 
+     * @since 3.1.0
+     * @return mixed[]
      */
-    public function getSubmitValue() {
-        
+    public function getValuesToSave() {
         $values = array();
+        
         foreach( $this->innerControls as $control ) {
-            $innerValues = $control->getSubmitValue();
-            if ( is_array($innerValues) ) $values = array_merge($values, $innerValues );
+            $innerValues = $control->getValuesToSave();
+            if ( is_array($innerValues) ) $values = array_merge( $values, $innerValues );
             else $values[] = $innerValues;
         }
         

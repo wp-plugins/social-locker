@@ -12,7 +12,7 @@
 /**
  * A form layout based on Twitter Bootstrap 3
  */
-class FactoryForms308_Bootstrap3FormLayout extends FactoryForms308_FormLayout {
+class FactoryForms311_Bootstrap3FormLayout extends FactoryForms311_FormLayout {
     
     public $name = 'default';
     
@@ -21,7 +21,7 @@ class FactoryForms308_Bootstrap3FormLayout extends FactoryForms308_FormLayout {
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms308_Form $form A parent form.
+     * @param FactoryForms311_Form $form A parent form.
      */
     public function __construct($options, $form) {
         parent::__construct($options, $form);

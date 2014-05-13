@@ -3,7 +3,7 @@
  * Url Control
  * 
  * Main options:
- *  @see FactoryForms308_TextboxControl
+ *  @see FactoryForms311_TextboxControl
  * 
  * @author Paul Kashtanoff <paul@byonepress.com>
  * @copyright (c) 2013, OnePress Ltd
@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms308_UrlControl extends FactoryForms308_TextboxControl 
+class FactoryForms311_UrlControl extends FactoryForms311_TextboxControl 
 {
     public $type = 'url';
     
@@ -22,8 +22,8 @@ class FactoryForms308_UrlControl extends FactoryForms308_TextboxControl
      * @since 1.0.0
      * @return string
      */
-    public function getSubmitValue() {
-        $value = parent::getSubmitValue();
+    public function getSubmitValue( $name, $subName  ) {
+        $value = parent::getSubmitValue( $name, $subName );
         if ( !empty( $value ) && substr($value, 0, 4) != 'http' ) $value = 'http://' . $value;
         return $value;
     }

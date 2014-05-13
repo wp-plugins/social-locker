@@ -12,12 +12,17 @@
 /**
  * Common Settings
  */
-class OnpSL_StatisticsPage extends FactoryPages308_AdminPage  {
+class OnpSL_StatisticsPage extends FactoryPages310_AdminPage  {
  
     public $menuTitle = 'Usage Statistics';
     public $menuPostType = 'social-locker';
     
     public $id = "statistics";
+    
+    public function __construct(Factory310_Plugin $plugin) {    
+        $this->menuTitle = __('Usage Statistics', 'sociallocker');
+        parent::__construct($plugin);
+    }
         
     public function assets($scripts, $styles) {
         $this->scripts->request('jquery');
@@ -112,6 +117,7 @@ class OnpSL_StatisticsPage extends FactoryPages308_AdminPage  {
                 'google-plus': <?php echo $dataRow['google_plus_count'] ?>,
                 'google-share': <?php echo $dataRow['google_share_count'] ?>,
                 'linkedin-share': <?php echo $dataRow['linkedin_share_count'] ?>,
+                <?php ?>
                 'timer': <?php echo $dataRow['timer_count'] ?>,
                 'cross': <?php echo $dataRow['cross_count'] ?>
             },
@@ -120,13 +126,12 @@ class OnpSL_StatisticsPage extends FactoryPages308_AdminPage  {
         </script>
 
         <div class="wrap">
-            <h2 style="margin-bottom: 10px;">Usage Statistics</h2>
+            <h2 style="margin-bottom: 10px;"><?php _e('Usage Statistics', 'sociallocker'); ?></h2>
 
-            <div class="factory-bootstrap-309 factory-fontawesome-306">
+            <div class="factory-bootstrap-312 factory-fontawesome-305">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
-                This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br />
-                By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.</p>
+                <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br /> By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.', 'sociallocker'); ?></p>
 
             <div id="onp-sl-chart-area">
                 
@@ -137,14 +142,14 @@ class OnpSL_StatisticsPage extends FactoryPages308_AdminPage  {
                     
                     <div id="onp-sl-type-select">
                        <div class="btn-group" id="chart-type-group" data-toggle="buttons-radio">
-                          <button type="button" class="btn btn-default active type-total" data-value="total"><i class="fa fa-search"></i> Total</button>
-                          <button type="button" class="btn btn-default type-detailed" data-value="detailed"><i class="fa fa-search-plus"></i> Detailed</button>
-                          <button type="button" class="btn btn-default type-helpers" data-value="helpers"><i class="fa fa-tint"></i> Leakages</button>     
+                          <button type="button" class="btn btn-default active type-total" data-value="total"><i class="fa fa-search"></i> <?php _e('Total', 'sociallocker'); ?></button>
+                          <button type="button" class="btn btn-default type-detailed" data-value="detailed"><i class="fa fa-search-plus"></i> <?php _e('Detailed', 'sociallocker'); ?></button>
+                          <button type="button" class="btn btn-default type-helpers" data-value="helpers"><i class="fa fa-tint"></i> <?php _e('Leakages', 'sociallocker'); ?></button>     
                         </div>
                     </div>
                     <div id="onp-sl-date-select">
                             <input type="hidden" name="sPost" value="<?php echo $postId ?>" />
-                            <span class="onp-sl-range-label">Date range:</span>
+                            <span class="onp-sl-range-label"><?php _e('Date range', 'sociallocker') ?>:</span>
                             <input type="text" id="onp-sl-date-start" name="sDateStart" class="form-control" value="<?php echo $dateStart ?>" />
                             <input type="text" id="onp-sl-date-end" name="sDateEnd" class="form-control" value="<?php echo $dateEnd ?>" />
                             <a id="onp-sl-apply-dates" class="btn btn-default">
@@ -162,43 +167,43 @@ class OnpSL_StatisticsPage extends FactoryPages308_AdminPage  {
             <div id="onp-sl-chart-selector">
                 <div class="onp-sl-chart-item facebook-like">
                     <span class="chart-color"></span>
-                    Facebook Likes
+                    <?php _e('FB Likes', 'sociallocker') ?>
                 </div>
                 <?php ?>
                 <div class="onp-sl-chart-item twitter-tweet">
                     <span class="chart-color"></span>
-                    Twitter Tweets
+                    <?php _e('Tweets', 'sociallocker') ?>
                 </div>  
                 <?php ?>
                 <div class="onp-sl-chart-item google-plus">
                     <span class="chart-color"></span>
-                    Google Plusoners
+                    <?php _e('Google Plusoners', 'sociallocker') ?>
                 </div> 
                 <?php ?>
             </div>
 
             <?php if ($postId) { ?>
                 <div class="alert alert-warning">
-                Data for the post: <strong><?php echo $post->post_title ?></strong> (<a href="<?php echo $postBase ?>">return back</a>)
+                <?php echo sprintf(__('Data for the post: <strong>%s</strong> (<a href="%s">return back</a>)', 'sociallocker'),$post->post_title, $postBase); ?>
                 </div>
             <?php } else { ?>
-                <p>Top posts and pages where you placed the lockers showing the best social indicators. Click a post title to get more details.</p>
+                <p><?php _e('Top posts and pages where you placed the lockers showing the best social indicators. Click a post title to get more details.', 'sociallocker') ?></p>
             <?php } ?>
 
             <div id="onp-sl-posts-wrap">
             <table id="onp-sl-posts">
                 <thead>
                     <th class="col-index"></th>
-                    <th class="col-title">Post Title</th>
-                    <th class="col-number col-total">Total</th>
-                    <th class="col-number col-facebook-like">Facebook Likes</th>
+                    <th class="col-title"><?php _e('Post Title', 'sociallocker') ?></th>
+                    <th class="col-number col-total"><?php _e('Total', 'sociallocker') ?></th>
+                    <th class="col-number col-facebook-like"><?php _e('FB Likes', 'sociallocker') ?></th>
                     <?php ?>
-                    <th class="col-number col-twitter-tweet">Twitter Tweets</th>  
+                    <th class="col-number col-twitter-tweet"><?php _e('Tweets', 'sociallocker') ?></th>  
                     <?php ?>
-                    <th class="col-number col-google-plus">Google Plusoners</th> 
+                    <th class="col-number col-google-plus"><?php _e('Google Plusoners', 'sociallocker') ?></th> 
                     <?php ?>
-                    <th class="col-number col-timer">Timer</th>   
-                    <th class="col-number col-cross">Close Icon</th>          
+                    <th class="col-number col-timer"><?php _e('Timer', 'sociallocker') ?></th>   
+                    <th class="col-number col-cross"><?php _e('Close Icon', 'sociallocker') ?></th>          
                 </thead>
                 <tbody>
                 <?php foreach($tableRows as $index => $dataRow) { ?>
@@ -237,4 +242,4 @@ class OnpSL_StatisticsPage extends FactoryPages308_AdminPage  {
     }
 }
 
-FactoryPages308::register($sociallocker, 'OnpSL_StatisticsPage');
+FactoryPages310::register($sociallocker, 'OnpSL_StatisticsPage');

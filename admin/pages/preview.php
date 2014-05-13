@@ -42,8 +42,12 @@ function onp_lock_preview() {
          <script type="text/javascript" src="<?php echo get_site_url() ?>/wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js"></script>
          
          <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/js/json2.js"></script>    
-         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.min.030300.js"></script>  
-         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030300.min.css">  
+         
+         <?php ?>
+         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030401.min.js"></script>  
+         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030401.min.css">  
+         <?php 
+ ?>
          
          <?php do_action('onp_sl_preview_print_scripts', !empty( $_GET ) ? $_GET : null); ?>  
 
@@ -52,6 +56,7 @@ function onp_lock_preview() {
                 var callback = '<?php echo ( isset( $_POST['callback'] ) ? $_POST['callback'] : '' ) ?>';
                 
                 window.setOptions = function( options ) {
+   
                     $(".sociallocker-next").remove();
                     var $clone = $(".content-to-lock");
                     $("#wrap").html("");                                     
@@ -101,7 +106,14 @@ function onp_lock_preview() {
                     },
                     linkedin: {
                         share: {}
-                    },     
+                    },
+                    vk: {   
+                        like: {},                
+                        subscribe: {}               
+                    },
+                    ok: {
+                        class: {}
+                    },
                     events: {
                        ready: function() { alertFrameSize(); },             
                        unlock: function() { alertFrameSize(); },

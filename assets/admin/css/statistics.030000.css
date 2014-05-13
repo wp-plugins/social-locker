@@ -47,18 +47,9 @@
     position: relative;
     top: -6px;
 }
-.factory-volumetric #onp-sl-type-select {
-    top: -1px;
-}
-.factory-volumetric #onp-sl-type-select  .btn-group {
-    border: 0px;
-}
 #onp-sl-type-select .fa {
     font-size: 14px;
     margin-right: 3px;
-}
-.factory-volumetric #onp-sl-type-select .fa {
-    margin-right: 1px;
 }
 #onp-sl-type-select > * {
     display: inline-block;
@@ -156,6 +147,15 @@
 }
 #onp-sl-chart-selector .active.linkedin-share .chart-color {
     background-color: #006080;
+}
+#onp-sl-chart-selector .active.vk-like .chart-color {
+    background-color: #517296;
+}
+#onp-sl-chart-selector .active.vk-subscribe .chart-color {
+    background-color: #517296;
+}
+#onp-sl-chart-selector .active.ok-klass .chart-color {
+    background-color: #f3800d;
 }
 
 /**

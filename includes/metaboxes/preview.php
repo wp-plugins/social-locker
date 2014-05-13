@@ -27,7 +27,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
      * @since 1.0.0
      * @var string
      */
-    public $title = 'Locker Preview';
+    public $title;
     
     /**
      * The priority within the context where the boxes should show ('high', 'core', 'default' or 'low').
@@ -39,6 +39,12 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
      * @var string
      */
     public $priority = 'core';
+    
+    public function __construct() {
+        parent::__construct();
+        
+        $this->title = __('Locker Preview', 'sociallocker');
+    }
     
     /**
      * Renders content of the metabox.
@@ -60,11 +66,12 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
             }
             var pluginName = '<?php echo $sociallocker->pluginName; ?>';
         </script>
-        <p class="note"><strong>Note</strong>: It's just a preview. The locker and the social buttons don't work correctly in the admin area.</p>
+        <p class="note"><strong><?php _e('Note', 'sociallocker'); ?>:</strong> <?php _e('It\'s just a preview. The locker and the social buttons don\'t work correctly in the admin area.', 'sociallocker'); ?></p>
         <div id="lock-preview-wrap" 
              data-lang="<?php echo get_option('sociallocker_lang') ?>" 
              data-short-lang="<?php echo get_option('sociallocker_short_lang') ?>" 
-             data-facebook-appid="<?php echo get_option('sociallocker_facebook_appid') ?>" 
+             data-facebook-appid="<?php echo get_option('sociallocker_facebook_appid') ?>"
+             <?php ?>
              data-url="<?php echo admin_url('admin-ajax.php') . $query_string ?>">
             <iframe 
                 allowtransparency="1" 
@@ -75,7 +82,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
                 name="preview"
                 vspace="0"
                 width="100%">
-                Your browser doen't support the iframe tag.
+                <?php _e('Your browser doen\'t support the iframe tag.', 'sociallocker'); ?>
             </iframe>           
         </div>
         <?php

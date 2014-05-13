@@ -25,7 +25,7 @@ class OnpUpdates307_Manager {
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory309_Plugin 
+     * @var Factory310_Plugin 
      */
     public $plugin;
     
@@ -62,7 +62,7 @@ class OnpUpdates307_Manager {
 
                 $this->updatePluginTransient();
                 add_filter('factory_plugin_row_' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
-                add_filter('factory_notices_307', array( $this, 'addNotices'), 10, 2);    
+                add_filter('factory_notices_308', array( $this, 'addNotices'), 10, 2);    
             }
             
             add_action('admin_notices', array($this, 'clearTransient'));
@@ -433,5 +433,3 @@ class OnpUpdates307_Manager {
         return $this->plugin->api->request( $action, $args );
     }
 }
-
-?>

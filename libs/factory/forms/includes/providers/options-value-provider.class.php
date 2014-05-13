@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms308_OptionsValueProvider implements IFactoryForms308_ValueProvider 
+class FactoryForms311_OptionsValueProvider implements IFactoryForms311_ValueProvider 
 {
     /**
      * Values to save $optionName => $optionValue

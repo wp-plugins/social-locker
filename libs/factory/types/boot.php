@@ -13,22 +13,19 @@
  * @since 1.0.0
  */
 
-if (defined('FACTORY_TYPES_307_LOADED')) return;
-define('FACTORY_TYPES_307_LOADED', true);
+if (defined('FACTORY_TYPES_309_LOADED')) return;
+define('FACTORY_TYPES_309_LOADED', true);
 
-define('FACTORY_TYPES_307_DIR', dirname(__FILE__));
-define('FACTORY_TYPES_307_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_TYPES_309_DIR', dirname(__FILE__));
+define('FACTORY_TYPES_309_URL', plugins_url(null,  __FILE__ ));
 
 // sets version of admin interface
 if ( is_admin() ) {
-    global $wp_version;
-    if ( !defined('FACTORY_FLAT_ADMIN')) {
-        define('FACTORY_FLAT_ADMIN', version_compare( $wp_version, '3.8', '>='  ));
-    }
+    if ( !defined('FACTORY_FLAT_ADMIN')) define('FACTORY_FLAT_ADMIN', true);
 }
 
 #comp merge
-require(FACTORY_TYPES_307_DIR . '/types.php');
-require(FACTORY_TYPES_307_DIR . '/type.class.php');
-require(FACTORY_TYPES_307_DIR . '/includes/type-menu.class.php');
+require(FACTORY_TYPES_309_DIR . '/types.php');
+require(FACTORY_TYPES_309_DIR . '/type.class.php');
+require(FACTORY_TYPES_309_DIR . '/includes/type-menu.class.php');
 #endcomp

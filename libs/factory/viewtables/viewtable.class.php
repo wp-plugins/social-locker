@@ -4,7 +4,7 @@ abstract class FactoryViewtables306_Viewtable {
 
     /**
      * A type used to display the table.
-     * @var FactoryTypes307_Type 
+     * @var FactoryTypes309_Type 
      */
     public $type;
     
@@ -31,8 +31,8 @@ abstract class FactoryViewtables306_Viewtable {
         $this->type = $type;
         $this->columns = new FactoryViewtables306_Columns();
         
-        $this->scripts = new Factory309_ScriptList();
-        $this->styles = new Factory309_StyleList(); 
+        $this->scripts = new Factory310_ScriptList();
+        $this->styles = new Factory310_StyleList(); 
         
         $this->configure();
         

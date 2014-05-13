@@ -21,7 +21,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms308_BackgroundControl extends FactoryForms308_Control 
+class FactoryForms311_BackgroundControl extends FactoryForms311_Control 
 {
     public $type = 'background';
     
@@ -37,8 +37,8 @@ class FactoryForms308_BackgroundControl extends FactoryForms308_Control
         
         // filters to get available patterns for the given background contols
         $this->patterns = $this->getOption('patterns', array());
-        $this->patterns = apply_filters('factory_forms_308_background_patterns', $this->patterns);
-        $this->patterns = apply_filters('factory_forms_308_background_patterns-' . $name, $this->patterns);
+        $this->patterns = apply_filters('factory_forms_311_background_patterns', $this->patterns);
+        $this->patterns = apply_filters('factory_forms_311_background_patterns-' . $name, $this->patterns);
         
         $patterns = $this->getOption('patterns', array());
         if ( !empty( $patterns ) ) {
@@ -64,7 +64,7 @@ class FactoryForms308_BackgroundControl extends FactoryForms308_Control
                     <div <?php echo (!empty($values)) ? 'style="background:url('.$values.') repeat; border:0; font-size:0;"' : ''; ?> class="factory-select-preview-image <?php echo $name; ?>"><span></span></div>                    
                     <input type="hidden" id="<?php echo $name; ?>" name="<?php echo $name; ?>" value="<?php echo $values; ?>">
                 </div>
-                <a href="#" class="factory-select-preview-button-upload factory-dahsed"><?php _e('Upload Pattern'); ?></a>                
+                <a href="#" class="factory-select-preview-button-upload factory-dahsed"><?php _e('Upload Pattern', 'factory_forms_311'); ?></a>                
             </div>            
             <ul class="factory-bgimage-pack">
                 <li class="factory-bgimage-pack-item not-pattern"><div><span class="factory-cross"></span></div></li>

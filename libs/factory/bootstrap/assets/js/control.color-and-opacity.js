@@ -3,16 +3,21 @@
               
       $(function(){
           
-        $(".factory-bootstrap-309 .factory-color-and-opacity").each(function(){
+        $(".factory-bootstrap-312 .factory-color-and-opacity").each(function(){
             var $colorOpacityControl = $(this);
             
             var $colorControl = $colorOpacityControl.find('.factory-color');
             var $integerControl = $colorOpacityControl.find('.factory-integer'); 
 
+
             // apply to change opacity of the preview
             $integerControl.change(function(){
-                var opacityValue = $integerControl.find(".factory-result").val() / 100;      
+                var opacityValue = $integerControl.find(".factory-result").val() / 100;   
+                
+                
                 $colorControl.find('.factory-background').css('opacity', opacityValue );
+
+
             });
             
             $integerControl.change();

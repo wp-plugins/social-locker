@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms308_DropdownControl extends FactoryForms308_Control 
+class FactoryForms311_DropdownControl extends FactoryForms311_Control 
 {
     public $type = 'dropdown';
     
@@ -65,11 +65,24 @@ class FactoryForms308_DropdownControl extends FactoryForms308_Control
         ?>
         <select <?php $this->attrs() ?>/>
         <?php foreach($items as $item) {
-            $selected = ( $item[0] == $value ) ? 'selected="selected"' : '';
-            ?>
-            <option value='<?php echo $item[0] ?>' <?php echo $selected ?>>
-                <?php echo $item[1] ?>
-            </option>
+            if ( count($item) == 3 ) {
+                ?>
+                <optgroup label="<?php echo $item[1] ?>" >
+                    <?php foreach($item[2] as $subitem) { ?>
+                    <?php $selected = ( $subitem[0] == $value ) ? 'selected="selected"' : ''; ?>
+                    <option value='<?php echo $subitem[0] ?>' <?php echo $selected ?>>
+                    <?php echo $subitem[1] ?>
+                    </option>
+                    <?php } ?>
+                </optgroup>
+                <?php
+            } else {
+                $selected = ( $item[0] == $value ) ? 'selected="selected"' : '';
+                ?>
+                <option value='<?php echo $item[0] ?>' <?php echo $selected ?>>
+                    <?php echo $item[1] ?>
+                </option> 
+            <?php } ?>
         <?php } ?>
         </select>
         <?php

@@ -12,7 +12,7 @@
 /**
  * An abstraction for forms.
  */
-class FactoryForms308_Form {
+class FactoryForms311_Form {
     
     // ----------------------------------------------------
     // Static fields and methods
@@ -44,7 +44,7 @@ class FactoryForms308_Form {
     /**
      * Registers a set of new controls.
      * 
-     * @see FactoryForms308_Form::registerControl()
+     * @see FactoryForms311_Form::registerControl()
      * 
      * @since 1.0.0
      * @return void
@@ -79,7 +79,7 @@ class FactoryForms308_Form {
     /**
      * Registers a set of new holder controls.
      * 
-     * @see FactoryForms308_Form::registerHolder()
+     * @see FactoryForms311_Form::registerHolder()
      * 
      * @since 1.0.0
      * @return void
@@ -110,7 +110,7 @@ class FactoryForms308_Form {
     /**
      * Registers a set of new custom form elements.
      * 
-     * @see FactoryForms308_Form::registerCustomElement()
+     * @see FactoryForms311_Form::registerCustomElement()
      * 
      * @since 1.0.0
      * @return void
@@ -216,7 +216,7 @@ class FactoryForms308_Form {
      * A current form layout used to render a form.
      * 
      * @since 1.0.0
-     * @var FactoryForms308_FormLayout 
+     * @var FactoryForms311_FormLayout 
      */
     public $layout;
     
@@ -231,9 +231,9 @@ class FactoryForms308_Form {
         global $wp_version;
         
         // register controls once, when the first form is created
-        if ( !FactoryForms308_Form::$_controlsRegistered ) {
-            do_action('factory_forms_308_register_controls');
-            FactoryForms308_Form::$_controlsRegistered = true;
+        if ( !FactoryForms311_Form::$_controlsRegistered ) {
+            do_action('factory_forms_311_register_controls');
+            FactoryForms311_Form::$_controlsRegistered = true;
         }
 
         //$isFlat = version_compare( $wp_version, '3.8', '>='  );
@@ -255,7 +255,7 @@ class FactoryForms308_Form {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms308_ValueProvider $provider
+     * @param IFactoryForms311_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -416,7 +416,7 @@ class FactoryForms308_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms308_Holder A control holder object.
+     * @return FactoryForms311_Holder A control holder object.
      */
     public function createHolder( $item ) {
         $object = null;
@@ -443,7 +443,7 @@ class FactoryForms308_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms308_FormElement A custom form element object.
+     * @return FactoryForms311_FormElement A custom form element object.
      */
     public function createCustomElement( $item ) {
         $object = null;
@@ -573,25 +573,14 @@ class FactoryForms308_Form {
 
         foreach($controls as $control) {
             
-            $name = $control->getName();
-            $value = $control->getSubmitValue($name);
-
-            $index = 0;
-            if (is_array($name) ) {
-                //echo $name . '-';
-                foreach($name as $singeName) {
-                    $this->provider->setValue($name[$index], $value[$index]);
-                    $index++;
-                }
-
-            } else {
-                $this->provider->setValue($name, $value);
+            $values = $control->getValuesToSave();
+            foreach( $values as $keyToSave => $valueToSave ) {
+                $this->provider->setValue($keyToSave, $valueToSave);
             }
-            
+
             $nameOption = $control->getOption('name') . '_is_active';
             $isActive = ( isset( $_POST[$nameOption] ) && intval( $_POST[$nameOption] ) == 0 ) ? 0 : 1;
             $this->provider->setValue($nameOption, $isActive );
-            
         }
 
         return $this->provider->saveChanges();

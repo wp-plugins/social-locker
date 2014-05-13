@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory309_AssetsList 
+class Factory310_AssetsList 
 {
     protected $all = array();
     public $headerPlace = array();
@@ -73,9 +73,12 @@ class Factory309_AssetsList
     
     /**
      * Checks whether the collection is empty.
+     * 
+     * @param string $source if the 'bootstrap' specified, checks only whether the bootstrap assets were required.
      * @return boolean
      */
-    public function isEmpty() {
+    public function isEmpty( $source = 'wordpress' ) {
+        if ( 'bootstrap' === $source ) return empty( $this->required[$source] );
         return empty($this->all) && empty($this->required);
     }
     
@@ -93,16 +96,14 @@ class Factory309_AssetsList
      */
     public function request( $items, $source = 'wordpress' ) {
         
-        $bindTo = count( $this->all ) == 0 ? '_global_' : end( $this->all );
-        
         if ( is_array( $items ) ) {
             foreach($items as $item) {
-                $this->required[$bindTo][] = array( $item, $source );
+                $this->required[$source][] = $item;
             }  
         } else {
-            $this->required[$bindTo][] = array( $items, $source );
+            $this->required[$source][] = $items;
         }
      
         return $this;
-    }    
+    }
 }

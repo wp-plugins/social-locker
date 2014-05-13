@@ -31,9 +31,9 @@ class OnpSL_AssetsManager {
         }
         
         if ( !$fromBody ) {
-            add_action( 'wp_head', 'OnpSL_AssetsManager::printFacebookScript' );
+            add_action( 'wp_head', 'OnpSL_AssetsManager::printSdkScript' );
         } else {
-            add_action( 'wp_footer', 'OnpSL_AssetsManager::printFacebookScript', 1 );  
+            add_action( 'wp_footer', 'OnpSL_AssetsManager::printSdkScript', 1 );  
         }
     }
     
@@ -43,11 +43,10 @@ class OnpSL_AssetsManager {
      * @since 1.0.0
      * @return void
      */
-    public static function printFacebookScript() {
-
-        $appId = get_option('sociallocker_facebook_appid');
-        $lang = get_option('sociallocker_lang', 'en_US');
-
+    public static function printSdkScript() {
+        
+        $fb_appId = get_option('sociallocker_facebook_appid');
+        $fb_lang = get_option('sociallocker_lang', 'en_US');
         ?>
         <!-- 
             Facebook SDK
@@ -58,7 +57,7 @@ class OnpSL_AssetsManager {
         <script>
             window.fbAsyncInit = function() {
                 window.FB.init({
-                    appId: <?php echo $appId ?>,
+                    appId: <?php echo $fb_appId ?>,
                     status: true,
                     cookie: true,
                     xfbml: true
@@ -69,11 +68,11 @@ class OnpSL_AssetsManager {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
                 js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/<?php echo $lang ?>/all.js";
+                js.src = "//connect.facebook.net/<?php echo $fb_lang ?>/all.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
-        <!-- / -->
+        <!-- / -->   
         <?php
     }
     
@@ -136,18 +135,21 @@ class OnpSL_AssetsManager {
      * @return void
      */
     public static function connectAssets() {
-
-        wp_enqueue_style( 
-            'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030300.min.css'
-        );  
         
-        wp_enqueue_script( 
-            'onp-sociallocker', 
-            ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.min.030300.js', 
-            array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
-        );  
+            wp_enqueue_style( 
+                'onp-sociallocker', 
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030401.min.css'
+            );  
 
+            wp_enqueue_script( 
+                'onp-sociallocker', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030401.min.js', 
+                array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
+            );  
+        
+        
+
+        
         $facebookSDK = array( 
             'appId' => get_option('sociallocker_facebook_appid'),
             'lang' => get_option('sociallocker_lang', 'en_US') 
@@ -176,11 +178,12 @@ class OnpSL_AssetsManager {
         foreach(self::$_lockerOptionsToPrint as $name => $id) {
             $lockData = self::getLockerDataToPrint( $id );
             
-            $data[] = array(
+            $data[$id] = array(
                 'name' => $name,
                 'options' => $lockData
             );
         }
+
         ?>
         <!-- 
             Options of Bulk Lockers        
@@ -194,8 +197,9 @@ class OnpSL_AssetsManager {
                 window.onpsl.lockerOptions['<?php echo $item['name'] ?>'] = <?php echo json_encode( $item['options'] ) ?>;
             <?php } ?>
             </script>
-            <?php  do_action('onp_sl_bulk_print_scripts'); ?>          
-
+            <?php foreach( $data as $id => $item ) { ?>
+            <?php do_action( 'onp_sl_print_batch_locker_assets', $id, $item['options'] ); ?>          
+            <?php } ?>
         <!-- / -->
         <?php
         
@@ -252,7 +256,7 @@ class OnpSL_AssetsManager {
                 'google' => array(
                     'url' => $url,    
                     'lang' => get_option('sociallocker_google_lang', get_option('sociallocker_short_lang', 'en' ))
-                )  
+                )
             );
 
         
@@ -288,7 +292,10 @@ class OnpSL_AssetsManager {
         if ( !isset($params['text']['message']) ) $params['text']['message'] = '';  
         
         $lockData['options'] = $params;
-
+        
+        $lockData['_theme'] = self::getLockerOption($id, 'style' );
+        $lockData['_style'] = self::getLockerOption($id, 'style_profile' );
+                        
         return $lockData;
     }
     
@@ -573,7 +580,7 @@ class OnpSL_AssetsManager {
         window.onpsl.dynamicThemeSupport = '<?php echo $isDynamic ?>';
         window.onpsl.dynamicThemeEvent = '<?php echo $event ?>';
         </script>     
-        <?php  do_action('onp_sl_dynamic_themes_print_scripts'); ?>  
+        <?php do_action('onp_sl_print_dynamic_theme_options'); ?>  
         <!-- / -->     
         <?php
     }

@@ -16,26 +16,14 @@
 // module provides function only for the admin area
 if ( !is_admin() ) return;
 
-if (defined('FACTORY_BOOTSTRAP_309_LOADED')) return;
-define('FACTORY_BOOTSTRAP_309_LOADED', true);
+if (defined('FACTORY_BOOTSTRAP_312_LOADED')) return;
+define('FACTORY_BOOTSTRAP_312_LOADED', true);
 
-define('FACTORY_BOOTSTRAP_309_DIR', dirname(__FILE__));
-define('FACTORY_BOOTSTRAP_309_URL', plugins_url(null,  __FILE__ ));
-
-define('FACTORY_BOOTSTRAP_309_VERSION', '300008');
+define('FACTORY_BOOTSTRAP_312_DIR', dirname(__FILE__));
+define('FACTORY_BOOTSTRAP_312_URL', plugins_url(null,  __FILE__ ));
 
 // sets version of admin interface
-
+define('FACTORY_BOOTSTRAP_312_VERSION', 'FACTORY_BOOTSTRAP_312');
 if ( !defined('FACTORY_FLAT_ADMIN')) define('FACTORY_FLAT_ADMIN', true);
 
-/*
-if ( is_admin() ) {
-    global $wp_version;
-    if ( !defined('FACTORY_FLAT_ADMIN')) {
-        define('FACTORY_FLAT_ADMIN', version_compare( $wp_version, '3.8', '>='  ));
-    }
-}
-*/
-
-include_once(FACTORY_BOOTSTRAP_309_DIR . '/includes/functions.php');
-
+include_once(FACTORY_BOOTSTRAP_312_DIR . '/includes/functions.php');

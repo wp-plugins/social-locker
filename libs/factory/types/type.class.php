@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryTypes307_Type {
+abstract class FactoryTypes309_Type {
     
     /**
      * Internal type name.
@@ -80,7 +80,7 @@ abstract class FactoryTypes307_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory309_ScriptList 
+     * @var Factory310_ScriptList 
      */
     public $scripts;
     
@@ -88,14 +88,14 @@ abstract class FactoryTypes307_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory309_StyleList 
+     * @var Factory310_StyleList 
      */  
     public $styles;
     
     /**
      * A menu configurator for a type.
      * 
-     * @var FactoryTypes307_Menu 
+     * @var FactoryTypes309_Menu 
      */
     public $menu;
 
@@ -148,11 +148,11 @@ abstract class FactoryTypes307_Type {
      */
     public function __construct() {
         
-        $this->menu = new FactoryTypes307_Menu( $this );
+        $this->menu = new FactoryTypes309_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory309_ScriptList();
-        $this->styles = new Factory309_StyleList(); 
+        $this->scripts = new Factory310_ScriptList();
+        $this->styles = new Factory310_StyleList(); 
         
         add_action('init', array($this, 'register'));
     }
@@ -211,6 +211,10 @@ abstract class FactoryTypes307_Type {
         foreach($this->metaboxes as $metabox) {
             FactoryMetaboxes307::registerFor($metabox, $this->name);
         }
+               
+        if ( !$this->scripts->isEmpty('bootstrap')|| !$this->styles->isEmpty('bootstrap') ) {
+            add_action('factory_bootstrap_312_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
+        }
         
         // includes styles and scripts
         if ( !$this->scripts->isEmpty() || !$this->styles->isEmpty() ) {
@@ -244,6 +248,22 @@ abstract class FactoryTypes307_Type {
 
         register_post_type( $this->name, $this->options );
     }
+    
+    /**
+     * Actions that includes registered fot this type scritps and styles.
+     * @global type $post
+     * @param type $hook
+     */
+    public function actionAdminBootstrapScripts( $hook ) {
+        global $post;
+
+	if ( !in_array( $hook, array('post.php', 'post-new.php')) ) return;
+        if ( $post->post_type != $this->name ) return;
+        if ( $this->scripts->isEmpty('bootstrap') && $this->styles->isEmpty('bootstrap') ) return;
+                
+        $this->scripts->connect('bootstrap');
+        $this->styles->connect('bootstrap'); 
+    }  
 
     /**
      * Actions that includes registered fot this type scritps and styles.
@@ -306,17 +326,17 @@ abstract class FactoryTypes307_Type {
         $labels = array(
             'singular_name' => $singularName,
             'name' => $pluralName,          
-            'all_items' => sprintf( __('All %1$s', 'factory'), $pluralName ),
-            'add_new' => sprintf( __('Add %1$s', 'factory'), $singularName ),
-            'add_new_item' => sprintf( __('Add new %1$s', 'factory'), $singularName ),
-            'edit' => sprintf( __('Edit', 'factory') ),
-            'edit_item' => sprintf( __('Edit %1$s', 'factory'), $singularName ),
-            'new_item' => sprintf( __('New %1$s', 'factory'), $singularName ),
+            'all_items' => sprintf( __('All %1$s', 'factory_types_309'), $pluralName ),
+            'add_new' => sprintf( __('Add %1$s', 'factory_types_309'), $singularName ),
+            'add_new_item' => sprintf( __('Add new', 'factory_types_309'), $singularName ),
+            'edit' => sprintf( __('Edit', 'factory_types_309') ),
+            'edit_item' => sprintf( __('Edit %1$s', 'factory_types_309'), $singularName ),
+            'new_item' => sprintf( __('New %1$s', 'factory_types_309'), $singularName ),
             'view' => sprintf( __('View', 'factory') ),
-            'view_item' => sprintf( __('View %1$s', 'factory'), $singularName ),
-            'search_items' => sprintf( __('Search %1$s', 'factory'), $pluralName ),
-            'not_found' => sprintf( __('No %1$s found', 'factory'), $pluralName ),
-            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory'), $pluralName ),
+            'view_item' => sprintf( __('View %1$s', 'factory_types_309'), $singularName ),
+            'search_items' => sprintf( __('Search %1$s', 'factory_types_309'), $pluralName ),
+            'not_found' => sprintf( __('No %1$s found', 'factory_types_309'), $pluralName ),
+            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory_types_309'), $pluralName ),
             'parent' => sprintf( __('Parent %1$s', 'factory'), $pluralName )
         );
         
@@ -367,7 +387,7 @@ abstract class FactoryTypes307_Type {
             array('{preview_url}', esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
             array('{revision}', isset($_GET['revision']) 
                 ? wp_post_revision_title( (int) $_GET['revision'], false ) : false),
-            array('{scheduled}', date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) )
+            array('{scheduled}', date_i18n( __( 'M j, Y @ G:i', 'factory_types' ), strtotime( $post->post_date ) ) )
         );
         
         foreach($this->messages as $index => $message)
@@ -389,13 +409,15 @@ abstract class FactoryTypes307_Type {
     
     public function actionAdminHead() 
     {      
+        do_action('factory_' . $this->name . '_type_admin_head');
+        
         if (empty($this->menu->icon)) return;
         
         $iconUrl = $this->menu->icon;
         $iconUrl32 = str_replace('.png', '-32.png', $iconUrl);
         
         global $wp_version;
-        if ( version_compare( $wp_version, '3.7', '>'  ) ) {
+        if ( version_compare( $wp_version, '3.7.3', '>'  ) ) {
         ?>
         <style type="text/css" media="screen">
             #menu-posts-<?php echo $this->name ?> .wp-menu-image {

@@ -8,8 +8,8 @@
  * @package onepress-api
  */
 
-function onp_api_308_plugin_created( $plugin ) {
-    $manager = new OnpApi308_Manager( $plugin );
+function onp_api_309_plugin_created( $plugin ) {
+    $manager = new OnpApi309_Manager( $plugin );
     $plugin->api = $manager;
 }
 
@@ -18,13 +18,13 @@ function onp_api_308_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpApi308_Manager {
+class OnpApi309_Manager {
     
     /**
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory309_Plugin
+     * @var Factory310_Plugin
      */
     public $plugin;
     
@@ -41,7 +41,7 @@ class OnpApi308_Manager {
      * 
      * @since 1.0.0
      */
-    public function __construct( Factory309_Plugin $plugin ) {
+    public function __construct( $plugin ) {
         $this->plugin = $plugin;
         $this->entryPoint = $plugin->options['api'];
                 
