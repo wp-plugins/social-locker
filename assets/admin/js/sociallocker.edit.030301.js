@@ -265,10 +265,6 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
             if (!options.text.header && options.text.message) {
                 options.text = options.text.message;
             }
-
-            if ( window['sociallocker-rus-build'] != 'free' ) {
-                options['theme'] = $("#sociallocker_style").val();
-            }
             
             if ( window.onpsl.lockerEditor.filterOptions ) {
                 options = window.onpsl.lockerEditor.filterOptions( options );

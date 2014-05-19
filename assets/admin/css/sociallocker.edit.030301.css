@@ -820,27 +820,6 @@
     height: 215px;
     background: url("../img/more-tag.png") no-repeat top left;
 }
-.admin-color-light #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-light.png") no-repeat top left;
-}
-.admin-color-blue #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-blue.png") no-repeat top left;
-}
-.admin-color-coffee #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-coffee.png") no-repeat top left;
-}
-.admin-color-ectoplasm #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-ectoplasm.png") no-repeat top left;
-}
-.admin-color-midnight #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-midnight.png") no-repeat top left;
-}
-.admin-color-ocean #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-ocean.png") no-repeat top left;
-}
-.admin-color-sunrise #onp-sl-more-tags-options .onp-sl-image {
-    background: url("../img/more-tag-sunrise.png") no-repeat top left;
-}
 
 /* CSS Selector */
 

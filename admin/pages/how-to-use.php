@@ -201,7 +201,7 @@ class OnpSL_HowToUsePage extends FactoryPages310_AdminPage  {
                 <div class="onp-help-section">
                     <h1><?php _e('Troubleshooting', 'sociallocker'); ?></h1>
                    
-                    <p><?php _e('If you faced with any troubles while using the plugin, please check out <a href="http://support.onepress-media.com/" target="_blank">our knowlage base</a>. May be your issue has been already resolved.', 'sociallocker'); ?></p>  
+                    <p><?php _e('If you faced with any troubles while using the plugin, please check out <a href="http://support.onepress-media.com/" target="_blank">our Knowledge Base</a>. May be your issue has been already resolved.', 'sociallocker'); ?></p>  
                     <p>
                         <?php _e('If it doesn\'t help, feel free to contact us.<br />Submit a ticket <a href="http://support.onepress-media.com/create-ticket/" target="_blank">here</a> or email directly to <strong>support@byonepress.com</strong>', 'sociallocker'); ?>
                     </p>

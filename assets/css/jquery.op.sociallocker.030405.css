@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.5.7, 2014-05-13 
+ * Social Locker - v1.5.9, 2014-05-19 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 
@@ -219,7 +219,6 @@
     text-align: center;
     line-height: 13px;
 }
-
 /**
 * Overlay for buttons
 */
@@ -363,6 +362,7 @@
 * http://dribbble.com/shots/777465-Social-Sharing-Buttons
 * http://dribbble.com/shots/684822-Free-Social-Button-PSD
 */
+
 .onp-sociallocker-secrets .fb-like span,
 .onp-sociallocker-secrets .fb-like iframe {
     width: 118px !important;
@@ -433,14 +433,15 @@
     background: #eaeaea;
     background-image: url("../img/secrets-bg.png");
     background-repeat: repeat-x;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.25);
+    -moz-box-shadow: inset 0 2px 0 rgba(255,255,255,.25);
+    -webkit-box-shadow: inset 0 2px 0 rgba(255,255,255,.25);
     position: relative;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button .onp-sociallocker-overlay-icon {
     height: 34px;
     width: 44px;
-    background-image: url("../img/social-icons-en_US.png");
-    background-repeat: no-repeat;
-    background-position-y: 50%;
+    background: url("../img/social-icons.png") 0 50% no-repeat;
     position: absolute;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button .onp-sociallocker-overlay-line {
@@ -471,12 +472,20 @@
     background: #eaeaea;
 }
 
-.onp-sociallocker-secrets .onp-sociallocker-button-twitter .onp-sociallocker-overlay-front {
-    background-color: #399ff0;
-    background-position: 0 -102px;
+.onp-sociallocker-secrets .onp-sociallocker-button-twitter .onp-sociallocker-overlay-front {    
+    background: rgb(0,191,238); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwYmZlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMGExZTMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(0,191,238,1) 0%, rgba(0,161,227,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,191,238,1)), color-stop(100%,rgba(0,161,227,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,191,238,1) 0%,rgba(0,161,227,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,191,238,1) 0%,rgba(0,161,227,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,191,238,1) 0%,rgba(0,161,227,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,191,238,1) 0%,rgba(0,161,227,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bfee', endColorstr='#00a1e3',GradientType=0 ); /* IE6-8 */
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-twitter .onp-sociallocker-overlay-icon {
-    background-position: 0px 50%;
+    background-position: -132px 8px;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-twitter .onp-sociallocker-overlay-back {
     background: #24b1e5;
@@ -485,12 +494,20 @@
     background: #368acd;
 }
 
-.onp-sociallocker-secrets .onp-sociallocker-button-facebook .onp-sociallocker-overlay-front {
-    background-color: #46629e;
-    background-position: 0 0;
+.onp-sociallocker-secrets .onp-sociallocker-button-facebook .onp-sociallocker-overlay-front {    
+    background: rgb(85,129,188); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzU1ODFiYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk5JSIgc3RvcC1jb2xvcj0iIzI1NWI5ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    background: -moz-linear-gradient(top,  rgba(85,129,188,1) 0%, rgba(37,91,157,1) 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(85,129,188,1)), color-stop(99%,rgba(37,91,157,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(85,129,188,1) 0%,rgba(37,91,157,1) 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(85,129,188,1) 0%,rgba(37,91,157,1) 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(85,129,188,1) 0%,rgba(37,91,157,1) 99%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(85,129,188,1) 0%,rgba(37,91,157,1) 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5581bc', endColorstr='#255b9d',GradientType=0 ); /* IE6-8 */
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-facebook .onp-sociallocker-overlay-icon {
-    background-position: -45px 50%;
+    background-position: 15px 9px;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-facebook .onp-sociallocker-overlay-back {
     background: #46629e; 
@@ -499,12 +516,21 @@
     background-color: #314775;
 }
 
-.onp-sociallocker-secrets .onp-sociallocker-button-google .onp-sociallocker-overlay-front {
-    background-color: #494647;
-    background-position: 0 -68px;
+.onp-sociallocker-secrets .onp-sociallocker-button-google .onp-sociallocker-overlay-front {   
+    background: #5c5c5c; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzVjNWM1YyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxNTA5MGQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #5c5c5c 0%, #15090d 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5c5c5c), color-stop(100%,#15090d)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #5c5c5c 0%,#15090d 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #5c5c5c 0%,#15090d 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #5c5c5c 0%,#15090d 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #5c5c5c 0%,#15090d 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5c5c5c', endColorstr='#15090d',GradientType=0 ); /* IE6-8 */
+
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-google .onp-sociallocker-overlay-icon {
-    background-position: -90px 50%;
+    background-position: -18px 9px;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-google .onp-sociallocker-overlay-back {
     background: #494647; 
@@ -513,12 +539,21 @@
     background-color: #111111;
 }
 
-.onp-sociallocker-secrets .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-front {
-    background-color: #286b8d;
-    background-position: 0 -34px;
+.onp-sociallocker-secrets .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-front {    
+    background: #0076a3; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNzZhMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDU1NzUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #0076a3 0%, #005575 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0076a3), color-stop(100%,#005575)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #0076a3 0%,#005575 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #0076a3 0%,#005575 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #0076a3 0%,#005575 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #0076a3 0%,#005575 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0076a3', endColorstr='#005575',GradientType=0 ); /* IE6-8 */
+
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-icon {
-    background-position: -135px 50%;
+    background-position: -58px 8px;
 }
 .onp-sociallocker-secrets .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-back {
     background: #286b8d; 
@@ -526,15 +561,6 @@
 .onp-sociallocker-secrets .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-header {
     background-color: #19465d;
 }
-
-.onp-sociallocker-secrets .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-front,
-.onp-sociallocker-secrets .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-back {
-    background: #d9d9d9;
-}
-.onp-sociallocker-secrets .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-header {
-    background: #a9a9a9; 
-}
-
 .onp-sociallocker-secrets .onp-sociallocker-cross {
     top: 28px;
     right: 28px;
@@ -626,7 +652,7 @@
 }
 .onp-sociallocker-dandyish .onp-sociallocker-button {
     margin: 14px 7px 0 7px;
-    max-width: 120px;
+    width: 85px;
 }
 .onp-sociallocker.onp-sociallocker-dandyish .onp-social-button {
     min-width: 0px;
@@ -808,7 +834,7 @@
 .onp-sociallocker-flat .onp-sociallocker-button .onp-sociallocker-overlay-icon {
     height: 34px;
     width: 44px;
-    background-image: url("../img/social-icons-en_US.png");
+    background-image: url("../img/social-icons.png");
     background-repeat: no-repeat;
     background-position-y: 50%;
     position: absolute;
@@ -831,7 +857,7 @@
     border-bottom-color: #13579e;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-twitter .onp-sociallocker-overlay-icon {
-    background-position: 0px 50%;
+    background-position: -132px 8px;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-twitter .onp-sociallocker-overlay-back {
     background: #4086cc;
@@ -845,7 +871,7 @@
     border-bottom-color: #082b6f;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-facebook .onp-sociallocker-overlay-icon {
-    background-position: -45px 50%;
+    background-position: 15px 9px;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-facebook .onp-sociallocker-overlay-back {
     background: #3c5a9a;
@@ -859,7 +885,7 @@
     border-bottom-color: #a52316;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-google .onp-sociallocker-overlay-icon {
-    background-position: -90px 50%;
+    background-position: -18px 9px;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-google .onp-sociallocker-overlay-back {
     background: #ca4639;
@@ -870,10 +896,10 @@
 
 .onp-sociallocker-flat .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-front {
     background-color: #286b8d;
-    border-bottom-color: #19465d;
+    border-bottom-color: #4a6887;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-icon {
-    background-position: -135px 50%;
+    background-position: -58px 7px;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-back {
     background: #286b8d; 
@@ -881,18 +907,6 @@
 .onp-sociallocker-flat .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-header {
     background-color: #19465d;
 }
-
-.onp-sociallocker-flat .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-front,
-.onp-sociallocker-flat .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-back {
-    background: #d9d9d9;
-}
-.onp-sociallocker-flat .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-front {
-    border-bottom-color: #a9a9a9;   
-}
-.onp-sociallocker-flat .onp-sociallocker-state-error.onp-sociallocker-button .onp-sociallocker-overlay-header {
-    background: #a9a9a9; 
-}
-
 .onp-sociallocker-flat .onp-sociallocker-cross {
     top: 8px;
     right: 8px;

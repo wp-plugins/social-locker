@@ -13,6 +13,11 @@
 
 define('ONP_SCRIPTS_DIR', '..');
 
+if ( isset( $_GET['test']) ) {
+    echo 'success';
+    exit;
+}
+
 /**
  * Фукнция получает контент файла
  * @param type $path - путь к файлу

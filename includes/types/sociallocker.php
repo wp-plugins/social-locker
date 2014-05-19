@@ -99,7 +99,6 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
             'bootstrap.form-group', 
             'bootstrap.form-metabox', 
             'bootstrap.tab', 
-            'bootstrap.modal', 
             'bootstrap.wp-editor', 
             'bootstrap.separator',
             'control.checkbox',

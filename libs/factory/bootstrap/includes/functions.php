@@ -1,10 +1,9 @@
 <?php
 /**
- * Этот файл отвечает за печать стилей ядра в админ панели
- * 
- * Создано для Factory Metaboxes.
+ * This file manages assets of the Factory Bootstap.
  * 
  * @author Alex Kovalev <alex@byonepress.com>
+ * @author Paul Kashtanoff <paul@byonepress.com>
  * @copyright (c) 2013, OnePress Ltd
  * 
  * @package core 
@@ -29,10 +28,6 @@ function factory_bootstrap_312_load_assets( $hook ) {
         $dependencies[] = 'jquery-ui-core'; 
         $dependencies[] = 'jquery-ui-widget'; 
     }
-    
-    $autoDepencies = array(
-        'plugin.iris' => array()
-    );
 
     foreach( $factory_bootstrap_312_scripts as $script ) {
         switch ($script) {
@@ -44,82 +39,106 @@ function factory_bootstrap_312_load_assets( $hook ) {
         }
     }
     
-    // removes the optimization hack (#SLWP-83)
-    // http://diywpblog.com/wordpress-optimization-remove-query-strings-from-static-resources/
-    if ( is_admin() ) {
-        remove_filter( 'script_loader_src', '_remove_script_version', 15 );
-        remove_filter( 'style_loader_src', '_remove_script_version', 15 );
+    // Issue #FB-3:
+    // Tests if we can access load-styles.php and load-scripts.php remotely.
+    // If yes, we use load-styles.php and load-scripts.php to load, merge and compress css and js.
+    // Otherwise, every resource will be loaded separatly.
+ 
+    $isWpContentAccessTested = get_option('factory_wp_content_access_tested', false );
+    if ( !$isWpContentAccessTested ) {
+        update_option('factory_css_js_compression', false );
+        update_option('factory_wp_content_access_tested', true );
+        
+        if ( function_exists('wp_remote_get') ) {
+            $result = wp_remote_get(FACTORY_BOOTSTRAP_312_URL . '/includes/load-scripts.php?test=1');
+            if ( !is_wp_error($result ) && $result && isset( $result['body'] ) && $result['body'] == 'success' ) {
+                update_option('factory_css_js_compression', true );
+            }  
+        }
     }
     
-    $loadScriptsOut = join( ',', $factory_bootstrap_312_scripts );      
-    $loadStylesOut = join( ',', $factory_bootstrap_312_styles );
+    $compression = get_option('factory_css_js_compression', false );
+    
+    if ( !$compression ) {
 
-    if( defined('WP_DEBUG') && WP_DEBUG ) {
-        $loadScriptsOut .= "&debug=true";
-        $loadStylesOut .= "&debug=true";
-    }
-    
-    if ( FACTORY_FLAT_ADMIN ) {  
+        $id = md5(FACTORY_BOOTSTRAP_312_VERSION);
+        
+        $isFirst = true;
+        foreach($factory_bootstrap_312_scripts as $scriptToLoad) {
+            wp_enqueue_script($scriptToLoad . '-' . $id, FACTORY_BOOTSTRAP_312_URL . "/assets/js/$scriptToLoad.js", $isFirst ? $dependencies : false);
+            $isFirst = false;            
+        }
+        
+        foreach($factory_bootstrap_312_styles as $styleToLoad) {
+            wp_enqueue_style($styleToLoad . '-' . $id, FACTORY_BOOTSTRAP_312_URL . "/assets/flat/css/$styleToLoad.css" );       
+        }
+     
+    // - //
+        
+    } else {
+        
+        // removes the optimization hack (#SLWP-83)
+        // http://diywpblog.com/wordpress-optimization-remove-query-strings-from-static-resources/
+        if ( is_admin() ) {
+            remove_filter( 'script_loader_src', '_remove_script_version', 15 );
+            remove_filter( 'style_loader_src', '_remove_script_version', 15 );
+            remove_filter( 'script_loader_src', '_remove_script_version', 1 );
+            remove_filter( 'style_loader_src', '_remove_script_version', 1 );
+        }
+
+        $loadScriptsOut = join( ',', $factory_bootstrap_312_scripts );      
+        $loadStylesOut = join( ',', $factory_bootstrap_312_styles );
+
+        if( defined('WP_DEBUG') && WP_DEBUG ) {
+            $loadScriptsOut .= "&debug=true";
+            $loadStylesOut .= "&debug=true";
+        }
 
         if ( !empty( $factory_bootstrap_312_styles ) ) {
             $id = md5($loadStylesOut . FACTORY_BOOTSTRAP_312_VERSION);
             wp_enqueue_style('factory-bootstrap-312-' . $id, FACTORY_BOOTSTRAP_312_URL . '/includes/load-styles.php?c=1&folder=flat&load='.$loadStylesOut, array(), FACTORY_BOOTSTRAP_312_VERSION); 
         }
-        
+
         if ( !empty( $factory_bootstrap_312_scripts ) ) {
             $id = md5($loadScriptsOut . FACTORY_BOOTSTRAP_312_VERSION);
             wp_enqueue_script('factory-bootstrap-312-' . $id, FACTORY_BOOTSTRAP_312_URL . '/includes/load-scripts.php?c=1&load='.$loadScriptsOut, $dependencies, FACTORY_BOOTSTRAP_312_VERSION); 
         } 
+        
+    }
 
-        $userId = get_current_user_id();
-        $colorName = get_user_meta($userId, 'admin_color', true);
+    $userId = get_current_user_id();
+    $colorName = get_user_meta($userId, 'admin_color', true);
 
-        if ( $colorName !== 'fresh' ) {       
-            wp_enqueue_style('factory-bootstrap-312-colors', FACTORY_BOOTSTRAP_312_URL . '/assets/flat/css/bootstrap.' . $colorName . '.css');
-        }
+    if ( $colorName !== 'fresh' ) {       
+        wp_enqueue_style('factory-bootstrap-312-colors', FACTORY_BOOTSTRAP_312_URL . '/assets/flat/css/bootstrap.' . $colorName . '.css');
+    }
 
-        if ( $colorName == 'light' ) {
-            $primaryDark = '#037c9a';
-            $primaryLight = '#04a4cc';
-        } elseif( $colorName == 'blue' ) {
-            $primaryDark = '#d39323';
-            $primaryLight = '#e1a948';
-        } elseif( $colorName == 'coffee' ) {
-            $primaryDark = '#b78a66';
-            $primaryLight = '#c7a589';
-        } elseif( $colorName == 'ectoplasm' ) {
-            $primaryDark = '#839237';
-            $primaryLight = '#a3b745';
-        } elseif( $colorName == 'ocean' ) {
-            $primaryDark = '#80a583';
-            $primaryLight = '#9ebaa0';
-        } elseif( $colorName == 'midnight' ) {
-            $primaryDark = '#d02a21';
-            $primaryLight = '#e14d43';
-        } elseif( $colorName == 'sunrise' ) {
-            $primaryDark = '#c36822';
-            $primaryLight = '#dd823b';
-        } else {
-            $primaryDark = '#0074a2';
-            $primaryLight = '#2ea2cc';
-        }
-
+    if ( $colorName == 'light' ) {
+        $primaryDark = '#037c9a';
+        $primaryLight = '#04a4cc';
+    } elseif( $colorName == 'blue' ) {
+        $primaryDark = '#d39323';
+        $primaryLight = '#e1a948';
+    } elseif( $colorName == 'coffee' ) {
+        $primaryDark = '#b78a66';
+        $primaryLight = '#c7a589';
+    } elseif( $colorName == 'ectoplasm' ) {
+        $primaryDark = '#839237';
+        $primaryLight = '#a3b745';
+    } elseif( $colorName == 'ocean' ) {
+        $primaryDark = '#80a583';
+        $primaryLight = '#9ebaa0';
+    } elseif( $colorName == 'midnight' ) {
+        $primaryDark = '#d02a21';
+        $primaryLight = '#e14d43';
+    } elseif( $colorName == 'sunrise' ) {
+        $primaryDark = '#c36822';
+        $primaryLight = '#dd823b';
     } else {
-
         $primaryDark = '#0074a2';
         $primaryLight = '#2ea2cc';
-        
-        if ( !empty( $factory_bootstrap_312_styles ) ) {
-            $id = md5($loadStylesOut . FACTORY_BOOTSTRAP_312_VERSION);
-            wp_enqueue_style('factory-bootstrap-312-' . $id, FACTORY_BOOTSTRAP_312_URL . '/includes/load-styles.php?c=1&folder=volumetric&load='.$loadStylesOut, array(), FACTORY_BOOTSTRAP_312_VERSION);
-        }
-        
-        if ( !empty( $factory_bootstrap_312_scripts ) ) {
-            $id = md5($loadScriptsOut . FACTORY_BOOTSTRAP_312_VERSION);
-            wp_enqueue_script('factory-bootstrap-312-' . $id, FACTORY_BOOTSTRAP_312_URL . '/includes/load-scripts.php?c=1&load='.$loadScriptsOut, $dependencies, FACTORY_BOOTSTRAP_312_VERSION);
-        }
     }
-        
+  
     ?>
 
     <script>
@@ -172,12 +191,3 @@ function factory_bootstrap_312_enqueue_style( $styles ) {
         if ( !in_array ( $styles, $factory_bootstrap_312_styles ) ) $factory_bootstrap_312_styles[] = $styles;
     }
 }
-
-function _remove_script_version( $src, $handle ){
-
-	$parts = explode( '?', $src );
-	return $parts[0];
-}
-add_filter( 'script_loader_src', '_remove_script_version', 15, 2 );
-add_filter( 'style_loader_src', '_remove_script_version', 15, 2 );
-

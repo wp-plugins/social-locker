@@ -88,6 +88,16 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.4.5 - 19 May 2014</strong><br />
+<ul>
+<li>FIXED: The CSS issue which appears in the Wordpress Dashboard for some users.</li>
+</ul>
+
+<strong>v.3.4.3 - 14 May 2014</strong><br />
+<ul>
+<li>FIXED: The "remove_script_version" issue.</li>
+</ul>
+
 <strong>v.3.4.1 - 13 May 2014</strong><br />
 <ul>
 <li>NEW: Added preloaders for the social buttons.</li>

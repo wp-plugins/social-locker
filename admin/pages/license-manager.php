@@ -5,7 +5,7 @@
  */
 class OnpSL_LicenseManagerPage extends OnpLicensing311_LicenseManagerPage  {
  
-    public $purchasePrice = '$23';
+    public $purchasePrice = '$22';
     
     public function configure() {
             $this->menuPostType = 'social-locker';
