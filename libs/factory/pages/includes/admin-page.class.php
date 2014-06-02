@@ -1,6 +1,6 @@
 <?php
 
-class FactoryPages310_AdminPage extends FactoryPages310_Page {
+class FactoryPages311_AdminPage extends FactoryPages311_Page {
     
     /**
      * Visible page title.
@@ -72,7 +72,7 @@ class FactoryPages310_AdminPage extends FactoryPages310_Page {
      */
     public $hidden = false;
     
-    public function __construct(Factory310_Plugin $plugin) {
+    public function __construct($plugin) {
         parent::__construct($plugin);
         $this->configure();
 
@@ -162,7 +162,7 @@ class FactoryPages310_AdminPage extends FactoryPages310_Page {
             $this->assets($this->scripts, $this->styles);
             
             if ( !$this->scripts->isEmpty('bootstrap')|| !$this->styles->isEmpty('bootstrap') ) {
-                add_action('factory_bootstrap_312_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
+                add_action('factory_bootstrap_313_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
             }
             
             // includes styles and scripts

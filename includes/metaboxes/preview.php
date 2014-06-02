@@ -65,6 +65,14 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
                 jQuery("#lock-preview-wrap iframe").height(height);
             }
             var pluginName = '<?php echo $sociallocker->pluginName; ?>';
+            
+            <?php if ( defined('ONP_SL_STYLER_PLUGIN_ACTIVE') ) { ?>
+            window.onp_sl_styleroller = true;
+            <?php } else { ?>
+            window.onp_sl_styleroller = false;
+            window.onp_sl_styleroller_offer_text = '<?php _e('Want to customize the locker look?', 'sociallocker') ?>';
+            window.onp_sl_styleroller_offer_url = '<?php echo $sociallocker->options['styleroller'] ?>';
+            <?php } ?>
         </script>
         <p class="note"><strong><?php _e('Note', 'sociallocker'); ?>:</strong> <?php _e('It\'s just a preview. The locker and the social buttons don\'t work correctly in the admin area.', 'sociallocker'); ?></p>
         <div id="lock-preview-wrap" 

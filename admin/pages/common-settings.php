@@ -14,12 +14,12 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
+class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
  
     /**
      * The title of the page in the admin menu.
      * 
-     * @see FactoryPages310_AdminPage
+     * @see FactoryPages311_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -29,7 +29,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
     /**
      * The parent menu of the page in the admin menu.
      * 
-     * @see FactoryPages310_AdminPage
+     * @see FactoryPages311_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -40,7 +40,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
      * The id of the page in the admin menu.
      * 
      * Mainly used to navigate between pages.
-     * @see FactoryPages310_AdminPage
+     * @see FactoryPages311_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -55,7 +55,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
      */
     protected $languages;
     
-    public function __construct(Factory310_Plugin $plugin) {   
+    public function __construct(Factory311_Plugin $plugin) {   
         parent::__construct($plugin);
         
         $this->menuTitle = __('Common Settings', 'sociallocker');
@@ -160,7 +160,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
     /**
      * Requests assets (js and css) for the page.
      * 
-     * @see FactoryPages310_AdminPage
+     * @see FactoryPages311_AdminPage
      * 
      * @since 1.0.0
      * @return void 
@@ -341,7 +341,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
             <h2><?php _e('Common Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-312">
+            <div class="factory-bootstrap-313">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -382,7 +382,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_310_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_311_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -443,7 +443,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-312" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-313" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>
@@ -460,4 +460,4 @@ class OnpSL_CommonSettingsPage extends FactoryPages310_AdminPage  {
     }
 }
 
-FactoryPages310::register($sociallocker, 'OnpSL_CommonSettingsPage');
+FactoryPages311::register($sociallocker, 'OnpSL_CommonSettingsPage');

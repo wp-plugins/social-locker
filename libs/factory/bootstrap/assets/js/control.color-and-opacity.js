@@ -3,7 +3,7 @@
               
       $(function(){
           
-        $(".factory-bootstrap-312 .factory-color-and-opacity").each(function(){
+        $(".factory-bootstrap-313 .factory-color-and-opacity").each(function(){
             var $colorOpacityControl = $(this);
             
             var $colorControl = $colorOpacityControl.find('.factory-color');

@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Activation extends Factory310_Activator {
+class OnpSL_Activation extends Factory311_Activator {
     
     public function activate() {       
         // sets the default licence

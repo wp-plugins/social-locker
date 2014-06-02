@@ -75,7 +75,7 @@ class OnpSL_ManualLockingMetaBox extends FactoryMetaboxes307_Metabox
         if (!$isSystem) $shortcode = '[sociallocker id="' . $post->ID . '"] [/sociallocker]';
  
         ?>
-        <div class="factory-bootstrap-312 factory-fontawesome-305">
+        <div class="factory-bootstrap-313 factory-fontawesome-305">
            <p class="onp-sl-description-section">
                <?php _e('Wrap content you want to lock via the following shortcode in your post editor:', 'sociallocker') ?>
                <input class="onp-sl-shortcode" type="text" value='<?php echo $shortcode ?>' />

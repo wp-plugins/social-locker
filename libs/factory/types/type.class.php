@@ -80,7 +80,7 @@ abstract class FactoryTypes309_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory310_ScriptList 
+     * @var Factory311_ScriptList 
      */
     public $scripts;
     
@@ -88,7 +88,7 @@ abstract class FactoryTypes309_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory310_StyleList 
+     * @var Factory311_StyleList 
      */  
     public $styles;
     
@@ -151,8 +151,8 @@ abstract class FactoryTypes309_Type {
         $this->menu = new FactoryTypes309_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory310_ScriptList();
-        $this->styles = new Factory310_StyleList(); 
+        $this->scripts = new Factory311_ScriptList();
+        $this->styles = new Factory311_StyleList(); 
         
         add_action('init', array($this, 'register'));
     }
@@ -213,7 +213,7 @@ abstract class FactoryTypes309_Type {
         }
                
         if ( !$this->scripts->isEmpty('bootstrap')|| !$this->styles->isEmpty('bootstrap') ) {
-            add_action('factory_bootstrap_312_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
+            add_action('factory_bootstrap_313_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
         }
         
         // includes styles and scripts

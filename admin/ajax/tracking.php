@@ -21,12 +21,14 @@ add_action('wp_ajax_nopriv_sociallocker_tracking', 'onp_sl_tracking');
 function onp_sl_tracking() {
     global $wpdb;
     
+    
+    
     $postId = isset( $_POST['targetId'] ) ? intval($_POST['targetId']) : 0;
     if (!$postId) exit;
-
+    
     $sender = isset( $_POST['sender'] ) ? $_POST['sender'] : null;
     if (empty($sender) || !in_array($sender, array('button', 'timer', 'cross'))) exit;
-
+    
     $senderName = !empty($_POST['senderName']) ? $_POST['senderName'] : false;
     
     $insertPart = false;
@@ -82,7 +84,7 @@ function onp_sl_tracking() {
             }
             break;
     }
-
+   
     if (!$insertPart || !$updatePart) exit;
     
     $hrsOffset = get_option('gmt_offset');
@@ -97,7 +99,8 @@ function onp_sl_tracking() {
             (AggregateDate, PostID, total_count, facebook_like_count, twitter_tweet_count, google_plus_count, timer_count, cross_count, facebook_share_count, twitter_follow_count, google_share_count, linkedin_share_count) 
             VALUES ('$date',$postId, $insertPart)
             ON DUPLICATE KEY UPDATE $updatePart";
-    
-    $wpdb->query($sql);    
+  
+    $wpdb->query($sql); 
+   
     exit;
 }

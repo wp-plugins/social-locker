@@ -1,5 +1,5 @@
 if ( !window.onpsl ) window.onpsl = {};
-if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
+if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
 
 (function($){
     
@@ -15,9 +15,10 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
 
             this.trackInputChanges();
             this.recreatePreview();
+
+            if ( window['sociallocker-next-build'] === 'free' ) {
                 this.initTrialBox();
-            
-  
+            }      
         }, 
 
         /**
@@ -123,24 +124,6 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                 $(tabs[index])
                    .find("input, select, textarea")
                    .bind('change keyup', function(){ self.refreshPreview(); });
-            }
-        },
-        
-        /**
-         * Binds the change event of the WP editor.
-         */
-        bindWpEditorChange: function( ed ) {
-            var self = this;
-            
-            var changed = function() {
-                tinyMCE.activeEditor.save();
-                self.refreshPreview();
-            };
-            
-            if ( tinymce.majorVersion <= 3 ) {
-                ed.onChange.add(function(){ changed(); });
-            } else {
-                ed.on("change", function(){ changed(); });
             }
         },
         
@@ -259,11 +242,41 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                         url: $("#sociallocker_linkedin_share_url").val(),
                         title: $("#sociallocker_linkedin_share_title").val()
                     }
-                }
+                },              
+                vk: {               
+                    appId: "4293274",
+
+                    like: {
+                       
+                        pageTitle: $("#sociallocker_vk_like_message_name").val(),
+                        pageDescription: $("#sociallocker_vk_like_message_description").val(),
+                        pageUrl: $("#sociallocker_vk_like_url").val(),
+                        pageImage: $("#sociallocker_vk_like_message_image").val(),
+                        text: $("#sociallocker_vk_like_message_caption").val(),
+                        title: $("#sociallocker_vk_like_title").val()
+                    },
+                
+                    subscribe: {  
+                    
+                        group_id: $("#sociallocker_vk_subscribe_group_id").val(),
+                        title: $("#sociallocker_vk_subscribe_title").val()
+                    
+                    }               
+            },            
+            ok: {
+                
+                pageUrl: $("#sociallocker_ok_class_url").val(),
+                title: $("#sociallocker_ok_class_title").val()
+                
+            }
             };
             
             if (!options.text.header && options.text.message) {
                 options.text = options.text.message;
+            }
+
+            if ( window['sociallocker-next-build'] != 'free' ) {
+                options['theme'] = $("#sociallocker_style").val();
             }
             
             if ( window.onpsl.lockerEditor.filterOptions ) {
@@ -273,9 +286,6 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
             return options;
         },
         
-        /**
-         * Inits a trial box for the free build.
-         */
         initTrialBox: function() {
             
             $("#OnpSL_MoreFeaturesMetaBox ul span").qtip({
@@ -296,15 +306,6 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                         classes: 'qtip-bootstrap advanced-function-demo'
                 }
             });
-        },
-        
-        /**
-         * Inits a button which offers to buy the StyleRoller Add-on.
-         */
-        initStyleRollerButton: function() {
-            if ( window.window.onp_sl_styleroller ) return;
-            var $button = $("<a target='_blank' class='btn btn-default' id='onp-sl-styleroller-btn' href='" + window.onp_sl_styleroller_offer_url + "'><i class='fa fa-flask'></i>" + window.onp_sl_styleroller_offer_text + "</a>");
-            $("#sociallocker_style").after($button);
         },
         
         /**

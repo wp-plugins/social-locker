@@ -31,7 +31,7 @@ class FactoryNotices308 {
         foreach ($this->notices as $notice) {
             $where = empty( $notice['where'] ) ? array('plugins','dashboard') : $notice['where'];
             $screen = get_current_screen();
-            
+
             if ( in_array($screen->base, $where) ) {
                 $this->hasNotices = true;
                 break;
@@ -39,14 +39,14 @@ class FactoryNotices308 {
         }
 
         if ( $this->hasNotices ) {
-            add_action('factory_bootstrap_312_enqueue_scripts', array( $this, 'enqueueBootstrapScripts' ));      
+            add_action('factory_bootstrap_313_enqueue_scripts', array( $this, 'enqueueBootstrapScripts' ));      
             add_action('admin_enqueue_scripts', array( $this, 'enqueueScripts' ));        
             add_action('admin_notices', array( $this, 'showNotices' ));
         }
     }
     
     public function enqueueBootstrapScripts() {
-        factory_bootstrap_312_enqueue_style('bootstrap.core');
+        factory_bootstrap_313_enqueue_style('bootstrap.core');
     }
     
     public function enqueueScripts() {
@@ -66,7 +66,7 @@ class FactoryNotices308 {
         ?>
 
         <?php if ( $this->hasNotices ) { ?>
-        <div class="updated factory-bootstrap-312 factory-fontawesome-305 factory-notices-308-notices">
+        <div class="updated factory-bootstrap-313 factory-fontawesome-305 factory-notices-308-notices">
         <?php
         foreach ($this->notices as $notice) {
             $this->showNotice($notice);
@@ -100,6 +100,7 @@ class FactoryNotices308 {
         // checking if we should show a notice on a current page
         $where = empty( $data['where'] ) ? array('plugins','dashboard') : $data['where'];
         $screen = get_current_screen();
+
         if ( !in_array($screen->base, $where) ) return;
 
         // setups a content of the notice to display

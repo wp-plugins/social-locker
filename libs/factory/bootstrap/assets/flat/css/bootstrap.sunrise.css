@@ -1,34 +1,34 @@
-.factory-bootstrap-312 .btn-primary {
+.factory-bootstrap-313 .btn-primary {
   background: #dd823b;
   border-color: #c36822;
   color: white;
   -webkit-box-shadow: inset 0 1px 0 #e8ab7c, 0 1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 1px 0 #e8ab7c, 0 1px 0 rgba(0, 0, 0, 0.15); 
 }
-.factory-bootstrap-312 .btn-primary:hover,
-.factory-bootstrap-312 .btn-primary:focus {
+.factory-bootstrap-313 .btn-primary:hover,
+.factory-bootstrap-313 .btn-primary:focus {
     background: #cc6c23;
     border-color: #ad5c1e;
     color: white;
     -webkit-box-shadow: inset 0 1px 0 #e59d66, 0 1px 0 rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 1px 0 #e59d66, 0 1px 0 rgba(0, 0, 0, 0.15);
 }
-.factory-bootstrap-312 .btn-primary:active {
+.factory-bootstrap-313 .btn-primary:active {
     background: #cc6c23;
     border-color: #ad5c1e;
     color: white;
     -webkit-box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.5);
 }
-.factory-bootstrap-312 .btn-primary[disabled], 
-.factory-bootstrap-312 .btn-primary:disabled {
+.factory-bootstrap-313 .btn-primary[disabled], 
+.factory-bootstrap-313 .btn-primary:disabled {
     color: #d1cbc7 !important;
     background: #cc6c23 !important;
     border-color: #ad5c1e !important;
     text-shadow: none !important;
 }
 
-.factory-bootstrap-312 .btn-group .btn.active.value {
+.factory-bootstrap-313 .btn-group .btn.active.value {
     background-color: #dd823b;
     -webkit-box-shadow: inset 0 1px 2px #c36822;
     box-shadow: inset 0 1px 2px #c36822;
@@ -37,12 +37,12 @@
     border-left: 1px solid #c36822;
 }
 
-.factory-bootstrap-312 .pagination > .active > a,
-.factory-bootstrap-312 .pagination > .active > span,
-.factory-bootstrap-312 .pagination > .active > a:hover,
-.factory-bootstrap-312 .pagination > .active > span:hover,
-.factory-bootstrap-312 .pagination > .active > a:focus,
-.factory-bootstrap-312 .pagination > .active > span:focus {
+.factory-bootstrap-313 .pagination > .active > a,
+.factory-bootstrap-313 .pagination > .active > span,
+.factory-bootstrap-313 .pagination > .active > a:hover,
+.factory-bootstrap-313 .pagination > .active > span:hover,
+.factory-bootstrap-313 .pagination > .active > a:focus,
+.factory-bootstrap-313 .pagination > .active > span:focus {
   background-color: #dd823b;
   border-color: #c36822;
 }

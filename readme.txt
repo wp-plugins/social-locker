@@ -88,6 +88,20 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.5.1 - 02 Jun 2014</strong><br />
+<ul>
+<li>FIXED: The bug when the analytics doesn't count "likes".</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
+<strong>v.3.5.0 - 30 May 2014</strong><br />
+<ul>
+<li>NEW: StyleRoller released, a new add-on for creating own unique and attractive themes for Social Locker.</li>
+<li>NEW: Added the menu item "Add-Ons"</li>
+<li>FIXED: A lot of minor bugs.</li>
+</ul>
+
 <strong>v.3.4.5 - 19 May 2014</strong><br />
 <ul>
 <li>FIXED: The CSS issue which appears in the Wordpress Dashboard for some users.</li>

@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory310_StyleList extends Factory310_AssetsList 
+class Factory311_StyleList extends Factory311_AssetsList 
 {
     public function connect( $source = 'wordpress' ) {
 
@@ -22,7 +22,7 @@ class Factory310_StyleList extends Factory310_AssetsList
         if ( !empty( $this->required[$source] ) ) {
             foreach ($this->required[$source] as $style) {
                 if ( 'wordpress' === $source ) wp_enqueue_style( $style );
-                elseif ( 'bootstrap' === $source ) factory_bootstrap_312_enqueue_style( $style );
+                elseif ( 'bootstrap' === $source ) factory_bootstrap_313_enqueue_style( $style );
             }     
         }
         

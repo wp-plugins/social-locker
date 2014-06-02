@@ -37,7 +37,7 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
         
     public function html($attr, $content) { 
         global $post;
-                
+
         $id = isset( $attr['id'] ) 
             ? (int)$attr['id'] 
             : get_option('onp_sl_default_locker_id');
@@ -62,7 +62,7 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
         
         $isAjax = false;
         $lockData['ajax'] = false;
-                       
+
         $dynamicTheme = get_option('sociallocker_dynamic_theme', 0);
 
         $this->lockId = "onpLock" . rand(100000, 999999);
@@ -78,6 +78,7 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
 
         <?php 
         
+
         if ( $dynamicTheme ) { ?>
             <div class="onp-sociallocker-params" style="display: none;">
                 <?php echo json_encode( $lockData ) ?>
@@ -93,6 +94,8 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
     }
     
     public function printOptions() { 
+
+        
     ?>
         <script>
             if ( !window.onpsl ) window.onpsl = {};

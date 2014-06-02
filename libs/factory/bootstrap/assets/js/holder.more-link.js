@@ -5,7 +5,7 @@
 ;(function ( $, window, document, undefined ) {
     "use strict"; // jshint ;_;
   
-    var pluginName = 'factoryBootstrap312_moreLink';
+    var pluginName = 'factoryBootstrap313_moreLink';
 
     $.fn[pluginName] = function ( param1, param2 ) {
         
@@ -31,7 +31,7 @@
     // auto init
  
     $(function(){
-        $('.factory-bootstrap-312 .factory-more-link').factoryBootstrap312_moreLink();  
+        $('.factory-bootstrap-313 .factory-more-link').factoryBootstrap313_moreLink();  
     });
     
 })( jQuery, window, document );

@@ -51,7 +51,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
      */
     public $priority = 'core';
 	
-    public $cssClass = 'factory-bootstrap-312';
+    public $cssClass = 'factory-bootstrap-313 factory-fontawesome-305';
 
     public function __construct() {
         parent::__construct();
@@ -83,7 +83,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
                                 field empty in order to use an URL of a page where the locker will be placed.
                                <br />Need a separate URL for each button? Try a 
                                <a href="%s">
-                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_311_get_purchase_url( $sociallocker )),
+                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_312_get_purchase_url( $sociallocker )),
                     'placeholder'   => 'http://url-to-share.com'
               ),
           ));

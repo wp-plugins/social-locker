@@ -37,7 +37,7 @@ include_once(ONP_SL_PLUGIN_DIR . '/admin/ajax/shortcode.php');
 function sociallocker_admin_assets( $hook ) {
 
     // sytles for the plugin notices
-    if ( $hook == 'index.php' || $hook == 'plugins.php' )
+    if ( $hook == 'index.php' || $hook == 'plugins.php' || $hook == 'edit.php' )
         wp_enqueue_style( 'onp-sl-notices', ONP_SL_PLUGIN_URL . '/assets/admin/css/notices.030100.css' ); 
     
     // styles for the plugin shorcodes
@@ -125,13 +125,14 @@ add_action('onp_license_manager_success_button_sociallocker-next', 'onp_sl_licen
  * @return string
  */
 function onp_sl_license_manager_success_redirect() {
-    $args = array(
-        'fy_page'      => 'how-to-use',
-        'fy_action'    => 'index',  
-        'fy_plugin'    => 'sociallocker-next'
-    );
+    global $sociallocker;
     
-    return '?' . http_build_query( $args );
+    $args = array(
+        'post_type' => 'social-locker',
+        'page' => 'how-to-use-' . $sociallocker->pluginName
+    );
+
+    return admin_url( 'edit.php?' . http_build_query( $args ) );
 }
 add_action('onp_license_manager_success_redirect_sociallocker-next',  'onp_sl_license_manager_success_redirect');
 
@@ -159,3 +160,4 @@ function onp_sl_register_default_themes() {
 
 }
 add_action('onp_sl_register_themes', 'onp_sl_register_default_themes');
+

@@ -15,7 +15,7 @@ function onp_sl_get_flat_theme_css_rules() {
         'background_color' => array(
             array(
                 'css' => 'background-color: {value|onp_to_rgba};',
-                'selector' => '.onp-sociallocker-flat .onp-sociallocker-outer-wrap'   
+                'selector' => '.onp-sociallocker-flat .onp-sociallocker-inner-wrap'   
             ),
             array(
                 'css' => 'border-bottom: 3px solid {value|onp_smart_blackout_color};',
@@ -27,13 +27,6 @@ function onp_sl_get_flat_theme_css_rules() {
             )  
         ),
         'background_image' => array(
-            /*array(
-                'css' => array(
-                    'background-image: url("{value}");',
-                    'background-repeat: repeat;'
-                ),
-                'selector' => '.onp-sociallocker-flat .onp-sociallocker-outer-wrap'
-            ),*/
             array(
                 'css' => 'border-top-color: transparent;',
                 'selector' => '.onp-sociallocker-flat .onp-sociallocker-flip:hover .onp-sociallocker-overlay-back'
@@ -54,7 +47,7 @@ function onp_sl_get_flat_theme_css_rules() {
                     'background-image: url("{image}");',
                     'background-repeat: repeat;'
                 ),
-                'selector' => '.onp-sociallocker-flat .onp-sociallocker-outer-wrap'          
+                'selector' => '.onp-sociallocker-flat .onp-sociallocker-inner-wrap'          
             )
         ),
         'background_gradient' => array(
@@ -65,7 +58,7 @@ function onp_sl_get_flat_theme_css_rules() {
                     'background: -moz-{value|onp_to_gradient};',
                     'background: -o-{value|onp_to_gradient};',
                 ),
-                'selector' => '.onp-sociallocker-flat .onp-sociallocker-outer-wrap'
+                'selector' => '.onp-sociallocker-flat .onp-sociallocker-inner-wrap'
             ),
             array(
                 'css' => 'border-top-color: transparent;',

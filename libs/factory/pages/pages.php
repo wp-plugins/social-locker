@@ -9,14 +9,14 @@
  * @since 1.0.0
  */
 
-add_action('admin_menu', 'FactoryPages310::actionAdminMenu');
+add_action('admin_menu', 'FactoryPages311::actionAdminMenu');
 
 /**
  * A base class to manage pages. 
  * 
  * @since 1.0.0
  */
-class FactoryPages310 {
+class FactoryPages311 {
 
     private static $pages = array();
 

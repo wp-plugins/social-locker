@@ -25,7 +25,7 @@ class OnpUpdates307_Manager {
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory310_Plugin 
+     * @var Factory311_Plugin 
      */
     public $plugin;
     
@@ -367,22 +367,21 @@ class OnpUpdates307_Manager {
         if ( ! current_user_can('update_plugins') ) {
 
             $message = sprintf( 
-                __('You changed the license type. Please download "%1$s" assembly'), 
+                __('You changed the license type. Please download "%1$s" assembly', 'onepress_updates_000'), 
                 $this->plugin->license->build
             );
 
         } else if ( empty($r->package) ) {
 
             $message = sprintf( 
-                __('You changed the license type. Please download "%1$s" assembly. <em>Automatic update 
-                    is unavailable for this plugin.</em>'), 
+                __('You changed the license type. Please download "%1$s" assembly. <em>Automatic update is unavailable for this plugin.</em>', 'onepress_updates_000'), 
                 $this->plugin->license->build
             );
 
         } else {
 
             $message = sprintf( 
-                __('You successfully changed the license type. Please install another plugin assembly (%1$s). <a href="%2$s">Update it now</a>.'), 
+                __('You successfully changed the license type. Please install another plugin assembly (%1$s). <a href="%2$s">Update it now</a>.', 'onepress_updates_000'), 
                 $this->plugin->license->build,
                 wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=') . $file, 'upgrade-plugin_' . $file)     
             );
@@ -401,16 +400,13 @@ class OnpUpdates307_Manager {
                 
                 // content and color
                 'class'     => 'alert alert-danger onp-need-change-assembly',
-                'header'    => 'Please update the plugin',
-                'message'   => 'You changed a license type for <strong>' . $this->plugin->pluginTitle . '</strong>. 
-                                But the license you use\'re currently requires another plugin assembly.<br />
-                                The plugin won\'t work fully until you download the proper assembly. 
-                                Don\'t worry it takes only 5 seconds and all your data will be saved.',   
+                'header'    => __('Please update the plugin', 'onepress_updates_000'),
+                'message'   => sprintf(__('You changed a license type for <strong>%s</strong>. But the license you use\'re currently requires another plugin assembly.<br />The plugin won\'t work fully until you download the proper assembly. Don\'t worry it takes only 5 seconds and all your data will be saved.', 'onepress_updates_000'), $this->plugin->pluginTitle),   
 
                 // buttons and links
                 'buttons'   => array(
                     array(
-                        'title'     => 'Visit the Plugins page',
+                        'title'     => __('Visit the Plugins page', 'onepress_updates_000'),
                         'class'     => 'btn btn-danger',
                         'action'    => "plugins.php"
                     )
@@ -433,3 +429,5 @@ class OnpUpdates307_Manager {
         return $this->plugin->api->request( $action, $args );
     }
 }
+
+?>
