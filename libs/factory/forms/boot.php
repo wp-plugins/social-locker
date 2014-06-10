@@ -21,208 +21,208 @@ if ( !is_admin() ) return;
 
 // checks if the module is already loaded in order to
 // prevent loading the same version of the module twice.
-if (defined('FACTORY_FORMS_311_LOADED')) return;
-define('FACTORY_FORMS_311_LOADED', true);
+if (defined('FACTORY_FORMS_320_LOADED')) return;
+define('FACTORY_FORMS_320_LOADED', true);
 
 // absolute path and URL to the files and resources of the module.
-define('FACTORY_FORMS_311_DIR', dirname(__FILE__));
-define('FACTORY_FORMS_311_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_FORMS_320_DIR', dirname(__FILE__));
+define('FACTORY_FORMS_320_URL', plugins_url(null,  __FILE__ ));
 
 #comp merge
-require(FACTORY_FORMS_311_DIR . '/includes/providers/value-provider.interface.php');
-require(FACTORY_FORMS_311_DIR . '/includes/providers/meta-value-provider.class.php');
-require(FACTORY_FORMS_311_DIR . '/includes/providers/options-value-provider.class.php');
+require(FACTORY_FORMS_320_DIR . '/includes/providers/value-provider.interface.php');
+require(FACTORY_FORMS_320_DIR . '/includes/providers/meta-value-provider.class.php');
+require(FACTORY_FORMS_320_DIR . '/includes/providers/options-value-provider.class.php');
 
-require(FACTORY_FORMS_311_DIR. '/includes/form.class.php');
-require(FACTORY_FORMS_311_DIR. '/helpers.php');
+require(FACTORY_FORMS_320_DIR. '/includes/form.class.php');
+require(FACTORY_FORMS_320_DIR. '/helpers.php');
 #endcomp
 
 /**
  * We add this code into the hook because all these controls quite heavy. So in order to get better perfomance, 
  * we load the form controls only on pages where the forms are created.
  * 
- * @see the 'factory_forms_311_register_controls' hook
+ * @see the 'factory_forms_320_register_controls' hook
  * 
  * @since 3.0.7
  */
-if (!function_exists('factory_forms_311_register_default_controls')) {
+if (!function_exists('factory_forms_320_register_default_controls')) {
     
-    function factory_forms_311_register_default_controls() {
+    function factory_forms_320_register_default_controls( $plugin ) {
 
-        require_once(FACTORY_FORMS_311_DIR. '/includes/html-builder.class.php');
-        require_once(FACTORY_FORMS_311_DIR. '/includes/form-element.class.php');    
-        require_once(FACTORY_FORMS_311_DIR. '/includes/control.class.php');
-        require_once(FACTORY_FORMS_311_DIR. '/includes/complex-control.class.php');
-        require_once(FACTORY_FORMS_311_DIR. '/includes/holder.class.php');
-        require_once(FACTORY_FORMS_311_DIR. '/includes/control-holder.class.php');
-        require_once(FACTORY_FORMS_311_DIR. '/includes/custom-element.class.php');
-        require_once(FACTORY_FORMS_311_DIR. '/includes/form-layout.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/html-builder.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/form-element.class.php');    
+        require_once(FACTORY_FORMS_320_DIR. '/includes/control.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/complex-control.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/holder.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/control-holder.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/custom-element.class.php');
+        require_once(FACTORY_FORMS_320_DIR. '/includes/form-layout.class.php');
 
         // registration of controls
-        FactoryForms311_Form::registerControls(array(
+        $plugin->forms->registerControls(array(
             array(
                 'type'      => 'checkbox',
-                'class'     => 'FactoryForms311_CheckboxControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/checkbox.php'
+                'class'     => 'FactoryForms320_CheckboxControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/checkbox.php'
             ),
             array(
                 'type'      => 'dropdown',
-                'class'     => 'FactoryForms311_DropdownControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/dropdown.php'
+                'class'     => 'FactoryForms320_DropdownControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/dropdown.php'
             ),
             array(
                 'type'      => 'hidden',
-                'class'     => 'FactoryForms311_HiddenControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/hidden.php'
+                'class'     => 'FactoryForms320_HiddenControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/hidden.php'
             ), 
             array(
                 'type'      => 'hidden',
-                'class'     => 'FactoryForms311_HiddenControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/hidden.php'
+                'class'     => 'FactoryForms320_HiddenControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/hidden.php'
             ), 
             array(
                 'type'      => 'radio',
-                'class'     => 'FactoryForms311_RadioControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/radio.php'
+                'class'     => 'FactoryForms320_RadioControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/radio.php'
             ), 
             array(
                 'type'      => 'textarea',
-                'class'     => 'FactoryForms311_TextareaControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/textarea.php'
+                'class'     => 'FactoryForms320_TextareaControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/textarea.php'
             ),  
             array(
                 'type'      => 'textbox',
-                'class'     => 'FactoryForms311_TextboxControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/textbox.php'
+                'class'     => 'FactoryForms320_TextboxControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/textbox.php'
             ),
             array(
                 'type'      => 'url',
-                'class'     => 'FactoryForms311_UrlControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/url.php'
+                'class'     => 'FactoryForms320_UrlControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/url.php'
             ),
             array(
                 'type'      => 'wp-editor',
-                'class'     => 'FactoryForms311_WpEditorControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/wp-editor.php'
+                'class'     => 'FactoryForms320_WpEditorControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/wp-editor.php'
             ), 
             array(
                 'type'      => 'color',
-                'class'     => 'FactoryForms311_ColorControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/color.php'        
+                'class'     => 'FactoryForms320_ColorControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/color.php'        
             ),
             array(
                 'type'      => 'color-and-opacity',
-                'class'     => 'FactoryForms311_ColorAndOpacityControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/color-and-opacity.php'        
+                'class'     => 'FactoryForms320_ColorAndOpacityControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/color-and-opacity.php'        
             ),
             array(
                 'type'      => 'gradient',
-                'class'     => 'FactoryForms311_GradientControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/gradient.php'          
+                'class'     => 'FactoryForms320_GradientControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/gradient.php'          
             ),
             array(
                 'type'      => 'font',
-                'class'     => 'FactoryForms311_FontControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/font.php'        
+                'class'     => 'FactoryForms320_FontControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/font.php'        
             ),
             array(
                 'type'      => 'pattern',
-                'class'     => 'FactoryForms311_PatternControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/pattern.php'        
+                'class'     => 'FactoryForms320_PatternControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/pattern.php'        
             ),
             array(
                 'type'      => 'integer',
-                'class'     => 'FactoryForms311_IntegerControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/integer.php'        
+                'class'     => 'FactoryForms320_IntegerControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/integer.php'        
             ),
             array(
                 'type'      => 'control-group',
-                'class'     => 'FactoryForms311_ControlGroupHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/control-group.php'       
+                'class'     => 'FactoryForms320_ControlGroupHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/control-group.php'       
             ), 
             array(
                 'type'      => 'paddings-editor',
-                'class'     => 'FactoryForms311_PaddingsEditorControl',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/paddings-editor.php'       
+                'class'     => 'FactoryForms320_PaddingsEditorControl',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/paddings-editor.php'       
             ), 
         ));
 
         // registration of control holders
-        FactoryForms311_Form::registerHolders(array(
+        $plugin->forms->registerHolders(array(
             array(
                 'type'      => 'tab',
-                'class'     => 'FactoryForms311_TabHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/tab.php'
+                'class'     => 'FactoryForms320_TabHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/tab.php'
             ),
             array(
                 'type'      => 'tab-item',
-                'class'     => 'FactoryForms311_TabItemHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/tab-item.php'
+                'class'     => 'FactoryForms320_TabItemHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/tab-item.php'
             ),
             array(
                 'type'      => 'accordion',
-                'class'     => 'FactoryForms311_AccordionHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/accordion.php'        
+                'class'     => 'FactoryForms320_AccordionHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/accordion.php'        
             ),    
             array(
                 'type'      => 'accordion-item',
-                'class'     => 'FactoryForms311_AccordionItemHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/accordion-item.php'        
+                'class'     => 'FactoryForms320_AccordionItemHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/accordion-item.php'        
             ),    
             array(
                 'type'      => 'control-group',
-                'class'     => 'FactoryForms311_ControlGroupHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/control-group.php'        
+                'class'     => 'FactoryForms320_ControlGroupHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/control-group.php'        
             ),    
             array(
                 'type'      => 'control-group-item',
-                'class'     => 'FactoryForms311_ControlGroupItem',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/control-group-item.php'        
+                'class'     => 'FactoryForms320_ControlGroupItem',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/control-group-item.php'        
             ),    
             array(
                 'type'      => 'form-group',
-                'class'     => 'FactoryForms311_FormGroupHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/form-group.php'
+                'class'     => 'FactoryForms320_FormGroupHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/form-group.php'
             ), 
             array(
                 'type'      => 'more-link',
-                'class'     => 'FactoryForms311_MoreLinkHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/more-link.php'
+                'class'     => 'FactoryForms320_MoreLinkHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/more-link.php'
             ),
             array(
                 'type'      => 'div',
-                'class'     => 'FactoryForms311_DivHolder',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/holders/div.php'
+                'class'     => 'FactoryForms320_DivHolder',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/holders/div.php'
             ), 
         ));
 
         // registration custom form elements
-        FactoryForms311_Form::registerCustomElements(array(
+        $plugin->forms->registerCustomElements(array(
             array(
                 'type'      => 'html',
-                'class'     => 'FactoryForms311_Html',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/customs/html.php',
+                'class'     => 'FactoryForms320_Html',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/customs/html.php',
             ),
             array(
                 'type'      => 'separator',
-                'class'     => 'FactoryForms311_Separator',
-                'include'   => FACTORY_FORMS_311_DIR. '/controls/customs/separator.php',
+                'class'     => 'FactoryForms320_Separator',
+                'include'   => FACTORY_FORMS_320_DIR. '/controls/customs/separator.php',
             ), 
         ));
 
 
         // registration of form layouts
-        FactoryForms311_Form::registerFormLayout( array(
+        $plugin->forms->registerFormLayout( array(
             'name'      => 'bootstrap-2',
-            'class'     => 'FactoryForms311_Bootstrap2FormLayout',
-            'include'   => FACTORY_FORMS_311_DIR. '/layouts/bootstrap-2/bootstrap-2.php'
+            'class'     => 'FactoryForms320_Bootstrap2FormLayout',
+            'include'   => FACTORY_FORMS_320_DIR. '/layouts/bootstrap-2/bootstrap-2.php'
         ));  
-        FactoryForms311_Form::registerFormLayout( array(
+        $plugin->forms->registerFormLayout( array(
             'name'      => 'bootstrap-3',
-            'class'     => 'FactoryForms311_Bootstrap3FormLayout',
-            'include'   => FACTORY_FORMS_311_DIR. '/layouts/bootstrap-3/bootstrap-3.php'
+            'class'     => 'FactoryForms320_Bootstrap3FormLayout',
+            'include'   => FACTORY_FORMS_320_DIR. '/layouts/bootstrap-3/bootstrap-3.php'
         ));  
     }
 
-    add_action('factory_forms_311_register_controls', 'factory_forms_311_register_default_controls');
+    add_action('factory_forms_320_register_controls', 'factory_forms_320_register_default_controls');
 }

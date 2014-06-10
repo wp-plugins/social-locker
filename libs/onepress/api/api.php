@@ -8,8 +8,9 @@
  * @package onepress-api
  */
 
-function onp_api_309_plugin_created( $plugin ) {
-    $manager = new OnpApi309_Manager( $plugin );
+add_action('onp_api_320_plugin_created', 'onp_api_320_plugin_created');
+function onp_api_320_plugin_created( $plugin ) {
+    $manager = new OnpApi320_Manager( $plugin );
     $plugin->api = $manager;
 }
 
@@ -18,13 +19,13 @@ function onp_api_309_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpApi309_Manager {
+class OnpApi320_Manager {
     
     /**
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory311_Plugin
+     * @var Factory320_Plugin
      */
     public $plugin;
     

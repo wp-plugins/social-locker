@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms311_ComplexControl extends FactoryForms311_Control {
+abstract class FactoryForms320_ComplexControl extends FactoryForms320_Control {
     
     /**
      * Is this element a complex control?
@@ -28,7 +28,7 @@ abstract class FactoryForms311_ComplexControl extends FactoryForms311_Control {
      * Contains a set of internal controls.
      * 
      * @since 1.0.0
-     * @var FactoryForms311_Control[]
+     * @var FactoryForms320_Control[]
      */
     public $innerControls = array();
     
@@ -36,7 +36,7 @@ abstract class FactoryForms311_ComplexControl extends FactoryForms311_Control {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms311_ValueProvider $provider
+     * @param IFactoryForms320_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {

@@ -433,7 +433,7 @@ if ( !window.onpsl.preview ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap313_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap320_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

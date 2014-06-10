@@ -3,7 +3,7 @@
  * Paddings Control
  */
 
-class FactoryForms311_PaddingsEditorControl extends FactoryForms311_Control 
+class FactoryForms320_PaddingsEditorControl extends FactoryForms320_Control 
 {
     public $type = 'paddings-editor';
   

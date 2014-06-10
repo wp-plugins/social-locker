@@ -26,7 +26,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms311_IntegerControl extends FactoryForms311_Control 
+class FactoryForms320_IntegerControl extends FactoryForms320_Control 
 {
     public $type = 'integer';
   

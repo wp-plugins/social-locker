@@ -12,14 +12,14 @@
 /**
  * Common Settings
  */
-class OnpSL_StatisticsPage extends FactoryPages311_AdminPage  {
+class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
  
     public $menuTitle = 'Usage Statistics';
     public $menuPostType = 'social-locker';
     
     public $id = "statistics";
     
-    public function __construct(Factory311_Plugin $plugin) {    
+    public function __construct(Factory320_Plugin $plugin) {    
         $this->menuTitle = __('Usage Statistics', 'sociallocker');
         parent::__construct($plugin);
     }
@@ -128,7 +128,7 @@ class OnpSL_StatisticsPage extends FactoryPages311_AdminPage  {
         <div class="wrap">
             <h2 style="margin-bottom: 10px;"><?php _e('Usage Statistics', 'sociallocker'); ?></h2>
 
-            <div class="factory-bootstrap-313 factory-fontawesome-305">
+            <div class="factory-bootstrap-320 factory-fontawesome-320">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
                 <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br /> By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.', 'sociallocker'); ?></p>
@@ -242,4 +242,4 @@ class OnpSL_StatisticsPage extends FactoryPages311_AdminPage  {
     }
 }
 
-FactoryPages311::register($sociallocker, 'OnpSL_StatisticsPage');
+FactoryPages320::register($sociallocker, 'OnpSL_StatisticsPage');

@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
+class OnpSL_PreviewMetaBox extends FactoryMetaboxes320_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -40,8 +40,8 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
      */
     public $priority = 'core';
     
-    public function __construct() {
-        parent::__construct();
+    public function __construct( $plugin ) {
+        parent::__construct( $plugin );
         
         $this->title = __('Locker Preview', 'sociallocker');
     }
@@ -49,7 +49,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes307_Metabox
+     * @see FactoryMetaboxes320_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -97,4 +97,4 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes307_Metabox
     }
 }
 
-FactoryMetaboxes307::register('OnpSL_PreviewMetaBox');
+FactoryMetaboxes320::register('OnpSL_PreviewMetaBox', $sociallocker);

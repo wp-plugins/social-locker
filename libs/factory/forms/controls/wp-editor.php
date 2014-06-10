@@ -16,7 +16,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms311_WpEditorControl extends FactoryForms311_Control 
+class FactoryForms320_WpEditorControl extends FactoryForms320_Control 
 {
     public $type = 'wp-editor';
        
@@ -29,7 +29,7 @@ class FactoryForms311_WpEditorControl extends FactoryForms311_Control
     protected function beforeHtml() {
         if ( empty( $this->options['tinymce'] ) ) $this->options['tinymce'] = array();
         if ( !isset( $this->options['tinymce']['content_css'] ) ) 
-            $this->options['tinymce']['content_css'] = FACTORY_FORMS_311_URL . '/assets/css/editor.css';
+            $this->options['tinymce']['content_css'] = FACTORY_FORMS_320_URL . '/assets/css/editor.css';
     }
     
     /**

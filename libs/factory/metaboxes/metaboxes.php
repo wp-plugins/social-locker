@@ -9,9 +9,9 @@
  * @since 1.0.0
  */
 
-add_action('add_meta_boxes', 'FactoryMetaboxes307::actionAddMetaboxes');
-add_action('admin_enqueue_scripts', 'FactoryMetaboxes307::actionAdminEnqueueScripts');
-add_action('save_post', 'FactoryMetaboxes307::actionSavePost');
+add_action('add_meta_boxes', 'FactoryMetaboxes320::actionAddMetaboxes');
+add_action('admin_enqueue_scripts', 'FactoryMetaboxes320::actionAdminEnqueueScripts');
+add_action('save_post', 'FactoryMetaboxes320::actionSavePost');
 
 /**
  * A base class to manage metaboxes. 
@@ -22,13 +22,13 @@ add_action('save_post', 'FactoryMetaboxes307::actionSavePost');
  * 
  * @since 1.0.0
  */
-class FactoryMetaboxes307 {
+class FactoryMetaboxes320 {
     
     /**
      * A variable to store metaboxes per type they defined for.
      * 
      * @since 1.0.0
-     * @var FactoryMetaboxes307_Metabox[]
+     * @var FactoryMetaboxes320_Metabox[]
      */
     public static $metaboxes = array();
     
@@ -45,10 +45,10 @@ class FactoryMetaboxes307 {
      * 
      * @since 1.0.0
      * @param type $className A metabox class name.
-     * @return FactoryMetaboxes307_Metabox
+     * @return FactoryMetaboxes320_Metabox
      */
-    public static function register( $className ) {
-        $metabox = new $className();
+    public static function register( $className, $plugin ) {
+        $metabox = new $className( $plugin );
         self::$metaboxes[$metabox->id] = $metabox;
         
         if ( empty( $metabox->postTypes ) ) return $metabox;
@@ -65,10 +65,10 @@ class FactoryMetaboxes307 {
      * @since 1.0.0
      * @param type $className A metabox class name.
      * @param type $postType A post type for which a given metabox should be registered. 
-     * @return FactoryMetaboxes307_Metabox
+     * @return FactoryMetaboxes320_Metabox
      */
-    public static function registerFor( $className, $postType ) {
-        $metabox = self::register( $className );
+    public static function registerFor( $className, $postType, $plugin ) {
+        $metabox = self::register( $className, $plugin );
         self::$metaboxes[$metabox->id]->addPostType($postType); 
         self::$postTypes[$postType][$metabox->id] = $metabox;
         return $metabox;

@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryShortcodes305_Shortcode {
+abstract class FactoryShortcodes320_Shortcode {
     
     private static $metaKeyShorcodeAssetsForPosts = 'factory_shortcodes_assets';
     
@@ -37,7 +37,7 @@ abstract class FactoryShortcodes305_Shortcode {
     /**
      * A manager that created and track this shortcode.
      * @since 1.0.0
-     * @var FactoryShortcodes305_ShortcodeManager 
+     * @var FactoryShortcodes320_ShortcodeManager 
      */
     private $manager;
 
@@ -45,7 +45,7 @@ abstract class FactoryShortcodes305_Shortcode {
      * Scripts to include on the same page.
      * 
      * @since 1.0.0
-     * @var Factory311_ScriptList 
+     * @var Factory320_ScriptList 
      */
     public $scripts;
     
@@ -53,7 +53,7 @@ abstract class FactoryShortcodes305_Shortcode {
      * Styles to include on the same page.
      * 
      * @since 1.0.0
-     * @var Factory311_StyleList 
+     * @var Factory320_StyleList 
      */
     public $styles;
     
@@ -80,10 +80,11 @@ abstract class FactoryShortcodes305_Shortcode {
      * 
      * @since 1.0.0
      */
-    public function __construct() {
-
-        $this->scripts = new Factory311_ScriptList();
-        $this->styles = new Factory311_StyleList();     
+    public function __construct( $plugin ) {
+        $this->plugin = $plugin;
+        
+        $this->scripts = $this->plugin->newScriptList();
+        $this->styles = $this->plugin->newStyleList();   
         
         if ( !is_array( $this->shortcodeName )) {
             $this->shortcodeName = array( $this->shortcodeName );

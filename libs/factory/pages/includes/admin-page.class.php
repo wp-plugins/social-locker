@@ -1,6 +1,6 @@
 <?php
 
-class FactoryPages311_AdminPage extends FactoryPages311_Page {
+class FactoryPages320_AdminPage extends FactoryPages320_Page {
     
     /**
      * Visible page title.
@@ -156,13 +156,13 @@ class FactoryPages311_AdminPage extends FactoryPages311_Page {
             $this->result = ob_get_contents();
             ob_end_clean();
         }
-        
+   
         // calls scripts and styles, adds pages to menu
         if ( isset($_GET['page']) && $_GET['page'] == $resultId ) {
             $this->assets($this->scripts, $this->styles);
-            
+
             if ( !$this->scripts->isEmpty('bootstrap')|| !$this->styles->isEmpty('bootstrap') ) {
-                add_action('factory_bootstrap_313_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
+                add_action('factory_bootstrap_enqueue_scripts_' . $this->plugin->pluginName, array($this, 'actionAdminBootstrapScripts'));
             }
             
             // includes styles and scripts

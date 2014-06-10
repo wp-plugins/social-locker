@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
+class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
 {
     /**
      * A visible title of the metabox.
@@ -51,10 +51,10 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
      */
     public $priority = 'core';
 	
-    public $cssClass = 'factory-bootstrap-313 factory-fontawesome-305';
+    public $cssClass = 'factory-bootstrap-320 factory-fontawesome-320';
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct( $plugin ) {
+        parent::__construct( $plugin );
         
         $this->title = __('Basic Options', 'sociallocker');
     }
@@ -62,10 +62,10 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
     /**
      * Configures a form that will be inside the metabox.
      * 
-     * @see FactoryMetaboxes307_FormMetabox
+     * @see FactoryMetaboxes320_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms311_Form $form A form object to configure.
+     * @param FactoryForms320_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {        
@@ -83,7 +83,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
                                 field empty in order to use an URL of a page where the locker will be placed.
                                <br />Need a separate URL for each button? Try a 
                                <a href="%s">
-                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_312_get_purchase_url( $sociallocker )),
+                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_321_get_purchase_url( $sociallocker )),
                     'placeholder'   => 'http://url-to-share.com'
               ),
           ));
@@ -120,4 +120,4 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes307_FormMetabox
     }
 }
 
-FactoryMetaboxes307::register('OnpSL_BasicOptionsMetaBox');
+FactoryMetaboxes320::register('OnpSL_BasicOptionsMetaBox', $sociallocker);

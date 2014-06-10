@@ -9,10 +9,13 @@
  * @since 1.0.0
  */
 
-/**
- * An abstraction for forms.
- */
-class FactoryForms311_Form {
+// creating a license manager for each plugin created via the factory
+add_action('factory_forms_320_plugin_created', 'factory_forms_320_plugin_created');
+function factory_forms_320_plugin_created( $plugin ) {
+    $plugin->forms = new FactoryForms320_Manager( $plugin );
+}
+
+class FactoryForms320_Manager {
     
     // ----------------------------------------------------
     // Static fields and methods
@@ -24,7 +27,7 @@ class FactoryForms311_Form {
      * @since 1.0.0
      * @var array 
      */
-    private static $_registeredControls = array();
+    public static $registeredControls = array();
 
     /**
      * Registers a new control.
@@ -36,21 +39,21 @@ class FactoryForms311_Form {
      *                      include   => a path to include control code
      * @return void
      */
-    public static function registerControl( $item ) {
-        self::$_registeredControls[$item['type']] = $item;
+    public function registerControl( $item ) {
+        self::$registeredControls[$item['type']] = $item;
         require_once $item['include'];
     }
     
     /**
      * Registers a set of new controls.
      * 
-     * @see FactoryForms311_Form::registerControl()
+     * @see FactoryForms320_Form::registerControl()
      * 
      * @since 1.0.0
      * @return void
      */
-    public static function registerControls( $data ) {
-        foreach($data as $item) self::registerControl($item);
+    public function registerControls( $data ) {
+        foreach($data as $item) $this->registerControl($item);
     }  
     
     /**
@@ -59,7 +62,7 @@ class FactoryForms311_Form {
      * @since 1.0.0
      * @var array 
      */
-    private static $_registeredHolders = array();
+    public static $registeredHolders = array();
 
     /**
      * Registers a new holder.
@@ -71,21 +74,21 @@ class FactoryForms311_Form {
      *                      include   => a path to include control holder code
      * @return void
      */
-    public static function registerHolder( $item ) {
-        self::$_registeredHolders[$item['type']] = $item;
+    public function registerHolder( $item ) {
+        self::$registeredHolders[$item['type']] = $item;
         require_once $item['include'];
     }
 
     /**
      * Registers a set of new holder controls.
      * 
-     * @see FactoryForms311_Form::registerHolder()
+     * @see FactoryForms320_Form::registerHolder()
      * 
      * @since 1.0.0
      * @return void
      */
-    public static function registerHolders( $data ) {
-        foreach($data as $item) self::registerHolder( $item );
+    public function registerHolders( $data ) {
+        foreach($data as $item) $this->registerHolder( $item );
     }  
     
     /**
@@ -94,7 +97,7 @@ class FactoryForms311_Form {
      * @since 1.0.0
      * @var array 
      */
-    private static $_registeredCustomElements = array();
+    public static $registeredCustomElements = array();
 
     /**
      * Registers a new custom form element.
@@ -102,21 +105,21 @@ class FactoryForms311_Form {
      * @since 1.0.0
      * @return void
      */
-    public static function registerCustomElement( $item ) {
-        self::$_registeredCustomElements[$item['type']] = $item;
+    public function registerCustomElement( $item ) {
+        self::$registeredCustomElements[$item['type']] = $item;
         require_once $item['include'];
     }
 
     /**
      * Registers a set of new custom form elements.
      * 
-     * @see FactoryForms311_Form::registerCustomElement()
+     * @see FactoryForms320_Form::registerCustomElement()
      * 
      * @since 1.0.0
      * @return void
      */
-    public static function registerCustomElements( $data ) {
-        foreach($data as $item) self::registerCustomElement( $item );
+    public function registerCustomElements( $data ) {
+        foreach($data as $item) $this->registerCustomElement( $item );
     }  
         
     /**
@@ -125,7 +128,7 @@ class FactoryForms311_Form {
      * @since 1.0.0
      * @var mixed[] 
      */
-    private static $_formLayouts = array();
+    public static $formLayouts = array();
     
     /**
      * Registers a new layout for forms.
@@ -137,8 +140,8 @@ class FactoryForms311_Form {
      *                      include   => a path to include layout code
      * @return void
      */
-    public static function registerFormLayout( $data ) {
-        self::$_formLayouts[$data['name']] = $data;
+    public function registerFormLayout( $data ) {
+        self::$formLayouts[$data['name']] = $data;
     }
  
     /**
@@ -155,7 +158,13 @@ class FactoryForms311_Form {
      * @since 3.0.7
      * @var bool
      */
-    private static $_controlsRegistered = false;
+    public static $controlsRegistered = false;
+}
+
+/**
+ * An abstraction for forms.
+ */
+class FactoryForms320_Form {
     
     // ----------------------------------------------------
     // Object fields and methods
@@ -216,7 +225,7 @@ class FactoryForms311_Form {
      * A current form layout used to render a form.
      * 
      * @since 1.0.0
-     * @var FactoryForms311_FormLayout 
+     * @var FactoryForms320_FormLayout 
      */
     public $layout;
     
@@ -227,13 +236,15 @@ class FactoryForms311_Form {
      * @since 1.0.0
      * @param string $options Contains form options to setup.
      */
-    public function __construct( $options = array () ) {
+    public function __construct( $options = array(), $plugin = null ) {
         global $wp_version;
-        
+
         // register controls once, when the first form is created
-        if ( !FactoryForms311_Form::$_controlsRegistered ) {
-            do_action('factory_forms_311_register_controls');
-            FactoryForms311_Form::$_controlsRegistered = true;
+        if ( !FactoryForms320_Manager::$controlsRegistered ) {
+            do_action('factory_forms_320_register_controls', $plugin);
+            do_action('factory_forms_register_controls', $plugin);
+            if ( !empty( $plugin ) ) do_action('factory_forms_register_controls_' . $plugin->pluginName, $plugin);
+            FactoryForms320_Manager::$controlsRegistered = true;
         }
 
         //$isFlat = version_compare( $wp_version, '3.8', '>='  );
@@ -248,14 +259,14 @@ class FactoryForms311_Form {
             $this->formLayout = 'bootstrap-3';
         }
         
-        if ( !self::$temper ) self::$temper = $isFlat ? 'flat' : 'volumetric';
+        if ( !FactoryForms320_Manager::$temper ) FactoryForms320_Manager::$temper = $isFlat ? 'flat' : 'volumetric';
     }
     
     /**
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms311_ValueProvider $provider
+     * @param IFactoryForms320_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -391,7 +402,7 @@ class FactoryForms311_Form {
         
         if ( is_array( $item ) ) {
 
-            $controlData = self::$_registeredControls[$item['type']];
+            $controlData = FactoryForms320_Manager::$registeredControls[$item['type']];
            
             require_once ($controlData['include']);
 
@@ -416,14 +427,14 @@ class FactoryForms311_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms311_Holder A control holder object.
+     * @return FactoryForms320_Holder A control holder object.
      */
     public function createHolder( $item ) {
         $object = null;
         
         if ( is_array( $item ) ) {
 
-            $holderData = self::$_registeredHolders[$item['type']];
+            $holderData = FactoryForms320_Manager::$registeredHolders[$item['type']];
             require_once ($holderData['include']);
 
             $object = new $holderData['class']( $item, $this );   
@@ -443,14 +454,14 @@ class FactoryForms311_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms311_FormElement A custom form element object.
+     * @return FactoryForms320_FormElement A custom form element object.
      */
     public function createCustomElement( $item ) {
         $object = null;
         
         if ( is_array( $item ) ) {
 
-            $data = self::$_registeredCustomElements[$item['type']];
+            $data = FactoryForms320_Manager::$registeredCustomElements[$item['type']];
             require_once ($data['include']);
 
             $options = $item;
@@ -475,11 +486,11 @@ class FactoryForms311_Form {
      */
     public function html( $options = array() ) {
 
-        if ( !isset( self::$_formLayouts[$this->formLayout] ) )
+        if ( !isset( FactoryForms320_Manager::$formLayouts[$this->formLayout] ) )
             die( sprintf( '[ERROR] The form layout %s was not found.', $this->formLayout ) ); 
         
         // include a render code
-        $layoutData = self::$_formLayouts[$this->formLayout];
+        $layoutData = FactoryForms320_Manager::$formLayouts[$this->formLayout];
         require_once ($layoutData['include']);
 
         $this->connectAssets();
@@ -500,7 +511,7 @@ class FactoryForms311_Form {
     private function connectAssets() {
         
         $this->connectAssetsForItems();
-        $layoutData = self::$_formLayouts[$this->formLayout];
+        $layoutData = FactoryForms320_Manager::$formLayouts[$this->formLayout];
         
         if ( $layoutData['name'] == 'default') {
             if ( isset( $layoutData['style'] ) )
@@ -540,8 +551,8 @@ class FactoryForms311_Form {
         $type = $item['type'];
 
         $haystack = array();
-        if ( self::isControl($type) ) $haystack = self::$_registerControls;
-        elseif ( self::isControlHolder($type) ) $haystack = self::$_registeredHolders;
+        if ( self::isControl($type) ) $haystack = FactoryForms320_Manager::$registerControls;
+        elseif ( self::isControlHolder($type) ) $haystack = FactoryForms320_Manager::$registeredHolders;
 
         if ( isset( $haystack[$type] ) ) {
              if ( isset( $haystack[$type]['style'] ) ) {
@@ -594,7 +605,7 @@ class FactoryForms311_Form {
      * @return bool
      */
     public static function isControl( $item ) {
-        return isset( self::$_registeredControls[ $item['type'] ] );
+        return isset( FactoryForms320_Manager::$registeredControls[ $item['type'] ] );
     }
     
     /**
@@ -605,7 +616,7 @@ class FactoryForms311_Form {
      * @return bool
      */
     public static function isControlHolder( $item ) {
-        return isset( self::$_registeredHolders[ $item['type'] ] );
+        return isset( FactoryForms320_Manager::$registeredHolders[ $item['type'] ] );
     } 
     
     /**
@@ -616,6 +627,6 @@ class FactoryForms311_Form {
      * @return bool
      */
     public static function isCustomElement( $item ) {
-        return isset( self::$_registeredCustomElements[ $item['type'] ] );
+        return isset( FactoryForms320_Manager::$registeredCustomElements[ $item['type'] ] );
     }
 }

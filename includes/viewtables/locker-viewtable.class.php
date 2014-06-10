@@ -1,6 +1,6 @@
 <?php
 
-class SocialLockerViewTable extends FactoryViewtables306_Viewtable
+class SocialLockerViewTable extends FactoryViewtables320_Viewtable
 {
     public function configure()
     {

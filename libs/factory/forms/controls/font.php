@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms311_FontControl extends FactoryForms311_ComplexControl 
+class FactoryForms320_FontControl extends FactoryForms320_ComplexControl 
 {
     public $type = 'font';
     
@@ -86,8 +86,8 @@ class FactoryForms311_FontControl extends FactoryForms311_ComplexControl
 
         );
         
-        $fonts = apply_filters('factory_forms_311_fonts', $fonts);
-        $fonts = apply_filters('factory_forms_311_fonts-' . $this->options['name'], $fonts);
+        $fonts = apply_filters('factory_forms_320_fonts', $fonts);
+        $fonts = apply_filters('factory_forms_320_fonts-' . $this->options['name'], $fonts);
         
         $optionFontFamily = array(
             'name' => $this->options['name'] . '__family',
@@ -101,9 +101,9 @@ class FactoryForms311_FontControl extends FactoryForms311_ComplexControl
             'pickerTarget' => '.factory-control-' . $this->options['name'] . ' .factory-picker-target'
         );
         
-        $this->size = new FactoryForms311_IntegerControl( $optionFontSize, $form, $provider );
-        $this->family = new FactoryForms311_DropdownControl( $optionFontFamily, $form, $provider );
-        $this->color = new FactoryForms311_ColorControl( $optionFontColor, $form, $provider );
+        $this->size = new FactoryForms320_IntegerControl( $optionFontSize, $form, $provider );
+        $this->family = new FactoryForms320_DropdownControl( $optionFontFamily, $form, $provider );
+        $this->color = new FactoryForms320_ColorControl( $optionFontColor, $form, $provider );
         
         $this->innerControls = array( $this->family, $this->size, $this->color );   
     }

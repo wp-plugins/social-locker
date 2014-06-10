@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryMetaboxes307_FormMetabox extends FactoryMetaboxes307_Metabox {
+abstract class FactoryMetaboxes320_FormMetabox extends FactoryMetaboxes320_Metabox {
 
     /**
      * A scope of metadata. By default the current class name used.
@@ -32,24 +32,24 @@ abstract class FactoryMetaboxes307_FormMetabox extends FactoryMetaboxes307_Metab
      */
     public $cssClass;
     
-    public function __construct() {
-        parent::__construct();
+    public function __construct( $plugin ) {
+        parent::__construct( $plugin );
         $this->scope = ( !$this->scope ) ? $this->formatCamelCase( get_class($this) ) : $this->scope;
     }
     
     private function getForm( $post_id = null ) {
         
         // creating a value provider
-        $this->provider = new FactoryForms311_MetaValueProvider( array(
+        $this->provider = new FactoryForms320_MetaValueProvider( array(
             'scope' => $this->scope                            
         ));
         $this->provider->init( $post_id );
         
         // creating a form
-        $form = new FactoryForms311_Form( array(
+        $form = new FactoryForms320_Form( array(
             'scope' => $this->scope,
             'name' => $this->id
-        ));
+        ), $this->plugin );
 
         $form->setProvider( $this->provider );
 
@@ -96,14 +96,14 @@ abstract class FactoryMetaboxes307_FormMetabox extends FactoryMetaboxes307_Metab
     /**
      * Method executed before rendering the form.
      */
-    public function beforeForm(FactoryForms311_Form $form) {
+    public function beforeForm(FactoryForms320_Form $form) {
         return;
     }
     
     /**
      * Method executed after rendering the form.
      */
-    public function afterForm(FactoryForms311_Form $form) {
+    public function afterForm(FactoryForms320_Form $form) {
         return;
     }
         

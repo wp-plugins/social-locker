@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory311_ScriptList extends Factory311_AssetsList 
+class Factory320_ScriptList extends Factory320_AssetsList 
 {
     public $localizeData = array();
     public $useAjax = false;
@@ -25,7 +25,7 @@ class Factory311_ScriptList extends Factory311_AssetsList
         if ( !empty( $this->required[$source] ) ) {
             foreach ($this->required[$source] as $script) {
                 if ( 'wordpress' === $source ) wp_enqueue_script( $script );
-                elseif ( 'bootstrap' === $source ) factory_bootstrap_313_enqueue_script( $script );
+                elseif ( 'bootstrap' === $source ) $this->plugin->bootstrap->enqueueScript( $script );
             }     
         }
         

@@ -14,12 +14,12 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
+class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
  
     /**
      * The title of the page in the admin menu.
      * 
-     * @see FactoryPages311_AdminPage
+     * @see FactoryPages320_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -29,7 +29,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
     /**
      * The parent menu of the page in the admin menu.
      * 
-     * @see FactoryPages311_AdminPage
+     * @see FactoryPages320_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -40,7 +40,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
      * The id of the page in the admin menu.
      * 
      * Mainly used to navigate between pages.
-     * @see FactoryPages311_AdminPage
+     * @see FactoryPages320_AdminPage
      * 
      * @since 1.0.0
      * @var string 
@@ -55,10 +55,48 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
      */
     protected $languages;
     
-    public function __construct(Factory311_Plugin $plugin) {   
+    public function __construct(Factory320_Plugin $plugin) {   
         parent::__construct($plugin);
-        
         $this->menuTitle = __('Common Settings', 'sociallocker');
+    }
+    
+    /**
+     * Requests assets (js and css) for the page.
+     * 
+     * @see FactoryPages320_AdminPage
+     * 
+     * @since 1.0.0
+     * @return void 
+     */
+    public function assets($scripts, $styles) {
+        
+        $this->scripts->request('jquery');
+        
+        $this->scripts->request( array( 
+            'control.checkbox'
+            ), 'bootstrap' );
+        
+        $this->styles->request( array( 
+            'bootstrap.core', 
+            'bootstrap.form-group',
+            'bootstrap.separator', 
+            'control.checkbox'
+            ), 'bootstrap' ); 
+        
+        $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/settings.030000.js');
+        $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/settings.030000.css');   
+    }
+    
+    /**
+     * Renders the page 
+     * 
+     * @sinve 1.0.0
+     * @return void
+     */
+    public function indexAction() {
+        
+        global $sociallocker;
+        
         $this->languages = array(
             array('ca_ES', __('Catalan', 'sociallocker')),
             array('cs_CZ', __('Czech', 'sociallocker')),
@@ -155,51 +193,13 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
             array('se_NO', __('Northern Sámi', 'sociallocker')),
             array('ps_AF', __('Pashto', 'sociallocker'))
         );
-    }
-    
-    /**
-     * Requests assets (js and css) for the page.
-     * 
-     * @see FactoryPages311_AdminPage
-     * 
-     * @since 1.0.0
-     * @return void 
-     */
-    public function assets($scripts, $styles) {
         
-        $this->scripts->request('jquery');
-        
-        $this->scripts->request( array( 
-            'control.checkbox'
-            ), 'bootstrap' );
-        
-        $this->styles->request( array( 
-            'bootstrap.core', 
-            'bootstrap.form-group',
-            'bootstrap.separator', 
-            'control.checkbox'
-            ), 'bootstrap' ); 
-        
-        $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/settings.030000.js');
-        $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/settings.030000.css');   
-    }
-    
-    /**
-     * Renders the page 
-     * 
-     * @sinve 1.0.0
-     * @return void
-     */
-    public function indexAction() {
-        
-        global $sociallockerLangs;
-        
-        $form = new FactoryForms311_Form(array(
+        $form = new FactoryForms320_Form(array(
             'scope' => 'sociallocker'
-        ));
+        ), $sociallocker );
         
         $form->controlTheme = 'mendeleev-000';
-        $form->setProvider( new FactoryForms311_OptionsValueProvider(array(
+        $form->setProvider( new FactoryForms320_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
@@ -341,7 +341,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
             <h2><?php _e('Common Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-313">
+            <div class="factory-bootstrap-320">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -382,7 +382,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_311_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_320_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -443,7 +443,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-313" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-320" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>
@@ -460,4 +460,4 @@ class OnpSL_CommonSettingsPage extends FactoryPages311_AdminPage  {
     }
 }
 
-FactoryPages311::register($sociallocker, 'OnpSL_CommonSettingsPage');
+FactoryPages320::register($sociallocker, 'OnpSL_CommonSettingsPage');

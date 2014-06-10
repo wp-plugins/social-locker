@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory311_Plugin {
+class Factory320_Plugin {
     
     /**
      * Is a current page one of the admin pages?
@@ -68,9 +68,43 @@ class Factory311_Plugin {
             register_deactivation_hook( $this->mainFile, array($this, 'deactivationHook') );
         }
         
-        do_action('factory_311_plugin_created', $this);
+        //do_action('factory_320_plugin_created', $this);
     }
-   
+    
+    /**
+     * Loads modules required for a plugin.
+     * 
+     * @since 3.2.0
+     * @param mixed[] $modules
+     * @return void
+     */
+    public function load( $modules = array() ) {
+        foreach( $modules as $module ) {
+            $this->loadModule( $module );
+        }
+    }
+    
+    /**
+     * Loads a specified module.
+     * 
+     * @since 3.2.0
+     * @param string $modulePath
+     * @param string $moduleVersion
+     * @return void
+     */
+    public function loadModule( $module ) {
+        $scope = isset( $module[2] ) ? $module[2] : 'all';
+        
+        if ( 
+            $scope == 'all' || 
+            ( is_admin() && $scope == 'admin' ) || 
+            ( !is_admin() && $scope == 'public' ) ) {
+            
+            require $this->pluginRoot . '/' . $module[0] . '/boot.php';
+            do_action( $module[1] . '_plugin_created', $this );
+        }
+    }
+    
     /**
      * Registers a class to activate the plugin.
      * 
@@ -232,7 +266,7 @@ class Factory311_Plugin {
             $activator->activate();
         }
         
-        do_action('factory_311_plugin_activation', $this);     
+        do_action('factory_320_plugin_activation', $this);     
         do_action('factory_plugin_activation_' . $this->pluginName, $this);
     }
     
@@ -244,7 +278,7 @@ class Factory311_Plugin {
      */
     public function deactivationHook() {
 
-        do_action('factory_311_plugin_deactivation', $this);     
+        do_action('factory_320_plugin_deactivation', $this);     
         do_action('factory_plugin_deactivation-' . $this->pluginName, $this);
         
         if ( !empty( $this->activatorClass )) {
@@ -445,4 +479,16 @@ class Factory311_Plugin {
          */
         return $classes;   
     }
+    
+    // ----------------------------------------------------------------------
+    // Public methods
+    // ----------------------------------------------------------------------
+    
+    public function newScriptList() {
+        return new Factory320_ScriptList( $this );
+    }
+    
+    public function newStyleList() {
+        return new Factory320_StyleList( $this );
+    } 
 }

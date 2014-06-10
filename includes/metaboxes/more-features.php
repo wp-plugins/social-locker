@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
+class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
 {
     /**
      * A visible title of the metabox.
@@ -51,8 +51,8 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
      */
     public $context = 'side';
     
-    public function __construct() {
-        parent::__construct();
+    public function __construct( $plugin ) {
+        parent::__construct( $plugin );
         
         $this->title = __('More Features?', 'sociallocker');
     }
@@ -60,7 +60,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
     /**
      * Renders content of the metabox.
      * 
-     * @see FactoryMetaboxes307_Metabox
+     * @see FactoryMetaboxes320_Metabox
      * @since 1.0.0
      * 
      * @return void
@@ -70,7 +70,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
         global $sociallocker;
         
     ?>
-        <div class="factory-bootstrap-313 factory-fontawesome-305">
+        <div class="factory-bootstrap-320 factory-fontawesome-320">
             
         <div class="sl-header">
             <strong><?php _e('More Features?', 'sociallocker'); ?></strong>
@@ -99,21 +99,21 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
         <?php if ( FACTORY_FLAT_ADMIN ) { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_312_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                    <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_321_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } else { ?>
                 <div class="sl-footer">
-                    <?php sprintf(__('<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-primary btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span>,</a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_312_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                    <?php sprintf(__('<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-primary btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span>,</a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_321_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } ?>
         <?php } else { ?>
             <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
                 <div class="sl-footer">
-                    <?php sprintf(__('<a href="%s" class="btn btn-danger btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a> <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_312_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                    <?php sprintf(__('<a href="%s" class="btn btn-danger btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a> <a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_321_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } else { ?>
                 <div class="sl-footer">
-                    <?php sprintf(__('<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span></a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_312_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                    <?php sprintf(__('<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" class="btn btn-danger btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span></a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_321_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
                 </div>
             <?php } ?>
         <?php } ?>
@@ -130,4 +130,4 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes307_Metabox
     }
 }
 
-FactoryMetaboxes307::register('OnpSL_MoreFeaturesMetaBox');
+FactoryMetaboxes320::register('OnpSL_MoreFeaturesMetaBox', $sociallocker);

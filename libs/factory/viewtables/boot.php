@@ -16,15 +16,15 @@
 // module provides function only for the admin area
 if ( !is_admin() ) return;
 
-if (defined('FACTORY_VIEWTABLES_306_LOADED')) return;
-define('FACTORY_VIEWTABLES_306_LOADED', true);
+if (defined('FACTORY_VIEWTABLES_320_LOADED')) return;
+define('FACTORY_VIEWTABLES_320_LOADED', true);
 
-define('FACTORY_VIEWTABLES_306_DIR', dirname(__FILE__));
-define('FACTORY_VIEWTABLES_306_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_VIEWTABLES_320_DIR', dirname(__FILE__));
+define('FACTORY_VIEWTABLES_320_URL', plugins_url(null,  __FILE__ ));
 
 load_plugin_textdomain('factory_viewtable_000', false, dirname( plugin_basename( __FILE__ ) ) . '/langs');
 
 #comp merge
-require(FACTORY_VIEWTABLES_306_DIR . '/viewtable.class.php');
-require(FACTORY_VIEWTABLES_306_DIR . '/includes/viewtable-columns.class.php');
+require(FACTORY_VIEWTABLES_320_DIR . '/viewtable.class.php');
+require(FACTORY_VIEWTABLES_320_DIR . '/includes/viewtable-columns.class.php');
 #endcomp

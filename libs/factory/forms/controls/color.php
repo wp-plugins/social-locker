@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms311_ColorControl extends FactoryForms311_Control 
+class FactoryForms320_ColorControl extends FactoryForms320_Control 
 {
     public $type = 'color';
         

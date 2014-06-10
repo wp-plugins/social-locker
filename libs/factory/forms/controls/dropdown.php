@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms311_DropdownControl extends FactoryForms311_Control 
+class FactoryForms320_DropdownControl extends FactoryForms320_Control 
 {
     public $type = 'dropdown';
     

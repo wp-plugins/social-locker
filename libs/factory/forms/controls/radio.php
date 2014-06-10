@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms311_RadioControl extends FactoryForms311_Control 
+class FactoryForms320_RadioControl extends FactoryForms320_Control 
 {
     public $type = 'radio';
     

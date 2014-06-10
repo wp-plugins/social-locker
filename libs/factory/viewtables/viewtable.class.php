@@ -1,16 +1,16 @@
 <?php
 
-abstract class FactoryViewtables306_Viewtable {
+abstract class FactoryViewtables320_Viewtable {
 
     /**
      * A type used to display the table.
-     * @var FactoryTypes309_Type 
+     * @var FactoryTypes320_Type 
      */
     public $type;
     
     /**
      * Table's columns
-     * @var FactoryViewtables306_Columns 
+     * @var FactoryViewtables320_Columns 
      */
     public $columns;
     
@@ -26,13 +26,22 @@ abstract class FactoryViewtables306_Viewtable {
      */  
     public $styles;
     
+    /**
+     * Creates a new instance of a viewtabl.
+     * 
+     * @since 1.0.0
+     */
+    public function __construct( $plugin ) {
+        $this->plugin = $plugin;
+    }
+    
     public function connect( $type ) {
         
         $this->type = $type;
-        $this->columns = new FactoryViewtables306_Columns();
+        $this->columns = new FactoryViewtables320_Columns();
         
-        $this->scripts = new Factory311_ScriptList();
-        $this->styles = new Factory311_StyleList(); 
+        $this->scripts = $this->plugin->newScriptList();
+        $this->styles = $this->plugin->newStyleList();
         
         $this->configure();
         

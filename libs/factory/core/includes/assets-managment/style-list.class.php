@@ -14,15 +14,16 @@
  * 
  * @since 1.0.0
  */
-class Factory311_StyleList extends Factory311_AssetsList 
+class Factory320_StyleList extends Factory320_AssetsList 
 {
     public function connect( $source = 'wordpress' ) {
-
+   
         // register all global required scripts
         if ( !empty( $this->required[$source] ) ) {
+
             foreach ($this->required[$source] as $style) {
                 if ( 'wordpress' === $source ) wp_enqueue_style( $style );
-                elseif ( 'bootstrap' === $source ) factory_bootstrap_313_enqueue_style( $style );
+                elseif ( 'bootstrap' === $source ) $this->plugin->bootstrap->enqueueStyle( $style );
             }     
         }
         

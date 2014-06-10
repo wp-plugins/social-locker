@@ -10,9 +10,9 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_311_plugin_created', 'onp_licensing_312_plugin_created');
-function onp_licensing_312_plugin_created( $plugin ) {
-    $manager = new OnpLicensing312_Manager( $plugin );
+add_action('onp_licensing_321_plugin_created', 'onp_licensing_321_plugin_created');
+function onp_licensing_321_plugin_created( $plugin ) {
+    $manager = new OnpLicensing321_Manager( $plugin );
     $plugin->license = $manager;
 }
 
@@ -21,13 +21,13 @@ function onp_licensing_312_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpLicensing312_Manager {
+class OnpLicensing321_Manager {
     
     /**
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory311_Plugin
+     * @var Factory320_Plugin
      */
     public $plugin;
     
@@ -85,7 +85,7 @@ class OnpLicensing312_Manager {
             add_filter('factory_plugin_row_' . $plugin->pluginName, array($this, 'addMessagesToPluginRow'));
         
             // adding notices to display
-            add_filter('factory_notices_308', array( $this, 'addNotices'), 10, 2); 
+            add_filter('factory_notices_' . $this->plugin->pluginName, array( $this, 'addNotices'), 10, 2); 
             add_action('admin_enqueue_scripts', array( $this, 'printStylesForNotices'));
             
             // activation and deactivation hooks
@@ -119,7 +119,7 @@ class OnpLicensing312_Manager {
             );
 
             $urlToRedirect =  '?' . http_build_query( $args );
-            factory_311_set_lazy_redirect($urlToRedirect);
+            factory_320_set_lazy_redirect($urlToRedirect);
                 
             //@unlink( $filepath );  
             return;
@@ -572,7 +572,7 @@ class OnpLicensing312_Manager {
      * @return mixed[]
      */
     function addLicenseLinks($links) {
-        $url = onp_licensing_312_get_manager_link( $this->plugin->pluginName );
+        $url = onp_licensing_321_get_manager_link( $this->plugin->pluginName );
         array_unshift($links, '<a href="' . $url . '" style="font-weight: bold;">'.__('License', 'onepress-ru'),'</a>');
         unset($links['edit']);
         return $links; 
@@ -594,7 +594,7 @@ class OnpLicensing312_Manager {
                 if ( !isset( $current->response[ $this->plugin->relativePath ] ) ) {
                     
                     $message = __('Need more features? Look at a <a target="_blank" href="%1$s">premium version</a> of the plugin.', 'onepress-ru');
-                    $message = str_replace("%1\$s", onp_licensing_312_get_purchase_url( $this->plugin ), $message);
+                    $message = str_replace("%1\$s", onp_licensing_321_get_purchase_url( $this->plugin ), $message);
                     return array($message);  
                 }
             }
@@ -615,7 +615,7 @@ class OnpLicensing312_Manager {
     function addNotices( $notices ) {       
         
         // show messages only for administrators
-        if ( !factory_311_is_administrator() ) return $notices;
+        if ( !factory_320_is_administrator() ) return $notices;
         
         $closed = get_option('factory_notices_closed', array());
         
@@ -700,7 +700,7 @@ class OnpLicensing312_Manager {
                                     array(
                                         'title'     => '<i class="fa fa-arrow-circle-o-up"></i> '.__('Buy a premium key now!', 'onepress-ru'),
                                         'class'     => 'btn btn-primary',
-                                        'action'    => onp_licensing_312_get_purchase_url( $this->plugin )
+                                        'action'    => onp_licensing_321_get_purchase_url( $this->plugin )
                                     ),
                                     array(
                                         'title'     => __('Hide this message', 'onepress-ru'),
@@ -727,7 +727,7 @@ class OnpLicensing312_Manager {
                                     array(
                                         'title'     => '<i class="fa fa-arrow-circle-o-up"></i> '.__('Buy a premium key now!', 'onepress-ru'),
                                         'class'     => 'btn btn-primary',
-                                        'action'    => onp_licensing_312_get_purchase_url( $this->plugin )
+                                        'action'    => onp_licensing_321_get_purchase_url( $this->plugin )
                                     ),
                                     array(
                                         'title'     => __('Hide this message', 'onepress-ru'),
@@ -759,12 +759,12 @@ class OnpLicensing312_Manager {
                         array(
                             'title'     => '<i class="fa fa-arrow-circle-o-up"></i> '.__('Buy a premium key now!', 'onepress-ru'),
                             'class'     => 'btn btn-primary',
-                            'action'    => onp_licensing_312_get_purchase_url( $this->plugin )
+                            'action'    => onp_licensing_321_get_purchase_url( $this->plugin )
                         ),
                         array(
                             'title'     => __('Visit the license manager', 'onepress-ru'),
                             'class'     => 'btn btn-default',
-                            'action'    => onp_licensing_312_get_manager_link($this->plugin->pluginName, 'index')
+                            'action'    => onp_licensing_321_get_manager_link($this->plugin->pluginName, 'index')
                         ),
                     )
                 );
@@ -795,7 +795,7 @@ class OnpLicensing312_Manager {
  * @param type $pluginName
  * @param type $action
  */
-function onp_licensing_312_manager_link( $pluginName, $action = null, $echo = true ) {
+function onp_licensing_321_manager_link( $pluginName, $action = null, $echo = true ) {
     
     $args = array(
         'fy_page'      => 'license-manager',
@@ -816,7 +816,7 @@ function onp_licensing_312_manager_link( $pluginName, $action = null, $echo = tr
  * @param type $pluginName
  * @param type $action
  */
-function onp_licensing_312_get_manager_link( $pluginName, $action = null ) {
+function onp_licensing_321_get_manager_link( $pluginName, $action = null ) {
     
     $args = array(
         'fy_page'      => 'license-manager',
@@ -831,21 +831,21 @@ function onp_licensing_312_get_manager_link( $pluginName, $action = null ) {
  * Prints a purchasing link with a set of tracking query arguments.
  * 
  * @since 3.0.7
- * @param Factory311_Plugin $plugin
+ * @param Factory320_Plugin $plugin
  * @return void
  */
-function onp_licensing_312_purchase_url( $plugin ) {
-    echo onp_licensing_312_get_purchase_url( $plugin );
+function onp_licensing_321_purchase_url( $plugin ) {
+    echo onp_licensing_321_get_purchase_url( $plugin );
 }
 
 /**
  * Returns a purchasing link with a set of tracking query arguments.
  * 
  * @since 3.0.7
- * @param Factory311_Plugin $plugin
+ * @param Factory320_Plugin $plugin
  * @return string
  */
-function onp_licensing_312_get_purchase_url( $plugin, $content = null ) {
+function onp_licensing_321_get_purchase_url( $plugin, $content = null ) {
     if ( empty( $plugin ) || empty( $plugin->options ) ) return null; 
     if ( !isset( $plugin->options['premium'] ) ) return null;
     

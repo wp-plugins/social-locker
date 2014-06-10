@@ -12,14 +12,14 @@
 /**
  * Common Settings
  */
-class OnpSL_HowToUsePage extends FactoryPages311_AdminPage  {
+class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
  
     public $menuTitle = 'How to use?';
     public $menuPostType = 'social-locker';
     
     public $id = "how-to-use";
     
-    public function __construct(Factory311_Plugin $plugin) {   
+    public function __construct(Factory320_Plugin $plugin) {   
         parent::__construct($plugin);
         $this->menuTitle = __('How to use?', 'sociallocker');
     }
@@ -98,7 +98,7 @@ class OnpSL_HowToUsePage extends FactoryPages311_AdminPage  {
         
         ?>
         
-        <div class="wrap factory-bootstrap-313 factory-fontawesome-305">
+        <div class="wrap factory-bootstrap-320 factory-fontawesome-320">
             <?php $this->showNav('getting-started') ?>
             <div class="onp-help-content">
                 
@@ -274,7 +274,7 @@ class OnpSL_HowToUsePage extends FactoryPages311_AdminPage  {
 
             <p>
                 <?php echo sprintf(__('This plugin is a free edition of the popular <a target="_blank" href="%s"> Social Locker plugin</a> sold on CodeCanyon. 
-                You can activate premium features for a trial period <a href="%s">inside the plugin</a>.', 'sociallocker'), onp_licensing_312_get_purchase_url( $this->plugin ), onp_licensing_312_get_manager_link($this->plugin->pluginName )); ?></strong>
+                You can activate premium features for a trial period <a href="%s">inside the plugin</a>.', 'sociallocker'), onp_licensing_321_get_purchase_url( $this->plugin ), onp_licensing_321_get_manager_link($this->plugin->pluginName )); ?></strong>
             </p>
         </div>
 
@@ -310,7 +310,7 @@ class OnpSL_HowToUsePage extends FactoryPages311_AdminPage  {
             <h1><?php _e('How to activate the trial version?', 'sociallocker'); ?></h1>
 
             <p>
-                <?php printf(__('You can make that on the License Manager page or just <a href="%s">click here</a> to activate the trial version.', 'sociallocker'), onp_licensing_312_get_manager_link($this->plugin->pluginName, 'activateTrial')); ?>
+                <?php printf(__('You can make that on the License Manager page or just <a href="%s">click here</a> to activate the trial version.', 'sociallocker'), onp_licensing_321_get_manager_link($this->plugin->pluginName, 'activateTrial')); ?>
             </p>
         </div>
 
@@ -318,11 +318,11 @@ class OnpSL_HowToUsePage extends FactoryPages311_AdminPage  {
             <h1><?php _e('How to buy the premium version?', 'sociallocker'); ?></h1>
 
             <p>
-                 <?php printf(__('Move to the <a target="_blank" href="%s">plugin page</a> on CodeCanyon and click the Purchase button on the right sidebar.', 'sociallocker'), onp_licensing_312_get_purchase_url( $this->plugin )); ?>
+                 <?php printf(__('Move to the <a target="_blank" href="%s">plugin page</a> on CodeCanyon and click the Purchase button on the right sidebar.', 'sociallocker'), onp_licensing_321_get_purchase_url( $this->plugin )); ?>
             </p>
         </div> 
         <?php
     }    
 }
 
-FactoryPages311::register($sociallocker, 'OnpSL_HowToUsePage');
+FactoryPages320::register($sociallocker, 'OnpSL_HowToUsePage');

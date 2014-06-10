@@ -88,12 +88,29 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.5.6 - 10 Jun 2014</strong><br />
+<ul>
+<li>NEW: Support for shortcode attributes to change quickly some settings of the locker. For example: [sociallocker url="http://google.com"]. Available attributes: url, title, message, theme.</li>
+</ul>
+
+<strong>v.3.5.5 - 10 Jun 2014</strong><br />
+<ul>
+<li>FIXED: A minor CSS issue in the admin dashboard.</li>
+</ul>
+
+<strong>v.3.5.4 - 09 Jun 2014</strong><br />
+<ul>
+<li>IMPROVED: Support for dynamic content (which loads via ajax).</li>
+<li>IMPROVED: The plugin was optimized for better performance.</li>
+<li>FIXED: Minor bugs.</li>
+</ul>
+
+<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
+
 <strong>v.3.5.1 - 02 Jun 2014</strong><br />
 <ul>
 <li>FIXED: The bug when the analytics doesn't count "likes".</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.5.0 - 30 May 2014</strong><br />
 <ul>

@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryShortcodes305 {
+class FactoryShortcodes320 {
     
     private static $manager = false;
     
@@ -26,9 +26,9 @@ class FactoryShortcodes305 {
      * @since 1.0.0
      * @return void
      */
-    public static function register( $className ) {
-        if ( !self::$manager ) self::$manager = new FactoryShortcodes305_ShortcodeManager();
-        self::$manager->register( $className );
+    public static function register( $className, $plugin ) {
+        if ( !self::$manager ) self::$manager = new FactoryShortcodes320_ShortcodeManager();
+        self::$manager->register( $className, $plugin );
     }
 }
 
@@ -39,15 +39,23 @@ class FactoryShortcodes305 {
  * - creating aninstance of Factory Shortcode per every call of the shortcode.
  * - tracking shortcodes in post content.
  */
-class FactoryShortcodes305_ShortcodeManager {
+class FactoryShortcodes320_ShortcodeManager {
     
     /**
      * A set of registered shortcodes.
      * 
      * @since 1.0.0
-     * @var FactoryShortcodes305_Shortcode[] 
+     * @var FactoryShortcodes320_Shortcode[] 
      */
     private $shortcodes = array();
+    
+    /**
+     * Keeps links between "class name" => "plugin"
+     * 
+     * @since 3.2.0
+     * @var FactoryShortcodes320_Shortcode[] 
+     */
+    private $classToPlugin = array();
     
     /**
      * A set of shortcodes that has assets connects (js and css).
@@ -70,7 +78,7 @@ class FactoryShortcodes305_ShortcodeManager {
         list($prefix, $type) = explode('_', $name, 2);
         if ($prefix !== 'shortcode') return;
         
-        $blank = new $type();
+        $blank = new $type( $this->classToPlugin[$type] );
         return $blank->render($arguments[0], $arguments[1]);
     }    
     
@@ -81,14 +89,16 @@ class FactoryShortcodes305_ShortcodeManager {
      * @param type $className A short code class name.
      * @return void
      */
-    public function register( $className ) {
-        $shortcode = new $className();
+    public function register( $className, $plugin ) {
+        $shortcode = new $className( $plugin );
         $shortcode->manager = $this;
         
         $this->shortcodes[] = $shortcode;
         
         foreach($shortcode->shortcodeName as $shortcodeName) {
-            add_shortcode($shortcodeName, array($this, 'shortcode_' . get_class($shortcode)));
+            $className = get_class($shortcode);
+            $this->classToPlugin[$className] = $plugin;
+            add_shortcode($shortcodeName, array($this, 'shortcode_' . $className));
         }
     }
 } 

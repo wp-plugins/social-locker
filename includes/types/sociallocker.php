@@ -4,7 +4,7 @@
  * Declaration for custom post type of Social Locler.
  * @link http://codex.wordpress.org/Post_Types
  */
-class OnpSL_SocialLockerType extends FactoryTypes309_Type {
+class OnpSL_SocialLockerType extends FactoryTypes320_Type {
     
     /**
      * Custom post name.
@@ -78,7 +78,7 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
          * View table
          */
         
-        $this->viewTable = new SocialLockerViewTable();
+        $this->viewTable = new SocialLockerViewTable( $sociallocker );
         
         /**
          * Scripts & styles
@@ -121,4 +121,4 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
     }
 }
 
-FactoryTypes309::register('OnpSL_SocialLockerType', $sociallocker);
+FactoryTypes320::register('OnpSL_SocialLockerType', $sociallocker);

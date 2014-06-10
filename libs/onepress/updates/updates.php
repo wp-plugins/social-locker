@@ -9,8 +9,9 @@
  * @since 1.0.0
  */
 
-function onp_updates_307_plugin_created( $plugin ) {
-    $manager = new OnpUpdates307_Manager( $plugin );
+add_action('onp_updates_321_plugin_created', 'onp_updates_321_plugin_created');
+function onp_updates_321_plugin_created( $plugin ) {
+    $manager = new OnpUpdates321_Manager( $plugin );
     $plugin->updates = $manager;
 }
 
@@ -19,13 +20,13 @@ function onp_updates_307_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpUpdates307_Manager {
+class OnpUpdates321_Manager {
     
     /**
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory311_Plugin 
+     * @var Factory320_Plugin 
      */
     public $plugin;
     
@@ -62,7 +63,7 @@ class OnpUpdates307_Manager {
 
                 $this->updatePluginTransient();
                 add_filter('factory_plugin_row_' . $this->plugin->pluginName, array($this, 'showChangeAssemblyPluginRow' ), 10, 3); 
-                add_filter('factory_notices_308', array( $this, 'addNotices'), 10, 2);    
+                add_filter('factory_notices_' . $this->plugin->pluginName, array( $this, 'addNotices'), 10, 2);    
             }
             
             add_action('admin_notices', array($this, 'clearTransient'));
@@ -198,7 +199,7 @@ class OnpUpdates307_Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            onp_updates_307_set_site_transient('update_plugins', $transient);  
+            onp_updates_321_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -220,7 +221,7 @@ class OnpUpdates307_Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        onp_updates_307_set_site_transient('update_plugins', $transient);
+        onp_updates_321_set_site_transient('update_plugins', $transient);
     }
     
     /**

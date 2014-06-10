@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
+class OnpSL_Shortcode extends FactoryShortcodes320_Shortcode {
     
     public $track = true;
     
@@ -59,6 +59,30 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
         $content = preg_replace( '/<br \/>$/', '', $content );
 
         $lockData = OnpSL_AssetsManager::getLockerDataToPrint( $id );
+        
+        // -
+        // use the shortcode attrs if specified instead of configured option
+        
+        if ( isset( $attr['url'] ) ) {
+            $lockData['options']['facebook']['like']['url'] = $attr['url'];
+            $lockData['options']['facebook']['share']['url'] = $attr['url']; 
+            $lockData['options']['twitter']['tweet']['url'] = $attr['url'];
+            $lockData['options']['google']['plus']['url'] = $attr['url'];
+            $lockData['options']['google']['share']['url'] = $attr['url'];
+            $lockData['options']['linkedin']['share']['url'] = $attr['url'];     
+        }
+        
+        if ( isset( $attr['title'] ) ) {
+            $lockData['options']['text']['title'] = $attr['title'];    
+        }  
+        
+        if ( isset( $attr['message'] ) ) {
+            $lockData['options']['text']['message'] = $attr['message'];    
+        } 
+        
+        if ( isset( $attr['theme'] ) ) {
+            $lockData['options']['theme'] = $attr['theme'];    
+        } 
         
         $isAjax = false;
         $lockData['ajax'] = false;
@@ -140,4 +164,4 @@ class OnpSL_Shortcode extends FactoryShortcodes305_Shortcode {
     }
 }
 
-FactoryShortcodes305::register( 'OnpSL_Shortcode' );
+FactoryShortcodes320::register( 'OnpSL_Shortcode', $sociallocker );

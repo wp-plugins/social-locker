@@ -15,7 +15,7 @@
  * @link http://codex.wordpress.org/Function_Reference/add_meta_box
  * @since 1.0.0
  */
-abstract class FactoryMetaboxes307_Metabox {
+abstract class FactoryMetaboxes320_Metabox {
     
     /**
      * Id of the metabox. 
@@ -64,7 +64,7 @@ abstract class FactoryMetaboxes307_Metabox {
      * Scripts that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory311_ScriptList
+     * @var Factory320_ScriptList
      */
     public $scripts;
     
@@ -72,7 +72,7 @@ abstract class FactoryMetaboxes307_Metabox {
      * Styles that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory311_StyleList
+     * @var Factory320_StyleList
      */  
     public $styles;
     
@@ -89,7 +89,8 @@ abstract class FactoryMetaboxes307_Metabox {
      * 
      * @since 1.0.0
      */
-    public function __construct() {
+    public function __construct( $plugin ) {
+        $this->plugin = $plugin;
         $this->id = empty($this->id) ? get_class($this) : $this->id;
     }
     
@@ -109,11 +110,11 @@ abstract class FactoryMetaboxes307_Metabox {
      * Configures a metabox.
      * 
      * @since 1.0.0
-     * @param Factory311_ScriptList $scripts A set of scripts to include.
-     * @param Factory311_StyleList $styles A set of style to include.
+     * @param Factory320_ScriptList $scripts A set of scripts to include.
+     * @param Factory320_StyleList $styles A set of style to include.
      * @return void
      */
-    public function configure(Factory311_ScriptList $scripts, Factory311_StyleList $styles) {
+    public function configure( $scripts, $styles) {
         // method must be overriden in the derived classed.
     }
 
@@ -127,8 +128,8 @@ abstract class FactoryMetaboxes307_Metabox {
         if ( $this->isConnected ) return;
          $this->isConnected = true;
            
-        $this->scripts = new Factory311_ScriptList();
-        $this->styles = new Factory311_StyleList();
+        $this->scripts = $this->plugin->newScriptList();
+        $this->styles = $this->plugin->newStyleList();
         
         $this->configure( $this->scripts, $this->styles );
         $this->includeScriptsAndStyles();

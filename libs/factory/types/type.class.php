@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryTypes309_Type {
+abstract class FactoryTypes320_Type {
     
     /**
      * Internal type name.
@@ -62,7 +62,7 @@ abstract class FactoryTypes309_Type {
      * A view table is used to show type records in the admin area.
      * 
      * @since 1.0.0
-     * @var FactoryViewtables306_Viewtable 
+     * @var FactoryViewtables320_Viewtable 
      */
     public $viewTable;
     
@@ -80,7 +80,7 @@ abstract class FactoryTypes309_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory311_ScriptList 
+     * @var Factory320_ScriptList 
      */
     public $scripts;
     
@@ -88,14 +88,14 @@ abstract class FactoryTypes309_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory311_StyleList 
+     * @var Factory320_StyleList 
      */  
     public $styles;
     
     /**
      * A menu configurator for a type.
      * 
-     * @var FactoryTypes309_Menu 
+     * @var FactoryTypes320_Menu 
      */
     public $menu;
 
@@ -146,13 +146,14 @@ abstract class FactoryTypes309_Type {
      * 
      * @since 1.0.0
      */
-    public function __construct() {
+    public function __construct( $plugin ) {
+        $this->plugin = $plugin;
         
-        $this->menu = new FactoryTypes309_Menu( $this );
+        $this->menu = new FactoryTypes320_Menu( $this );
         $this->metaboxes = array();
         
-        $this->scripts = new Factory311_ScriptList();
-        $this->styles = new Factory311_StyleList(); 
+        $this->scripts = $this->plugin->newScriptList();
+        $this->styles = $this->plugin->newStyleList();
         
         add_action('init', array($this, 'register'));
     }
@@ -209,11 +210,11 @@ abstract class FactoryTypes309_Type {
 
         // adds metaboxes that needed to load
         foreach($this->metaboxes as $metabox) {
-            FactoryMetaboxes307::registerFor($metabox, $this->name);
+            FactoryMetaboxes320::registerFor($metabox, $this->name, $this->plugin);
         }
                
         if ( !$this->scripts->isEmpty('bootstrap')|| !$this->styles->isEmpty('bootstrap') ) {
-            add_action('factory_bootstrap_313_enqueue_scripts', array($this, 'actionAdminBootstrapScripts'));
+            add_action('factory_bootstrap_enqueue_scripts_' . $this->plugin->pluginName, array($this, 'actionAdminBootstrapScripts'));
         }
         
         // includes styles and scripts
@@ -226,7 +227,7 @@ abstract class FactoryTypes309_Type {
         
         // redefines the Publish metabox for non-public types
         if ( $this->template !== 'public') {
-            //FactoryMetaboxes307::registerFor('FactoryMetaboxes307_PublishMetabox', $this->name);
+            //FactoryMetaboxes320::registerFor('FactoryMetaboxes320_PublishMetabox', $this->name);
             add_action('add_meta_boxes', array($this, 'actionAddMetaboxs'));
         }
         
@@ -326,17 +327,17 @@ abstract class FactoryTypes309_Type {
         $labels = array(
             'singular_name' => $singularName,
             'name' => $pluralName,          
-            'all_items' => sprintf( __('All %1$s', 'factory_types_309'), $pluralName ),
-            'add_new' => sprintf( __('Add %1$s', 'factory_types_309'), $singularName ),
-            'add_new_item' => sprintf( __('Add new', 'factory_types_309'), $singularName ),
-            'edit' => sprintf( __('Edit', 'factory_types_309') ),
-            'edit_item' => sprintf( __('Edit %1$s', 'factory_types_309'), $singularName ),
-            'new_item' => sprintf( __('New %1$s', 'factory_types_309'), $singularName ),
+            'all_items' => sprintf( __('All %1$s', 'factory_types_320'), $pluralName ),
+            'add_new' => sprintf( __('Add %1$s', 'factory_types_320'), $singularName ),
+            'add_new_item' => sprintf( __('Add new', 'factory_types_320'), $singularName ),
+            'edit' => sprintf( __('Edit', 'factory_types_320') ),
+            'edit_item' => sprintf( __('Edit %1$s', 'factory_types_320'), $singularName ),
+            'new_item' => sprintf( __('New %1$s', 'factory_types_320'), $singularName ),
             'view' => sprintf( __('View', 'factory') ),
-            'view_item' => sprintf( __('View %1$s', 'factory_types_309'), $singularName ),
-            'search_items' => sprintf( __('Search %1$s', 'factory_types_309'), $pluralName ),
-            'not_found' => sprintf( __('No %1$s found', 'factory_types_309'), $pluralName ),
-            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory_types_309'), $pluralName ),
+            'view_item' => sprintf( __('View %1$s', 'factory_types_320'), $singularName ),
+            'search_items' => sprintf( __('Search %1$s', 'factory_types_320'), $pluralName ),
+            'not_found' => sprintf( __('No %1$s found', 'factory_types_320'), $pluralName ),
+            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory_types_320'), $pluralName ),
             'parent' => sprintf( __('Parent %1$s', 'factory'), $pluralName )
         );
         

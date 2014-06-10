@@ -16,14 +16,14 @@
 // module provides function only for the admin area
 if ( !is_admin() ) return;
 
-if (defined('FACTORY_PAGES_311_LOADED')) return;
-define('FACTORY_PAGES_311_LOADED', true);
+if (defined('FACTORY_PAGES_320_LOADED')) return;
+define('FACTORY_PAGES_320_LOADED', true);
 
-define('FACTORY_PAGES_311_DIR', dirname(__FILE__));
-define('FACTORY_PAGES_311_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_PAGES_320_DIR', dirname(__FILE__));
+define('FACTORY_PAGES_320_URL', plugins_url(null,  __FILE__ ));
 
 if ( !defined('FACTORY_FLAT_ADMIN')) define('FACTORY_FLAT_ADMIN', true);
 
-require(FACTORY_PAGES_311_DIR . '/pages.php');
-require(FACTORY_PAGES_311_DIR . '/includes/page.class.php');
-require(FACTORY_PAGES_311_DIR . '/includes/admin-page.class.php');
+require(FACTORY_PAGES_320_DIR . '/pages.php');
+require(FACTORY_PAGES_320_DIR . '/includes/page.class.php');
+require(FACTORY_PAGES_320_DIR . '/includes/admin-page.class.php');

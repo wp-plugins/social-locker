@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms311_TabHolder extends FactoryForms311_Holder {
+class FactoryForms320_TabHolder extends FactoryForms320_Holder {
     
     /**
      * A holder type.
@@ -37,7 +37,7 @@ class FactoryForms311_TabHolder extends FactoryForms311_Holder {
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms311_Form $form A parent form.
+     * @param FactoryForms320_Form $form A parent form.
      */
     public function __construct($options, $form) {
         parent::__construct($options, $form);
@@ -66,7 +66,7 @@ class FactoryForms311_TabHolder extends FactoryForms311_Holder {
                 $hasIcon = isset( $element->options['icon'] );
                 if ( $hasIcon ) $tabIcon = $element->options['icon'];
                 
-                $builder = new FactoryForms311_HtmlAttributeBuilder();
+                $builder = new FactoryForms320_HtmlAttributeBuilder();
                 $builder->addCssClass('factory-tab-item-header');
                 $builder->addCssClass('factory-tab-item-header-'. $element->getName() );     
                 if ( $hasIcon ) $builder->addCssClass('factory-tab-item-header-with-icon');

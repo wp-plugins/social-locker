@@ -17,7 +17,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms311_MetaValueProvider implements IFactoryForms311_ValueProvider 
+class FactoryForms320_MetaValueProvider implements IFactoryForms320_ValueProvider 
 {
     /**
      * Values to save $metaName => $metaValue

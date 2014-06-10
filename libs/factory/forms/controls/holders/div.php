@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms311_DivHolder extends FactoryForms311_Holder {
+class FactoryForms320_DivHolder extends FactoryForms320_Holder {
     
     /**
      * A holder type.
