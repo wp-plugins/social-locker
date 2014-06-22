@@ -128,7 +128,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                         array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'sociallocker' ), onp_licensing_322_get_purchase_url( $sociallocker ) ) )
                     ),
                     'title'     => __('Overlap Mode', 'sociallocker'),
-                    'hint'      => __('Select an overlap mode for the locked content.', 'sociallocker'),
+                    'hint'      => __('Choose one of the overlap modes for your locked content.', 'sociallocker'),
                     'default'   => 'full'
                 )
             )); 

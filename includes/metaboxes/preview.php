@@ -74,7 +74,7 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes320_Metabox
             window.onp_sl_styleroller_offer_url = '<?php echo $sociallocker->options['styleroller'] ?>';
             <?php } ?>
         </script>
-        <p class="note"><strong><?php _e('Note', 'sociallocker'); ?>:</strong> <?php _e('This is a preview. The locker and social buttons dont\'t not work correctly in the admin area.', 'sociallocker'); ?></p>
+        <p class="note"><strong><?php _e('Note', 'sociallocker'); ?>:</strong> <?php _e('This is a preview. The locker and social buttons don\'t work correctly in the admin area.', 'sociallocker'); ?></p>
         <div id="lock-preview-wrap" 
              data-lang="<?php echo get_option('sociallocker_lang') ?>" 
              data-short-lang="<?php echo get_option('sociallocker_short_lang') ?>" 
