@@ -48,6 +48,7 @@ class OnpSL_ThemeManager {
             return $output;
         }
         
+        
         return self::$themes;
     }
     
@@ -107,8 +108,10 @@ class OnpSL_ThemeManager {
         if (function_exists($functionToCall)) $rules = $functionToCall();
         
         $rules = apply_filters( 'onp_sl_' . $themeName . '_theme_css_rules', $rules, $themeName) ;
-        $rules = apply_filters( 'onp_sl_theme_css_rules', $rules, $themeName) ;
+        $rules = apply_filters( 'onp_sl_theme_css_rules', $rules, $themeName);
+        
         
         return $rules;
     }
 }
+ 

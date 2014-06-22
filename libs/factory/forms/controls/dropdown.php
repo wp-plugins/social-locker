@@ -15,7 +15,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms320_DropdownControl extends FactoryForms320_Control 
+class FactoryForms322_DropdownControl extends FactoryForms322_Control 
 {
     public $type = 'dropdown';
     
@@ -53,6 +53,54 @@ class FactoryForms320_DropdownControl extends FactoryForms320_Control
      * @return void
      */
     public function html( ) {
+        if ( 'buttons' == $this->getOption('way') ) {
+            $this->buttonsHtml();
+        } else {
+            $this->defaultHtml();
+        }
+    }
+    
+    /**
+     * Shows the Buttons Dropdown.
+     * 
+     * @since 1.0.0
+     * @return void
+     */
+    protected function buttonsHtml() {
+        $items = $this->getItems();
+        $value = $this->getValue();
+        
+        $nameOnForm = $this->getNameOnForm();  
+        
+        $this->addCssClass('factory-buttons-way');      
+        
+        ?>
+        <div <?php $this->attrs() ?>>
+            <div class="btn-group factory-buttons-group">
+                <?php foreach($items as $item) { ?>
+                <button type="button" class="btn btn-default btn-small factory-<?php echo $item[0] ?> <?php if ( $value == $item[0] ) { echo 'active'; } ?>" data-value="<?php echo $item[0] ?>"><?php echo $item[1] ?></button>
+                <?php } ?>
+                <input type="hidden" id="<?php echo $nameOnForm ?>" class="factory-result" name="<?php echo $nameOnForm ?>" value="<?php echo $value ?>" />
+            </div>
+            <div class="factory-hints">
+                <?php foreach($items as $item) { ?>
+                    <?php if ( isset( $item[2] )) { ?>
+                        <div class="factory-hint factory-hint-<?php echo $item[0] ?>" <?php if ( $value !== $item[0] ) { echo 'style="display: none;"'; } ?>><?php echo $item[2] ?></div>
+                    <?php } ?>
+                <?php } ?>  
+            </div>  
+        </div>
+        <?php
+    }
+    
+    /**
+     * Shows the standart dropdown.
+     * 
+     * @since 1.3.1
+     * @return void
+     */
+    protected function defaultHtml() {
+        
         $items = $this->getItems();
         $value = $this->getValue();
         

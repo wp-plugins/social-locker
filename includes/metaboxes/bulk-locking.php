@@ -141,6 +141,8 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes320_Metabox
         $interrelated = get_option('sociallocker_interrelation', false);
         $interrelatedClass = ( !$interrelated ) ? 'onp-sl-not-interrelation' : '';
         
+        
+        
         ?>
         <script>
             if ( !window.onpsl ) window.onpsl = {};
@@ -177,7 +179,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes320_Metabox
             <?php } ?>
         </div>
 
-        <div class="factory-bootstrap-320 factory-fontawesome-320">
+        <div class="factory-bootstrap-322 factory-fontawesome-320">
             <div class="onp-sl-description-section">
                 <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
@@ -508,6 +510,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes320_Metabox
 
 FactoryMetaboxes320::register('OnpSL_BulkLockingMetaBox', $sociallocker);
 
+
 /**
  * Prints bulk lock status.
  * 
@@ -572,7 +575,7 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
 
     ?>
 
-    <div class="factory-bootstrap-320 factory-fontawesome-320">
+    <div class="factory-bootstrap-322 factory-fontawesome-320">
         
         <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
 
@@ -620,6 +623,8 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
     </div>
     <?php
 }
+
+
 
 /**
  * Removes the locker options from the global bulk locker options array.
@@ -695,4 +700,3 @@ function onp_sl_update_bulk_locker_options_on_changing_status( $new_status, $old
     }
 }
 add_action('transition_post_status', 'onp_sl_update_bulk_locker_options_on_changing_status', 10, 3 );
-

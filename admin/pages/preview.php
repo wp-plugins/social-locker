@@ -44,116 +44,131 @@ function onp_lock_preview() {
          <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/js/json2.js"></script>    
          
          <?php ?>
-         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030503.min.js"></script>  
-         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030503.min.css">  
+         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030508.min.js"></script>  
+         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030508.min.css">  
          <?php 
  ?>
-         
-         <?php do_action('onp_sl_preview_print_scripts', !empty( $_GET ) ? $_GET : null); ?>  
-
-         <script>
-             (function($){  
-                var callback = '<?php echo ( isset( $_POST['callback'] ) ? $_POST['callback'] : '' ) ?>';
-                
-                window.setOptions = function( options ) {
-   
-                    $(".sociallocker-next").remove();
-                    var $clone = $(".content-to-lock");
-                    $("#wrap").html("");                                     
-                    
-                    options.demo = true;
-                    $clone.appendTo("#wrap");
-                    $clone.sociallocker(options);
-                    window.alertFrameSize();
-                };
-                
-                window.alertFrameSize = function() {
-                    if ( !parent || !callback ) return;
-                    var height = jQuery("#wrap").height(); height += 50;
-                    if (parent[callback]) parent[callback]( height );
-                };
-                
-                window.dencodeOptions  = function( options ) {
-                    for( var optionName in options ) {
-                        if ( typeof options[optionName] === 'object' ) {
-                            options[optionName] = dencodeOptions( options[optionName] );
-                        } else {
-                            if ( options[optionName] ) {
-                                options[optionName] = decodeURI( options[optionName] );
-                            }
-                        }
-                    }
-                    return options;
-                };
-
-                window.defaultOptions = {
-                    demo: true,
-                    text: {},
-                    buttons: {},
-                    effects: {},
-                    locker: {},
-                    facebook: {
-                        like: {},
-                        share: {}
-                    },
-                    twitter: {
-                        tweet: {},
-                        follow: {}
-                    },
-                    google: {
-                        plus: {},
-                        share: {}
-                    },
-                    linkedin: {
-                        share: {}
-                    },
-                    vk: {   
-                        like: {},                
-                        subscribe: {}               
-                    },
-                    ok: {
-                        class: {}
-                    },
-                    events: {
-                       ready: function() { alertFrameSize(); },             
-                       unlock: function() { alertFrameSize(); },
-                       unlockByTimer: function() { alertFrameSize(); },
-                       unlockByClose: function() { alertFrameSize(); }            
-                    }        
-                };      
-
-                $(function(){
-                   setTimeout(function(){ alertFrameSize(true); }, 2000);   
-                });
-
-                var postOptions = dencodeOptions( JSON.parse('<?php echo $_POST['options'] ?>') );
-                var options = $.extend(window.defaultOptions, postOptions);
-                
-                $(function(){
-                    $(".content-to-lock").sociallocker(options);            
-                });
-                
-                jQuery(document).click(function(){
-                    if( parent && window.removeProfilerSelector ) window.removeProfilerSelector();
-                });
-             })(jQuery);
-         </script>
     </head>
     <body>
         <div id="wrap">
-            <div class="content-to-lock">
-                <p>
-                    Nulla mi odio, posuere <a href="#">commodo elementum varius</a>, sodales in justo. 
+            <div class="content-to-lock" style="text-align: center; margin: 0 auto; max-width: 600px;">
+                <div style="margin-bottom: 20px;">
+                    <img src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/img/preview-image.jpg" alt="Preview image" style="margin: auto;" />
+                </div>
+                <div>
+                    Nulla mi odio, posuere commodo elementum varius, sodales in justo. 
                     Nunc convallis rhoncus odio, in cursus massa eleifend sit amet. 
                     Morbi sed erat tortor. Maecenas turpis neque, sollicitudin eget auctor in, 
                     porta non justo.
-                </p>
+                </div>
             </div>
-            <div style="clear: both;"></div>
         </div>
+        <div style="clear: both;"></div>
     </body>
+    
+    <?php do_action('onp_sl_preview_print_scripts', !empty( $_GET ) ? $_GET : null); ?>  
+    
+    <script>     
+        (function($){  
+           var callback = '<?php echo ( isset( $_POST['callback'] ) ? $_POST['callback'] : '' ) ?>';
+           var $originalContent = $("#wrap").clone();
+     
+           window.setOptions = function( options ) {
+               $("#wrap").remove();
+               $("body").prepend( $originalContent.clone() );
+
+               options.demo = true;
+
+               var locker = $(".content-to-lock").sociallocker(options);   
+               locker.bind('unlock.sociallocker.onp', function(){
+                    window.alertFrameSize();   
+               });
+               
+               window.alertFrameSize();
+               
+               setTimeout(function(){
+                   window.alertFrameSize();
+               }, 300);
+           };
+
+           window.alertFrameSize = function() {
+               if ( !parent || !callback ) return;
+               var height = jQuery("#wrap").height(); height += 50;
+               if (parent[callback]) parent[callback]( height );
+           };
+
+           window.dencodeOptions  = function( options ) {
+               for( var optionName in options ) {
+                   if ( typeof options[optionName] === 'object' ) {
+                       options[optionName] = dencodeOptions( options[optionName] );
+                   } else {
+                       if ( options[optionName] ) {
+                           options[optionName] = decodeURI( options[optionName] );
+                       }
+                   }
+               }
+               return options;
+           };
+
+           window.defaultOptions = {
+               demo: true,
+               text: {},
+               buttons: {},
+               effects: {},
+               locker: {},
+               overlap: {},
+               facebook: {
+                   like: {},
+                   share: {}
+               },
+               twitter: {
+                   tweet: {},
+                   follow: {}
+               },
+               google: {
+                   plus: {},
+                   share: {}
+               },
+               linkedin: {
+                   share: {}
+               },
+               vk: {   
+                   like: {},                
+                   subscribe: {}               
+               },
+               ok: {
+                   class: {}
+               },
+               events: {
+                  ready: function() { alertFrameSize(); },             
+                  unlock: function() { alertFrameSize(); },
+                  unlockByTimer: function() { alertFrameSize(); },
+                  unlockByClose: function() { alertFrameSize(); }            
+               }        
+           };      
+
+           $(function(){
+              setTimeout(function(){ alertFrameSize(true); }, 2000);   
+           });
+
+           var postOptions = dencodeOptions( JSON.parse('<?php echo $_POST['options'] ?>') );
+           var options = $.extend(window.defaultOptions, postOptions);
+
+           $(function(){
+               var locker = $(".content-to-lock").sociallocker(options);       
+               locker.bind('unlock.sociallocker.onp', function(){
+                    window.alertFrameSize();   
+               });
+           });
+
+           jQuery(document).click(function(){
+               if( parent && window.removeProfilerSelector ) window.removeProfilerSelector();
+           });
+        })(jQuery);
+    </script>
 </html>
 
 <?php
 exit;
 }
+ 

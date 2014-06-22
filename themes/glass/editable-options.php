@@ -50,7 +50,7 @@ function onp_sl_get_glass_theme_editable_options() {
                                                 'type' => 'gradient',
                                                 'name' => 'background_gradient',
                                                 'title' => __('Set up gradient:', 'sociallocker'),
-                                                'default' => '{"filldirection":"top","color_points":["#fff 0% 0.5", "#F0F0F0 100% 0.5"]}'
+                                                'default' => '{"filldirection":"top","color_points":["#fff 0% 0.6", "#F0F0F0 100% 0.6"]}'
                                             )
                                         )
                                     ),
@@ -228,7 +228,7 @@ function onp_sl_get_glass_theme_editable_options() {
                                 'type' => 'color-and-opacity',
                                 'name' => 'button_mount_color',
                                 'title' => __('Color and opacity', 'sociallocker'),
-                                'default' => array('color' => '#ffffff', 'opacity' => 100)
+                                'default' => array('color' => '#000000', 'opacity' => 3)
                             ),
                             array(
                                 'type' => 'integer',

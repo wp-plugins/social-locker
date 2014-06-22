@@ -80,7 +80,7 @@ abstract class FactoryTypes320_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory320_ScriptList 
+     * @var Factory321_ScriptList 
      */
     public $scripts;
     
@@ -88,7 +88,7 @@ abstract class FactoryTypes320_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory320_StyleList 
+     * @var Factory321_StyleList 
      */  
     public $styles;
     

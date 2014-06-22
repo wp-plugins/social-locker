@@ -11,16 +11,16 @@
  
 // Checks if the one is already loaded.
 // We prevent to load the same version of the module twice.
-if (defined('ONP_UPDATES_321_LOADED')) return;
-define('ONP_UPDATES_321_LOADED', true);
+if (defined('ONP_UPDATES_322_LOADED')) return;
+define('ONP_UPDATES_322_LOADED', true);
 
 // Absolute path and URL to the files and resources of the module.
-define('ONP_UPDATES_321_DIR', dirname(__FILE__));
+define('ONP_UPDATES_322_DIR', dirname(__FILE__));
 
 load_plugin_textdomain('onepress_updates_000', false, dirname( plugin_basename( __FILE__ ) ) . '/langs');
 
 #comp merge
-include(ONP_UPDATES_321_DIR. '/includes/transient.functions.php');
-include(ONP_UPDATES_321_DIR. '/updates.php');
+include(ONP_UPDATES_322_DIR. '/includes/transient.functions.php');
+include(ONP_UPDATES_322_DIR. '/updates.php');
 #endcomp
 

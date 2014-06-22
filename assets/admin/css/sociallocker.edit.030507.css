@@ -56,6 +56,16 @@
 /**
 * Basic Options
 */
+#OnpSL_BasicOptionsMetaBox .factory-dropdown .factory-buttons-group {
+    border-color: #eee;
+}
+#OnpSL_BasicOptionsMetaBox .factory-dropdown.factory-buttons-way .btn {
+  height: 32px;
+}
+#OnpSL_BasicOptionsMetaBox .factory-dropdown.factory-buttons-way .fa-tint {
+    top: 1px;
+}
+
 #sociallocker_style {
     width: auto;
 }
@@ -74,7 +84,6 @@
 #sociallocker_message {
     height: 120px;
 }
-
 #OnpSL_BasicOptionsMetaBox .onp-sl-styler-promotion-link {
     display:inline-block;
     margin-left:10px;
@@ -93,6 +102,7 @@
 #onp-sl-styleroller-btn .fa {
     margin-right: 5px;
 }
+
 
 /* if ( onp_build('free') { */
 /* compiler rule: the following code will be available only in free assemble */

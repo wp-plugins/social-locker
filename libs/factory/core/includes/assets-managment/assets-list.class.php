@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory320_AssetsList 
+class Factory321_AssetsList 
 {
     protected $all = array();
     public $headerPlace = array();

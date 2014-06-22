@@ -138,12 +138,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030503.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030508.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030503.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030508.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -236,11 +236,16 @@ class OnpSL_AssetsManager {
                 ),
 
                 'theme' => 'secrets',
-                'googleAnalytics' => self::getLockerOption($id, 'google_analytics', false, 1),
+                'overlap' => array(
+                    'mode' => self::getLockerOption($id, 'overlap', false, 'full'),
+                ),
+                
+                'googleAnalytics' => get_option('sociallocker_google_analytics', 1),
                 
                 'locker' => array(
                     'scope' => $hasScope ? 'global' : '',
-                    'counter' => self::getLockerOption($id, 'show_counters', false, 1)
+                    'counter' => self::getLockerOption($id, 'show_counters', false, 1),
+                    'loadingTimeout' => get_option('sociallocker_timeout', 10000)
                 ),
 
                 'facebook' => array(
@@ -258,6 +263,10 @@ class OnpSL_AssetsManager {
                     'lang' => get_option('sociallocker_google_lang', get_option('sociallocker_short_lang', 'en' ))
                 )
             );
+            
+            if ( 'blurring' === $params['overlap']['mode'] ) {
+                $params['overlap']['mode'] = 'transparence';
+            }
 
         
 
@@ -295,7 +304,7 @@ class OnpSL_AssetsManager {
         
         $lockData['_theme'] = self::getLockerOption($id, 'style' );
         $lockData['_style'] = self::getLockerOption($id, 'style_profile' );
-                        
+          
         return $lockData;
     }
     

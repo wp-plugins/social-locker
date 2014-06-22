@@ -17,7 +17,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms320_FormHelpers {
+class FactoryForms322_FormHelpers {
     
     /**
      * Renders a form element.
@@ -30,9 +30,9 @@ class FactoryForms320_FormHelpers {
     public static function render( $type, $options = array() ) {
         $options['type'] = $type;
         
-        if ( FactoryForms320_Form::isControl($type) ) {
+        if ( FactoryForms322_Form::isControl($type) ) {
             self::renderControl($type, $options);
-        } elseif ( FactoryForms320_Form::isControlHolder($type) ) {
+        } elseif ( FactoryForms322_Form::isControlHolder($type) ) {
             self::renderHolder($type, $options);
         } else {
             print_r($options);
@@ -49,7 +49,7 @@ class FactoryForms320_FormHelpers {
      * @return void
      */
     public static function renderControl($type, $options) {
-        FactoryForms320_Form::connectAssetsForItem( $options );
+        FactoryForms322_Form::connectAssetsForItem( $options );
         
         $data = self::$_registeredControls[$type];
         require_once ($data['include']);
@@ -66,7 +66,7 @@ class FactoryForms320_FormHelpers {
      * @return void
      */
     public static function renderHolder($type, $options) {
-        FactoryForms320_Form::connectAssetsForItem( $options );
+        FactoryForms322_Form::connectAssetsForItem( $options );
         
         $data = self::$_registeredHolders[$type];
         require_once ($data['include']);

@@ -51,7 +51,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      */
     public $priority = 'core';
 	
-    public $cssClass = 'factory-bootstrap-320 factory-fontawesome-320';
+    public $cssClass = 'factory-bootstrap-322 factory-fontawesome-320';
 
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
@@ -65,7 +65,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      * @see FactoryMetaboxes320_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms320_Form $form A form object to configure.
+     * @param FactoryForms322_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {        
@@ -79,16 +79,16 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                     'type'  => 'textbox',
                     'name'  => 'common_url',
                     'title' => __('URL to share', 'sociallocker'),
-                    'hint'  => sprintf(__('Enter an URL to like, tweet and +1 or leave this 
-                                field empty in order to use an URL of a page where the locker will be placed.
-                               <br />Need a separate URL for each button? Try a 
+                    'hint'  => sprintf(__('Enter the URL that you want your visitors to like, tweet or +1. Or, you can leave this field empty to use the URL of the page where the locker is located.
+                               Need a separate URL for each button? Try a 
                                <a href="%s">
-                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_321_get_purchase_url( $sociallocker )),
+                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_322_get_purchase_url( $sociallocker )),
                     'placeholder'   => 'http://url-to-share.com'
               ),
           ));
         
 
+        
         
         $form->add(array(  
             
@@ -96,7 +96,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                 'type'      => 'textbox',
                 'name'      => 'header',
                 'title'     => __('Locker header', 'sociallocker'),
-                'hint'      => __('Enter a header of the locker. You can leave this field empty.', 'sociallocker'),
+                'hint'      => __('Enter the header you want for the locker. You can also leave this field empty.', 'sociallocker'),
                 'default'   => __('This content is locked!', 'sociallocker')
             ),
             
@@ -104,7 +104,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                 'type'      => 'wp-editor',
                 'name'      => 'message',
                 'title'     => __('Locker message', 'sociallocker'),
-                'hint'      => __('Enter a message that appears under the header.', 'sociallocker').'<br /><br />'. 
+                'hint'      => __('Enter the text that appears under the header.', 'sociallocker').'<br /><br />'. 
                                __('Shortcodes: [post_title], [post_url].', 'sociallocker'),
                 'default'   => __('Please support us, use one of the buttons below to unlock the content.', 'sociallocker'),
                 'tinymce'   => array(
@@ -115,8 +115,39 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                     'hint-position' => 'left'
                 )
             ),
-        ));    
-      
+        ));
+            
+            $form->add(array(  
+                array(
+                    'type'      => 'dropdown',
+                    'way'       => 'buttons',
+                    'name'      => 'overlap',
+                    'data'      => array(
+                        array('full', '<i class="fa fa-lock"></i>Full (classic)'),
+                        array('transparence', '<i class="fa fa-adjust"></i>Transparency' ),
+                        array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'sociallocker' ), onp_licensing_322_get_purchase_url( $sociallocker ) ) )
+                    ),
+                    'title'     => __('Overlap Mode', 'sociallocker'),
+                    'hint'      => __('Select an overlap mode for the locked content.', 'sociallocker'),
+                    'default'   => 'full'
+                )
+            )); 
+            
+        
+
+    }
+    
+    /**
+     * Replaces the 'blurring' overlap with 'transparence' in the free version.
+     * 
+     * @since 1.0.0
+     * @param type $postId
+     */
+    public function onSavingForm( $postId ) {
+            $overlap = isset ( $_POST['sociallocker_overlap'] ) ? $_POST['sociallocker_overlap'] : null;
+            if ( $overlap == 'blurring' ) $_POST['sociallocker_overlap'] = 'transparence';
+        
+
     }
 }
 

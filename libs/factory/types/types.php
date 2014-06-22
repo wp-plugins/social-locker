@@ -9,8 +9,8 @@
  * @since 1.0.0
  */
 
-add_action('factory_320_plugin_activation', 'FactoryTypes320::activationHook');
-add_action('factory_320_plugin_deactivation', 'FactoryTypes320::deactivationHook');
+add_action('factory_321_plugin_activation', 'FactoryTypes320::activationHook');
+add_action('factory_321_plugin_deactivation', 'FactoryTypes320::deactivationHook');
 
 /**
  * A base class to manage types. 
@@ -35,7 +35,7 @@ class FactoryTypes320 {
      * 
      * @since 1.0.0
      * @param string A class name of a custom type.
-     * @param Factory320_Plugin 
+     * @param Factory321_Plugin 
      * @return void
      */
     public static function register( $className, $plugin = null ) {
@@ -51,7 +51,7 @@ class FactoryTypes320 {
      * A plugin activation hook.
      * 
      * @since 1.0.0
-     * @param Factory320_Plugin 
+     * @param Factory321_Plugin 
      * @return void
      */
     public static function activationHook( $plugin ) {
@@ -81,7 +81,7 @@ class FactoryTypes320 {
      * A plugin deactivation hook.
      * 
      * @since 1.0.0
-     * @param Factory320_Plugin 
+     * @param Factory321_Plugin 
      * @return void
      */
     public static function deactivationHook( $plugin ) {

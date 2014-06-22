@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms320_Separator extends FactoryForms320_CustomElement
+class FactoryForms322_Separator extends FactoryForms322_CustomElement
 {
     public $type = 'separator';
     

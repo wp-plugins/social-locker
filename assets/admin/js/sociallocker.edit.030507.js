@@ -201,7 +201,10 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                     order: buttons ? buttons.split(",") : buttons
                 },
                 
-                theme: 'secrets',                
+                theme: 'secrets',     
+                overlap: {
+                    mode: $("#sociallocker_overlap").val()
+                },
                 effects: { 
                     highlight: $("#sociallocker_highlight").is(':checked')
                 },
@@ -432,7 +435,7 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap320_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap322_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

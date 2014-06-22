@@ -28,3 +28,4 @@ function onp_sl_load_ajax_content() {
     echo get_post_meta($lockerId, 'sociallocker_locker_content_hash_' . $hash, true);
     die();
 }
+

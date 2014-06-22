@@ -19,7 +19,9 @@ include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/common-settings.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/statistics.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/preview.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/how-to-use.php');
-    include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/license-manager.php');
+    if ( isset( $sociallocker->license ) && class_exists('OnpLicensing322_LicenseManagerPage') ) {
+        include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/license-manager.php');
+    }
 
 
 
@@ -57,12 +59,14 @@ add_filter('mce_external_plugins', 'sociallocker_add_plugin');
 add_filter('mce_buttons', 'sociallocker_register_button'); 
 
 function sociallocker_register_button($buttons) {  
+    
     if ( !current_user_can('edit_social-locker') ) return $buttons;
     array_push($buttons, "sociallocker");
     return $buttons;
 }  
 
 function sociallocker_add_plugin($plugin_array) {  
+    
     if ( !current_user_can('edit_social-locker') ) return $plugin_array;
     global $wp_version;
 
@@ -78,7 +82,7 @@ function sociallocker_add_plugin($plugin_array) {
     
 add_action('wp_ajax_get_sociallocker_lockers', 'sociallocker_get_lockers');
 function sociallocker_get_lockers() {
-
+    
     $lockers = get_posts(array('post_type' => 'social-locker'));
 
     $result = array();
@@ -136,6 +140,8 @@ function onp_sl_license_manager_success_redirect() {
 }
 add_action('onp_license_manager_success_redirect_sociallocker-next',  'onp_sl_license_manager_success_redirect');
 
+
+
 /**
  * Registers default themes.
  * 
@@ -160,4 +166,21 @@ function onp_sl_register_default_themes() {
 
 }
 add_action('onp_sl_register_themes', 'onp_sl_register_default_themes');
+
+/**
+ * Returns an url for purchasing the StyleRoller add-on.
+ * 
+ * @since 3.5.8
+ * @param string $medium
+ * @param string $campaign
+ * @return string
+ */
+function onp_sl_get_styleroller_url( $medium, $campaign ) {
+    global $sociallocker;
+    return $sociallocker->options['styleroller'] . '?' . http_build_query(array(
+        'utm_source' => 'plugin',
+        'utm_medium' => $medium,
+        'utm_campaign' => $campaign
+    ));
+}
 

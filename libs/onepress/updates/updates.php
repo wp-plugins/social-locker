@@ -9,9 +9,9 @@
  * @since 1.0.0
  */
 
-add_action('onp_updates_321_plugin_created', 'onp_updates_321_plugin_created');
-function onp_updates_321_plugin_created( $plugin ) {
-    $manager = new OnpUpdates321_Manager( $plugin );
+add_action('onp_updates_322_plugin_created', 'onp_updates_322_plugin_created');
+function onp_updates_322_plugin_created( $plugin ) {
+    $manager = new OnpUpdates322_Manager( $plugin );
     $plugin->updates = $manager;
 }
 
@@ -20,13 +20,13 @@ function onp_updates_321_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class OnpUpdates321_Manager {
+class OnpUpdates322_Manager {
     
     /**
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory320_Plugin 
+     * @var Factory321_Plugin 
      */
     public $plugin;
     
@@ -45,7 +45,8 @@ class OnpUpdates321_Manager {
     public function __construct( $plugin ) {
         $this->plugin = $plugin; 
         $this->lastCheck = get_option('onp_version_check_' . $this->plugin->pluginName, null);
-
+        $this->word = $this->lastCheck ? $this->lastCheck : 'never';
+        
         // if a plugin is not licensed, or a user has a license key
         if ( $this->needCheckUpdates() ) {
             
@@ -55,7 +56,7 @@ class OnpUpdates321_Manager {
             // if a special constant set, then forced to check updates
             if ( defined('ONP_DEBUG_CHECK_UPDATES') && ONP_DEBUG_CHECK_UPDATES ) $this->checkUpdates();
         }
-        
+
         if ( is_admin() ) {
         
             // if the license build and the plugin build are not equal
@@ -88,7 +89,6 @@ class OnpUpdates321_Manager {
      * @return bool
      */
     public function needCheckUpdates() {
-        if ( !$this->plugin->license ) return false;
         return $this->plugin->build == 'premium';
     }
     
@@ -97,7 +97,7 @@ class OnpUpdates321_Manager {
      * @return bool
      */
     public function needChangeAssembly() {
-        return $this->plugin->license && ( $this->plugin->build !== $this->plugin->license->build );
+        return isset( $this->plugin->license ) && ( $this->plugin->build !== $this->plugin->license->build );
     }
     
     /**
@@ -199,7 +199,7 @@ class OnpUpdates321_Manager {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
         if ( !empty( $transient) ) {
             unset($transient->response[$this->plugin->relativePath]);
-            onp_updates_321_set_site_transient('update_plugins', $transient);  
+            onp_updates_322_set_site_transient('update_plugins', $transient);  
         }
     }
     
@@ -221,7 +221,7 @@ class OnpUpdates321_Manager {
      */
     public function updatePluginTransient() {
         $transient = $this->changePluginTransient( get_site_transient('update_plugins') );
-        onp_updates_321_set_site_transient('update_plugins', $transient);
+        onp_updates_322_set_site_transient('update_plugins', $transient);
     }
     
     /**
@@ -281,6 +281,7 @@ class OnpUpdates321_Manager {
             
             $obj = new stdClass();  
             $obj->slug = $this->plugin->pluginSlug;  
+            $obj->new_version = $this->lastCheck['Version'];   
 
             $obj->url = $this->plugin->options['api'] . 'GetDetails?' . http_build_query(array(
                 'version' => $this->lastCheck['Id']
@@ -342,6 +343,7 @@ class OnpUpdates321_Manager {
             $obj = new stdClass();
             $obj->slug = $this->plugin->pluginSlug;
             $obj->homepage = $data['Homepage'];
+            $obj->name = $this->plugin->pluginTitle; 
             $obj->plugin_name = $this->plugin->pluginSlug;
             $obj->new_version = $data['Version'];
             $obj->requires = $data['Requires'];  

@@ -25,7 +25,7 @@ class OnpApi320_Manager {
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory320_Plugin
+     * @var Factory321_Plugin
      */
     public $plugin;
     
@@ -178,14 +178,14 @@ class OnpApi320_Manager {
             
             if ( !isset( $args['body']['secret'] ) ) $args['body']['secret'] = get_option('onp_site_secret', null);
             if ( !isset( $args['body']['site'] ) ) $args['body']['site'] = site_url();
-            if ( !isset( $args['body']['key'] ) ) $args['body']['key'] = $this->plugin->license ? $this->plugin->license->key : null;
+            if ( !isset( $args['body']['key'] ) ) $args['body']['key'] = isset( $this->plugin->license ) ? $this->plugin->license->key : null;
             if ( !isset( $args['body']['plugin'] ) ) $args['body']['plugin'] = $this->plugin->pluginName; 
             if ( !isset( $args['body']['assembly'] ) ) $args['body']['assembly'] = $this->plugin->build;
             if ( !isset( $args['body']['version'] ) ) $args['body']['version'] = $this->plugin->version;
             if ( !isset( $args['body']['tracker'] ) ) $args['body']['tracker'] = $this->plugin->tracker;
 
             if ( !isset( $args['body']['embedded'] ) ) 
-                $args['body']['embedded'] = ( $this->plugin->license && $this->plugin->license->isEmbedded() ) ? 'true' : 'false';    
+                $args['body']['embedded'] = ( isset( $this->plugin->license ) && $this->plugin->license->isEmbedded() ) ? 'true' : 'false';    
 
             if ( defined('FACTORY_BETA') && FACTORY_BETA ) $args['body']['beta'] = 'true';
 

@@ -30,6 +30,10 @@
     width: 250px;     
 }
 
+#sociallocker_timeout {
+    width: 100px;
+}
+
 .help-block {
     position: relative;
     margin-top: 12px !important;
@@ -41,7 +45,7 @@
 .btn-group {
     border: 0px !important;
 }
-.factory-bootstrap-320 .btn-group { 
+.factory-bootstrap-322 .btn-group { 
     margin-bottom: 0px;
 }
 

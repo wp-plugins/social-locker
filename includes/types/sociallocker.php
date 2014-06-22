@@ -72,8 +72,7 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
             } 
         
 
-
-
+        
         /**
          * View table
          */
@@ -91,6 +90,7 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
             'bootstrap.tab',
             'holder.more-link',
             'control.checkbox',
+            'control.dropdown',
             'bootstrap.modal',
             ), 'bootstrap' );
         
@@ -102,14 +102,15 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
             'bootstrap.wp-editor', 
             'bootstrap.separator',
             'control.checkbox',
+            'control.dropdown',
             'holder.more-link'
             ), 'bootstrap' ); 
         
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/json2.js');
         $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/preview.030000.js');
-        $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030301.js')->request('jquery-ui-sortable');       
-        $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030301.css');
-            $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030301-en_US.css');  
+        $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/sociallocker.edit.030507.js')->request('jquery-ui-sortable');       
+        $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030507.css');
+            $this->styles->add( ONP_SL_PLUGIN_URL . '/assets/admin/css/sociallocker.edit.030507-en_US.css');  
         
 
             $this->scripts->add( ONP_SL_PLUGIN_URL . '/assets/admin/js/jquery.qtip.min.js');       

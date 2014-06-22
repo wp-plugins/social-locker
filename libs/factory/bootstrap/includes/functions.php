@@ -10,9 +10,9 @@
  * @since 1.0.0
  */
 
-add_action('factory_bootstrap_320_plugin_created', 'factory_bootstrap_320_plugin_created');
-function factory_bootstrap_320_plugin_created( $plugin ) {
-    $manager = new FactoryBootstrap320_Manager( $plugin );
+add_action('factory_bootstrap_322_plugin_created', 'factory_bootstrap_322_plugin_created');
+function factory_bootstrap_322_plugin_created( $plugin ) {
+    $manager = new FactoryBootstrap322_Manager( $plugin );
     $plugin->bootstrap = $manager;
 }
 
@@ -21,13 +21,13 @@ function factory_bootstrap_320_plugin_created( $plugin ) {
  * 
  * @since 3.2.0
  */
-class FactoryBootstrap320_Manager {
+class FactoryBootstrap322_Manager {
     
     /**
      * A plugin for which the manager was created.
      * 
      * @since 3.2.0
-     * @var Factory320_Plugin
+     * @var Factory321_Plugin
      */
     public $plugin;
     
@@ -136,7 +136,7 @@ class FactoryBootstrap320_Manager {
             update_option('factory_wp_content_access_tested', true );
 
             if ( function_exists('wp_remote_get') ) {
-                $result = wp_remote_get(FACTORY_BOOTSTRAP_320_URL . '/includes/load-scripts.php?test=1');
+                $result = wp_remote_get(FACTORY_BOOTSTRAP_322_URL . '/includes/load-scripts.php?test=1');
                 if ( !is_wp_error($result ) && $result && isset( $result['body'] ) && $result['body'] == 'success' ) {
                     update_option('factory_css_js_compression', true );
                 }  
@@ -147,16 +147,16 @@ class FactoryBootstrap320_Manager {
 
         if ( !$compression ) {
 
-            $id = md5(FACTORY_BOOTSTRAP_320_VERSION);
+            $id = md5(FACTORY_BOOTSTRAP_322_VERSION);
 
             $isFirst = true;
             foreach($this->scripts as $scriptToLoad) {
-                wp_enqueue_script($scriptToLoad . '-' . $id, FACTORY_BOOTSTRAP_320_URL . "/assets/js/$scriptToLoad.js", $isFirst ? $dependencies : false);
+                wp_enqueue_script($scriptToLoad . '-' . $id, FACTORY_BOOTSTRAP_322_URL . "/assets/js/$scriptToLoad.js", $isFirst ? $dependencies : false);
                 $isFirst = false;            
             }
 
             foreach($this->styles as $styleToLoad) {
-                wp_enqueue_style($styleToLoad . '-' . $id, FACTORY_BOOTSTRAP_320_URL . "/assets/flat/css/$styleToLoad.css" );       
+                wp_enqueue_style($styleToLoad . '-' . $id, FACTORY_BOOTSTRAP_322_URL . "/assets/flat/css/$styleToLoad.css" );       
             }
 
         // - //
@@ -181,13 +181,13 @@ class FactoryBootstrap320_Manager {
             }
 
             if ( !empty( $this->styles ) ) {
-                $id = md5($loadStylesOut . FACTORY_BOOTSTRAP_320_VERSION);
-                wp_enqueue_style('factory-bootstrap-320-' . $id, FACTORY_BOOTSTRAP_320_URL . '/includes/load-styles.php?c=1&folder=flat&load='.$loadStylesOut, array(), FACTORY_BOOTSTRAP_320_VERSION); 
+                $id = md5($loadStylesOut . FACTORY_BOOTSTRAP_322_VERSION);
+                wp_enqueue_style('factory-bootstrap-322-' . $id, FACTORY_BOOTSTRAP_322_URL . '/includes/load-styles.php?c=1&folder=flat&load='.$loadStylesOut, array(), FACTORY_BOOTSTRAP_322_VERSION); 
             }
 
             if ( !empty( $this->scripts ) ) {
-                $id = md5($loadScriptsOut . FACTORY_BOOTSTRAP_320_VERSION);
-                wp_enqueue_script('factory-bootstrap-320-' . $id, FACTORY_BOOTSTRAP_320_URL . '/includes/load-scripts.php?c=1&load='.$loadScriptsOut, $dependencies, FACTORY_BOOTSTRAP_320_VERSION); 
+                $id = md5($loadScriptsOut . FACTORY_BOOTSTRAP_322_VERSION);
+                wp_enqueue_script('factory-bootstrap-322-' . $id, FACTORY_BOOTSTRAP_322_URL . '/includes/load-scripts.php?c=1&load='.$loadScriptsOut, $dependencies, FACTORY_BOOTSTRAP_322_VERSION); 
             } 
 
         }
@@ -196,7 +196,7 @@ class FactoryBootstrap320_Manager {
         $colorName = get_user_meta($userId, 'admin_color', true);
 
         if ( $colorName !== 'fresh' ) {       
-            wp_enqueue_style('factory-bootstrap-320-colors', FACTORY_BOOTSTRAP_320_URL . '/assets/flat/css/bootstrap.' . $colorName . '.css');
+            wp_enqueue_style('factory-bootstrap-322-colors', FACTORY_BOOTSTRAP_322_URL . '/assets/flat/css/bootstrap.' . $colorName . '.css');
         }
 
         if ( $colorName == 'light' ) {
@@ -229,8 +229,8 @@ class FactoryBootstrap320_Manager {
 
         <script>
             if ( !window.onpsl ) window.onpsl = {};
-            if ( !window.onpsl.factoryBootstrap320 ) window.onpsl.factoryBootstrap320 = {}; 
-            window.onpsl.factoryBootstrap320.colors = {
+            if ( !window.onpsl.factoryBootstrap322 ) window.onpsl.factoryBootstrap322 = {}; 
+            window.onpsl.factoryBootstrap322.colors = {
                 primaryDark: '<?php echo $primaryDark ?>',
                 primaryLight: '<?php echo $primaryLight ?>'
             };

@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms320_Html extends FactoryForms320_CustomElement
+class FactoryForms322_Html extends FactoryForms322_CustomElement
 {
     public $type = 'html';
     

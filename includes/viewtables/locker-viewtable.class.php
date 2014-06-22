@@ -59,6 +59,8 @@ class SocialLockerViewTable extends FactoryViewtables320_Viewtable
             <?php  
             
         }
+        
+        
     }
     
     /**
@@ -94,6 +96,8 @@ class SocialLockerViewTable extends FactoryViewtables320_Viewtable
                 echo $theme;
                 break;
         }
+        
+        
     }
     
      /**
@@ -115,3 +119,4 @@ class SocialLockerViewTable extends FactoryViewtables320_Viewtable
         echo '<abbr title="' . esc_attr( $t_time ) . '">' . $h_time . '</abbr><br />';
     }
 }
+ 

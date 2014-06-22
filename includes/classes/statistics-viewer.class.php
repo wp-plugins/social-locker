@@ -23,6 +23,8 @@ class StatisticViewer {
         
         $this->rangeStartStr = gmdate("Y-m-d", $dateRangeStart);
         $this->rangeEndStr = gmdate("Y-m-d", $dateRangeEnd);
+        
+        
     }
     
     public function setPost($postId) {
@@ -99,12 +101,14 @@ class StatisticViewer {
             
             $resultData[$timestamp] = $data[$index];
         }
-
+        
+        
         return $resultData;
     }
     
     public function getViewTable( $options ) {
         global $wpdb;
+        
         
         $per = isset( $options['per'] ) ? $options['per'] : 50;
         $page = isset( $options['page'] ) ? $options['page'] : 1;    
@@ -158,3 +162,4 @@ class StatisticViewer {
         );
     }
 }
+ 

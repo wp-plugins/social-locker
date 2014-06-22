@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms320_Control extends FactoryForms320_FormElement {
+abstract class FactoryForms322_Control extends FactoryForms322_FormElement {
     
     /**
      * Is this element a control?
@@ -55,7 +55,7 @@ abstract class FactoryForms320_Control extends FactoryForms320_FormElement {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms320_ValueProvider $provider
+     * @param IFactoryForms322_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
