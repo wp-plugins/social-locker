@@ -17,7 +17,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms322_MetaValueProvider implements IFactoryForms322_ValueProvider 
+class FactoryForms323_MetaValueProvider implements IFactoryForms323_ValueProvider 
 {
     /**
      * Values to save $metaName => $metaValue
@@ -44,7 +44,7 @@ class FactoryForms322_MetaValueProvider implements IFactoryForms322_ValueProvide
         global $post;
                 
         $this->scope = ( isset( $options['scope'] ) ) ? $options['scope'] : null;
-        $this->scope = preg_replace('/_meta_box$/', '', $this->formatCamelCase( $this->scope ) );
+        $this->scope = preg_replace('/\_meta\_box$/', '', $this->formatCamelCase( $this->scope ) );
 
         $this->postId = ( isset( $options['postId'] ) ) ? $options['postId'] : $post->ID;
         
@@ -192,8 +192,10 @@ class FactoryForms322_MetaValueProvider implements IFactoryForms322_ValueProvide
     private function formatCamelCase( $string ) {
         $output = "";
         foreach( str_split( $string ) as $char ) {
-                strtoupper( $char ) == $char and $output and $output .= "_";
-                $output .= $char;
+            if ( strtoupper( $char ) == $char && !in_array($char, array('_', '-'))) {
+                $output .= "_";
+            }
+            $output .= $char;
         }
         $output = strtolower($output);
         return $output;

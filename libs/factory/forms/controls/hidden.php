@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms322_HiddenControl extends FactoryForms322_Control 
+class FactoryForms323_HiddenControl extends FactoryForms323_Control 
 {
     public $type = 'hidden';
     

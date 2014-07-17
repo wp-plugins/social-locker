@@ -51,7 +51,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      */
     public $priority = 'core';
 	
-    public $cssClass = 'factory-bootstrap-322 factory-fontawesome-320';
+    public $cssClass = 'factory-bootstrap-323 factory-fontawesome-320';
 
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
@@ -65,7 +65,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      * @see FactoryMetaboxes320_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms322_Form $form A form object to configure.
+     * @param FactoryForms323_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {        
@@ -135,6 +135,21 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
             
         
 
+        
+        $form->add(array(  
+            array(
+                'type'      => 'dropdown',
+                'name'      => 'overlap_position',
+                'data'      => array(
+                    array('top', __( 'Top Position', 'sociallocker' ) ),
+                    array('middle', __( 'Middle Position', 'sociallocker' ) ),
+                    array('scroll', __( 'Scrolling (N/A in Preview)', 'sociallocker' ) )
+                ),
+                'title'     => '',
+                'hint'      => '',
+                'default'   => 'middle'
+            )
+        )); 
     }
     
     /**

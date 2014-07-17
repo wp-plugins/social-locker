@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms322_TextareaControl extends FactoryForms322_Control 
+class FactoryForms323_TextareaControl extends FactoryForms323_Control 
 {
     public $type = 'textarea';
     

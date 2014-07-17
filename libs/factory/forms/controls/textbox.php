@@ -16,7 +16,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms322_TextboxControl extends FactoryForms322_Control 
+class FactoryForms323_TextboxControl extends FactoryForms323_Control 
 {
     public $type = 'textbox';
     
@@ -61,5 +61,10 @@ class FactoryForms322_TextboxControl extends FactoryForms322_Control
         <?php }?>
         <?php if ( $units ) { ?></div><?php } ?>
         <?php
+    }
+    
+    public function getSubmitValue( $name, $subName ) {
+        $nameOnForm = $this->getNameOnForm( $name );
+        return isset( $_POST[$nameOnForm] ) ? trim( $_POST[$nameOnForm] ) : '';
     }
 }

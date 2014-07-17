@@ -103,6 +103,21 @@
     margin-right: 5px;
 }
 
+#OnpSL_BasicOptionsMetaBox .factory-control-overlap_position {  
+    display: none;
+
+}
+#sociallocker_overlap_position_wrap {
+    display: none;  
+    padding-left: 13px;
+    margin-left: 12px;
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+#sociallocker_overlap_position {
+    display: inline-block;  
+    width: auto;
+}
+
 
 /* if ( onp_build('free') { */
 /* compiler rule: the following code will be available only in free assemble */

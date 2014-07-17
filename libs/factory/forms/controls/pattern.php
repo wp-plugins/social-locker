@@ -10,7 +10,7 @@
  * @since 3.1.0
  */
 
-class FactoryForms322_PatternControl extends FactoryForms322_Control 
+class FactoryForms323_PatternControl extends FactoryForms323_Control 
 {
     public $type = 'pattern';
     
@@ -35,11 +35,11 @@ class FactoryForms322_PatternControl extends FactoryForms322_Control
         $name = $this->getOption('name');
         
         // filters to get available patterns for the given background contols
-        $this->patterns = apply_filters('factory_forms_322_patterns',  array());
-        $this->patterns = apply_filters('factory_forms_322_patterns-' . $name, $this->patterns);
+        $this->patterns = apply_filters('factory_forms_323_patterns',  array());
+        $this->patterns = apply_filters('factory_forms_323_patterns-' . $name, $this->patterns);
         $this->customPatterns = $this->getOption('patterns', array());
  
-        $this->color = new FactoryForms322_ColorControl( $options['color'], $form, $provider );
+        $this->color = new FactoryForms323_ColorControl( $options['color'], $form, $provider );
     }
          
     /**

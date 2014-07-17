@@ -138,12 +138,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030508.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030509.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030508.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030509.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -238,6 +238,7 @@ class OnpSL_AssetsManager {
                 'theme' => 'secrets',
                 'overlap' => array(
                     'mode' => self::getLockerOption($id, 'overlap', false, 'full'),
+                    'position' => self::getLockerOption($id, 'overlap_position', false, 'middle')           
                 ),
                 
                 'googleAnalytics' => get_option('sociallocker_google_analytics', 1),

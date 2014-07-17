@@ -18,6 +18,8 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                 this.initTrialBox();
             
   
+            
+            this.initOverlapModeButtons();
         }, 
 
         /**
@@ -86,8 +88,30 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                     self.updateButtonOrder();
                 }).change();
             });
+        },
+        
+        initOverlapModeButtons: function() {
+            var $overlapControl = $("#OnpSL_BasicOptionsMetaBox .factory-control-overlap .factory-buttons-group");
+            var $positionControl = $("#OnpSL_BasicOptionsMetaBox .factory-control-overlap_position");
+            var $position = $("#sociallocker_overlap_position");            
             
+            $overlapControl.after( $("<div id='sociallocker_overlap_position_wrap'></div>").append( $position ) );
+            $positionControl.show();
             
+            var checkPositionControlVisability = function( ){
+                var value = $("#sociallocker_overlap").val();
+                
+                if ( value === 'full' ) {
+                    $("#sociallocker_overlap_position_wrap").css("display", "none");
+                } else {
+                    $("#sociallocker_overlap_position_wrap").css("display", "inline-block");   
+                }
+            };
+            checkPositionControlVisability();
+            
+            $("#sociallocker_overlap").change(function(){
+                checkPositionControlVisability();
+            });
         },
         
         updateButtonOrder: function(value) {
@@ -203,7 +227,8 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                 
                 theme: 'secrets',     
                 overlap: {
-                    mode: $("#sociallocker_overlap").val()
+                    mode: $("#sociallocker_overlap").val(),
+                    position: $("#sociallocker_overlap_position").val()
                 },
                 effects: { 
                     highlight: $("#sociallocker_highlight").is(':checked')
@@ -435,7 +460,7 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap322_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap323_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

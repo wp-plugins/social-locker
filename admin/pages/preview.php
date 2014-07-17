@@ -44,13 +44,13 @@ function onp_lock_preview() {
          <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/js/json2.js"></script>    
          
          <?php ?>
-         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030508.min.js"></script>  
-         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030508.min.css">  
+         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030509.min.js"></script>  
+         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030509.min.css">  
          <?php 
  ?>
     </head>
     <body>
-        <div id="wrap">
+        <div id="wrap" style="text-align: center; margin: 0 auto; max-width: 700px;">
             <div class="content-to-lock" style="text-align: center; margin: 0 auto; max-width: 600px;">
                 <div style="margin-bottom: 20px;">
                     <img src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/img/preview-image.jpg" alt="Preview image" style="margin: auto;" />

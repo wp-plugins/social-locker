@@ -196,12 +196,12 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             array('ps_AF', __('Pashto', 'sociallocker'))
         );
         
-        $form = new FactoryForms322_Form(array(
+        $form = new FactoryForms323_Form(array(
             'scope' => 'sociallocker'
         ), $sociallocker );
         
         $form->controlTheme = 'mendeleev-000';
-        $form->setProvider( new FactoryForms322_OptionsValueProvider(array(
+        $form->setProvider( new FactoryForms323_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
@@ -213,7 +213,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'type'      => 'textbox',
                 'name'      => 'facebook_appid',
                 'title'     => __( 'Facebook App ID', 'sociallocker' ),
-                'hint'      => __( 'The facebook app id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specifically for your domain. Please check out <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> for more information.', 'sociallocker' )
+                'hint'      => __( 'The Facebook App Id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specifically for your domain. Please check out <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> for more information.', 'sociallocker' )
             ),
             array(
                 'type'      => 'dropdown',
@@ -326,8 +326,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             if ( !empty( $selectedLang ) ) {
 
                 $langItem = null;
-                global $sociallockerLangs;
-                foreach( $sociallockerLangs as $lang ) {
+                foreach( $this->languages as $lang ) {
                     if ( $lang[0] == $selectedLang ) {
                         $langItem = $lang;
                         break;
@@ -352,7 +351,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             <h2><?php _e('Global Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-322">
+            <div class="factory-bootstrap-323">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -454,7 +453,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-322" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-323" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>

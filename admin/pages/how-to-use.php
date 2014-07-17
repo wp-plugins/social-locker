@@ -100,7 +100,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
         
         ?>
         
-        <div class="wrap factory-bootstrap-322 factory-fontawesome-320">
+        <div class="wrap factory-bootstrap-323 factory-fontawesome-320">
             <?php $this->showNav('getting-started') ?>
             <div class="onp-help-content">
                 

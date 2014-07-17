@@ -12,7 +12,7 @@
 /**
  * The base class for all form layouts. 
  */
-abstract class FactoryForms322_FormLayout extends FactoryForms322_Holder {
+abstract class FactoryForms323_FormLayout extends FactoryForms323_Holder {
     
     /**
      * A form layout name.
@@ -35,7 +35,7 @@ abstract class FactoryForms322_FormLayout extends FactoryForms322_Holder {
      * 
      * @since 1.0.0
      * @param mixed[] $options A holder options.
-     * @param FactoryForms322_Form $form A parent form.
+     * @param FactoryForms323_Form $form A parent form.
      */
     public function __construct($options, $form) {
 
@@ -44,8 +44,8 @@ abstract class FactoryForms322_FormLayout extends FactoryForms322_Holder {
         
         parent::__construct($options, $form);
 
-        $this->addCssClass('factory-forms-322-' . $this->type);  
-        $this->addCssClass('factory-forms-322-' . $this->name);
+        $this->addCssClass('factory-forms-323-' . $this->type);  
+        $this->addCssClass('factory-forms-323-' . $this->name);
     }
     
     /**

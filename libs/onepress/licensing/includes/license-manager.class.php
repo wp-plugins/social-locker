@@ -144,7 +144,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-322 factory-fontawesome-320 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
+        <div class="factory-bootstrap-323 factory-fontawesome-320 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
 
             <?php if ( $error ) { ?>
                 <?php $this->showError($error, $scope) ?>
@@ -409,7 +409,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         $btnText = apply_filters('onp_license_manager_success_button_' . $this->plugin->pluginName, __('Okay, I got it', 'onp_licensing_322') );
         
         ?>
-        <div class="factory-bootstrap-322 factory-fontawesome-320 onp-page-wrap onp-single-block" id="finish">
+        <div class="factory-bootstrap-323 factory-fontawesome-320 onp-page-wrap onp-single-block" id="finish">
 
             <div class='onp-header'>  
                 <?php if ( $ref == 'trial' || $ref == 'manual-trial-activation' ) { ?>
@@ -528,7 +528,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
  
         ?>
         <form method="POST">
-        <div class="factory-bootstrap-322 factory-fontawesome-320 onp-page-wrap onp-single-block" id="create-account">
+        <div class="factory-bootstrap-323 factory-fontawesome-320 onp-page-wrap onp-single-block" id="create-account">
             
             <?php if ( $ref == 'key-activation' ) { ?>
             <div class='onp-header'>  
@@ -625,7 +625,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         
         ?>
         <form method="POST">
-        <div class="factory-bootstrap-322 factory-fontawesome-320 onp-page-wrap onp-single-block" id="account-already-created">
+        <div class="factory-bootstrap-323 factory-fontawesome-320 onp-page-wrap onp-single-block" id="account-already-created">
             
             <div class='onp-header'>
                 <h4><?php _e('A customer with the specified email already registered. Are you sure to bind your key to this email?', 'onp_licensing_322') ?></h4>
@@ -663,7 +663,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         if ( $code && $message ) $error = new WP_Error($code, base64_decode($message));
         
         ?>
-        <div class="factory-bootstrap-322 factory-fontawesome-320 onp-page-wrap onp-single-block" id="account-created">
+        <div class="factory-bootstrap-323 factory-fontawesome-320 onp-page-wrap onp-single-block" id="account-created">
 
             <div class='onp-header'>
                 <h4><?php _e('Your customer account has been successfully created!', 'onp_licensing_322') ?></h4>
@@ -850,7 +850,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-322 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-323 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateKeyManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;"><?php _e('Key Activation', 'onp_licensing_322') ?></h2>
@@ -893,7 +893,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-322 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-323 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('deleteKeyManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;"><?php _e('Key Deactivation', 'onp_licensing_322') ?></h2>
@@ -934,7 +934,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
         }
         
         ?>
-        <div class="factory-bootstrap-322 onp-page-wrap" id="activate-key-manual">
+        <div class="factory-bootstrap-323 onp-page-wrap" id="activate-key-manual">
             <form action="<?php $this->actionUrl('activateTrialManualy') ?>" method="post">
             <div class="onp-container">
                 <h2 style="margin-bottom: 10px;">Trial Activation</h2>
@@ -989,7 +989,7 @@ class OnpLicensing322_LicenseManagerPage extends FactoryPages320_AdminPage  {
             <h2>License Manager Internal Keys</h2>
             <p style="margin-top: 0px; margin-bottom: 30px;">You actually don't need to change something here. Please change the values below only if OnePress supports ask you to do it.</p>
             
-            <div class="factory-bootstrap-322" style="max-width: 800px;">
+            <div class="factory-bootstrap-323" style="max-width: 800px;">
                 <form method="post" class="form-horizontal" action="<?php echo $this->actionUrl('internalKeys') ?>">
 
                 <div>

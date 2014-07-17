@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms322_Control extends FactoryForms322_FormElement {
+abstract class FactoryForms323_Control extends FactoryForms323_FormElement {
     
     /**
      * Is this element a control?
@@ -55,7 +55,7 @@ abstract class FactoryForms322_Control extends FactoryForms322_FormElement {
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms322_ValueProvider $provider
+     * @param IFactoryForms323_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -247,7 +247,12 @@ abstract class FactoryForms322_Control extends FactoryForms322_FormElement {
      */
     public function render() {
         $this->addCssClass('factory-from-control-' . $this->type);     
-        $isActive = $this->provider->getValue( $this->getOption('name') . '_is_active', $this->getOption('isActive', 1) );  
+        $isActive = $this->provider->getValue( $this->getOption('name') . '_is_active', $this->getOption('isActive', 1) );
+        
+        // if the control is off, then ignore it
+        $off = $this->getOption('off', false);
+        if ( $off ) return;
+        
         ?>
         <input type="hidden" class="factory-control-is-active" name="<?php echo $this->getOption('name') ?>_is_active" value="<?php echo $isActive ?>" />
         <?php

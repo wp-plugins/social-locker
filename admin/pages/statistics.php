@@ -132,7 +132,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
         <div class="wrap">
             <h2 style="margin-bottom: 10px;"><?php _e('Usage Statistics', 'sociallocker'); ?></h2>
 
-            <div class="factory-bootstrap-322 factory-fontawesome-320">
+            <div class="factory-bootstrap-323 factory-fontawesome-320">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
                 <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers. <br /> By default the chart shows the aggregate data for all posts. Click on the post title to information for individual posts.', 'sociallocker'); ?></p>

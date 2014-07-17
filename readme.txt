@@ -88,14 +88,19 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.5.9 - 17 Jul 2014</strong><br />
+<ul>
+<li>NEW: The option to setup the locker position, if the Transparancy Mode or Blurring Mode are  active.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
+
 <strong>v.3.5.8 - 22 Jun 2014</strong><br />
 <ul>
 <li>NEW: The long-awaited option to overlap content and make it transparent or blurred (in the premium version only).</li>
 <li>IMPROVED: Support for Czech language.</li>
 <li>FIXED: A set of minor bugs and grammar/spelling mistakes on the "How To Use" page.</li>
 </ul>
-
-<strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.
 
 <strong>v.3.5.6 - 10 Jun 2014</strong><br />
 <ul>

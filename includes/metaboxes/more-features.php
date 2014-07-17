@@ -70,7 +70,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
         global $sociallocker;
         
     ?>
-        <div class="factory-bootstrap-322 factory-fontawesome-320">
+        <div class="factory-bootstrap-323 factory-fontawesome-320">
             
         <div class="sl-header">
             <strong><?php _e('More Features?', 'sociallocker'); ?></strong>

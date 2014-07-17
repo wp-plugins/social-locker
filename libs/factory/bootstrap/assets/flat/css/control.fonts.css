@@ -1,24 +1,24 @@
-.factory-bootstrap-322 .factory-font .factory-control-row {  
+.factory-bootstrap-323 .factory-font .factory-control-row {  
     padding:0;
     vertical-align: top;
 }
-.factory-bootstrap-322 .factory-font .factory-color-wrap {  
+.factory-bootstrap-323 .factory-font .factory-color-wrap {  
     position:static;
     display:inline-block; 
     vertical-align: top;
 }
-.factory-bootstrap-322 .factory-font .factory-size-wrap {
+.factory-bootstrap-323 .factory-font .factory-size-wrap {
     display:inline-block;
     width: 70px;
     vertical-align: top;
 }
-.factory-bootstrap-322 .iris-picker {
+.factory-bootstrap-323 .iris-picker {
     margin-top: 10px;
 }
-.factory-bootstrap-322 .factory-font .factory-family-wrap {
+.factory-bootstrap-323 .factory-font .factory-family-wrap {
     padding-bottom: 10px;
 }
 
-.factory-bootstrap-322 .factory-font .chosen-results {
+.factory-bootstrap-323 .factory-font .chosen-results {
       max-height: 150px;
 }

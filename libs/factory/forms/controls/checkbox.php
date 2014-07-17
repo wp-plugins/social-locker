@@ -14,7 +14,7 @@
  * @since 1.0.0
  */
 
-class FactoryForms322_CheckboxControl extends FactoryForms322_Control 
+class FactoryForms323_CheckboxControl extends FactoryForms323_Control 
 {
     public $type = 'checkbox';
     
@@ -52,8 +52,8 @@ class FactoryForms322_CheckboxControl extends FactoryForms322_Control
         
         ?>
         <div <?php $this->attrs() ?>>
-            <button type="button" class="btn btn-default btn-small btn-sm factory-on <?php if ( $value ) { echo 'active'; } ?>"><?php _e('On', 'factory_forms_322') ?></button>
-            <button type="button" class="btn btn-default btn-small btn-sm factory-off <?php if ( !$value ) { echo 'active'; } ?>" data-value="0"><?php _e('Off', 'factory_forms_322') ?></button>
+            <button type="button" class="btn btn-default btn-small btn-sm factory-on <?php if ( $value ) { echo 'active'; } ?>"><?php _e('On', 'factory_forms_323') ?></button>
+            <button type="button" class="btn btn-default btn-small btn-sm factory-off <?php if ( !$value ) { echo 'active'; } ?>" data-value="0"><?php _e('Off', 'factory_forms_323') ?></button>
             <input type="checkbox" style="display: none" id="<?php echo $nameOnForm ?>" class="factory-result" name="<?php echo $nameOnForm ?>" value="1" <?php if ( $value ) { echo 'checked="checked"'; } ?>" />
         </div>
         <?php

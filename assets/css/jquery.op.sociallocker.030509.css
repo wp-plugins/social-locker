@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.6.2, 2014-06-22 
+ * Social Locker - v1.6.4, 2014-07-16 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 
@@ -385,10 +385,13 @@
 .onp-sociallocker-overlap-locker-box {
     position: absolute;
     top: 50%;
-    z-index: 50;
+    z-index: 40;
     left: 0px;
     right: 0px;
-    padding: 10px;
+}
+.onp-sociallocker-overlap-locker-box.onp-sociallocker-position-top,
+.onp-sociallocker-overlap-locker-box.onp-sociallocker-position-scroll {
+    top: 0px;
 }
 .onp-sociallocker-overlap-box .onp-sociallocker {
     margin: 0px auto !important;
