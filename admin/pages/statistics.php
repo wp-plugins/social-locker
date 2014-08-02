@@ -22,8 +22,6 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
     public function __construct(Factory321_Plugin $plugin) {    
         $this->menuTitle = __('Usage Statistics', 'sociallocker');
         parent::__construct($plugin);
-        
-        
     }
         
     public function assets($scripts, $styles) {
@@ -46,58 +44,56 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
      * @return void
      */
     public function indexAction() {
-        global $sociallocker;
-        include_once(ONP_SL_PLUGIN_DIR . '/includes/classes/statistics-viewer.class.php');
-
-        $postId = isset($_REQUEST['sPost']) ? intval($_REQUEST['sPost']) : false;
-        $post = ($postId) ? get_post($postId) : false;
-
-        $dateStart = isset($_REQUEST['sDateStart']) ? $_REQUEST['sDateStart'] : false;  
-        $dateEnd = isset($_REQUEST['sDateEnd']) ? $_REQUEST['sDateEnd'] : false; 
-
-        $hrsOffset = get_option('gmt_offset');
-        if (strpos($hrsOffset, '-') !== 0) $hrsOffset = '+' . $hrsOffset;
-        $hrsOffset .= ' hours';
-
-        // by default shows a 30 days' range
-        if (empty($dateEnd) || ($dateRangeEnd = strtotime($dateEnd)) === false) {
-            $phpdate = getdate( strtotime($hrsOffset, time()) );
-            $dateRangeEnd = mktime(0, 0, 0, $phpdate['mon'], $phpdate['mday'], $phpdate['year']);
-        }
-
-        if (empty($dateStart) || ($dateRangeStart = strtotime($dateStart)) === false) {
-            $dateRangeStart = strtotime("-1 month", $dateRangeEnd);
-        }
-
-        // creates a statistic viewer
-        $statistic = new StatisticViewer($dateRangeEnd, $dateRangeStart);
-        if ($postId) $statistic->setPost($postId);
-
-        // gets data for the chart
-        $chartData = $statistic->getChartData();
-
-        $page = ( isset( $_GET['n'] ) ) ? intval( $_GET['n'] ) : 1;
-        if ( $page <= 0 ) $page = 1;
-
-        // gets table to view
-        $viewTable = $statistic->getViewTable(array(
-            'per' => 50,
-            'total' => true,
-            'page' => $page,
-            'order' => 'total_count'
-        ));
-        $tableRows = $viewTable['data'];
-        $totalRows = $viewTable['count'];
-        $pagesCount = ceil( $totalRows / 50 );
         
-        
+    include_once(ONP_SL_PLUGIN_DIR . '/includes/classes/statistics-viewer.class.php');
+    
+    $postId = isset($_REQUEST['sPost']) ? intval($_REQUEST['sPost']) : false;
+    $post = ($postId) ? get_post($postId) : false;
+    
+    $dateStart = isset($_REQUEST['sDateStart']) ? $_REQUEST['sDateStart'] : false;  
+    $dateEnd = isset($_REQUEST['sDateEnd']) ? $_REQUEST['sDateEnd'] : false; 
+    
+    $hrsOffset = get_option('gmt_offset');
+    if (strpos($hrsOffset, '-') !== 0) $hrsOffset = '+' . $hrsOffset;
+    $hrsOffset .= ' hours';
 
-        $dateStart = date('m/d/Y', $dateRangeStart);
-        $dateEnd = date('m/d/Y', $dateRangeEnd); 
+    // by default shows a 30 days' range
+    if (empty($dateEnd) || ($dateRangeEnd = strtotime($dateEnd)) === false) {
+        $phpdate = getdate( strtotime($hrsOffset, time()) );
+        $dateRangeEnd = mktime(0, 0, 0, $phpdate['mon'], $phpdate['mday'], $phpdate['year']);
+    }
+    
+    if (empty($dateStart) || ($dateRangeStart = strtotime($dateStart)) === false) {
+        $dateRangeStart = strtotime("-1 month", $dateRangeEnd);
+    }
+    
+    // creates a statistic viewer
+    $statistic = new StatisticViewer($dateRangeEnd, $dateRangeStart);
+    if ($postId) $statistic->setPost($postId);
 
-        $urlBase = 'edit.php?post_type=social-locker&page=statistics-sociallocker-next';
-        $postBase = $urlBase . '&sDateStart=' . $dateStart . '&dateEnd=' . $dateEnd;
-        ?>
+    // gets data for the chart
+    $chartData = $statistic->getChartData();
+       
+    $page = ( isset( $_GET['n'] ) ) ? intval( $_GET['n'] ) : 1;
+    if ( $page <= 0 ) $page = 1;
+
+    // gets table to view
+    $viewTable = $statistic->getViewTable(array(
+        'per' => 50,
+        'total' => true,
+        'page' => $page,
+        'order' => 'total_count'
+    ));
+    $tableRows = $viewTable['data'];
+    $totalRows = $viewTable['count'];
+    $pagesCount = ceil( $totalRows / 50 );
+    
+    $dateStart = date('m/d/Y', $dateRangeStart);
+    $dateEnd = date('m/d/Y', $dateRangeEnd); 
+    
+    $urlBase = 'edit.php?post_type=social-locker&page=statistics-sociallocker-next';
+    $postBase = $urlBase . '&sDateStart=' . $dateStart . '&dateEnd=' . $dateEnd;
+    ?>
         <!--Load the AJAX API-->
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
@@ -135,13 +131,13 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
             <div class="factory-bootstrap-323 factory-fontawesome-320">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
-                <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers. <br /> By default the chart shows the aggregate data for all posts. Click on the post title to information for individual posts.', 'sociallocker'); ?></p>
+                <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br /> By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.', 'sociallocker'); ?></p>
 
             <div id="onp-sl-chart-area">
                 
                 <form method="get"> 
                 <input type="hidden" name="post_type" value="social-locker" />
-                <input type="hidden" name="page" value="statistics-<?php echo $sociallocker->pluginName ?>" /> 
+                <input type="hidden" name="page" value="statistics-sociallocker-next" /> 
                 <div id="onp-sl-settings-bar">
                     
                     <div id="onp-sl-type-select">
@@ -243,9 +239,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
             </div>
         </div>
     <?php
-        
     }
 }
 
 FactoryPages320::register($sociallocker, 'OnpSL_StatisticsPage');
- 

@@ -277,7 +277,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
 
             <p>
                 <?php echo sprintf(__('This plugin is a free edition of the popular <a target="_blank" href="%s"> Social Locker plugin</a> sold on CodeCanyon. 
-                You can activate premium features for a trial period <a href="%s">inside the plugin</a>.', 'sociallocker'), onp_licensing_322_get_purchase_url( $this->plugin ), onp_licensing_322_get_manager_link($this->plugin->pluginName )); ?></strong>
+                You can activate premium features for a trial period <a href="%s">inside the plugin</a>.', 'sociallocker'), onp_licensing_323_get_purchase_url( $this->plugin ), onp_licensing_323_get_manager_link($this->plugin->pluginName )); ?></strong>
             </p>
         </div>
 
@@ -314,7 +314,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
             <h1><?php _e('How can I activate the trial version?', 'sociallocker'); ?></h1>
 
             <p>
-                <?php printf(__('Open the License Manager page or just <a href="%s">click here</a> to activate your free trial.', 'sociallocker'), onp_licensing_322_get_manager_link($this->plugin->pluginName, 'activateTrial')); ?>
+                <?php printf(__('Open the License Manager page or just <a href="%s">click here</a> to activate your free trial.', 'sociallocker'), onp_licensing_323_get_manager_link($this->plugin->pluginName, 'activateTrial')); ?>
             </p>
         </div>
 
@@ -322,7 +322,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
             <h1><?php _e('How can I buy the premium version?', 'sociallocker'); ?></h1>
 
             <p>
-                 <?php printf(__('<a target="_blank" href="%s">Click here</a> to visit the plugin page on CodeCanyon and cluck the “”Purchase” button on the right sidebar.', 'sociallocker'), onp_licensing_322_get_purchase_url( $this->plugin )); ?>
+                 <?php printf(__('<a target="_blank" href="%s">Click here</a> to visit the plugin page on CodeCanyon and cluck the “”Purchase” button on the right sidebar.', 'sociallocker'), onp_licensing_323_get_purchase_url( $this->plugin )); ?>
             </p>
         </div> 
         <?php

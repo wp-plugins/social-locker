@@ -148,10 +148,7 @@
 #onp-sl-chart-selector .active.linkedin-share .chart-color {
     background-color: #006080;
 }
-#onp-sl-chart-selector .active.vk-like .chart-color {
-    background-color: #517296;
-}
-#onp-sl-chart-selector .active.vk-subscribe .chart-color {
+#onp-sl-chart-selector .active.vk-like .chart-color, #onp-sl-chart-selector .active.vk-share .chart-color, #onp-sl-chart-selector .active.vk-subscribe .chart-color {
     background-color: #517296;
 }
 #onp-sl-chart-selector .active.ok-klass .chart-color {

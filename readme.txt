@@ -88,12 +88,19 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.6.2 - 2 Aug 2014</strong><br />
+<ul>
+<li>FIXED: The blurring effect in Firefox.</li>
+<li>FIXED: IE10-11 and the Tweet Button issue.</li>
+<li>FIXED: The bug of collapsing the video when the blurring effect are applied to the 'iframe' element with the position 'absolute'.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
+
 <strong>v.3.5.9 - 17 Jul 2014</strong><br />
 <ul>
 <li>NEW: The option to setup the locker position, if the Transparancy Mode or Blurring Mode are  active.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
 
 <strong>v.3.5.8 - 22 Jun 2014</strong><br />
 <ul>

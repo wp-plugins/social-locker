@@ -138,12 +138,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030509.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030602.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030509.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030602.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -246,7 +246,8 @@ class OnpSL_AssetsManager {
                 'locker' => array(
                     'scope' => $hasScope ? 'global' : '',
                     'counter' => self::getLockerOption($id, 'show_counters', false, 1),
-                    'loadingTimeout' => get_option('sociallocker_timeout', 10000)
+                    'loadingTimeout' => get_option('sociallocker_timeout', 10000),
+                    'tumbler' => get_option('sociallocker_tumbler', false)
                 ),
 
                 'facebook' => array(

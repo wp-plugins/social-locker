@@ -15,6 +15,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
             "google-share": '#ba5145', 
             "linkedin-share": '#006080',
             "vk-like": '#517296', 
+            "vk-share": '#517296',
             "vk-subscribe": '#517296',
             "ok-klass": '#f3800d'
         },

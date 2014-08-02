@@ -19,7 +19,7 @@ include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/common-settings.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/statistics.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/preview.php');
 include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/how-to-use.php');
-    if ( isset( $sociallocker->license ) && class_exists('OnpLicensing322_LicenseManagerPage') ) {
+    if ( isset( $sociallocker->license ) && class_exists('OnpLicensing323_LicenseManagerPage') ) {
         include_once(ONP_SL_PLUGIN_DIR . '/admin/pages/license-manager.php');
     }
 

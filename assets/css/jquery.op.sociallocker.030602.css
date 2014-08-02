@@ -1,5 +1,5 @@
 /*!
- * Social Locker - v1.6.4, 2014-07-16 
+ * Social Locker - v1.6.8, 2014-08-02 
  * for jQuery: http://onepress-media.com/plugin/social-locker-for-jquery/get 
  * for Wordpress: http://onepress-media.com/plugin/social-locker-for-wordpress/get 
  * 
@@ -156,6 +156,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: left;
+    position: relative;
 }
 .onp-sociallocker.onp-sociallocker-no-counters .onp-sociallocker-button {
     text-align: center;
@@ -944,7 +945,7 @@
 
 .onp-sociallocker-flat .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-front {
     background-color: #286b8d;
-    border-bottom-color: #4a6887;
+    border-bottom-color: #19465d;
 }
 .onp-sociallocker-flat .onp-sociallocker-button-linkedin .onp-sociallocker-overlay-icon {
     background-position: -58px 7px;

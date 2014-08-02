@@ -301,6 +301,14 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'type' => 'separator'
             ),
             array(
+                'type'      => 'checkbox',
+                'way'       => 'buttons',
+                'name'      => 'tumbler',
+                'title'     => __( 'Anti-Cheating', 'sociallocker' ),
+                'default'   => false,
+                'hint'      => __( 'Turn it on to protect your locked content against cheating from visitors. Some special browser extensions allow to view the locked content without actual sharing. This option checks whether the user has really liked/shared your page. In future versions of the plugin, we will make this option active by default.', 'sociallocker' )
+            ),       
+            array(
                 'type'      => 'textbox',
                 'name'      => 'timeout',
                 'title'     => __( 'Timeout (in ms)', 'sociallocker' ),
