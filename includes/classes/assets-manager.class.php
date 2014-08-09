@@ -138,12 +138,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030602.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030603.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030602.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030603.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -225,11 +225,15 @@ class OnpSL_AssetsManager {
             if ( empty($url) && !empty($post) ) {
                 $url = get_permalink( $post->ID );
             }
+            
+            $actualUrls = get_option('sociallocker_actual_urls', false);
+            $url = $actualUrls ? null : $url;
 
             // FREE build options
             $params = array(
                 'demo' => get_option('sociallocker_debug', false),
-
+                'actualUrls' => get_option('sociallocker_actual_urls', false),
+                
                 'text' => array(
                     'header' => self::getLockerOption($id, 'header'), 
                     'message' => self::getLockerOption($id, 'message')             

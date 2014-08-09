@@ -82,7 +82,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                     'hint'  => sprintf(__('Enter the URL that you want your visitors to like, tweet or +1. Or, you can leave this field empty to use the URL of the page where the locker is located.
                                Need a separate URL for each button? Try a 
                                <a href="%s">
-                               premium version</a> of the plugin.', 'sociallocker'), onp_licensing_323_get_purchase_url( $sociallocker )),
+                               premium version</a> of the plugin.', 'sociallocker'), onp_sl_get_premium_url() ),
                     'placeholder'   => 'http://url-to-share.com'
               ),
           ));
@@ -125,7 +125,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                     'data'      => array(
                         array('full', '<i class="fa fa-lock"></i>Full (classic)'),
                         array('transparence', '<i class="fa fa-adjust"></i>Transparency' ),
-                        array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'sociallocker' ), onp_licensing_323_get_purchase_url( $sociallocker ) ) )
+                        array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'sociallocker' ), onp_sl_get_premium_url() ) )
                     ),
                     'title'     => __('Overlap Mode', 'sociallocker'),
                     'hint'      => __('Choose one of the overlap modes for your locked content.', 'sociallocker'),

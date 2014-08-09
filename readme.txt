@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.9.1
+Tested up to: 3.9.2
 Stable tag: trunk
 License: GPLv2
 
@@ -88,14 +88,20 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.6.3 - 9 Aug 2014</strong><br />
+<ul>
+<li>ADDED: The Comparison of the Free & Premium versions.</li>
+<li>ADDED: The option 'Actual URLs' on the page Global Settings.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
+
 <strong>v.3.6.2 - 2 Aug 2014</strong><br />
 <ul>
 <li>FIXED: The blurring effect in Firefox.</li>
 <li>FIXED: IE10-11 and the Tweet Button issue.</li>
 <li>FIXED: The bug of collapsing the video when the blurring effect are applied to the 'iframe' element with the position 'absolute'.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
 
 <strong>v.3.5.9 - 17 Jul 2014</strong><br />
 <ul>

@@ -55,6 +55,8 @@ function sociallocker_admin_assets( $hook ) {
 }
 add_action('admin_enqueue_scripts', 'sociallocker_admin_assets');
 
+include(ONP_SL_PLUGIN_DIR . '/admin/notices.php');
+
 add_filter('mce_external_plugins', 'sociallocker_add_plugin'); 
 add_filter('mce_buttons', 'sociallocker_register_button'); 
 
@@ -184,3 +186,12 @@ function onp_sl_get_styleroller_url( $medium, $campaign ) {
     ));
 }
 
+function onp_sl_get_premium_url( ) {
+    global $sociallocker;
+    
+    $url = admin_url( 'admin.php' );
+    return add_query_arg(array(
+        'page' => 'how-to-use-' . $sociallocker->pluginName,
+        'onp_sl_page' => 'premium'
+    ), $url);
+}

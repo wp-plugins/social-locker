@@ -68,6 +68,8 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
     public function html()
     {
         global $sociallocker;
+        $alreadyActivated = get_option('onp_trial_activated_' . $sociallocker->pluginName, false);
+                
         
     ?>
         <div class="factory-bootstrap-323 factory-fontawesome-320">
@@ -96,13 +98,13 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
         </ul>
         <div class="sl-seporator"></div>
 
-        <?php if ( !get_option('fy_trial_activated_' . $sociallocker->pluginName, false) ) { ?>
+        <?php if ( !$alreadyActivated ) { ?>
             <div class="sl-footer">
                 <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_323_manager_link($sociallocker->pluginName, 'activateTrial', false), onp_licensing_323_get_purchase_url( $sociallocker )); ?>
             </div>
         <?php } else { ?>
             <div class="sl-footer">
-                <?php sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $21<br /><span>(it will take no more a minute)</span>,</a> <a href="%s" class="sl-buy"> or <strong>try</strong> the trial version</a>', 'sociallocker'), onp_licensing_323_get_purchase_url( $sociallocker ), onp_licensing_323_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'sociallocker'), onp_licensing_323_get_purchase_url( $sociallocker ), onp_licensing_323_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
             </div>
         <?php } ?>
         

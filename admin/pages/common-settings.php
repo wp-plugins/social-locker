@@ -298,6 +298,14 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'default'   => false
             ),
             array(
+                'type'      => 'checkbox',
+                'way'       => 'buttons',
+                'name'      => 'actual_urls',
+                'title'     => __( 'Actual URLs', 'sociallocker' ),
+                'hint'      => __( 'Optional. Applied only to the lockers for which you do not set exact URLs to like/tweet/share. If On, the locker will take an URL from an address bar of  the browser as the URL to like and share. By default Wordpress Permalinks are used.', 'sociallocker' ),
+                'default'   => false
+            ),
+            array(
                 'type' => 'separator'
             ),
             array(
