@@ -45,7 +45,7 @@ abstract class FactoryShortcodes320_Shortcode {
      * Scripts to include on the same page.
      * 
      * @since 1.0.0
-     * @var Factory321_ScriptList 
+     * @var Factory322_ScriptList 
      */
     public $scripts;
     
@@ -53,7 +53,7 @@ abstract class FactoryShortcodes320_Shortcode {
      * Styles to include on the same page.
      * 
      * @since 1.0.0
-     * @var Factory321_StyleList 
+     * @var Factory322_StyleList 
      */
     public $styles;
     

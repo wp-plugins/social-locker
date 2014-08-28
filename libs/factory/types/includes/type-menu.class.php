@@ -1,12 +1,12 @@
 <?php
 
-class FactoryTypes320_Menu {
+class FactoryTypes321_Menu {
     
     public $icon;
     
     /**
      * A custom post type that is configurated by this instance.
-     * @var FactoryTypes320_Type 
+     * @var FactoryTypes321_Type 
      */
     public $type = null;
     

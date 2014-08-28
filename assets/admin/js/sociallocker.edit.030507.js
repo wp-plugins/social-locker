@@ -243,6 +243,7 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                 facebook: {
                     appId: $("#lock-preview-wrap").data('facebook-appid'),
                     lang: $("#lock-preview-wrap").data('lang'),
+                    version: $("#lock-preview-wrap").data('facebook-version'),   
                     like: {
                         url: $("#sociallocker_facebook_like_url").val(),
                         title: $("#sociallocker_facebook_like_title").val()
@@ -298,6 +299,8 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                 options = window.onpsl.lockerEditor.filterOptions( options );
             }
             
+            $(document).trigger('onp-sl-filter-preview-options', [options]);
+           
             return options;
         },
         
@@ -460,7 +463,7 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap323_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap324_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

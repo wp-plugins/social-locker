@@ -9,17 +9,17 @@
  */
 
 (function($){
-    if ( window.factory_notices_321_hide_notice ) return;
+    if ( window.factory_notices_322_hide_notice ) return;
     
     $(function(){
         $(".factory-close").click(function(){
             var id = $(this).parents(".factory-notice").attr('id');
-            factory_notices_321_hide_notice(id, false);
+            factory_notices_322_hide_notice(id, false);
             return false;
         });
     });
     
-    window.factory_notices_321_hide_notice = function( id, never ) {
+    window.factory_notices_322_hide_notice = function( id, never ) {
         var item = $("#" + id).fadeOut(300, function(){
             item.remove();
             $.ajax({
@@ -27,7 +27,7 @@
                 type: "post",
                 data: {
                     id: id,
-                    action: "factory_notices_321_hide",
+                    action: "factory_notices_322_hide",
                     never: never ? true : false
                 }
             });

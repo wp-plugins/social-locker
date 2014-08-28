@@ -4,7 +4,7 @@
  * Declaration for custom post type of Social Locler.
  * @link http://codex.wordpress.org/Post_Types
  */
-class OnpSL_SocialLockerType extends FactoryTypes320_Type {
+class OnpSL_SocialLockerType extends FactoryTypes321_Type {
     
     /**
      * Custom post name.
@@ -46,6 +46,13 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         return false;
     }
     
+    function __construct($plugin) {
+        parent::__construct($plugin);
+        
+        $this->pluralTitle = __('Lockers', 'sociallocker');
+        $this->singularTitle = __('Locker', 'sociallocker');
+    }
+    
     /**
      * Type configurator.
      */
@@ -53,11 +60,39 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         global $sociallocker;
         
         /**
-         * Menu
+         * Labels
          */
         
-        $this->menu->title = 'Social Lockers';
-        $this->menu->icon = ONP_SL_PLUGIN_URL . '/assets/admin/img/menu-icon.png';
+        $pluralName = $this->pluralTitle;
+        $singularName = $this->singularTitle;
+
+        $labels = array(
+            'singular_name' => $this->singularTitle,
+            'name' => $this->pluralTitle,          
+            'all_items' => sprintf( __('All Lockers', 'sociallocker'), $pluralName ),
+            'add_new' => sprintf( __('+ New Locker', 'sociallocker'), $singularName ),
+            'add_new_item' => sprintf( __('Add new', 'sociallocker'), $singularName ),
+            'edit' => sprintf( __('Edit', 'sociallocker') ),
+            'edit_item' => sprintf( __('Edit Locker', 'sociallocker'), $singularName ),
+            'new_item' => sprintf( __('New Locker', 'sociallocker'), $singularName ),
+            'view' => sprintf( __('View', 'factory') ),
+            'view_item' => sprintf( __('View Locker', 'sociallocker'), $singularName ),
+            'search_items' => sprintf( __('Search Lockers', 'sociallocker'), $pluralName ),
+            'not_found' => sprintf( __('No Lockers found', 'sociallocker'), $pluralName ),
+            'not_found_in_trash' => sprintf( __('No Lockers found in trash', 'sociallocker'), $pluralName ),
+            'parent' => sprintf( __('Parent Locker', 'sociallocker'), $pluralName )
+        );
+
+        $this->options['labels'] = $labels;
+        
+        /**
+         * Menu
+         */
+
+            $this->menu->title = __('Social Locker', 'sociallocker');
+            $this->menu->icon = ONP_SL_PLUGIN_URL . '/assets/admin/img/menu-icon.png';
+        
+
         
         /**
          * Metaboxes
@@ -122,4 +157,4 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
     }
 }
 
-FactoryTypes320::register('OnpSL_SocialLockerType', $sociallocker);
+FactoryTypes321::register('OnpSL_SocialLockerType', $sociallocker);

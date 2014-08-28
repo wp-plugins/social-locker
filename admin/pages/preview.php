@@ -44,8 +44,8 @@ function onp_lock_preview() {
          <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/admin/js/json2.js"></script>    
          
          <?php ?>
-         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030603.min.js"></script>  
-         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030603.min.css">  
+         <script type="text/javascript" src="<?php echo ONP_SL_PLUGIN_URL ?>/assets/js/jquery.op.sociallocker.030604.min.js"></script>  
+         <link rel="stylesheet" type="text/css" href="<?php echo ONP_SL_PLUGIN_URL ?>/assets/css/jquery.op.sociallocker.030604.min.css">  
          <?php 
  ?>
     </head>
@@ -146,12 +146,14 @@ function onp_lock_preview() {
                   unlockByTimer: function() { alertFrameSize(); },
                   unlockByClose: function() { alertFrameSize(); }            
                }        
-           };      
+           };
+                      
+           $(document).trigger('onp-sl-filter-preview-options-php');           
 
            $(function(){
               setTimeout(function(){ alertFrameSize(true); }, 2000);   
            });
-
+           
            var postOptions = dencodeOptions( JSON.parse('<?php echo $_POST['options'] ?>') );
            var options = $.extend(window.defaultOptions, postOptions);
 

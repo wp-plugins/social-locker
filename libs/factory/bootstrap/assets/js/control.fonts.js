@@ -2,7 +2,7 @@
     $(function(){                 
       $(function(){
           
-        $(".factory-bootstrap-323 .factory-font").each(function(){
+        $(".factory-bootstrap-324 .factory-font").each(function(){
             $(this).find(".factory-family-wrap select").chosen();
         });
         

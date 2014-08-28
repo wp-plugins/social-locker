@@ -61,6 +61,16 @@
     background: transparent url("../img/styleroller/pallete.png") -5px center no-repeat;
     border-radius: 8px;
 }
+.call-to-action.sociallocker-styleroller-banner .factory-inner-wrap {
+    padding: 30px;
+    padding-left: 320px;
+    padding-right: 10px;
+    background: transparent url("../img/styleroller/en_US/pallete.png") -5px center no-repeat;
+    border-radius: 8px;
+}
+.call-to-action.sociallocker-styleroller-banner.onp-sl-ru_RU .factory-inner-wrap {
+    background: transparent url("../img/styleroller/ru_RU/pallete.png") -6px center no-repeat; 
+}
 .call-to-action.sociallocker-styleroller-banner .onp-hightlight {
     background-color: #1bbc9d;
     color: #fff;

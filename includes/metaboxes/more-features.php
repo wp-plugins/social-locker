@@ -72,7 +72,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
                 
         
     ?>
-        <div class="factory-bootstrap-323 factory-fontawesome-320">
+        <div class="factory-bootstrap-324 factory-fontawesome-320">
             
         <div class="sl-header">
             <strong><?php _e('More Features?', 'sociallocker'); ?></strong>
@@ -100,11 +100,11 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
 
         <?php if ( !$alreadyActivated ) { ?>
             <div class="sl-footer">
-                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_323_manager_link($sociallocker->pluginName, 'activateTrial', false), onp_licensing_323_get_purchase_url( $sociallocker )); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_324_manager_link($sociallocker->pluginName, 'activateTrial', false), onp_licensing_324_get_purchase_url( $sociallocker )); ?>
             </div>
         <?php } else { ?>
             <div class="sl-footer">
-                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'sociallocker'), onp_licensing_323_get_purchase_url( $sociallocker ), onp_licensing_323_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'sociallocker'), onp_licensing_324_get_purchase_url( $sociallocker ), onp_licensing_324_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
             </div>
         <?php } ?>
         

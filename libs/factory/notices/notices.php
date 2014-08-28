@@ -10,9 +10,9 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_notices_321_plugin_created', 'factory_notices_321_plugin_created');
-function factory_notices_321_plugin_created( $plugin ) {
-    new FactoryNotices321( $plugin );
+add_action('factory_notices_322_plugin_created', 'factory_notices_322_plugin_created');
+function factory_notices_322_plugin_created( $plugin ) {
+    new FactoryNotices322( $plugin );
 }
 
 /**
@@ -20,7 +20,7 @@ function factory_notices_321_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class FactoryNotices321 {
+class FactoryNotices322 {
 
     public function __construct( $plugin ) {
         $this->plugin = $plugin;
@@ -36,7 +36,8 @@ class FactoryNotices321 {
 
         $this->hasNotices = false;
         foreach ($this->notices as $notice) {
-            $where = empty( $notice['where'] ) ? array('plugins','dashboard') : $notice['where'];
+
+            $where = empty( $notice['where'] ) ? array('plugins','dashboard','edit') : $notice['where'];
             $screen = get_current_screen();
 
             if ( in_array($screen->base, $where) ) {
@@ -57,8 +58,8 @@ class FactoryNotices321 {
     }
     
     public function enqueueScripts() {
-        wp_enqueue_style('factory-notices-321-css', FACTORY_NOTICES_321_URL . '/assets/css/notices.css');      
-        wp_enqueue_script('factory-notices-321-js', FACTORY_NOTICES_321_URL . '/assets/js/notices.js');
+        wp_enqueue_style('factory-notices-322-css', FACTORY_NOTICES_322_URL . '/assets/css/notices.css');      
+        wp_enqueue_script('factory-notices-322-js', FACTORY_NOTICES_322_URL . '/assets/js/notices.js');
     }
     
     public function showNotices() {
@@ -73,7 +74,7 @@ class FactoryNotices321 {
         ?>
 
         <?php if ( $this->hasNotices ) { ?>
-        <div class="updated factory-bootstrap-323 factory-fontawesome-320 factory-notices-321-notices">
+        <div class="updated factory-bootstrap-324 factory-fontawesome-320 factory-notices-322-notices">
         <?php
         foreach ($this->notices as $notice) {
             $this->showNotice($notice);
@@ -105,7 +106,7 @@ class FactoryNotices321 {
         $subtype = empty( $data['subtype'] ) ? 'none' : $data['subtype'];
         
         // checking if we should show a notice on a current page
-        $where = empty( $data['where'] ) ? array('plugins','dashboard') : $data['where'];
+        $where = empty( $data['where'] ) ? array('plugins','dashboard', 'edit') : $data['where'];
         $screen = get_current_screen();
 
         if ( !in_array($screen->base, $where) ) return;
@@ -165,13 +166,13 @@ class FactoryNotices321 {
         
         $onclick = '';
         if ( $action == 'x' ) { 
-            $onclick = "factory_notices_321_hide_notice('$id', false); return false;";
+            $onclick = "factory_notices_322_hide_notice('$id', false); return false;";
             $action = '#';
         }
 
         if ( $action == 'xx' ) { 
             $action = '#';
-            $onclick = "factory_notices_321_hide_notice('$id', true); return false;"; 
+            $onclick = "factory_notices_322_hide_notice('$id', true); return false;"; 
         }
 
         ?>

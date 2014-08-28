@@ -51,7 +51,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      */
     public $priority = 'core';
 	
-    public $cssClass = 'factory-bootstrap-323 factory-fontawesome-320';
+    public $cssClass = 'factory-bootstrap-324 factory-fontawesome-320';
 
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
@@ -65,7 +65,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      * @see FactoryMetaboxes320_FormMetabox
      * @since 1.0.0
      * 
-     * @param FactoryForms323_Form $form A form object to configure.
+     * @param FactoryForms324_Form $form A form object to configure.
      * @return void
      */
     public function form( $form ) {        
@@ -96,7 +96,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                 'type'      => 'textbox',
                 'name'      => 'header',
                 'title'     => __('Locker header', 'sociallocker'),
-                'hint'      => __('Enter the header you want for the locker. You can also leave this field empty.', 'sociallocker'),
+                'hint'      => __('Type a header which attracts attention or calls to action. You can leave this field empty.', 'sociallocker'),
                 'default'   => __('This content is locked!', 'sociallocker')
             ),
             
@@ -104,7 +104,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                 'type'      => 'wp-editor',
                 'name'      => 'message',
                 'title'     => __('Locker message', 'sociallocker'),
-                'hint'      => __('Enter the text that appears under the header.', 'sociallocker').'<br /><br />'. 
+                'hint'      => __('Type a message which will appear under the header.', 'sociallocker').'<br /><br />'. 
                                __('Shortcodes: [post_title], [post_url].', 'sociallocker'),
                 'default'   => __('Please support us, use one of the buttons below to unlock the content.', 'sociallocker'),
                 'tinymce'   => array(
@@ -128,7 +128,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                         array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'sociallocker' ), onp_sl_get_premium_url() ) )
                     ),
                     'title'     => __('Overlap Mode', 'sociallocker'),
-                    'hint'      => __('Choose one of the overlap modes for your locked content.', 'sociallocker'),
+                    'hint'      => __('Choose the way how your locker should lock the content.', 'sociallocker'),
                     'default'   => 'full'
                 )
             )); 

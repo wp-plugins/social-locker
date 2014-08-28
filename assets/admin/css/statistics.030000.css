@@ -99,6 +99,7 @@
 #onp-sl-chart-selector {
     padding-top: 15px;
     padding-bottom: 15px;
+    line-height: 100%;
 }
 #onp-sl-chart-selector .onp-sl-chart-item {
     display: inline-block;
@@ -110,13 +111,19 @@
 }
 #onp-sl-chart-selector .onp-sl-chart-item.active {
     color: #111;
+    background-color: #f9f9f9;
 }
 #onp-sl-chart-selector .onp-sl-chart-item:hover
 { 
-    background-color: #f9f9f9;
+    background-color: #fbfbfb;
 }
-#onp-sl-chart-selector .onp-sl-chart-item + .onp-sl-chart-item {
-    margin-left: 15px;
+#onp-sl-chart-selector .onp-sl-chart-item {
+    margin: 3px;
+    line-height: 100%;
+    vertical-align: middle;
+    position: relative;
+    left: -3px;
+    top: -3px;
 }
 #onp-sl-chart-selector .chart-color {
     width: 15px;
@@ -124,8 +131,8 @@
     float: left;
     background-color: #e5e5e5;
     margin-right: 5px;
-    top: 2px;
     position: relative;
+    top: -1px;
 }
 #onp-sl-chart-selector .active.facebook-like .chart-color {
     background-color: #7089be;
@@ -148,8 +155,14 @@
 #onp-sl-chart-selector .active.linkedin-share .chart-color {
     background-color: #006080;
 }
-#onp-sl-chart-selector .active.vk-like .chart-color, #onp-sl-chart-selector .active.vk-share .chart-color, #onp-sl-chart-selector .active.vk-subscribe .chart-color {
+#onp-sl-chart-selector .active.vk-like .chart-color {
     background-color: #517296;
+}
+#onp-sl-chart-selector .active.vk-share .chart-color {
+    background-color: #435c77;
+}
+#onp-sl-chart-selector .active.vk-subscribe .chart-color {
+    background-color: #435c77;
 }
 #onp-sl-chart-selector .active.ok-klass .chart-color {
     background-color: #f3800d;

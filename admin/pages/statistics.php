@@ -19,8 +19,8 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
     
     public $id = "statistics";
     
-    public function __construct(Factory321_Plugin $plugin) {    
-        $this->menuTitle = __('Usage Statistics', 'sociallocker');
+    public function __construct(Factory322_Plugin $plugin) {    
+        $this->menuTitle = __('Stats & Reports', 'sociallocker');
         parent::__construct($plugin);
     }
         
@@ -44,7 +44,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
      * @return void
      */
     public function indexAction() {
-        
+
     include_once(ONP_SL_PLUGIN_DIR . '/includes/classes/statistics-viewer.class.php');
     
     $postId = isset($_REQUEST['sPost']) ? intval($_REQUEST['sPost']) : false;
@@ -84,6 +84,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
         'page' => $page,
         'order' => 'total_count'
     ));
+	
     $tableRows = $viewTable['data'];
     $totalRows = $viewTable['count'];
     $pagesCount = ceil( $totalRows / 50 );
@@ -91,9 +92,18 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
     $dateStart = date('m/d/Y', $dateRangeStart);
     $dateEnd = date('m/d/Y', $dateRangeEnd); 
     
-    $urlBase = 'edit.php?post_type=social-locker&page=statistics-sociallocker-next';
+    $urlBase = 'edit.php?post_type=social-locker&page=statistics-' . $this->plugin->pluginName;
     $postBase = $urlBase . '&sDateStart=' . $dateStart . '&dateEnd=' . $dateEnd;
     ?>
+        <script>
+            if ( !window.onpsl ) window.onpsl = {};
+            if ( !window.onpsl.res ) window.onpsl.res = {};
+            window.onpsl.res.total_social_impact = '<?php _e('Total social impact', 'sociallocker') ?>';
+            window.onpsl.res.unlocked_by_buttons = '<?php _e('Unlocked by Buttons', 'sociallocker') ?>';
+            window.onpsl.res.unlocked_by_timer = '<?php _e('Unlocked by Timer', 'sociallocker') ?>';   
+            window.onpsl.res.unlocked_by_close_icon = '<?php _e('Unlocked by Close Icon', 'sociallocker') ?>';     
+        </script>
+        
         <!--Load the AJAX API-->
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
@@ -107,28 +117,41 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
           });
 
           window.chartData = [
-            <?php foreach($chartData as $dataRow) { ?>
-            {
-                'date': new Date(<?php echo $dataRow['year'] ?>,<?php echo $dataRow['mon'] ?>,<?php echo $dataRow['day'] ?>),
-                'facebook-like': <?php echo $dataRow['facebook_like_count'] ?>,
-                'twitter-tweet': <?php echo $dataRow['twitter_tweet_count'] ?>,
-                'facebook-share': <?php echo $dataRow['facebook_share_count'] ?>,
-                'twitter-follow': <?php echo $dataRow['twitter_follow_count'] ?>,
-                'google-plus': <?php echo $dataRow['google_plus_count'] ?>,
-                'google-share': <?php echo $dataRow['google_share_count'] ?>,
-                'linkedin-share': <?php echo $dataRow['linkedin_share_count'] ?>,
-                <?php ?>
-                'timer': <?php echo $dataRow['timer_count'] ?>,
-                'cross': <?php echo $dataRow['cross_count'] ?>
-            },
-            <?php } ?>
+
+            <?php 
+            foreach($chartData as $dataRow):
+                
+                $chartDataCount = array(
+                  'date' => 'new Date('.$dataRow['year'].','.$dataRow['mon'].','.$dataRow['day'].')',
+                  'facebook-like' => $dataRow['facebook_like_count'],
+                  'twitter-tweet' => $dataRow['twitter_tweet_count'],
+                  'facebook-share' => $dataRow['facebook_share_count'],
+                  'twitter-follow' => $dataRow['twitter_follow_count'],
+                  'google-plus' => $dataRow['google_plus_count'],
+                  'google-share' => $dataRow['google_share_count'],
+                  'linkedin-share' => $dataRow['linkedin_share_count']  
+                );
+                
+                $chartDataCount['timer'] = $dataRow['timer_count'];
+                $chartDataCount['cross'] = $dataRow['cross_count'];
+                
+                $chartDataCount = apply_filters('onp_sl_statistics_chartData', $chartDataCount, $dataRow);
+                
+                $printChartData = '';                
+                foreach( $chartDataCount as $key => $val):
+                    $printChartData .= "'$key': ".$val.',';
+                endforeach;
+                
+                $printChartData = rtrim($printChartData, ',');
+            ?>
+            {<?php echo $printChartData; ?>},
+            <?php endforeach; ?>
          ];
         </script>
-
         <div class="wrap">
-            <h2 style="margin-bottom: 10px;"><?php _e('Usage Statistics', 'sociallocker'); ?></h2>
+            <h2 style="margin-bottom: 10px;"><?php _e('Stats & Reports', 'sociallocker'); ?></h2>
 
-            <div class="factory-bootstrap-323 factory-fontawesome-320">
+            <div class="factory-bootstrap-324 factory-fontawesome-320">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
                 <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br /> By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.', 'sociallocker'); ?></p>
@@ -137,7 +160,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
                 
                 <form method="get"> 
                 <input type="hidden" name="post_type" value="social-locker" />
-                <input type="hidden" name="page" value="statistics-sociallocker-next" /> 
+                <input type="hidden" name="page" value="statistics-<?php echo $this->plugin->pluginName ?>" /> 
                 <div id="onp-sl-settings-bar">
                     
                     <div id="onp-sl-type-select">
@@ -230,7 +253,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
                 <div class="pagination">
                 <ul class="pagination pagination-sm">
                 <?php for( $i = 1; $i <= $pagesCount; $i++ ) { ?>
-                    <li <?php if ( $i == $page ) { ?>class="active"<?php } ?>><a href="?sDateStart=<?php echo $dateStart ?>&sDateEnd=<?php echo $dateEnd ?>&post_type=social-locker&page=statistics-sociallocker-next&n=<?php echo $i ?>"><?php echo $i ?></a></li>
+                    <li <?php if ( $i == $page ) { ?>class="active"<?php } ?>><a href="?sDateStart=<?php echo $dateStart ?>&sDateEnd=<?php echo $dateEnd ?>&post_type=social-locker&page=statistics-<?php echo $this->plugin->pluginName ?>&n=<?php echo $i ?>"><?php echo $i ?></a></li>
                 <?php } ?>
                 </ul>
                 </div>

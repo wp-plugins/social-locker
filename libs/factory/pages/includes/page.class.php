@@ -4,7 +4,7 @@ class FactoryPages320_Page {
     
     /**
      * Current Factory Plugin.
-     * @var Factory321_Plugin
+     * @var Factory322_Plugin
      */
     public $plugin;
     

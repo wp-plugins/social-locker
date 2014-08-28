@@ -51,6 +51,12 @@ class FactoryPages320_AdminPage extends FactoryPages320_Page {
     public $menuTarget = null;
     
     /**
+     * if true, then admin.php is used as a base url.
+     * @var bool 
+     */
+    public $customTarget = false;
+    
+    /**
      * Capabilities for roles that have access to work with this page.
      * Leave it empty to use inherited capabilities for custom post type menu.
      * @link http://codex.wordpress.org/Roles_and_Capabilities
@@ -245,15 +251,17 @@ class FactoryPages320_AdminPage extends FactoryPages320_Page {
     
     protected function getActionUrl($action = null, $queryArgs = array()) {
         $baseUrl = $this->getBaseUrl();
-        
+
         if ( !empty( $action )) $queryArgs['action'] = $action;
-        return add_query_arg($queryArgs, $baseUrl);    
+        $url = add_query_arg($queryArgs, $baseUrl);
+        return $url;
     }
     
     protected function getBaseUrl() {
         $resultId = $this->getResultId();
                 
         if ( $this->menuTarget ) {
+            if ( $this->customTarget ) return admin_url('admin.php') . '?page=' . $resultId;
             return $this->menuTarget . '&page=' . $resultId;     
         } else {
             return 'admin.php?&page=' . $resultId;     
@@ -284,6 +292,7 @@ class FactoryPages320_AdminPage extends FactoryPages320_Page {
                     content: "" !important;
                 }
                 a.toplevel_page_<?php echo $resultId ?>:hover .wp-menu-image, 
+                a.toplevel_page_<?php echo $resultId ?>.wp-has-current-submenu .wp-menu-image,                 
                 a.toplevel_page_<?php echo $resultId ?>.current .wp-menu-image {
                     background-position:10px 2px !important;
                 }

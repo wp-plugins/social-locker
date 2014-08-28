@@ -43,3 +43,7 @@ class FactoryPages320 {
         return $result;
     }
 }
+
+function factory_pages_320_get_page_id( $plugin, $pureId ) {
+    return $pureId . '-' . $plugin->pluginName;
+}

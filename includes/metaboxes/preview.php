@@ -58,7 +58,24 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes320_Metabox
     {        
         global $sociallocker;
         $query_string = '?action=onp_sl_preview'; 
-        $query_string = apply_filters('onp_sl_preview_url', $query_string); 
+        $query_string = apply_filters('onp_sl_preview_url', $query_string);
+        
+        $extra_data = array(
+            'data-lang' => get_option('sociallocker_lang'),
+            'data-short-lang' => get_option('sociallocker_short_lang'),
+            'data-facebook-appid' => get_option('sociallocker_facebook_appid'),
+            'data-facebook-version' => get_option('sociallocker_facebook_version', 'v1.0')
+        );
+        $extra_data['data-vk-appid'] = get_option('sociallocker_vk_appid');
+        $extra_data['data-url'] = admin_url('admin-ajax.php') . $query_string;
+        
+        $extra_data = apply_filters('onp_sl_preview_data_wrap', $extra_data);
+        
+        $dataPrint = sizeof($extra_data) ? ' ' : '';        
+        foreach( $extra_data as $key => $val) {
+            $dataPrint .= $key.'="'.$val.'" ';
+        }
+        $dataPrint = rtrim($dataPrint, ' ');
         ?>
         <script>
             function onp_sl_update_preview_height(height) {
@@ -70,17 +87,12 @@ class OnpSL_PreviewMetaBox extends FactoryMetaboxes320_Metabox
             window.onp_sl_styleroller = true;
             <?php } else { ?>
             window.onp_sl_styleroller = false;
-            window.onp_sl_styleroller_offer_text = '<?php _e('Want to customize the locker look?', 'sociallocker') ?>';
+            window.onp_sl_styleroller_offer_text = '<?php _e('Want more themes?', 'sociallocker') ?>';
             window.onp_sl_styleroller_offer_url = '<?php echo $sociallocker->options['styleroller'] ?>';
             <?php } ?>
         </script>
-        <p class="note"><strong><?php _e('Note', 'sociallocker'); ?>:</strong> <?php _e('This is a preview. The locker and social buttons don\'t work correctly in the admin area.', 'sociallocker'); ?></p>
-        <div id="lock-preview-wrap" 
-             data-lang="<?php echo get_option('sociallocker_lang') ?>" 
-             data-short-lang="<?php echo get_option('sociallocker_short_lang') ?>" 
-             data-facebook-appid="<?php echo get_option('sociallocker_facebook_appid') ?>"
-             <?php ?>
-             data-url="<?php echo admin_url('admin-ajax.php') . $query_string ?>">
+        <p class="note"><strong><?php _e('Note', 'sociallocker'); ?>:</strong> <?php _e('In the preview mode, the some features of the locker may not work properly.', 'sociallocker'); ?></p>
+        <div id="lock-preview-wrap"<?php echo $dataPrint; ?>>
             <iframe 
                 allowtransparency="1" 
                 frameborder="0" 

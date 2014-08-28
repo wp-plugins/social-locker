@@ -9,7 +9,7 @@
  */
 function onp_sl_get_secrets_theme_css_rules() {
 
-    return array(
+    $result = array(
         
         // background 
         'background_color' => array(
@@ -281,7 +281,7 @@ function onp_sl_get_secrets_theme_css_rules() {
             )
         ),
         //end background linkedin  
-        
+         
         // button text
         'button_cover_text_font' => array(
             array(
@@ -310,4 +310,6 @@ function onp_sl_get_secrets_theme_css_rules() {
         )
         // end button text
     );
+    
+    return $result;
 }

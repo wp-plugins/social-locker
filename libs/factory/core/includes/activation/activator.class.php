@@ -14,15 +14,15 @@
  * 
  * @since 1.0.0
  */
-abstract class Factory321_Activator {
+abstract class Factory322_Activator {
     
     /**
      * Curent plugin.
-     * @var Factory321_Plugin
+     * @var Factory322_Plugin
      */
     public $plugin;
     
-    public function __construct(Factory321_Plugin $plugin) {
+    public function __construct(Factory322_Plugin $plugin) {
         $this->plugin = $plugin;
     }
     
@@ -119,8 +119,10 @@ abstract class Factory321_Activator {
             };
 
             if ( $create ) :
-                    if ( !isset( $postInfo['post_status'] ) ) $postInfo['post_status'] = 'publish';	
-                    $optionValue = wp_insert_post( $postInfo );
+                    if ( !isset( $postInfo['post_status'] ) ) $postInfo['post_status'] = 'publish';
+                    
+                    // '@' here is to hide unexpected output while plugin activation
+                    $optionValue = @wp_insert_post( $postInfo );
                     $postId = $optionValue;
                     update_option( $optionName, $optionValue );
             endif;

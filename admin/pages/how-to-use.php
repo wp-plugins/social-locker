@@ -19,7 +19,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
     
     public $id = "how-to-use";
     
-    public function __construct(Factory321_Plugin $plugin) {   
+    public function __construct(Factory322_Plugin $plugin) {   
         parent::__construct($plugin);
         $this->menuTitle = __('How to use?', 'sociallocker');
     }
@@ -101,7 +101,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
         
         ?>
         
-        <div class="wrap factory-bootstrap-323 factory-fontawesome-320">
+        <div class="wrap factory-bootstrap-324 factory-fontawesome-320">
             <?php $this->showNav('getting-started') ?>
             <div class="onp-help-content">
                 
@@ -126,6 +126,8 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
      */
     public function gettingStarted() {
         
+        
+        $lang = $this->plugin->options['lang'];
             
         ?>
 
@@ -150,11 +152,11 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
 
                 <p><?php _e('Move to Social Locker -> All Social Locker in the admin menu:', 'sociallocker'); ?></p>
                 <p class='onp-img'>
-                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/1.png' ?>' />
+                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/' . $lang . '/1.png' ?>' />
                 </p>
                 <p><?php _e('Click on the shortcode titled “Default Locker” to open the locker editor:', 'sociallocker'); ?></p>
                 <p class='onp-img'>
-                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/2.png' ?>' />
+                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/' . $lang . '/2.png' ?>' />
                 </p>
             </div>
 
@@ -167,7 +169,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
                 </p>
 
                 <p class='onp-img'>
-                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/3-free.png' ?>' />
+                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/' . $lang . '/3-free.png' ?>' />
                 </p>
 
                 <p>
@@ -208,7 +210,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
                 </p>
 
                 <p class='onp-img'>
-                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/5.png' ?>' />
+                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/' . $lang . '/5.png' ?>' />
                 </p>
 
                 <p>
@@ -216,7 +218,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
                 </p>
 
                 <p class='onp-img'>
-                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/6.png' ?>' />
+                    <img src='<?php echo ONP_SL_PLUGIN_URL . '/assets/admin/img/how-to-use/' . $lang . '/6.png' ?>' />
                 </p>
             </div>    
     
@@ -287,7 +289,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
             <?php if ( !$alreadyActivated ) { ?>  
             <p>
                 <?php printf( __('The plugin you are using is a free version of the popular <a target="_blank" href="%s"> Social Locker</a> plugin. 
-                We offer you to try the premium version for 7 days absolutely for free. We sure you will love it.', 'sociallocker'), onp_licensing_323_get_purchase_url( $this->plugin ) ) ?>
+                We offer you to try the premium version for 7 days absolutely for free. We sure you will love it.', 'sociallocker'), onp_licensing_324_get_purchase_url( $this->plugin ) ) ?>
             </p>
             <p>
                 <?php _e('Check out the table below to know about the premium features.', 'sociallocker'); ?>
@@ -448,7 +450,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
             <?php if ( !$alreadyActivated ) { ?>
             
             <div>
-                <a class="button button-primary" id="activate-trial-btn" href="<?php echo onp_licensing_323_manager_link($this->plugin->pluginName, 'activateTrial', false ) ?>">
+                <a class="button button-primary" id="activate-trial-btn" href="<?php echo onp_licensing_324_manager_link($this->plugin->pluginName, 'activateTrial', false ) ?>">
                     <i class="fa fa-star-o"></i>
                     Click Here To Activate Your Free Trial For 7 Days
                     <i class="fa fa-star-o"></i>
@@ -459,8 +461,8 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
             
             <?php } else { ?>
             
-            <div class='factory-bootstrap-323'>
-                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_323_get_purchase_url( $this->plugin ) ?>">
+            <div class='factory-bootstrap-324'>
+                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>">
                     <i class="fa fa-star"></i>
                     Purchase Social Locker Premium For $24
                     <i class="fa fa-star"></i>
@@ -474,12 +476,12 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
 
         <div class="onp-help-section">
             <p style="text-align: center;">
-                <a href="<?php echo onp_licensing_323_get_purchase_url( $this->plugin ) ?>"><strong>Or Buy The Social Locker Right Now For $24</strong></a>
+                <a href="<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>"><strong>Or Buy The Social Locker Right Now For $24</strong></a>
             </p>
             <div class="onp-remark">
                 <div class="onp-inner-wrap">
                     <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'sociallocker'); ?></p>
-                    <p><?php printf(__('<strong>To purchase the Social Locker</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'sociallocker'), onp_licensing_323_get_purchase_url( $this->plugin )); ?></p>
+                    <p><?php printf(__('<strong>To purchase the Social Locker</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'sociallocker'), onp_licensing_324_get_purchase_url( $this->plugin )); ?></p>
                 </div>
             </div>
         </div> 
@@ -566,7 +568,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
 
         <div class="onp-help-section">
             <div>
-                <a class="button button-primary" id="activate-trial-btn" href="<?php echo onp_licensing_323_manager_link($this->plugin->pluginName, 'activateTrial', false ) ?>">
+                <a class="button button-primary" id="activate-trial-btn" href="<?php echo onp_licensing_324_manager_link($this->plugin->pluginName, 'activateTrial', false ) ?>">
                     <i class="fa fa-star-o"></i>
                     Click Here To Activate Your Free Trial For 7 Days
                     <i class="fa fa-star-o"></i>
@@ -578,20 +580,20 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
 
         <div class="onp-help-section">
             <p style="text-align: center;">
-                <a href="<?php echo onp_licensing_323_get_purchase_url( $this->plugin ) ?>"><strong>Or Buy The Social Locker Right Now For $24</strong></a>
+                <a href="<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>"><strong>Or Buy The Social Locker Right Now For $24</strong></a>
             </p>
             <div class="onp-remark">
                 <div class="onp-inner-wrap">
                     <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'sociallocker'); ?></p>
-                    <p><?php printf(__('<strong>To purchase the Social Locker</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'sociallocker'), onp_licensing_323_get_purchase_url( $this->plugin )); ?></p>
+                    <p><?php printf(__('<strong>To purchase the Social Locker</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'sociallocker'), onp_licensing_324_get_purchase_url( $this->plugin )); ?></p>
                 </div>
             </div>
         </div> 
 
         <?php } else { ?>
         <div class="onp-help-section">
-            <div class='factory-bootstrap-323'>
-                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_323_get_purchase_url( $this->plugin ) ?>">
+            <div class='factory-bootstrap-324'>
+                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>">
                     <i class="fa fa-star"></i>
                     Purchase Social Locker Premium For $24
                     <i class="fa fa-star"></i>

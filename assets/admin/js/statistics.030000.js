@@ -15,8 +15,8 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
             "google-share": '#ba5145', 
             "linkedin-share": '#006080',
             "vk-like": '#517296', 
-            "vk-share": '#517296',
-            "vk-subscribe": '#517296',
+            "vk-share": '#435c77',
+            "vk-subscribe": '#435c77',
             "ok-klass": '#f3800d'
         },
         
@@ -74,14 +74,14 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
             var self = this;
             
             var activeButtons = this.getPreSelectedButtons();
-            
+              
             for(var buttonName in this.availableButtons) {
                 var item = $(".onp-sl-chart-item." + buttonName);
-                
+                             
                 if ( $.inArray( buttonName, activeButtons ) > -1 ) {
                     item.addClass('active');
                     $("#onp-sl-posts .col-" + buttonName).show();
-                } else {
+                } else {                    
                     item.removeClass('active');
                     $("#onp-sl-posts .col-" + buttonName).hide();
                 }
@@ -207,9 +207,9 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 
                 options.legend.position = 'in';
                 options.areaOpacity = 0.1;
-                options.colors = [ window.onpsl.factoryBootstrap323.colors.primaryDark ];
+                options.colors = [ window.onpsl.factoryBootstrap324.colors.primaryDark ];
                 
-                dataTable.addColumn('number', 'Total social impact');
+                dataTable.addColumn('number', window.onpsl.res.total_social_impact);
                 dataTable.addColumn({type:'string',role:'tooltip'});
                 
                 data = [];
@@ -256,11 +256,11 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 chartFunction = 'ColumnChart';
                 
                 options.legend.position = 'in';
-                options.colors = [window.onpsl.factoryBootstrap323.colors.primaryDark, '#333', '#ddd'];    
+                options.colors = [window.onpsl.factoryBootstrap324.colors.primaryDark, '#333', '#ddd'];    
                 
-                dataTable.addColumn('number', 'Unlocked by Buttons');
-                dataTable.addColumn('number', 'Unlocked by Timer');
-                dataTable.addColumn('number', 'Unlocked by Close Icon'); 
+                dataTable.addColumn('number', window.onpsl.res.unlocked_by_buttons);
+                dataTable.addColumn('number', window.onpsl.res.unlocked_by_timer);
+                dataTable.addColumn('number', window.onpsl.res.unlocked_by_close_icon); 
                 
                 data = [];
                 for(var rowIndex in chartData) {
@@ -286,7 +286,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
     };
 
     $(function(){
-        window.onpsl.statistics.init();
+        window.onpsl.statistics.init();       
     });
     
 })(jQuery)

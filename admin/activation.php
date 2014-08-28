@@ -1,6 +1,6 @@
 <?php
 
-class OnpSL_Activation extends Factory321_Activator {
+class OnpSL_Activation extends Factory322_Activator {
     
     public function activate() {       
         // sets the default licence
@@ -9,7 +9,7 @@ class OnpSL_Activation extends Factory321_Activator {
             $this->plugin->license->setDefaultLicense( array(
                 'Category'      => 'free',
                 'Build'         => 'free',
-                'Title'         => __('OnePress Public License', 'sociallocker'),
+                'Title'         => 'OnePress Public License',
                 'Description'   => __('Public License is a GPLv2 compatible license. 
                                     It allows you to change this version of the plugin and to
                                     use the plugin free. Please remember this license 

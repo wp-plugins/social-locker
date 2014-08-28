@@ -13,11 +13,11 @@
  * @since 1.0.0
  */
 
-if (defined('FACTORY_TYPES_320_LOADED')) return;
-define('FACTORY_TYPES_320_LOADED', true);
+if (defined('FACTORY_TYPES_321_LOADED')) return;
+define('FACTORY_TYPES_321_LOADED', true);
 
-define('FACTORY_TYPES_320_DIR', dirname(__FILE__));
-define('FACTORY_TYPES_320_URL', plugins_url(null,  __FILE__ ));
+define('FACTORY_TYPES_321_DIR', dirname(__FILE__));
+define('FACTORY_TYPES_321_URL', plugins_url(null,  __FILE__ ));
 
 // sets version of admin interface
 if ( is_admin() ) {
@@ -25,7 +25,7 @@ if ( is_admin() ) {
 }
 
 #comp merge
-require(FACTORY_TYPES_320_DIR . '/types.php');
-require(FACTORY_TYPES_320_DIR . '/type.class.php');
-require(FACTORY_TYPES_320_DIR . '/includes/type-menu.class.php');
+require(FACTORY_TYPES_321_DIR . '/types.php');
+require(FACTORY_TYPES_321_DIR . '/type.class.php');
+require(FACTORY_TYPES_321_DIR . '/includes/type-menu.class.php');
 #endcomp

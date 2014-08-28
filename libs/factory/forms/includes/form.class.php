@@ -10,12 +10,12 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_forms_323_plugin_created', 'factory_forms_323_plugin_created');
-function factory_forms_323_plugin_created( $plugin ) {
-    $plugin->forms = new FactoryForms323_Manager( $plugin );
+add_action('factory_forms_324_plugin_created', 'factory_forms_324_plugin_created');
+function factory_forms_324_plugin_created( $plugin ) {
+    $plugin->forms = new FactoryForms324_Manager( $plugin );
 }
 
-class FactoryForms323_Manager {
+class FactoryForms324_Manager {
     
     // ----------------------------------------------------
     // Static fields and methods
@@ -47,7 +47,7 @@ class FactoryForms323_Manager {
     /**
      * Registers a set of new controls.
      * 
-     * @see FactoryForms323_Form::registerControl()
+     * @see FactoryForms324_Form::registerControl()
      * 
      * @since 1.0.0
      * @return void
@@ -82,7 +82,7 @@ class FactoryForms323_Manager {
     /**
      * Registers a set of new holder controls.
      * 
-     * @see FactoryForms323_Form::registerHolder()
+     * @see FactoryForms324_Form::registerHolder()
      * 
      * @since 1.0.0
      * @return void
@@ -113,7 +113,7 @@ class FactoryForms323_Manager {
     /**
      * Registers a set of new custom form elements.
      * 
-     * @see FactoryForms323_Form::registerCustomElement()
+     * @see FactoryForms324_Form::registerCustomElement()
      * 
      * @since 1.0.0
      * @return void
@@ -164,7 +164,7 @@ class FactoryForms323_Manager {
 /**
  * An abstraction for forms.
  */
-class FactoryForms323_Form {
+class FactoryForms324_Form {
     
     // ----------------------------------------------------
     // Object fields and methods
@@ -225,7 +225,7 @@ class FactoryForms323_Form {
      * A current form layout used to render a form.
      * 
      * @since 1.0.0
-     * @var FactoryForms323_FormLayout 
+     * @var FactoryForms324_FormLayout 
      */
     public $layout;
     
@@ -240,11 +240,11 @@ class FactoryForms323_Form {
         global $wp_version;
 
         // register controls once, when the first form is created
-        if ( !FactoryForms323_Manager::$controlsRegistered ) {
-            do_action('factory_forms_323_register_controls', $plugin);
+        if ( !FactoryForms324_Manager::$controlsRegistered ) {
+            do_action('factory_forms_324_register_controls', $plugin);
             do_action('factory_forms_register_controls', $plugin);
             if ( !empty( $plugin ) ) do_action('factory_forms_register_controls_' . $plugin->pluginName, $plugin);
-            FactoryForms323_Manager::$controlsRegistered = true;
+            FactoryForms324_Manager::$controlsRegistered = true;
         }
 
         //$isFlat = version_compare( $wp_version, '3.8', '>='  );
@@ -259,14 +259,14 @@ class FactoryForms323_Form {
             $this->formLayout = 'bootstrap-3';
         }
         
-        if ( !FactoryForms323_Manager::$temper ) FactoryForms323_Manager::$temper = $isFlat ? 'flat' : 'volumetric';
+        if ( !FactoryForms324_Manager::$temper ) FactoryForms324_Manager::$temper = $isFlat ? 'flat' : 'volumetric';
     }
     
     /**
      * Sets a provider for the control.
      * 
      * @since 1.0.0
-     * @param IFactoryForms323_ValueProvider $provider
+     * @param IFactoryForms324_ValueProvider $provider
      * @return void
      */
     public function setProvider( $provider ) {
@@ -402,7 +402,7 @@ class FactoryForms323_Form {
         
         if ( is_array( $item ) ) {
 
-            $controlData = FactoryForms323_Manager::$registeredControls[$item['type']];
+            $controlData = FactoryForms324_Manager::$registeredControls[$item['type']];
            
             require_once ($controlData['include']);
 
@@ -427,14 +427,14 @@ class FactoryForms323_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms323_Holder A control holder object.
+     * @return FactoryForms324_Holder A control holder object.
      */
     public function createHolder( $item ) {
         $object = null;
         
         if ( is_array( $item ) ) {
 
-            $holderData = FactoryForms323_Manager::$registeredHolders[$item['type']];
+            $holderData = FactoryForms324_Manager::$registeredHolders[$item['type']];
             require_once ($holderData['include']);
 
             $object = new $holderData['class']( $item, $this );   
@@ -454,14 +454,14 @@ class FactoryForms323_Form {
      * 
      * @since 1.0.0
      * @param type $item Item data.
-     * @return FactoryForms323_FormElement A custom form element object.
+     * @return FactoryForms324_FormElement A custom form element object.
      */
     public function createCustomElement( $item ) {
         $object = null;
         
         if ( is_array( $item ) ) {
 
-            $data = FactoryForms323_Manager::$registeredCustomElements[$item['type']];
+            $data = FactoryForms324_Manager::$registeredCustomElements[$item['type']];
             require_once ($data['include']);
 
             $options = $item;
@@ -486,11 +486,11 @@ class FactoryForms323_Form {
      */
     public function html( $options = array() ) {
 
-        if ( !isset( FactoryForms323_Manager::$formLayouts[$this->formLayout] ) )
+        if ( !isset( FactoryForms324_Manager::$formLayouts[$this->formLayout] ) )
             die( sprintf( '[ERROR] The form layout %s was not found.', $this->formLayout ) ); 
         
         // include a render code
-        $layoutData = FactoryForms323_Manager::$formLayouts[$this->formLayout];
+        $layoutData = FactoryForms324_Manager::$formLayouts[$this->formLayout];
         require_once ($layoutData['include']);
 
         $this->connectAssets();
@@ -511,7 +511,7 @@ class FactoryForms323_Form {
     private function connectAssets() {
         
         $this->connectAssetsForItems();
-        $layoutData = FactoryForms323_Manager::$formLayouts[$this->formLayout];
+        $layoutData = FactoryForms324_Manager::$formLayouts[$this->formLayout];
         
         if ( $layoutData['name'] == 'default') {
             if ( isset( $layoutData['style'] ) )
@@ -551,8 +551,8 @@ class FactoryForms323_Form {
         $type = $item['type'];
 
         $haystack = array();
-        if ( self::isControl($type) ) $haystack = FactoryForms323_Manager::$registerControls;
-        elseif ( self::isControlHolder($type) ) $haystack = FactoryForms323_Manager::$registeredHolders;
+        if ( self::isControl($type) ) $haystack = FactoryForms324_Manager::$registerControls;
+        elseif ( self::isControlHolder($type) ) $haystack = FactoryForms324_Manager::$registeredHolders;
 
         if ( isset( $haystack[$type] ) ) {
              if ( isset( $haystack[$type]['style'] ) ) {
@@ -605,7 +605,7 @@ class FactoryForms323_Form {
      * @return bool
      */
     public static function isControl( $item ) {
-        return isset( FactoryForms323_Manager::$registeredControls[ $item['type'] ] );
+        return isset( FactoryForms324_Manager::$registeredControls[ $item['type'] ] );
     }
     
     /**
@@ -616,7 +616,7 @@ class FactoryForms323_Form {
      * @return bool
      */
     public static function isControlHolder( $item ) {
-        return isset( FactoryForms323_Manager::$registeredHolders[ $item['type'] ] );
+        return isset( FactoryForms324_Manager::$registeredHolders[ $item['type'] ] );
     } 
     
     /**
@@ -627,6 +627,6 @@ class FactoryForms323_Form {
      * @return bool
      */
     public static function isCustomElement( $item ) {
-        return isset( FactoryForms323_Manager::$registeredCustomElements[ $item['type'] ] );
+        return isset( FactoryForms324_Manager::$registeredCustomElements[ $item['type'] ] );
     }
 }

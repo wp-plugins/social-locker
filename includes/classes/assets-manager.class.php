@@ -46,7 +46,13 @@ class OnpSL_AssetsManager {
     public static function printSdkScript() {
         
         $fb_appId = get_option('sociallocker_facebook_appid');
+        $fb_version = get_option('sociallocker_facebook_version', 'v2.0');
         $fb_lang = get_option('sociallocker_lang', 'en_US');
+        
+        $url = ( $fb_version === 'v1.0' ) 
+            ? "//connect.facebook.net/" . $fb_lang . "/all.js"
+            : "//connect.facebook.net/" . $fb_lang . "/sdk.js?";
+
         ?>
         <!-- 
             Facebook SDK
@@ -60,7 +66,8 @@ class OnpSL_AssetsManager {
                     appId: <?php echo $fb_appId ?>,
                     status: true,
                     cookie: true,
-                    xfbml: true
+                    xfbml: true,
+                    version: '<?php echo $fb_version ?>'
                 });
                 window.FB.init = function(){};
             };
@@ -68,7 +75,7 @@ class OnpSL_AssetsManager {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
                 js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/<?php echo $fb_lang ?>/all.js";
+                js.src = "<?php echo $url ?>";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
@@ -138,12 +145,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030603.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030604.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030603.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030604.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -256,6 +263,7 @@ class OnpSL_AssetsManager {
 
                 'facebook' => array(
                     'url' => $url,
+                    'version' => get_option('sociallocker_facebook_version', 'v1.0'),
                     'appId' => get_option('sociallocker_facebook_appid', '117100935120196'),
                     'lang' => get_option('sociallocker_lang', 'en_GB'),
                 ),

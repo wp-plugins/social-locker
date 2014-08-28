@@ -9,7 +9,7 @@
  */
 function onp_sl_get_flat_theme_css_rules() {
 
-    return array(  
+    $result = array(  
         
         // background
         'background_color' => array(
@@ -216,4 +216,6 @@ function onp_sl_get_flat_theme_css_rules() {
         )
         // end button text
     );
+    
+    return $result;
 }

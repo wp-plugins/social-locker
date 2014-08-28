@@ -24,6 +24,29 @@ class StatisticViewer {
         $this->rangeStartStr = gmdate("Y-m-d", $dateRangeStart);
         $this->rangeEndStr = gmdate("Y-m-d", $dateRangeEnd);
         
+        // we use this var and the filter 'onp_sl_statistics_viewer_fields' 
+        // in order to have an opportunity to add custom social buttons
+        
+        $fieldsToGet = array();
+            
+            $fieldsToGet = array(
+                'total_count',
+                'facebook_like_count',
+                'twitter_tweet_count',
+                'google_plus_count',
+                'facebook_share_count',
+                'twitter_follow_count',
+                'google_share_count',
+                'linkedin_share_count',
+                'total_count',
+                'timer_count',
+                'cross_count'                        
+            );
+            
+        
+
+        
+        $this->fieldsToGet = apply_filters('onp_sl_statistics_viewer_fields_to_get', $fieldsToGet);
         
     }
     
@@ -33,34 +56,29 @@ class StatisticViewer {
     
     public function getChartData() {
         global $wpdb;
+
+        $fieldsToGetWithSum = array();
+        foreach( $this->fieldsToGet as $field ) {
+            $fieldsToGetWithSum[] = "SUM(t.$field) AS $field";
+        }
+       
+        $selectExtra = implode(',', $fieldsToGetWithSum);
         
         $extraWhere = '';
-        if ($this->postId) {
+        if ($this->postId)
             $extraWhere .= 'AND t.PostID=' . $this->postId;
-        }
-            
-        $sql = "
-            SELECT 
-                t.AggregateDate AS aggregateDate,
-                SUM(t.total_count) AS total_count,
-                SUM(t.facebook_like_count) AS facebook_like_count,
-                SUM(t.twitter_tweet_count) AS twitter_tweet_count,
-                SUM(t.google_plus_count) AS google_plus_count,
-                SUM(t.facebook_share_count) AS facebook_share_count,
-                SUM(t.twitter_follow_count) AS twitter_follow_count,
-                SUM(t.google_share_count) AS google_share_count,   
-                SUM(t.linkedin_share_count) AS linkedin_share_count,
-                SUM(t.timer_count) AS timer_count,
-                SUM(t.cross_count) AS cross_count   
-            FROM 
-                {$wpdb->prefix}so_tracking AS t
-            WHERE 
-                (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}') $extraWhere
-            GROUP BY 
-                t.AggregateDate";
-                
-        
 
+
+        $sql = "SELECT 
+                    t.AggregateDate AS aggregateDate,
+                    $selectExtra
+                 FROM 
+                    {$wpdb->prefix}so_tracking AS t
+                 WHERE 
+                    (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}')
+                    $extraWhere
+                 GROUP BY 
+                    t.AggregateDate";      
         
         $data = $wpdb->get_results($sql, ARRAY_A);
         $resultData = array();
@@ -69,24 +87,17 @@ class StatisticViewer {
         while($currentDate <= $this->rangeEnd) {
    
             $phpdate = getdate($currentDate);
-            $resultData[$currentDate] = array(
+            
+            $itemData = array(
                 'day' => $phpdate['mday'],
                 'mon' => $phpdate['mon'] - 1,
                 'year' => $phpdate['year'],
                 'timestamp' => $currentDate,  
-
-                'total_count' => 0,
-                'facebook_like_count' => 0,    
-                'twitter_tweet_count' => 0,
-                'google_plus_count' => 0,   
-                'facebook_share_count' => 0,
-                'twitter_follow_count' => 0,
-                'google_share_count' => 0,   
-                'linkedin_share_count' => 0,
-                'timer_count' => 0,   
-                'cross_count' => 0 
             );
             
+            foreach ($this->fieldsToGet as $field) $itemData[$field] = 0;
+            $resultData[$currentDate] = $itemData;
+
             $currentDate = strtotime("+1 days", $currentDate);
         }
         
@@ -133,28 +144,24 @@ class StatisticViewer {
                 (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}') $extraWhere";
        
         $count = ( $total ) ? $wpdb->get_var('SELECT COUNT(Distinct t.PostID) ' . $sqlBase) : 0;
-        
-            $sql = "
-                SELECT 
-                    t.PostID AS ID,
-                    p.post_title AS title,
-                    SUM(t.total_count) AS total_count,
-                    SUM(t.facebook_like_count) AS facebook_like_count,
-                    SUM(t.twitter_tweet_count) AS twitter_tweet_count,
-                    SUM(t.google_plus_count) AS google_plus_count,
-                    SUM(t.facebook_share_count) AS facebook_share_count,
-                    SUM(t.twitter_follow_count) AS twitter_follow_count,
-                    SUM(t.google_share_count) AS google_share_count,   
-                    SUM(t.linkedin_share_count) AS linkedin_share_count,
-                    SUM(t.timer_count) AS timer_count,
-                    SUM(t.cross_count) AS cross_count           
-                " . $sqlBase . "
-                GROUP BY t.PostID 
-                ORDER BY $order DESC
-                LIMIT $start, $per";
-        
 
-    
+        $fieldsToGetWithSum = array();
+        foreach( $this->fieldsToGet as $field ) {
+            $fieldsToGetWithSum[] = "SUM(t.$field) AS $field";
+        }
+       
+        $selectExtra = implode(',', $fieldsToGetWithSum);
+        
+        $sql = "
+            SELECT 
+                t.PostID AS ID,
+                p.post_title AS title,
+                $selectExtra 
+                $sqlBase
+            GROUP BY t.PostID 
+            ORDER BY $order DESC
+            LIMIT $start, $per"; 
+       
         $data = $wpdb->get_results($sql, ARRAY_A);
         return array(
             'data' => $data,

@@ -10,7 +10,7 @@
  * @since 3.1.0
  */
 
-class FactoryForms323_PatternControl extends FactoryForms323_Control 
+class FactoryForms324_PatternControl extends FactoryForms324_Control 
 {
     public $type = 'pattern';
     
@@ -35,11 +35,11 @@ class FactoryForms323_PatternControl extends FactoryForms323_Control
         $name = $this->getOption('name');
         
         // filters to get available patterns for the given background contols
-        $this->patterns = apply_filters('factory_forms_323_patterns',  array());
-        $this->patterns = apply_filters('factory_forms_323_patterns-' . $name, $this->patterns);
+        $this->patterns = apply_filters('factory_forms_324_patterns',  array());
+        $this->patterns = apply_filters('factory_forms_324_patterns-' . $name, $this->patterns);
         $this->customPatterns = $this->getOption('patterns', array());
  
-        $this->color = new FactoryForms323_ColorControl( $options['color'], $form, $provider );
+        $this->color = new FactoryForms324_ColorControl( $options['color'], $form, $provider );
     }
          
     /**
@@ -75,9 +75,9 @@ class FactoryForms323_PatternControl extends FactoryForms323_Control
                 <div class="factory-preview-wrap">
                     <div <?php echo (!empty( $values['url'] )) ? 'style="background:url('.$values['url'].') repeat; border:0; font-size:0;"' : ''; ?> class="factory-preview <?php echo $name; ?>"><span></span></div>                    
                 </div>
-                <a href="#" class="button button-default factory-button factory-change-color-btn <?php if ( $hasColor ) { echo 'button-active'; }?>" title="<?php _e('Change color', 'factory-forms') ?>">
+                <a href="#" class="button button-default factory-button factory-change-color-btn <?php if ( $hasColor ) { echo 'button-active'; }?>" title="<?php _e('Change color', 'factory_forms_324') ?>">
                     <i class="fa fa-flask"></i>
-                    <span><?php _e( 're-color', 'factory-color') ?></span>
+                    <span><?php _e( 're-color', 'factory_forms_324') ?></span>
                 </a>  
 
                 <input type="hidden" id="<?php echo $name[0]; ?>" name="<?php echo $name[0]; ?>" value="<?php echo $values['url']; ?>" class="factory-pattern-result">
@@ -86,9 +86,9 @@ class FactoryForms323_PatternControl extends FactoryForms323_Control
             </div>
             <div class="factory-color-panel">
                 <div class="factory-color-wrap">
-                    <span class="factory-color-label"><?php _e('Select color:', 'factory-forms') ?></span>
+                    <span class="factory-color-label"><?php _e('Select color:', 'factory_forms_324') ?></span>
                     <?php $this->color->html() ?>
-                    <div class="factory-hint"><i><?php _e('Changing the color may takes a minute or more. Please be patient.', 'factory-forms') ?></i></div>
+                    <div class="factory-hint"><i><?php _e('Changing the color may takes a minute or more. Please be patient.', 'factory_forms_324') ?></i></div>
                 </div>
                 <div class="factory-picker-target"></div>
             </div>

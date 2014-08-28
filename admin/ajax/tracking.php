@@ -54,46 +54,53 @@ function onp_sl_tracking() {
         
         case 'button':
                 
-                switch($senderName) {
-
-                    case 'facebook-like':
-                        $insertPart = '1,1,0,0,0,0,0,0,0,0';
-                        $updatePart = 'facebook_like_count = facebook_like_count + 1, total_count = total_count + 1';
-                        break;
-                    case 'twitter-tweet':
-                        $insertPart = '1,0,1,0,0,0,0,0,0,0'; 
-                        $updatePart = 'twitter_tweet_count = twitter_tweet_count + 1, total_count = total_count + 1';
-                        break;
-                    case 'google-plus':
-                        $insertPart = '1,0,0,1,0,0,0,0,0,0'; 
-                        $updatePart = 'google_plus_count = google_plus_count + 1, total_count = total_count + 1';
-                        break;
-
-                    case 'facebook-share':
-                        $insertPart = '1,0,0,0,0,0,1,0,0,0';
-                        $updatePart = 'facebook_share_count = facebook_share_count + 1, total_count = total_count + 1';
-                        break;
-                    case 'twitter-follow':
-                        $insertPart = '1,0,0,0,0,0,0,1,0,0'; 
-                        $updatePart = 'twitter_follow_count = twitter_follow_count + 1, total_count = total_count + 1';
-                        break;
-                    case 'google-share':
-                        $insertPart = '1,0,0,0,0,0,0,0,1,0'; 
-                        $updatePart = 'google_share_count = google_share_count + 1, total_count = total_count + 1';
-                        break;
-
-                    case 'linkedin-share':
-                        $insertPart = '1,0,0,0,0,0,0,0,0,1'; 
-                        $updatePart = 'linkedin_share_count = linkedin_share_count + 1, total_count = total_count + 1';
-                        break;
-                }
-                
+                $buttonsPart = array(
+                    'facebook-like' => array(
+                        'insertPart' => '1,1,0,0,0,0,0,0,0,0',
+                        'updatePart' => 'facebook_like_count = facebook_like_count + 1, total_count = total_count + 1'
+                    ),
+                    'twitter-tweet' => array(
+                        'insertPart' => '1,0,1,0,0,0,0,0,0,0',
+                        'updatePart' => 'twitter_tweet_count = twitter_tweet_count + 1, total_count = total_count + 1'
+                    ),
+                    'google-plus' => array(
+                        'insertPart' => '1,0,0,1,0,0,0,0,0,0',
+                        'updatePart' => 'google_plus_count = google_plus_count + 1, total_count = total_count + 1'
+                    ),
+                    'facebook-share' => array(
+                        'insertPart' => '1,0,0,0,0,0,1,0,0,0',
+                        'updatePart' => 'facebook_share_count = facebook_share_count + 1, total_count = total_count + 1'
+                    ),
+                    'twitter-follow' => array(
+                        'insertPart' => '1,0,0,0,0,0,0,1,0,0',
+                        'updatePart' => 'twitter_follow_count = twitter_follow_count + 1, total_count = total_count + 1'
+                    ),
+                    'google-share' => array(
+                        'insertPart' => '1,0,0,0,0,0,0,0,1,0',
+                        'updatePart' => 'google_share_count = google_share_count + 1, total_count = total_count + 1'
+                    ),
+                    'linkedin-share' => array(
+                        'insertPart' => '1,0,0,0,0,0,0,0,0,1',
+                        'updatePart' => 'linkedin_share_count = linkedin_share_count + 1, total_count = total_count + 1'
+                    )                  
+                );                
             
 
+            
+            $insertPart = empty($buttonsPart[$senderName]['insertPart']) ? null : $buttonsPart[$senderName]['insertPart'];
+            $updatePart = empty($buttonsPart[$senderName]['updatePart']) ? null : $buttonsPart[$senderName]['updatePart'];
 
             break;
     }
-   
+    
+    $part = apply_filters('onp_sl_tracking_part', array(
+        'insertPart' => $insertPart,
+        'updatePart' => $updatePart
+    ), $sender, $senderName);
+    
+    $insertPart = $part['insertPart'];
+    $updatePart = $part['updatePart'];
+        
     if (!$insertPart || !$updatePart) exit;
     
     $hrsOffset = get_option('gmt_offset');
@@ -102,15 +109,17 @@ function onp_sl_tracking() {
     
     $time = strtotime($hrsOffset, time());
     
-    $date = date("Y-m-d", $time);
-        
-        $sql = "INSERT INTO {$wpdb->prefix}so_tracking 
-                (AggregateDate, PostID, total_count, facebook_like_count, twitter_tweet_count, google_plus_count, timer_count, cross_count, facebook_share_count, twitter_follow_count, google_share_count, linkedin_share_count) 
-                VALUES ('$date',$postId, $insertPart)
-                ON DUPLICATE KEY UPDATE $updatePart";
-        
+    $date = date("Y-m-d", $time);        
+        $useField = 'AggregateDate, PostID, total_count, facebook_like_count, twitter_tweet_count, google_plus_count, timer_count, cross_count, facebook_share_count, twitter_follow_count, google_share_count, linkedin_share_count';
     
 
+    
+    $insertField = apply_filters('onp_sl_tracking_insert_fields', $useField);
+   
+    $sql = "INSERT INTO {$wpdb->prefix}so_tracking 
+                (".$insertField.") 
+                VALUES ('$date',$postId, $insertPart)
+                ON DUPLICATE KEY UPDATE $updatePart";
 
     $wpdb->query($sql); 
     exit;

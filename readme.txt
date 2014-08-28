@@ -88,13 +88,18 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.6.5 - 29 Aug 2014</strong><br />
+<ul>
+<li>ADDED: Support for Facebook API v2.0.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
+
 <strong>v.3.6.3 - 9 Aug 2014</strong><br />
 <ul>
 <li>ADDED: The Comparison of the Free & Premium versions.</li>
 <li>ADDED: The option 'Actual URLs' on the page Global Settings.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
 
 <strong>v.3.6.2 - 2 Aug 2014</strong><br />
 <ul>

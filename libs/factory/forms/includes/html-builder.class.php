@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class FactoryForms323_HtmlAttributeBuilder {
+class FactoryForms324_HtmlAttributeBuilder {
     
     /**
      * An array to store css classes.

@@ -16,7 +16,7 @@
  * 
  * @since 1.0.0
  */
-interface IFactoryForms323_ValueProvider {
+interface IFactoryForms324_ValueProvider {
     
     /**
      * Inits a form a provider to get data from a storage.

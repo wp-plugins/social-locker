@@ -4,7 +4,7 @@ abstract class FactoryViewtables320_Viewtable {
 
     /**
      * A type used to display the table.
-     * @var FactoryTypes320_Type 
+     * @var FactoryTypes321_Type 
      */
     public $type;
     

@@ -193,6 +193,9 @@
 #sociallocker_twitter_tweet_text {
     background: #fff url("../img/tweet-content-bg.png") no-repeat 50% 50%;
 }
+#sociallocker_vk_share_description {
+    min-height: 100px;
+}
 
 #lock-preview {
     overflow: hidden;

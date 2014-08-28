@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryTypes320_Type {
+abstract class FactoryTypes321_Type {
     
     /**
      * Internal type name.
@@ -80,7 +80,7 @@ abstract class FactoryTypes320_Type {
      * Scripts that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory321_ScriptList 
+     * @var Factory322_ScriptList 
      */
     public $scripts;
     
@@ -88,14 +88,14 @@ abstract class FactoryTypes320_Type {
      * Styles that must be included on edit page.
      * 
      * @since 1.0.0
-     * @var Factory321_StyleList 
+     * @var Factory322_StyleList 
      */  
     public $styles;
     
     /**
      * A menu configurator for a type.
      * 
-     * @var FactoryTypes320_Menu 
+     * @var FactoryTypes321_Menu 
      */
     public $menu;
 
@@ -149,7 +149,7 @@ abstract class FactoryTypes320_Type {
     public function __construct( $plugin ) {
         $this->plugin = $plugin;
         
-        $this->menu = new FactoryTypes320_Menu( $this );
+        $this->menu = new FactoryTypes321_Menu( $this );
         $this->metaboxes = array();
         
         $this->scripts = $this->plugin->newScriptList();
@@ -245,6 +245,10 @@ abstract class FactoryTypes320_Type {
         // sets menu icon
         if ( !empty($this->menu) ) {
             add_action( 'admin_head', array($this, 'actionAdminHead'));
+            
+            if ( !empty( $this->menu->title) ) {
+                add_action( 'admin_menu', array($this, 'actionAdminMenu'));   
+            }
         }
 
         register_post_type( $this->name, $this->options );
@@ -327,18 +331,18 @@ abstract class FactoryTypes320_Type {
         $labels = array(
             'singular_name' => $singularName,
             'name' => $pluralName,          
-            'all_items' => sprintf( __('All %1$s', 'factory_types_320'), $pluralName ),
-            'add_new' => sprintf( __('Add %1$s', 'factory_types_320'), $singularName ),
-            'add_new_item' => sprintf( __('Add new', 'factory_types_320'), $singularName ),
-            'edit' => sprintf( __('Edit', 'factory_types_320') ),
-            'edit_item' => sprintf( __('Edit %1$s', 'factory_types_320'), $singularName ),
-            'new_item' => sprintf( __('New %1$s', 'factory_types_320'), $singularName ),
-            'view' => sprintf( __('View', 'factory') ),
-            'view_item' => sprintf( __('View %1$s', 'factory_types_320'), $singularName ),
-            'search_items' => sprintf( __('Search %1$s', 'factory_types_320'), $pluralName ),
-            'not_found' => sprintf( __('No %1$s found', 'factory_types_320'), $pluralName ),
-            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory_types_320'), $pluralName ),
-            'parent' => sprintf( __('Parent %1$s', 'factory'), $pluralName )
+            'all_items' => sprintf( __('All %1$s', 'factory_types_321'), $pluralName ),
+            'add_new' => sprintf( __('Add %1$s', 'factory_types_321'), $singularName ),
+            'add_new_item' => sprintf( __('Add new', 'factory_types_321'), $singularName ),
+            'edit' => sprintf( __('Edit', 'factory_types_321') ),
+            'edit_item' => sprintf( __('Edit %1$s', 'factory_types_321'), $singularName ),
+            'new_item' => sprintf( __('New %1$s', 'factory_types_321'), $singularName ),
+            'view' => sprintf( __('View', 'factory_types_321') ),
+            'view_item' => sprintf( __('View %1$s', 'factory_types_321'), $singularName ),
+            'search_items' => sprintf( __('Search %1$s', 'factory_types_321'), $pluralName ),
+            'not_found' => sprintf( __('No %1$s found', 'factory_types_321'), $pluralName ),
+            'not_found_in_trash' => sprintf( __('No %1$s found in trash', 'factory_types_321'), $pluralName ),
+            'parent' => sprintf( __('Parent %1$s', 'factory_types_321'), $pluralName )
         );
         
         $this->options['labels'] = $labels;
@@ -388,7 +392,7 @@ abstract class FactoryTypes320_Type {
             array('{preview_url}', esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
             array('{revision}', isset($_GET['revision']) 
                 ? wp_post_revision_title( (int) $_GET['revision'], false ) : false),
-            array('{scheduled}', date_i18n( __( 'M j, Y @ G:i', 'factory_types' ), strtotime( $post->post_date ) ) )
+            array('{scheduled}', date_i18n( __( 'M j, Y @ G:i', 'factory_types_321' ), strtotime( $post->post_date ) ) )
         );
         
         foreach($this->messages as $index => $message)
@@ -451,6 +455,19 @@ abstract class FactoryTypes320_Type {
             }
         </style>
         <?php
+        }
+    }
+    
+    public function actionAdminMenu() {
+        global $menu;
+        global $submenu;
+        
+        foreach($menu as $index => $item) {
+            
+            if ( isset( $item[2] ) && $item[2] === 'edit.php?post_type=' . $this->name ) {
+                $menu[$index][0] = $this->menu->title; 
+                break;
+            }
         }
     }
     

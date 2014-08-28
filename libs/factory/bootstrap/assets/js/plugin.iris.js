@@ -23,7 +23,7 @@
 		return;
 	}
 
-	$.support.factoryBootstrap323_iris = true;
+	$.support.factoryBootstrap324_iris = true;
 
 	function testGradientType() {
 		var el, base;
@@ -204,7 +204,7 @@
 		return backFillColorStops( stops );
 	}
 
-	$.fn.factoryBootstrap323_gradient = function() {
+	$.fn.factoryBootstrap324_gradient = function() {
 		var args = arguments;
 		return this.each( function() {
 			// this'll be oldishIE
@@ -217,7 +217,7 @@
 		});
 	};
 
-	$.fn.factoryBootstrap323_raninbowGradient = function( origin, args ) {
+	$.fn.factoryBootstrap324_raninbowGradient = function( origin, args ) {
 		var opts, template, i, steps;
 
 		origin = origin || 'top';
@@ -230,7 +230,7 @@
 			i += 30;
 		}
 		return this.each(function() {
-			$(this).factoryBootstrap323_gradient( origin, steps );
+			$(this).factoryBootstrap324_gradient( origin, steps );
 		});
 	};
 
@@ -416,7 +416,7 @@
 						}
 					}
 
-					target.factoryBootstrap323_raninbowGradient( origin, stops );
+					target.factoryBootstrap324_raninbowGradient( origin, stops );
 					break;
 				case 's':
 					if ( mode === 'hsv' ) {
@@ -436,7 +436,7 @@
 					}
 
 
-					target.factoryBootstrap323_gradient( origin, stops );
+					target.factoryBootstrap324_gradient( origin, stops );
 					break;
 				case 'l':
 					if ( control === 'strip' ) {
@@ -444,7 +444,7 @@
 					} else {
 						stops = ['#fff', 'rgba(255,255,255,0) 50%', 'rgba(0,0,0,0) 50%', 'rgba(0,0,0,1)'];
 					}
-					target.factoryBootstrap323_gradient( origin, stops );
+					target.factoryBootstrap324_gradient( origin, stops );
 					break;
 				case 'v':
 						if ( control === 'strip' ) {
@@ -452,7 +452,7 @@
 						} else {
 							stops = ['rgba(0,0,0,0)', '#000'];
 						}
-						target.factoryBootstrap323_gradient( origin, stops );
+						target.factoryBootstrap324_gradient( origin, stops );
 					break;
 				default:
 					break;
@@ -887,7 +887,7 @@
 		}
 	};
 	// initialize the widget
-	$.widget( 'a8c.factoryBootstrap323_iris', Iris );
+	$.widget( 'a8c.factoryBootstrap324_iris', Iris );
 	// add CSS
 	$( '<style id="iris-css">' + _css + '</style>' ).appendTo( 'head' );
 }( jQuery ));

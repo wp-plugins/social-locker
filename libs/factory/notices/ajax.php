@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 
-function factory_notices_321_hide() {
+function factory_notices_322_hide() {
     $id = empty( $_POST['id'] ) ? null : $_POST['id'];
     $never = ( empty( $_POST['never'] ) || $_POST['never'] == 'false' ) ? false : true;
 
@@ -27,4 +27,4 @@ function factory_notices_321_hide() {
     echo 'ok';
     exit;
 }  
-add_action('wp_ajax_factory_notices_321_hide', 'factory_notices_321_hide');
+add_action('wp_ajax_factory_notices_322_hide', 'factory_notices_322_hide');

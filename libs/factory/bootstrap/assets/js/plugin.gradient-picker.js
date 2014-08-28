@@ -148,7 +148,7 @@
             _createColorPicker: function() {
                 var self = this;
                 
-                this.$colorPicker.factoryBootstrap323_iris({
+                this.$colorPicker.factoryBootstrap324_iris({
                     width: 217,
                     palettes: ['#16a086', '#27ae61', '#2a80b9', '#8f44ad', '#2d3e50', '#f49c14', '#c1392b', '#bec3c7'],
                     hide: true,                                        
@@ -160,7 +160,7 @@
                 
                 self.$colorHex.on('change paste keyup', function(){
                     self._colorLock = true;
-                    self.$colorPicker.factoryBootstrap323_iris('color', self.$colorHex.val());
+                    self.$colorPicker.factoryBootstrap324_iris('color', self.$colorHex.val());
                     self._cancelColorLock();
                 });
                
@@ -223,10 +223,13 @@
             _createDirectionDropdown: function() {
                 var self = this;
 
+                var resVertical = factory && factory.res && factory.res.resVertical || 'vertical';
+                var resHorizontal = factory && factory.res && factory.res.resHorizontal || 'horizontal';      
+
                 this.$directionDropdown = 
                         $('<select class="gradientPicker-filldirection">'+
-                            '<option value="vertical"'+ (self.opts.fillDirection === 'top' ? ' selected' : '') +'>vertical</option>'+
-                            '<option value="horizontal"'+ (self.opts.fillDirection === 'left' ? ' selected' : '') +'>horizontal</option>'+                          
+                            '<option value="vertical"'+ (self.opts.fillDirection === 'top' ? ' selected' : '') +'>' + resVertical + '</option>'+
+                            '<option value="horizontal"'+ (self.opts.fillDirection === 'left' ? ' selected' : '') +'>' + resHorizontal + '</option>'+                          
                         '</select>');
 
 		this.$el.append( this.$directionDropdown );  
@@ -254,8 +257,8 @@
                 point.$el.addClass('factory-current-point');
                 
                 this.$colorPickerContainer.show();
-                this.$colorPicker.factoryBootstrap323_iris( 'show' );
-                this.$colorPicker.factoryBootstrap323_iris( 'option', 'color', point.color );
+                this.$colorPicker.factoryBootstrap324_iris( 'show' );
+                this.$colorPicker.factoryBootstrap324_iris( 'option', 'color', point.color );
                 
                 this.$opacitySlider.val( point.opacity * 100 );
                 this.$opacitySlider.trigger('slide');

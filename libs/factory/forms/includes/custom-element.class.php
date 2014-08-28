@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-abstract class FactoryForms323_CustomElement extends FactoryForms323_FormElement {
+abstract class FactoryForms324_CustomElement extends FactoryForms324_FormElement {
     
     /**
      * Is this element a custom form element?

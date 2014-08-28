@@ -64,7 +64,7 @@ abstract class FactoryMetaboxes320_Metabox {
      * Scripts that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory321_ScriptList
+     * @var Factory322_ScriptList
      */
     public $scripts;
     
@@ -72,7 +72,7 @@ abstract class FactoryMetaboxes320_Metabox {
      * Styles that should be include on the page where the metabox will be shown.
      * 
      * @since 1.0.0
-     * @var Factory321_StyleList
+     * @var Factory322_StyleList
      */  
     public $styles;
     
@@ -110,8 +110,8 @@ abstract class FactoryMetaboxes320_Metabox {
      * Configures a metabox.
      * 
      * @since 1.0.0
-     * @param Factory321_ScriptList $scripts A set of scripts to include.
-     * @param Factory321_StyleList $styles A set of style to include.
+     * @param Factory322_ScriptList $scripts A set of scripts to include.
+     * @param Factory322_StyleList $styles A set of style to include.
      * @return void
      */
     public function configure( $scripts, $styles) {

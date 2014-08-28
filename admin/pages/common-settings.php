@@ -55,7 +55,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
      */
     protected $languages;
     
-    public function __construct(Factory321_Plugin $plugin) {   
+    public function __construct(Factory322_Plugin $plugin) {   
         parent::__construct($plugin);
         $this->menuTitle = __('Global Settings', 'sociallocker');
     }
@@ -73,13 +73,15 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
         $this->scripts->request('jquery');
         
         $this->scripts->request( array( 
-            'control.checkbox'
+            'control.checkbox',
+            'control.dropdown',
             ), 'bootstrap' );
         
         $this->styles->request( array( 
             'bootstrap.core', 
             'bootstrap.form-group',
-            'bootstrap.separator', 
+            'bootstrap.separator',
+            'control.dropdown',
             'control.checkbox'
             ), 'bootstrap' ); 
         
@@ -196,12 +198,13 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             array('ps_AF', __('Pashto', 'sociallocker'))
         );
         
-        $form = new FactoryForms323_Form(array(
-            'scope' => 'sociallocker'
+        $form = new FactoryForms324_Form(array(
+            'scope' => 'sociallocker',
+            'name'  => 'common-setting'
         ), $sociallocker );
         
         $form->controlTheme = 'mendeleev-000';
-        $form->setProvider( new FactoryForms323_OptionsValueProvider(array(
+        $form->setProvider( new FactoryForms324_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
@@ -214,7 +217,10 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'name'      => 'facebook_appid',
                 'title'     => __( 'Facebook App ID', 'sociallocker' ),
                 'hint'      => __( 'The Facebook App Id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specifically for your domain. Please check out <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> for more information.', 'sociallocker' )
-            ),
+            )
+        ));
+   
+        $form->add(array(       
             array(
                 'type'      => 'dropdown',
                 'name'      => 'lang',
@@ -223,18 +229,26 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'hint'      => __( 'Choose the language that will be used for social buttons.', 'sociallocker' ),
             ),
             array(
+                'type'      => 'dropdown',
+                'way'       => 'buttons',
+                'name'      => 'facebook_version',
+                'title'     => __( 'Facebook API Version', 'sociallocker' ),
+                'default'   => 'v1.0',
+                'data'      => array(
+                    array('v1.0', 'v1.0'),
+                    array('v2.0', 'v2.0')       
+                 ),
+                'hint'      => __( 'Optional. Use the most recent version of the API (v2.0) but if Facebook buttons don\'t work on your website try to switch the API to the v1.0. Please note currently the v2.0 does not allow to change the language of the Facebook buttons. On all probability it\'s a bug on the Facebook side.', 'sociallocker' ),
+            ),            
+            array(
                 'type' => 'separator'
-            ))
-        );
-        
-        $form->add(array(
-            
+            ),
             array(
                 'type'      => 'checkbox',
                 'way'       => 'buttons',
                 'name'      => 'interrelation',
                 'title'     => __( 'Interrelation', 'sociallocker' ),
-                'hint'      => __( 'Set On to make lockers interrelated. When one of the interrelated lockers are unlocked on your site, the others will be unlocked too.<br />If Off, only lockers having the same URLs to like/tweet/+1/share will be unlocked.', 'sociallocker' ),
+                'hint'      => __( 'Set On to make lockers interrelated. When one of the interrelated lockers are unlocked on your site, the others will be unlocked too.<br /> Recommended to turn on, if you use the Batch Locking feature.', 'sociallocker' ),
                 'default'   => false
             ), 
             array(
@@ -245,7 +259,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'way'       => 'buttons',
                 'name'      => 'dynamic_theme',
                 'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
-                'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working.', 'sociallocker' )
+                'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working (if everything works properly, don\'t turn on this option).', 'sociallocker' )
             ),
             array(
                 'type'      => 'div',
@@ -282,9 +296,9 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'type'      => 'checkbox',
                 'way'       => 'buttons',  
                 'name'      => 'tracking',
-                'title'     => __( 'Tracking', 'sociallocker' ),
+                'title'     => __( 'Collecting Stats', 'sociallocker' ),
                 'data'      => $this->languages,
-                'hint'      => __( 'Makes statistical data for your lockers available. This allows you to track how users interact with your lockers.', 'sociallocker' )
+                'hint'      => __( 'Turns on collecting the statistical data for reports.', 'sociallocker' )
             ),
             array(
                 'type' => 'separator'
@@ -293,16 +307,16 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'type'      => 'checkbox',
                 'way'       => 'buttons',
                 'name'      => 'rss',
-                'title'     => __( 'Content for RSS', 'sociallocker' ),
-                'hint'      => __( 'Set On to make locked content visible in the RSS feed.', 'sociallocker' ),
+                'title'     => __( 'Locked content<br /> is visible in RSS feeds', 'sociallocker' ),
+                'hint'      => __( 'Set On to make locked content visible in RSS feed.', 'sociallocker' ),
                 'default'   => false
             ),
             array(
                 'type'      => 'checkbox',
                 'way'       => 'buttons',
                 'name'      => 'actual_urls',
-                'title'     => __( 'Actual URLs', 'sociallocker' ),
-                'hint'      => __( 'Optional. Applied only to the lockers for which you do not set exact URLs to like/tweet/share. If On, the locker will take an URL from an address bar of  the browser as the URL to like and share. By default Wordpress Permalinks are used.', 'sociallocker' ),
+                'title'     => __( 'Actual URLs by default', 'sociallocker' ),
+                'hint'      => __( 'Optional. If you do not set explicitly URLs to like/share in the settings of social buttons, then by default the plugin will use an URL of the page where the locker is located. Turn on this option to extract URLs to like/share from an address bar of the user browser, saving all query arguments. By default (when this option disabled) permalinks are used.', 'sociallocker' ),
                 'default'   => false
             ),
             array(
@@ -319,9 +333,9 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             array(
                 'type'      => 'textbox',
                 'name'      => 'timeout',
-                'title'     => __( 'Timeout (in ms)', 'sociallocker' ),
+                'title'     => __( 'Timeout of waiting<br />loading the locker (in ms)', 'sociallocker' ),
                 'default'   => '10000',
-                'hint'      => __( 'The visitor can have some browser extensions which block the social networks. If the social buttons have not been loaded within the specified timeout, the locker shows the error (in the red container) alerting about that a browser blocks loading of the social buttons.<br /><i>Increase this value only if your website loads slowly and sometime you see randomly that error.</i>', 'sociallocker' )
+                'hint'      => __( 'The use can have browser extensions which block loading scripts from social networks. If the social buttons have not been loaded within the specified timeout, the locker shows the error (in the red container) alerting about that a browser blocks loading of the social buttons.<br />', 'sociallocker' )
             ),   
             array(
                 'type'      => 'checkbox',
@@ -329,8 +343,9 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 'name'      => 'debug',
                 'title'     => __( 'Debug', 'sociallocker' ),
                 'data'      => $this->languages,
-                'hint'      => __( 'If set to On, lockers will always appear, even if the user already unlocked them.', 'sociallocker' )
+                'hint'      => __( 'When this option turned on, the locker appears always, ignoring any settings, even if the user already unlocked the content.', 'sociallocker' )
             ),
+            
         ));
         
         if ( isset( $_POST['save-action'] ) ) {
@@ -367,7 +382,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             <h2><?php _e('Global Settings', 'sociallocker') ?></h2>
             <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-323">
+            <div class="factory-bootstrap-324">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -408,7 +423,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_321_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_322_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -469,7 +484,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-323" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-324" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>

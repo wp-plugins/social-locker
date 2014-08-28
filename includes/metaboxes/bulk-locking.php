@@ -179,7 +179,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes320_Metabox
             <?php } ?>
         </div>
 
-        <div class="factory-bootstrap-323 factory-fontawesome-320">
+        <div class="factory-bootstrap-324 factory-fontawesome-320">
             <div class="onp-sl-description-section">
                 <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'sociallocker') ?>
             </div>
@@ -239,7 +239,7 @@ class OnpSL_BulkLockingMetaBox extends FactoryMetaboxes320_Metabox
             </div>
             
             <div class="<?php echo $setupStateClass ?> <?php echo $interrelatedClass ?> onp-sl-interrelation-hint">
-                <?php _e('Recommended to turn on the Interrelation option on the <a target="_blank" href="./edit.php?post_type=social-locker&page=common-settings-sociallocker-next">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'sociallocker') ?>
+                <?php printf( _e('Recommended to turn on the Interrelation option on the <a target="_blank" href="%s">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'sociallocker'), admin_url("edit.php?post_type=social-locker&page=common-settings-" . $this->plugin->pluginName) ) ?>
             </div>
             
             <div class="onp-sl-after-change-hint">
@@ -575,7 +575,7 @@ function onp_sl_print_bulk_locking_state( $lockerId ) {
 
     ?>
 
-    <div class="factory-bootstrap-323 factory-fontawesome-320">
+    <div class="factory-bootstrap-324 factory-fontawesome-320">
         
         <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
 
