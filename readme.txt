@@ -88,8 +88,9 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
-<strong>v.3.6.8 - 8  Sep 2014</strong><br />
+<strong>v.3.6.9 - 8  Sep 2014</strong><br />
 <ul>
+<li>FIXED: The bug in IE when the button titles are not visible.</li>
 <li>FIXED: Minor CSS issues.</li>
 <li>ADDED: API for developers which allows to add own buttons.</li>
 </ul>
