@@ -24,8 +24,15 @@ function onp_sl_load_ajax_content() {
     $lockerId = isset( $_POST['lockerId'] ) ? intval( $_POST['lockerId'] ) : 0;
 
     if (empty($hash) || empty($lockerId)) return;
+    
+    global $wpdb;
+    
+    $content = $wpdb->get_var( $wpdb->prepare( 
+        "SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = %s", 
+        'sociallocker_locker_content_hash_' . $hash
+    ));
 
-    echo get_post_meta($lockerId, 'sociallocker_locker_content_hash_' . $hash, true);
-    die();
+    echo $content;
+    exit;
 }
 

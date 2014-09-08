@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 3.9.2
+Tested up to: 4.0.0
 Stable tag: trunk
 License: GPLv2
 
@@ -88,12 +88,18 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.6.8 - 8  Sep 2014</strong><br />
+<ul>
+<li>FIXED: Minor CSS issues.</li>
+<li>ADDED: API for developers which allows to add own buttons.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
 <strong>v.3.6.5 - 29 Aug 2014</strong><br />
 <ul>
 <li>ADDED: Support for Facebook API v2.0.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing the update.</p>
 
 <strong>v.3.6.3 - 9 Aug 2014</strong><br />
 <ul>

@@ -81,6 +81,8 @@ class OnpSL_AssetsManager {
         </script>
         <!-- / -->   
         <?php
+        
+        do_action('onp_sl_print_sdk_scripts');
     }
     
     public static function printCssSelectorOptions() {
@@ -121,7 +123,10 @@ class OnpSL_AssetsManager {
     public static function printCreaterScript() {
         if ( self::$_createrScriptPrinted ) return;
         self::$_createrScriptPrinted = true;
-    ?>
+        
+        do_action('onp_sl_begin_creater_script');
+        ?>
+                
         <!-- 
             Creater Script for Social Locker
         
@@ -132,7 +137,9 @@ class OnpSL_AssetsManager {
             (function($){ if ( window.onpsl && window.onpsl.lockers ) window.onpsl.lockers(); })(jQuery);
         </script>
         <!-- / -->
-    <?php
+        <?php
+    
+        do_action('onp_sl_end_creater_script');
     }
     
     /**
@@ -145,12 +152,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030604.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030608.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030604.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030608.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -163,6 +170,8 @@ class OnpSL_AssetsManager {
         ); 
 
         wp_localize_script( 'onp-sociallocker', 'facebookSDK', $facebookSDK );
+        
+        do_action('onp_sl_connect_assets');
     }
         
     // -----------------------------------------------
