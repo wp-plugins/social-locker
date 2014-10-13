@@ -1,6 +1,6 @@
 <?php
 
-class StatisticViewer {
+class StatsManager {
     
     /**
      * Unix timestamp that is used to define the start of work range.
@@ -16,21 +16,13 @@ class StatisticViewer {
     
     public $postId = false;
         
-    function StatisticViewer($dateRangeEnd, $dateRangeStart) {
-        
-        $this->rangeStart = $dateRangeStart;
-        $this->rangeEnd = $dateRangeEnd;    
-        
-        $this->rangeStartStr = gmdate("Y-m-d", $dateRangeStart);
-        $this->rangeEndStr = gmdate("Y-m-d", $dateRangeEnd);
-        
-        // we use this var and the filter 'onp_sl_statistics_viewer_fields' 
-        // in order to have an opportunity to add custom social buttons
-        
+    function __construct() {
+
         $fieldsToGet = array();
             
             $fieldsToGet = array(
                 'total_count',
+                'na_count',
                 'facebook_like_count',
                 'twitter_tweet_count',
                 'google_plus_count',
@@ -38,35 +30,37 @@ class StatisticViewer {
                 'twitter_follow_count',
                 'google_share_count',
                 'linkedin_share_count',
-                'total_count',
                 'timer_count',
                 'cross_count'                        
             );
             
         
 
-        
+
         $this->fieldsToGet = apply_filters('onp_sl_statistics_viewer_fields_to_get', $fieldsToGet);
         
     }
     
-    public function setPost($postId) {
-        $this->postId = $postId;
-    }
-    
-    public function getChartData() {
+
+    public function getChartData( $dateRangeStart, $dateRangeEnd, $postId = null) {
         global $wpdb;
+        
+        $rangeStart = $dateRangeStart;
+        $rangeEnd = $dateRangeEnd;    
+
+        $rangeStartStr = gmdate("Y-m-d", $rangeStart);
+        $rangeEndStr = gmdate("Y-m-d", $rangeEnd);
 
         $fieldsToGetWithSum = array();
+
         foreach( $this->fieldsToGet as $field ) {
             $fieldsToGetWithSum[] = "SUM(t.$field) AS $field";
         }
-       
+
         $selectExtra = implode(',', $fieldsToGetWithSum);
         
         $extraWhere = '';
-        if ($this->postId)
-            $extraWhere .= 'AND t.PostID=' . $this->postId;
+        if ($postId) $extraWhere .= 'AND t.PostID=' . $postId;
 
 
         $sql = "SELECT 
@@ -75,16 +69,16 @@ class StatisticViewer {
                  FROM 
                     {$wpdb->prefix}so_tracking AS t
                  WHERE 
-                    (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}')
+                    (AggregateDate BETWEEN '$rangeStartStr' AND '$rangeEndStr')
                     $extraWhere
                  GROUP BY 
                     t.AggregateDate";      
         
         $data = $wpdb->get_results($sql, ARRAY_A);
         $resultData = array();
-        
-        $currentDate = $this->rangeStart;
-        while($currentDate <= $this->rangeEnd) {
+
+        $currentDate = $rangeStart;
+        while($currentDate <= $rangeEnd) {
    
             $phpdate = getdate($currentDate);
             
@@ -113,6 +107,7 @@ class StatisticViewer {
             $resultData[$timestamp] = $data[$index];
         }
         
+
         
         return $resultData;
     }
@@ -126,12 +121,17 @@ class StatisticViewer {
         $total = isset( $options['total'] ) ? $options['total'] : true;
         $order = isset( $options['order'] ) ? $options['order'] : 'total_count';
         
+        $rangeStart = isset( $options['rangeStart'] ) ? $options['rangeStart'] : null;    
+        $rangeEnd = isset( $options['rangeEnd'] ) ? $options['rangeEnd'] : null;    
+        $postId = isset( $options['postId'] ) ? $options['postId'] : null;   
+        
+        $rangeStartStr = gmdate("Y-m-d", $rangeStart);
+        $rangeEndStr = gmdate("Y-m-d", $rangeEnd);  
+
         $start = ( $page - 1 ) * $per;
         
         $extraWhere = '';
-        if ($this->postId) {
-            $extraWhere .= 'AND PostID=' . $this->postId;
-        }
+        if ($postId) $extraWhere .= 'AND PostID=' . $postId;
         
         // rows
         
@@ -141,7 +141,7 @@ class StatisticViewer {
             INNER JOIN
                 {$wpdb->prefix}posts AS p ON p.ID = t.PostID
             WHERE 
-                (AggregateDate BETWEEN '{$this->rangeStartStr}' AND '{$this->rangeEndStr}') $extraWhere";
+                (AggregateDate BETWEEN '$rangeStartStr' AND '$rangeEndStr') $extraWhere";
        
         $count = ( $total ) ? $wpdb->get_var('SELECT COUNT(Distinct t.PostID) ' . $sqlBase) : 0;
 
@@ -167,6 +167,82 @@ class StatisticViewer {
             'data' => $data,
             'count' => $count
         );
+    }
+    
+    /**
+     * Saves a track for a given post.
+     * 
+     * @since 3.7.2
+     * @return void
+     */
+    public function saveTrack( $postId, $sender, $senderName = null ) {
+
+        if ( !in_array($sender, array('na', 'button', 'timer', 'cross')) ) return;
+                
+        $fields = $this->fieldsToGet;
+        $values = array();
+        
+        $senderNameToField = array(
+            'facebook-like' => 'facebook_like_count',
+            'twitter-tweet' => 'twitter_tweet_count',
+            'google-plus' => 'google_plus_count',
+            'facebook-share' => 'facebook_share_count',
+            'twitter-follow' => 'twitter_follow_count',
+            'google-share' => 'google_share_count',
+            'linkedin-share' => 'linkedin_share_count',     
+            'vk-like' => 'vk_like_count',
+            'vk-share' => 'vk_share_count',
+            'vk-subscribe' => 'vk_subscribe_count',
+            'ok-klass' => 'ok_klass_count',
+            'na' => 'na_count',
+            'timer' => 'timer_count',
+            'cross' => 'cross_count',
+        );
+
+        $senderNameToField = apply_filters('onp_sl_sender_name_to_field', $senderNameToField);
+        $anchor = $sender === 'button' ? $senderName : $sender;
+        
+        if ( !isset( $senderNameToField[$anchor]) ) return;
+        $senderField = $senderNameToField[$anchor];
+                  
+        if ( $sender === 'button' ) {
+            
+            $values['total_count'] = 1;
+            $values[$senderField] = 1;
+            
+        } else {
+            
+            $values[$senderField] = 1;
+        }
+        
+        $insertField = implode(',', $fields);
+
+        // values to insert
+        $insertPart = array();
+        foreach($fields as $field) $insertPart[] = isset( $values[$field] ) ? '1' : '0';
+        $insertPart = implode(',', $insertPart);
+
+        // values to update
+        $updatePart = array();
+        foreach($fields as $field) {
+            if ( !isset( $values[$field] ) ) continue;
+            $updatePart[] = "$field = $field + 1";
+        }
+        $updatePart = implode(',', $updatePart);
+        
+        $hrsOffset = get_option('gmt_offset');
+        if (strpos($hrsOffset, '-') !== 0) $hrsOffset = '+' . $hrsOffset;
+        $hrsOffset .= ' hours';
+        $time = strtotime($hrsOffset, time());
+        $date = date("Y-m-d", $time);
+              
+        global $wpdb;
+        $sql = "INSERT INTO {$wpdb->prefix}so_tracking 
+                    (AggregateDate,PostID,$insertField) 
+                    VALUES ('$date',$postId, $insertPart)
+                    ON DUPLICATE KEY UPDATE $updatePart";
+
+        $wpdb->query($sql);
     }
 }
  

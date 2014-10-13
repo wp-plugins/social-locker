@@ -5,7 +5,7 @@
  * 
  * @since 3.0.0
  */
-class SocialLockerUpdate030009 extends Factory322_Update {
+class SocialLockerUpdate030009 extends Factory324_Update {
 
     public function install() {
         global $wpdb;

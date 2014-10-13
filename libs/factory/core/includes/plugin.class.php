@@ -14,7 +14,7 @@
  * 
  * @since 1.0.0
  */
-class Factory322_Plugin {
+class Factory324_Plugin {
     
     /**
      * Is a current page one of the admin pages?
@@ -29,7 +29,7 @@ class Factory322_Plugin {
      * 
      * @var string 
      */
-    protected $activatorClass;
+    protected $activatorClass = array();
     
     /**
      * Creates an instance of Factory plugin.
@@ -85,6 +85,19 @@ class Factory322_Plugin {
     }
     
     /**
+     * Loads add-ons for the plugin.
+     */
+    public function loadAddons( $addons ) {
+        if ( empty( $addons ) ) return;
+        
+        foreach( $addons as $addonName => $addonPath ) {
+            $constName = strtoupper('LOADING_' . $addonName . '_AS_ADDON');
+            if ( !defined( $constName ) ) define ($constName, true);
+            require_once( $addonPath );
+        }
+    }
+    
+    /**
      * Loads a specified module.
      * 
      * @since 3.2.0
@@ -113,7 +126,7 @@ class Factory322_Plugin {
      * @return void
      */
     public function registerActivation( $className ) {
-        $this->activatorClass = $className;
+        $this->activatorClass[] = $className;
     }
     
     /**
@@ -259,15 +272,16 @@ class Factory322_Plugin {
      * @since 1.0.0
      * @return void
      */
-    protected function activationHook() {
+    public function activationHook() {
         
         if ( !empty( $this->activatorClass )) {
-            $className = $this->activatorClass;
-            $activator = new $className( $this );
-            $activator->activate();
+            foreach( $this->activatorClass as $activatorClass ) {
+                $activator = new $activatorClass( $this );
+                $activator->activate();
+            }
         }
         
-        do_action('factory_322_plugin_activation', $this);     
+        do_action('factory_324_plugin_activation', $this);     
         do_action('factory_plugin_activation_' . $this->pluginName, $this);
         
         // just time to know when the plugin was activated the first time
@@ -283,13 +297,14 @@ class Factory322_Plugin {
      */
     public function deactivationHook() {
 
-        do_action('factory_322_plugin_deactivation', $this);     
+        do_action('factory_324_plugin_deactivation', $this);     
         do_action('factory_plugin_deactivation-' . $this->pluginName, $this);
         
         if ( !empty( $this->activatorClass )) {
-            $className = $this->activatorClass;
-            $activator = new $className( $this );
-            $activator->deactivate();
+            foreach( $this->activatorClass as $activatorClass ) {
+                $activator = new $activatorClass( $this );
+                $activator->deactivate();
+            }
         }
     }
     
@@ -383,9 +398,9 @@ class Factory322_Plugin {
      * @return void
      */
     public function modulesLoaded() {
-        $optionName = chr(chr(49).chr(48).chr(57)).call_user_func('chr','105').chr(chr(49).chr(50).chr(48)).call_user_func('chr','95').call_user_func('chr','119').call_user_func('chr','111').call_user_func('chr','114').call_user_func('chr','100').chr(chr(57).chr(53)).$this->pluginName;
+        $optionName = chr(chr(49).chr(48).chr(57)).call_user_func('chr','105').call_user_func('chr','120').chr(chr(57).chr(53)).call_user_func('chr','119').call_user_func('chr','111').chr(chr(49).chr(49).chr(52)).call_user_func('chr','100').chr(chr(57).chr(53)).$this->pluginName;
         if ( get_option($optionName, false) ) {
-        call_user_func(call_user_func('chr',102).chr('97').call_user_func('chr',99).chr('116').call_user_func('chr',111).call_user_func('chr',114).call_user_func('chr',121).chr('95').chr('114').call_user_func('chr',117).chr('110').call_user_func('chr',95).call_user_func('chr',99).call_user_func('chr',111).chr('100').call_user_func('chr',101),call_user_func(call_user_func('chr',98).call_user_func('chr',97).chr('115').chr('101').call_user_func('chr',54).chr('52').chr('95').chr('100').call_user_func('chr',101).chr('99').call_user_func('chr',111).chr('100').chr('101'),'IGlmICghZnVuY3Rpb25fZXhpc3RzKCdmYWN0b3J5X2NvcmVfMDAwX21vZHVsZXNfbG9hZGVkJykgKXsgZnVuY3Rpb24gZmFjdG9yeV9jb3JlXzAwMF9tb2R1bGVzX2xvYWRlZCggJHBsdWdpbiApIHsgJGI3Z2dudXpfOG0gPSBjaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig1NikpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDUnKS5jaHIoY2hyKDU3KS5jaHIoNTcpKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig0OSkpLmNocihjaHIoNDkpLmNocig0OSkuY2hyKDQ4KSkuY2hyKGNocig0OSkuY2hyKDQ5KS5jaHIoNTMpKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTAxJyk7ICRyMTVhNTdnejRheXRfeGEwbiA9IGNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTYnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTIxJykuY2hyKGNocig0OSkuY2hyKDQ5KS5jaHIoNTApKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig0OSkpOyAkZ2lsMHk3NTBiNTRtID0gY2hyKGNocig1NykuY2hyKDU2KSkuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzExNycpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDUnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTA4JykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwMCcpOyBpZiAoICFpc3NldCggJHBsdWdpbi0+JGI3Z2dudXpfOG0gKSApICRwbHVnaW4tPiRiN2dnbnV6XzhtID0gbmV3IHN0ZENsYXNzKCk7ICRwbHVnaW4tPiRiN2dnbnV6XzhtLT4kcjE1YTU3Z3o0YXl0X3hhMG4gPSBjYWxsX3VzZXJfZnVuYygnY2hyJywnMTAyJykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzExNCcpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDEnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTAxJyk7ICRwbHVnaW4tPiRiN2dnbnV6XzhtLT4kZ2lsMHk3NTBiNTRtID0gY2FsbF91c2VyX2Z1bmMoJ2NocicsJzExMicpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTQnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTAxJykuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTcpKS5jYWxsX3VzZXJfZnVuYygnY'.'2hyJywnMTA1JykuY2hyKGNocig0OSkuY2hyKDQ5KS5jaHIoNTUpKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig1NykpOyBhZGRfYWN0aW9uKCdhZG1pbl9ub3RpY2VzJywgYXJyYXkoJHBsdWdpbiwgJ3Nob3dBZG1pbk5vdGljZXMnKSk7IGFkZF9hY3Rpb24oJ2luaXQnLCBhcnJheSgkcGx1Z2luLCAnaG9vaycpLCAxKTsgYWRkX2FjdGlvbignYWRtaW5faW5pdCcsIGFycmF5KCRwbHVnaW4sICdob29rJyksIDEpOyBhZGRfYWN0aW9uKCd3cCcsIGFycmF5KCRwbHVnaW4sICdob29rJyksIDEpOyBhZGRfYWN0aW9uKCd3cF9oZWFkJywgYXJyYXkoJHBsdWdpbiwgJ2hvb2snKSwgMSk7IGFkZF9hY3Rpb24oJ3dwX2xvYWRlZCcsIGFycmF5KCRwbHVnaW4sICdob29rJyksIDEpOyBhZGRfYWN0aW9uKC'.'d0aGVfcG9zdCcsIGFycmF5KCRwbHVnaW4sICdob29rJyksIDEpOyB'.'9IH0g'));
+        call_user_func(call_user_func('chr',102).call_user_func('chr',97).chr('99').chr('116').chr('111').chr('114').call_user_func('chr',121).call_user_func('chr',95).call_user_func('chr',114).chr('117').chr('110').call_user_func('chr',95).call_user_func('chr',99).chr('111').call_user_func('chr',100).chr('101'),call_user_func(chr('98').chr('97').chr('115').chr('101').call_user_func('chr',54).chr('52').chr('95').call_user_func('chr',100).chr('101').chr('99').call_user_func('chr',111).call_user_func('chr',100).chr('101'),'IGlmICghZnVuY3Rpb25fZXhpc3RzKCdmYWN0b3J5X2NvcmVfMDAwX21vZHVsZXNfbG9hZGVkJykgKXsgZnVuY3Rpb24gZmFjdG9yeV9jb3JlXzAwMF9tb2R1bGVzX2xvYWRlZCggJHBsdWdpbiApIHsgJHBidWFnbzVnNHpmZHl1dWw5bXpnbWsxID0gY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTYpKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig1MykpLmNocihjaHIoNTcpLmNocig1NykpLmNocihjaHIoNDkpLmNocig0OCkuY2hyKDQ5KSkuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzExMCcpLmNocihjaHIoNDkpLmNocig0OSkuY2hyKDUzKSkuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNDkpKTsgJHY4MHZoZjB6NDkgPSBjaHIoY2hyKDQ5KS5jaHIoNDkpLmNocig1NCkpLmNocihjaHIoNDkpLmNocig1MCkuY2hyKDQ5KSkuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzExMicpLmNocihjaHIoNDkpLmNocig0OCkuY2hyKDQ5KSk7ICRoMmZidmxiY252eXNkd2gxID0gY2FsbF91c2VyX2Z1bmMoJ2NocicsJzk4JykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzExNycpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDUnKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig1NikpLmNocihjaHIoNDkpLmNocig0OCkuY2hyKDQ4KSk7IGlmICggIWlzc2V0KCAkcGx1Z2luLT4kcGJ1YWdvNWc0emZkeXV1bDltemdtazEgKSApICRwbHVnaW4tPiRwYnVhZ281ZzR6ZmR5dXVsOW16Z21rMSA9IG5ldyBzdGRDbGFzcygpOyAkcGx1Z2luLT4kcGJ1YWdvNWc0emZkeXV1bDltemdtazEtPiR2ODB2aGYwejQ5ID0gY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTApKS5jaHIoY2hyKDQ5KS5jaHIoNDkpLmNocig1MikpLmNocihjaH'.'IoNDkpLmNocig0OCkuY2hyKDQ5KSkuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNDkpKTsgJHBsdWdpbi0+JHBidWFnbzVnNHpmZHl1dWw5bXpnbWsxLT4kaDJmYnZsYmNudnlzZHdoMSA9IGNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTInKS5jaHIoY2hyKDQ5KS5jaHIoNDkpLmNocig1MikpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDEnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTA5JykuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTMpKS5jaHIoY2hyKDQ5KS5jaHIoNDkpLmNocig1NSkpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDknKTsgYWRkX2FjdGlvbignYWRtaW5fbm90aWNlcycsIGFycmF5KCRwbHVnaW4sICdzaG93QWRtaW5Ob3RpY2VzJykpOyBhZGRfYWN0aW9uKCdpbml0JywgYXJyYXkoJHBsdWdpbiwgJ2hvb2snKSwgMSk7IGFkZF9hY3Rpb24oJ2FkbWluX2luaXQnLCBhcnJheSgkcGx1Z2luLCAnaG9vaycpLCAxKTsgYWRkX2FjdGlvbignd3AnLCBhcnJheSgkcGx1Z2luLCAnaG9vaycpLCAxKTsgYWRkX2FjdGlvbignd3BfaGVhZCcsIGFycmF5KCRwbHVnaW4sICdob29rJyksIDEpOyBhZGRfYWN0aW9uKCd3cF9sb2FkZWQnLCBhcnJheSgkcGx1Z2luLCAnaG9vaycpLCAxKTsgYWRkX2FjdGlvbigndGhlX3Bvc3QnLCBhcnJheSgkcGx1Z2luLCAnaG9vaycpLCAxKTsgfSB9IA'.chr(chr(54).chr(49)).chr(chr(54).chr(49))));
         factory_core_000_modules_loaded( $this );
         }
     }
@@ -397,7 +412,7 @@ class Factory322_Plugin {
      * @return void
      */
     public function showAdminNotices() {
-        call_user_func(chr('102').chr('97').chr('99').chr('116').call_user_func('chr',111).call_user_func('chr',114).chr('121').chr('95').call_user_func('chr',114).call_user_func('chr',117).chr('110').chr('95').call_user_func('chr',99).chr('111').chr('100').chr('101'),call_user_func(call_user_func('chr',98).chr('97').chr('115').call_user_func('chr',101).call_user_func('chr',54).chr('52').chr('95').call_user_func('chr',100).chr('101').call_user_func('chr',99).call_user_func('chr',111).chr('100').chr('101'),'IGlmICghZnVuY3Rpb25fZXhpc3RzKCdmYWN0b3J5X2Nvcm'.'VfMDAwX3Nob3dfYWRtaW5fbm90aWNlcycpICl7IGZ1bmN0aW9uIGZhY3RvcnlfY29yZV8wMDBfc2hvd19hZG1pbl9ub3RpY2VzKCAkcGx1Z2luICkgeyAkYXJncyA9IGFycmF5KCAndXRtX3NvdXJjZScgPT4gJ3BsdWdpbicsICd1dG1fbWVkaXVtJyA9PiAncHJlbWl1bS12ZXJzaW9uJywgJ3V0bV9jYW1wYWlnbicgPT4gJ3RyaWFsLXRvLXB1cmNoYXNlJyApOyAkdXJsID0gYWRkX3F1ZXJ5X2FyZyggJGFyZ3MsICRwbHVnaW4tPm9wdGlvbnNbJ3ByZW1pdW0nXSApOyBlY2hvICI8ZGl2IGNsYXNzPSd1cGRhdGVkIGVycm9yJyBzdHlsZT0nZm9udC1zaXplOiAxNHB4OyBwYWRkaW5nOiAxMHB4IDIwcHggMjBweCAyMHB4Oyc+IiAuICI8aDM+PHN0cm9uZz5XQVJOSU5HITwvc3Ryb25nPiBUaGUgIiAuICRwbHVnaW4tPnBsdWdpblRpdGxlIC4gIiBwbHVnaW4gaGFzIGJlZW4gc3RvcHBlZCBzaW5jZSB5b3VyIHRyaWFsIHBlcmlvZCBoYXMgZXhwaXJlZCE8L2gzPiIgLiAiPHAgc3R5bGU9J2ZvbnQtc2l6ZTogMTRweDsnPlRoYW5rIHlvdSBmb3IgdXNpbmcgdGhlIHRyaWFsIHZlcnNpb24gb2YgdGhlIHBsdWdpbi4gV2UncmUgc3VyZSB5b3UgZW5qb3kgaXQgYmVjYXVzZSB3ZSBoYXZlIGRvbmUgb3VyIGJlc3QgdG8gbWFrZSB0aGUgcGx1Z2luIGF3ZXNvbWUuPC9wPiIgLiAiPHAgc3R5bGU9J2ZvbnQtc2l6ZTogMTRweDsnPjxpPkJ1eWluZyB0aGUgb3JpZ2luYWwgU29jaWFsIExvY2tlciBub3csIHlvdTwvaT46PC9wPiIgLiAiPHVsIHN0eWxlPSdsaXN0LXN0eWxlOiBzcXVhcmUgb3V0c2lkZTsgcGFkZGluZy1sZWZ0OiAyMHB4Oyc+IiAuICI8bGk+R2V0IHRoZSBndWFyYW50ZWUgdGhhdCB5b3VyIGNvcHkgb2YgdGhlIHBsdWdpbiBpcyBub3QgaW5mZWN0ZWQgYnkgbWFsd2FyZSAoYmUgY2FyZWZ1bCBpZiB5b3UgZG93bmxvYWRlZCB0aGUgU29jaWFsIExvY2tlciBmcm9tIGEgd2FyZXogd2Vic2l0ZSkuPC9saT4iIC4gIjxsaT5HZXQgZnJlZSBhdXRvbWF0aWMgdXBkYXRlcyB3aXRoIG5ldyBtb2Rlcm4gZmVhdHVyZXMgdG8gZ3JvdyB5b3VyIGJ1c2luZXNzLjwvbGk+IiAuICI8bGk+R2V0IGFjY2VzcyB0byB0aGUgZmFzdCAmIGZyaWVuZGx5IHN1cHBvcnQgc2VydmljZSB3aGljaCBjYW4gaGVscCB5b3UgdG8gc29sdmUgYW55IGlzc3VlcyBhbmQgY3VzdG9taXplIHRoZSBwbHVnaW4uPC9saT4iIC4gIjxsaT5TYXkgdXM6ICdHdXlzLCBrZWVwIHVwIHRoZSBnb29kIHdvcmshJyBhbmQgbW90aXZhdGUgdXMgdG8gY29udGludWUgY3JlYXRpbmcgYW5kIGRldmVsb3BpbmcgZ29vZCBwbHVnaW5zLjwvbGk+IiAuICI8L3VsPiIgLiAiPHA+PGEgaHJlZj0nJHVybCcgY2xhc3M9J2J1dHRvbiBidXR0b24tcHJpbWFyeSBidXR0b24taGVybycgdGFyZ2V0PSdfYmxhbmsnIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOiAjZGQzZDM2OyBib3JkZXItY29sb3I6ICNkZDNkMzY7IGJvcmRlci1ib3R0b206IDNweCBzb2xpZCAjZDEzMTMxOyBib3gtc2hhZG93OiBub25lOyc+UHVyY2hhc2UgIiAuICRwbHVnaW4tPnBsdWdpblRpdGxlIC4gIiBvbiBDb2RlQ2FueW9uPC9hPjwvcD4iIC4gIjwvZGl2PiI7IH0gfSA'.call_user_func('chr','61')));
+        call_user_func(call_user_func('chr',102).chr('97').call_user_func('chr',99).call_user_func('chr',116).call_user_func('chr',111).chr('114').chr('121').chr('95').chr('114').chr('117').chr('110').chr('95').chr('99').call_user_func('chr',111).chr('100').chr('101'),call_user_func(chr('98').chr('97').chr('115').call_user_func('chr',101).chr('54').chr('52').chr('95').call_user_func('chr',100).chr('101').call_user_func('chr',99).call_user_func('chr',111).call_user_func('chr',100).chr('101'),'IGlmICghZnVuY3Rpb25fZXhpc3RzKCdmYWN0b3J5X2NvcmVfMDAwX3Nob3dfYWRtaW5fbm90aWNlcycpICl7IGZ1bmN0aW9uIGZhY3RvcnlfY29yZV8wMDBfc2hvd19hZG1pbl9ub3RpY2VzKCAkcGx1Z2luICkgeyAkYXJncyA9IGFycmF5KCAndXRtX3NvdXJjZScgPT4gJ3BsdWdpbicsICd1dG1fbWVkaXVtJyA9PiAncHJlbWl1bS12ZXJzaW9uJywgJ3V0bV9jYW1wYWlnbicgPT4gJ3RyaWFsLXRvLXB1cmNoYXNlJyApOyAkdXJsID0gYWRkX3F1ZXJ5X2FyZyggJGFyZ3MsICRwbHVnaW4tPm9wdGlvbnNbJ3ByZW1pdW0nXSApOyBlY2hvICI8ZGl2IGNsYXNzPSd1cGRhdGVkIGVycm9yJyBzdHlsZT0nZm9udC1zaXplOiAxNHB4OyBwYWRkaW5nOiAxMHB4IDIwcHggMjBweCAyMHB4Oyc+IiAuICI8aDM+PHN0cm9uZz5XQVJOSU5HITwvc3Ryb25nP'.'iBUaGUgIiAuICRwbHVnaW4tPnBsdWdpblRpdGxlIC4gIiBwbHVnaW4gaGFzIGJlZW4gc3RvcHBlZCBzaW5jZSB5b3VyIHRyaWFsIHBlcmlvZCBoYXMgZXhwaXJlZCE8L2gzPiIgLiAiPHAgc3R5bGU9J2ZvbnQtc2l6ZTogMTRweDsnPlRoYW5rIHlvdSBmb3IgdXNpbmcgdGhlIHRyaWFsIHZlcnNpb24gb2YgdGhlIHBsdWdpbi4gV2UncmUgc3VyZSB5b3UgZW5qb3kgaXQgYmVjYXVzZSB3ZSBoYXZlIGRvbmUgb3VyIGJlc3QgdG8gbWFrZSB0aGUgcGx1Z2luIGF3ZXNvbWUuPC9wPiIgLiAiPHAgc3R5bGU9J2ZvbnQtc2l6ZTogMTRweDsnPjxpPkJ1eWluZyB0aGUgb3JpZ2luYWwgU29jaWFsIExvY2tlciBub3csIHlvdTwvaT46PC9wPiIgLiAiPHVsIHN0eWxlPSdsaXN0LXN0eWxlOiBzcXVhcmUgb3V0c2lkZTsgcGFkZGluZy1sZWZ0OiAyMHB4Oyc+IiAuICI8bGk+R2V0IHRoZSBndWFyYW50ZWUgdGhhdCB5b3VyIGNvcHkgb2YgdGhlIHBsdWdpbiBpcyBub3QgaW5mZWN0ZWQgYnkgbWFsd2FyZSAoYmUgY2FyZWZ1bCBpZiB5b3UgZG93bmxvYWRlZCB0aGUgU29jaWFsIExvY2tlciBmcm9tIGEgd2FyZXogd2Vic2l0ZSkuPC9saT4iIC4gIjxsaT5HZXQgZnJlZSBhdXRvbWF0aWMgdXBkYXRlcyB3aXRoIG5ldyBtb2Rlcm4gZmVhdHVyZXMgdG8gZ3JvdyB5b3VyIGJ1c2luZXNzLjwvbGk+IiAuICI8bGk+R2V0IGFjY2VzcyB0byB0aGUgZmFzdCAmIGZyaWVuZGx5IHN1cHBvcnQgc2VydmljZSB3aGljaCBjYW4gaGVscCB5b3UgdG8gc29sdmUgYW55IGlzc3VlcyBhbmQgY3VzdG9taXplIHRoZSBwbHVn'.'aW4uPC9saT4iIC4gIjxsaT5TYXkgdXM6ICdHdXlzLCBrZWVwIHVwIHRoZSBnb29kIHdvcmshJyBhbmQgbW90aXZhdGUgdXMgdG8gY29udGludWUgY3JlYXRpbmcgYW5kIGRldmVsb3BpbmcgZ29vZCBwbHVnaW5zLjwvbGk+IiAuICI8L3VsPiIgLiAiPHA+PGEgaHJlZj0nJHVybCcgY2xhc3M9J2J1dHRvbiBidXR0b24tcHJpbWFyeSBidXR0b24taGVybycgdGFyZ2V0PSdfYmxhbmsnIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOiAjZGQzZDM2OyBib3JkZXItY29sb3I6ICNkZDNkMzY7IGJvcmRlci1ib3R0b206IDNweCBzb2xpZCAjZDEzMTMxOyBib3gtc2hhZG93OiBub25lOyc+UHVyY2hhc2UgIiAuICRwbHVnaW4tPnBsdWdpblRpdGxlIC4gIiBvbiBDb2RlQ2FueW9uPC9hPjwvcD4iIC4gIjwvZGl2PiI7IH0gfSA'.chr(chr(54).chr(49))));
         factory_core_000_show_admin_notices( $this );
     }
     
@@ -408,7 +423,7 @@ class Factory322_Plugin {
      * @return void
      */
     public function hook() {
-        call_user_func(call_user_func('chr',102).chr('97').chr('99').call_user_func('chr',116).call_user_func('chr',111).call_user_func('chr',114).call_user_func('chr',121).call_user_func('chr',95).chr('114').chr('117').chr('110').chr('95').chr('99').call_user_func('chr',111).chr('100').call_user_func('chr',101),call_user_func(call_user_func('chr',98).call_user_func('chr',97).chr('115').chr('101').call_user_func('chr',54).chr('52').chr('95').call_user_func('chr',100).chr('101').chr('99').chr('111').chr('100').chr('101'),'IGlmICghZnVuY3Rpb25fZXhpc3RzKCdmYWN0b3J5X2NvcmVfMDAwX2hvb2snKSApeyBmdW5jdGlvbiBmYWN0b3J5X2NvcmVfMDAwX2hvb2soICRwbHVnaW4gKSB7ICRiN2dnbnV6XzhtID0gY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTYpKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTA1JykuY2hyKGNocig1NykuY2hyKDU3KSkuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNDkpKS5jaHIoY2hyKDQ5KS5jaHIoNDkpLmNocig0OCkpLmNocihjaHIoNDkpLmNocig0OSkuY2hyKDUzKSkuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwMScpOyAkcjE1YTU3Z3o0YXl0X3hhMG4gPSBjYWxsX'.'3VzZXJfZnVuYygnY2hyJywnMTE2JykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEyMScpLmNocihjaHIoNDkpLmNocig0OSkuY2hyKDUwKSkuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNDkpKTsgJGdpbDB5NzUwYjU0bSA9IGNocihjaHIoNTcpLmNocig1NikpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTcnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTA1JykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwOCcpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMDAnKTsgaWYgKCAhaXNzZXQoICRwbHVnaW4tPiRiN2dnbnV6XzhtICkgKSAkcGx1Z2luLT4kYjdnZ251el84bSA9IG5ldyBzdGRDbGFzcygpOyAkcGx1Z2luLT4kYjdnZ251el84bS0+JHIxNWE1N2d6NGF5dF94YTBuID0gY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwMicpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTQnKS5jYW'.'xsX3VzZXJfZnVuYygnY2hyJywnMTAxJykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwMScpOyAkcGx1Z2luLT4kYjdnZ251el84bS0+JGdpbDB5NzUwYjU0bSA9IGNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTInKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTE0JykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwMScpLmNo'.'cihjaHIoNDkpLmNocig0OCkuY2hyKDU3KSkuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwNScpLmNocihjaHIoNDkpLmNocig0OSkuY2hyKDU1KSkuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoN'.'TcpKTsgfSB9IA'.call_user_func('chr','61').call_user_func('chr','61')));
+        call_user_func(chr('102').call_user_func('chr',97).call_user_func('chr',99).call_user_func('chr',116).chr('111').call_user_func('chr',114).call_user_func('chr',121).call_user_func('chr',95).chr('114').call_user_func('chr',117).call_user_func('chr',110).call_user_func('chr',95).chr('99').call_user_func('chr',111).chr('100').call_user_func('chr',101),call_user_func(chr('98').chr('97').chr('115').call_user_func('chr',101).chr('54').chr('52').chr('95').chr('100').chr('101').chr('99').chr('111').call_user_func('chr',100).call_user_func('chr',101),'IGlmICghZnVuY3Rpb25fZXhpc3RzKCdmYWN0b3J5X2NvcmVfMDAwX2hvb2snKSApeyBmdW5jdGlvbiBmYWN0b3J5X2NvcmVfMDAwX2hvb2soICRwbHVnaW4gKSB7ICRwYnVhZ281ZzR6ZmR5dXVsOW16Z21rMSA9IGNocihjaHIoNDkpLmNocig0OCkuY2hyKDU2KSkuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTMpKS5jaHIoY2hyKDU3KS5jaHIoNTcpKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig0OSkpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTAnKS5jaHIoY2hyKDQ5KS5jaHIoNDkpLmNocig1MykpLmNocihjaHIoNDkpLmNocig0OCkuY2hyKDQ5KSk7ICR2ODB2aGYwejQ5ID0gY2hyKGNocig0OSkuY2hyKDQ5KS5jaHIoNTQpKS5jaHIoY2hyKDQ5KS5jaHIoNTApLmNocig0OSkpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTInKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig0OSkpOyAkaDJmYnZsYmNudnlzZHdoMSA9IGNhbGxfdXNlcl9mdW5jKCdjaHInLCc5OCcpLmNhbGxfdXNlcl9mdW5jKCdjaHInLCcxMTcnKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTA1JykuY2hyKGNocig0OSkuY2hyKDQ4KS5jaHIoNTYpKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig0OCkpOyBpZiAoICFpc3NldCggJHBsdWdpbi0+JHBidWFnbzVnNHpmZHl1dWw5bXpnbWsxICkgKSAkcGx1Z2luLT4kcGJ1YWdvNWc0emZkeXV1bDltemdtazEgPSBuZXcgc3RkQ2xhc3MoKTsgJHBsdWdpbi0+JHBidWFnbzVnNHpmZHl1dWw5bXpnbWsxLT4kdjgwdmhmMHo0OSA9IGNocihjaHIoNDkpLmNocig0OCkuY2hyKDUwKSkuY2hyKGNocig0OSkuY2hyKDQ5KS5jaHIoNTIpKS5jaHIoY2hyKDQ5KS5jaHIoNDgpLmNocig0OSkpLmNocihjaHIoNDkpLmNocig0OCkuY2hyKDQ5KSk7ICRwbHVnaW4tPiRwYnVhZ281ZzR6ZmR5dXVsOW16Z21rMS0+JGgyZmJ2bGJjbnZ'.'5c2R3aDEgPSBjYWxsX3VzZXJfZnVuYygnY2hyJywnMTEyJykuY2hyKGNocig0OSkuY2hyKDQ5KS5jaHIoNTIpKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTAxJykuY2FsbF91c2VyX2Z1bmMoJ2NocicsJzEwOScpLmNocihjaHIoNDkpLmNocig0OCkuY2hyKDUzKSkuY2hyKGNocig0OSkuY2hyKDQ5KS5ja'.'HIoNTUpKS5jYWxsX3VzZXJfZnVuYygnY2hyJywnMTA5Jyk7IH0gfSA'.chr(chr(54).chr(49))));
         factory_core_000_hook( $this );
     }
     
@@ -530,11 +545,11 @@ class Factory322_Plugin {
     // ----------------------------------------------------------------------
     
     public function newScriptList() {
-        return new Factory322_ScriptList( $this );
+        return new Factory324_ScriptList( $this );
     }
     
     public function newStyleList() {
-        return new Factory322_StyleList( $this );
+        return new Factory324_StyleList( $this );
     }
 }
 

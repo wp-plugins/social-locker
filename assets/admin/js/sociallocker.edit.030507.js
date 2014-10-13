@@ -295,6 +295,8 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                 options.text = options.text.message;
             }
             
+
+            
             if ( window.onpsl.lockerEditor.filterOptions ) {
                 options = window.onpsl.lockerEditor.filterOptions( options );
             }
@@ -463,7 +465,7 @@ if ( !window.onpsl.lockerEditor ) window.onpsl.lockerEditor = {};
                     this.disableVisiblityOptions();
                 }
 
-                $("#onp-sl-bulk-lock-modal").factoryBootstrap324_modal("hide");
+                $("#onp-sl-bulk-lock-modal").factoryBootstrap325_modal("hide");
                 
                 // generating hidden fields to save on form submitting
                 

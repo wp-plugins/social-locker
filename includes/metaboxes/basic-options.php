@@ -51,7 +51,7 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
      */
     public $priority = 'core';
 	
-    public $cssClass = 'factory-bootstrap-324 factory-fontawesome-320';
+    public $cssClass = 'factory-bootstrap-325 factory-fontawesome-320';
 
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
@@ -79,11 +79,8 @@ class OnpSL_BasicOptionsMetaBox extends FactoryMetaboxes320_FormMetabox
                     'type'  => 'textbox',
                     'name'  => 'common_url',
                     'title' => __('URL to share', 'sociallocker'),
-                    'hint'  => sprintf(__('Enter the URL that you want your visitors to like, tweet or +1. Or, you can leave this field empty to use the URL of the page where the locker is located.
-                               Need a separate URL for each button? Try a 
-                               <a href="%s">
-                               premium version</a> of the plugin.', 'sociallocker'), onp_sl_get_premium_url() ),
-                    'placeholder'   => 'http://url-to-share.com'
+                    'hint'  => sprintf(__('Enter the URL that you want your visitors to like, tweet or +1. Or, you can leave this field empty to use the URL of the page where the locker is located. Need a separate URL for each button? Try a <a href="%s">premium version</a> of the plugin.', 'sociallocker'), onp_sl_get_premium_url() ),
+                    'placeholder'   =>  __('http://url-to-share.com', 'sociallocker')
               ),
           ));
         

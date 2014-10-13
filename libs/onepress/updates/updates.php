@@ -26,7 +26,7 @@ class OnpUpdates323_Manager {
      * Current factory plugin.
      * 
      * @since 1.0.0
-     * @var Factory322_Plugin 
+     * @var Factory324_Plugin 
      */
     public $plugin;
     

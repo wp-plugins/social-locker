@@ -19,7 +19,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
     
     public $id = "how-to-use";
     
-    public function __construct(Factory322_Plugin $plugin) {   
+    public function __construct(Factory324_Plugin $plugin) {   
         parent::__construct($plugin);
         $this->menuTitle = __('How to use?', 'sociallocker');
     }
@@ -50,13 +50,15 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
                     'name' => 'troubleshooting',
                     'function' => array( $this, 'troubleshooting'),
                     'title' => __('Troubleshooting', 'sociallocker')
-                ),
-                array(
+                )
+            );
+                $items[] = array(
                     'name' => 'premium',
                     'function' => array( $this, 'premium'),
                     'title' => '<i class="fa fa-star-o"></i> ' . __('Premium Version', 'sociallocker') . ' <i class="fa fa-star-o"></i>'
-                )
-            );
+                );
+            
+
             
         
 
@@ -74,7 +76,11 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
         <div class="onp-help-nav">
             <ul>
             <?php foreach( $pages as $page ) { ?>
+                <?php if ( isset( $page['url'] ) ) { ?>
+                <li><a href='<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>' target="_blank"><?php echo $page['title'] ?></a></li>
+                <?php } else { ?>
                 <li><a href='<?php $this->actionUrl('index', array('onp_sl_page' => $page['name'])) ?>'><?php echo $page['title'] ?></a></li>
+                <?php } ?>
             <?php } ?>
             </ul>
         </div>
@@ -101,7 +107,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
         
         ?>
         
-        <div class="wrap factory-bootstrap-324 factory-fontawesome-320">
+        <div class="wrap factory-bootstrap-325 factory-fontawesome-320">
             <?php $this->showNav('getting-started') ?>
             <div class="onp-help-content">
                 
@@ -461,7 +467,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
             
             <?php } else { ?>
             
-            <div class='factory-bootstrap-324'>
+            <div class='factory-bootstrap-325'>
                 <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>">
                     <i class="fa fa-star"></i>
                     Purchase Social Locker Premium For $24
@@ -592,7 +598,7 @@ class OnpSL_HowToUsePage extends FactoryPages320_AdminPage  {
 
         <?php } else { ?>
         <div class="onp-help-section">
-            <div class='factory-bootstrap-324'>
+            <div class='factory-bootstrap-325'>
                 <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_324_get_purchase_url( $this->plugin ) ?>">
                     <i class="fa fa-star"></i>
                     Purchase Social Locker Premium For $24

@@ -74,7 +74,7 @@ class FactoryNotices322 {
         ?>
 
         <?php if ( $this->hasNotices ) { ?>
-        <div class="updated factory-bootstrap-324 factory-fontawesome-320 factory-notices-322-notices">
+        <div class="updated factory-bootstrap-325 factory-fontawesome-320 factory-notices-322-notices">
         <?php
         foreach ($this->notices as $notice) {
             $this->showNotice($notice);

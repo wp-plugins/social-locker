@@ -184,3 +184,8 @@ thead .onp-how-premium {
     -webkit-text-shadow: none;  
     text-shadow: none;
 }
+
+/* hides the vk note on the how to use page */
+.onp-sl-vk-note {
+    display: none;
+}

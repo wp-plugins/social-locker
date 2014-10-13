@@ -55,7 +55,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
      */
     protected $languages;
     
-    public function __construct(Factory322_Plugin $plugin) {   
+    public function __construct(Factory324_Plugin $plugin) {   
         parent::__construct($plugin);
         $this->menuTitle = __('Global Settings', 'sociallocker');
     }
@@ -85,8 +85,8 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             'control.checkbox'
             ), 'bootstrap' ); 
         
-        $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/settings.030000.js');
-        $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/settings.030000.css');   
+        $this->scripts->add(ONP_SL_PLUGIN_URL . '/assets/admin/js/settings.030702.js');
+        $this->styles->add(ONP_SL_PLUGIN_URL . '/assets/admin/css/settings.030702.css');   
         
         
     }
@@ -203,150 +203,110 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             'name'  => 'common-setting'
         ), $sociallocker );
         
-        $form->controlTheme = 'mendeleev-000';
         $form->setProvider( new FactoryForms324_OptionsValueProvider(array(
             'scope' => 'sociallocker'
         )));
         
         
         
-        $form->add(array(
-            
-            array(
-                'type'      => 'textbox',
-                'name'      => 'facebook_appid',
-                'title'     => __( 'Facebook App ID', 'sociallocker' ),
-                'hint'      => __( 'The Facebook App Id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specifically for your domain. Please check out <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> for more information.', 'sociallocker' )
-            )
-        ));
+        $formOptions = array();
+        
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'textbox',
+            'name'      => 'facebook_appid',
+            'title'     => __( 'Facebook App ID', 'sociallocker' ),
+            'hint'      => __( 'The Facebook App Id. By default, the developer app id is used. If you want to use the Facebook Share button you should register another app id specifically for your domain. Please check out <a style="font-weight: bold;" target="_blank" href="http://support.onepress-media.com/how-to-register-a-facebook-app/">this article</a> for more information.', 'sociallocker' )
+        );
    
-        $form->add(array(       
-            array(
-                'type'      => 'dropdown',
-                'name'      => 'lang',
-                'title'     => __( 'Language of buttons', 'sociallocker' ),
-                'data'      => $this->languages,
-                'hint'      => __( 'Choose the language that will be used for social buttons.', 'sociallocker' ),
-            ),
-            array(
-                'type'      => 'dropdown',
-                'way'       => 'buttons',
-                'name'      => 'facebook_version',
-                'title'     => __( 'Facebook API Version', 'sociallocker' ),
-                'default'   => 'v1.0',
-                'data'      => array(
-                    array('v1.0', 'v1.0'),
-                    array('v2.0', 'v2.0')       
-                 ),
-                'hint'      => __( 'Optional. Use the most recent version of the API (v2.0) but if Facebook buttons don\'t work on your website try to switch the API to the v1.0. Please note currently the v2.0 does not allow to change the language of the Facebook buttons. On all probability it\'s a bug on the Facebook side.', 'sociallocker' ),
-            ),            
-            array(
-                'type' => 'separator'
-            ),
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'interrelation',
-                'title'     => __( 'Interrelation', 'sociallocker' ),
-                'hint'      => __( 'Set On to make lockers interrelated. When one of the interrelated lockers are unlocked on your site, the others will be unlocked too.<br /> Recommended to turn on, if you use the Batch Locking feature.', 'sociallocker' ),
-                'default'   => false
-            ), 
-            array(
-                'type' => 'separator'
-            ),
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'dynamic_theme',
-                'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
-                'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working (if everything works properly, don\'t turn on this option).', 'sociallocker' )
-            ),
-            array(
-                'type'      => 'div',
-                'id'        => 'onp-dynamic-theme-options',
-                'items'     => array(
-                    
-                    array(
-                        'type'      => 'textbox',
-                        'name'      => 'dynamic_theme_event',
-                        'title'     => __( 'jQuery Events', 'sociallocker' ),
-                        'hint'      => __( 'If pages of your site are loaded dynamically via ajax, it\'s necessary to catch ' . 
-                                       'the moment when the page is loaded in order to appear the locker.<br />By default the plugin covers ' .
-                                       '99% possible events. So <strong>you don\'t need to set any value here</strong>.<br />' .
-                                       'But if you know how it works and sure that it will help, you can put here the javascript event ' .
-                                       'that triggers after loading of pages on your site.', 'sociallocker' )
-                    )   
-                )
-            ), 
-            array(
-                'type' => 'separator'
-            ),
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'google_analytics',
-                'title'     => __( 'Google Analytics', 'sociallocker' ),
-                'hint'      => __( 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.', 'sociallocker' )
-            ),
-            array(
-                'type'      => 'html',
-                'html'      => array($this, 'statsHtml')
-            ),
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',  
-                'name'      => 'tracking',
-                'title'     => __( 'Collecting Stats', 'sociallocker' ),
-                'data'      => $this->languages,
-                'hint'      => __( 'Turns on collecting the statistical data for reports.', 'sociallocker' )
-            ),
-            array(
-                'type' => 'separator'
-            ),  
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'rss',
-                'title'     => __( 'Locked content<br /> is visible in RSS feeds', 'sociallocker' ),
-                'hint'      => __( 'Set On to make locked content visible in RSS feed.', 'sociallocker' ),
-                'default'   => false
-            ),
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'actual_urls',
-                'title'     => __( 'Actual URLs by default', 'sociallocker' ),
-                'hint'      => __( 'Optional. If you do not set explicitly URLs to like/share in the settings of social buttons, then by default the plugin will use an URL of the page where the locker is located. Turn on this option to extract URLs to like/share from an address bar of the user browser, saving all query arguments. By default (when this option disabled) permalinks are used.', 'sociallocker' ),
-                'default'   => false
-            ),
-            array(
-                'type' => 'separator'
-            ),
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'tumbler',
-                'title'     => __( 'Anti-Cheating', 'sociallocker' ),
-                'default'   => false,
-                'hint'      => __( 'Turn it on to protect your locked content against cheating from visitors. Some special browser extensions allow to view the locked content without actual sharing. This option checks whether the user has really liked/shared your page. In future versions of the plugin, we will make this option active by default.', 'sociallocker' )
-            ),       
-            array(
-                'type'      => 'textbox',
-                'name'      => 'timeout',
-                'title'     => __( 'Timeout of waiting<br />loading the locker (in ms)', 'sociallocker' ),
-                'default'   => '10000',
-                'hint'      => __( 'The use can have browser extensions which block loading scripts from social networks. If the social buttons have not been loaded within the specified timeout, the locker shows the error (in the red container) alerting about that a browser blocks loading of the social buttons.<br />', 'sociallocker' )
-            ),   
-            array(
-                'type'      => 'checkbox',
-                'way'       => 'buttons',
-                'name'      => 'debug',
-                'title'     => __( 'Debug', 'sociallocker' ),
-                'data'      => $this->languages,
-                'hint'      => __( 'When this option turned on, the locker appears always, ignoring any settings, even if the user already unlocked the content.', 'sociallocker' )
-            ),
-            
-        ));
+        $formOptions[] = array(
+            'type'      => 'dropdown',
+            'name'      => 'lang',
+            'title'     => __( 'Language of buttons', 'sociallocker' ),
+            'data'      => $this->languages,
+            'hint'      => __( 'Choose the language that will be used for social buttons.', 'sociallocker' ),
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'dropdown',
+            'way'       => 'buttons',
+            'name'      => 'facebook_version',
+            'title'     => __( 'Facebook API Version', 'sociallocker' ),
+            'default'   => 'v1.0',
+            'data'      => array(
+                array('v1.0', 'v1.0'),
+                array('v2.0', 'v2.0')       
+             ),
+            'hint'      => __( 'Optional. Use the most recent version of the API (v2.0) but if Facebook buttons don\'t work on your website try to switch the API to the v1.0. Please note currently the v2.0 does not allow to change the language of the Facebook buttons. On all probability it\'s a bug on the Facebook side.', 'sociallocker' ),
+        );
+
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'interrelation',
+            'title'     => __( 'Interrelation', 'sociallocker' ),
+            'hint'      => __( 'Set On to make lockers interrelated. When one of the interrelated lockers are unlocked on your site, the others will be unlocked too.<br /> Recommended to turn on, if you use the Batch Locking feature.', 'sociallocker' ),
+            'default'   => false
+        );
+
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'google_analytics',
+            'title'     => __( 'Google Analytics', 'sociallocker' ),
+            'hint'      => __( 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.', 'sociallocker' )
+        );
+        
+
+        $formOptions[] = array(
+            'type'      => 'html',
+            'html'      => array($this, 'statsHtml')
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',  
+            'name'      => 'tracking',
+            'title'     => __( 'Collecting Stats', 'sociallocker' ),
+            'data'      => $this->languages,
+            'hint'      => __( 'Turns on collecting the statistical data for reports.', 'sociallocker' )
+        );
+        
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+
+        $formOptions[] = array(
+            'type'      => 'html',
+            'html'      => array($this, 'advancedOptionsHtml')
+        );
+
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'debug',
+            'title'     => __( 'Debug', 'sociallocker' ),
+            'data'      => $this->languages,
+            'hint'      => __( 'When this option turned on, the locker appears always, ignoring any settings, even if the user already unlocked the content.', 'sociallocker' )
+        );
+        
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+
+        $formOptions = apply_filters('onp_sl_settings_options', $formOptions );
+        $form->add($formOptions);
         
         if ( isset( $_POST['save-action'] ) ) {
             $form->save();
@@ -374,15 +334,16 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                 }
             }
             
-            return $this->redirectToAction('index', array('saved' => 1));
+            $redirectArgs = apply_filters('onp_sl_settings_options_redirect_args', array('saved' => 1 ) );
+            return $this->redirectToAction('index', $redirectArgs);
         }
 
         ?>
         <div class="wrap ">
             <h2><?php _e('Global Settings', 'sociallocker') ?></h2>
-            <p style="margin-top: 0px;"><?php _e('These settings are applied to all social lockers.', 'sociallocker') ?></p>
+            <p style="margin-top: 0px;"><?php _e('The settings below are applied to all your social lockers.', 'sociallocker') ?></p>
             
-            <div class="factory-bootstrap-324">
+            <div class="factory-bootstrap-325">
             <form method="post" class="form-horizontal">
 
                 <?php if ( isset( $_GET['saved'] ) ) { ?>
@@ -390,15 +351,187 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                     <p>The settings have been updated successfully!</p>
                 </div>
                 <?php } ?>
+                
+                <?php do_action('onp_sl_settings_options_notices') ?>
 
                 <div style="padding-top: 10px;">
                 <?php $form->html(); ?>
                 </div>
-                    
+                
                 <div class="form-group form-horizontal">
                     <label class="col-sm-2 control-label"> </label>
                     <div class="control-group controls col-sm-10">
-                    <input name="save-action" class="btn btn-primary" type="submit" value="<?php _e('Save changes', 'sociallocker') ?>"/>
+                        <input name="save-action" class="btn btn-primary" type="submit" value="<?php _e('Save changes', 'sociallocker') ?>"/>
+                    </div>
+                </div>
+            
+            </form>
+            </div>  
+                
+        </div>
+        <?php
+    }
+    
+    /**
+     * A page to edit the Advanced Options.
+     * 
+     * @since v3.7.2
+     * @return vod
+     */
+    public function advancedAction() {
+        global $sociallocker;
+        
+        $form = new FactoryForms324_Form(array(
+            'scope' => 'sociallocker',
+            'name'  => 'advanced-setting'
+        ), $sociallocker );
+        
+        $form->setProvider( new FactoryForms324_OptionsValueProvider(array(
+            'scope' => 'sociallocker'
+        )));
+        
+        $formOptions = array();
+        
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'dynamic_theme',
+            'title'     => __( 'I use a dynamic theme', 'sociallocker' ),
+            'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working (if everything works properly, don\'t turn on this option).', 'sociallocker' )
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'div',
+            'id'        => 'onp-dynamic-theme-options',
+            'items'     => array(
+
+                array(
+                    'type'      => 'textbox',
+                    'name'      => 'dynamic_theme_event',
+                    'title'     => __( 'jQuery Events', 'sociallocker' ),
+                    'hint'      => __( 'If pages of your site are loaded dynamically via ajax, it\'s necessary to catch ' . 
+                                   'the moment when the page is loaded in order to appear the locker.<br />By default the plugin covers ' .
+                                   '99% possible events. So <strong>you don\'t need to set any value here</strong>.<br />' .
+                                   'But if you know how it works and sure that it will help, you can put here the javascript event ' .
+                                   'that triggers after loading of pages on your site.', 'sociallocker' )
+                )   
+            )
+        );
+        
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'dropdown',
+            'name'      => 'alt_overlap_mode',
+            'data'      => array(
+                array( 'full', 'Classic (full)' ),
+                array( 'transparence', 'Transparency' )    
+            ),
+            'default'   => 'transparence',
+            'title'     => __( 'Alt Overlap Mode', 'sociallocker' ),
+            'hint'      => __( 'This overlap mode will be applied for browsers which don\'t support the blurring effect.', 'sociallocker' )
+        );
+
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'rss',
+            'title'     => __( 'Locked content<br /> is visible in RSS feeds', 'sociallocker' ),
+            'hint'      => __( 'Set On to make locked content visible in RSS feed.', 'sociallocker' ),
+            'default'   => false
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'actual_urls',
+            'title'     => __( 'Actual URLs by default', 'sociallocker' ),
+            'hint'      => __( 'Optional. If you do not set explicitly URLs to like/share in the settings of social buttons, then by default the plugin will use an URL of the page where the locker is located. Turn on this option to extract URLs to like/share from an address bar of the user browser, saving all query arguments. By default (when this option disabled) permalinks are used.', 'sociallocker' ),
+            'default'   => false
+        );
+
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'tumbler',
+            'title'     => __( 'Anti-Cheating', 'sociallocker' ),
+            'default'   => false,
+            'hint'      => __( 'Turn it on to protect your locked content against cheating from visitors. Some special browser extensions allow to view the locked content without actual sharing. This option checks whether the user has really liked/shared your page. In future versions of the plugin, we will make this option active by default.', 'sociallocker' )
+        );
+        
+        $formOptions[] = array(
+            'type'      => 'dropdown',
+            'name'      => 'na_mode',
+            'data'      => array(
+                array( 'show-error', 'Show the error' ),
+                array( 'show-content', 'Remove the locker, show the content' )    
+            ),
+            'title'     => __( 'If N/A, what to do?', 'sociallocker' ),
+            'default'   => false,
+            'hint'      => __( 'Optional. Select what the locker should to do if the social buttons have not been loaded. At this case, the locker is not available to use. It occurs if the visitor uses the extensions like Avast or Adblock which may block social networks. By default the locker shows the error and the offer to disable the extensions.<br /><i>How to test? Set the option "Timeout of waiting loading the locker (in ms)" to 1</i>.', 'sociallocker' )
+        );
+
+        $formOptions[] = array(
+            'type'      => 'textbox',
+            'name'      => 'timeout',
+            'title'     => __( 'Timeout of waiting<br />loading the locker (in ms)', 'sociallocker' ),
+            'default'   => '10000',
+            'hint'      => __( 'The use can have browser extensions which block loading scripts from social networks. If the social buttons have not been loaded within the specified timeout, the locker shows the error (in the red container) alerting about that a browser blocks loading of the social buttons.<br />', 'sociallocker' )
+        );
+ 
+        $formOptions[] = array(
+            'type' => 'separator'
+        );
+
+        
+        $formOptions = apply_filters('onp_sl_advanced_settings', $formOptions );
+        $form->add($formOptions);
+        
+        if ( isset( $_POST['save-action'] ) ) {
+            $form->save();
+            
+            $redirectArgs = apply_filters('onp_sl_advanced_settings_redirect_args', array('saved' => 1 ) );
+            return $this->redirectToAction('advanced', $redirectArgs);
+        }
+        
+        ?>
+        <div class="wrap ">
+            <h2><?php _e('Advanced Settings', 'sociallocker') ?></h2>
+            <p style="margin-top: 0px;">
+                <?php _e('A set of extra options for advanced users and for troubleshooting.', 'sociallocker' )?><br />
+                <?php printf( __('It\'s not recommended to change them if you are not sure that you do. If the plugin does\'t work, <a href="%s">contact us</a> at first.', 'sociallocker'), admin_url('/admin.php?page=how-to-use-' . $sociallocker->pluginName . '&onp_sl_page=troubleshooting&action=index') ) ?>
+            </p>
+            
+            <div class="factory-bootstrap-325">
+            <form method="post" class="form-horizontal">
+
+                <?php if ( isset( $_GET['saved'] ) ) { ?>
+                <div id="message" class="alert alert-success">
+                    <p>The settings have been updated successfully!</p>
+                </div>
+                <?php } ?>
+                
+                <?php do_action('onp_sl_advanced_settings_notices') ?>
+
+                <div style="padding-top: 10px;">
+                <?php $form->html(); ?>
+                </div>
+
+                <div class="form-group form-horizontal">
+                    <label class="col-sm-2 control-label"> </label>
+                    <div class="control-group controls col-sm-10">
+                        <input name="save-action" class="btn btn-primary" type="submit" value="<?php _e('Save changes', 'sociallocker') ?>"/>
+                        <a class="btn btn-default" href="<?php $this->actionUrl('index') ?>"><?php _e('Return back', 'sociallocker') ?></a>
                     </div>
                 </div>
             
@@ -423,7 +556,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
             "table_schema = '" . DB_NAME . "' AND table_name = '{$wpdb->prefix}so_tracking'");
         
         $count = $wpdb->get_var("SELECT COUNT(*) AS n FROM {$wpdb->prefix}so_tracking");
-        $humanDataSize = factory_322_get_human_filesize( $dataSizeInBytes );
+        $humanDataSize = factory_324_get_human_filesize( $dataSizeInBytes );
         
         ?>
             <div class="form-group">
@@ -434,11 +567,29 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
                         <?php printf( __( 'The statistical data is <strong>empty</strong>.', 'sociallocker' ), $humanDataSize ); ?>
                         <?php } else { ?>
                         <?php printf( __( 'The statistical data takes <strong>%s</strong> on your server', 'sociallocker' ), $humanDataSize ); ?>
-                        (<a href="<?php $this->actionUrl('clearStatsData') ?>"><?php _e('remove', 'sociallocker') ?></a>)
+                        <a class="button" style="margin-left: 5px;" href="<?php $this->actionUrl('clearStatsData') ?>"><?php _e('clear data', 'sociallocker') ?></a>
                         <?php } ?>
                     </p>
                 </div>
             </div>
+        <?php
+    }
+    
+    /**
+     * Shows the button to show the advanced options.
+     * 
+     * @sinve 3.7.1
+     * @return void
+     */
+    public function advancedOptionsHtml() {
+        ?>
+        <div class="form-group form-horizontal">
+            <label class="col-sm-2 control-label"><?php _e('Advanced Options', 'sociallocker') ?></label>
+            <div class="control-group controls col-sm-10">
+                <a class="btn btn-default" href="<?php $this->actionUrl('advanced') ?>"><?php _e('Show advanced options', 'sociallocker') ?></a>
+                <div class='help-block'><?php _e('A set of extra options for advanced users and for troubleshooting. It\'s not recommended to change them if you are not sure that you do.', 'sociallocker') ?></div>
+            </div>
+        </div>
         <?php
     }
     
@@ -452,19 +603,19 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
         
         if ( !isset( $_REQUEST['onp_confirmed'] ) ) {
             return $this->confirm(array(
-                'title' => __('Are you sure that you want to clear the current statistical data?', 'wppolice'),
-                'description' => __('All the statistical data will be removed.', 'wppolice'),
+                'title' => __('Are you sure that you want to clear the current statistical data?', 'sociallocker'),
+                'description' => __('All the statistical data will be removed.', 'sociallocker'),
                 'actions' => array(
                     'onp_confirm' => array(
                         'class' => 'btn btn-danger',
-                        'title' => __("Yes, I'm sure", 'wppolice'),
+                        'title' => __("Yes, I'm sure", 'sociallocker'),
                         'url' => $this->getActionUrl('clearStatsData', array(
                             'onp_confirmed' => true
                         ))
                     ),
                     'onp_cancel' => array(
                         'class' => 'btn btn-default',
-                        'title' => __("No, return back", 'wppolice'),
+                        'title' => __("No, return back", 'sociallocker'),
                         'url' => $this->getActionUrl('index')
                     ),
                 )
@@ -484,7 +635,7 @@ class OnpSL_CommonSettingsPage extends FactoryPages320_AdminPage  {
      */
     public function confirm( $data ) {
         ?>
-        <div class="onp-page-wrap factory-bootstrap-324" id="onp-confirm-dialog">
+        <div class="onp-page-wrap factory-bootstrap-325" id="onp-confirm-dialog">
             <div id="onp-confirm-dialog-wrap">
                 <h1><?php echo $data['title'] ?></h1>
                 <p><?php echo $data['description'] ?></p>

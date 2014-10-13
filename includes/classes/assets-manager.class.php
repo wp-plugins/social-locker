@@ -105,7 +105,9 @@ class OnpSL_AssetsManager {
         </script>
         <style>
             <?php foreach( self::$_cssOptionsToPrint as $options ) { ?>
+            <?php if ( $options['overlap-mode'] === 'full' ) { ?>
             <?php echo $options['css-selector'] ?> { display: none; }
+            <?php } ?>
             <?php } ?>
         </style>
         <!-- / -->
@@ -152,12 +154,12 @@ class OnpSL_AssetsManager {
         
             wp_enqueue_style( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030608.min.css'
+                ONP_SL_PLUGIN_URL . '/assets/css/jquery.op.sociallocker.030701.min.css'
             );  
 
             wp_enqueue_script( 
                 'onp-sociallocker', 
-                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030609.min.js', 
+                ONP_SL_PLUGIN_URL . '/assets/js/jquery.op.sociallocker.030701.min.js', 
                 array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
             );  
         
@@ -258,7 +260,8 @@ class OnpSL_AssetsManager {
                 'theme' => 'secrets',
                 'overlap' => array(
                     'mode' => self::getLockerOption($id, 'overlap', false, 'full'),
-                    'position' => self::getLockerOption($id, 'overlap_position', false, 'middle')           
+                    'position' => self::getLockerOption($id, 'overlap_position', false, 'middle'),
+                    'altMode' => get_option('sociallocker_alt_overlap_mode', 'transparence')
                 ),
                 
                 'googleAnalytics' => get_option('sociallocker_google_analytics', 1),
@@ -267,7 +270,8 @@ class OnpSL_AssetsManager {
                     'scope' => $hasScope ? 'global' : '',
                     'counter' => self::getLockerOption($id, 'show_counters', false, 1),
                     'loadingTimeout' => get_option('sociallocker_timeout', 10000),
-                    'tumbler' => get_option('sociallocker_tumbler', false)
+                    'tumbler' => get_option('sociallocker_tumbler', false),
+                    'naMode' => get_option('sociallocker_na_mode', 'show-error')
                 ),
 
                 'facebook' => array(
@@ -280,16 +284,18 @@ class OnpSL_AssetsManager {
                     'url' => $url,     
                     'lang' => get_option('sociallocker_short_lang', 'en'),
                     'counturl' => self::getLockerOption($id, 'twitter_counturl')
-                ),  
-                'google' => array(
-                    'url' => $url,    
-                    'lang' => get_option('sociallocker_google_lang', get_option('sociallocker_short_lang', 'en' ))
                 )
             );
             
             if ( 'blurring' === $params['overlap']['mode'] ) {
                 $params['overlap']['mode'] = 'transparence';
             }
+                $params['google'] = array(
+                    'url' => $url,    
+                    'lang' => get_option('sociallocker_google_lang', get_option('sociallocker_short_lang', 'en' ))
+                );
+            
+
 
         
 
@@ -438,10 +444,13 @@ class OnpSL_AssetsManager {
             
             if ( $options['way'] == 'css-selector' ) {
                 
+                $lockData = self::getLockerDataToPrint($id);
+
                 self::$_lockerOptionsToPrint['css-selector-' . $id] = $id;
                 self::$_cssOptionsToPrint[] = array(
                     'locker-options-id' => 'css-selector-' . $id,
-                    'css-selector' => $options['css_selector']
+                    'css-selector' => $options['css_selector'],
+                    'overlap-mode' => $lockData['options']['overlap']['mode']
                 );
                 
                 self::requestAssets();

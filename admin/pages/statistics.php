@@ -19,7 +19,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
     
     public $id = "statistics";
     
-    public function __construct(Factory322_Plugin $plugin) {    
+    public function __construct(Factory324_Plugin $plugin) {    
         $this->menuTitle = __('Stats & Reports', 'sociallocker');
         parent::__construct($plugin);
     }
@@ -45,7 +45,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
      */
     public function indexAction() {
 
-    include_once(ONP_SL_PLUGIN_DIR . '/includes/classes/statistics-viewer.class.php');
+    include_once(ONP_SL_PLUGIN_DIR . '/includes/classes/stats.class.php');
     
     $postId = isset($_REQUEST['sPost']) ? intval($_REQUEST['sPost']) : false;
     $post = ($postId) ? get_post($postId) : false;
@@ -68,17 +68,19 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
     }
     
     // creates a statistic viewer
-    $statistic = new StatisticViewer($dateRangeEnd, $dateRangeStart);
-    if ($postId) $statistic->setPost($postId);
+    $stats = new StatsManager();
 
     // gets data for the chart
-    $chartData = $statistic->getChartData();
+    $chartData = $stats->getChartData($dateRangeStart, $dateRangeEnd, $postId);
        
     $page = ( isset( $_GET['n'] ) ) ? intval( $_GET['n'] ) : 1;
     if ( $page <= 0 ) $page = 1;
 
     // gets table to view
-    $viewTable = $statistic->getViewTable(array(
+    $viewTable = $stats->getViewTable(array(
+        'postId' => $postId,
+        'rangeStart' => $dateRangeStart,
+        'rangeEnd' => $dateRangeEnd,  
         'per' => 50,
         'total' => true,
         'page' => $page,
@@ -101,7 +103,8 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
             window.onpsl.res.total_social_impact = '<?php _e('Total social impact', 'sociallocker') ?>';
             window.onpsl.res.unlocked_by_buttons = '<?php _e('Unlocked by Buttons', 'sociallocker') ?>';
             window.onpsl.res.unlocked_by_timer = '<?php _e('Unlocked by Timer', 'sociallocker') ?>';   
-            window.onpsl.res.unlocked_by_close_icon = '<?php _e('Unlocked by Close Icon', 'sociallocker') ?>';     
+            window.onpsl.res.unlocked_by_close_icon = '<?php _e('Unlocked by Close Icon', 'sociallocker') ?>';
+            window.onpsl.res.na = '<?php _e('The count of times when the buttons were not available.', 'sociallocker') ?>';
         </script>
         
         <!--Load the AJAX API-->
@@ -134,6 +137,7 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
                 
                 $chartDataCount['timer'] = $dataRow['timer_count'];
                 $chartDataCount['cross'] = $dataRow['cross_count'];
+                $chartDataCount['na'] = $dataRow['na_count'];
                 
                 $chartDataCount = apply_filters('onp_sl_statistics_chartData', $chartDataCount, $dataRow);
                 
@@ -151,13 +155,18 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
         <div class="wrap">
             <h2 style="margin-bottom: 10px;"><?php _e('Stats & Reports', 'sociallocker'); ?></h2>
 
-            <div class="factory-bootstrap-324 factory-fontawesome-320">
+            <div class="factory-bootstrap-325 factory-fontawesome-320">
 
             <p style="line-height: 150%; padding-bottom: 5px; margin-bottom: 0px;">
                 <?php _e('This page provides usage statistics of social lockers on your pages. Here you can get info about how users interact with your lockers.<br /> By default the chart shows the aggregate data for all posts. Click on the post title to view info for the one.', 'sociallocker'); ?></p>
 
+            <div class="onp-chart-hints">
+                <div class="onp-chart-hint onp-chart-hint-errors">
+                    <?php printf( __('This chart shows the count of times when the locker was not available to use due to the visitor installed the extensions like Avast or Adblock which may block social networks.<br />By default, the such visitors see the locker without social buttons but with the offer to disable the extensions. You can set another behaviour <a href="%s"><strong>here</strong></a>.', 'sociallocker'), admin_url('admin.php?page=common-settings-' . $this->plugin->pluginName . '&action=advanced') ) ?>
+                </div>
+            </div>
+            
             <div id="onp-sl-chart-area">
-                
                 <form method="get"> 
                 <input type="hidden" name="post_type" value="social-locker" />
                 <input type="hidden" name="page" value="statistics-<?php echo $this->plugin->pluginName ?>" /> 
@@ -168,7 +177,8 @@ class OnpSL_StatisticsPage extends FactoryPages320_AdminPage  {
                           <button type="button" class="btn btn-default active type-total" data-value="total"><i class="fa fa-search"></i> <?php _e('Total', 'sociallocker'); ?></button>
                           <button type="button" class="btn btn-default type-detailed" data-value="detailed"><i class="fa fa-search-plus"></i> <?php _e('Detailed', 'sociallocker'); ?></button>
                           <button type="button" class="btn btn-default type-helpers" data-value="helpers"><i class="fa fa-tint"></i> <?php _e('Leakages', 'sociallocker'); ?></button>     
-                        </div>
+                          <button type="button" class="btn btn-default type-helpers" data-value="errors"><i class="fa fa-bug"></i> <?php _e('Errors', 'sociallocker'); ?></button>  
+                       </div>
                     </div>
                     <div id="onp-sl-date-select">
                             <input type="hidden" name="sPost" value="<?php echo $postId ?>" />

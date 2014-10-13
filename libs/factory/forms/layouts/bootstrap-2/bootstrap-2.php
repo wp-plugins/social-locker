@@ -25,7 +25,7 @@ class FactoryForms324_Bootstrap2FormLayout extends FactoryForms324_FormLayout {
      */
     public function __construct($options, $form) {
         parent::__construct($options, $form);
-        $this->addCssClass('factory-bootstrap-324');
+        $this->addCssClass('factory-bootstrap-325');
     }
     
     /**

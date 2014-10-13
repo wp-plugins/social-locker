@@ -99,7 +99,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                     $(this).addClass('active');
                     $("#onp-sl-posts .col-" + buttonName).show();
                 }
-                
+
                 self.savePreSelectedButtons();
                 self.drawChart();
             });
@@ -144,6 +144,9 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 if ( window.localStorage ) window.localStorage.setItem('admin-sociallocker-chart-type', type);
                 $(this).addClass("active");
                 self.drawChart(type);
+                
+                $(document).find(".onp-chart-hint").hide();
+                $(document).find(".onp-chart-hint-" + type).fadeIn();
             });
 
             if ( window.localStorage ) {
@@ -207,7 +210,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 
                 options.legend.position = 'in';
                 options.areaOpacity = 0.1;
-                options.colors = [ window.onpsl.factoryBootstrap324.colors.primaryDark ];
+                options.colors = [ window.onpsl.factoryBootstrap325.colors.primaryDark ];
                 
                 dataTable.addColumn('number', window.onpsl.res.total_social_impact);
                 dataTable.addColumn({type:'string',role:'tooltip'});
@@ -256,7 +259,7 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                 chartFunction = 'ColumnChart';
                 
                 options.legend.position = 'in';
-                options.colors = [window.onpsl.factoryBootstrap324.colors.primaryDark, '#333', '#ddd'];    
+                options.colors = [window.onpsl.factoryBootstrap325.colors.primaryDark, '#333', '#ddd'];    
                 
                 dataTable.addColumn('number', window.onpsl.res.unlocked_by_buttons);
                 dataTable.addColumn('number', window.onpsl.res.unlocked_by_timer);
@@ -275,7 +278,31 @@ if ( !window.onpsl.statistics ) window.onpsl.statistics = {};
                     var chartRow = [ row['date'], totalCount, row['timer'], row['cross'] ];
                     data.push(chartRow);
                 }
+            } else if (this.currentType == 'errors') {
+                chartFunction = 'AreaChart';
+                
+                options.legend.position = 'in';
+                options.areaOpacity = 0.1;
+                options.colors = [ '#e00' ];
+                
+                dataTable.addColumn('number', window.onpsl.res.na);
+                dataTable.addColumn({type:'string',role:'tooltip'});
+                
+                data = [];
+                for(var rowIndex in chartData) {
+                    var row = chartData[rowIndex];
+                    
+                    var totalCount = 0;
+                    for(index in activeButtons) {
+                        button = activeButtons[index];
+                        totalCount += row[button];
+                    }
+                    
+                    var chartRow = [ row['date'], row['na'], '' + row['na'] ];
+                    data.push(chartRow);
+                }
             }
+            
 
             dataTable.addRows(data);
             

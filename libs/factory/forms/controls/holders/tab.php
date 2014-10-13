@@ -53,7 +53,10 @@ class FactoryForms324_TabHolder extends FactoryForms324_Holder {
     public function beforeRendering() {
 
         $isFirstTab = true;
+        $tabClass = $this->getOption('class');
         
+        if(!empty($tabClass)) 
+        $this->addCssClass($tabClass);    
         $this->addCssClass('factory-align-' . $this->align);
         
         ?>

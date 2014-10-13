@@ -12,7 +12,7 @@
 
 ;( function( $ ){
     
-    $.widget( "factoryBootstrap324.colorControl", {
+    $.widget( "factoryBootstrap325.colorControl", {
 
         _create: function() {
             
@@ -42,16 +42,16 @@
             var picketTarget = this.$element.data('picker-target');
             if ( picketTarget ) irisOptions.target = $(picketTarget);
 
-            this.$picker.factoryBootstrap324_iris(irisOptions); 
+            this.$picker.factoryBootstrap325_iris(irisOptions); 
             this.$picker.off('focus');
 
             $(document).on("click.color.factory", function(){
-               self.$picker.factoryBootstrap324_iris("hide");  
+               self.$picker.factoryBootstrap325_iris("hide");  
             });
 
             this.$picker.add(this.$background).on("click.color.factory", function(e){
                e.stopPropagation();
-               self.$picker.factoryBootstrap324_iris("show");  
+               self.$picker.factoryBootstrap325_iris("show");  
             });  
         },
         
@@ -62,12 +62,12 @@
 
         hidePicker: function() {
             this.$element.removeClass('factory-picker-active');
-            this.$picker.factoryBootstrap324_iris( 'hide' );
+            this.$picker.factoryBootstrap325_iris( 'hide' );
         }, 
 
         showPicker: function() {
             this.$element.addClass('factory-picker-active');
-            this.$picker.factoryBootstrap324_iris( 'show' );
+            this.$picker.factoryBootstrap325_iris( 'show' );
         },
         
         getValue: function() {
@@ -81,8 +81,8 @@
     });
     
     $(function(){
-        $.widget.bridge( "factoryBootstrap324_colorControl", $.factoryBootstrap324.colorControl );
-        $(".factory-bootstrap-324 .factory-color").factoryBootstrap324_colorControl({});
+        $.widget.bridge( "factoryBootstrap325_colorControl", $.factoryBootstrap325.colorControl );
+        $(".factory-bootstrap-325 .factory-color").factoryBootstrap325_colorControl({});
     });
     
 }( jQuery ) );

@@ -88,14 +88,22 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.3.7.2 - 13  Oct 2014</strong><br />
+<ul>
+<li>ADDED: The "Errors" screen on the page "Stats & Reports" to monitor how the locker works on your website.</li>
+<li>ADDED: A set of new advanced options.</li>
+<li>IMPROVED: The Google Share button (works better than earlier).</li>
+<li>FIXED: The bug of the IE11 and the Twitter button.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
 <strong>v.3.6.9 - 8  Sep 2014</strong><br />
 <ul>
 <li>FIXED: The bug in IE when the button titles are not visible.</li>
 <li>FIXED: Minor CSS issues.</li>
 <li>ADDED: API for developers which allows to add own buttons.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.3.6.5 - 29 Aug 2014</strong><br />
 <ul>

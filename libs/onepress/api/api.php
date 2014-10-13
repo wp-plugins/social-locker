@@ -25,7 +25,7 @@ class OnpApi320_Manager {
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory322_Plugin
+     * @var Factory324_Plugin
      */
     public $plugin;
     

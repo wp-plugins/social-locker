@@ -72,7 +72,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
                 
         
     ?>
-        <div class="factory-bootstrap-324 factory-fontawesome-320">
+        <div class="factory-bootstrap-325 factory-fontawesome-320">
             
         <div class="sl-header">
             <strong><?php _e('More Features?', 'sociallocker'); ?></strong>
@@ -90,12 +90,15 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
             <?php } ?>
         </div>
         <div class="sl-seporator"></div>
+        <?php ?>
         <ul>
-            <li><span data-target="demo-social-options"><?php _e('Extra social buttons (+4)', 'sociallocker'); ?></span></li>
-            <li><span data-target="demo-themes"><?php _e('Extra themes (+3)', 'sociallocker'); ?></span></li>
-            <li><span data-target="demo-visibility-options"><?php _e('Visibility options (+4)', 'sociallocker'); ?></span></li>
-            <li><span data-target="demo-advanced-options"><?php _e('Advanced options (+5)', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-social-options"><?php _e('More Social Buttons (+4)', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-themes"><?php _e('More themes (+4)', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-blurring-effect"><?php _e('Blurring Effect', 'sociallocker'); ?></span></li>
+            <li><span data-target="demo-advanced-options"><?php _e('Advanced options (+8)', 'sociallocker'); ?></span></li>
         </ul>
+        <?php 
+ ?>
         <div class="sl-seporator"></div>
 
         <?php if ( !$alreadyActivated ) { ?>
@@ -111,7 +114,7 @@ class OnpSL_MoreFeaturesMetaBox extends FactoryMetaboxes320_Metabox
         <div style="display: none">
             <div class="demo-social-options"></div>
             <div class="demo-themes"></div>
-            <div class="demo-visibility-options"></div>   
+            <div class="demo-blurring-effect"></div>   
             <div class="demo-advanced-options"></div>
         </div>
         

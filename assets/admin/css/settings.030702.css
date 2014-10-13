@@ -50,13 +50,17 @@
 }
 
 .form-horizontal .onp-sl-inline {
-    padding-top: 7px;
+    padding-top: 1px;
     margin: 0px;
 }
 .factory-volumetric .onp-sl-inline {
     font-size: 14px;
     line-height: 100%;
     padding-top: 8px;
+}
+
+.btn + .btn {
+    margin-left: 5px;
 }
 
 /**
@@ -101,4 +105,11 @@
 }
 #onp-confirm-dialog-wrap .onp-actions a + a {
     margin-left: 10px;
+}
+
+#sociallocker_alt_overlap_mode {
+    max-width: 200px;
+}
+#sociallocker_na_mode {
+    max-width: 300px;
 }

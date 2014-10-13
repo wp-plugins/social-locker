@@ -49,10 +49,13 @@
     background: url("../img/styleroller/banner-bg.png");
     padding: 0px !important;
     border: 10px solid #fff !important;
-    font-size: 16px;
-    line-height: 150%;
     border-radius: 8px;
     color: #525a5e !important;
+}
+.call-to-action.sociallocker-styleroller-banner,
+.call-to-action.sociallocker-styleroller-banner p {
+    font-size: 16px;
+    line-height: 150%;
 }
 .call-to-action.sociallocker-styleroller-banner .factory-inner-wrap {
     padding: 30px;
@@ -113,4 +116,9 @@
 .call-to-action.sociallocker-styleroller-banner .factory-header {
     font-weight: bolder;
     font-size: 20px;
+}
+
+/* hides the vk note on the plugins page */
+.plugins-php .onp-sl-vk-note {
+    display: none;
 }

@@ -27,7 +27,7 @@ class OnpLicensing324_Manager {
      * A plugin for which the manager was created.
      * 
      * @since 1.0.0
-     * @var Factory322_Plugin
+     * @var Factory324_Plugin
      */
     public $plugin;
     
@@ -120,7 +120,7 @@ class OnpLicensing324_Manager {
             );
 
             $urlToRedirect =  '?' . http_build_query( $args );
-            factory_322_set_lazy_redirect($urlToRedirect);
+            factory_324_set_lazy_redirect($urlToRedirect);
                 
             //@unlink( $filepath );  
             return;
@@ -170,8 +170,12 @@ class OnpLicensing324_Manager {
      * 
      * @return void
      */
-    public function resetLicense() {
+    public function resetLicense( $resetDefault = false ) {
         delete_option('onp_license_' . $this->plugin->pluginName);
+        if ( $resetDefault ) { 
+            delete_option('onp_default_license_' . $this->plugin->pluginName);
+            $this->plugin->activationHook();
+        }
         $this->data = get_option('onp_default_license_' . $this->plugin->pluginName, array());
     }
     
@@ -618,7 +622,7 @@ class OnpLicensing324_Manager {
     function addNotices( $notices ) {       
         
         // show messages only for administrators
-        if ( !factory_322_is_administrator() ) return $notices;
+        if ( !factory_324_is_administrator() ) return $notices;
         
         $closed = get_option('factory_notices_closed', array());
         
@@ -834,7 +838,7 @@ function onp_licensing_324_get_manager_link( $pluginName, $action = null ) {
  * Prints a purchasing link with a set of tracking query arguments.
  * 
  * @since 3.0.7
- * @param Factory322_Plugin $plugin
+ * @param Factory324_Plugin $plugin
  * @return void
  */
 function onp_licensing_324_purchase_url( $plugin ) {
@@ -845,7 +849,7 @@ function onp_licensing_324_purchase_url( $plugin ) {
  * Returns a purchasing link with a set of tracking query arguments.
  * 
  * @since 3.0.7
- * @param Factory322_Plugin $plugin
+ * @param Factory324_Plugin $plugin
  * @return string
  */
 function onp_licensing_324_get_purchase_url( $plugin, $content = null ) {

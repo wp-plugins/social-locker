@@ -168,6 +168,16 @@
     background-color: #f3800d;
 }
 
+
+.onp-chart-hint {
+    margin-top: 5px;
+    display: inline-block;
+    background-color: #ffffdd;
+    padding: 2px 8px;
+    width: 100%;
+    display: none;
+}
+
 /**
 * Posts
 */
