@@ -92,7 +92,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <ul>
 <li>ADDED: The "Errors" screen on the page "Stats & Reports" to monitor how the locker works on your website.</li>
 <li>ADDED: A set of new advanced options.</li>
-<li>IMPROVED: The Google Share button (works better than earlier).</li>
 <li>FIXED: The bug of the IE11 and the Twitter button.</li>
 </ul>
 
