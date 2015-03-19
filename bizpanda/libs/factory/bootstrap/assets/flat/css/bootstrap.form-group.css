@@ -1,0 +1,27 @@
+/**
+* Form Groups
+*/
+
+.factory-bootstrap-329 .factory-form-group .factory-legend {
+    padding: 9px 12px;
+    background-color: #f9f9f9;
+}
+.factory-bootstrap-329 .factory-form-group .factory-title {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    color: #555;
+    margin: 0px;
+}
+.factory-bootstrap-329 .factory-form-group .factory-hint {
+    margin: 0px;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 6px;
+}
+.factory-bootstrap-329 .factory-form-group + .factory-form-group {
+    margin-top: 30px;
+}
+.factory-bootstrap-329 .factory-form-group legend + .control-group {
+    margin-top: 0px;
+}

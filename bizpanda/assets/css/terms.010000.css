@@ -1,0 +1,27 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+    background-color: #fcfcfc;
+    line-height: 155%;
+    padding: 35px;
+    margin: 0px;
+}
+p {
+    margin: 0px;
+}
+p + p {
+    margin-top: 15px;
+}
+strong {
+    color: #333;
+}
+h2 {
+    font-size: 24px;
+    margin: 0 0 20px 0;
+}
+h4 {
+    font-size: 18px;
+    text-transform: capitalize;
+    line-height: 155%;
+    margin: 25px 0 15px 0;
+}

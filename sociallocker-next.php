@@ -1,67 +1,112 @@
 <?php 
 /**
-Plugin Name: OnePress Social Locker
+Plugin Name: Social Locker | BizPanda
 Plugin URI: http://codecanyon.net/item/social-locker-for-wordpress/3667715?ref=OnePress&utm_source=plugin&utm_medium=plugin-uri&utm_campaign=plugin-uri
 Description: Social Locker is a set of social buttons and a locker in one bottle. <strong>Give people a reason</strong> why they need to click your social buttons. Ask people to “pay” with a Like/Tweet/+1 to get access to your content, to get discount, to download, to watch a video, to view a funny picture or so. And it will help you to get more likes/tweets/+1s, traffic and customers!
 Author: OnePress
-Version: 3.7.2
-Author URI: http://byoneress.com
+Version: 4.1.5
+Author URI: http://byonepress.com
 */
 
-if (defined('ONP_SL_PLUGIN_ACTIVE')) return;
-define('ONP_SL_PLUGIN_ACTIVE', true);
+// ---
+// Constatns & Resources
+//
+
+if (defined('SOCIALLOCKER_PLUGIN_ACTIVE')) return;
+define('SOCIALLOCKER_PLUGIN_ACTIVE', true);
 
 
 
-define('ONP_SL_PLUGIN_DIR', dirname(__FILE__));
-define('ONP_SL_PLUGIN_URL', plugins_url( null, __FILE__ ));
+define('SOCIALLOCKER_DIR', dirname(__FILE__));
+define('SOCIALLOCKER_URL', plugins_url( null, __FILE__ ));
 
 
 
-// creating a plugin via the factory
-require('libs/factory/core/boot.php');
-global $sociallocker;
+// ---
+// BizPanda Framework
+//
+
+// inits bizpanda and its items
+require( SOCIALLOCKER_DIR . '/bizpanda/connect.php');
+define('SOCIALLOCKER_BIZPANDA_VERSION', 110);
+
+/**
+ * Fires when the BizPanda connected.
+ */
+function onp_sl_init_bizpanda() {
     
-    $sociallocker = new Factory324_Plugin(__FILE__, array(
+    /**
+     * Displays a note about that it's requited to update other plugins.
+     */
+    if ( !bizpanda_validate( SOCIALLOCKER_BIZPANDA_VERSION, 'Social Locker' ) ) return;
+
+    // enabling features the plugin requires
+    
+    BizPanda::enableFeature('lockers');
+    BizPanda::enableFeature('terms');
+    
+    // creating the plugin object
+
+    global $sociallocker;
+    $sociallocker = new Factory325_Plugin(__FILE__, array(
         'name'          => 'sociallocker-next',
         'title'         => 'Social Locker',
-        'version'       => '3.7.2',
+        'version'       => '4.1.5',
         'assembly'      => 'free',
         'lang'          => 'en_US',
-        'api'           => 'http://api.sociallocker.org/1.1/',
-        'premium'       => 'http://api.sociallocker.org/public/1.0/get/?product=sociallocker-next',
-        'addons'        => 'http://sociallocker.org/addons',
-        'styleroller'   => 'http://sociallocker.org/styleroller',        
-        'account'       => 'http://account.sociallocker.org/',
-        'updates'       => ONP_SL_PLUGIN_DIR . '/includes/updates/',
+        'api'           => 'http://api.byonepress.com/1.1/',
+        'premium'       => 'http://api.byonepress.com/public/1.0/get/?product=sociallocker-next',
+        'styleroller'   => 'http://api.byonepress.com/public/1.0/get/?product=sociallocker-next',
+        'account'       => 'http://accounts.byonepress.com/',
+        'updates'       => SOCIALLOCKER_DIR . '/plugin/updates/',
         'tracker'       => /*@var:tracker*/'0ec2f14c9e007ba464c230b3ddd98384'/*@*/,
-    ));  
+        'childPlugins'  => array( 'bizpanda' )
+    ));
+        BizPanda::registerPlugin($sociallocker, 'sociallocker', 'free');
     
 
 
+    // requires factory modules
+    $sociallocker->load(array(
+        array( 'bizpanda/libs/factory/bootstrap', 'factory_bootstrap_329', 'admin' ),
+        array( 'bizpanda/libs/factory/notices', 'factory_notices_322', 'admin' ),
+        array( 'bizpanda/libs/onepress/api', 'onp_api_320' ),
+        array( 'bizpanda/libs/onepress/licensing', 'onp_licensing_325' ),
+        array( 'bizpanda/libs/onepress/updates', 'onp_updates_324' )
+    ));
 
-// requires factory modules
-$sociallocker->load(array(
-    array( 'libs/factory/bootstrap', 'factory_bootstrap_325', 'admin' ),
-    array( 'libs/factory/font-awesome', 'factory_fontawesome_320', 'admin' ),
-    array( 'libs/factory/forms', 'factory_forms_324', 'admin' ),
-    array( 'libs/factory/notices', 'factory_notices_322', 'admin' ),
-    array( 'libs/factory/pages', 'factory_pages_320', 'admin' ),
-    array( 'libs/factory/viewtables', 'factory_viewtables_320', 'admin' ),
-    array( 'libs/factory/metaboxes', 'factory_metaboxes_320', 'admin' ),
-    array( 'libs/factory/shortcodes', 'factory_shortcodes_320' ),
-    array( 'libs/factory/types', 'factory_types_321' ),
-    array( 'libs/onepress/api', 'onp_api_320' ),
-    array( 'libs/onepress/licensing', 'onp_licensing_324' ),
-    array( 'libs/onepress/updates', 'onp_updates_323' )
-));
+    require(SOCIALLOCKER_DIR . '/panda-items/signin-locker/boot.php');
+    require(SOCIALLOCKER_DIR . '/panda-items/social-locker/boot.php');
+    require(SOCIALLOCKER_DIR . '/plugin/boot.php');
+}
 
-// loading other files
-require(ONP_SL_PLUGIN_DIR . '/includes/classes/assets-manager.class.php');
-if ( is_admin() ) require( ONP_SL_PLUGIN_DIR . '/admin/init.php' );
+add_action('bizpanda_init', 'onp_sl_init_bizpanda');
 
-#comp merge
-require(ONP_SL_PLUGIN_DIR . '/includes/types/sociallocker.php');
-require(ONP_SL_PLUGIN_DIR . '/includes/shortcodes/sociallock-shortcode.php');
-#endcomp
+/**
+ * Activates the plugin.
+ * 
+ * TThe activation hook has to be registered before loading the plugin.
+ * The deactivateion hook can be registered in any place (currently in the file plugin.class.php).
+ */
+function onp_sl_activation() {
+    
+    // if the old version of the bizpanda which doesn't contain the function bizpanda_connect has been loaded,
+    // ignores activation, the message suggesting to upgrade the plugin will be appear instead
+    if ( !function_exists( 'bizpanda_connect') ) return;
 
+    // if the bizpanda has been already connected, inits the plugin manually
+    if ( defined('OPANDA_ACTIVE') ) onp_sl_init_bizpanda();
+    else bizpanda_connect();
+    
+    global $sociallocker;
+    $sociallocker->activate();
+}
+
+register_activation_hook( __FILE__, 'onp_sl_activation' );
+
+/**
+ * Displays a note about that it's requited to update other plugins.
+ */
+if ( is_admin() && defined('OPANDA_ACTIVE') ) {
+    bizpanda_validate( SOCIALLOCKER_BIZPANDA_VERSION, 'Social Locker' );
+}

@@ -1,0 +1,114 @@
+#opanda-leads-page .column-avatar {
+    width: 46px;
+}
+#opanda-leads-page td, 
+#opanda-leads-page th {
+    overflow: hidden;
+    color: #555;
+}
+
+#opanda-leads-page .column-avatar .opanda-avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    border: 1px solid #D3D6DB;
+    background-color: #FFF;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+    margin-bottom: 4px;
+}
+
+#opanda-leads-page .column-name .opanda-name {
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: 1.6em;
+}
+#opanda-leads-page .column-name strong.opanda-name {
+
+    color: #555; 
+}
+
+#opanda-leads-page .column-status i {
+    vertical-align: middle;
+}
+#opanda-leads-page .column-status .fa {
+    font-size: 15px;
+    margin-right: 5px;
+}
+#opanda-leads-page .column-status .opanda-status-help {
+    cursor: help;
+}
+
+#opanda-leads-page .opanda_lead_way ul {
+    padding: 0px;
+    margin: 0px;
+}
+#opanda-leads-page .opanda_lead_way li {
+    margin: 0px;
+}
+#opanda-leads-page .opanda_lead_way li + li {
+    margin-top: 5px;
+}
+
+#opanda-leads-page .opanda_lead_confirmed {
+    cursor: help;
+}
+
+#opanda-leads-page .opanda_lead_checkbox {
+    width: 1%;
+}
+
+#opanda-leads-page .column-opanda_lead_email,
+#opanda-leads-page .column-opanda_lead_name,
+#opanda-leads-page .column-opanda_lead_date {
+    width: 1%;
+    padding-right: 50px !important;
+    min-width: 80px;
+}
+
+#opanda-leads-page .opanda_lead_checkbox,
+#opanda-leads-page .opanda_lead_how,
+#opanda-leads-page .column-opanda_lead_confirmed {
+    width: 1%; 
+}
+
+#opanda-leads-page .opanda_lead_how {
+    white-space: nowrap;
+    padding-right: 50px !important;
+}
+
+#opanda-leads-page table.fixed {
+    table-layout: auto;
+}
+
+/**
+* Export
+*/
+
+#opanda-export-page .control-group label {
+    font-weight: normal;
+}
+#opanda-export-page .control-group label,
+#opanda-export-page .control-group label input {
+    vertical-align: bottom;
+}
+#opanda-export-page .control-group label input[type="checkbox"] {
+    margin-top: 0px;
+    margin-right: 5px;
+}
+#opanda-export-page .control-group label input[type="radio"] {
+    margin-left: 3px;
+    margin-right: 15px;
+}
+
+label[for="factory-checklist-opanda_lockers-all"] {
+    border-bottom: 1px dashed #555;
+}
+label[for="factory-checklist-opanda_lockers-all"]:hover {
+    border-bottom: 1px dashed transparent;
+}
+label[for="factory-checklist-opanda_lockers-all"] input {
+    display: none;
+}

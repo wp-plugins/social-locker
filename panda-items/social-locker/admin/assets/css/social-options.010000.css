@@ -1,0 +1,48 @@
+/**
+ * CSS for the metabox "Social Options"
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2015, OnePress Ltd
+ * 
+ * @package optinpanda 
+ * @since 1.0.0
+ */
+
+#OPanda_SocialOptionsMetaBox {
+    display: block;
+}
+#OPanda_SocialOptionsMetaBox .factory-tab-item .alert {
+    position: relative;
+    top: -25px;
+}
+#OPanda_SocialOptionsMetaBox .factory-control-facebook_share_dialog {
+    margin-top: 15px;
+}
+#OPanda_SocialOptionsMetaBox .factory-bodies {
+    display: block !important;
+    position: relative;
+}
+#OPanda_SocialOptionsMetaBox .opanda-overlay-note {
+    width: 270px;
+    left: 50%;
+    margin: 70px 0 0 -135px;
+}
+
+#opanda_twitter_tweet_text {
+    background: #fff url("../img/tweet-content-bg.png") no-repeat 50% 50%;
+    min-height: 100px;
+}
+
+#opanda_vk_share_description {
+    min-height: 100px;
+}
+
+#opanda_facebook_like_title,
+#opanda_facebook_share_title,
+#opanda_twitter_tweet_title,
+#opanda_twitter_follow_title,
+#opanda_google_plus_title,
+#opanda_google_share_title,
+#opanda_linkedin_share_title {
+    max-width: 200px;
+}

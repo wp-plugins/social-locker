@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 4.1.0
+Tested up to: 4.1.1
 Stable tag: trunk
 License: GPLv2
 
@@ -87,6 +87,23 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 4. Created Lockers
 
 == Changelog ==
+
+<strong>v.4.1.5 - 20 Mar 2015 - MAJOR UPDATE</strong><br />
+
+<ul>
+<li>ADDED: The options to configure each social button individually (now you can set an own URL to like/tweet/+1 for each button).</li>
+<li>ADDED: The Sign-In Locker which asks the user to sign-in through social networks to unlock the content (while signing in, the locker receives a email of the user and some personal data).</li>
+<li>ADDED: The page Leads to display contacts of visitors who have signed-in on your website via the Sign-In Locker.</li>
+<li>ADDED: Information about our new plugin <a hreg="http://codecanyon.net/item/optin-panda-for-wordpress/10224279" target="_blank">Opt-In Panda</a> for building mailing lists.</li>
+<li>IMPROVED: The page Stats & Reports (got new metrics and reports).</li>
+<li>IMPROVED: The page Global Settings (added more options).</li>
+</ul>
+
+<p><strong>Warning:</strong> After updating all the previous data collected on the page Stats & Reports will be reset.</p>
+
+<p><strong>Warning:</strong> If something doesn't work after updating, just deactivate and activate the plugin again.</p>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.3.7.2 - 13  Oct 2014</strong><br />
 <ul>
