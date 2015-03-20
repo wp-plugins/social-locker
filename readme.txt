@@ -88,6 +88,12 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.4.1.6 - 20 Mar 2015</strong><br />
+<ul>
+<li>FIXED: The bug of not displaying the TinyMCE editor when the plugin is activated.</li>
+<li>FIXED: The error "Call to undefined function opanda_get_panda_item_ids".</li>
+</ul>
+
 <strong>v.4.1.5 - 20 Mar 2015 - MAJOR UPDATE</strong><br />
 
 <ul>

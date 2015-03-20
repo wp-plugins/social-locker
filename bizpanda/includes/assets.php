@@ -675,7 +675,7 @@ class OPanda_AssetsManager {
         $lockers = get_posts(array(
             'post_type' => OPANDA_POST_TYPE,
             'meta_key' => 'opanda_item',
-            'meta_value' => opanda_get_panda_item_ids(),
+            'meta_value' => OPanda_Items::getAvailableNames(),
             'numberposts' => -1
         ));
 

@@ -174,6 +174,19 @@ function opanda_add_plugin($plugin_array) {
         $plugin_array['optinpanda'] = OPANDA_BIZPANDA_URL . '/assets/admin/js/optinpanda.tinymce4.js';  
     }
 
+    return $plugin_array;  
+}
+
+add_filter('mce_external_plugins', 'opanda_add_plugin'); 
+
+/**
+ * Adds js variable required for shortcodes.
+ * 
+ * @see before_wp_tiny_mce
+ * @since 1.1.0
+ */
+function opanda_tinymce_data() {
+
     // styles for the plugin shorcodes
     $shortcodeIcon = BizPanda::getShortCodeIcon();
     $shortcodeTitle = strip_tags( BizPanda::getMenuTitle() );
@@ -188,12 +201,8 @@ function opanda_add_plugin($plugin_array) {
         var bizpanda_shortcode_title = '<?php echo $shortcodeTitle ?>';
     </script>
     <?php
-
-    return $plugin_array;  
 }
-
-add_filter('mce_external_plugins', 'opanda_add_plugin'); 
-
+add_action( 'before_wp_tiny_mce', 'opanda_tinymce_data' );
 
 // ---
 // Key Events
