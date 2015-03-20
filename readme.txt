@@ -88,6 +88,8 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<Strong>Please don't forget to <a href="https://wordpress.org/support/view/plugin-reviews/social-locker?filter=5" target="_blank">rate the plugin and leave your review</a></strong>. It very important to us and for developing future updates.
+
 <strong>v.4.1.6 - 20 Mar 2015</strong><br />
 <ul>
 <li>FIXED: The bug of not displaying the TinyMCE editor when the plugin is activated.</li>
