@@ -94,7 +94,7 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>ADDED: The options to configure each social button individually (now you can set an own URL to like/tweet/+1 for each button).</li>
 <li>ADDED: The Sign-In Locker which asks the user to sign-in through social networks to unlock the content (while signing in, the locker receives a email of the user and some personal data).</li>
 <li>ADDED: The page Leads to display contacts of visitors who have signed-in on your website via the Sign-In Locker.</li>
-<li>ADDED: Information about our new plugin <a hreg="http://codecanyon.net/item/optin-panda-for-wordpress/10224279" target="_blank">Opt-In Panda</a> for building mailing lists.</li>
+<li>ADDED: Information about our new plugin <a href="http://codecanyon.net/item/optin-panda-for-wordpress/10224279" target="_blank">Opt-In Panda</a> for building mailing lists.</li>
 <li>IMPROVED: The page Stats & Reports (got new metrics and reports).</li>
 <li>IMPROVED: The page Global Settings (added more options).</li>
 </ul>
