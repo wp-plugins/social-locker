@@ -99,7 +99,7 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>IMPROVED: The page Global Settings (added more options).</li>
 </ul>
 
-<p><strong>Warning:</strong> After updating all the previous data collected on the page Stats & Reports will be reset.</p>
+<p><strong>Warning:</strong> After updating all the previous data collected on the page Stats & Reports will be reset. Learn more in the article <a href="http://support.onepress-media.com/updating-social-locker-up-to-v-4/" target="_blank">Notes on Updating Social Locker Up To v.4+</a>.</p>
 
 <p><strong>Warning:</strong> If something doesn't work after updating, just deactivate and activate the plugin again.</p>
 
