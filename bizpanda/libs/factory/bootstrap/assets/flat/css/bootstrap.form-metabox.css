@@ -1,0 +1,56 @@
+/**
+* Form Metaboxes
+*/
+
+.factory-form-metabox {
+    padding: 15px 10px 10px 10px;
+}
+.factory-form-metabox .control-group:last-child {
+    margin-bottom: 0px;
+}
+
+/**
+* Side form metaboxes
+*/
+
+#side-sortables .factory-bootstrap-329 .control-label {
+    float: left;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    top: 1px;
+}
+#side-sortables .factory-bootstrap-329 .control-icon {
+    float: left;
+    margin: 0 6px 0 0;
+}
+#side-sortables .factory-bootstrap-329 input
+{
+    float: right;
+    position: relative;
+    top: -25px;
+}
+#side-sortables .factory-bootstrap-329 .help-block {
+    
+}
+#side-sortables .factory-bootstrap-329 .col-sm-10 {
+    margin: 0px;
+    width: 100%;
+}
+#side-sortables .factory-bootstrap-329 .form-group {
+    float: none;
+    margin-top: 0px;
+    width: auto;
+    overflow: auto;
+}
+#side-sortables .factory-bootstrap-329 .form-group {
+    margin-bottom: 0px;
+    border-top: 1px solid #f7f7f7;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+#side-sortables .factory-bootstrap-329 .form-group:first-child {
+    border-top: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+}

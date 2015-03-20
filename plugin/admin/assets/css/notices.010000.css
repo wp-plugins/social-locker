@@ -1,0 +1,131 @@
+#optinpanda-activate-premium-key {
+ 
+}
+#optinpanda-activate-premium-key .factory-inner-wrap {
+    padding: 20px;
+}
+
+#optinpanda-next-activate-premium-key,
+#optinpanda-rus-activate-premium-key {  
+    background: #e9ebee url("../img/offer-background-color.png");
+    color: #262729;
+    -webkit-text-shadow: none;
+    -moz-text-shadow: none;
+    text-shadow: none;
+    border-color: #bbbbbb;
+    padding: 10px;
+}
+#optinpanda-next-activate-premium-key .factory-message-container a,
+#optinpanda-rus-activate-premium-key .factory-message-container a {
+    color: #262729;
+}
+#optinpanda-next-activate-premium-key .factory-button,
+#optinpanda-rus-activate-premium-key .factory-button {
+    background: #5672ad;
+    border: 1px solid #2e3847;
+    color: #fff;
+}
+#optinpanda-next-activate-premium-key .factory-button:hover,
+#optinpanda-rus-activate-premium-key .factory-button:hover {
+    color: #fff !important;
+    background-color: #f0a000;
+    border-color: #c87800;
+    -webkit-transition-duration: .3s;
+    outline: none;
+    -moz-box-shadow: inset 0 0 2px #fff, 0 1px 7px rgba(240,160,0,0.5);
+    -webkit-box-shadow: inset 0 0 2px #fff, 0 1px 7px rgba(240,160,0,0.5);
+    box-shadow: inset 0 0 2px #fff, 0 1px 7spx rgba(240,160,0,0.5);
+}
+#optinpanda-next-activate-premium-key .highlighted,
+#optinpanda-rus-activate-premium-key .highlighted {
+    background-color: rgba(0,0,0,0.05);
+}
+#optinpanda-next-activate-premium-key .highlighted:hover,
+#optinpanda-rus-activate-premium-key .highlighted:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+#optinpanda-next-activate-premium-key .factory-inner-wrap,
+#optinpanda-rus-activate-premium-key .factory-inner-wrap {
+    padding-left: 90px !important;
+    background: url("../img/offer-logo.png") 5px center no-repeat;
+}
+
+
+.call-to-action.optinpanda-styleroller-banner {
+    border-radius: 4px;
+    background: url("../img/styleroller/banner-bg.png");
+    padding: 0px !important;
+    border: 10px solid #fff !important;
+    border-radius: 8px;
+    color: #525a5e !important;
+}
+.call-to-action.optinpanda-styleroller-banner,
+.call-to-action.optinpanda-styleroller-banner p {
+    font-size: 16px;
+    line-height: 150%;
+}
+.call-to-action.optinpanda-styleroller-banner .factory-inner-wrap {
+    padding: 30px;
+    padding-left: 320px;
+    padding-right: 10px;
+    background: transparent url("../img/styleroller/pallete.png") -5px center no-repeat;
+    border-radius: 8px;
+}
+.call-to-action.optinpanda-styleroller-banner .factory-inner-wrap {
+    padding: 30px;
+    padding-left: 320px;
+    padding-right: 10px;
+    background: transparent url("../img/styleroller/en_US/pallete.png") -5px center no-repeat;
+    border-radius: 8px;
+}
+.call-to-action.optinpanda-styleroller-banner.onp-sl-ru_RU .factory-inner-wrap {
+    background: transparent url("../img/styleroller/ru_RU/pallete.png") -6px center no-repeat; 
+}
+.call-to-action.optinpanda-styleroller-banner .onp-hightlight {
+    background-color: #1bbc9d;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 5px;
+    margin-right: 5px;
+}
+.call-to-action.optinpanda-styleroller-banner .factory-buttons {
+    margin-top: 5px;
+}
+.call-to-action.optinpanda-styleroller-banner .btn {
+    padding: 8px 30px;
+    background-color: #ecf0f1;
+    border: 0px;
+    border-bottom: 2px solid #bec3c7;
+    font-size: 16px;
+    box-shadow: none;
+}
+.call-to-action.optinpanda-styleroller-banner .btn-primary {
+    background-color: #1bbc9d;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 0px;
+    border-bottom: 2px solid #16a086;
+}
+.call-to-action.optinpanda-styleroller-banner .btn:hover {
+    background-color: #f6f8f8;
+}
+.call-to-action.optinpanda-styleroller-banner .btn-primary:hover {
+    background-color: #20d1af;
+}
+.call-to-action.optinpanda-styleroller-banner .factory-icon {
+    display: none;
+}
+.call-to-action.optinpanda-styleroller-banner .fa {
+    margin-right: 7px;
+}
+.call-to-action.optinpanda-styleroller-banner .factory-header {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+/* hides the vk note on the plugins page */
+.plugins-php .onp-sl-vk-note {
+    display: none;
+}
