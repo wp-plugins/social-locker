@@ -1,0 +1,32 @@
+/**
+* jQuery Control gropup holder
+*/
+
+.factory-control-group .factory-header {
+    margin-bottom: 7px;
+    display: block;
+}
+.factory-control-group-nav {
+     width:284px;
+     margin:10px 8px;
+}
+.factory-control-group-nav li{
+    display:inline-block;   
+    padding:8px 15px;
+    margin:0;
+    background-color: #444;
+    color:#fff;    
+    border-radius:2px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    cursor:pointer;
+}
+.factory-control-group-nav li.current{
+    background-color: #222;    
+}
+.factory-control-group-item {
+    display:none;
+}
+.factory-control-group-item.current {
+    display:block;
+}
