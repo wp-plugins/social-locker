@@ -12,7 +12,18 @@ if ( !window.bizpanda.lockerEditor ) window.bizpanda.lockerEditor = {};
 
             this.trackInputChanges();
             this.recreatePreview();
+
+            this.initStyleRollerButton();
         }, 
+
+        /**
+         * Inits a button which offers to buy the StyleRoller Add-on.
+         */
+        initStyleRollerButton: function() {
+            if ( window.window.onp_sl_styleroller || !window.onp_sl_show_styleroller_offer ) return;
+            var $button = $("<a target='_blank' class='btn btn-default' id='onp-sl-styleroller-btn' href='" + window.onp_sl_styleroller_offer_url + "'><i class='fa fa-flask'></i>" + window.onp_sl_styleroller_offer_text + "</a>");
+            $("#opanda_style").after($button);
+        },
 
         /**
          * Starts to track user input to refresh the preview.

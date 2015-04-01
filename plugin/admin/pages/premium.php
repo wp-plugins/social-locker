@@ -37,8 +37,15 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
      */
     public function indexAction() {
         global $sociallocker;
+        
         $alreadyActivated = get_option('onp_trial_activated_' . $sociallocker->pluginName, false);
-
+        
+        $skipTrial = get_option('onp_sl_skip_trial', false);
+        if ( $skipTrial ) {
+            wp_redirect( onp_sl_get_premium_url('go-premium') );
+            exit;
+        }
+        
         ?>
         <div class="wrap factory-bootstrap-329 factory-fontawesome-320">
             <div class="onp-page-content">
@@ -55,7 +62,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <?php if ( !$alreadyActivated ) { ?>  
             <p>
                 <?php printf( __('The plugin you are using is a free version of the popular <a target="_blank" href="%s"> Social Locker</a> plugin. 
-                We offer you to try the premium version for 7 days absolutely for free. We sure you will love it.', 'optinpanda'), onp_licensing_325_get_purchase_url( $this->plugin ) ) ?>
+                We offer you to try the premium version for 7 days absolutely for free. We sure you will love it.', 'optinpanda'), onp_sl_get_premium_url('go-premium') ) ?>
             </p>
             <p>
                 <?php _e('Check out the table below to know about the premium features.', 'optinpanda'); ?>
@@ -307,7 +314,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <?php } else { ?>
             
             <div class='factory-bootstrap-329'>
-                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_325_get_purchase_url( $this->plugin ) ?>">
+                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>">
                     <i class="fa fa-star"></i>
                     Purchase Social Locker Premium For $24 Only
                     <i class="fa fa-star"></i>
@@ -319,7 +326,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <?php if ( !$alreadyActivated ) { ?>
 
             <p style="text-align: center; margin-top: 20px;">
-                <a href="<?php echo onp_licensing_325_get_purchase_url( $this->plugin ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $24 Only</strong></a>
+                <a href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $24 Only</strong></a>
             </p>
 
             <?php } ?>
@@ -407,12 +414,12 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
 
         <div class="onp-page-section">
             <p style="text-align: center;">
-                <a href="<?php echo onp_licensing_325_get_purchase_url( $this->plugin ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $24 Only</strong></a>
+                <a href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $24 Only</strong></a>
             </p>
             <div class="onp-remark">
                 <div class="onp-inner-wrap">
                     <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'optinpanda'); ?></p>
-                    <p><?php printf(__('<strong>To purchase the Social Locker</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'optinpanda'), onp_licensing_325_get_purchase_url( $this->plugin )); ?></p>
+                    <p><?php printf(__('<strong>To purchase the Social Locker</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'optinpanda'), onp_sl_get_premium_url( 'go-premium' )); ?></p>
                 </div>
             </div>
         </div> 
@@ -420,7 +427,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
         <?php } else { ?>
         <div class="onp-page-section">
             <div class='factory-bootstrap-329'>
-                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_licensing_325_get_purchase_url( $this->plugin ) ?>">
+                <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>">
                     <i class="fa fa-star"></i>
                     Purchase Social Locker Premium For $24 Only
                     <i class="fa fa-star"></i>

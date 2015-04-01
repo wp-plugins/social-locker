@@ -152,17 +152,49 @@ class OPanda_Plugins {
         return self::getPluginInfo( $pluginName, 'premium' );
     }
     
-    public static function getUrl( $pluginName, $type = null ) {
+    public static function getUrl( $pluginName, $type = null, $campaing = null ) {
         $pluginInfo = self::getPluginInfo( $pluginName, $type );
         if ( empty( $pluginInfo ) ) return $pluginInfo;
-        return $pluginInfo['url'];
+        
+        $url = $pluginInfo['url'];
+        if ( empty( $campaing ) ) return $url;
+        
+        if ( false === strpos( $url, 'utm_source') ) {
+
+            if ( BizPanda::isSinglePlugin() ) {
+
+                $plugin = BizPanda::getPlugin();
+
+                $args = array(
+                    'utm_source'    => 'plugin-' . $plugin->options['name'],
+                    'utm_medium'    => ( $plugin->license && isset( $plugin->license->data['Category'] ) ) 
+                                                ? ( $plugin->license->data['Category'] . '-version' )
+                                                : 'unknown-version',
+                    'utm_campaign'  => $campaing,
+                    'tracker'       => isset( $plugin->options['tracker'] ) ? $plugin->options['tracker'] : null
+                );
+
+                $url = add_query_arg( $args, $url );   
+
+            } else {
+
+                $url = add_query_arg( array(
+                    'utm_source' => 'plugin-bizpanda',
+                    'utm_medium' => 'mixed-versions',
+                    'utm_campaign' =>  $campaing,
+                    'utm_term' => implode(',', BizPanda::getPluginNames( true ) )
+                ), $url );   
+            }
+        }
+        
+        return $url;
     }  
 
-    public static function getPremiumUrl( $pluginName ) {
-        return self::getUrl( $pluginName, 'premium' );
+    public static function getPremiumUrl( $pluginName, $campaing = null ) {
+        return self::getUrl( $pluginName, 'premium', $campaing );
     }
-    
-    public static function getFreeUrl( $pluginName ) {
-        return self::getUrl( $pluginName, 'free' );
-    }  
+
+    public static function getFreeUrl( $pluginName, $campaing = null ) {
+        return self::getUrl( $pluginName, 'free', $campaing );
+    }   
 }

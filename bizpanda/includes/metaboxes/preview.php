@@ -76,19 +76,15 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
             $dataPrint .= $key.'="'.$val.'" ';
         }
         $dataPrint = rtrim($dataPrint, ' ');
+        
+        $showStyleRollerOffer = ( BizPanda::isSinglePlugin() && BizPanda::hasPlugin('sociallocker') );
         ?>
         <script>
             function onp_sl_update_preview_height(height) {
                 jQuery("#lock-preview-wrap iframe").height(height);
             }
             var pluginName = '<?php echo $bizpanda->pluginName; ?>';
-            
-            <?php if ( defined('OPANDA_STYLER_PLUGIN_ACTIVE') ) { ?>
-            window.onp_sl_styleroller = true;
-            <?php } else { ?>
-            window.onp_sl_styleroller = false;
-            <?php } ?>
-                
+
             window.opanda_proxy_url = '<?php echo opanda_proxy_url() ?>'
             window.opanda_facebook_app_id = '<?php echo get_option('opanda_facebook_appid') ?>';
             window.opanda_google_client_id = '<?php echo get_option('opanda_google_client_id') ?>';
@@ -96,6 +92,20 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
             window.opanda_terms = '<?php echo opanda_terms_url() ?>';
             window.opanda_privacy_policy = '<?php echo opanda_privacy_policy_url() ?>';
             window.opanda_subscription_service_name = '<?php echo get_option('opanda_subscription_service', 'none') ?>';
+            
+            <?php if ( defined('ONP_OP_STYLER_PLUGIN_ACTIVE') ) { ?>
+            window.onp_sl_styleroller = true;
+            <?php } else { ?>
+            window.onp_sl_styleroller = false;
+            window.onp_sl_styleroller_offer_text = '<?php _e('Want more themes?', 'sociallocker') ?>';
+            window.onp_sl_styleroller_offer_url = '<?php echo $bizpanda->options['styleroller'] ?>';
+            <?php } ?>
+                
+            <?php if ( $showStyleRollerOffer ) { ?>
+            window.onp_sl_show_styleroller_offer = true;
+            <?php } else { ?>
+            window.onp_sl_show_styleroller_offer = false;
+            <?php } ?>      
         </script>
         <p class="note"><strong><?php _e('Note', 'optinpanda'); ?>:</strong> <?php _e('In the preview mode, the some features of the locker may not work properly.', 'optinpanda'); ?></p>
         <div id="lock-preview-wrap"<?php echo $dataPrint; ?>>

@@ -8,11 +8,11 @@
  * @param string $name plugin or item name.
  * @return string|false the URL to purchase
  */
-function opanda_get_premium_url( $name = null ) {
+function opanda_get_premium_url( $name = null, $campaign = 'na' ) {
     if ( empty( $name ) ) $name = OPanda_Items::getCurrentItemName ();
     
     $url = null;
-    $url = apply_filters('opanda_premium_url', $url, $name );
+    $url = apply_filters('opanda_premium_url', $url, $name, $campaign );
     if ( !empty( $url ) ) return $url;
     
     $url = OPanda_Items::getPremiumUrl( $name );
@@ -31,9 +31,9 @@ function opanda_get_premium_url( $name = null ) {
  * 
  * @since 1.1.4
  */
-function opanda_get_premium_note( $wrap = true ) {
+function opanda_get_premium_note( $wrap = true, $campaign = 'na' ) {
     
-    $url = opanda_get_premium_url();
+    $url = opanda_get_premium_url( null, $campaign );
     $content = '';
     
     if ( $wrap ) {

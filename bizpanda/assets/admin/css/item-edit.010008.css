@@ -960,3 +960,19 @@
 .opanda-hint li + li {
     margin-top: 6px;
 }
+
+/* hints */
+
+#opanda_style,
+#onp-sl-styleroller-btn {
+    display: inline-block;
+    vertical-align: middle;
+}
+#onp-sl-styleroller-btn { 
+    margin-left: 10px;
+    height: 34px;
+    padding-top: 7px;
+}
+#onp-sl-styleroller-btn .fa {
+    margin-right: 5px;
+}

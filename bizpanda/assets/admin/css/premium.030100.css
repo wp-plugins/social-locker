@@ -72,6 +72,9 @@
     line-height: 24px;
     margin-bottom: 20px;
 }
+.onp-page-content .onp-page-section .updated {
+    display: none;
+}
 
 /* List */
 

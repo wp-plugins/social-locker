@@ -10,9 +10,9 @@
  */
 
 // creating a license manager for each plugin created via the factory
-add_action('factory_notices_322_plugin_created', 'factory_notices_322_plugin_created');
-function factory_notices_322_plugin_created( $plugin ) {
-    new FactoryNotices322( $plugin );
+add_action('factory_notices_323_plugin_created', 'factory_notices_323_plugin_created');
+function factory_notices_323_plugin_created( $plugin ) {
+    new FactoryNotices323( $plugin );
 }
 
 /**
@@ -20,7 +20,7 @@ function factory_notices_322_plugin_created( $plugin ) {
  * 
  * @since 1.0.0
  */
-class FactoryNotices322 {
+class FactoryNotices323 {
 
     public function __construct( $plugin ) {
         $this->plugin = $plugin;
@@ -58,8 +58,8 @@ class FactoryNotices322 {
     }
     
     public function enqueueScripts() {
-        wp_enqueue_style('factory-notices-322-css', FACTORY_NOTICES_322_URL . '/assets/css/notices.css');      
-        wp_enqueue_script('factory-notices-322-js', FACTORY_NOTICES_322_URL . '/assets/js/notices.js');
+        wp_enqueue_style('factory-notices-323-css', FACTORY_NOTICES_323_URL . '/assets/css/notices.css');      
+        wp_enqueue_script('factory-notices-323-js', FACTORY_NOTICES_323_URL . '/assets/js/notices.js');
     }
     
     public function showNotices() {
@@ -74,7 +74,7 @@ class FactoryNotices322 {
         ?>
 
         <?php if ( $this->hasNotices ) { ?>
-        <div class="updated factory-bootstrap-329 factory-fontawesome-320 factory-notices-322-notices">
+        <div class="updated factory-bootstrap-329 factory-fontawesome-320 factory-notices-323-notices">
         <?php
         foreach ($this->notices as $notice) {
             $this->showNotice($notice);
@@ -105,12 +105,15 @@ class FactoryNotices322 {
         $type = empty( $data['type'] ) ? 'offer' : $data['type'];
         $subtype = empty( $data['subtype'] ) ? 'none' : $data['subtype'];
         
+        $position = empty( $data['position'] ) ? 'notice' : $data['position'];
+        $layout = empty( $data['layout'] ) ? 'standard' : $data['layout'];
+        
         // checking if we should show a notice on a current page
         $where = empty( $data['where'] ) ? array('plugins','dashboard', 'edit') : $data['where'];
         $screen = get_current_screen();
 
         if ( !in_array($screen->base, $where) ) return;
-
+        
         // setups a content of the notice to display
         $header = empty( $data['header'] ) ? null : $data['header'];
         $message = empty( $data['message'] ) ? null : $data['message'];
@@ -118,7 +121,9 @@ class FactoryNotices322 {
         $hasHeader = !empty( $header );
         $hasMessage = !empty( $message );
         $hasClose = isset( $data['close'] ) ? $data['close'] : false;
-        $hasIcon = isset( $data['icon'] );      
+        $hasIcon = isset( $data['icon'] );   
+        
+        if ( !isset( $data['buttons'] ) ) $data['buttons'] = array();
         
         $classes = array();
         if ( !empty( $data['class'] ) ) $classes[] = $data['class'];
@@ -126,10 +131,10 @@ class FactoryNotices322 {
         if ( $hasIcon ) $classes[] = 'factory-has-icon';  
         
         ?>
-            <div class="factory-notice <?php echo implode(' ', $classes) ?>" id="<?php echo $data['id'] ?>">
+        <div class="factory-notice-item factory-<?php echo $position ?> <?php echo implode(' ', $classes) ?>" id="<?php echo $data['id'] ?>">
             <div class="factory-inner-wrap"> 
                 <?php if ( $hasClose ) { ?>
-                <a href="#" class="factory-close close" title="Dismiss this message."><i class="fa fa-times"></i></a>
+                <a href="#" class="factory-close close factory-corner-close" data-close="<?php echo $data['close'] ?>" title="Dismiss this message."><i class="fa fa-times"></i></a>
                 <?php } ?>
                 <?php if ( $hasIcon ) { ?>
                     <i class="factory-icon <?php echo $data['icon'] ?>"></i>
@@ -140,12 +145,14 @@ class FactoryNotices322 {
                     <?php } ?>
                     <span class="factory-message"><?php echo $message ?></span>
                 </div>
-
+                    
+                <?php if ( !empty( $data['buttons'] ) ) { ?>
                 <div class="factory-buttons actions">
                     <?php foreach( $data['buttons'] as $buttonData ) { ?>
                     <?php $this->renderNoticeButton( $buttonData, $data['id'] ) ?>
                     <?php } ?>
                 </div>
+                <?php } ?>
             </div>
         </div>
         <?php
@@ -166,13 +173,13 @@ class FactoryNotices322 {
         
         $onclick = '';
         if ( $action == 'x' ) { 
-            $onclick = "factory_notices_322_hide_notice('$id', false); return false;";
+            $onclick = "factory_notices_323_hide_notice('$id', false); return false;";
             $action = '#';
         }
 
         if ( $action == 'xx' ) { 
             $action = '#';
-            $onclick = "factory_notices_322_hide_notice('$id', true); return false;"; 
+            $onclick = "factory_notices_323_hide_notice('$id', true); return false;"; 
         }
 
         ?>
@@ -180,5 +187,9 @@ class FactoryNotices322 {
             <?php echo $title ?>
         </a>
         <?php 
+    }
+    
+    public static function resiter( $className, $plugin ) {
+        
     }
 }

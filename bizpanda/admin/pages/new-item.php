@@ -96,22 +96,35 @@ class OPanda_NewPandaItemPage extends OPanda_AdminPage  {
                     
                     <?php foreach( $suggestions as $suggestion ) { 
                         
-                        if ( BizPanda::isSinglePlugin() ) {
-                            $utm_source = BizPanda::getPluginName( true );
-                        } else {
-                            $utm_source = 'bizpanda';
-                        }
-
                         $url = $suggestion['url'];
+                        
                         if ( false === strpos( $url, 'utm_source') ) {
-                            $url = add_query_arg( array(
-                                'utm_source' => $utm_source,
-                                'utm_medium' => 'plugin',
-                                'utm_campaign' => 'suggestions',
-                                'utm_term' => implode(',', BizPanda::getPluginNames( true ) )
-                            ), $url );    
-                        }
+                            
+                            if ( BizPanda::isSinglePlugin() ) {
+                                
+                                $plugin = BizPanda::getPlugin();
+                                
+                                $args = array(
+                                    'utm_source'            => 'plugin-' . $plugin->options['name'],
+                                    'utm_medium'            => ( $plugin->license && isset( $plugin->license->data['Category'] ) ) 
+                                                                ? ( $plugin->license->data['Category'] . '-version' )
+                                                                : 'unknown-version',
+                                    'utm_campaign'          => 'suggestions',
+                                    'tracker'               => isset( $plugin->options['tracker'] ) ? $plugin->options['tracker'] : null
+                                );
 
+                                $url = add_query_arg( $args, $url );   
+                                
+                            } else {
+
+                                $url = add_query_arg( array(
+                                    'utm_source' => 'plugin-bizpanda',
+                                    'utm_medium' => 'mixed-versions',
+                                    'utm_campaign' => 'suggestions',
+                                    'utm_term' => implode(',', BizPanda::getPluginNames( true ) )
+                                ), $url );   
+                            }
+                        }  
                         ?>
                     
                         <div class="postbox opanda-item opanda-item-<?php echo $suggestion['type'] ?>">
