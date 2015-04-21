@@ -64,7 +64,7 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
             'data-lang' => get_option('opanda_lang'),
             'data-short-lang' => get_option('opanda_short_lang'),
             'data-facebook-appid' => get_option('opanda_facebook_appid'),
-            'data-facebook-version' => get_option('opanda_facebook_version', 'v1.0')
+            'data-facebook-version' => get_option('opanda_facebook_version', 'v1.0')            
         );
         $extra_data['data-vk-appid'] = get_option('opanda_vk_appid');
         $extra_data['data-url'] = admin_url('admin-ajax.php') . $query_string;

@@ -74,14 +74,14 @@ class OPanda_AssetsManager {
 
         wp_enqueue_style( 
             'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010013.min.css'
-        );  
+            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010014.min.css'
+        );
 
         wp_enqueue_script( 
             'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010013.min.js', 
+            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010014.min.js', 
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
-        );  
+        );
         
         $facebookSDK = array( 
             'appId' => get_option('opanda_facebook_appid'),
@@ -117,19 +117,19 @@ class OPanda_AssetsManager {
      */
     public static function printLockerCreatorScript() {
         do_action('opanda_before_locker_creator_script');
-
+        
+        $args = array();
+        $args[opanda_get_robust_key()] = opanda_get_robust_script_key();
+                
+        $robustLoader = add_query_arg($args, site_url() );
+        
         ?> 
         <!-- 
-            Lockers Creator
-        
-            Added by BizPanda, the common platform for Social Locker and Opt-In Panda plugins (c) OnePress Ltd
-            http://byonepress.com
+            Script checks if the locker assets were successfully loaded and creates lockers.
+            http://bizpanda.com
         -->
         <script>
-            <?php if ( !empty( $resToPrint ) ) { ?>if ( !window.bizpanda ) window.bizpanda = {};
-            window.bizpanda.res = <?php echo json_encode($resToPrint); ?>;<?php } ?>
-                
-            (function($){ if ( window.bizpanda && window.bizpanda.lockers ) window.bizpanda.lockers(); })(jQuery);
+            (function($){ if ( window.bizpanda && window.bizpanda.lockers ) window.bizpanda.lockers(); })(jQuery); (function($){ $(function(){ if ( window.bizpanda && window.bizpanda.lockers ) return; $.getScript( "<?php echo $robustLoader; ?>", function() { if ( window.bizpanda && window.bizpanda.lockers ) window.bizpanda.lockers(); }); }); })(jQuery);
         </script>
         <!-- / -->
         <?php
@@ -204,10 +204,8 @@ class OPanda_AssetsManager {
     public static function printCssSelectorOptions() {
         ?>
         <!-- 
-            Opt-In Panda CSS Selectors (Bulk Locking)
-
-            Created by the Opt-In Panda plugin (c) OnePress Ltd
-            http://optinpanda.org
+            CSS Selectors (Bulk Locking)
+            http://bizpanda.com
         -->
         <script>
             if ( !window.bizpanda ) window.bizpanda = {};
@@ -258,12 +256,11 @@ class OPanda_AssetsManager {
             );
         }
 
-        ?>
+        ?>  
         <!-- 
-            Options of Bulk Lockers        
-            Created by the Opt-In Panda plugin (c) OnePress Ltd
-            http://onepress-media.com/plugin/optinpanda-for-wordpress/get
-        -->        
+            Options of Bulk Lockers   
+            http://bizpanda.com
+        -->
             <script>
             if ( !window.bizpanda ) window.bizpanda = {};
             if ( !window.bizpanda.lockerOptions ) window.bizpanda.lockerOptions = {};
@@ -463,6 +460,99 @@ class OPanda_AssetsManager {
             }
         }
     }
+    
+    // -----------------------------------------------
+    // Markup Normilizer
+    // -----------------------------------------------
+    
+    /**
+     * Normilizes the shortcode and html markup to make sure that the locker 
+     * shortcode was pasted correctly
+     * 
+     * @since 1.1.3
+     * @return string
+     */
+    public static function normilizerMarkup( $contentBefore, $contentInside, $shortcodeStart, $shortcodeEnd ) {
+        
+        $normalizeMarkup = get_option('opanda_normalize_markup', false);
+        if ( !$normalizeMarkup ) return $contentBefore . $shortcodeStart . $contentInside . $shortcodeEnd;
+            
+        list( $endingElements, $endingTags ) = self::findMarkupElements( true, $contentInside );
+
+        $allowedNames = array();
+        foreach( $endingElements as $element ) $allowedNames[] = $element['name'];
+
+        list( $startingElements, $startingTags ) = self::findMarkupElements( false, $contentBefore, $allowedNames ); 
+
+        $end = implode("", $endingTags);
+        $start = implode("", $startingTags);
+
+        $content = $contentBefore . $end . $shortcodeStart . $start . $contentInside . $shortcodeEnd;
+        return $content;
+    }
+    
+    /**
+     * Finds closing and opening shortcodes and html elements without pairs.
+     * 
+     * @since 1.1.3
+     * @return mixed[]
+     */
+    public static function findMarkupElements( $closing = false, $content, $allowedNames = null ) {
+        
+        $result = array( array(), array() );
+        
+        $regex = array();
+        
+        $regex[] = '(\[(\/)?([^\[\]]*)\])';
+        $regex[] = '(<(\/)?\s*([^<>]*)>)';
+
+        if ( !preg_match_all( '/' . implode('|', $regex) . '/', $content, $matches, PREG_SET_ORDER ) ) return $result;
+        
+        $elements = array();
+        $tags = array();
+        
+        $stack = array();
+        
+        foreach( $matches as $match ) {
+            
+            $attrs = explode( ' ', trim( $match[3] ) );
+            $name = trim( $attrs[0] );
+            $closing = !empty( $match[2] );
+            $tag = trim( $match[1] );
+            
+            $lastStack = end( $stack );
+            
+            if ( $lastStack['name'] === $name && $lastStack['closing'] !== $closing ) {
+                array_pop( $stack );
+            } else {
+                array_push( $stack, array('name' => $name, 'closing' => $closing, 'tag' => $tag ) );
+            }
+        } 
+        
+        foreach( $stack as $element ) {
+            if ( $closing !== $element['closing'] ) continue;
+            
+            $elements[] = $element;
+            $tags[] = $element['tag'];
+        }
+        
+        if ( !empty( $allowedNames ) ) {
+
+            $filteredElements = array();
+            $filteredTags = array();
+            
+            for( $i = 0; $i < count( $elements ); $i++ ) {
+                if ( !in_array( $elements[$i]['name'], $allowedNames ) ) continue;
+                
+                $filteredElements[] = $elements[$i];
+                $filteredTags[] = $elements[$i]['tag'];
+            }
+            
+            return array( $filteredElements, $filteredTags );
+        }
+
+        return array( $elements, $tags );
+    }
        
     // -----------------------------------------------
     // Bulk Locking
@@ -622,12 +712,15 @@ class OPanda_AssetsManager {
                         $offset = $matches[0][1] + strlen( $matches[0][0] );
                       
                         if ( $counter == $options['skip_number'] ) { 
-                            $content = substr($content, 0, $offset) . "[$shortcodeName id='$id']" . substr($content, $offset) . "[/$shortcodeName]"; 
-                            return $content;                            
+                            
+                            $beforeShortcode = substr($content, 0, $offset);
+                            $insideShortcode = substr($content, $offset);
+
+                            return self::normilizerMarkup( $beforeShortcode, $insideShortcode, "[$shortcodeName id='$id']", "[/$shortcodeName]" );                         
                         }
                     }
                 }
-                
+
                 return $content;
                 
             } elseif( $options['way'] == 'more-tag' && is_singular( $options['post_types'] ) ) {

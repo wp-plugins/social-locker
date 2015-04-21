@@ -275,14 +275,21 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     array(
                         'type'  => 'url',
                         'title' => __('User to follow', 'optinpanda'),
-                        'hint'  => __('Set a full URL of your Twitter profile to which the user has to follow in order to unlock your content.', 'optinpanda'),
+                        'hint'  => __('Set an URL of your Twitter profile (for example, <a href="https://twitter.com/byonepress" target="_blank">https://twitter.com/byonepress</a>).', 'optinpanda'),
                         'name'  => 'twiiter_fake_field_1'
-                    ),  
+                    ),
+                    array(
+                        'type'  => 'checkbox',
+                        'way'   => 'buttons',
+                        'title' => __('Hide Username', 'optinpanda'),
+                        'hint'  => __('Set On to hide your username on the button (makes the button shorter).', 'optinpanda'),
+                        'name'  => 'twiiter_fake_field_2'
+                    ), 
                     array(
                         'type'  => 'textbox',
                         'title' => __('Button Title', 'optinpanda'),
                         'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
-                        'name'  => 'twiiter_fake_field_2',
+                        'name'  => 'twiiter_fake_field_3',
                         'default' => __('follow us', 'optinpanda')
                     )
                 )
@@ -299,11 +306,7 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                         'way'   => 'buttons',
                         'title' => __('Available', 'optinpanda'),
                         'hint'  => __('Set On, to activate the button.', 'optinpanda'),
-                        'name'  => 'google-share_available',
-
-                        'tumbler'   => true,
-                        'tumblerFunction' => 'bizpanda.lockerEditor.socialOptions.showTumbler',
-                        'tumblerHint' => sprintf( __( 'The Google Share Button is available only in the<br /><i class="fa fa-star-o"></i> <a href="%s" target="_blank">premium version</a> <i class="fa fa-star-o"></i> of the plugin', 'opanda' ), $sociallockerUrl )
+                        'name'  => 'google-share_available'
                     ),      
                     array(
                         'type'  => 'url',
@@ -319,6 +322,36 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                         'default' => __('share', 'optinpanda')
                     )
                 )
+            );
+            
+            // - Youtube Subscribe
+ 
+            $tabs['items'][] = array(
+                'type'      => 'tab-item',
+                'name'      => 'youtube-subscribe',
+                'items'     => array(
+                    array(
+                        'type'  => 'checkbox',
+                        'way'   => 'buttons',
+                        'title' => __('Available', 'sociallocker'),
+                        'hint'  => __('Set On, to activate the button.', 'sociallocker'),
+                        'name'  => 'youtube-subscribe_available',
+                        'default' => false
+                    ),
+                    array(
+                        'type'  => 'textbox',
+                        'title' => __('Channel ID', 'sociallocker'),
+                        'hint'  => __('Set a channel ID to subscribe (for example, <a href="http://www.youtube.com/channel/UCANLZYMidaCbLQFWXBC95Jg" target="_blank">UCANLZYMidaCbLQFWXBC95Jg</a>).', 'optinpanda'),
+                        'name'  => 'youtube_fake_field_2'
+                    ),                             
+                    array(
+                        'type'  => 'textbox',
+                        'title' => __('Button Title', 'sociallocker'),
+                        'hint'  => __('Optional. A visible title of the buttons that is used in some themes (by default only in the Secrets theme).', 'sociallocker'),
+                        'name'  => 'youtube_fake_field_3',
+                        'default' => __('Youtube', 'sociallocker')
+                    )
+               )
             );
 
             // - LinkedIn Share Tab

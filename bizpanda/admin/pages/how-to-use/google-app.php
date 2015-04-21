@@ -4,6 +4,7 @@
     <p>
         <?php _e('A Google Client ID is required for the following buttons:', 'optinpanda'); ?>
         <ul>
+            <li><?php _e('YouTube Subscribe of the Social Locker.', 'optinpanda') ?></li>            
             <li><?php _e('Google Sign-In of the Sign-In Locker.', 'optinpanda') ?></li>
             <?php if ( BizPanda::hasPlugin('optinpanda') ) { ?>
             <li><?php _e('Google Subscribe of the Email Locker.', 'optinpanda') ?></li>  
@@ -12,7 +13,7 @@
     </p>
     
     <p><?php _e('If you want to use these buttons, you need to get Google Client ID App for your website.', 'optinpanda') ?>
-    <?php _e('<strong>You don\'t need to get a Client ID</strong> if you\'re not going to use these Google buttons.') ?></p>
+    <?php _e('<strong>You don\'t need to get a Client ID</strong> if you\'re not going to use these buttons.') ?></p>
 </div>
 
 <div class="onp-help-section">
@@ -22,7 +23,7 @@
 <div class="onp-help-section">
     <p><?php _e('2. Click the button "Create Project", enter your website name as a new project name.', 'optinpanda') ?></p>
     <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/1.png' />
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/1a.png' />
     </p>
 </div>
 
@@ -89,23 +90,18 @@
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('6. In the sidebar on the left, select "APIs", find "Google+ API" in the list and click the button "Off" to make it available for your project:', 'optinpanda' ) ?></p>
+    <p><?php _e('6. In the sidebar on the left, select "APIs" and enable the following APIs:', 'optinpanda' ) ?></p>
+    <ul>
+        <li><?php _e('<strong>Google API</strong>', 'optinpanda' ) ?></li>
+        <li><?php _e('<strong>YouTube APIs</strong> <em>(if you are going to attract subscribers for your Youtube channel)</em>', 'optinpanda' ) ?></li> 
+    </ul>
+    <p><?php _e('To enable these APIs, click on a title of the required API in the list and then click the button "Enable API".', 'optinpanda' ) ?></p>
     <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/3.png' />
-    </p>
-    <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/4.png' />
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/3a.png' />
     </p>
 </div>
-
 <div class="onp-help-section">
-    <p><?php _e('7. If you want to subscribe users to your Youtube channel, turn on aslo "<strong>YouTube Data API v3</strong>" additionally to "Google+ API" in the same list.', 'optinpanda' ) ?></p>
-    <p><?php _e('But do not activate it if you are not going to use the Youtube subscription feature in order to avoid asking for too many permissions.', 'optinpanda' ) ?></p>
-   
-</div>
-
-<div class="onp-help-section">
-    <p><?php _e('8. In the sidebar on the left, select "Credentials", then click the button "Create new Client ID".', 'optinpanda' ) ?></p>
+    <p><?php _e('7. In the sidebar on the left, select "Credentials", then click the button "Create new Client ID".', 'optinpanda' ) ?></p>
     <p class='onp-img'>
         <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/5.png' />
     </p>
@@ -121,7 +117,7 @@
 ?>
 
 <div class="onp-help-section">
-    <p><?php _e('9. In the popup window, select "Web application" and fill up the form:', 'optinpanda' ) ?></p>
+    <p><?php _e('8. In the popup window, select "Web application" and fill up the form:', 'optinpanda' ) ?></p>
     <table class="table">
         <thead>
             <tr>
@@ -157,12 +153,12 @@
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('10. After closing the popup window, you will see your new Client ID:', 'optinpanda' ) ?></p>
+    <p><?php _e('9. After closing the popup window, you will see your new Client ID:', 'optinpanda' ) ?></p>
     <p class='onp-img'>
         <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/7.png' />
     </p>
 </div>
 
 <div class="onp-help-section">
-    <p><?php printf( __('11. Copy and paste it on the page Global Settings > <a href="%s">Social Options</a>.', 'optinpanda' ), opanda_get_settings_url('social') ) ?></p>
+    <p><?php printf( __('10. Copy and paste it on the page Global Settings > <a href="%s">Social Options</a>.', 'optinpanda' ), opanda_get_settings_url('social') ) ?></p>
 </div>

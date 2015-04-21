@@ -12,7 +12,7 @@
 /**
  * Returns a list of the lockers.
  */
-function opanda_get_lockers() {
+function opanda_ajax_get_lockers() {
     
     $lockers = get_posts(array(
         'post_type' => OPANDA_POST_TYPE,
@@ -39,5 +39,5 @@ function opanda_get_lockers() {
     die();
 }
 
-add_action('wp_ajax_get_opanda_lockers', 'opanda_get_lockers');
+add_action('wp_ajax_get_opanda_lockers', 'opanda_ajax_get_lockers');
 

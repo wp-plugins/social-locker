@@ -63,6 +63,9 @@
     -moz-transition: none;
     transition: none;
 }
+.factory-bootstrap-329 .factory-align-vertical .factory-bodies {
+    min-height: 350px !important;
+}
 .factory-volumetric .factory-bootstrap-329 .factory-align-vertical .nav-tabs a {
     height: 22px;
 }
@@ -84,6 +87,9 @@
 .factory-bootstrap-329 .factory-align-vertical .factory-tab-item-header-google-share a {
     background-position: -38px -201px;
 }
+.factory-bootstrap-329 .factory-align-vertical .factory-tab-item-header-youtube-subscribe a {
+    background-position: -38px -282px;
+}
 .factory-bootstrap-329 .factory-align-vertical .factory-tab-item-header-linkedin-share a {
     background-position: -38px -241px;
 }
@@ -104,6 +110,9 @@
 }
 .factory-bootstrap-329 .factory-align-vertical .factory-disabled.factory-tab-item-header-google-share a {
     background-position: -195px -201px;
+}
+.factory-bootstrap-329 .factory-align-vertical .factory-disabled.factory-tab-item-header-youtube-subscribe a { 
+    background-position: -195px -282px;
 }
 .factory-bootstrap-329 .factory-align-vertical .factory-disabled.factory-tab-item-header-linkedin-share a {
     background-position: -195px -241px;
@@ -136,6 +145,7 @@
 #vk-share .alert,
 #facebook-like .alert,
 #facebook-share .alert,
+#youtube-subscribe .alert,
 #google-share .alert {
     position: relative;
     top: -15px;

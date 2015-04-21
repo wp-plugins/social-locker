@@ -4,6 +4,7 @@ require_once OPANDA_BIZPANDA_DIR . '/admin/activation.php';
 require_once OPANDA_BIZPANDA_DIR . '/admin/troubleshooting.php';
 require_once OPANDA_BIZPANDA_DIR . '/admin/bulk-lock.php';
 require_once OPANDA_BIZPANDA_DIR . '/admin/helpers.php';
+require_once OPANDA_BIZPANDA_DIR . '/extras/visual-composer/boot.php';
 
 // ---
 // Pages

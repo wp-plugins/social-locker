@@ -168,12 +168,13 @@ class OPanda_SocialSettings extends OPanda_Settings  {
             'way'       => 'buttons',
             'name'      => 'facebook_version',
             'title'     => __( 'Facebook API Version', 'optinpanda' ),
-            'default'   => 'v1.0',
+            'default'   => 'v2.3',
             'data'      => array(
                 array('v1.0', 'v1.0'),
-                array('v2.0', 'v2.0')       
+                array('v2.0', 'v2.0'), 
+                array('v2.3', 'v2.3')             
              ),
-            'hint'      => __( 'Optional. Use the most recent version of the API (v2.0) but if Facebook buttons don\'t work on your website try to switch the API to the v1.0.', 'optinpanda' )
+            'hint'      => __( 'Optional. Use the most recent version of the API (v2.3) but if Facebook buttons or widgets don\'t work on your website try to switch to other versions.', 'optinpanda' )
         );
 
         $options[] = array(
@@ -225,7 +226,7 @@ class OPanda_SocialSettings extends OPanda_Settings  {
             'name'      => 'google_client_id',
             'title'     => __( 'Google Client ID', 'optinpanda' ),
             'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Get Client ID</a>', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') ),
-            'hint'      => sprintf( __( 'If you want to use the Google Sign-In button, please <a href="%s">create a Client ID</a> for your website.', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') )
+            'hint'      => sprintf( __( 'If you want to use the YouTube Subscribe or Google Sign-In buttons, please <a href="%s">create a Client ID</a> for your website.', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') )
         );  
 
         if ( BizPanda::hasFeature('linkedin') ) {

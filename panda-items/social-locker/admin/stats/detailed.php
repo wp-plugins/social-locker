@@ -13,8 +13,8 @@ class OPanda_SocialLocker_Detailed_StatsTable extends OPanda_StatsTable {
                 'title' => __('Post Title', 'opanda')
             ),
             'unlock' => array(
-                'title' => __('Total Unlocks', 'opanda'),
-                'hint' => __('The number of unlocks made by visitors.', 'opanda'),
+                'title' => __('Total', 'opanda'),
+                'hint' => __('The total number of unlocks made by visitors.', 'opanda'),
                 'highlight' => true,
                 'cssClass' => 'opanda-col-number'
             ),
@@ -46,6 +46,10 @@ class OPanda_SocialLocker_Detailed_StatsTable extends OPanda_StatsTable {
                         'title' => __('Google Share'),
                         'cssClass' => 'opanda-col-number'
                     ),
+                    'unlock-via-youtube-subscribe' => array(
+                        'title' => __('YouTube'),
+                        'cssClass' => 'opanda-col-number'
+                    ), 
                     'unlock-via-linkedin-share' => array(
                         'title' => __('LinkedIn Share'),
                         'cssClass' => 'opanda-col-number'
@@ -90,6 +94,10 @@ class OPanda_SocialLocker_Detailed_StatsChart extends OPanda_StatsChart {
                 'title' => __('Google Shares'),
                 'color' => '#ba5145'
             ),
+            'unlock-via-youtube-subscribe' => array(
+                'title' => __('YouTube'),
+                'color' => '#8f352b'
+            ),            
             'unlock-via-linkedin-share' => array(
                 'title' => __('LinkedIn Shares'),
                 'color' => '#006080'

@@ -246,6 +246,28 @@ function opanda_get_item_option( $id, $name, $isArray = false, $default = null )
 }
 
 /**
+ * Replaces the variables in URLs {var} and return the result URL.
+ *
+ * @since 1.1.3
+ */
+function opanda_get_dynamic_url( $id, $name, $default = null ) {
+    $url = opanda_get_item_option( $id, $name, false );
+    
+    if( empty( $url ) ) return $default;
+    return preg_replace_callback("/\{([^}]+)\}/", 'opanda_get_dunamic_url_callback', $url);
+}
+
+/**
+ * A callback for 'preg_replace_callback' in the function opanda_get_dunamic_url.
+ * 
+ * @since 1.1.3
+ */
+function opanda_get_dunamic_url_callback( $match ) {
+    if( array_key_exists( $match[1], $_REQUEST ) ) return $_REQUEST[$match[1]];
+    return $match[0];
+}
+
+/**
  * Cache for the locker options.
  */
 global $opanda_item_options;
@@ -342,6 +364,64 @@ function opanda_normilize_value( $value = null ) {
     return $value;
 }
 
+/**
+ * Returns a website robust key to load failed assets.
+ * 
+ * @since 1.1.3
+ */
+function opanda_get_robust_key() {
+    $key = get_option('opanda_robust_key', false);
+    if ( empty( $key ) ) {
+        $key = substr( md5( NONCE_SALT ), 0, rand(5,15) );
+        update_option( 'opanda_robust_key', $key );
+    }
+    return $key;
+}
+
+/**
+ * Returns a website robust script key to load the locker script.
+ * 
+ * @since 1.1.3
+ */
+function opanda_get_robust_script_key() {
+    $key = get_option('opanda_robust_script_key', false);
+    if ( empty( $key ) ) {
+        $key = substr( md5( NONCE_SALT ), 15, rand(5,15) );
+        update_option( 'opanda_robust_script_key', $key );
+    }
+    return $key;
+}
+
+/**
+ * Returns available lockers.
+ * 
+ * @since 1.1.3
+ */
+function opanda_get_lockers( $lockerType = null, $output = null ) {
+    
+    $lockers = get_posts(array(
+        'post_type' => OPANDA_POST_TYPE,
+        'meta_key' => 'opanda_item',
+        'meta_value' => empty( $lockerType ) ? OPanda_Items::getAvailableNames() : $lockerType,
+        'numberposts' => -1
+    ));
+    
+    foreach( $lockers as $locker ) {
+        $locker->post_title = empty( $locker->post_title ) 
+            ? sprintf( __( '(no titled, ID=%s)' ), $locker->ID )
+            : $locker->post_title;
+    } 
+    
+    if ( 'vc' === $output ) {
+        
+        $result = array();
+        foreach ( $lockers as $locker ) $result[$locker->post_title] = $locker->ID;
+        return $result;
+    }
+    
+    return $lockers;
+}
+
 // ---------------------------------
 // Move to hooks.php
 // ---------------------------------
@@ -353,16 +433,29 @@ function opanda_normilize_value( $value = null ) {
  * @return void
  */
 function bizpanda_frontend_action() {
-    if ( !isset( $_REQUEST['bizpanda'] ) ) return;
-    $action = $_REQUEST['bizpanda'];
+    $robustKey = opanda_get_robust_key();
     
-    if ( 'terms-of-use' === $action ) {
-        return bizpanda_show_terms_of_use();
+    if ( isset( $_REQUEST['bizpanda'] ) ) {
+        
+        $action = $_REQUEST['bizpanda'];
+
+        if ( 'terms-of-use' === $action ) {
+            return bizpanda_show_terms_of_use();
+        }
+
+        if ( 'privacy-policy' === $action ) {
+            return bizpanda_show_privacy_policy();
+        }    
+
+    } else if ( isset( $_REQUEST[$robustKey] ) ) {
+        
+        $action = $_REQUEST[$robustKey];
+        
+        if ( opanda_get_robust_script_key() === $action ) {
+            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010014.min.js');
+            exit;
+        }
     }
-    
-    if ( 'privacy-policy' === $action ) {
-        return bizpanda_show_privacy_policy();
-    } 
 }
 add_action('template_redirect', 'bizpanda_frontend_action');
 

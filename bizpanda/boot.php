@@ -4,7 +4,7 @@
 if ( defined('OPANDA_ACTIVE') ) { BizPanda::countCallerPlugin(); return; }
 define('OPANDA_ACTIVE', true);
 
-define('BIZPANDA_VERSION', 112);
+define('BIZPANDA_VERSION', 114);
 
 define('OPANDA_WORDPRESS', true);
 define('OPANDA_POST_TYPE', 'opanda-item');
@@ -22,7 +22,7 @@ global $bizpanda;
 $bizpanda = new Factory325_Plugin(__FILE__, array( 
     'name' => 'bizpanda', 
     'lang' => 'en_US',
-    'version' => '1.0.9',
+    'version' => '1.1.4',
     'updates' => OPANDA_BIZPANDA_DIR . '/plugin/updates/',
     'styleroller' =>  'http://api.byonepress.com/public/1.0/get/?product=styleroller'
 ));

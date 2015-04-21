@@ -198,7 +198,7 @@ if ( !window.bizpanda.lockerEditor ) window.bizpanda.lockerEditor = {};
                         $wrap.css('height', 'auto');
                         $wrap.css('background', 'none');
                     }
-                }
+                };
                 
                 showThemePreview();
                 
@@ -223,10 +223,23 @@ if ( !window.bizpanda.lockerEditor ) window.bizpanda.lockerEditor = {};
                         $("#opanda_overlap_position_wrap").css("display", "inline-block");   
                     }
                 };
+                
+                var toggleAjaxOption = function() {
+                    var value = $("#opanda_overlap").val();
+                    
+                    if ( value === 'full' ) {
+                        $("#opanda-ajax-disabled").hide();
+                    } else {
+                        $("#opanda-ajax-disabled").fadeIn();
+                    }
+                };
+                
                 checkPositionControlVisability();
-
+                toggleAjaxOption();
+                
                 $("#opanda_overlap").change(function(){
-                    checkPositionControlVisability();
+                    checkPositionControlVisability()
+                    toggleAjaxOption();
                 });
             }
         }

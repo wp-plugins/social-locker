@@ -95,7 +95,7 @@ class OPanda_SocialLockerMoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
         </div>
         <div class="sl-seporator"></div>
         <ul>
-            <li><span><?php _e('More Social Buttons (+4)', 'opanda'); ?></span></li>
+            <li><span><?php _e('More Social Buttons (+5)', 'opanda'); ?></span></li>
             <li><span><?php _e('More Beautiful Themes (+3)', 'opanda'); ?></span></li>
             <li><span><?php _e('Blurring Effect', 'opanda'); ?></span></li>
             <li><span><?php _e('Advanced Options (+8)', 'opanda'); ?></span></li>

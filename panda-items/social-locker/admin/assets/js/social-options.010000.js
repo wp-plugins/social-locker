@@ -162,7 +162,8 @@ if ( !window.bizpanda.socialOptions ) window.bizpanda.socialOptions = {};
                         },
                         follow: {
                             url: $("#opanda_twitter_follow_url").val(),
-                            title: $("#opanda_twitter_follow_title").val() 
+                            title: $("#opanda_twitter_follow_title").val(),
+                            hideScreenName: $("#opanda_twitter_follow_hide_name").is(':checked')
                         }
                     },          
                     google: {
@@ -175,8 +176,15 @@ if ( !window.bizpanda.socialOptions ) window.bizpanda.socialOptions = {};
                             url: $("#opanda_google_share_url").val(),
                             title: $("#opanda_google_share_title").val()
                         }
-                    },          
-                    linkedin: {  
+                    },
+                    youtube: {
+                        subscribe: {
+                            clientId: window.opanda_google_client_id,
+                            channelId: $("#opanda_google_youtube_channel_id").val(),                               
+                            title: $("#opanda_google_youtube_title").val()
+                        }
+                    },
+                    linkedin: {
                         share: {
                             url: $("#opanda_linkedin_share_url").val(),
                             title: $("#opanda_linkedin_share_title").val()
@@ -184,7 +192,7 @@ if ( !window.bizpanda.socialOptions ) window.bizpanda.socialOptions = {};
                     }
                 }
             };
-
+            console.log( options );
             return options;
         },
         

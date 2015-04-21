@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
 Requires at least: 3.2
-Tested up to: 4.1.1
+Tested up to: 4.2.0
 Stable tag: trunk
 License: GPLv2
 
@@ -88,12 +88,24 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.4.1.8 - 21 Apr 2015</strong><br />
+<ul>
+<li>IMPROVED: Compatibility with WP 4.2.</li>
+<li>ADDED: Support for the Visual Composer (including the Batch Lock for content generated via VC).</li>
+<li>ADDED: A protection algorithm against AdBlock and other extensions which modify the page content.</li>
+<li>ADDED: Support for Facebook API v.2.3.</li>
+<li>ADDED: A new social button, YouTube Subscribe (premium version).</li>
+<li>ADDED: An option to shorten the Twitter Follow button (premium version).</li>
+<li>FIXED: The bug of the option Timeout.</li>
+<li>FIXED: A lot of other minor bugs which have been reported by users.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
 <strong>v.4.1.7 - 2 Apr 2015</strong><br />
 <ul>
 <li>FIXED: A lot of minor issues reported by users.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.4.1.6 - 20 Mar 2015</strong><br />
 <ul>

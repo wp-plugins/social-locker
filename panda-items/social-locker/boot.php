@@ -40,9 +40,7 @@ add_filter('opanda_items', 'opanda_register_social_locker', 1);
  */
 function opanda_social_locker_options( $options, $id ) {
     global $post;
-    
-    $actualUrls = opanda_get_option('actual_urls', false);
-    
+
     $options['groups'] = array('social-buttons');
     $options['socialButtons'] = array();
         $buttonOrder = 'twitter-tweet,facebook-like,google-plus';
@@ -54,13 +52,13 @@ function opanda_social_locker_options( $options, $id ) {
     $postUrl = !empty($post) ? get_permalink( $post->ID ) : null;
     $postUrl = $actualUrls ? null : $postUrl;
 
-    $fbLikeUrl = opanda_get_item_option($id, 'facebook_like_url', false, $postUrl );
-    $fbShareUrl = opanda_get_item_option($id, 'facebook_share_url', false, $postUrl );
-    $twTweetUrl = opanda_get_item_option($id, 'twitter_tweet_url', false, $postUrl );
-    $twFollowUrl = opanda_get_item_option($id, 'twitter_follow_url', false, $postUrl );
-    $glPlusUrl = opanda_get_item_option($id, 'google_plus_url', false, $postUrl );      
-    $glShareUrl = opanda_get_item_option($id, 'google_share_url', false, $postUrl );
-    $lnShareUrl = opanda_get_item_option($id, 'linkedin_share_url', false, $postUrl ); 
+    $fbLikeUrl = opanda_get_dynamic_url( $id, 'facebook_like_url', $postUrl);
+    $fbShareUrl = opanda_get_dynamic_url( $id, 'facebook_share_url', $postUrl);
+    $twTweetUrl = opanda_get_dynamic_url( $id, 'twitter_tweet_url', $postUrl);
+    $twFollowUrl = opanda_get_dynamic_url( $id, 'twitter_follow_url', $postUrl);
+    $glPlusUrl = opanda_get_dynamic_url( $id, 'google_plus_url', $postUrl);
+    $glShareUrl = opanda_get_dynamic_url( $id, 'google_share_url', $postUrl);
+    $lnShareUrl = opanda_get_dynamic_url( $id, 'linkedin_share_url', $postUrl);
 
     $options['socialButtons']['counters'] = opanda_get_item_option($id, 'show_counters', false, 1);
     $options['socialButtons']['order'] = opanda_get_item_option($id, 'buttons_order', false, $buttonOrder);
@@ -106,7 +104,7 @@ function opanda_social_locker_options( $options, $id ) {
     
 
     
-    $allowedButtons = array('facebook-like', 'facebook-share', 'twitter-tweet', 'twitter-follow', 'google-plus', 'google-share', 'linkedin-share');
+    $allowedButtons = array('facebook-like', 'facebook-share', 'twitter-tweet', 'twitter-follow', 'google-plus', 'google-share', 'youtube-subscribe', 'linkedin-share');
     $allowedButtons = apply_filters('opanda_social-locker_allowed_buttons', $allowedButtons);
     
     if ( $options['socialButtons']['order'] ) {
@@ -138,24 +136,24 @@ function opanda_social_locker_options( $options, $id ) {
 
 add_filter('opanda_social-locker_item_options', 'opanda_social_locker_options', 10, 2);
 
-    /**
-     * Requests assets for email locker.
-     */
-    function opanda_social_locker_assets( $lockerId, $options, $fromBody, $fromHeader ) {
-        OPanda_AssetsManager::requestLockerAssets();
+/**
+ * Requests assets for email locker.
+ */
+function opanda_social_locker_assets( $lockerId, $options, $fromBody, $fromHeader ) {
+    OPanda_AssetsManager::requestLockerAssets();
 
-        // Miscellaneous
-        OPanda_AssetsManager::requestTextRes(array(
-            'misc_close',
-            'misc_or_wait'
-        ));
+    // Miscellaneous
+    OPanda_AssetsManager::requestTextRes(array(
+        'misc_close',
+        'misc_or_wait'
+    ));
 
-        if ( isset( $options['opanda_buttons_order'] ) && strpos( $options['opanda_buttons_order'], 'facebook' ) !== false ) {
-            OPanda_AssetsManager::requestFacebookSDK();  
-        }
+    if ( isset( $options['opanda_buttons_order'] ) && strpos( $options['opanda_buttons_order'], 'facebook' ) !== false ) {
+        OPanda_AssetsManager::requestFacebookSDK();  
     }
-    
-    add_action('opanda_request_assets_for_social-locker', 'opanda_social_locker_assets', 10, 4);
+}
+
+add_action('opanda_request_assets_for_social-locker', 'opanda_social_locker_assets', 10, 4);
 
 /**
  * A shortcode for the Social Locker

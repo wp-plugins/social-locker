@@ -156,6 +156,11 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
                         <td class="onp-how-no">-</td>
                         <td class="onp-how-yes onp-how-premium"><strong>yes</strong></td>   
                     </tr>
+                    <tr>
+                        <td class="onp-how-title">YouTube Subscribe</td>
+                        <td class="onp-how-no">-</td>
+                        <td class="onp-how-yes onp-how-premium"><strong>yes</strong></td>   
+                    </tr>
                     
                     <tr class="onp-how-group-separator">
                       <td colspan="3"></td>   
@@ -337,9 +342,9 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <h1>
                 <i class="fa fa-star-o"></i> <?php _e('Drive More Traffic & Build Quality Followers', 'optinpanda'); ?>
             </h1>
-            <p><?php _e('The premium version of the plugin provides 7 social buttons for all major social networks: Facebook, Twitter, Google, LinkedIn, including the Twitter Follow button. You can use them together or separately for customized results.', 'optinpanda') ?></p>
+            <p><?php _e('The premium version of the plugin provides 8 social buttons for all major social networks: Facebook, Twitter, Google, LinkedIn, YouTube, including the Twitter Follow button. You can use them together or separately for customized results.', 'optinpanda') ?></p>
             <p class='onp-img'>
-                <img src='http://cconp.s3.amazonaws.com/bizpanda/social-options.png' />
+                <img src='http://cconp.s3.amazonaws.com/bizpanda/social-options-a.png' />
             </p>
         </div> 
 

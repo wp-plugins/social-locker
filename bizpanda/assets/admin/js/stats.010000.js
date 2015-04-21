@@ -51,22 +51,39 @@ if ( !window.bizpanda.statistics ) window.bizpanda.statistics = {};
         
         initLockerSelectorPopup: function() {
             
-            var $popup = $("#opanda-locker-select-popup");
+            var $popup = $("#opanda-locker-select-popup").appendTo( $("body") );
             if ( $popup.length === 0 ) return;
             
             var $overlap = $("#opanda-locker-select-overlap");
             var $select = $("#opanda-locker-select");
+            var $menu = $("#adminmenuback");
                 
             $overlap.show();
             $popup.show();
             
-            var height = $popup.innerHeight();
-            var width = $popup.innerWidth();
+            var updatePopupPosition = function(){
+                
+                var height = $popup.innerHeight();
+                var width = $popup.innerWidth();
+                var windowWidth = $( window ).width();
+                
+                var shift = ( $menu.is(":visible") ) ? $menu.innerWidth() : 0;
             
-            $popup.css({
-                'marginTop': -parseInt( height / 2 ) + "px",
-                'marginLeft': -parseInt( width / 2 ) + "px"
+                $popup.css({
+                    'marginTop': -parseInt( height / 2 ) + "px",
+                    'left': shift + ( ( windowWidth - shift - width ) / 2 ) + "px"
+                });
+            };
+
+            $(window).resize(function(){
+                updatePopupPosition();
             });
+
+            $("#collapse-menu").click(function(){
+                updatePopupPosition();
+            });
+            
+            updatePopupPosition();
             
             $("#opanda-locker-select-submit").click(function(){
                 var defaultOption = $select.find(":selected").data('default');

@@ -78,6 +78,18 @@ class OPanda_AdvancedSettings extends OPanda_Settings  {
         );
         
         $forms[] = array(
+            'type' => 'separator'
+        );
+        
+        $forms[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'normalize_markup',
+            'title'     => __( 'Normalize Markup for Visual Composer', 'optinpanda' ),
+            'hint'      => __( 'If you use the Batch Lock with the mode "Skip & Lock" and Visual Composer (or similar plugins), turn on this option to normalize html markup before output.', 'optinpanda' )
+        );
+        
+        $forms[] = array(
             'type'      => 'div',
             'id'        => 'onp-dynamic-theme-options',
             'items'     => array(

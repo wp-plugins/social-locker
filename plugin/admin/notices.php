@@ -19,24 +19,24 @@
         $alreadyActivated = get_option('onp_trial_activated_' . $sociallocker->pluginName, false);
 
         if ( $alreadyActivated ) {
-            $message = __('5 extra stunning themes, 7 social buttons, the blurring effect, 8 advanced options, new features & updates every week, dedicated support and more.', 'optinpanda');
+            $message = __('5 extra stunning themes, 8 social buttons, the blurring effect, advanced options, new features & updates every week, dedicated support and more.', 'optinpanda');
             $header = __('Drive more traffic and build quality followers with Social Locker Premium!', 'optinpanda');
             $url = onp_licensing_325_get_purchase_url( $sociallocker );
 
         } else {
-            $message = __('5 extra stunning themes, 7 social buttons, the blurring effect, 8 advanced options, new features & updates every week, dedicated support and more. Drive more traffic and build quality followers with Social Locker Premium!', 'optinpanda');
+            $message = __('5 extra stunning themes, 8 social buttons, the blurring effect, advanced options, new features & updates every week, dedicated support and more. Drive more traffic and build quality followers with Social Locker Premium!', 'optinpanda');
             $header = __('Try the premium version for 7 days for free!', 'optinpanda');
             $url = onp_licensing_325_manager_link($sociallocker->pluginName, 'activateTrial', false);
         }
 
         $closed = get_option('factory_notices_closed', array());
-
+        
         $lastCloase  = isset( $closed['onp-sl-offer-to-purchase'] ) 
             ? $closed['onp-sl-offer-to-purchase']['time'] 
             : 0;
 
-        // shows every 7 days
-        if ( ( time() - $lastCloase > 60*60*7 ) || $forceToShowNotices ) {
+        // shows every 10 days
+        if ( ( time() - $lastCloase > 60*60*10 ) || $forceToShowNotices ) {
 
                 if ( !$alreadyActivated ) {
 
