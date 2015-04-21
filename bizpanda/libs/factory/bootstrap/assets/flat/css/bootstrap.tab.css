@@ -1,0 +1,97 @@
+/**
+* Tabs
+*/
+
+.factory-bootstrap-329 .factory-tab {
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+.factory-bootstrap-329 .form-group {
+    overflow: hidden;
+}
+.factory-bootstrap-329 .factory-tab + .form-group {
+    margin-top: 30px;
+}
+.factory-bootstrap-329 .nav-tabs a {
+    text-decoration: none;
+}
+.factory-bootstrap-329 .factory-align-horizontal .nav-tabs {
+    border-bottom: 0px;
+}
+.factory-bootstrap-329 .factory-align-vertical .factory-headers {
+    float: left;
+    width: 150px;
+}
+.factory-bootstrap-329 .factory-align-vertical .factory-headers .nav-tabs {
+    border-bottom: 0px;
+    display: block;
+    margin: 0px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-left-radius: 4px;
+}
+.factory-bootstrap-329 .factory-tab .factory-bodies {
+    background-color: #fff;
+    -webkit-border-radius: 0 3px 3px 3px;
+    -moz-border-radius: 0 3px 3px 3px;
+    border-radius: 0 3px 3px 3px;
+    border: 1px solid #DDD;
+    padding: 30px 15px 25px 10px;
+}
+.factory-bootstrap-329 .factory-align-vertical .factory-bodies {
+    min-height: 250px;
+    margin-left: 150px;
+
+}
+.factory-bootstrap-329 .factory-align-vertical .factory-bodies .actory-tab-item {
+    clear: both; 
+}
+.factory-bootstrap-329 .form-horizontal .factory-align-vertical .form-group {
+    margin-left: -5px;
+}
+.factory-bootstrap-329 .factory-align-vertical .nav-tabs li {
+    float: none;
+}
+.factory-bootstrap-329 .factory-align-vertical .nav-tabs li a {
+    margin-right: -1px;
+    margin-bottom: 0px;
+    position: relative;
+    z-index: 10;
+    padding: 10px 0 9px  15px;
+    
+    -webkit-border-radius: 3px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    -moz-border-radius: 3px;
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 0px;
+    border-radius: 3px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.factory-bootstrap-329 .factory-align-vertical .nav-tabs > .active > a
+{
+    border: 1px solid #DDD !important;
+    border-right: 1px solid #fff !important;
+}
+.factory-bootstrap-329 .factory-align-vertical .nav-tabs > li a:hover
+{
+    color: #21759B;
+    z-index: 5;
+    border-color: transparent;
+}
+.factory-bootstrap-329 .factory-align-vertical .control-label {
+   width: 20%;
+   max-width: 140px;
+}
+.factory-bootstrap-329 .factory-align-vertical .factory-tab-item  {
+ 
+}
+.factory-bootstrap-329 .factory-align-vertical .control-group {
+    width: 80%;
+}
+.factory-bootstrap-329 .factory-align-vertical .control-group input[type=text],
+.factory-bootstrap-329 .factory-align-vertical .control-group textarea
+{
+    width: 90%;
+}

@@ -1,0 +1,15 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+    background-color: #fff;
+    line-height: 155%;
+}
+p {
+    margin: 0px;
+}
+p + p {
+    margin-top: 15px;
+}
+strong {
+    color: #333;
+}
