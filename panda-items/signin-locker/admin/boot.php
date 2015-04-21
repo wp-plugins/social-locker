@@ -101,7 +101,7 @@ function opanda_register_signin_locker_themes( $item = 'signin-locker' ) {
             'title' => 'Friendly Giant [Premium]',
             'preview' => BIZPANDA_SIGNIN_LOCKER_URL . '/admin/assets/img/preview/friendly-giant.png',
             'previewHeight' => 400,   
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url() ),
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('signin-locker', 'email-locker') 
         ));
 
@@ -110,7 +110,7 @@ function opanda_register_signin_locker_themes( $item = 'signin-locker' ) {
             'title' => 'Dark Force [Premium]',
             'preview' => BIZPANDA_SIGNIN_LOCKER_URL . '/admin/assets/img/preview/dark-force.png',
             'previewHeight' => 400,
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url() ),
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('signin-locker', 'email-locker') 
         ));
     

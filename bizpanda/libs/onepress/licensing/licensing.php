@@ -707,7 +707,7 @@ class OnpLicensing325_Manager {
                                     array(
                                         'title'     => '<i class="fa fa-arrow-circle-o-up"></i> '.__('Buy a premium key now!', 'onp_licensing_325'),
                                         'class'     => 'btn btn-primary',
-                                        'action'    => onp_licensing_325_get_purchase_url( $this->plugin )
+                                        'action'    => onp_licensing_325_get_purchase_url( $this->plugin, 'trial-remained-1' )
                                     ),
                                     array(
                                         'title'     => __('Hide this message', 'onp_licensing_325'),
@@ -734,7 +734,7 @@ class OnpLicensing325_Manager {
                                     array(
                                         'title'     => '<i class="fa fa-arrow-circle-o-up"></i> '.__('Buy a premium key now!', 'onp_licensing_325'),
                                         'class'     => 'btn btn-primary',
-                                        'action'    => onp_licensing_325_get_purchase_url( $this->plugin )
+                                        'action'    => onp_licensing_325_get_purchase_url( $this->plugin, 'trial-remained-' . $remained )
                                     ),
                                     array(
                                         'title'     => __('Hide this message', 'onp_licensing_325'),
@@ -766,7 +766,7 @@ class OnpLicensing325_Manager {
                         array(
                             'title'     => '<i class="fa fa-arrow-circle-o-up"></i> '.__('Buy a premium key now!', 'onp_licensing_325'),
                             'class'     => 'btn btn-primary',
-                            'action'    => onp_licensing_325_get_purchase_url( $this->plugin )
+                            'action'    => onp_licensing_325_get_purchase_url( $this->plugin, 'trial-expired' )
                         ),
                         array(
                             'title'     => __('Visit the license manager', 'onp_licensing_325'),
@@ -852,17 +852,17 @@ function onp_licensing_325_purchase_url( $plugin ) {
  * @param Factory325_Plugin $plugin
  * @return string
  */
-function onp_licensing_325_get_purchase_url( $plugin, $content = null ) {
+function onp_licensing_325_get_purchase_url( $plugin, $campaign = 'upgrade-to-premium', $content = null ) {
     if ( empty( $plugin ) || empty( $plugin->options ) ) return null; 
     if ( !isset( $plugin->options['premium'] ) ) return null;
     
     $url = $plugin->options['premium'];
     $args = array(
-        'utm_source'            => 'plugin',
+        'utm_source'            => 'plugin-' . $plugin->options['name'],
         'utm_medium'            => ( $plugin->license && isset( $plugin->license->data['Category'] ) ) 
                                     ? ( $plugin->license->data['Category'] . '-version' )
                                     : 'unknown-version',
-        'utm_campaign'          => 'upgrade-to-premium',
+        'utm_campaign'          => $campaign,
         'tracker'               => isset( $plugin->options['tracker'] ) ? $plugin->options['tracker'] : null
     );
     

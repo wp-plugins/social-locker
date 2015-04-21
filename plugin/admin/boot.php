@@ -220,9 +220,48 @@ add_filter('factory_page_is_internal_license-manager-sociallocker-next', 'social
 /**
  * Returns an URL of page "Go Premium".
  */
-function onp_sl_get_premium_page_url( $url, $name ) {
+function onp_sl_get_premium_page_url( $url, $name, $campaign = 'na' ) {
     if ( !empty( $name ) && !in_array( $name, array('social-locker', 'signin-locker') )) return $url;
-    return admin_url('edit.php?post_type=opanda-item&page=premium-sociallocker-next');
+    
+    if ( get_option('onp_sl_skip_trial', false) ) {
+        return onp_sl_get_premium_url( $campaign );
+    } else {
+        return admin_url('edit.php?post_type=opanda-item&page=premium-sociallocker-next');
+    }
 }
 
-add_filter('opanda_premium_url', 'onp_sl_get_premium_page_url', 10, 2);
+add_filter('opanda_premium_url', 'onp_sl_get_premium_page_url', 10, 3);
+
+/**
+ * Returns an URL where the user can purchaes the plugin.
+ */
+function onp_sl_get_premium_url( $campaign = 'na' ) {
+    global $sociallocker; 
+    return onp_licensing_325_get_purchase_url( $sociallocker, $campaign );
+}
+   
+    /**
+     * Checks whether the trial should be skipped or not.
+     */
+    function onp_set_skip_trial_const() {
+
+        if ( !defined('ONP_SL_DEBUG_SKIP_TRIAL') || !ONP_SL_DEBUG_SKIP_TRIAL ) {
+            $value = get_site_transient('onp_sl_skip_trial');
+            if ( $value ) return;
+        } 
+
+        $result = wp_remote_get('http://sociallocker.org/skip-trial.json', array( 'timeout' => 3 ));
+        set_site_transient('onp_sl_skip_trial', 1, 60*60*24);
+
+        if ( is_wp_error( $result ) || intval( $result['response']['code'] ) !== 200 ) return;
+        $json = json_decode( $result['body'], true );
+
+        if ( isset( $json['skip'] ) && intval( $json['skip'] ) === 1 ) {
+            update_option('onp_sl_skip_trial', 1);
+        } else {
+            update_option('onp_sl_skip_trial', 0); 
+        }
+    }
+    add_action('admin_init', 'onp_set_skip_trial_const');
+
+

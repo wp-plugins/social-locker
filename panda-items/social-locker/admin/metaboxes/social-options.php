@@ -362,7 +362,7 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                         
                 $tabs['items'][$index]['items'][] = array(
                     'type'      => 'html',
-                    'html'      => opanda_get_premium_note()
+                    'html'      => opanda_get_premium_note( true, 'social-buttons' )
                 );
             }
 

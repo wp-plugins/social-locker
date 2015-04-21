@@ -81,7 +81,7 @@ class BizPanda {
             'type' => $type,
             'plugin' => $plugin
         );
-        
+
         self::$_hasPremiumPlugins = self::$_hasPremiumPlugins || 'premium' === $pluginType;
     }  
 
@@ -114,18 +114,12 @@ class BizPanda {
         return self::$_hasPremiumPlugins;
     }
     
-    public static function getPluginName( $full = false ) {
-        if ( isset( self::$_installedPlugins[0] )) {
-            if ( !$full ) self::$_installedPlugins[0]['name'];
-         
-            $plugin = self::$_installedPlugins[0]['plugin'];
-            $name = $plugin->options['name'] . '-' .$plugin->options['assembly'];
-            return $name;
-        }
-            
+    public static function getPlugin() {
+
+        if ( isset( self::$_installedPlugins[0] )) return self::$_installedPlugins[0]['plugin'];
         return false;
     }
-    
+
     public static function getPluginNames( $full = false ) {
         if ( !$full ) return array_keys( self::$_plugins );
         

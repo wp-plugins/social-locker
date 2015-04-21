@@ -205,7 +205,7 @@ class OPanda_BasicOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     'data'      => array(
                         array('full', '<i class="fa fa-lock"></i>Full (classic)'),
                         array('transparence', '<i class="fa fa-adjust"></i>Transparency' ),
-                        array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'optinpanda' ), opanda_get_premium_url() ) )
+                        array('blurring', '<i class="fa fa-bullseye"></i>Blurring', sprintf( __( 'This option is available only in the <a href="%s" target="_blank">premium version</a> of the plugin (the transparency mode will be used in the free version)', 'optinpanda' ), opanda_get_premium_url( null, 'blurring' ) ) )
                     ),
                     'title'     => __('Overlap Mode', 'optinpanda'),
                     'hint'      => __('Choose the way how your locker should lock the content.', 'optinpanda'),

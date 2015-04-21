@@ -88,7 +88,12 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
-<strong>Please don't forget to <a href="https://wordpress.org/support/view/plugin-reviews/social-locker?filter=5" target="_blank">rate the plugin and leave your review</a>. It's very important for developing future updates.</strong>
+<strong>v.4.1.7 - 2 Apr 2015</strong><br />
+<ul>
+<li>FIXED: A lot of minor issues reported by users.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.4.1.6 - 20 Mar 2015</strong><br />
 <ul>

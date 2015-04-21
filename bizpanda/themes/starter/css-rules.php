@@ -23,8 +23,8 @@ function onp_sl_get_starter_theme_css_rules() {
                     '{url}',                                                
                     '{color}',                                              
                     array(                                                  
-                        'output' =>  ONP_SL_PLUGIN_DIR . '/assets/img/sr/',
-                        'url' =>  ONP_SL_PLUGIN_URL . '/assets/img/sr/',        
+                        'output' =>  OPANDA_SR_PLUGIN_DIR . '/assets/img/sr/',
+                        'url' =>  OPANDA_SR_PLUGIN_DIR . '/assets/img/sr/',        
                     )
                 )
             ),

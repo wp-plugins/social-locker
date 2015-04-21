@@ -441,7 +441,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
     }
     
     public function getSubscriptionExplanationOption() {
-        $url = OPanda_Plugins::getPremiumUrl('optinpanda');
+        $url = OPanda_Plugins::getPremiumUrl('optinpanda', 'co-subscribe-action');
         ?>
 
         <div class="form-group" style="margin-bottom: 10px;">
@@ -630,7 +630,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             
         } else {
             
-            $url = OPanda_Plugins::getPremiumUrl('optinpanda');
+            $url = OPanda_Plugins::getPremiumUrl('optinpanda', 'co-subscribe-action');
             
             foreach( $buttons as $buttonName => $buttonData ) {
                 $buttons[$buttonName]['actions']['subscribe']['error'] = sprintf( __('To enable this action, please install the plugin Opt-In Panda which provides subscription features. <a href="%s" target="_blank">Click here to learn more</a>.', 'bizpanda'), $url );  
@@ -638,11 +638,11 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             
         }
             
-        if ( BizPanda::hasPlugin('sociallocker') && BizPanda::hasFeature('sociallocker-premium') ) {
+        if ( BizPanda::hasPlugin('sociallocker') ) {
 
             foreach( $buttons as $buttonName => $buttonData ) {
                 foreach( $buttons[$buttonName]['actions'] as $actionName => $actionData ) {
-                    
+
                     if ( isset( $actionData['type'] ) && 'social' === $actionData['type'] ) {
                         $buttons[$buttonName]['actions'][$actionName]['on'] = true;
                     }   
@@ -651,8 +651,8 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             
         } else {
             
-            $url = OPanda_Plugins::getPremiumUrl('sociallocker');
-            
+            $url = OPanda_Plugins::getPremiumUrl('sociallocker', 'co-social-actions');
+
             foreach( $buttons as $buttonName => $buttonData ) {
                 foreach( $buttons[$buttonName]['actions'] as $actionName => $actionData ) {
                     
@@ -662,15 +662,24 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 }   
             }
             
-        }
-            
-            unset( $buttons['twitter']['actions']['follow']['on'] );
-            $buttons['twitter']['actions']['follow']['error'] = opanda_get_premium_note( false );
-            
-            unset( $buttons['google']['actions']['youtube-subscribe']['on'] );
-            $buttons['google']['actions']['youtube-subscribe']['error'] = opanda_get_premium_note( false );  
+        }   
         
+        if ( BizPanda::isSinglePlugin() && BizPanda::hasPlugin('optinpanda') ) {
+            
+        } else {
 
+            if ( !BizPanda::hasFeature('sociallocker-premium') ) {
+
+                unset( $buttons['twitter']['actions']['follow']['on'] );
+                $buttons['twitter']['actions']['follow']['error'] = opanda_get_premium_note( false,  'co-follow-action' );
+
+                unset( $buttons['twitter']['actions']['tweet']['on'] );
+                $buttons['twitter']['actions']['tweet']['error'] = opanda_get_premium_note( false,  'co-follow-action' ); 
+
+                unset( $buttons['google']['actions']['youtube-subscribe']['on'] );
+                $buttons['google']['actions']['youtube-subscribe']['error'] = opanda_get_premium_note( false, 'co-youtube-action' );  
+            }
+        }
 
         $buttons = apply_filters('opanda_connect_buttons_options', $buttons);
         $commonActions = array('subscribe', 'signup', 'lead');
@@ -822,7 +831,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             return array(
                 'name' => 'premium',
                 'icon' => 'fa-lock',         
-                'text' => opanda_get_premium_note()
+                'text' => opanda_get_premium_note( true, 'co-linkedin' )
             );
             
         
@@ -839,7 +848,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             return array(
                 'name' => 'premium',
                 'icon' => 'fa-lock',          
-                'text' => opanda_get_premium_note()
+                'text' => opanda_get_premium_note( true, 'co-email' )
             );
         
 

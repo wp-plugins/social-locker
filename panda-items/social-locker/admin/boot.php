@@ -56,6 +56,9 @@ function opanda_social_locker_activation( $plugin, $helper ) {
 
     $wpdb->query("UPDATE {$wpdb->posts} SET post_type='" . OPANDA_POST_TYPE . "' WHERE post_type='social-locker'");
     $wpdb->query("UPDATE {$wpdb->posts} SET post_title='" . __('Social Locker', 'optionpanda') . "', post_name='opanda_default_social_locker' WHERE post_name='default_sociallocker_locker'");
+        $defaulTheme = 'secrets';
+    
+
     
     // default social locker
     $helper->addPost(
@@ -69,7 +72,7 @@ function opanda_social_locker_activation( $plugin, $helper ) {
             'opanda_item' => 'social-locker',
             'opanda_header' => __('This content is locked', 'optinpanda'),       
             'opanda_message' => __('Please support us, use one of the buttons below to unlock the content.', 'optinpanda'),
-            'opanda_style' => 'flat',
+            'opanda_style' => $defaulTheme,
             'opanda_mobile' => 1,          
             'opanda_highlight' => 1,                   
             'opanda_is_system' => 1,
@@ -113,7 +116,7 @@ function opanda_register_social_locker_themes() {
             'name' => 'dandyish',
             'title' => 'Dandyish [Premium]',
             'preview' => BIZPANDA_SOCIAL_LOCKER_URL . '/admin/assets/img/preview/dansyish.png',
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url() ),
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('social-locker') 
         )); 
 
@@ -121,7 +124,7 @@ function opanda_register_social_locker_themes() {
             'name' => 'glass',
             'title' => 'Glass [Premium]',
             'preview' => BIZPANDA_SOCIAL_LOCKER_URL . '/admin/assets/img/preview/glass.png',
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url() ),
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('social-locker') 
         ));
 
@@ -129,7 +132,7 @@ function opanda_register_social_locker_themes() {
             'name' => 'flat',
             'title' => 'Flat [Premium]',
             'preview' => BIZPANDA_SOCIAL_LOCKER_URL . '/admin/assets/img/preview/flat.png',
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url() ),
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('social-locker') 
         ));
         
