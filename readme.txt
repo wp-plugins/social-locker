@@ -62,18 +62,8 @@ Please visit our <a href="http://support.onepress-media.com/" target="_blank">he
 > is full-featured and you can use without any limits, the premium version provides more features:
 
 > * 5 Extra Stunning Themes
-> * 8 Social Buttons, including:
-> * * Facebook Share
-> * * Twitter Follow
-> * * LinkedIn Share
-> * * Google Share
-> * * YouTube Subscribe
-> * Advanced Options:
-> * * Hide For Registered Users
-> * * Countdown Timer
-> * * Close Cross
-> * * ReLock & Delayed Lock
-> * * Loading the locked content via Ajax
+> * 8 Social Buttons, including: Facebook Share, Twitter Follow, LinkedIn Share, Google Share, YouTube Subscribe
+> * Advanced Options: Hide For Registered Users, Countdown Timer, Close Cross, ReLock & Delayed Lock, Loading the locked content via Ajax
 > * Export Leads In CSV
 > * Dedicated support
 >
