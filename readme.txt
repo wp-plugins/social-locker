@@ -26,11 +26,9 @@ You should **give people a reason** why they need to click your social buttons. 
 site or fanpage, they don’t click the buttons because they don’t worry about you, your benefits or your traffic. 
 It’s not their problem.
 
-With Social Locker, you can lock anything in your content and automatically unlock it after a visitor has shared your page. 
+But ask people to “pay” with a Like/Tweet/+1 to get access to your content, to get a discount, to download, to read an ending of your article, to watch a video or to view a funny picture. And it will start to work as it should be!
 
-All you need to do is select the part of your content you want to lock, click a button and you’re done!
-
-This way, you can use articles, videos, audio, images, download links, coupon codes or anything else you can think of as an incentive for people to give you likes or shares.
+With Social Locker, you can lock anything in your content and automatically unlock it after a visitor has shared your page. All you need to do is select the part of your content you want to lock, click a button and you’re done!
 
 <h3>Key Features</h3>
 
