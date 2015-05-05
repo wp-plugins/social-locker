@@ -30,7 +30,7 @@ You can lock anything in your content and automatically unlock it after a visito
 
 This way, you can use articles, videos, audio, images, download links, coupon codes or anything else you can think of as an incentive for people to give you likes or shares.
 
-<h4> Key Features</h4>
+= Key Features =
 
 * Any URL to like/tweet/+1. You can set any URL that will be used to share for social buttons.  
 * SEO friendly. Locked content is still available for search bots (Google, Bing, etc).  
@@ -62,8 +62,16 @@ Please visit our <a href="http://support.onepress-media.com/" target="_blank">he
 > is full-featured and you can use without any limits, the premium version provides more features:
 
 > * 5 Extra Stunning Themes
-> * 8 Social Buttons, including: Facebook Share, Twitter Follow, LinkedIn Share, Google Share, YouTube Subscribe
-> * Advanced Options: Hide For Registered Users, Countdown Timer, Close Cross, ReLock & Delayed Lock, Loading the locked content via Ajax
+> * 8 Social Buttons
+> * Facebook Share
+> * Twitter Follow
+> * LinkedIn Share
+> * Google Share
+> * YouTube Subscribe
+> * Hide Lockers For Registered Users
+> * Countdown Timer & Close Cross
+> * ReLock & Delayed Lock
+> * Loading the locked content via Ajax
 > * Export Leads In CSV
 > * Dedicated support
 >
