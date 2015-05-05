@@ -33,14 +33,14 @@ With Social Locker, you can lock anything in your content and automatically unlo
 <h3>Trusted By Bloggers And Entrepreneurs Around The World</h3>
 The Social Locker is the favorite plugin of more than 10 000 bloggers, entrepreneurs and marketers around the world. Learn what people say:
 
-> *Social Locker was a very good plugin to improve and maximize traffic from social networks.*<br />
-> **Michele Pinassi**, zerozone.it
+> *The best social locker out there. A great way to get likes and followers in exchange for accessing special content.*<br />
+> **Brandon Gaille**, brandgaille.com
 
 > *An essential plugin for increase social interaction and improve SEO.*<br />
 > **Bruno Ramos Lara**, increnta.com
 
-> *The best social locker out there. A great way to get likes and followers in exchange for accessing special content.*<br />
-> **Brandon Gaille**, brandgaille.com
+> *Social Locker was a very good plugin to improve and maximize traffic from social networks.*<br />
+> **Michele Pinassi**, zerozone.it
 
 > *Do you have a post that gets a lot of traffic but you can’t figure out what to do with it? Use Social Locker*
 > *to “lock up” content that can be unlocked with a Facebook Like, Tweet, or +1. Great way to accumulate some social metrics.*<br />
