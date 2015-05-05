@@ -30,6 +30,25 @@ But ask people to “pay” with a Like/Tweet/+1 to get access to your content, 
 
 With Social Locker, you can lock anything in your content and automatically unlock it after a visitor has shared your page. All you need to do is select the part of your content you want to lock, click a button and you’re done!
 
+<h3>Trusted By Bloggers And Entrepreneurs Around The World</h3>
+The Social Locker is the favorite plugin of more than 10 000 bloggers, entrepreneurs and marketers around the world.
+
+> The best social locker out there. A great way to get likes and followers in exchange for accessing special content.<br />
+> Brandon Gaille, brandgaille.com
+
+> Do you have a post that gets a lot of traffic but you can’t figure out what to do with it? Use Social Locker
+> to “lock up” content that can be unlocked with a Facebook Like, Tweet, or +1. Great way to accumulate some social metrics.<br />
+> Jim Wang, microblogger.com
+
+> It's nicely designed and doesn’t look at all obtrusive on your site. If you want to incentivize 
+> your site’s visitors to share your content then this is a fantastic solution.<br />
+> Tom Ewer, leavingworkbehind.com
+
+> One highly awesome feature of this plugin is the ability to see how effective (or ineffective)
+> it is on your site. The reports are really detailed and can help you identify what content 
+> is being shared as well as on which social networks.<br />
+> Rae Hoffman, sugarrae.com
+
 <h3>Key Features</h3>
 
 The plugin is packaged with the following features:
