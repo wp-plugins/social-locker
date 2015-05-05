@@ -77,7 +77,7 @@ Please visit our <a href="http://support.onepress-media.com/" target="_blank">he
 > * ReLock & Delayed Lock
 > * Loading the locked content via Ajax
 > * Export Leads In CSV
-> * Dedicated support
+> * Dedicated support and more!
 >
 > [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
 
