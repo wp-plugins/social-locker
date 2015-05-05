@@ -16,7 +16,7 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 > Social Locker is the most popular content-locking plugin for Wordpress in the world
 > with attention-grabbing styles and advanced analytics.
 >
-> [Screenshots](https://wordpress.org/plugins/social-locker/screenshots/) | [Try Live demo](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) 
+> [Screenshots](https://wordpress.org/plugins/social-locker/screenshots/) | [Try Live Demo >>](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) 
 
 The Social Locker locks your most valuable site content behind a set of social buttons until the visitor likes, shares, +1s or tweets your page. It helps to improve social performance of your website, get more likes/shares, build quality followers and attract more traffic from social networks.
 
@@ -60,14 +60,6 @@ All of our plugins come with free support. We care about your plugin after purch
 We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
 Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
 
-= Additional Resources =
-
-* View Social Locker plugin <a href="http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo" target="_blank">demo</a>.  
-* Check out other <a href="http://codecanyon.net/user/OnePress/portfolio?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=portfolio" target="_blank">OnePress plugins</a>.  
-* Visit <a href="http://support.onepress-media.com/?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=help" target="_blank">help desk</a>.  
-* Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
-<a title="Follow OnePress on Twitter" href="http://twitter.com/OnePressMedia" target="_blank">Twitter</a>  
-
 > **Go Premium - Gain More Likes & Social Shares!**
 >
 > It's a free edition of the premium plugin <a href="http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link">Social Locker</a>. Although the free version 
@@ -88,6 +80,14 @@ Please visit our <a href="http://support.onepress-media.com/" target="_blank">he
 > * Dedicated support
 >
 > [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
+
+= Additional Resources =
+
+* View Social Locker plugin <a href="http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo" target="_blank">demo</a>.  
+* Check out other <a href="http://codecanyon.net/user/OnePress/portfolio?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=portfolio" target="_blank">OnePress plugins</a>.  
+* Visit <a href="http://support.onepress-media.com/?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=help" target="_blank">help desk</a>.  
+* Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
+<a title="Follow OnePress on Twitter" href="http://twitter.com/OnePressMedia" target="_blank">Twitter</a>  
 
 == Installation ==
 
