@@ -12,7 +12,7 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 == Description ==
 
 > #### Drive traffic, build quality followers and improve your website ranking
-> Social Locker is the most popular content-locking plugin for Wordpress in the world <br />
+> Social Locker is the most popular content-locking plugin for Wordpress in the world
 > with attention-grabbing styles and advanced analytics.
 
 <strong>Do you still place social buttons on every page of your website? But visitors don’t like/share your content as often as you would like?</strong>
