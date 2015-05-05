@@ -16,8 +16,8 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 > Social Locker is the most popular content-locking plugin for Wordpress in the world
 > with attention-grabbing styles and advanced analytics.
 >
-> *It's a free edition of the premium plugin Social Locker. The free version is full-featured and can be used without any limits. The premium version
-> provides more social buttons, themes and additional advanced options (Timer, Close Icon, the Blurring effects).*
+> *It's a free edition of the premium plugin Social Locker. The free version is full-featured. The premium version
+> provides more social buttons, themes and additional advanced options.*
 >
 > [Demo](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) | [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
 
