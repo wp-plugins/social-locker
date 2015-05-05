@@ -30,8 +30,8 @@ You can lock anything in your content and automatically unlock it after a visito
 
 This way, you can use articles, videos, audio, images, download links, coupon codes or anything else you can think of as an incentive for people to give you likes or shares.
 
-= Key Features =
-
+<h3>Key Features</h3><br />
+ 
 * **3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the premium version.
 
 * **Any URL to be liked/tweeted/+1ed**. You can set any URL that will be used to share for social buttons.
