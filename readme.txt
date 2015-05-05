@@ -16,7 +16,7 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 > Social Locker is the most popular content-locking plugin for Wordpress in the world
 > with attention-grabbing styles and advanced analytics.
 >
-> [Live demo](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) | [Screenshots](https://wordpress.org/plugins/social-locker/screenshots/)
+> [Screenshots](https://wordpress.org/plugins/social-locker/screenshots/) | [Live demo >>](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) 
 
 The Social Locker locks your most valuable site content behind a set of social buttons until the visitor likes, shares, +1s or tweets your page. It helps to improve social performance of your website, get more likes/shares, build quality followers and attract more traffic from social networks.
 
@@ -34,15 +34,15 @@ This way, you can use articles, videos, audio, images, download links, coupon co
 
 The plugin is packaged with the following features:
  
-* **3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the premium version.
+* **3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the <a href="http://codecanyon.net/item/social-locker-for-wordpress/3667715?ref=OnePress&utm_source=wordpress.org&utm_medium=link&utm_campaign=link">premium version</a>.
 
-* **Any URL to be liked/tweeted/+1ed**. You can set any URL that will be used to share for social buttons.
+* **Any URL to be liked/tweeted/+1ed**. You can set any URL that will be used to share for your social buttons.
 
-* **Built-in advanced analytics** Easily identify which lockers on which pages are out-performing others, how to optimize your lockers and what you could do differently to improve your results.
+* **Built-in Advanced Analytics.** Easily identify which lockers on which pages are out-performing others, how to optimize your lockers and what you could do differently to improve your results.
 
-* **Attention-grabbing styles & effects.** The plugin comes with a set of impressive, polished styles which create interest and attract attention. They are nicely animated and don’t look obtrusive.
+* **Attention-Grabbing Styles & Effects.** The plugin comes with a set of impressive, polished styles which create interest and attract attention. They are nicely animated and don’t look obtrusive.
 
-* **SEO friendly.** Your locked content is still visible for search bots for better SEO by default. Of course you can turn off this feature.
+* **SEO Friendly.** Your locked content is still visible for search bots for better SEO by default. Of course you can turn off this feature.
 
 * **4 Types of Locks.** Lock any content manually via shortcodes or setup batch lock via one of 3 powerful modes (“Skip & Lock”, “More Tag”, “CSS Selector”).
 
@@ -58,7 +58,7 @@ All of our plugins come with free support. We care about your plugin after purch
 We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
 Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
 
-= Resources =
+= Additional Resources =
 
 * View Social Locker plugin <a href="http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo" target="_blank">demo</a>.  
 * Check out other <a href="http://codecanyon.net/user/OnePress/portfolio?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=portfolio" target="_blank">OnePress plugins</a>.  
