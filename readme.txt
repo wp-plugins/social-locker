@@ -1,7 +1,7 @@
 === OnePress Social Locker ===
 Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
-Tags:social,facebook,twitter,google,smo,seo,social network,traffic,social networking,social plugins,social buttons
+Tags:content locker, locker, like locker, pay with a tweet, pay with a like, share to unlock, like to unlock, facebook, twitter, google, google+, linkedin, email, e-mail, emails, subscribe, optin, opt-in, subscription, email marketing, smo, seo, social network, traffic, social networking, social plugins, social buttons, Mashable, Social Media Pop-Up, Social Media Widget, Social Media Sharing, Social Media Networks, Social Sharing, Social sharing optimization, Share button, share buttons, Facebook Share button, Twitter Share Button, Social Share, Social buttons, social share buttons, Share, Share this, simple social buttons, simple share buttons adder, Digg, Stumble Upon, analytics, bookmark, bookmarking, bookmarks, bookmark button, bookmark menu, buddypress, button, facebook like, facebook recommend, facebook share, facebook share button, floating buttons, follow, lock video, youtube, lock video youtube, unlock video, unlock video youtube, video, video social, video viral, viral plugin, viral video, viral traffic
 Requires at least: 3.2
 Tested up to: 4.2.0
 Stable tag: trunk
