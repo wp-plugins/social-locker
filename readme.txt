@@ -63,21 +63,21 @@ Please visit our <a href="http://support.onepress-media.com/" target="_blank">he
 
 > * 5 Extra Stunning Themes
 > * 8 Social Buttons, including:
-> ** Facebook Share
-> ** Twitter Follow
-> ** LinkedIn Share
-> ** Google Share
-> ** YouTube Subscribe
+> * * Facebook Share
+> * * Twitter Follow
+> * * LinkedIn Share
+> * * Google Share
+> * * YouTube Subscribe
 > * Advanced Options:
-> ** Hide For Registered Users
-> ** Countdown Timer
-> ** Close Cross
-> ** ReLock & Delayed Lock
-> ** Loading the locked content via Ajax
+> * * Hide For Registered Users
+> * * Countdown Timer
+> * * Close Cross
+> * * ReLock & Delayed Lock
+> * * Loading the locked content via Ajax
 > * Export Leads In CSV
 > * Dedicated support
 >
-> [Go Premium >>](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo)
+> [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
 
 == Installation ==
 
