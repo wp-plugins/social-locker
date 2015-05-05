@@ -42,9 +42,23 @@ own style for the locker.
 * Compatible with all the popular browsers.  
 * Locks any type of content: text, videos, images, links, forms and more.
 
+= Need Support, We Got You Covered =
+
+All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
+We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
+Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
+
+= Resources =
+
+* View Social Locker plugin <a href="http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo" target="_blank">demo</a>.  
+* Check out other <a href="http://codecanyon.net/user/OnePress/portfolio?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=portfolio" target="_blank">OnePress plugins</a>.  
+* Visit <a href="http://support.onepress-media.com/?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=help" target="_blank">help desk</a>.  
+* Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
+<a title="Follow OnePress on Twitter" href="http://twitter.com/OnePressMedia" target="_blank">Twitter</a>  
+
 > **Go Premium - Gain More Likes & Social Shares!**
 >
-> It's a free edition of the premium plugin Social Locker. Although the free version 
+> It's a free edition of the premium plugin <a href="http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link">Social Locker</a>. Although the free version 
 > is full-featured and you can use without any limits, the premium version provides more features:
 
 > * 5 Extra Stunning Themes
@@ -62,20 +76,6 @@ own style for the locker.
 > * Dedicated support
 >
 > [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
-
-= Need Support, We Got You Covered =
-
-All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
-We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
-Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
-
-= Resources =
-
-* View Social Locker plugin <a href="http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo" target="_blank">demo</a>.  
-* Check out other <a href="http://codecanyon.net/user/OnePress/portfolio?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=portfolio" target="_blank">OnePress plugins</a>.  
-* Visit <a href="http://support.onepress-media.com/?ref=OnePress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=help" target="_blank">help desk</a>.  
-* Follow OnePress on <a title="Follow OnePress on Facebook" href="http://www.facebook.com/OnePressMedia" target="_blank">Facebook</a> and 
-<a title="Follow OnePress on Twitter" href="http://twitter.com/OnePressMedia" target="_blank">Twitter</a>  
 
 == Installation ==
 
