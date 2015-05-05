@@ -56,22 +56,24 @@ All of our plugins come with free support. We care about your plugin after purch
 We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
 Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
 
-> **Go Premium, Gain More Likes & Social Shares!**
+> **Go Premium - Gain More Likes & Social Shares!**
 >
 > It's a free edition of the premium plugin Social Locker. Although the free version 
-> is full-featured which you can use without any limits, the premium version provides more features:
+> is full-featured and you can use without any limits, the premium version provides more features:
 
-> * 5 Premium Themes
-> * Blurring Effect
-> * Facebook Share Button
-> * Twitter Follow Button
-> * LinkedIn Share Button
-> * Google Share Button
-> * YouTube Subscribe Button
-> * Countdown Timer
-> * Close Cross
-> * ReLock Feature
-> * Delayed Lock Feature
+> * 5 Extra Stunning Themes
+> * 8 Social Buttons, including:
+> ** Facebook Share
+> ** Twitter Follow
+> ** LinkedIn Share
+> ** Google Share
+> ** YouTube Subscribe
+> * Advanced Options:
+> ** Hide For Registered Users
+> ** Countdown Timer
+> ** Close Cross
+> ** ReLock & Delayed Lock
+> ** Loading the locked content via Ajax
 > * Export Leads In CSV
 > * Dedicated support
 >
