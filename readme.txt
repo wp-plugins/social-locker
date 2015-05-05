@@ -16,7 +16,7 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 > Social Locker is the most popular content-locking plugin for Wordpress in the world
 > with attention-grabbing styles and advanced analytics.
 >
-> [View Demo](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo)
+> [Click here to view the live demo!](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo)
 
 The Social Locker locks your most valuable site content behind a set of social buttons until the visitor likes, shares, +1s or tweets your page. It helps to improve social performance of your website, get more likes/shares, build quality followers and attract more traffic from social networks.
 
@@ -42,12 +42,6 @@ own style for the locker.
 * Compatible with all the popular browsers.  
 * Locks any type of content: text, videos, images, links, forms and more.
 
-<a href="http://demo.onepress-media.com/sociallocker-free/">Click here to view the live demo!</a>
-
-*The plugin is a free edition of the premium 
-<a href="http://onepress-media.com/plugin/social-locker-for-wordpress/get" target="_blank" >social locker</a> plugin.
-You can activate premium features for a trial period inside the plugin.*
-
 = Resources =
 
 * View Social Locker plugin <a href="http://demo.onepress-media.com/sociallocker-free/" target="_blank">demo</a>.  
@@ -61,6 +55,28 @@ You can activate premium features for a trial period inside the plugin.*
 All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
 We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
 Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
+
+> **Go Premium, gain more likes and shares!**
+>
+> It's a free edition of the premium plugin Social Locker. Although the free version is full-featured 
+> which you can use without any limits, the premium version provides more social buttons, additional 
+> themes, the blurring effect, advanced options, dedicated support and more.
+
+> * 5 Premium Themes
+> * Blurring Effect
+> * Facebook Share
+> * Twitter Follow
+> * LinkedIn Share
+> * Google Share
+> * YouTube Subscribe
+> * Countdown Timer
+> * Close Cross
+> * ReLock Feature
+> * Delayed Lock Feature
+> * Export Leads In CSV
+> * Dedicated support
+>
+> [Go Premium >>](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) | [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
 
 == Installation ==
 
