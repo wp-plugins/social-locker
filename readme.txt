@@ -17,7 +17,7 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 > with attention-grabbing styles and advanced analytics.
 >
 > *It's a free edition of the premium plugin Social Locker. The free version is full-featured. The premium version
-> provides more social buttons, themes and additional advanced options.*
+> provides additional social buttons, themes and options.*
 >
 > [Demo](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) | [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
 
