@@ -79,12 +79,6 @@ The plugin is packaged with the following features:
 
 * **Developer Friendly.** Use the plugin events (Unlock, Lock, Ready) and hooks for customization and creating your own extensions.
 
-= Need Support, We Got You Covered =
-
-All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
-We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
-Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
-
 > **Go Premium - Gain More Likes & Social Shares!**
 >
 > It's a free edition of the premium plugin <a href="http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link">Social Locker</a>. Although the free version 
@@ -105,6 +99,12 @@ Please visit our <a href="http://support.onepress-media.com/" target="_blank">he
 > * Dedicated support and more!
 >
 > [Go Premium >>](http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link)
+
+= Need Support, We Got You Covered =
+
+All of our plugins come with free support. We care about your plugin after purchase just as much as you do. 
+We want to make your life easier and make you happy about choosing our plugins. We guarantee to respond to every inquiry within 1 business day.
+Please visit our <a href="http://support.onepress-media.com/" target="_blank">help desk</a>.
 
 = Additional Resources =
 
