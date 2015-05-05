@@ -16,7 +16,7 @@ Helps increase social media presence by asking visitors "to pay" for your conten
 > Social Locker is the most popular content-locking plugin for Wordpress in the world
 > with attention-grabbing styles and advanced analytics.
 >
-> [Screenshots](https://wordpress.org/plugins/social-locker/screenshots/) | [Live demo >>](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) 
+> [Screenshots](https://wordpress.org/plugins/social-locker/screenshots/) | [Try Live demo](http://demo.byonepress.com/free/social-locker-for-wordpress/?utm_source=wordpress.org&utm_medium=link&utm_campaign=demo) 
 
 The Social Locker locks your most valuable site content behind a set of social buttons until the visitor likes, shares, +1s or tweets your page. It helps to improve social performance of your website, get more likes/shares, build quality followers and attract more traffic from social networks.
 
@@ -36,7 +36,7 @@ The plugin is packaged with the following features:
  
 * **3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the <a href="http://codecanyon.net/item/social-locker-for-wordpress/3667715?ref=OnePress&utm_source=wordpress.org&utm_medium=link&utm_campaign=link">premium version</a>.
 
-* **Any URL to be liked/tweeted/+1ed**. You can set any URL that will be used to share for your social buttons.
+* **Any URL to be liked/tweeted/+1ed**. You can set any URLs which will be used to share via your social lockers.
 
 * **Built-in Advanced Analytics.** Easily identify which lockers on which pages are out-performing others, how to optimize your lockers and what you could do differently to improve your results.
 
@@ -45,6 +45,8 @@ The plugin is packaged with the following features:
 * **SEO Friendly.** Your locked content is still visible for search bots for better SEO by default. Of course you can turn off this feature.
 
 * **4 Types of Locks.** Lock any content manually via shortcodes or setup batch lock via one of 3 powerful modes (“Skip & Lock”, “More Tag”, “CSS Selector”).
+
+* **Visual Composer.** The Social Locker is fully compatible with the Visual Composer.
 
 * **Optimized For Mobile.** We have adapted the plugin for mobile devices. Mobile users can obtain access to your locked content as well as desktop users.
 
