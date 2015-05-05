@@ -31,6 +31,8 @@ You can lock anything in your content and automatically unlock it after a visito
 This way, you can use articles, videos, audio, images, download links, coupon codes or anything else you can think of as an incentive for people to give you likes or shares.
 
 <h3>Key Features</h3>
+
+The plugin is packaged with the following features:
  
 * **3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the premium version.
 
