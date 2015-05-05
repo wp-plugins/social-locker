@@ -30,13 +30,13 @@ You can lock anything in your content and automatically unlock it after a visito
 
 This way, you can use articles, videos, audio, images, download links, coupon codes or anything else you can think of as an incentive for people to give you likes or shares.
 
-<h3>Key Features</h3><br />
+<h3>Key Features</h3>
  
 * **3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the premium version.
 
 * **Any URL to be liked/tweeted/+1ed**. You can set any URL that will be used to share for social buttons.
 
-* **Built-in advanced analytics** The Social Locker plugin comes with built-in, advanced analytics tools in order to track how users interact with the lockers. Easily identify which lockers on which pages are out-performing others, how to optimize your lockers and what you could do differently to improve your results.
+* **Built-in advanced analytics** Easily identify which lockers on which pages are out-performing others, how to optimize your lockers and what you could do differently to improve your results.
 
 * **Attention-grabbing styles & effects.** The plugin comes with a set of impressive, polished styles which create interest and attract attention. They are nicely animated and don’t look obtrusive.
 
