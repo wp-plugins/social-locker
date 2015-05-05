@@ -32,15 +32,23 @@ This way, you can use articles, videos, audio, images, download links, coupon co
 
 = Key Features =
 
-* Any URL to like/tweet/+1. You can set any URL that will be used to share for social buttons.  
-* SEO friendly. Locked content is still available for search bots (Google, Bing, etc).  
-* Analytic tools. The plugin comes with built-in analytics tools to track how users interact with the 
-locker and which channels bring the most traffic.
-* Highly customizable. The plugin provides a considered html markup that allows you to create your 
-own style for the locker.
-* Remembers users who already unlocked your content (via local storage and cookies).  
-* Compatible with all the popular browsers.  
-* Locks any type of content: text, videos, images, links, forms and more.
+**3 social buttons**. Facebook Like, Twitter Tweet, Google +1. More social buttons are available in the premium version.
+
+**Any URL to be liked/tweeted/+1ed**. You can set any URL that will be used to share for social buttons.
+
+**Built-in advanced analytics** The Social Locker plugin comes with built-in, advanced analytics tools in order to track how users interact with the lockers. Easily identify which lockers on which pages are out-performing others, how to optimize your lockers and what you could do differently to improve your results.
+
+**Attention-grabbing styles & effects.** The plugin comes with a set of impressive, polished styles which create interest and attract attention. They are nicely animated and don’t look obtrusive.
+
+**SEO friendly.** Your locked content is still visible for search bots for better SEO by default. Of course you can turn off this feature.
+
+**4 Types of Locks. Lock any content manually via shortcodes or setup batch lock via one of 3 powerful modes (“Skip & Lock”, “More Tag”, “CSS Selector”).
+
+**Optimized For Mobile.** We have adapted the plugin for mobile devices. Mobile users can obtain access to your locked content as well as desktop users.
+
+**Fast Loading.** The plugin is well optimized and doesn’t add extra loads on your website. Confirmed with tests from the P3 plugin and New Relic.
+
+**Developer Friendly.** Use the plugin events (Unlock, Lock, Ready) and hooks for customization and creating your own extensions.
 
 = Need Support, We Got You Covered =
 
