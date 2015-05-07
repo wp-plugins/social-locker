@@ -82,7 +82,7 @@ The plugin is packaged with the following features:
 > **Go Premium - Gain More Likes & Social Shares!**
 >
 > It's a free edition of the premium plugin <a href="http://api.byonepress.com/public/1.0/get/?product=sociallocker-next&utm_source=wordpress.org&utm_medium=link&utm_campaign=link">Social Locker</a>. Although the free version 
-> is full-featured and you can use without any limits, the premium version provides more features:
+> is full-featured and you can use it without any limits, the premium version provides more features:
 
 > * 5 Extra Stunning Themes
 > * 8 Social Buttons
