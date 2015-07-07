@@ -18,11 +18,13 @@ function opanda_avatar() {
 
     if ( empty( $imageSource ) || !function_exists('wp_get_image_editor') ) exit;
     
-    $basePath = ABSPATH . '/wp-content/uploads/bizpanda/avatars/';
+    $upload_dir = wp_upload_dir(); 
+    $basePath = $upload_dir['path'] . '/bizpanda/avatars/';
+    
     if (!file_exists($basePath) && !is_dir($basePath)) mkdir($basePath, 0777, true );
 	
-    $pathAvatar = $basePath . $leadId . '.jpeg';
-    $pathOriginal = $basePath . $leadId . '_org.jpeg';
+    $pathAvatar = $basePath . $leadId . 'x' . $size . '.jpeg';
+    $pathOriginal = $basePath . $leadId . 'x' . $size . '_org.jpeg';
     
     $response = wp_remote_get($imageSource);
     if ( 
@@ -49,7 +51,7 @@ function opanda_avatar() {
     $image->set_quality( 90 );
     $image->save( $pathAvatar );
     
-    $imageSource = OPanda_Leads::updateLeadField( $leadId, '_image' . $size, $leadId . '.jpeg' );
+    $imageSource = OPanda_Leads::updateLeadField( $leadId, '_image' . $size, $leadId . 'x' . $size . '.jpeg' );
     
     $image->stream();
     

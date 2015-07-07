@@ -55,7 +55,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
         
-       $this->title = __('Connect Options', 'optinpanda');
+       $this->title = __('Connect Options', 'signinlocker');
     }
     
     /**
@@ -79,11 +79,11 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         $options[] = array(
             'type'      => 'html',
             'html'      => '<div class="opanda-fullwidth opanda-hint">
-                            <strong>'.__('How to setup', 'optinpanda').'</strong>: ' . 
+                            <strong>'.__('How to setup', 'signinlocker').'</strong>: ' . 
                             '<ol>' . 
-                            '<li>' . __('Select social networks which will be available to sign in.', 'optinpanda') . 
-                            '<li>' . __('For each social network, select actions which have to be performed to sign in.', 'optinpanda') .
-                            '<li>' . __('Configure each selected action by clicking on its title.', 'optinpanda') .
+                            '<li>' . __('Select social networks which will be available to sign in.', 'signinlocker') . 
+                            '<li>' . __('For each social network, select actions which have to be performed to sign in.', 'signinlocker') .
+                            '<li>' . __('Configure each selected action by clicking on its title.', 'signinlocker') .
                             '</ol>' .
                             '</div>'
         );
@@ -104,8 +104,8 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type' => 'html',
                     'html' => $this->getOptionsHeaderHtml(
-                        __('Action: Save Email', 'optinpanda'),
-                        __('This action retrieves an email and some other personal data of the user and saves it in the database.', 'optinpanda')
+                        __('Action: Save Email', 'signinlocker'),
+                        __('This action retrieves an email and some other personal data of the user and saves it in the database.', 'signinlocker')
                     )
                 ),
                 array(
@@ -122,8 +122,8 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         $subscription[] = array(
             'type' => 'html',
             'html' => $this->getOptionsHeaderHtml(
-                __('Action: Subscribe', 'optinpanda'),
-                __('This action allows to subscribe the user to the specified mailing list when one clicks on the Sign In button.', 'optinpanda')
+                __('Action: Subscribe', 'signinlocker'),
+                __('This action allows to subscribe the user to the specified mailing list when one clicks on the Sign In button.', 'signinlocker')
             )
         );
         
@@ -148,8 +148,8 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     $subscription[] = array(
                         'type' => 'textbox',
                         'name' => 'subscribe_list',
-                        'title' => __('List', 'opanda'),
-                        'hint' => __( 'Specify the list ID to add subscribers.', 'opanda' )
+                        'title' => __('List', 'signinlocker'),
+                        'hint' => __( 'Specify the list ID to add subscribers.', 'signinlocker' )
                     );
 
                 } else {
@@ -165,9 +165,9 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                                 'opanda_service' => $serviceName
                             )
                         ),
-                        'empty' => __( '- empty -', 'opanda' ),
-                        'title' => __('List', 'opanda'),
-                        'hint' => __( 'Select the list to add subscribers.', 'opanda' )
+                        'empty' => __( '- empty -', 'signinlocker' ),
+                        'title' => __('List', 'signinlocker'),
+                        'hint' => __( 'Select the list to add subscribers.', 'signinlocker' )
                     );
                 }
             } 
@@ -178,14 +178,14 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 'hasGroups' => false,
                 'hasHints' => true,
                 'data' => OPanda_SubscriptionServices::getCurrentOptinModes( true ),
-                'title' => __('Opt-In Mode', 'opanda')
+                'title' => __('Opt-In Mode', 'signinlocker')
             );
 
             $subscription[] = array(
                 'type' => 'checkbox',
                 'way' => 'buttons',
                 'name' => 'subscribe_name',
-                'title' => __('Require Name', 'opanda'),
+                'title' => __('Require Name', 'signinlocker'),
                 'hint' => 'If On, requires to specify the name to unlock (only for the Email Form).'
             );
 
@@ -196,25 +196,25 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             $subscription[] = array(
                 'type'      => 'textbox',
                 'name'      => 'subscribe_before_form',
-                'title'     => __('Before Form', 'optinpanda'),
-                'hint'      => __('The text before the form.', 'optinpanda'),
-                'default'   => __('Cannot sign in via social networks? Enter your email manually.', 'optinpanda')
+                'title'     => __('Before Form', 'signinlocker'),
+                'hint'      => __('The text before the form.', 'signinlocker'),
+                'default'   => __('Cannot sign in via social networks? Enter your email manually.', 'signinlocker')
             ); 
 
             $subscription[] = array(
                 'type'      => 'textbox',
                 'name'      => 'subscribe_button_text',
-                'title'     => __('Buttton Text', 'optinpanda'),
-                'hint'      => __('The text on the button.', 'optinpanda'),
-                'default'   => __('sign in to unlock', 'optinpanda')
+                'title'     => __('Buttton Text', 'signinlocker'),
+                'hint'      => __('The text on the button.', 'signinlocker'),
+                'default'   => __('sign in to unlock', 'signinlocker')
             );
 
             $subscription[] = array(
                 'type'      => 'textbox',
                 'name'      => 'subscribe_after_button',
-                'title'     => __('After Buttton', 'optinpanda'),
-                'hint'      => __('The text below the button. Guarantee something.', 'optinpanda'),
-                'default'   => __('Your email address is 100% safe from spam!', 'optinpanda')
+                'title'     => __('After Buttton', 'signinlocker'),
+                'hint'      => __('The text below the button. Guarantee something.', 'signinlocker'),
+                'default'   => __('Your email address is 100% safe from spam!', 'signinlocker')
             );
             
         } else {
@@ -250,8 +250,8 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type' => 'html',
                     'html' => $this->getOptionsHeaderHtml(
-                        __('Action: Create Account', 'optinpanda'),
-                        __('This action registers the user on your website (the password will be generated randomly).', 'optinpanda')
+                        __('Action: Create Account', 'signinlocker'),
+                        __('This action registers the user on your website (the password will be generated randomly).', 'signinlocker')
                     )
                 ), 
                 array(
@@ -260,14 +260,14 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     'hasGroups' => false,
                     'hasHints' => true,
                     'data' => array(
-                        // array('hidden', __('Auto (Recommended)', 'bizpanda'), __('The user will be logged in automatically after clicking on the Sign-In Buttons.', 'bizpanda')),
+                        // array('hidden', __('Auto (Recommended)', 'signinlocker'), __('The user will be logged in automatically after clicking on the Sign-In Buttons.', 'signinlocker')),
                         array(
-                            'title' => __('Manual', 'opanda'),
+                            'title' => __('Manual', 'signinlocker'),
                             'value' => 'postponed',
-                            'hint' =>  __('The account will be created but the user will not be logged in. The user will have to log in manually by using the login details sent via email. The locked content will get available instantly after clicking on the Sign-In buttons.', 'opanda')
+                            'hint' =>  __('The account will be created but the user will not be logged in. The user will have to log in manually by using the login details sent via email. The locked content will get available instantly after clicking on the Sign-In buttons.', 'signinlocker')
                         )
                     ),
-                    'title' => __('Login Mode', 'bizpanda'),
+                    'title' => __('Login Mode', 'signinlocker'),
                     'default' => 'hidden'
                 ),
                 array(
@@ -292,21 +292,21 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type' => 'html',
                     'html' => $this->getOptionsHeaderHtml( 
-                        __('Twitter Action: Follow', 'optinpanda'),
-                        __('This action makes the user following you on Twitter after clicking the Sign In button.', 'optinpanda')
+                        __('Twitter Action: Follow', 'signinlocker'),
+                        __('This action makes the user following you on Twitter after clicking the Sign In button.', 'signinlocker')
                     )
                 ), 
                 array(
                     'type'  => 'textbox',
-                    'title' => __('User to follow', 'optinpanda'),
-                    'hint'  => __('Set a user screen name to follow (for example, <a href="http://twitter.com/byonepress" target="_blank">byonepress</a>)', 'optinpanda'),
+                    'title' => __('User to follow', 'signinlocker'),
+                    'hint'  => __('Set a user screen name to follow (for example, <a href="http://twitter.com/byonepress" target="_blank">byonepress</a>)', 'signinlocker'),
                     'name'  => 'twitter_follow_user'
                 ), 
                 array(
                     'type'  => 'checkbox',
                     'way'   => 'buttons',
-                    'title' => __('Notifications', 'optinpanda'),
-                    'hint'  => __('If On, the follower will get notifications about new tweets (usually via sms).', 'optinpanda'),
+                    'title' => __('Notifications', 'signinlocker'),
+                    'hint'  => __('If On, the follower will get notifications about new tweets (usually via sms).', 'signinlocker'),
                     'name'  => 'twitter_follow_notifications',
                     'default' => false
                 )
@@ -324,14 +324,14 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type' => 'html',
                     'html' => $this->getOptionsHeaderHtml( 
-                        __('Twitter Action: Tweet', 'optinpanda'),
-                        __('Sends the specified tweet below from behalf of the user after signing in.', 'optinpanda')
+                        __('Twitter Action: Tweet', 'signinlocker'),
+                        __('Sends the specified tweet below from behalf of the user after signing in.', 'signinlocker')
                     )
                 ), 
                 array(
                     'type'  => 'textarea',
-                    'title' => __('Tweet', 'optinpanda'),
-                    'hint'  => __('Type a message to tweet. It may include any URL.', 'optinpanda'),
+                    'title' => __('Tweet', 'signinlocker'),
+                    'hint'  => __('Type a message to tweet. It may include any URL.', 'signinlocker'),
                     'name'  => 'twitter_tweet_message'
                 ),
             )
@@ -348,19 +348,19 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type' => 'html',
                     'html' => $this->getOptionsHeaderHtml( 
-                        __('Google Action: Subscribe To Youtube Channel', 'optinpanda'),
-                        __('This action subscribers the user to the specified Youtube channel.', 'optinpanda')
+                        __('Google Action: Subscribe To Youtube Channel', 'signinlocker'),
+                        __('This action subscribers the user to the specified Youtube channel.', 'signinlocker')
                     )
                 ), 
                 array(
                     'type'  => 'textbox',
-                    'title' => __('Youtube Channel ID', 'optinpanda'),
-                    'hint'  => __('Set a channel ID to subscribe (for example, <a href="http://www.youtube.com/channel/UCANLZYMidaCbLQFWXBC95Jg" target="_blank">UCANLZYMidaCbLQFWXBC95Jg</a>).', 'optinpanda'),
+                    'title' => __('Youtube Channel ID', 'signinlocker'),
+                    'hint'  => __('Set a channel ID to subscribe (for example, <a href="http://www.youtube.com/channel/UCANLZYMidaCbLQFWXBC95Jg" target="_blank">UCANLZYMidaCbLQFWXBC95Jg</a>).', 'signinlocker'),
                     'name'  => 'google_youtube_channel_id'
                 )
             )
         );
-        
+
         // hidden files to save active buttons and their actions
         
         $options[] = array(
@@ -422,17 +422,20 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
 
         <div class="form-group" style="margin-bottom: 10px;">
             <label class="col-sm-2 control-label">
-                 <?php _e('How to use', 'opanda') ?>
+                 <?php _e('How to use', 'signinlocker') ?>
             </label>
             <div class="control-group col-sm-10">
                 <p style="padding-top: 3px;">
-                    <?php printf( __('<a href="%s" class="button" target="_blank">See emails</a> of users who already signed-up or <a href="%s" class="button" target="_blank">export emails</a> in the CSV format.', 'opanda'), admin_url('edit.php?post_type=opanda-item&page=leads-bizpanda'), admin_url('admin.php?page=leads-bizpanda&action=export') ) ?>
+                    <?php printf( __('<a href="%s" class="button" target="_blank">See emails</a> of users who already signed-up or <a href="%s" class="button" target="_blank">export emails</a> in the CSV format.', 'signinlocker'), admin_url('edit.php?post_type=opanda-item&page=leads-bizpanda'), admin_url('admin.php?page=leads-bizpanda&action=export') ) ?>
                 </p>
+                <?php ?>
                 <?php if ( !BizPanda::hasPlugin('optinpanda') ) { ?>
                 <p>
                     <?php printf( __('Install the plugin <a href="%s" target="_blank">Opt-In Panda</a> to subscribe automatically all the signed-up users to your mailing list. Supports most of services and plugins: Aweber, MailChimp, GetResponse, MyMail, MailPoet, K-news and more.'), $url ) ?>
                 </p>
                 <?php } ?>
+                <?php 
+ ?>
             </div>
         </div>
 
@@ -446,7 +449,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
 
         <div class="form-group" style="margin-bottom: 10px;">
             <label class="col-sm-2 control-label">
-                 <?php _e('How to use', 'opanda') ?>
+                 <?php _e('How to use', 'signinlocker') ?>
             </label>
             <div class="control-group col-sm-10">
                 <p>
@@ -464,11 +467,11 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
 
         <div class="form-group" style="margin-bottom: 10px;">
             <label class="col-sm-2 control-label">
-                <?php _e('New User Role', 'optinpanda') ?>
+                <?php _e('New User Role', 'signinlocker') ?>
             </label>
             <div class="control-group col-sm-10">
                 <p style="padding-top: 7px;">
-                    <?php printf( __('All new users will be assigned to the role <strong>%s</strong> (<a href="%s" target="_blank">change</a>).', 'optinpanda' ), $defaultRole, admin_url('options-general.php') ) ?>
+                    <?php printf( __('All new users will be assigned to the role <strong>%s</strong> (<a href="%s" target="_blank">change</a>).', 'signinlocker' ), $defaultRole, admin_url('options-general.php') ) ?>
                 </p>
             </div>
         </div>
@@ -483,11 +486,11 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
 
         <div class="form-group">
             <label class="col-sm-2 control-label">
-                <?php _e('Welcome E-mail', 'optinpanda') ?>
+                <?php _e('Welcome E-mail', 'signinlocker') ?>
             </label>
             <div class="control-group col-sm-10">
                 <p style="padding-top: 7px;">
-                    <?php printf( __('By default new users receive the standard wordpress welcome message. You can change it if you want.<br /><a href="https://wordpress.org/plugins/search.php?q=Welcome+Email" target="_blank">Click here</a> to select a free plugin to customize the welcome email.', 'optinpanda' ), $defaultRole, admin_url('options-general.php') ) ?>
+                    <?php printf( __('By default new users receive the standard wordpress welcome message. You can change it if you want.<br /><a href="https://wordpress.org/plugins/search.php?q=Welcome+Email" target="_blank">Click here</a> to select a free plugin to customize the welcome email.', 'signinlocker' ), $defaultRole, admin_url('options-general.php') ) ?>
                 </p>
             </div>
         </div>
@@ -511,133 +514,129 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         $buttons = array(
 
             'facebook' => array(
-                'title' => __('Facebook', 'optinpanda'),
+                'title' => __('Facebook', 'signinlocker'),
                 'errors' => array($this, 'getFacebookErrors'),
                 'actions' => array(
                     'lead' => array(
                         'on'    => true,
-                        'title' => __('Save Email', 'bizpanda'),
+                        'title' => __('Save Email', 'signinlocker'),
                         'always' => true
                     ),
                     'subscribe' => array(
-                        'title' => __('Subscribe', 'bizpanda')
+                        'title' => __('Subscribe', 'signinlocker')
                     ),
                     'signup' => array(
                         'on'    => true,
-                        'title' => __('Create Account', 'bizpanda')
+                        'title' => __('Create Account', 'signinlocker')
                     )
                 )
             ),
             
             'twitter' => array(
-                'title' => __('Twitter', 'optinpanda'),
+                'title' => __('Twitter', 'signinlocker'),
                 'errors' => array($this, 'getTwitterErrors'),
                 'actions' => array(
                     'lead' => array(
                         'on'    => true,
-                        'title' => __('Save Email', 'bizpanda'),
+                        'title' => __('Save Email', 'signinlocker'),
                         'always' => true
                     ),
                     'subscribe' => array(
-                        'title' => __('Subscribe', 'bizpanda')
+                        'title' => __('Subscribe', 'signinlocker')
                     ),
                     'signup' => array(
                         'on'    => true,
-                        'title' => __('Create Account', 'bizpanda')
+                        'title' => __('Create Account', 'signinlocker')
                     ),
                     'follow' => array(
-                        'title' => __('Follow', 'bizpanda'),
+                        'title' => __('Follow', 'signinlocker'),
                         'type'  => 'social'
                     ),
                     'tweet' => array(
-                        'title' => __('Tweet', 'bizpanda'),
+                        'title' => __('Tweet', 'signinlocker'),
                         'type'  => 'social'
                     )
                 )
             ),
             
             'google' => array(
-                'title' => __('Google', 'optinpanda'),
+                'title' => __('Google', 'signinlocker'),
                 'errors' => array($this, 'getGoogleErrors'),
                 'actions' => array(
                     'lead' => array(
                         'on'    => true,
-                        'title' => __('Save Email', 'bizpanda'),
+                        'title' => __('Save Email', 'signinlocker'),
                         'always' => true
                     ),
                     'subscribe' => array(
-                        'title' => __('Subscribe', 'bizpanda')
+                        'title' => __('Subscribe', 'signinlocker')
                     ),
                     'signup' => array(
                         'on'    => true,
-                        'title' => __('Create Account', 'bizpanda')
+                        'title' => __('Create Account', 'signinlocker')
                     ),
                     'youtube-subscribe' => array(
-                        'title' => __('Subscribe (YT)', 'bizpanda'),
+                        'title' => __('Subscribe (YT)', 'signinlocker'),
                         'type'  => 'social'
                     )
                 )
             ),
             
             'linkedin' => array(
-                'title' => __('LinkedIn', 'optinpanda'),
+                'title' => __('LinkedIn', 'signinlocker'),
                 'errors' => array($this, 'getLinkedInErrors'),
                 'actions' => array(
                     'lead' => array(
                         'on'    => true,
-                        'title' => __('Save Email', 'bizpanda'),
+                        'title' => __('Save Email', 'signinlocker'),
                         'always' => true
                     ),
                     'subscribe' => array(
-                        'title' => __('Subscribe', 'bizpanda')
+                        'title' => __('Subscribe', 'signinlocker')
                     ),
                     'signup' => array(
                         'on'    => true,
-                        'title' => __('Create Account', 'bizpanda')
-                    ),
-                    'follow' => array(
-                        'title' => __('Follow', 'bizpanda'),
-                        'type'  => 'social'
+                        'title' => __('Create Account', 'signinlocker')
                     )
                 )
             ),
             
             'email' => array(
-                'title' => __('Email Form', 'optinpanda'),
+                'title' => __('Email Form', 'signinlocker'),
                 'errors' => array($this, 'getEmailFormErrors'),
                 'actions' => array(
                     'lead' => array(
                         'on'    => true,
-                        'title' => __('Save Email', 'bizpanda'),
+                        'title' => __('Save Email', 'signinlocker'),
                         'always' => true
                     ),
                     'subscribe' => array(
-                        'title' => __('Subscribe', 'bizpanda')
+                        'title' => __('Subscribe', 'signinlocker')
                     ),
                     'signup' => array(
                         'on'    => true,
-                        'title' => __('Create Account', 'bizpanda')
+                        'title' => __('Create Account', 'signinlocker')
                     )
                 )
             )
         );
 
         if ( BizPanda::hasPlugin('optinpanda') ) {
-            
+
             foreach( $buttons as $buttonName => $buttonData ) {
                 $buttons[$buttonName]['actions']['subscribe']['on'] = true;      
             }
-            
+
         } else {
-            
+
             $url = OPanda_Plugins::getPremiumUrl('optinpanda', 'co-subscribe-action');
-            
+
             foreach( $buttons as $buttonName => $buttonData ) {
-                $buttons[$buttonName]['actions']['subscribe']['error'] = sprintf( __('To enable this action, please install the plugin Opt-In Panda which provides subscription features. <a href="%s" target="_blank">Click here to learn more</a>.', 'bizpanda'), $url );  
+                $buttons[$buttonName]['actions']['subscribe']['error'] = sprintf( __('To enable this action, please install the plugin Opt-In Panda which provides subscription features. <a href="%s" target="_blank">Click here to learn more</a>.', 'signinlocker'), $url );  
             }  
-            
+
         }
-            
+    
         if ( BizPanda::hasPlugin('sociallocker') ) {
 
             foreach( $buttons as $buttonName => $buttonData ) {
@@ -657,7 +656,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 foreach( $buttons[$buttonName]['actions'] as $actionName => $actionData ) {
                     
                     if ( isset( $actionData['type'] ) && 'social' === $actionData['type'] ) {
-                        $buttons[$buttonName]['actions'][$actionName]['error'] = sprintf( __('To enable this action, please install the Social Locker plugin which provides social features. <a href="%s" target="_blank">Click here to learn more</a>.', 'bizpanda'), $url );
+                        $buttons[$buttonName]['actions'][$actionName]['error'] = sprintf( __('To enable this action, please install the Social Locker plugin which provides social features. <a href="%s" target="_blank">Click here to learn more</a>.', 'signinlocker'), $url );
                     }   
                 }   
             }
@@ -772,7 +771,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         $appId = get_option('opanda_facebook_appid', null);
         if ( empty( $appId ) || '117100935120196' === $appId ) {
             return array(
-                'text' => sprintf( __('You need to register a Facebook App for your website. Please <a href="%s" target="_blank">click here</a> to learn more.', 'optinpanda'), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') )
+                'text' => sprintf( __('You need to register a Facebook App for your website. Please <a href="%s" target="_blank">click here</a> to learn more.', 'signinlocker'), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') )
             );
         }
         
@@ -795,7 +794,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         
         if ( empty( $key ) || empty( $secret ) ) {
             return array(
-                'text' => sprintf( __('Please set the Key & Secret of your Twitter App or select the default app. Please <a href="%s" target="_blank">click here</a> to learn more.', 'optinpanda'), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') )
+                'text' => sprintf( __('Please set the Key & Secret of your Twitter App or select the default app. Please <a href="%s" target="_blank">click here</a> to learn more.', 'signinlocker'), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') )
             );
         }
         
@@ -813,7 +812,7 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         $clientId = get_option('opanda_google_client_id', null);
         if ( empty( $clientId ) ) {
             return array(
-                'text' => sprintf( __('You need to get a Google Client ID for your website. Please <a href="%s" target="_blank">click here</a> to learn more.', 'optinpanda'), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') )
+                'text' => sprintf( __('You need to get a Google Client ID for your website. Please <a href="%s" target="_blank">click here</a> to learn more.', 'signinlocker'), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') )
             );
         }
         
@@ -865,12 +864,12 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
             <div class="control-group controls col-sm-10">
 
                 <?php if ( 'database' === $serviceName ) { ?>
-                    <?php printf( __('The emails will be saved in the <a href="%s" target="_blank">local database</a> because you haven\'t selected a mailing service', 'opanda'), opanda_get_subscribers_url() ) ?>
+                    <?php printf( __('The emails will be saved in the <a href="%s" target="_blank">local database</a> because you haven\'t selected a mailing service', 'signinlocker'), opanda_get_subscribers_url() ) ?>
                 <?php } else { ?>
-                    <?php printf( __('You selected <strong>%s</strong> as your mailing service', 'opanda'), $info['title'] ) ?>
+                    <?php printf( __('You selected <strong>%s</strong> as your mailing service', 'signinlocker'), $info['title'] ) ?>
                 <?php } ?>
   
-                (<a href="<?php echo opanda_get_settings_url('subscription') ?>" target="_blank"><?php _e('change', 'opanda') ?></a>).
+                (<a href="<?php echo opanda_get_settings_url('subscription') ?>" target="_blank"><?php _e('change', 'signinlocker') ?></a>).
             </div>
         </div>
         <?php

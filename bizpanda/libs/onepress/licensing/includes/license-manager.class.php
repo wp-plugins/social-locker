@@ -65,6 +65,14 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
         
         $this->site = site_url();
         $this->domain = parse_url( $this->site, PHP_URL_HOST );
+        
+        $nounce = wp_create_nonce('hidelm');
+        $optionName = 'onp_lm_' . $this->plugin->pluginName . '_' . $nounce;
+        $optionValue = get_option( $optionName );
+        
+        if ( !empty( $optionValue ) ) {
+            $this->hidden = true;
+        }
     }
     
     /**
@@ -144,7 +152,12 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
         }
         
         ?>
+
         <div class="factory-bootstrap-329 factory-fontawesome-320 onp-page-wrap <?php echo $licenseData['Category'] ?>-license-manager-content" id="license-manager">
+            
+            <a id="onp-hide-license-manager" href="<?php $this->actionUrl('hideLM') ?>">
+                <i class="fa fa-eye-slash"></i><?php _e('Hide License Manager') ?>
+            </a>
 
             <?php if ( $error ) { ?>
                 <?php $this->showError($error, $scope) ?>
@@ -242,10 +255,12 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
                             <?php if ( $licenseManager->data['Category'] == 'free' ) { ?>
                                 <p><?php _e('Public License is a GPLv2 compatible license allowing you to change and use this version of the plugin for free. Please keep in mind this license covers only free edition of the plugin. Premium versions are distributed with other type of a license.') ?>
                                 </p>
+                                <?php if ( $this->trial ) { ?>
                                 <p class="activate-trial-hint">
                                     <?php printf( __('You can <a href="%1$s">activate</a> a premium version for a trial period (7 days).', 'onp_licensing_325'), $this->getActionUrl('activateTrial') ) ?>
                                     <?php printf( __('Or click <a target="_blank" href="%1$s">here</a> to learn more about the premium version.', 'onp_licensing_325'), onp_licensing_325_get_purchase_url( $this->plugin ) ) ?>
                                 </p>
+                                <?php } ?>
                             <?php } else { ?>
                                 <?php echo $licenseData['Description'] ?>
                             <?php } ?>
@@ -408,7 +423,7 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
         </div>
         <?php
     }
-    
+
     /**
      * Show one of the result messages.
      * 
@@ -805,6 +820,41 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
         <?php
     }
     
+    // ------------------------------------------------------------------
+    // Hiding/Showing License Manager
+    // ------------------------------------------------------------------
+    
+    public function hideLMAction() {
+        $nounce = wp_create_nonce('hidelm');
+        $optionName = 'onp_lm_' . $this->plugin->pluginName . '_' . $nounce;
+        
+        if ( isset( $_GET['onp_nounce'] ) && $_GET['onp_nounce'] == $nounce ) {
+            update_option($optionName, $nounce);
+            wp_redirect(admin_url('edit.php?post_type=opanda-item') );
+            exit;
+        }
+        
+        ?>
+        <div class="wrap factory-fontawesome-320">
+            <h2><?php _e('Hiding License Manager', 'bizpanda') ?></h2>
+            
+            <div class="factory-bootstrap-329" >
+                <div class="margin-top: 0px; margin-bottom: 30px;">
+                    <p style="margin: 0px;"><?php _e('<strong>Warning!</strong> The License Manager will get inaccessible when you click the button "Hide License Manager".', 'bizpanda') ?></p>
+                    <p style="margin: 10px 0 0 0;"><?php printf( __('To restore access to the License Manager, you will need to clear the option <strong>%s</strong> on the page <strong>options.php</strong>:', 'bizpanda'), $optionName ) ?></p
+                    <p style="margin: 0px;">
+                        <a href="<?php echo admin_url( "options.php" ) ?>"><?php echo admin_url( "options.php" ) ?></a>
+                    </p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="<?php $this->actionUrl("hideLM", array('onp_nounce' => $nounce)) ?>" class="btn btn-danger"><?php _e('Hide License Manager', 'onepress') ?></a>
+                    <a href="<?php $this->actionUrl("index") ?>" class="btn btn-default" style="margin-left: 5px;"><?php _e('Return Back', 'onepress') ?></a>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
     // ------------------------------------------------------------------
     // The rest actions
     // ------------------------------------------------------------------

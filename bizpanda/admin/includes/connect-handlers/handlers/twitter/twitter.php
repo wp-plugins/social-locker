@@ -61,7 +61,7 @@ class OPanda_TwitterHandler extends OPanda_Handler {
 
         if ( empty( $visitorId ) ) $visitorId = $this->getGuid();
 
-        $oauth = new TwitterOAuth( $options['consumer_key'], $options['consumer_secret'] );
+        $oauth = new OPanda_TwitterOAuth( $options['consumer_key'], $options['consumer_secret'] );
         $requestToken = $oauth->getRequestToken( $this->getCallbackUrl( $visitorId ) ); 
 
         $token = $requestToken['oauth_token'];
@@ -89,7 +89,7 @@ class OPanda_TwitterHandler extends OPanda_Handler {
         if ( $denied ) { 
         ?>
             <script>
-                if( window.opener ) window.opener.OPanda_TwitterOAuthDenied( '<?php echo $visitorId ?>' );                
+                if( window.opener ) window.opener.OPanda_OPanda_TwitterOAuthDenied( '<?php echo $visitorId ?>' );                
                 window.close();                
             </script>
         <?php
@@ -109,7 +109,7 @@ class OPanda_TwitterHandler extends OPanda_Handler {
             throw new Opanda_HandlerException( "The secret of the request token is invalid for $visitorId" );
         }    
 
-        $connection = new TwitterOAuth( $options['consumer_key'], $options['consumer_secret'], $token, $secret );
+        $connection = new OPanda_TwitterOAuth( $options['consumer_key'], $options['consumer_secret'], $token, $secret );
 
         $accessToken = $connection->getAccessToken( $verifier );
 
@@ -126,7 +126,7 @@ class OPanda_TwitterHandler extends OPanda_Handler {
         exit;
     }
     
-    protected function getTwitterOAuth( $visitorId = null, $token = null, $secret = null ) {
+    protected function getOPanda_TwitterOAuth( $visitorId = null, $token = null, $secret = null ) {
         $options = $this->options;
         
         if ( empty( $visitorId ) && ( empty( $token ) || empty( $secret ) ) )
@@ -141,11 +141,11 @@ class OPanda_TwitterHandler extends OPanda_Handler {
             if ( empty( $secret ) ) throw new Opanda_HandlerException( "The secret of the access token is invalid for $visitorId" );
         }
         
-        return new TwitterOAuth( $options['consumer_key'], $options['consumer_secret'], $token, $secret);
+        return new OPanda_TwitterOAuth( $options['consumer_key'], $options['consumer_secret'], $token, $secret);
     }
     
     public function getUserData( $visitorId ) {
-        $oauth = $this->getTwitterOAuth( $visitorId );
+        $oauth = $this->getOPanda_TwitterOAuth( $visitorId );
 
         $response = $oauth->get('account/verify_credentials');
         echo json_encode($response);
@@ -154,7 +154,7 @@ class OPanda_TwitterHandler extends OPanda_Handler {
     }
     
     protected function follow( $visitorId ) {
-        $oauth = $this->getTwitterOAuth( $visitorId );
+        $oauth = $this->getOPanda_TwitterOAuth( $visitorId );
         
         $contextData = isset( $_POST['opandaContextData'] ) ? $_POST['opandaContextData'] : array();
         $contextData = $this->normilizeValues( $contextData );
@@ -196,7 +196,7 @@ class OPanda_TwitterHandler extends OPanda_Handler {
     }
     
     protected function tweet( $visitorId ) {
-        $oauth = $this->getTwitterOAuth( $visitorId );
+        $oauth = $this->getOPanda_TwitterOAuth( $visitorId );
         
         $contextData = isset( $_POST['opandaContextData'] ) ? $_POST['opandaContextData'] : array();
         $contextData = $this->normilizeValues( $contextData );

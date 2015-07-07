@@ -65,13 +65,13 @@ function opanda_social_locker_activation( $plugin, $helper ) {
         'opanda_default_social_locker_id',
         array(
             'post_type' => OPANDA_POST_TYPE,
-            'post_title' => __('Social Locker (default)', 'optinpanda'),
+            'post_title' => __('Social Locker (default)', 'sociallocker'),
             'post_name' => 'opanda_default_social_locker'
         ),
         array(
             'opanda_item' => 'social-locker',
-            'opanda_header' => __('This content is locked', 'optinpanda'),       
-            'opanda_message' => __('Please support us, use one of the buttons below to unlock the content.', 'optinpanda'),
+            'opanda_header' => __('This content is locked', 'sociallocker'),       
+            'opanda_message' => __('Please support us, use one of the buttons below to unlock the content.', 'sociallocker'),
             'opanda_style' => $defaulTheme,
             'opanda_mobile' => 1,          
             'opanda_highlight' => 1,                   
@@ -115,24 +115,24 @@ function opanda_register_social_locker_themes() {
         OPanda_ThemeManager::registerTheme(array(
             'name' => 'dandyish',
             'title' => 'Dandyish [Premium]',
-            'preview' => BIZPANDA_SOCIAL_LOCKER_URL . '/admin/assets/img/preview/dansyish.png',
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
+            'preview' => 'https://cconp.s3.amazonaws.com/bizpanda/social-locker/preview/dansyish.png',
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'sociallocker' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('social-locker') 
         )); 
 
         OPanda_ThemeManager::registerTheme(array(
             'name' => 'glass',
             'title' => 'Glass [Premium]',
-            'preview' => BIZPANDA_SOCIAL_LOCKER_URL . '/admin/assets/img/preview/glass.png',
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
+            'preview' => 'https://cconp.s3.amazonaws.com/bizpanda/social-locker/preview/glass.png',
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'sociallocker' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('social-locker') 
         ));
 
         OPanda_ThemeManager::registerTheme(array(
             'name' => 'flat',
             'title' => 'Flat [Premium]',
-            'preview' => BIZPANDA_SOCIAL_LOCKER_URL . '/admin/assets/img/preview/flat.png',
-            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'opanda' ), opanda_get_premium_url( null, 'themes') ),
+            'preview' => 'https://cconp.s3.amazonaws.com/bizpanda/social-locker/preview/flat.png',
+            'hint' => sprintf( __( 'This theme is available only in the <a href="%s" target="_blank">premium version</a> of the plugin', 'sociallocker' ), opanda_get_premium_url( null, 'themes') ),
             'items' => array('social-locker') 
         ));
         
@@ -210,8 +210,8 @@ function opanda_social_locker_stats_screens( $screens ) {
         // The Summary Screen
         
         'summary' => array (
-            'title' => __('<i class="fa fa-search"></i> Summary', 'optinpanda'),
-            'description' => __('The page shows the total number of unlocks for the current locker.', 'opanda'),
+            'title' => __('<i class="fa fa-search"></i> Summary', 'sociallocker'),
+            'description' => __('The page shows the total number of unlocks for the current locker.', 'sociallocker'),
 
             'chartClass' => 'OPanda_SocialLocker_Summary_StatsChart',
             'tableClass' => 'OPanda_SocialLocker_Summary_StatsTable',
@@ -221,8 +221,8 @@ function opanda_social_locker_stats_screens( $screens ) {
         // The Channels Screen        
   
         'channels' => array(
-            'title' => __('<i class="fa fa-search-plus"></i> Detailed', 'opanda'), 
-            'description' => __('The page shows which ways visitors used to unlock the content.', 'optinpanda'),
+            'title' => __('<i class="fa fa-search-plus"></i> Detailed', 'sociallocker'), 
+            'description' => __('The page shows which ways visitors used to unlock the content.', 'sociallocker'),
             
             'chartClass' => 'OPanda_SocialLocker_Detailed_StatsChart',
             'tableClass' => 'OPanda_SocialLocker_Detailed_StatsTable',

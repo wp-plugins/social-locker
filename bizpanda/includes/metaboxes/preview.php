@@ -43,7 +43,7 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
         
-        $this->title = __('Locker Preview', 'optinpanda');
+        $this->title = __('Locker Preview', 'bizpanda');
     }
     
     /**
@@ -97,7 +97,7 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
             window.onp_sl_styleroller = true;
             <?php } else { ?>
             window.onp_sl_styleroller = false;
-            window.onp_sl_styleroller_offer_text = '<?php _e('Want more themes?', 'sociallocker') ?>';
+            window.onp_sl_styleroller_offer_text = '<?php _e('Want more themes?', 'bizpanda') ?>';
             window.onp_sl_styleroller_offer_url = '<?php echo $bizpanda->options['styleroller'] ?>';
             <?php } ?>
                 
@@ -107,7 +107,7 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
             window.onp_sl_show_styleroller_offer = false;
             <?php } ?>      
         </script>
-        <p class="note"><strong><?php _e('Note', 'optinpanda'); ?>:</strong> <?php _e('In the preview mode, the some features of the locker may not work properly.', 'optinpanda'); ?></p>
+        <p class="note"><strong><?php _e('Note', 'bizpanda'); ?>:</strong> <?php _e('In the preview mode, some features of the locker may not work properly.', 'bizpanda'); ?></p>
         <div id="lock-preview-wrap"<?php echo $dataPrint; ?>>
             <iframe 
                 allowtransparency="1" 
@@ -118,7 +118,7 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
                 name="preview"
                 vspace="0"
                 width="100%">
-                <?php _e('Your browser doen\'t support the iframe tag.', 'optinpanda'); ?>
+                <?php _e('Your browser doen\'t support the iframe tag.', 'bizpanda'); ?>
             </iframe>           
         </div>
         <?php

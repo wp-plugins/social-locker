@@ -50,8 +50,8 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
     function __construct($plugin) {
         parent::__construct($plugin);
         
-        $this->pluralTitle = __('Lockers', 'optinpanda');
-        $this->singularTitle = __('Locker', 'optinpanda');
+        $this->pluralTitle = __('Lockers', 'bizpanda');
+        $this->singularTitle = __('Locker', 'bizpanda');
     }
     
     /**
@@ -70,18 +70,18 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         $labels = array(
             'singular_name' => $this->singularTitle,
             'name' => $this->pluralTitle,          
-            'all_items' => sprintf( __('All Lockers', 'optinpanda'), $pluralName ),
-            'add_new' => sprintf( __('+ New Locker', 'optinpanda'), $singularName ),
-            'add_new_item' => sprintf( __('Add new', 'optinpanda'), $singularName ),
-            'edit' => sprintf( __('Edit', 'optinpanda') ),
-            'edit_item' => sprintf( __('Edit Item', 'optinpanda'), $singularName ),
-            'new_item' => sprintf( __('New Item', 'optinpanda'), $singularName ),
+            'all_items' => sprintf( __('All Lockers', 'bizpanda'), $pluralName ),
+            'add_new' => sprintf( __('+ New Locker', 'bizpanda'), $singularName ),
+            'add_new_item' => sprintf( __('Add new', 'bizpanda'), $singularName ),
+            'edit' => sprintf( __('Edit', 'bizpanda') ),
+            'edit_item' => sprintf( __('Edit Item', 'bizpanda'), $singularName ),
+            'new_item' => sprintf( __('New Item', 'bizpanda'), $singularName ),
             'view' => sprintf( __('View', 'factory') ),
-            'view_item' => sprintf( __('View Item', 'optinpanda'), $singularName ),
-            'search_items' => sprintf( __('Search Items', 'optinpanda'), $pluralName ),
-            'not_found' => sprintf( __('No Items found', 'optinpanda'), $pluralName ),
-            'not_found_in_trash' => sprintf( __('No Items found in trash', 'optinpanda'), $pluralName ),
-            'parent' => sprintf( __('Parent Item', 'optinpanda'), $pluralName )
+            'view_item' => sprintf( __('View Item', 'bizpanda'), $singularName ),
+            'search_items' => sprintf( __('Search Items', 'bizpanda'), $pluralName ),
+            'not_found' => sprintf( __('No Items found', 'bizpanda'), $pluralName ),
+            'not_found_in_trash' => sprintf( __('No Items found in trash', 'bizpanda'), $pluralName ),
+            'parent' => sprintf( __('Parent Item', 'bizpanda'), $pluralName )
         );
 
         $this->options['labels'] = apply_filters('opanda_items_lables', $labels);
@@ -103,7 +103,7 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
          * Scripts & styles
         */  
         
-        $this->scripts->request( array( 'jquery', 'jquery-effects-highlight' ) );
+        $this->scripts->request( array( 'jquery', 'jquery-effects-highlight', 'jquery-effects-slide' ) );
         
         $this->scripts->request( array( 
             'bootstrap.transition',

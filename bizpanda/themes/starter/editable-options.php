@@ -10,7 +10,7 @@
 function onp_sl_get_starter_theme_editable_options() {
 
     return array(
-        array(__('Locker Container', 'sociallocker'), 'locker-box', array(
+        array(__('Locker Container', 'bizpanda'), 'locker-box', array(
             
                 // accordion           
                 array(
@@ -20,7 +20,7 @@ function onp_sl_get_starter_theme_editable_options() {
                         // background                    
                         array(
                             'type' => 'accordion-item',
-                            'title' => __('Background', 'sociallocker'),
+                            'title' => __('Background', 'bizpanda'),
                             'items' => array(
                                 array(
                                     'type' => 'control-group',
@@ -29,38 +29,38 @@ function onp_sl_get_starter_theme_editable_options() {
                                     'items' => array(
                                         array(
                                             'type' => 'control-group-item',
-                                            'title' => __('Color', 'sociallocker'),
+                                            'title' => __('Color', 'bizpanda'),
                                             'name' => 'color',
                                             'items' => array(
                                                 array(
                                                     'type' => 'color-and-opacity',
                                                     'name' => 'background_color',
-                                                    'title' => __('Set up color and opacity:', 'sociallocker'),
+                                                    'title' => __('Set up color and opacity:', 'bizpanda'),
                                                     'default' => array('color' => '#f9f9f9', 'opacity' => 100)
                                                 )
                                             )
                                         ),
                                         array(
                                             'type' => 'control-group-item',
-                                            'title' => __('Gradient', 'sociallocker'),
+                                            'title' => __('Gradient', 'bizpanda'),
                                             'name' => 'gradient',
                                             'items' => array(
                                                 array(
                                                     'type' => 'gradient',
                                                     'name' => 'background_gradient',
-                                                    'title' => __('Set up gradient:', 'sociallocker')
+                                                    'title' => __('Set up gradient:', 'bizpanda')
                                                 )
                                             )
                                         ),
                                         array(
                                             'type' => 'control-group-item',
-                                            'title' => __('Pattern', 'sociallocker'),
+                                            'title' => __('Pattern', 'bizpanda'),
                                             'name' => 'image',
                                             'items' => array(
                                                 array(
                                                     'type' => 'pattern',
                                                     'name' => 'background_image',
-                                                    'title' => __('Set up pattern', 'sociallocker')
+                                                    'title' => __('Set up pattern', 'bizpanda')
                                                 )
                                             )
                                         ),
@@ -72,12 +72,12 @@ function onp_sl_get_starter_theme_editable_options() {
                         // font options                    
                         array(
                             'type' => 'accordion-item',
-                            'title' => __('Text', 'sociallocker'),
+                            'title' => __('Text', 'bizpanda'),
                             'items' => array(
                                 array(
                                     'type'      => 'font',                                
                                     'name'      => 'header_text',
-                                    'title'     => __('Header text', 'sociallocker'),
+                                    'title'     => __('Header text', 'bizpanda'),
                                     'default'   => array(
                                         'size' => 16, 
                                         'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -88,7 +88,7 @@ function onp_sl_get_starter_theme_editable_options() {
                                 array(
                                     'type'      => 'font',                                
                                     'name'      => 'message_text',
-                                    'title'     => __('Message text', 'sociallocker'),
+                                    'title'     => __('Message text', 'bizpanda'),
                                     'default'   => array(
                                         'size' => 13, 
                                         'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -102,12 +102,12 @@ function onp_sl_get_starter_theme_editable_options() {
                         //  paddings options                    
                         array(
                             'type'      => 'accordion-item',
-                            'title'     => __('Paddings', 'sociallocker'),
+                            'title'     => __('Paddings', 'bizpanda'),
                             'items'     => array(
                                 array(
                                     'type'      => 'paddings-editor',
                                     'name'      => 'container_paddings',
-                                    'title'     => __('Box paddings', 'sociallocker'),
+                                    'title'     => __('Box paddings', 'bizpanda'),
                                     'units'     => 'px',
                                     'default'   => '30px 30px 30px 30px'
                                 ),
@@ -115,7 +115,7 @@ function onp_sl_get_starter_theme_editable_options() {
                                     'type'      => 'integer',
                                     'name'      => 'after_header_margin',
                                     'way'       => 'slider',
-                                    'title'     => __('Margin after header', 'sociallocker'),
+                                    'title'     => __('Margin after header', 'bizpanda'),
                                     'units'     => 'px',
                                     'default'   => '0'
                                 ),
@@ -123,7 +123,7 @@ function onp_sl_get_starter_theme_editable_options() {
                                     'type'      => 'integer',
                                     'name'      => 'after_message_margin',
                                     'way'       => 'slider',
-                                    'title'     => __('Margin after message', 'sociallocker'),
+                                    'title'     => __('Margin after message', 'bizpanda'),
                                     'units'     => 'px',
                                     'default'   => '5'
                                 ),                            
@@ -133,7 +133,7 @@ function onp_sl_get_starter_theme_editable_options() {
                 )
             )),
         
-        array(__('Locker Buttons', 'sociallocker'), 'buttons', array(
+        array(__('Locker Buttons', 'bizpanda'), 'buttons', array(
                 // accordion            
                 array(
                     'type' => 'accordion',
@@ -141,12 +141,12 @@ function onp_sl_get_starter_theme_editable_options() {
                         // background options                    
                         array(
                             'type' => 'accordion-item',
-                            'title' => __('Mounts', 'sociallocker'),
+                            'title' => __('Mounts', 'bizpanda'),
                             'items' => array(
                                 array(
                                     'type' => 'color',
                                     'name' => 'button_base_color',
-                                    'title' => __('Color', 'sociallocker'),
+                                    'title' => __('Color', 'bizpanda'),
                                     'default' => '#f2f2f2'
                                 )
                             )

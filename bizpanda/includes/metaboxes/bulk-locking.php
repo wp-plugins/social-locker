@@ -54,7 +54,7 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
         
-        $this->title = __('Batch Locking', 'optinpanda');
+        $this->title = __('Batch Locking', 'bizpanda');
     }
     
     public function configure( $scripts, $styles ){
@@ -80,7 +80,7 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
         $bulkLocker = null;
         if ( $bulkLockerId !== 0 && $bulkLockerId != $post->ID ) {
             $bulkLocker = get_post($bulkLockerId);
-            if ( $bulkLocker && empty( $bulkLocker->post_title ) ) $bulkLocker->post_title = __('No title', 'optinpanda');
+            if ( $bulkLocker && empty( $bulkLocker->post_title ) ) $bulkLocker->post_title = __('No title', 'bizpanda');
         }
 
         // gets values for the form
@@ -153,22 +153,22 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
             if ( !window.bizpanda.lang ) window.bizpanda.lang = {}; 
  
             window.bizpanda.lang.everyPostWillBeLockedEntirelyExceptFirstsParagraphs = 
-                "<?php _e('Every post will be locked entirely except %s paragraphs placed at the beginning.', 'optinpanda') ?>";
+                "<?php _e('Every post will be locked entirely except %s paragraphs placed at the beginning.', 'bizpanda') ?>";
         
             window.bizpanda.lang.appliesToTypes = 
-                "<?php _e('Applies to types: %s', 'optinpanda') ?>";
+                "<?php _e('Applies to types: %s', 'bizpanda') ?>";
 
             window.bizpanda.lang.excludesPosts = 
-                "<?php _e('Excludes posts: %s', 'optinpanda') ?>";
+                "<?php _e('Excludes posts: %s', 'bizpanda') ?>";
 
             window.bizpanda.lang.excludesCategories = 
-                "<?php _e('Excludes categories: %s', 'optinpanda') ?>";
+                "<?php _e('Excludes categories: %s', 'bizpanda') ?>";
  
         </script>
   
         <div class="onp-sl-visibility-options-disabled" style="display: none;">
             <div class="alert alert-warning">
-                <?php _e( 'You set the the batch locking based on CSS Selector. The visibility options don\'t support CSS selectors.', 'optinpanda') ?>
+                <?php _e( 'You set the the batch locking based on CSS Selector. The visibility options don\'t support CSS selectors.', 'bizpanda') ?>
             </div>
         </div>
         
@@ -185,14 +185,14 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
 
         <div class="factory-bootstrap-329 factory-fontawesome-320">
             <div class="onp-sl-description-section">
-                <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'optinpanda') ?>
+                <?php _e('Batch Locking allows to apply the locker shortcode to your posts automatically.', 'bizpanda') ?>
             </div>
             <div class="onp-sl-setup-section <?php echo $setupStateClass ?>">
                 
                 <div class="onp-sl-empty-content">
-                    <span class="onp-sl-nolock"><?php _e('No batch lock', 'optinpanda') ?></span>
+                    <span class="onp-sl-nolock"><?php _e('No batch lock', 'bizpanda') ?></span>
                     <a class="btn btn-default" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="factory-modal">
-                        <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'optinpanda') ?>
+                        <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'bizpanda') ?>
                     </a>
                 </div>
                 
@@ -200,55 +200,55 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                     
                     <div class="onp-sl-way-description onp-sl-skip-lock-content <?php echo $skipAndLockStateClass ?>">
                         <span class="onp-sl-skip-lock-0-content">
-                            <?php echo _e('Every post will be locked entirely.', 'optinpanda') ?>
+                            <?php echo _e('Every post will be locked entirely.', 'bizpanda') ?>
                         </span>
                         <span class="onp-sl-skip-lock-1-content">
-                            <?php echo _e('Every post will be locked entirely except the first paragraph.', 'optinpanda') ?>
+                            <?php echo _e('Every post will be locked entirely except the first paragraph.', 'bizpanda') ?>
                         </span>
                         <span class="onp-sl-skip-lock-2-content">
-                            <?php echo sprintf( __('Every post will be locked entirely except %s paragraphs placed at the beginning.', 'optinpanda'), $skipNumber ) ?>
+                            <?php echo sprintf( __('Every post will be locked entirely except %s paragraphs placed at the beginning.', 'bizpanda'), $skipNumber ) ?>
                         </span>
                     </div>
                     
                     <div class="onp-sl-way-description onp-sl-more-tag-content">
-                        <?php echo _e('Content placed after the More Tag will be locked in every post.', 'optinpanda') ?>
+                        <?php echo _e('Content placed after the More Tag will be locked in every post.', 'bizpanda') ?>
                     </div>
                     
                     <div class="onp-sl-way-description onp-sl-css-selector-content">
-                        <p><?php echo _e('Every content matching the given CSS selector will be locked on every page:', 'optinpanda') ?></p>
+                        <p><?php echo _e('Every content matching the given CSS selector will be locked on every page:', 'bizpanda') ?></p>
                         <p><strong class="onp-sl-css-selector-view"><?php echo $cssSelector ?></strong></p>                       
                     </div>
                     
                     <div class='onp-sl-rules'>
                         <span class='onp-sl-post-types-rule'>
-                            <?php printf( __('Applies to types: %s', 'optinpanda'), $postTypes ) ?>
+                            <?php printf( __('Applies to types: %s', 'bizpanda'), $postTypes ) ?>
                         </span>
                         <span class='onp-sl-exclude-post-ids-rule'>
-                            <?php printf( __('Excludes posts: %s', 'optinpanda'), $excludePosts ) ?>
+                            <?php printf( __('Excludes posts: %s', 'bizpanda'), $excludePosts ) ?>
                         </span>
                         <span class='onp-sl-exclude-categories-ids-rule'>
-                            <?php printf( __('Excludes categories: %s', 'optinpanda'), $excludeCategories ) ?>
+                            <?php printf( __('Excludes categories: %s', 'bizpanda'), $excludeCategories ) ?>
                         </span>       
                     </div>
                     
                     <div class="onp-sl-controls">
                         <a class="btn btn-primary onp-sl-cancel" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="modal" id="onp-sl-setup-bult-locking-btn">
-                            <i class="fa fa-times-circle"></i> <?php _e('Cancel', 'optinpanda') ?>
+                            <i class="fa fa-times-circle"></i> <?php _e('Cancel', 'bizpanda') ?>
                         </a>
                         <a class="btn btn-primary onp-sl-setup-bulk-locking" href="#onp-sl-bulk-lock-modal" role="button" data-toggle="factory-modal">
-                            <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'optinpanda') ?>
+                            <i class="fa fa-cog"></i> <?php _e('Setup Batch Lock', 'bizpanda') ?>
                         </a>
                     </div>
                 </div> 
             </div>
             
             <div class="<?php echo $setupStateClass ?> <?php echo $interrelatedClass ?> onp-sl-interrelation-hint">
-                <?php printf( _e('Recommended to turn on the Interrelation option on the <a target="_blank" href="%s">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'optinpanda'), admin_url("edit.php?post_type=optinpanda&page=common-settings-" . $this->plugin->pluginName) ) ?>
+                <?php printf( _e('Recommended to turn on the Interrelation option on the <a target="_blank" href="%s">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'bizpanda'), admin_url("edit.php?post_type=optinpanda&page=common-settings-" . $this->plugin->pluginName) ) ?>
             </div>
             
             <div class="onp-sl-after-change-hint">
                 <i class="fa fa-exclamation-triangle"></i>
-                <?php _e('Don\'t forget to apply made changes via the Update button above.', 'optinpanda') ?>
+                <?php _e('Don\'t forget to apply made changes via the Update button above.', 'bizpanda') ?>
             </div>
 
             <div class="modal fade" id="onp-sl-bulk-lock-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -256,26 +256,26 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel"><?php _e('Select Way Of Batch Locking', 'optinpanda') ?></h4>
+                    <h4 class="modal-title" id="myModalLabel"><?php _e('Select Way Of Batch Locking', 'bizpanda') ?></h4>
                   </div>
                   <div class="modal-body">
                       
                     <div class="btn-group" id="onp-sl-bulk-locking-way-selector" data-toggle="buttons-radio">
-                        <button data-target="#onp-sl-skip-lock-options" type="button" class="btn btn-default value skip-lock <?php if ( $defaultWay == 'skip-lock') echo 'active'; ?>" data-name="skip-lock"><i class="fa fa-sort-amount-desc"></i> <?php _e('Skip & Lock', 'optinpanda' ) ?></button>
-                        <button data-target="#onp-sl-more-tags-options" type="button" class="btn btn-default value more-tag <?php if ( $defaultWay == 'more-tag') echo 'active'; ?>" data-name="more-tag"><i class="fa fa-scissors"></i> <?php _e('More Tag', 'optinpanda' ) ?></button>
-                        <button data-target="#onp-sl-css-selector-options" type="button" class="btn btn-default value css-selector <?php if ( $defaultWay == 'css-selector') echo 'active'; ?>" data-name="css-selector"><i class="fa fa-hand-o-up"></i> <?php _e('CSS Selector', 'optinpanda' ) ?></button>     
+                        <button data-target="#onp-sl-skip-lock-options" type="button" class="btn btn-default value skip-lock <?php if ( $defaultWay == 'skip-lock') echo 'active'; ?>" data-name="skip-lock"><i class="fa fa-sort-amount-desc"></i> <?php _e('Skip & Lock', 'bizpanda' ) ?></button>
+                        <button data-target="#onp-sl-more-tags-options" type="button" class="btn btn-default value more-tag <?php if ( $defaultWay == 'more-tag') echo 'active'; ?>" data-name="more-tag"><i class="fa fa-scissors"></i> <?php _e('More Tag', 'bizpanda' ) ?></button>
+                        <button data-target="#onp-sl-css-selector-options" type="button" class="btn btn-default value css-selector <?php if ( $defaultWay == 'css-selector') echo 'active'; ?>" data-name="css-selector"><i class="fa fa-hand-o-up"></i> <?php _e('CSS Selector', 'bizpanda' ) ?></button>     
                     </div>
                       
                     <div id="onp-sl-skip-lock-options" class="onp-sl-bulk-locking-options <?php if ( $defaultWay !== 'skip-lock') echo 'hide'; ?>">
                         <div class="onp-sl-description">
-                            <?php _e('Enter the number of paragraphs which will be visible for users at the beginning of your posts and which will be free from locking. The remaining paragraphs will be locked.', 'optinpanda') ?>
+                            <?php _e('Enter the number of paragraphs which will be visible for users at the beginning of your posts and which will be free from locking. The remaining paragraphs will be locked.', 'bizpanda') ?>
                         </div>
                         <div class="onp-sl-content">
                             
                             <div class="onp-sl-form">
 
                                 <div class='onp-sl-skip-number-row'>
-                                    <label><?php _e('The number of paragraphs to skip', 'optinpanda') ?></label>
+                                    <label><?php _e('The number of paragraphs to skip', 'bizpanda') ?></label>
                                     <input type="text" class="form-control onp-sl-skip-number" maxlength="3" min="0" value="<?php echo $skipNumber; ?>" />
                                     <div class="help-block help-block-error">
                                         <?php _e('Please enter a positive integer value.') ?>
@@ -285,25 +285,25 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                                 <div class="onp-sl-limits">
                                     <div class='onp-sl-exclude'>
                                         <div class='onp-sl-row'>
-                                            <label><?php _e('Exclude Posts', 'optinpanda') ?></label>
+                                            <label><?php _e('Exclude Posts', 'bizpanda') ?></label>
                                             <input type="text" class="form-control onp-sl-exclude-posts" value="<?php echo $excludePosts; ?>" />
                                             <div class="help-block">
-                                                <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".', 'optinpanda') ?>
+                                                <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".', 'bizpanda') ?>
                                             </div>
                                         </div>
                                         <div class='onp-sl-row'>
-                                            <label><?php _e('Exclude Categories', 'optinpanda') ?></label>
+                                            <label><?php _e('Exclude Categories', 'bizpanda') ?></label>
                                             <input type="text" class="form-control onp-sl-exclude-categories" value="<?php echo $excludeCategories; ?>" />
                                             <div class="help-block">
-                                                <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".', 'optinpanda') ?>
+                                                <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".', 'bizpanda') ?>
                                             </div>
                                         </div>                        
                                     </div>
 
                                     <div class='onp-sl-post-types'>
-                                        <strong><?php _e('Posts types to lock', 'optinpanda') ?></strong>
+                                        <strong><?php _e('Posts types to lock', 'bizpanda') ?></strong>
                                         <div class="help-block">
-                                            <?php _e('Choose post types for batch locking.', 'optinpanda') ?>
+                                            <?php _e('Choose post types for batch locking.', 'bizpanda') ?>
                                         </div>
                                         <ul>
                                         <?php foreach($types as $type) {?>
@@ -316,7 +316,7 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                                         <?php } ?> 
                                         </ul>
                                         <div class="help-block help-block-error">
-                                            <?php _e('Please choose at least one post type to lock. Otherwise, nothing to lock.', 'optinpanda') ?>
+                                            <?php _e('Please choose at least one post type to lock. Otherwise, nothing to lock.', 'bizpanda') ?>
                                         </div>
                                     </div>
                                 </div>
@@ -324,8 +324,8 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
 
                             <div class="onp-sl-example">
                                 <div class="onp-sl-description">
-                                    <strong><?php _e('For example,', 'optinpanda') ?></strong>
-                                    <?php _e('If you enter 2, two first paragraphs will be visible, others will be locked.', 'optinpanda') ?>
+                                    <strong><?php _e('For example,', 'bizpanda') ?></strong>
+                                    <?php _e('If you enter 2, two first paragraphs will be visible, others will be locked.', 'bizpanda') ?>
                                 </div>
                                 <div class="onp-sl-page">
                                     <div class="onp-sl-skipped">
@@ -335,7 +335,7 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                                     <div class="onp-sl-locked">
                                         <div class="onp-sl-hint">
                                             <i class="fa fa-lock"></i> 
-                                            <?php _e('this will be locked', 'optinpanda') ?>
+                                            <?php _e('this will be locked', 'bizpanda') ?>
                                             <i class="fa fa-lock"></i>
                                         </div>
                                         <div class="onp-sl-p"></div> 
@@ -350,32 +350,32 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                       
                     <div id="onp-sl-more-tags-options" class="onp-sl-bulk-locking-options <?php if ( $defaultWay !== 'more-tag') echo 'hide'; ?>">
                         <div class="onp-sl-description">
-                            <?php _e('All content after the More Tag will be locked in all your posts. If a post doesn\'t have the More Tag, the post will be shown without locking.', 'optinpanda') ?>
+                            <?php _e('All content after the More Tag will be locked in all your posts. If a post doesn\'t have the More Tag, the post will be shown without locking.', 'bizpanda') ?>
                         </div>
                         <div class="onp-sl-content">
                             
                             <div class="onp-sl-form onp-sl-limits">
                                 <div class='onp-sl-exclude'>
                                     <div class='onp-sl-row'>
-                                        <label><?php _e('Exclude Posts', 'optinpanda') ?></label>
+                                        <label><?php _e('Exclude Posts', 'bizpanda') ?></label>
                                         <input type="text" class="form-control onp-sl-exclude-posts" value="<?php echo $excludePosts; ?>" />
                                         <div class="help-block">
-                                            <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".', 'optinpanda') ?>
+                                            <?php _e('(Optional) Enter posts IDs comma separated, for example, "19,25,33".', 'bizpanda') ?>
                                         </div>
                                     </div>
                                     <div class='onp-sl-row'>
-                                        <label><?php _e('Exclude Categories', 'optinpanda') ?></label>
+                                        <label><?php _e('Exclude Categories', 'bizpanda') ?></label>
                                         <input type="text" class="form-control onp-sl-exclude-categories" value="<?php echo $excludeCategories; ?>" />
                                         <div class="help-block">
-                                            <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".', 'optinpanda') ?>
+                                            <?php _e('(Optional) Enter categories IDs comma separated, for example, "4,7".', 'bizpanda') ?>
                                         </div>
                                     </div>                        
                                 </div>
 
                                 <div class='onp-sl-post-types'>
-                                    <strong><?php _e('Posts types to lock', 'optinpanda') ?></strong>
+                                    <strong><?php _e('Posts types to lock', 'bizpanda') ?></strong>
                                     <div class="help-block">
-                                        <?php _e('Choose post types for batch locking.', 'optinpanda') ?>
+                                        <?php _e('Choose post types for batch locking.', 'bizpanda') ?>
                                     </div>
                                     <ul>
                                     <?php foreach($types as $type) {?>
@@ -388,15 +388,15 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                                     <?php } ?> 
                                     </ul>
                                     <div class="help-block help-block-error">
-                                        <?php _e('Please choose at least one post type to lock. Otherwise, nothing to lock.', 'optinpanda') ?>
+                                        <?php _e('Please choose at least one post type to lock. Otherwise, nothing to lock.', 'bizpanda') ?>
                                     </div>
                                 </div>
                             </div>
 
-                            <strong class="onp-sl-title"><?php _e('What is the More Tag?', 'optinpanda') ?></strong>
+                            <strong class="onp-sl-title"><?php _e('What is the More Tag?', 'bizpanda') ?></strong>
                             <div class="onp-sl-image"></div>
                             <p>
-                                <?php _e('Check out <a href="http://en.support.wordpress.com/splitting-content/more-tag/" target="_blank">Splitting Content » More Tag</a> to lean more.', 'optinpanda') ?>
+                                <?php _e('Check out <a href="http://en.support.wordpress.com/splitting-content/more-tag/" target="_blank">Splitting Content > More Tag</a> to lean more.', 'bizpanda') ?>
                             </p>
 
                         </div>
@@ -405,21 +405,21 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                     <div id="onp-sl-css-selector-options" class="onp-sl-bulk-locking-options <?php if ( $defaultWay !== 'css-selector') echo 'hide'; ?>">
                         <div class="onp-sl-description">
                             <p>
-                                <?php _e('CSS selectors allow accurately choose which content will be locked by usign CSS classes or IDs of elements placed on pages. If you don\'t know what is it, please don\'t use it.', 'optinpanda') ?>
+                                <?php _e('CSS selectors allow accurately choose which content will be locked by usign CSS classes or IDs of elements placed on pages. If you don\'t know what is it, please don\'t use it.', 'bizpanda') ?>
                             </p>
                             <p>
-                                <?php _e('Check out <a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">CSS Selector Reference</a> to lean more.', 'optinpanda') ?>
+                                <?php _e('Check out <a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">CSS Selector Reference</a> to lean more.', 'bizpanda') ?>
                             </p>
                         </div>
                         <div class="onp-sl-content">
                             <div class="onp-sl-form">
-                                <label><?php _e('CSS Selector', 'optinpanda') ?></label>
+                                <label><?php _e('CSS Selector', 'bizpanda') ?></label>
                                 <input type="text" class="form-control onp-sl-css-selector" value="<?php echo htmlentities($cssSelector); ?>" />
                                 <div class="help-block">
-                                    <?php _e('For example, "#somecontent .my-class, .my-another-class"', 'optinpanda') ?>
+                                    <?php _e('For example, "#somecontent .my-class, .my-another-class"', 'bizpanda') ?>
                                 </div>                     
                                 <div class="help-block help-block-error">
-                                    <?php _e('Please enter a css selector to lock.', 'optinpanda') ?>
+                                    <?php _e('Please enter a css selector to lock.', 'bizpanda') ?>
                                 </div>
                             </div>
                         </div>
@@ -427,8 +427,8 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
                       
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e('Cancel', 'optinpanda') ?></button>
-                    <button type="button" class="btn btn-primary" id="onp-sl-save-bulk-locking-btn"><?php _e('Save', 'optinpanda') ?></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e('Cancel', 'bizpanda') ?></button>
+                    <button type="button" class="btn btn-primary" id="onp-sl-save-bulk-locking-btn"><?php _e('Save', 'bizpanda') ?></button>
                   </div>
                 </div>
               </div>

@@ -55,7 +55,7 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
         
-       $this->title = __('Social Options', 'optinpanda');
+       $this->title = __('Social Options', 'sociallocker');
     }
     
     /**
@@ -101,37 +101,37 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type'  => 'checkbox',
                     'way'   => 'buttons',
-                    'title' => __('Available', 'optinpanda'),
-                    'hint'  => __('Set On, to activate the button.', 'optinpanda'),
+                    'title' => __('Available', 'sociallocker'),
+                    'hint'  => __('Set On, to activate the button.', 'sociallocker'),
                     'name'  => 'facebook-like_available',
                     'default' => $facebookIsActiveByDefault
                 ),        
                 array(
                     'type'  => 'url',
-                    'title' => __('URL to like', 'optinpanda'),
-                    'hint'  => __('Set an URL (a facebook page or website page) which the user has to like in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'optinpanda'),
+                    'title' => __('URL to like', 'sociallocker'),
+                    'hint'  => __('Set an URL (a facebook page or website page) which the user has to like in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'sociallocker'),
                     'name'  => 'facebook_like_url'
                 ),
                 array(
                     'type'  => 'textbox',
-                    'title' => __('Button Title', 'optinpanda'),
-                    'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                    'title' => __('Button Title', 'sociallocker'),
+                    'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                     'name'  => 'facebook_like_title',
-                    'default' => __('like', 'optinpanda')
+                    'default' => __('like', 'sociallocker')
                 ),  
                 
                 array(
                     'type'      => 'more-link',
                     'name'      => 'like-button-options',
-                    'title'     => __('Show more options', 'optinpanda'),
+                    'title'     => __('Show more options', 'sociallocker'),
                     'count'     => 1,
                     'items'     => array(
                         
                         array(
                             'type'  => 'checkbox',
                             'way'   => 'buttons',
-                            'title' => __( 'I see the "confirm" link after a like', 'optinpanda' ),
-                            'hint'  => __( '<p style="margin-top: 8px;">Optional. Facebook has an automatic Like-spam protection that happens if the Like button gets clicked a lot (for example, while testing the plugin). Don\'t worry, it will go away automatically within some hours/days.</p><p>Just during the time, when Facebook asks to confirm likes on your website, turn on this option and the locker will wait the confirmation to unlock the content.</p>', 'optinpanda' ),
+                            'title' => __( 'I see the "confirm" link after a like', 'sociallocker' ),
+                            'hint'  => __( '<p style="margin-top: 8px;">Optional. Facebook has an automatic Like-spam protection that happens if the Like button gets clicked a lot (for example, while testing the plugin). Don\'t worry, it will go away automatically within some hours/days.</p><p>Just during the time, when Facebook asks to confirm likes on your website, turn on this option and the locker will wait the confirmation to unlock the content.</p>', 'sociallocker' ),
                             'name'  => 'facebook_like_confirm_issue',
                             'default' => false
                         )
@@ -153,41 +153,41 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type'  => 'checkbox',
                     'way'   => 'buttons',
-                    'title' => __('Available', 'optinpanda'),
-                    'hint'  => __('Set On, to activate the button.', 'optinpanda'),
+                    'title' => __('Available', 'sociallocker'),
+                    'hint'  => __('Set On, to activate the button.', 'sociallocker'),
                     'name'  => 'twitter-tweet_available',
                     'default' => $twitterActiveByDefault
                 ),        
                 array(
                     'type'  => 'url',
-                    'title' => __('URL to tweet', 'optinpanda'),
-                    'hint'  => __('Set an URL which the user has to tweet in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'optinpanda'),
+                    'title' => __('URL to tweet', 'sociallocker'),
+                    'hint'  => __('Set an URL which the user has to tweet in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'sociallocker'),
                     'name'  => 'twitter_tweet_url'
                 ),
                 array(
                     'type'  => 'textarea',
-                    'title' => __('Tweet', 'optinpanda'),
-                    'hint'  => __('Type a message to tweet. Leave this field empty to use default tweet (page title + URL). Also you can use the shortcode [post_title] in order to insert automatically a post title into the tweet.', 'optinpanda'),
+                    'title' => __('Tweet', 'sociallocker'),
+                    'hint'  => __('Type a message to tweet. Leave this field empty to use default tweet (page title + URL). Also you can use the shortcode [post_title] in order to insert automatically a post title into the tweet.', 'sociallocker'),
                     'name'  => 'twitter_tweet_text'
                 ), 
                 array(
                     'type'  => 'url',
-                    'title' => __('Counter URL', 'optinpanda'),
-                    'hint'  => __('Optional. If you use a shorter tweet URL, paste here a full URL for the counter.', 'optinpanda'),
+                    'title' => __('Counter URL', 'sociallocker'),
+                    'hint'  => __('Optional. If you use a shorter tweet URL, paste here a full URL for the counter.', 'sociallocker'),
                     'name'  => 'twitter_tweet_counturl'
                 ),
                 array(
                     'type'  => 'textbox',
-                    'title' => __('Via', 'optinpanda'),
-                    'hint'  => __('Optional. Screen name of the user to attribute the Tweet to (without @).', 'optinpanda'),
+                    'title' => __('Via', 'sociallocker'),
+                    'hint'  => __('Optional. Screen name of the user to attribute the Tweet to (without @).', 'sociallocker'),
                     'name'  => 'twitter_tweet_via'
                 ),
                 array(
                     'type'  => 'textbox',
-                    'title' => __('Button Title', 'optinpanda'),
-                    'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                    'title' => __('Button Title', 'sociallocker'),
+                    'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                     'name'  => 'twitter_tweet_title',
-                    'default' => __('tweet', 'optinpanda')
+                    'default' => __('tweet', 'sociallocker')
                 ),
                 
             )
@@ -203,23 +203,23 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 array(
                     'type'      => 'checkbox',
                     'way'       => 'buttons',
-                    'title'     => __('Available', 'optinpanda'),
-                    'hint'      => __('Set On, to activate the button.', 'optinpanda'),
+                    'title'     => __('Available', 'sociallocker'),
+                    'hint'      => __('Set On, to activate the button.', 'sociallocker'),
                     'name'      => 'google-plus_available',
                     'default'   => $googleIsActiveByDefault
                 ),      
                 array(
                     'type'  => 'url',
-                    'title' => __('URL to +1', 'optinpanda'),
-                    'hint'  => __('Set an URL which the user has to +1 in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'optinpanda'),
+                    'title' => __('URL to +1', 'sociallocker'),
+                    'hint'  => __('Set an URL which the user has to +1 in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'sociallocker'),
                     'name'  => 'google_plus_url'
                 ),
                 array(
                     'type'  => 'textbox',
-                    'title' => __('Button Title', 'optinpanda'),
-                    'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                    'title' => __('Button Title', 'sociallocker'),
+                    'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                     'name'  => 'google_plus_title',
-                    'default' => __('+1 us', 'optinpanda')
+                    'default' => __('+1 us', 'sociallocker')
                 ) 
             )
         );
@@ -236,23 +236,23 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     array(
                         'type'  => 'checkbox',
                         'way'   => 'buttons',
-                        'title' => __('Available', 'optinpanda'),
-                        'hint'  => __('Set On, to activate the button.', 'optinpanda'),
+                        'title' => __('Available', 'sociallocker'),
+                        'hint'  => __('Set On, to activate the button.', 'sociallocker'),
                         'name'  => 'facebook-share_available',
                         'default' => false
                     ),        
                     array(
                         'type'  => 'url',
-                        'title' => __('URL to share', 'optinpanda'),
-                        'hint'  => __('Set an URL which the user has to share in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'optinpanda'),
+                        'title' => __('URL to share', 'sociallocker'),
+                        'hint'  => __('Set an URL which the user has to share in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'sociallocker'),
                         'name'  => 'facebook_fake_field_1'
                     ),
                     array(
                         'type'  => 'textbox',
-                        'title' => __('Button Title', 'optinpanda'),
-                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                        'title' => __('Button Title', 'sociallocker'),
+                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                         'name'  => 'facebook_fake_field_2',
-                        'default' => __('share', 'optinpanda')
+                        'default' => __('share', 'sociallocker')
                     )
                 )
             );
@@ -267,30 +267,30 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     array(
                         'type'  => 'checkbox',
                         'way'   => 'buttons',
-                        'title' => __('Available', 'optinpanda'),
-                        'hint'  => __('Set On, to activate the button.', 'optinpanda'),
+                        'title' => __('Available', 'sociallocker'),
+                        'hint'  => __('Set On, to activate the button.', 'sociallocker'),
                         'name'  => 'twitter-follow_available',
                         'default' => false
                     ),        
                     array(
                         'type'  => 'url',
-                        'title' => __('User to follow', 'optinpanda'),
-                        'hint'  => __('Set an URL of your Twitter profile (for example, <a href="https://twitter.com/byonepress" target="_blank">https://twitter.com/byonepress</a>).', 'optinpanda'),
+                        'title' => __('User to follow', 'sociallocker'),
+                        'hint'  => __('Set an URL of your Twitter profile (for example, <a href="https://twitter.com/byonepress" target="_blank">https://twitter.com/byonepress</a>).', 'sociallocker'),
                         'name'  => 'twiiter_fake_field_1'
                     ),
                     array(
                         'type'  => 'checkbox',
                         'way'   => 'buttons',
-                        'title' => __('Hide Username', 'optinpanda'),
-                        'hint'  => __('Set On to hide your username on the button (makes the button shorter).', 'optinpanda'),
+                        'title' => __('Hide Username', 'sociallocker'),
+                        'hint'  => __('Set On to hide your username on the button (makes the button shorter).', 'sociallocker'),
                         'name'  => 'twiiter_fake_field_2'
                     ), 
                     array(
                         'type'  => 'textbox',
-                        'title' => __('Button Title', 'optinpanda'),
-                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                        'title' => __('Button Title', 'sociallocker'),
+                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                         'name'  => 'twiiter_fake_field_3',
-                        'default' => __('follow us', 'optinpanda')
+                        'default' => __('follow us', 'sociallocker')
                     )
                 )
             );
@@ -304,22 +304,22 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     array(
                         'type'  => 'checkbox',
                         'way'   => 'buttons',
-                        'title' => __('Available', 'optinpanda'),
-                        'hint'  => __('Set On, to activate the button.', 'optinpanda'),
+                        'title' => __('Available', 'sociallocker'),
+                        'hint'  => __('Set On, to activate the button.', 'sociallocker'),
                         'name'  => 'google-share_available'
                     ),      
                     array(
                         'type'  => 'url',
-                        'title' => __('URL to share', 'optinpanda'),
-                        'hint'  => __('Set an URL which the user has to share in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'optinpanda'),
+                        'title' => __('URL to share', 'sociallocker'),
+                        'hint'  => __('Set an URL which the user has to share in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'sociallocker'),
                         'name'  => 'google_fake_field_1'
                     ),  
                     array(
                         'type'  => 'textbox',
-                        'title' => __('Button Title', 'optinpanda'),
-                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                        'title' => __('Button Title', 'sociallocker'),
+                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                         'name'  => 'google_fake_field_2',
-                        'default' => __('share', 'optinpanda')
+                        'default' => __('share', 'sociallocker')
                     )
                 )
             );
@@ -341,7 +341,7 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     array(
                         'type'  => 'textbox',
                         'title' => __('Channel ID', 'sociallocker'),
-                        'hint'  => __('Set a channel ID to subscribe (for example, <a href="http://www.youtube.com/channel/UCANLZYMidaCbLQFWXBC95Jg" target="_blank">UCANLZYMidaCbLQFWXBC95Jg</a>).', 'optinpanda'),
+                        'hint'  => __('Set a channel ID to subscribe (for example, <a href="http://www.youtube.com/channel/UCANLZYMidaCbLQFWXBC95Jg" target="_blank">UCANLZYMidaCbLQFWXBC95Jg</a>).', 'sociallocker'),
                         'name'  => 'youtube_fake_field_2'
                     ),                             
                     array(
@@ -364,23 +364,23 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     array(
                         'type'  => 'checkbox',
                         'way'   => 'buttons',
-                        'title' => __('Available', 'optinpanda'),
-                        'hint'  => __('Set On, to activate the button.', 'optinpanda'),
+                        'title' => __('Available', 'sociallocker'),
+                        'hint'  => __('Set On, to activate the button.', 'sociallocker'),
                         'name'  => 'linkedin-share_available',
                         'default' => false
                     ),      
                     array(
                         'type'  => 'url',
-                        'title' => __('URL to share', 'optinpanda'),
-                        'hint'  => __('Set an URL which the user has to share in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'optinpanda'),
+                        'title' => __('URL to share', 'sociallocker'),
+                        'hint'  => __('Set an URL which the user has to share in order to unlock your content. Leave this field empty to use an URL of the page where the locker will be located.', 'sociallocker'),
                         'name'  => 'linkedin_fake_field_1'
                     ),  
                     array(
                         'type'  => 'textbox',
-                        'title' => __('Button Title', 'optinpanda'),
-                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'optinpanda'),
+                        'title' => __('Button Title', 'sociallocker'),
+                        'hint'  => __('Optional. A title of the button that is situated on the covers in the themes "Secrets" and "Flat".', 'sociallocker'),
                         'name'  => 'linkedin_fake_field_2',
-                        'default' => __('share', 'optinpanda')
+                        'default' => __('share', 'sociallocker')
                     )
                 )
             );
@@ -416,15 +416,15 @@ class OPanda_SocialOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 'type'  => 'checkbox',
                 'way'   => 'buttons',
                 'name'      => 'show_counters',
-                'title'     => __('Show counters', 'optinpanda'),
+                'title'     => __('Show counters', 'sociallocker'),
                 'default'   => true
             ), 
             
             array(
                 'type'      => 'html',
                 'html'      => '<div class="onp-sl-metabox-hint">
-                                <strong>'.__('Hint', 'optinpanda').'</strong>: '. 
-                                __('Drag and drop the tabs to change the order of the buttons.', 'optinpanda').
+                                <strong>'.__('Hint', 'sociallocker').'</strong>: '. 
+                                __('Drag and drop the tabs to change the order of the buttons.', 'sociallocker').
                                 '</div>'
             ), 
             

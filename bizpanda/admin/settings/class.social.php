@@ -39,100 +39,100 @@ class OPanda_SocialSettings extends OPanda_Settings  {
     public function getOptions() {
         
         $languages = array(
-            array('ca_ES', __('Catalan', 'optinpanda')),
-            array('cs_CZ', __('Czech', 'optinpanda')),
-            array('cy_GB', __('Welsh', 'optinpanda')),
-            array('da_DK', __('Danish', 'optinpanda')),
-            array('de_DE', __('German', 'optinpanda')),
-            array('eu_ES', __('Basque', 'optinpanda')),
-            array('en_US', __('English', 'optinpanda')),
-            array('es_ES', __('Spanish', 'optinpanda')),
-            array('fi_FI', __('Finnish', 'optinpanda')), 
-            array('fr_FR', __('French', 'optinpanda')), 
-            array('gl_ES', __('Galician', 'optinpanda')), 
-            array('hu_HU', __('Hungarian', 'optinpanda')),
-            array('it_IT', __('Italian', 'optinpanda')),
-            array('ja_JP', __('Japanese', 'optinpanda')),
-            array('ko_KR', __('Korean', 'optinpanda')),
-            array('nb_NO', __('Norwegian', 'optinpanda')),
-            array('nl_NL', __('Dutch', 'optinpanda')),
-            array('pl_PL', __('Polish', 'optinpanda')),
-            array('pt_BR', __('Portuguese (Brazil)', 'optinpanda')),
-            array('pt_PT', __('Portuguese (Portugal)', 'optinpanda')),
-            array('ro_RO', __('Romanian', 'optinpanda')),
-            array('ru_RU', __('Russian', 'optinpanda')),
-            array('sk_SK', __('Slovak', 'optinpanda')),  
-            array('sl_SI', __('Slovenian', 'optinpanda')), 
-            array('sv_SE', __('Swedish', 'optinpanda')),
-            array('th_TH', __('Thai', 'optinpanda')),
-            array('tr_TR', __('Turkish', 'optinpanda')), 
-            array('ku_TR', __('Kurdish', 'optinpanda')), 
-            array('zh_CN', __('Simplified Chinese (China)', 'optinpanda')), 
-            array('zh_HK', __('Traditional Chinese (Hong Kong)', 'optinpanda')),
-            array('zh_TW', __('Traditional Chinese (Taiwan)', 'optinpanda')), 
-            array('af_ZA', __('Afrikaans', 'optinpanda')),
-            array('sq_AL', __('Albanian', 'optinpanda')),
-            array('hy_AM', __('Armenian', 'optinpanda')),
-            array('az_AZ', __('Azeri', 'optinpanda')),
-            array('be_BY', __('Belarusian', 'optinpanda')),
-            array('bn_IN', __('Bengali', 'optinpanda')),
-            array('bs_BA', __('Bosnian', 'optinpanda')),
-            array('bg_BG', __('Bulgarian', 'optinpanda')),
-            array('hr_HR', __('Croatian', 'optinpanda')),
-            array('nl_BE', __('Dutch (België)', 'optinpanda')),
-            array('eo_EO', __('Esperanto', 'optinpanda')),
-            array('et_EE', __('Estonian', 'optinpanda')),
-            array('fo_FO', __('Faroese', 'optinpanda')),
-            array('ka_GE', __('Georgian', 'optinpanda')),
-            array('el_GR', __('Greek', 'optinpanda')),
-            array('gu_IN', __('Gujarati', 'optinpanda')),
-            array('hi_IN', __('Hindi', 'optinpanda')),
-            array('is_IS', __('Icelandic', 'optinpanda')),
-            array('id_ID', __('Indonesian', 'optinpanda')),
-            array('ga_IE', __('Irish', 'optinpanda')),
-            array('jv_ID', __('Javanese', 'optinpanda')),
-            array('kn_IN', __('Kannada', 'optinpanda')),
-            array('kk_KZ', __('Kazakh', 'optinpanda')),
-            array('la_VA', __('Latin', 'optinpanda')),
-            array('lv_LV', __('Latvian', 'optinpanda')),
-            array('li_NL', __('Limburgish', 'optinpanda')),
-            array('lt_LT', __('Lithuanian', 'optinpanda')), 
-            array('mk_MK', __('Macedonian', 'optinpanda')), 
-            array('mg_MG', __('Malagasy', 'optinpanda')),
-            array('ms_MY', __('Malay', 'optinpanda')),
-            array('mt_MT', __('Maltese', 'optinpanda')),
-            array('mr_IN', __('Marathi', 'optinpanda')),
-            array('mn_MN', __('Mongolian', 'optinpanda')),
-            array('ne_NP', __('Nepali', 'optinpanda')),
-            array('pa_IN', __('Punjabi', 'optinpanda')),
-            array('rm_CH', __('Romansh', 'optinpanda')),
-            array('sa_IN', __('Sanskrit', 'optinpanda')),
-            array('sr_RS', __('Serbian', 'optinpanda')),
-            array('so_SO', __('Somali', 'optinpanda')),
-            array('sw_KE', __('Swahili', 'optinpanda')),
-            array('tl_PH', __('Filipino', 'optinpanda')),
-            array('ta_IN', __('Tamil', 'optinpanda')),
-            array('tt_RU', __('Tatar', 'optinpanda')), 
-            array('te_IN', __('Telugu', 'optinpanda')),
-            array('ml_IN', __('Malayalam', 'optinpanda')),
-            array('uk_UA', __('Ukrainian', 'optinpanda')),
-            array('uz_UZ', __('Uzbek', 'optinpanda')),
-            array('vi_VN', __('Vietnamese', 'optinpanda')),
-            array('xh_ZA', __('Xhosa', 'optinpanda')),
-            array('zu_ZA', __('Zulu', 'optinpanda')),
-            array('km_KH', __('Khmer', 'optinpanda')),
-            array('tg_TJ', __('Tajik', 'optinpanda')),
-            array('ar_AR', __('Arabic', 'optinpanda')), 
-            array('he_IL', __('Hebrew', 'optinpanda')),
-            array('ur_PK', __('Urdu', 'optinpanda')),
-            array('fa_IR', __('Persian', 'optinpanda')),
-            array('sy_SY', __('Syriac', 'optinpanda')),  
-            array('yi_DE', __('Yiddish', 'optinpanda')),
-            array('gn_PY', __('Guaraní', 'optinpanda')),
-            array('qu_PE', __('Quechua', 'optinpanda')),
-            array('ay_BO', __('Aymara', 'optinpanda')),
-            array('se_NO', __('Northern Sámi', 'optinpanda')),
-            array('ps_AF', __('Pashto', 'optinpanda'))
+            array('ca_ES', __('Catalan', 'bizpanda')),
+            array('cs_CZ', __('Czech', 'bizpanda')),
+            array('cy_GB', __('Welsh', 'bizpanda')),
+            array('da_DK', __('Danish', 'bizpanda')),
+            array('de_DE', __('German', 'bizpanda')),
+            array('eu_ES', __('Basque', 'bizpanda')),
+            array('en_US', __('English', 'bizpanda')),
+            array('es_ES', __('Spanish', 'bizpanda')),
+            array('fi_FI', __('Finnish', 'bizpanda')), 
+            array('fr_FR', __('French', 'bizpanda')), 
+            array('gl_ES', __('Galician', 'bizpanda')), 
+            array('hu_HU', __('Hungarian', 'bizpanda')),
+            array('it_IT', __('Italian', 'bizpanda')),
+            array('ja_JP', __('Japanese', 'bizpanda')),
+            array('ko_KR', __('Korean', 'bizpanda')),
+            array('nb_NO', __('Norwegian', 'bizpanda')),
+            array('nl_NL', __('Dutch', 'bizpanda')),
+            array('pl_PL', __('Polish', 'bizpanda')),
+            array('pt_BR', __('Portuguese (Brazil)', 'bizpanda')),
+            array('pt_PT', __('Portuguese (Portugal)', 'bizpanda')),
+            array('ro_RO', __('Romanian', 'bizpanda')),
+            array('ru_RU', __('Russian', 'bizpanda')),
+            array('sk_SK', __('Slovak', 'bizpanda')),  
+            array('sl_SI', __('Slovenian', 'bizpanda')), 
+            array('sv_SE', __('Swedish', 'bizpanda')),
+            array('th_TH', __('Thai', 'bizpanda')),
+            array('tr_TR', __('Turkish', 'bizpanda')), 
+            array('ku_TR', __('Kurdish', 'bizpanda')), 
+            array('zh_CN', __('Simplified Chinese (China)', 'bizpanda')), 
+            array('zh_HK', __('Traditional Chinese (Hong Kong)', 'bizpanda')),
+            array('zh_TW', __('Traditional Chinese (Taiwan)', 'bizpanda')), 
+            array('af_ZA', __('Afrikaans', 'bizpanda')),
+            array('sq_AL', __('Albanian', 'bizpanda')),
+            array('hy_AM', __('Armenian', 'bizpanda')),
+            array('az_AZ', __('Azeri', 'bizpanda')),
+            array('be_BY', __('Belarusian', 'bizpanda')),
+            array('bn_IN', __('Bengali', 'bizpanda')),
+            array('bs_BA', __('Bosnian', 'bizpanda')),
+            array('bg_BG', __('Bulgarian', 'bizpanda')),
+            array('hr_HR', __('Croatian', 'bizpanda')),
+            array('nl_BE', __('Dutch (Belgie)', 'bizpanda')),
+            array('eo_EO', __('Esperanto', 'bizpanda')),
+            array('et_EE', __('Estonian', 'bizpanda')),
+            array('fo_FO', __('Faroese', 'bizpanda')),
+            array('ka_GE', __('Georgian', 'bizpanda')),
+            array('el_GR', __('Greek', 'bizpanda')),
+            array('gu_IN', __('Gujarati', 'bizpanda')),
+            array('hi_IN', __('Hindi', 'bizpanda')),
+            array('is_IS', __('Icelandic', 'bizpanda')),
+            array('id_ID', __('Indonesian', 'bizpanda')),
+            array('ga_IE', __('Irish', 'bizpanda')),
+            array('jv_ID', __('Javanese', 'bizpanda')),
+            array('kn_IN', __('Kannada', 'bizpanda')),
+            array('kk_KZ', __('Kazakh', 'bizpanda')),
+            array('la_VA', __('Latin', 'bizpanda')),
+            array('lv_LV', __('Latvian', 'bizpanda')),
+            array('li_NL', __('Limburgish', 'bizpanda')),
+            array('lt_LT', __('Lithuanian', 'bizpanda')), 
+            array('mk_MK', __('Macedonian', 'bizpanda')), 
+            array('mg_MG', __('Malagasy', 'bizpanda')),
+            array('ms_MY', __('Malay', 'bizpanda')),
+            array('mt_MT', __('Maltese', 'bizpanda')),
+            array('mr_IN', __('Marathi', 'bizpanda')),
+            array('mn_MN', __('Mongolian', 'bizpanda')),
+            array('ne_NP', __('Nepali', 'bizpanda')),
+            array('pa_IN', __('Punjabi', 'bizpanda')),
+            array('rm_CH', __('Romansh', 'bizpanda')),
+            array('sa_IN', __('Sanskrit', 'bizpanda')),
+            array('sr_RS', __('Serbian', 'bizpanda')),
+            array('so_SO', __('Somali', 'bizpanda')),
+            array('sw_KE', __('Swahili', 'bizpanda')),
+            array('tl_PH', __('Filipino', 'bizpanda')),
+            array('ta_IN', __('Tamil', 'bizpanda')),
+            array('tt_RU', __('Tatar', 'bizpanda')), 
+            array('te_IN', __('Telugu', 'bizpanda')),
+            array('ml_IN', __('Malayalam', 'bizpanda')),
+            array('uk_UA', __('Ukrainian', 'bizpanda')),
+            array('uz_UZ', __('Uzbek', 'bizpanda')),
+            array('vi_VN', __('Vietnamese', 'bizpanda')),
+            array('xh_ZA', __('Xhosa', 'bizpanda')),
+            array('zu_ZA', __('Zulu', 'bizpanda')),
+            array('km_KH', __('Khmer', 'bizpanda')),
+            array('tg_TJ', __('Tajik', 'bizpanda')),
+            array('ar_AR', __('Arabic', 'bizpanda')), 
+            array('he_IL', __('Hebrew', 'bizpanda')),
+            array('ur_PK', __('Urdu', 'bizpanda')),
+            array('fa_IR', __('Persian', 'bizpanda')),
+            array('sy_SY', __('Syriac', 'bizpanda')),  
+            array('yi_DE', __('Yiddish', 'bizpanda')),
+            array('gn_PY', __('Guarani', 'bizpanda')),
+            array('qu_PE', __('Quechua', 'bizpanda')),
+            array('ay_BO', __('Aymara', 'bizpanda')),
+            array('se_NO', __('Northern Sami', 'bizpanda')),
+            array('ps_AF', __('Pashto', 'bizpanda'))
         );
         
         
@@ -146,9 +146,9 @@ class OPanda_SocialSettings extends OPanda_Settings  {
         $options[] = array(
             'type'      => 'dropdown',
             'name'      => 'lang',
-            'title'     => __( 'Language of Buttons', 'optinpanda' ),
+            'title'     => __( 'Language of Buttons', 'bizpanda' ),
             'data'      => $languages,
-            'hint'      => __( 'Select the language that will be used for the social buttons in Social Lockers.', 'optinpanda' )
+            'hint'      => __( 'Select the language that will be used for the social buttons in Social Lockers.', 'bizpanda' )
         );
         
         $options[] = array(
@@ -158,23 +158,23 @@ class OPanda_SocialSettings extends OPanda_Settings  {
         $options[] = array(
             'type'      => 'textbox',
             'name'      => 'facebook_appid',
-            'title'     => __( 'Facebook App ID', 'optinpanda' ),
-            'hint'      =>  sprintf( __( 'By default, the developer app id is set. If you want to use the Facebook Share or Facebook Sign-In buttons you need to <a href="%s">register another app</a> id for your website.', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=facebook-app') ),
-            'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Register App</a>', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=facebook-app') )
+            'title'     => __( 'Facebook App ID', 'bizpanda' ),
+            'hint'      =>  sprintf( __( 'By default, the developer app id is set. If you want to use the Facebook Share or Facebook Sign-In buttons you need to <a href="%s">register another app</a> id for your website.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=facebook-app') ),
+            'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Register App</a>', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=facebook-app') )
         );
         
         $options[] = array(
             'type'      => 'dropdown',
             'way'       => 'buttons',
             'name'      => 'facebook_version',
-            'title'     => __( 'Facebook API Version', 'optinpanda' ),
+            'title'     => __( 'Facebook API Version', 'bizpanda' ),
             'default'   => 'v2.3',
             'data'      => array(
                 array('v1.0', 'v1.0'),
                 array('v2.0', 'v2.0'), 
                 array('v2.3', 'v2.3')             
              ),
-            'hint'      => __( 'Optional. Use the most recent version of the API (v2.3) but if Facebook buttons or widgets don\'t work on your website try to switch to other versions.', 'optinpanda' )
+            'hint'      => __( 'Optional. Use the most recent version of the API (v2.3) but if Facebook buttons or widgets don\'t work on your website try to switch to other versions.', 'bizpanda' )
         );
 
         $options[] = array(
@@ -184,13 +184,13 @@ class OPanda_SocialSettings extends OPanda_Settings  {
         $options[] = array(
             'type'      => 'dropdown',
             'name'      => 'twitter_use_dev_keys',
-            'title'     => __( 'Twitter API Keys', 'optinpanda' ),
+            'title'     => __( 'Twitter API Keys', 'bizpanda' ),
             'data'      => array(
-                array( 'default', __( 'Use the default keys', 'optinpanda') ),
-                array( 'custom', __( 'Use my own Twitter App', 'optinpanda') ),
+                array( 'default', __( 'Use the default keys', 'bizpanda') ),
+                array( 'custom', __( 'Use my own Twitter App', 'bizpanda') ),
             ),
-            'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Register App</a>', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=twitter-app') ),
-            'hint'      => sprintf( __( 'The Twitter Sign-In button requires a Twitter App. We prepared one for you by default. But if you worry about security, you can <a href="%s">create an own app</a>. Also by creating your own Twitter app you will be able to change the title, description and image for the "Sign In" popup window.', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=twitter-app') )
+            'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Register App</a>', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=twitter-app') ),
+            'hint'      => sprintf( __( 'The Twitter Sign-In button requires a Twitter App. We prepared one for you by default. But if you worry about security, you can <a href="%s">create an own app</a>. Also by creating your own Twitter app you will be able to change the title, description and image for the "Sign In" popup window.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=twitter-app') )
         );
 
         $options[] = array(
@@ -203,16 +203,16 @@ class OPanda_SocialSettings extends OPanda_Settings  {
                 array(
                     'type'      => 'textbox',
                     'name'      => 'twitter_consumer_key',
-                    'title'     => __( 'Twitter Consumer Key', 'optinpanda' ),
-                    'hint'      => __( 'The Twitter Consumer Key of your Twitter App.', 'optinpanda' ),
-                    'for'       => array(__('Connect Locker', 'optinpanda'))
+                    'title'     => __( 'Twitter Consumer Key', 'bizpanda' ),
+                    'hint'      => __( 'The Twitter Consumer Key of your Twitter App.', 'bizpanda' ),
+                    'for'       => array(__('Connect Locker', 'bizpanda'))
                 ),
                 array(
                     'type'      => 'textbox',
                     'name'      => 'twitter_consumer_secret',
-                    'title'     => __( 'Twitter Consumer Secret', 'optinpanda' ),
-                    'hint'      => __( 'The Twitter Consumer Secret of your Twitter App.', 'optinpanda' ),
-                    'for'       => array(__('Connect Locker', 'optinpanda'))
+                    'title'     => __( 'Twitter Consumer Secret', 'bizpanda' ),
+                    'hint'      => __( 'The Twitter Consumer Secret of your Twitter App.', 'bizpanda' ),
+                    'for'       => array(__('Connect Locker', 'bizpanda'))
                 )
             )
         );
@@ -224,9 +224,9 @@ class OPanda_SocialSettings extends OPanda_Settings  {
         $options[] = array(
             'type'      => 'textbox',
             'name'      => 'google_client_id',
-            'title'     => __( 'Google Client ID', 'optinpanda' ),
-            'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Get Client ID</a>', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') ),
-            'hint'      => sprintf( __( 'If you want to use the YouTube Subscribe or Google Sign-In buttons, please <a href="%s">create a Client ID</a> for your website.', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') )
+            'title'     => __( 'Google Client ID', 'bizpanda' ),
+            'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Get Client ID</a>', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') ),
+            'hint'      => sprintf( __( 'If you want to use the YouTube Subscribe or Google Sign-In buttons, please <a href="%s">create a Client ID</a> for your website.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=google-client-id') )
         );  
 
         if ( BizPanda::hasFeature('linkedin') ) {
@@ -238,9 +238,9 @@ class OPanda_SocialSettings extends OPanda_Settings  {
             $options[] = array(
                 'type'      => 'textbox',
                 'name'      => 'linkedin_api_key',
-                'title'     => __( 'LinkedIn API Key', 'optinpanda' ),
-                'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Get API Key</a>', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') ),
-                'hint'      => sprintf( __( 'If you want to use the LinkedIn Sign-In button, please <a href="%s">get a API Key</a> for your website.', 'optinpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') )
+                'title'     => __( 'LinkedIn Client ID', 'bizpanda' ),
+                'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Get Client ID</a>', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') ),
+                'hint'      => sprintf( __( 'If you want to use the LinkedIn Sign-In button, please <a href="%s">get a Client ID</a> for your website.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') )
             );
         }
         

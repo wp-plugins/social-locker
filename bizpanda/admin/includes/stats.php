@@ -147,7 +147,7 @@ class OPanda_Stats {
             
             if ( !isset( $resultData[$postId] ) ) {
                 $title = $row['post_title'];
-                if ( empty( $title ) ) $title = __('(the post not found)', 'opanda');
+                if ( empty( $title ) ) $title = __('(the post not found)', 'bizpanda');
                 
                 $resultData[$postId]['id'] = $postId;
                 $resultData[$postId]['title'] = $title;

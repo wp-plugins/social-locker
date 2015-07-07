@@ -29,7 +29,7 @@ class OPanda_SettingsPage extends FactoryPages321_AdminPage  {
 
     public function __construct(Factory325_Plugin $plugin) {   
         parent::__construct($plugin);
-        $this->menuTitle = __('Global Settings', 'optinpanda');
+        $this->menuTitle = __('Global Settings', 'bizpanda');
     }
     
     /**
@@ -77,49 +77,53 @@ class OPanda_SettingsPage extends FactoryPages321_AdminPage  {
         $screens = array();        
         
         $subscriptionOptions = array(
-            'title' => __('Subscription Options', 'optinpanda'),  
+            'title' => __('Subscription Options', 'bizpanda'),  
             'class' => 'OPanda_SubscriptionSettings',
             'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.subscription.php'
         ); 
         
-        $socialOptions = array(
-            'title' => __('Social Options', 'optinpanda'),
-            'class' => 'OPanda_SocialSettings',
-            'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.social.php'
-        );
+        $socialOptions = array();
         
+        if ( BizPanda::hasFeature('social') || BizPanda::hasPlugin('sociallocker') ) {
+
+            $socialOptions = array(
+                'title' => __('Social Options', 'bizpanda'),
+                'class' => 'OPanda_SocialSettings',
+                'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.social.php'
+            );
+        }
+
         // for the plugin Opt-In Panda, the subscription options should be the first 
         
         if ( BizPanda::isSinglePlugin() && BizPanda::hasPlugin('optinpanda') ) {
             if ( empty( $current ) ) $current = 'subscription';
             
-            $screens['subscription'] = $subscriptionOptions; 
-            $screens['social'] = $socialOptions;
+            $screens['subscription'] = $subscriptionOptions;
+            if (!empty( $socialOptions ) ) $screens['social'] = $socialOptions;
         } else {
             if ( empty( $current ) ) $current = 'social';
             
-            $screens['social'] = $socialOptions;
+            if (!empty( $socialOptions ) ) $screens['social'] = $socialOptions;
             if ( BizPanda::hasFeature('subscription') ) $screens['subscription'] = $subscriptionOptions; 
         }
 
         if ( BizPanda::hasFeature('lockers') ) {
         
             $screens['lock'] = array(
-                'title' => __('Lock Options', 'optinpanda'),
+                'title' => __('Lock Options', 'bizpanda'),
                 'class' => 'OPanda_AdvancedSettings',
                 'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.lock.php'
             );
-        
         }
         
         $screens['stats'] = array(
-            'title' => __('Stats Options', 'optinpanda'),
+            'title' => __('Stats Options', 'bizpanda'),
             'class' => 'OPanda_StatsSettings',
             'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.stats.php'
         ); 
         
         $screens['text'] = array(
-            'title' => __('Front-end Text', 'optinpanda'),
+            'title' => __('Front-end Text', 'bizpanda'),
             'class' => 'OPanda_TextSettings',
             'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.text.php'
         );
@@ -127,7 +131,7 @@ class OPanda_SettingsPage extends FactoryPages321_AdminPage  {
         if ( BizPanda::hasFeature('terms') ) {
             
             $screens['terms'] = array(
-                'title' => __('Terms & Policies', 'optinpanda'),
+                'title' => __('Terms & Policies', 'bizpanda'),
                 'class' => 'OPanda_TermsSettings',
                 'path' => OPANDA_BIZPANDA_DIR . '/admin/settings/class.terms.php'
             );
@@ -204,7 +208,7 @@ class OPanda_SettingsPage extends FactoryPages321_AdminPage  {
 
                 <?php if ( isset( $_GET['opanda_saved'] ) && empty( $screen->error) ) { ?>
                 <div id="message" class="alert alert-success">
-                    <p><?php _e('The settings have been updated successfully!', 'opanda') ?></p>
+                    <p><?php _e('The settings have been updated successfully!', 'bizpanda') ?></p>
                 </div>
                 <?php } ?>
                 
@@ -229,7 +233,7 @@ class OPanda_SettingsPage extends FactoryPages321_AdminPage  {
                 <div class="form-group form-horizontal">
                     <label class="col-sm-2 control-label"> </label>
                     <div class="control-group controls col-sm-10">
-                        <input name="save-action" class="btn btn-primary" type="submit" value="<?php _e('Save Changes', 'optinpanda') ?>"/>
+                        <input name="save-action" class="btn btn-primary" type="submit" value="<?php _e('Save Changes', 'bizpanda') ?>"/>
                     </div>
                 </div>
             

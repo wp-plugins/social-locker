@@ -19,6 +19,54 @@ abstract class OPanda_Subscription {
     public abstract function getLists();
     public abstract function subscribe( $identityData, $listId, $doubleOptin, $contextData );
     public abstract function check( $identityData, $listId, $contextData );
+    public abstract function getCustomFields( $listId );
+    
+    public function prepareFieldValueToSave( $mapOptions, $value ) {
+        return $value;
+    }
+    
+    public function getNameFieldIds() {
+        return array();
+    }
+    
+    public function slugify($text, $separator = ' ')
+    { 
+      // replace non letter or digits by -
+      $text = preg_replace('~[^\\pL\d]+~u', $separator, $text);
+
+      // trim
+      $text = trim($text, '-');
+
+      // transliterate
+      $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+      // lowercase
+      $text = strtolower($text);
+
+      // remove unwanted characters
+      $text = preg_replace('~[^-\w]+~', '', $text);
+
+      if (empty($text))
+      {
+        return 'n-a';
+      }
+
+      return $text;
+    }
+    
+    public function refine( $identityData ) {
+        if ( empty( $identityData ) ) return $identityData;
+        
+        unset( $identityData['html'] );     
+        unset( $identityData['label'] ); 
+        unset( $identityData['separator'] );        
+        unset( $identityData['name'] );
+        unset( $identityData['family'] );
+        unset( $identityData['displayName'] );
+        unset( $identityData['fullname'] ); 
+        
+        return $identityData;
+    }
 }
 
 /**

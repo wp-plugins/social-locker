@@ -13,7 +13,7 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
         if( !isset($_POST['opandaRequestType']) || !isset($_POST['opandaService']) ) {
            throw new Opanda_HandlerInternalException('Invalid request. The "opandaRequestType" or "opandaService" are not defined.');
         }
-        
+
         require_once OPANDA_BIZPANDA_DIR . '/admin/includes/subscriptions.php';
         $service = OPanda_SubscriptionServices::getCurrentService();
 
@@ -45,19 +45,12 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
         if ( empty( $identityData['email'] )) {
            throw new Opanda_HandlerException( 'Unable to subscribe. The email is not specified.' );
         }
-        
-        $requireName =  isset( $_POST['opandaRequireName'] ) ? $_POST['opandaRequireName'] : true;
-        $requireName = $this->normilizeValue( $requireName );
-        
-        if ( $requireName && empty( $identityData['name'] ) ) {
-           throw new Opanda_HandlerException( 'Unable to subscribe. The name is not specified.' );
-        }
-        
+
         // - context data
         
         $contextData = isset( $_POST['opandaContextData'] ) ? $_POST['opandaContextData'] : array();
         $contextData = $this->normilizeValues( $contextData );
-        
+
         // - list id
         
         $listId = isset( $_POST['opandaListId'] ) ? $_POST['opandaListId'] : null;
@@ -75,6 +68,15 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
         $confirm =  isset( $_POST['opandaConfirm'] ) ? $_POST['opandaConfirm'] : true;
         $confirm = $this->normilizeValue( $confirm );
         
+        // prepares data received from custom fields to be transferred to the mailing service
+        
+        $itemId = intval( $contextData['itemId'] );
+        
+        $identityData = $this->prepareDataToSave( $service, $itemId, $identityData );
+        $serviceReadyData = $this->mapToServiceIds( $service, $itemId, $identityData );
+        
+        $identityData = $this->mapToCustomLabels( $service, $itemId, $identityData );
+
         // creating subscription service
         
         try {    
@@ -82,7 +84,7 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
             $result = array();
             
             if ( 'subscribe' === $requestType ) {
-                $result = $service->subscribe( $identityData, $listId, $doubleOptin, $contextData );
+                $result = $service->subscribe( $serviceReadyData, $listId, $doubleOptin, $contextData );
 
                 do_action('opanda_subscribe', 
                     ( $result && isset( $result['status'] ) ) ? $result['status'] : 'error', 
@@ -90,7 +92,7 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
                 );
                 
             } elseif ( 'check' === $requestType ) {
-                $result = $service->check( $identityData, $listId, $contextData );
+                $result = $service->check( $serviceReadyData, $listId, $contextData );
 
                 do_action('opanda_check', 
                     ( $result && isset( $result['status'] ) ) ? $result['status'] : 'error', 

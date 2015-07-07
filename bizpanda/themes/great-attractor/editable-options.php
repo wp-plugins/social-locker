@@ -9,7 +9,7 @@
  */
 function onp_sl_get_great_attractor_theme_editable_options() {
 
-    $containerOptions = array( __('Container', 'sociallocker'), 'locker-box', array(
+    $containerOptions = array( __('Container', 'bizpanda'), 'locker-box', array(
             
         // accordion           
         array(
@@ -19,17 +19,17 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // background options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Backgrounds', 'sociallocker'),
+                    'title'     => __('Backgrounds', 'bizpanda'),
                     'items'     => array(
                         opanda_background_editor_options('primary_background', array(
-                            'title' => __('Primary background', 'sociallocker'),
+                            'title' => __('Primary background', 'bizpanda'),
                             'default' => array(
                                 'type' => 'color',
                                 'value' => array('color' => '#ffffff', 'opacity' => 100)
                             )
                         )),
                         opanda_background_editor_options('secondary_background', array(
-                            'title' => __('Secondary background', 'sociallocker'),
+                            'title' => __('Secondary background', 'bizpanda'),
                             'default' => array(
                                 'type' => 'color',
                                 'value' => array('color' => '#f9f9f9', 'opacity' => 100)
@@ -41,10 +41,10 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // border options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Borders', 'sociallocker'),
+                    'title'     => __('Borders', 'bizpanda'),
                     'items'     => array(
                         opanda_background_editor_options('top_border', array(
-                            'title' => __('Top border background', 'sociallocker'),
+                            'title' => __('Top border background', 'bizpanda'),
                             'default' => array(
                                 'type' => 'image',
                                 'value' => array( 
@@ -63,7 +63,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                              'type' => 'integer',
                              'way' => 'slider',
                              'name' => 'top_border_size',
-                             'title' => __('Top border height', 'sociallocker'),
+                             'title' => __('Top border height', 'bizpanda'),
                              'range' => array(0, 50),                              
                              'default' => 5,
                              'units' => 'px'
@@ -71,14 +71,14 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                         array(
                             'type' => 'color-and-opacity',
                             'name' => 'outer_border_color',
-                            'title' => __('Outer border color', 'sociallocker'),
+                            'title' => __('Outer border color', 'bizpanda'),
                             'default' => array('color' => '#c1c1c1', 'opacity' => 100)
                         ),
                         array(
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'outer_border_size',
-                            'title' => __('Outer border width', 'sociallocker'),
+                            'title' => __('Outer border width', 'bizpanda'),
                             'range' => array(0, 20),
                             'step' => 1,
                             'default' => 1,
@@ -88,7 +88,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'outer_border_radius',
-                            'title' => __('Outer border radius', 'sociallocker'),
+                            'title' => __('Outer border radius', 'bizpanda'),
                             'range' => array(0, 100),
                             'default' => 7,
                             'units' => 'px'
@@ -99,12 +99,12 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // font options                    
                 array(
                     'type' => 'accordion-item',
-                    'title' => __('Text', 'sociallocker'),
+                    'title' => __('Text', 'bizpanda'),
                     'items' => array(
                         array(
                             'type'      => 'google-font',                                
                             'name'      => 'header_text',
-                            'title'     => __('Header text', 'sociallocker'),
+                            'title'     => __('Header text', 'bizpanda'),
                             'default'   => array(
                                 'size' => 18, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -115,7 +115,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                         array(
                             'type'      => 'google-font',                                
                             'name'      => 'message_text',
-                            'title'     => __('Message text', 'sociallocker'),
+                            'title'     => __('Message text', 'bizpanda'),
                             'default'   => array(
                                 'size' => 13, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -126,7 +126,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                       array(
                             'type'      => 'google-font',                                
                             'name'      => 'service_text',
-                            'title'     => __('Service text', 'sociallocker'),
+                            'title'     => __('Service text', 'bizpanda'),
                             'default'   => array(
                                 'size' => 13, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -137,7 +137,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                         array(
                             'type'      => 'google-font',                                
                             'name'      => 'note_text',
-                            'title'     => __('Note text', 'sociallocker'),
+                            'title'     => __('Note text', 'bizpanda'),
                             'default'   => array(
                                 'size' => 12, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -148,7 +148,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                         array(
                             'type'      => 'google-font',                                
                             'name'      => 'terms_text',
-                            'title'     => __('Footer text', 'sociallocker'),
+                            'title'     => __('Footer text', 'bizpanda'),
                             'default'   => array(
                                 'size' => 12, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -162,7 +162,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
         )
     ));
     
-    $socialButtons = array( __('Social Buttons', 'sociallocker'), 'buttons', array(
+    $socialButtons = array( __('Social Buttons', 'bizpanda'), 'buttons', array(
 
         // accordion            
         array(
@@ -172,7 +172,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // background                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Background', 'sociallocker'),
+                    'title'     => __('Background', 'bizpanda'),
                     'items'     => array(                           
                         opanda_background_editor_options('social_button_background', array(
                             'default' => array(
@@ -186,44 +186,44 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // borders                   
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Borders', 'sociallocker'),
+                    'title'     => __('Borders', 'bizpanda'),
                     'items'     => array(                           
                         array(
                             'type'      => 'color',
                             'name'      => 'social_button_facebook_border_color',
-                            'title'     => __('Facebook left border color', 'sociallocker'),
+                            'title'     => __('Facebook left border color', 'bizpanda'),
                             'default'   => '#989de1'
                         ),
                         array(
                             'type'      => 'color',
                             'name'      => 'social_button_twitter_border_color',
-                            'title'     => __('Twitter left border color', 'sociallocker'),
+                            'title'     => __('Twitter left border color', 'bizpanda'),
                             'default'   => '#55acee'
                         ),   
                         array(
                             'type'      => 'color',
                             'name'      => 'social_button_google_border_color',
-                            'title'     => __('Google left border color', 'sociallocker'),
+                            'title'     => __('Google left border color', 'bizpanda'),
                             'default'   => '#f47665'
                         ),
                         array(
                             'type'      => 'color',
                             'name'      => 'social_button_linkedin_border_color',
-                            'title'     => __('LinkedIn left border color', 'sociallocker'),
+                            'title'     => __('LinkedIn left border color', 'bizpanda'),
                             'default'   => '#0077b5'
                         ),
                         
                         array(
                             'type' => 'color-and-opacity',
                             'name' => 'social_button_border_color',
-                            'title' => __('Outer border color', 'sociallocker'),
+                            'title' => __('Outer border color', 'bizpanda'),
                             'default' => array('color' => '#c9c9c9', 'opacity' => 100)
                         ),
                         array(
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'social_button_border_size',
-                            'title' => __('Outer border width', 'sociallocker'),
+                            'title' => __('Outer border width', 'bizpanda'),
                             'range' => array(0, 20),
                             'step' => 1,
                             'default' => 1,
@@ -233,7 +233,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'social_button_border_radius',
-                            'title' => __('Outer border radius', 'sociallocker'),
+                            'title' => __('Outer border radius', 'bizpanda'),
                             'range' => array(0, 100),
                             'default' => 3,
                             'units' => 'px'
@@ -244,12 +244,12 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // font options                    
                 array(
                     'type' => 'accordion-item',
-                    'title' => __('Text', 'sociallocker'),
+                    'title' => __('Text', 'bizpanda'),
                     'items' => array(
                         array(
                             'type' => 'google-font',
                             'name' => 'social_button_text',
-                            'title' => __('Font', 'sociallocker'),
+                            'title' => __('Font', 'bizpanda'),
                             'default' => array(
                                 'size' => 13, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -263,7 +263,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
         )
     ));
     
-    $formButtonsOptions = array( __('Form Buttons', 'sociallocker'), 'form-buttons-box', array(
+    $formButtonsOptions = array( __('Form Buttons', 'bizpanda'), 'form-buttons-box', array(
             
         // accordion           
         array(
@@ -273,7 +273,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // background options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Background', 'sociallocker'),
+                    'title'     => __('Background', 'bizpanda'),
                     'items'     => array(
                         opanda_background_editor_options('form_buttons_background', array(
                             'default' => array(
@@ -287,19 +287,19 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // border options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Border', 'sociallocker'),
+                    'title'     => __('Border', 'bizpanda'),
                     'items'     => array(
                         array(
                             'type' => 'color-and-opacity',
                             'name' => 'form_buttons_border_color',
-                            'title' => __('Border color', 'sociallocker'),
+                            'title' => __('Border color', 'bizpanda'),
                             'default' => array('color' => '#c9c9c9', 'opacity' => 100)
                         ),
                         array(
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'form_buttons_border_size',
-                            'title' => __('Border width', 'sociallocker'),
+                            'title' => __('Border width', 'bizpanda'),
                             'range' => array(0, 20),
                             'step' => 1,
                             'default' => 1,
@@ -309,7 +309,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'form_buttons_border_radius',
-                            'title' => __('Border radius', 'sociallocker'),
+                            'title' => __('Border radius', 'bizpanda'),
                             'range' => array(0, 100),
                             'default' => 3,
                             'units' => 'px'
@@ -320,12 +320,12 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // font options                    
                 array(
                     'type' => 'accordion-item',
-                    'title' => __('Text', 'sociallocker'),
+                    'title' => __('Text', 'bizpanda'),
                     'items' => array(
                         array(
                             'type'      => 'google-font',                                
                             'name'      => 'form_buttons_text',
-                            'title'     => __('Font', 'sociallocker'),
+                            'title'     => __('Font', 'bizpanda'),
                             'default'   => array(
                                 'size' => 13, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -339,12 +339,12 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 //  paddings options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Paddings', 'sociallocker'),
+                    'title'     => __('Paddings', 'bizpanda'),
                     'items'     => array(
                         array(
                             'type'      => 'paddings-editor',
                             'name'      => 'form_buttons_paddings',
-                            'title'     => __('Inner paddings', 'sociallocker'),
+                            'title'     => __('Inner paddings', 'bizpanda'),
                             'units'     => 'px',
                             'default'   => '10px 10px 6px 0px'
                         )                        
@@ -354,7 +354,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
         )
     ));
     
-    $formFieldsOptions = array( __('Form Textboxes', 'sociallocker'), 'form-fields-box', array(
+    $formFieldsOptions = array( __('Form Textboxes', 'bizpanda'), 'form-fields-box', array(
             
         // accordion           
         array(
@@ -364,10 +364,10 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // background options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Background', 'sociallocker'),
+                    'title'     => __('Background', 'bizpanda'),
                     'items'     => array(
                         opanda_background_editor_options('form_fields_background', array(
-                            'title' => __('Standard background', 'sociallocker'),
+                            'title' => __('Standard background', 'bizpanda'),
                             'default' => array(
                                 'type' => 'color',
                                 'value' => array('color' => '#ffffff', 'opacity' => 100)
@@ -379,19 +379,19 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // border options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Border', 'sociallocker'),
+                    'title'     => __('Border', 'bizpanda'),
                     'items'     => array(
                         array(
                             'type' => 'color-and-opacity',
                             'name' => 'form_fields_border_color',
-                            'title' => __('Border color', 'sociallocker'),
+                            'title' => __('Border color', 'bizpanda'),
                             'default' => array('color' => '#c4c4c4', 'opacity' => 100)
                         ),
                         array(
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'form_fields_border_size',
-                            'title' => __('Border width', 'sociallocker'),
+                            'title' => __('Border width', 'bizpanda'),
                             'range' => array(0, 20),
                             'step' => 1,
                             'default' => 1,
@@ -401,7 +401,7 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                             'type' => 'integer',
                             'way' => 'slider',
                             'name' => 'form_fields_border_radius',
-                            'title' => __('Border radius', 'sociallocker'),
+                            'title' => __('Border radius', 'bizpanda'),
                             'range' => array(0, 100),
                             'default' => 3,
                             'units' => 'px'
@@ -412,12 +412,12 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 // font options                    
                 array(
                     'type' => 'accordion-item',
-                    'title' => __('Text', 'sociallocker'),
+                    'title' => __('Text', 'bizpanda'),
                     'items' => array(
                         array(
                             'type'      => 'google-font',                                
                             'name'      => 'form_fields_text',
-                            'title'     => __('Font', 'sociallocker'),
+                            'title'     => __('Font', 'bizpanda'),
                             'default'   => array(
                                 'size' => 13, 
                                 'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -431,12 +431,12 @@ function onp_sl_get_great_attractor_theme_editable_options() {
                 //  paddings options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Paddings', 'sociallocker'),
+                    'title'     => __('Paddings', 'bizpanda'),
                     'items'     => array(
                         array(
                             'type'      => 'paddings-editor',
                             'name'      => 'form_fields_paddings',
-                            'title'     => __('Inner paddings', 'sociallocker'),
+                            'title'     => __('Inner paddings', 'bizpanda'),
                             'units'     => 'px',
                             'default'   => '10px 10px 10px 10px'
                         )                        

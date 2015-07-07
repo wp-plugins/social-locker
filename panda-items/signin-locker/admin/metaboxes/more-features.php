@@ -58,7 +58,7 @@ class OPanda_SigninLockerMoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
         
-        $this->title = __('More Features?', 'sociallocker');
+        $this->title = __('More Features?', 'signinlocker');
     }
     
     /**
@@ -79,12 +79,12 @@ class OPanda_SigninLockerMoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
         <div class="factory-bootstrap-329 factory-fontawesome-320">
             
         <div class="sl-header">
-            <strong><?php _e('More Features?', 'sociallocker'); ?></strong>
-            <p><?php _e('You Use Only 30% of Social Locker!', 'sociallocker'); ?></p>
+            <strong><?php _e('More Features?', 'signinlocker'); ?></strong>
+            <p><?php _e('You Use Only 30% of Social Locker!', 'signinlocker'); ?></p>
             <?php if ( FACTORY_FLAT_ADMIN ) { ?>
             <div class="progress progress-striped">
               <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                <span class="sr-only"><?php _e('30% Complete', 'sociallocker'); ?></span>
+                <span class="sr-only"><?php _e('30% Complete', 'signinlocker'); ?></span>
               </div>
             </div>
             <?php } else { ?>
@@ -95,22 +95,22 @@ class OPanda_SigninLockerMoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
         </div>
         <div class="sl-seporator"></div>
         <ul>
-            <li><span><?php _e('More Sign-In Options (+2)', 'opanda'); ?></span></li>
-            <li><span><?php _e('More Beautiful Themes (+2)', 'opanda'); ?></span></li>
-            <li><span><?php _e('Blurring Effect', 'opanda'); ?></span></li>
-            <li><span><?php _e('Advanced Options (+8)', 'opanda'); ?></span></li>
-            <li><span><?php _e('Premium Support', 'opanda'); ?></span></li>
+            <li><span><?php _e('More Sign-In Options (+2)', 'signinlocker'); ?></span></li>
+            <li><span><?php _e('More Beautiful Themes (+2)', 'signinlocker'); ?></span></li>
+            <li><span><?php _e('Blurring Effect', 'signinlocker'); ?></span></li>
+            <li><span><?php _e('Advanced Options (+8)', 'signinlocker'); ?></span></li>
+            <li><span><?php _e('Premium Support', 'signinlocker'); ?></span></li>
         </ul>
 
         <div class="sl-seporator"></div>
 
         <?php if ( $alreadyActivated || get_option('onp_sl_skip_trial', false) ) { ?>
             <div class="sl-footer">
-                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'sociallocker'), onp_licensing_325_get_purchase_url( $sociallocker, 'more-features' ), onp_licensing_325_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'signinlocker'), onp_licensing_325_get_purchase_url( $sociallocker, 'more-features' ), onp_licensing_325_manager_link($sociallocker->pluginName, 'activateTrial', false)); ?>
             </div>
         <?php } else { ?>
             <div class="sl-footer">
-                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'sociallocker'), onp_licensing_325_manager_link($sociallocker->pluginName, 'activateTrial', false), onp_licensing_325_get_purchase_url( $sociallocker, 'more-features' )); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'signinlocker'), onp_licensing_325_manager_link($sociallocker->pluginName, 'activateTrial', false), onp_licensing_325_get_purchase_url( $sociallocker, 'more-features' )); ?>
             </div>
         <?php } ?>
         

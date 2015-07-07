@@ -45,7 +45,14 @@ class OPanda_LockerShortcode extends FactoryShortcodes320_Shortcode {
         if ( !empty( $id ) ) $lockerMeta = get_post_meta($id, '');
         
         if ( empty( $id ) || empty($lockerMeta) ) {
-            printf( __('<div><strong>[Opt-In Panda] The locker [id=%d] doesn\'t exist or the default lockers were deleted.</strong></div>', 'optinpanda'), $id );
+            printf( __('<div><strong>[Opt-In Panda] The locker [id=%d] doesn\'t exist or the default lockers were deleted.</strong></div>', 'bizpanda'), $id );
+            return;
+        }
+        
+        // passcode
+        
+        if ( OPanda_AssetsManager::autoUnlock( $id ) ) {
+            echo $content;
             return;
         }
         

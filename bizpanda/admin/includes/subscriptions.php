@@ -119,7 +119,7 @@ class OPanda_SubscriptionServices {
             if ( !$toList ) {
                 return array( OPANDA_DEPENDS_ON_LIST );
             } else {
-                $finish[] = array( OPANDA_DEPENDS_ON_LIST, __('[ Depends on the list ]', 'opanda'), __( 'The Opt-In Mode depends on the settings of the list you selected. Check the <a href="http://freshmail.com/help-and-knowledge/help/managing-clients/set-parameters-list-recipients/" target="_blank">parameter</a> "List type" of the selected list in your FreshMail account to know which Opt-In Mode will be applied.', 'opanda') );
+                $finish[] = array( OPANDA_DEPENDS_ON_LIST, __('[ Depends on the list ]', 'bizpanda'), __( 'The Opt-In Mode depends on the settings of the list you selected. Check the <a href="http://freshmail.com/help-and-knowledge/help/managing-clients/set-parameters-list-recipients/" target="_blank">parameter</a> "List type" of the selected list in your FreshMail account to know which Opt-In Mode will be applied.', 'bizpanda') );
                 return $finish;                
             }
         }
@@ -153,16 +153,16 @@ class OPanda_SubscriptionServices {
         
         $modes = array(
             'double-optin' => array(
-                'title' => __('Full Double Opt-In (recommended)', 'optinpanda'),
-                'description' => __('After the user enters one\'s email address, sends the confirmation email (double opt-in) and waits until the user confirms the subscription. Then, unlocks the content.', 'optinpanda')
+                'title' => __('Full Double Opt-In (recommended)', 'bizpanda'),
+                'description' => __('After the user enters one\'s email address, sends the confirmation email (double opt-in) and waits until the user confirms the subscription. Then, unlocks the content.', 'bizpanda')
             ),
             'quick-double-optin' => array(
-                'title' => __('Lazy Double Opt-In', 'optinpanda'),
-                'description' => __('Unlocks the content immediately after the user enters one\'s email address but also sends the confirmation email (double opt-in) to confirm the subscription.', 'optinpanda')
+                'title' => __('Lazy Double Opt-In', 'bizpanda'),
+                'description' => __('Unlocks the content immediately after the user enters one\'s email address but also sends the confirmation email (double opt-in) to confirm the subscription.', 'bizpanda')
             ),
             'quick' => array(
-                'title' => __('Single Opt-In', 'optinpanda'),
-                'description' => __('Unlocks the content immediately after the user enters one\'s email address. Doesn\'t send the confirmation email.', 'optinpanda')
+                'title' => __('Single Opt-In', 'bizpanda'),
+                'description' => __('Unlocks the content immediately after the user enters one\'s email address. Doesn\'t send the confirmation email.', 'bizpanda')
             ),
         );
         

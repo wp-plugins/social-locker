@@ -10,7 +10,7 @@
 function onp_sl_get_dandyish_theme_editable_options() {
     
     return array(
-        array(__('Locker Container', 'sociallocker'), 'locker-box', array(
+        array(__('Locker Container', 'bizpanda'), 'locker-box', array(
             
             // accordion           
             array(
@@ -20,7 +20,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                     // background                    
                     array(
                         'type' => 'accordion-item',
-                        'title' => __('Background', 'sociallocker'),
+                        'title' => __('Background', 'bizpanda'),
                         'items' => array(
                             array(
                                 'type' => 'control-group',
@@ -29,38 +29,38 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'items' => array(
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Color', 'sociallocker'),
+                                        'title' => __('Color', 'bizpanda'),
                                         'name' => 'color',
                                         'items' => array(
                                             array(
                                                 'type' => 'color',
                                                 'name' => 'background_color',
-                                                'title' => __('Set up color and opacity:', 'sociallocker'),
+                                                'title' => __('Set up color and opacity:', 'bizpanda'),
                                                 'default' => '#f9f9f9'
                                             )
                                         )
                                     ),
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Gradient', 'sociallocker'),
+                                        'title' => __('Gradient', 'bizpanda'),
                                         'name' => 'gradient',
                                         'items' => array(
                                             array(
                                                 'type' => 'gradient',
                                                 'name' => 'background_gradient',
-                                                'title' => __('Set up gradient:', 'sociallocker')
+                                                'title' => __('Set up gradient:', 'bizpanda')
                                             )
                                         )
                                     ),
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Pattern', 'sociallocker'),
+                                        'title' => __('Pattern', 'bizpanda'),
                                         'name' => 'image',
                                         'items' => array(
                                             array(
                                                 'type' => 'pattern',
                                                 'name' => 'background_image',
-                                                'title' => __('Set up pattern', 'sociallocker')
+                                                'title' => __('Set up pattern', 'bizpanda')
                                             )
                                         )
                                     ),
@@ -72,7 +72,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                     // outer borders     
                     array(
                         'type' => 'accordion-item',
-                        'title' => __('Outer Border', 'sociallocker'),
+                        'title' => __('Outer Border', 'bizpanda'),
                         'items' => array(
                             array(
                                 'type' => 'control-group',
@@ -81,38 +81,38 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'items' => array(
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Color', 'sociallocker'),
+                                        'title' => __('Color', 'bizpanda'),
                                         'name' => 'color',
                                         'items' => array(
                                             array(
                                                 'type' => 'color-and-opacity',
                                                 'name' => 'outer_border_color',
-                                                'title' => __('Set up color for outer border:', 'sociallocker'),
+                                                'title' => __('Set up color for outer border:', 'bizpanda'),
                                                 'default' => array('color' => '#e6e6e6', 'opacity' => 100)
                                             )
                                         )
                                     ),
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Gradient', 'sociallocker'),
+                                        'title' => __('Gradient', 'bizpanda'),
                                         'name' => 'gradient',
                                         'items' => array(
                                             array(
                                                 'type' => 'gradient',
                                                 'name' => 'outer_border_gradient',
-                                                'title' => __('Set up gradient for outer border:', 'sociallocker')
+                                                'title' => __('Set up gradient for outer border:', 'bizpanda')
                                             )
                                         )
                                     ),
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Pattern', 'sociallocker'),
+                                        'title' => __('Pattern', 'bizpanda'),
                                         'name' => 'image',
                                         'items' => array(
                                             array(
                                                 'type' => 'pattern',
                                                 'name' => 'outer_border_image',
-                                                'title' => __('Set up pattern for outer border:', 'sociallocker'),
+                                                'title' => __('Set up pattern for outer border:', 'bizpanda'),
                                                 'default' => array( 
                                                     'url' => OPANDA_BIZPANDA_DIR . '/assets/img/dandysh-border.png',
                                                     'color' => null
@@ -131,7 +131,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'type' => 'integer',
                                 'way' => 'slider',
                                 'name' => 'outer_border_size',
-                                'title' => __('Outer border width', 'sociallocker'),
+                                'title' => __('Outer border width', 'bizpanda'),
                                 'range' => array(0, 99),                              
                                 'default' => 7,
                                 'units' => 'px'
@@ -140,7 +140,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'type' => 'integer',
                                 'way' => 'slider',
                                 'name' => 'outer_border_radius',
-                                'title' => __('Outer border radius', 'sociallocker'),
+                                'title' => __('Outer border radius', 'bizpanda'),
                                 'range' => array(0, 99),
                                 'default' => 12,
                                 'units' => 'px'
@@ -151,7 +151,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                     // inner borders     
                     array(
                         'type' => 'accordion-item',
-                        'title' => __('Inner Border', 'sociallocker'),
+                        'title' => __('Inner Border', 'bizpanda'),
                         'items' => array(
                             array(
                                 'type' => 'control-group',
@@ -160,38 +160,38 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'items' => array(
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Color', 'sociallocker'),
+                                        'title' => __('Color', 'bizpanda'),
                                         'name' => 'color',
                                         'items' => array(
                                             array(
                                                 'type' => 'color-and-opacity',
                                                 'name' => 'inner_border_color',
-                                                'title' => __('Set up color for inner border:', 'sociallocker'),
+                                                'title' => __('Set up color for inner border:', 'bizpanda'),
                                                 'default' => array('color' => '#ffffff', 'opacity' => 100)
                                             )
                                         )
                                     ),
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Gradient', 'sociallocker'),
+                                        'title' => __('Gradient', 'bizpanda'),
                                         'name' => 'gradient',
                                         'items' => array(
                                             array(
                                                 'type' => 'gradient',
                                                 'name' => 'inner_border_gradient',
-                                                'title' => __('Set up gradient for inner border:', 'sociallocker')
+                                                'title' => __('Set up gradient for inner border:', 'bizpanda')
                                             )
                                         )
                                     ),
                                     array(
                                         'type' => 'control-group-item',
-                                        'title' => __('Pattern', 'sociallocker'),
+                                        'title' => __('Pattern', 'bizpanda'),
                                         'name' => 'image',
                                         'items' => array(
                                             array(
                                                 'type' => 'pattern',
                                                 'name' => 'inner_border_image',
-                                                'title' => __('Set up pattern for inner border:', 'sociallocker')
+                                                'title' => __('Set up pattern for inner border:', 'bizpanda')
                                             )
                                         )
                                     )
@@ -200,7 +200,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'type' => 'integer',
                                 'way' => 'slider',
                                 'name' => 'inner_border_size',
-                                'title' => __('Inner border width', 'sociallocker'),
+                                'title' => __('Inner border width', 'bizpanda'),
                                 'range' => array(0, 99),                              
                                 'default' => 5,
                                 'units' => 'px'
@@ -209,7 +209,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                                 'type' => 'integer',
                                 'way' => 'slider',
                                 'name' => 'inner_border_radius',
-                                'title' => __('Inner border radius', 'sociallocker'),
+                                'title' => __('Inner border radius', 'bizpanda'),
                                 'range' => array(0, 99),
                                 'default' => 10,
                                 'units' => 'px'
@@ -220,12 +220,12 @@ function onp_sl_get_dandyish_theme_editable_options() {
                 // font options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Text', 'sociallocker'),
+                    'title'     => __('Text', 'bizpanda'),
                     'items'     => array(
                         array(
                             'type'      => 'font',                                
                             'name'      => 'header_text',
-                            'title'     => __('Header text', 'sociallocker'),
+                            'title'     => __('Header text', 'bizpanda'),
                             'default'   => array(
                                             'size' => 16, 
                                             'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -236,7 +236,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                         array(
                             'type'      => 'font',                                
                             'name'      => 'message_text',
-                            'title'     => __('Message text', 'sociallocker'),
+                            'title'     => __('Message text', 'bizpanda'),
                             'default'   => array(
                                             'size' => 13, 
                                             'family' => 'Arial, "Helvetica Neue", Helvetica, sans-serif', 
@@ -248,7 +248,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                             'type'      => 'checkbox',
                             'way'       => 'buttons',
                             'name'      => 'header_icon',
-                            'title'     => __('Header icons', 'sociallocker'),
+                            'title'     => __('Header icons', 'bizpanda'),
                             'default'   => 1
                         )
                     )
@@ -257,12 +257,12 @@ function onp_sl_get_dandyish_theme_editable_options() {
                 //  paddings options                    
                 array(
                     'type'      => 'accordion-item',
-                    'title'     => __('Paddings', 'sociallocker'),
+                    'title'     => __('Paddings', 'bizpanda'),
                     'items'     => array(
                         array(
                             'type'      => 'paddings-editor',
                             'name'      => 'container_paddings',
-                            'title'     => __('Box paddings', 'sociallocker'),
+                            'title'     => __('Box paddings', 'bizpanda'),
                             'units'     => 'px',
                             'default'   => '30px 30px 30px 30px'
                         ),
@@ -270,7 +270,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                             'type'      => 'integer',
                             'name'      => 'after_header_margin',
                             'way'       => 'slider',
-                            'title'     => __('Margin after header', 'sociallocker'),
+                            'title'     => __('Margin after header', 'bizpanda'),
                             'units'     => 'px',
                             'default'   => '0'
                         ),
@@ -278,7 +278,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
                             'type'      => 'integer',
                             'name'      => 'after_message_margin',
                             'way'       => 'slider',
-                            'title'     => __('Margin after message', 'sociallocker'),
+                            'title'     => __('Margin after message', 'bizpanda'),
                             'units'     => 'px',
                             'default'   => '5'
                         ),                            
@@ -287,7 +287,7 @@ function onp_sl_get_dandyish_theme_editable_options() {
             )
         )),
     
-        array(__('Locker Buttons', 'sociallocker'), 'buttons', array(
+        array(__('Locker Buttons', 'bizpanda'), 'buttons', array(
             
             // accordion
             array(
@@ -297,19 +297,19 @@ function onp_sl_get_dandyish_theme_editable_options() {
                     // background options
                     array(
                         'type' => 'accordion-item',
-                        'title' => __('Mounts', 'sociallocker'),
+                        'title' => __('Mounts', 'bizpanda'),
                         'items' => array(
                             array(
                                 'type' => 'color',
                                 'name' => 'button_mount_color',
-                                'title' => __('Color and opacity', 'sociallocker'),
+                                'title' => __('Color and opacity', 'bizpanda'),
                                 'default' => '#ffffff'
                             ),
                             array(
                                 'type' => 'integer',
                                 'way' => 'slider',
                                 'name' => 'button_mount_radius',
-                                'title' => __('Border radius', 'sociallocker'),
+                                'title' => __('Border radius', 'bizpanda'),
                                 'range' => array(0, 99),
                                 'default' => 7,
                                 'units' => 'px'

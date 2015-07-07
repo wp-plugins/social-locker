@@ -149,6 +149,16 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.4.2.0 - 7 Jul 2015</strong><br />
+<ul>
+<li>NEW: Added compatibility with the new free plugin from OnePress, <a href="https://wordpress.org/plugins/opt-in-panda/">Opt-In Panda</a>, that extends features of the Social Locker.
+<li>NEW: Pass Code. This feature allows to hide lockers if the pass code is specified in the URL.
+<li>NEW: Added an option to hide the License Manager.</li>
+<li>UPDATED: The Help section. Fixed the guide about getting the LinkedIn Client ID.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
 <strong>v.4.1.8 - 21 Apr 2015</strong><br />
 <ul>
 <li>IMPROVED: Compatibility with WP 4.2.</li>
@@ -160,8 +170,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>FIXED: The bug of the option Timeout.</li>
 <li>FIXED: A lot of other minor bugs which have been reported by users.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.4.1.7 - 2 Apr 2015</strong><br />
 <ul>

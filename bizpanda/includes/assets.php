@@ -12,6 +12,47 @@ class OPanda_AssetsManager {
         self::iniDynamicThemes();
     }
     
+    private static $_cookiesPassCode = null;
+    private static $_passcodeCookieSet = false;
+    private static $_autoUnlock = false;    
+    
+    public static function autoUnlock( $itemId ) {
+
+        if ( isset( self::$_autoUnlock[$itemId] ) ) return self::$_autoUnlock[$itemId];
+
+        self::$_autoUnlock[$itemId] = self::isAutoUnlock( $itemId );
+        return self::$_autoUnlock[$itemId];
+    }
+    
+    public static function isAutoUnlock( $itemId ) {
+        
+        $debug = get_option('opanda_debug', false);        
+        if ( !empty( $debug ) ) return false;
+
+        $filterResult = apply_filters('opanda_auto_unlock', null, $itemId );
+        if ( $filterResult !== null ) return $filterResult;        
+
+        // pass code        
+        
+        $passcode = get_option('opanda_passcode', false);
+        if ( empty( $passcode ) ) return false;
+
+        $permanentPasscode = get_option('opanda_permanent_passcode', false);
+        if ( $permanentPasscode ) { 
+            
+            if ( empty( self::$_cookiesPassCode ) ) self::$_cookiesPassCode = 'opanda_' . wp_create_nonce( 'passcode' );
+            if ( isset( $_COOKIE[self::$_cookiesPassCode] ) || self::$_passcodeCookieSet ) return true;
+        
+            setcookie( self::$_cookiesPassCode, 1, time() + 60*60*24*5000, '/' );
+            self::$_passcodeCookieSet = true;       
+            
+        } elseif ( !isset( $_GET[$passcode] ) ) {
+            return false;
+        }
+
+        return true;  
+    }
+
     /**
      *Items types to load assets.
      * @var type 
@@ -28,6 +69,8 @@ class OPanda_AssetsManager {
      * @return void
      */
     public static function requestAssets( $itemId, $fromBody = false, $fromHeader = false ) {
+        if ( self::autoUnlock( $itemId ) ) return;
+        
         self::$_fromBody = $fromBody;
         self::$_fromHeader = $fromHeader;
                 
@@ -51,6 +94,7 @@ class OPanda_AssetsManager {
      * Requests loading assets for lockers.
      */
     public static function requestLockerAssets() {
+
         if ( isset( self::$_requested['locker-assets'] ) ) return;
         self::$_requested['locker-assets'] = true;
         
@@ -74,12 +118,12 @@ class OPanda_AssetsManager {
 
         wp_enqueue_style( 
             'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010014.min.css'
+            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010101.min.css'
         );
 
         wp_enqueue_script( 
-            'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010014.min.js', 
+            'opanda-lockers',
+            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010101.min.js',
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );
         
@@ -116,6 +160,7 @@ class OPanda_AssetsManager {
      * @return void
      */
     public static function printLockerCreatorScript() {
+        
         do_action('opanda_before_locker_creator_script');
         
         $args = array();
@@ -141,6 +186,7 @@ class OPanda_AssetsManager {
      * Requests loading Facebook SDK.
      */
     public static function requestFacebookSDK() {
+        
         if ( isset( self::$_requested['facebook-sdk'] ) ) return;
         self::$_requested['facebook-sdk'] = true;
 
@@ -158,7 +204,7 @@ class OPanda_AssetsManager {
      * @return void
      */
     public static function connectFacebookSDK() {
-
+        
         $fb_appId = get_option('opanda_facebook_appid');
         $fb_version = get_option('opanda_facebook_version', 'v2.0');
         $fb_lang = get_option('opanda_lang', 'en_US');
@@ -202,6 +248,7 @@ class OPanda_AssetsManager {
     }
     
     public static function printCssSelectorOptions() {
+
         ?>
         <!-- 
             CSS Selectors (Bulk Locking)
@@ -244,10 +291,11 @@ class OPanda_AssetsManager {
      * @global type $post
      */
     public static function printLockerOptions() {
-        
+
         $data = array();
         
         foreach(self::$_lockerOptionsToPrint as $name => $id) {
+            if ( self::autoUnlock( $id ) ) continue;
             $lockData = self::getLockerDataToPrint( $id );
             
             $data[$id] = array(
@@ -391,7 +439,9 @@ class OPanda_AssetsManager {
     public static function getLockerOptions( $lockerId ) {
 
         if ( isset( self::$_lockerOptions[$lockerId] ) ) return self::$_lockerOptions[$lockerId];
+        
         $options = get_post_meta($lockerId, '');
+        if ( empty($options) ) return $options;
         
         $real = array();
         foreach($options as $key => $values) {
@@ -569,14 +619,15 @@ class OPanda_AssetsManager {
      * @return void
      */
     public static function initBulkLocking() {
-        
+
         $bulkLockers = get_option('onp_sl_bulk_lockers', array());
         if ( empty($bulkLockers) ) return;
         
         require_once OPANDA_BIZPANDA_DIR . '/includes/panda-items.php';
         
         foreach($bulkLockers as $id => $options) {
-            
+            if ( self::autoUnlock( $id ) ) continue;
+                        
             $itemType = get_post_meta( $id, 'opanda_item', true );
             if ( !OPanda_Items::isAvailable( $itemType ) ) continue;
 

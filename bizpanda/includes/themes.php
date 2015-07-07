@@ -163,39 +163,39 @@ function opanda_background_editor_options( $name, $sets = array() ) {
         'items'     => array(
             array(
                 'type'      => 'control-group-item',
-                'title'     => __('Color', 'sociallocker'),
+                'title'     => __('Color', 'bizpanda'),
                 'name'      => $name . '_color_item',
                 'items'     => array(
                     array(
                         'type'      => 'color-and-opacity',
                         'name'      => $name . '_color',
-                        'title'     => __('Set up color and opacity:', 'sociallocker'),
+                        'title'     => __('Set up color and opacity:', 'bizpanda'),
                         'default'   => ( isset( $sets['default'] ) && $defaultType == 'color' ) ? $sets['default']['value'] : null
                     )
                 )
             ),
             array(
                 'type'      => 'control-group-item',
-                'title'     => __('Gradient', 'sociallocker'),
+                'title'     => __('Gradient', 'bizpanda'),
                 'name'      => $name . '_gradient_item',
                 'items'     => array(
                     array(
                         'type'      => 'gradient',
                         'name'      => $name . '_gradient',
-                        'title'     => __('Set up gradient', 'sociallocker'),
+                        'title'     => __('Set up gradient', 'bizpanda'),
                         'default'   => ( isset( $sets['default'] ) && $defaultType == 'gradient' ) ? $sets['default']['value'] : null
                     )
                 )
             ),
             array(
                 'type'      => 'control-group-item',
-                'title'     => __('Pattern', 'sociallocker'),
+                'title'     => __('Pattern', 'bizpanda'),
                 'name'      => $name . '_image_item',
                 'items'     => array(
                     array(
                         'type'      => 'pattern',
                         'name'      => $name . '_image',
-                        'title'     => __('Set up pattern', 'sociallocker'),
+                        'title'     => __('Set up pattern', 'bizpanda'),
                         'default'   => ( isset( $sets['default'] ) && $defaultType == 'image' ) ? $sets['default']['value'] : null,
                         'patterns'  => ( isset( $sets['patterns']) ) ? $sets['patterns'] : array()
                     )

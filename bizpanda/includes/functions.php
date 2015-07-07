@@ -102,7 +102,7 @@ class BizPanda {
     }
     
     public static function getMenuTitle() {
-        $menuTitle = __('Biz<span class="onp-sl-panda">Panda</span>', 'opanda');
+        $menuTitle = __('Biz<span class="onp-sl-panda">Panda</span>', 'bizpanda');
         return apply_filters('opanda_menu_title', $menuTitle );      
     }
     
@@ -452,7 +452,7 @@ function bizpanda_frontend_action() {
         $action = $_REQUEST[$robustKey];
         
         if ( opanda_get_robust_script_key() === $action ) {
-            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010014.min.js');
+            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010101.min.js');
             exit;
         }
     }

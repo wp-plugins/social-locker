@@ -99,7 +99,9 @@ if ( !window.bizpanda.connectOptions ) window.bizpanda.connectOptions = {};
 
                     form: {
                         buttonText: $("#opanda_subscribe_button_text").val(),
-                        noSpamText: $("#opanda_subscribe_after_button").val()
+                        noSpamText: $("#opanda_subscribe_after_button").val(),
+                        
+                        type: $("#opanda_subscribe_name").is(':checked') ? 'name-email-form' : 'email-form'
                     }
                 },
 
@@ -107,8 +109,7 @@ if ( !window.bizpanda.connectOptions ) window.bizpanda.connectOptions = {};
                     campaignId: $("#opanda_subscribe_list").length ? $("#opanda_subscribe_list").val() : null,
                     service: window.opanda_subscription_service_name,
                     doubleOptin: $.inArray( optinMode, ['quick-double-optin', 'double-optin'] > -1),
-                    confirm: $.inArray( optinMode, ['double-optin'] > -1),
-                    requireName: $("#opanda_subscribe_name").is(':checked')
+                    confirm: $.inArray( optinMode, ['double-optin'] > -1)
                 }
             };
 

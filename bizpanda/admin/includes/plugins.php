@@ -4,12 +4,22 @@ class OPanda_Plugins {
     
     public static function getAll() {
         $items = array();
+
+        $items[] = array(
+            'name' => 'optinpanda',
+            'type' => 'free',
+            'title' => __('Opt-In Panda', 'bizpanda'),
+            'description' => __('<p>Get more email subscribers the most organic way without tiresome popups.</p><p>Opt-In Panda locks a portion of content on a webpage behind an attractive opt-in form.</p>', 'opanda'),
+            'url' => 'https://wordpress.org/plugins/opt-in-panda/',
+            'tags' => array('social', 'subscribers'),
+            'pluginName' => 'optinpanda'
+        );
         
         $items[] = array(
             'name' => 'optinpanda',
             'type' => 'premium',
             'title' => __('Opt-In Panda', 'bizpanda'),
-            'description' => __('<p>Get more email subscribers the most organic way without tiresome popups.</p><p>Also extends the Sign-In Locker by adding the subscription features.</p>', 'opanda'),
+            'description' => __('<p>Get more email subscribers the most organic way without tiresome popups.</p><p>Also extends the Sign-In Locker by adding the subscription features.</p>', 'bizpanda'),
             'url' => 'http://api.byonepress.com/public/1.0/get/?product=optinpanda',
             'tags' => array('social', 'subscribers'),
             'pluginName' => 'optinpanda'
@@ -17,30 +27,30 @@ class OPanda_Plugins {
 
         $items[] = array(
             'name' => 'sociallocker',
-            'type' => 'premium',
-            'title' => __('Social Locker', 'bizpanda'),
-            'description' => __('<p>Helps to attract social traffic and improve spreading your content in social networks.</p><p>Also extends the Sign-In Locker by adding social actions you can set up to be performed.</p>', 'opanda'),
-            'upgradeToPremium' => __('<p>A premium version of the plugin Social Locker.</p><p>7 Social Buttons, 5 Beautiful Themes, Blurring Effect, Countdown Timer, Close Cross and more!</p>', 'opanda'),
-            'url' => 'http://api.byonepress.com/public/1.0/get/?product=sociallocker-next',
-            'tags' => array('social', 'subscribers', 'sociallocker-ads'),
-            'pluginName' => 'sociallocker-next'
-        ); 
-        
-        $items[] = array(
-            'name' => 'sociallocker',
             'type' => 'free',
             'title' => __('Social Locker (Plugin)', 'bizpanda'),
-            'description' => __('<p>Helps to attract social traffic and improve spreading your content in social networks.</p>', 'opanda'),
+            'description' => __('<p>Helps to attract social traffic and improve spreading your content in social networks.</p>', 'bizpanda'),
             'url' => 'https://wordpress.org/plugins/social-locker/',
             'tags' => array('social', 'subscribers', 'sociallocker-ads'),
             'pluginName' => 'sociallocker-next'
         );
         
         $items[] = array(
+            'name' => 'sociallocker',
+            'type' => 'premium',
+            'title' => __('Social Locker', 'bizpanda'),
+            'description' => __('<p>Helps to attract social traffic and improve spreading your content in social networks.</p><p>Also extends the Sign-In Locker by adding social actions you can set up to be performed.</p>', 'bizpanda'),
+            'upgradeToPremium' => __('<p>A premium version of the plugin Social Locker.</p><p>7 Social Buttons, 5 Beautiful Themes, Blurring Effect, Countdown Timer, Close Cross and more!</p>', 'bizpanda'),
+            'url' => 'http://api.byonepress.com/public/1.0/get/?product=sociallocker-next',
+            'tags' => array('social', 'subscribers', 'sociallocker-ads'),
+            'pluginName' => 'sociallocker-next'
+        ); 
+        
+        $items[] = array(
             'name' => 'mashshare',
             'type' => 'free',
             'title' => __('Mashshare', 'bizpanda'),
-            'description' => __('<p>Make your site\'s share count skyrocket with this supercharged Share Buttons for WordPress!</p>', 'opanda'),
+            'description' => __('<p>Make your site\'s share count skyrocket with this supercharged Share Buttons for WordPress!</p>', 'bizpanda'),
             'url' => 'https://mashshare.net/?ref=77&utm_source=sociallocker&utm_medium=plugin&utm_campaign=sociallocker',
             'tags' => array('sociallocker-ads'),
             'pluginName' => 'mashshare'
@@ -85,8 +95,12 @@ class OPanda_Plugins {
         // suggests premium version of free plugins
         
         $plugins = BizPanda::getInstalledPlugins();
+        $hasPremium = false;
+        
         foreach( $plugins as $plugin ) {
-
+            
+            if ( 'premium' === $plugin['type'] ) $hasPremium = true;
+            
             $pluginInfo = self::getPluginInfo($plugin['name'], $plugin['type']);
             if ( !empty( $pluginInfo ) && isset( $pluginInfo['tags'] ) ) {
                 $existingTags = array_merge( $existingTags, $pluginInfo['tags'] );
@@ -103,7 +117,7 @@ class OPanda_Plugins {
             $suggestions[] = $pluginInfo;
             $added[] = $plugin['name'];
         }
-        
+
         // adds installed plugins
         
         foreach( $plugins as $plugin ) {
@@ -114,20 +128,21 @@ class OPanda_Plugins {
         // suggests other extending plugins 
         
         $all = self::getAll();
-        
+
         foreach( $all as $item ) {
+            
+            if ( $hasPremium && 'premium' !== $item['type'] ) continue;
+            
             if ( in_array( $item['name'], $added ) ) continue;
             if ( !isset( $item['tags'] ) ) continue;
-            
-            
-            
+
             $intersect = array_intersect( $existingTags, $item['tags'] );
             if ( empty( $intersect ) ) continue;
             
             $suggestions[] = $item;
             $added[] = $item['name'];
         }
-        
+
         $suggestions = apply_filters( 'opanda_plugins_suggestions', $suggestions );
         return $suggestions;
     }

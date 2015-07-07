@@ -43,7 +43,7 @@ function opanda_statistics() {
     $postId = isset( $context['postId'] ) ? $context['postId'] : null;
     
     if ( empty( $itemId ) ) {
-        echo json_encode( array( 'error' => __('Item ID is not specified.', 'optinpanda') ) );
+        echo json_encode( array( 'error' => __('Item ID is not specified.', 'bizpanda') ) );
         exit;
     }
     

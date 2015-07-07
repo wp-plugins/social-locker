@@ -55,7 +55,7 @@ class OPanda_ManualLockingMetaBox extends FactoryMetaboxes321_Metabox
         parent::__construct( $plugin );
         
         
-        $this->title = __('Manual Locking <i>(recommended)</i>', 'optinpanda');
+        $this->title = __('Manual Locking <i>(recommended)</i>', 'bizpanda');
     }
     
     public function configure( $scripts, $styles ){
@@ -84,7 +84,7 @@ class OPanda_ManualLockingMetaBox extends FactoryMetaboxes321_Metabox
         ?>
         <div class="factory-bootstrap-329 factory-fontawesome-320">
            <p class="onp-sl-description-section">
-               <?php _e('Wrap content you want to lock via the following shortcode in your post editor:', 'optinpanda') ?>
+               <?php _e('Wrap content you want to lock via the following shortcode in your post editor:', 'bizpanda') ?>
                <input class="onp-sl-shortcode" type="text" value='<?php echo $shortcode ?>' />
            </p>
         </div>

@@ -21,7 +21,7 @@ class OPanda_SubscriptionSettings extends OPanda_Settings  {
     public function init() {
 
         if ( isset( $_GET['opanda_aweber_disconnected'] )) {
-            $this->success = __('Your Aweber Account has been successfully disconnected.', 'optinpanda');
+            $this->success = __('Your Aweber Account has been successfully disconnected.', 'bizpanda');
         }
     }
     
@@ -78,7 +78,7 @@ class OPanda_SubscriptionSettings extends OPanda_Settings  {
             'width' => 450,
             'data' => $listItems,
             'default' => 'none',
-            'title' => __('Mailing Service', 'optinpanda')
+            'title' => __('Mailing Service', 'bizpanda')
         );
         
         $options = apply_filters( 'opanda_subscription_services_options', $options, $this );

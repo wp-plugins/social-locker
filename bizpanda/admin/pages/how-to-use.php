@@ -19,7 +19,7 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
     
     public function __construct(Factory325_Plugin $plugin) {   
         parent::__construct($plugin);
-        $this->menuTitle = __('How to use?', 'optinpanda');
+        $this->menuTitle = __('How to use?', 'bizpanda');
     }
   
     public function assets($scripts, $styles) {
@@ -42,34 +42,34 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
         $items = array(
             array(
                 'name' => 'social-apps',
-                'title' => __('Creating Social Apps', 'optinpanda'),
+                'title' => __('Creating Social Apps', 'bizpanda'),
                 'hollow' => true,
                 
                 'items' => array(
                     array(
                         'name' => 'facebook-app',
-                        'title' => __('Creating Facebook App', 'optinpanda')
+                        'title' => __('Creating Facebook App', 'bizpanda')
                     ),
                     array(
                         'name' => 'twitter-app',
-                        'title' => __('Creating Twitter App', 'optinpanda')
+                        'title' => __('Creating Twitter App', 'bizpanda')
                     ),
                     array(
                         'name' => 'google-client-id',
-                        'title' => __('Getting Google Client ID', 'optinpanda')
+                        'title' => __('Getting Google Client ID', 'bizpanda')
                     )  
                 )
             ),
             array(
                 'name' => 'troubleshooting',
-                'title' => __('Troubleshooting', 'optinpanda')
+                'title' => __('Troubleshooting', 'bizpanda')
             )
         );
         
         if ( BizPanda::hasFeature('linkedin') ) {
             $items[0]['items'][] = array(
                 'name' => 'linkedin-api-key',
-                'title' => __('Getting LinkedIn API Key', 'optinpanda')
+                'title' => __('Getting LinkedIn API Key', 'bizpanda')
             );
         } 
         
@@ -310,11 +310,11 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
     public function troubleshooting() {
         ?>
         <div class="onp-help-section">
-            <h1><?php _e('Troubleshooting', 'optinpanda'); ?></h1>
+            <h1><?php _e('Troubleshooting', 'bizpanda'); ?></h1>
 
-            <p><?php _e('If you have any questions or faced with any troubles while using our plugin, please check our <a href="http://support.onepress-media.com/" target="_blank">knowledge base</a>. It is possible that instructions for resolving your issue have already been posted.', 'optinpanda'); ?></p>  
+            <p><?php _e('If you have any questions or faced with any troubles while using our plugin, please check our <a href="http://support.onepress-media.com/" target="_blank">knowledge base</a>. It is possible that instructions for resolving your issue have already been posted.', 'bizpanda'); ?></p>  
             <p>
-                <?php _e('If the answer to your question isn’t listed, please submit a ticket <a href="http://support.onepress-media.com/create-ticket/" target="_blank">here</a>.<br />You can also email us directly <strong>support@byonepress.com</strong>', 'optinpanda'); ?>
+                <?php _e('If the answer to your question isn\'t listed, please submit a ticket <a href="http://support.onepress-media.com/create-ticket/" target="_blank">here</a>.<br />You can also email us directly <strong>support@byonepress.com</strong>', 'bizpanda'); ?>
             </p>
         </div>
         <?php
@@ -335,23 +335,23 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
         <div class="onp-help-section">
             
             <?php if ( !$alreadyActivated ) { ?>
-                <h1><?php _e('Try Premium Version For 7 Days For Free!', 'optinpanda'); ?></h1>
+                <h1><?php _e('Try Premium Version For 7 Days For Free!', 'bizpanda'); ?></h1>
             <?php } else { ?>
-                <h1><?php _e('Upgrade Opt-In Panda To Premium!', 'optinpanda'); ?></h1>     
+                <h1><?php _e('Upgrade Opt-In Panda To Premium!', 'bizpanda'); ?></h1>     
             <?php } ?>
 
             <?php if ( !$alreadyActivated ) { ?>  
             <p>
                 <?php printf( __('The plugin you are using is a free version of the popular <a target="_blank" href="%s"> Opt-In Panda</a> plugin. 
-                We offer you to try the premium version for 7 days absolutely for free. We sure you will love it.', 'optinpanda'), onp_licensing_325_get_purchase_url( $this->plugin ) ) ?>
+                We offer you to try the premium version for 7 days absolutely for free. We sure you will love it.', 'bizpanda'), onp_licensing_325_get_purchase_url( $this->plugin ) ) ?>
             </p>
             <p>
-                <?php _e('Check out the table below to know about the premium features.', 'optinpanda'); ?>
+                <?php _e('Check out the table below to know about the premium features.', 'bizpanda'); ?>
             </p>
             <?php } else { ?>
             <p>
-                <?php _e('The plugin you are using is a free version of the popular <a target="_blank" href="%s"> Opt-In Panda plugin</a> sold on CodeCanyon.', 'optinpanda') ?>
-                <?php _e('Check out the table below to know about all the premium features.', 'optinpanda'); ?>
+                <?php _e('The plugin you are using is a free version of the popular <a target="_blank" href="%s"> Opt-In Panda plugin</a> sold on CodeCanyon.', 'bizpanda') ?>
+                <?php _e('Check out the table below to know about all the premium features.', 'bizpanda'); ?>
             </p>   
             <?php } ?>
 
@@ -534,8 +534,8 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
             </p>
             <div class="onp-remark">
                 <div class="onp-inner-wrap">
-                    <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'optinpanda'); ?></p>
-                    <p><?php printf(__('<strong>To purchase the Opt-In Panda</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'optinpanda'), onp_licensing_325_get_purchase_url( $this->plugin )); ?></p>
+                    <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'bizpanda'); ?></p>
+                    <p><?php printf(__('<strong>To purchase the Opt-In Panda</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'bizpanda'), onp_licensing_325_get_purchase_url( $this->plugin )); ?></p>
                 </div>
             </div>
         </div> 
@@ -548,19 +548,19 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
 
         <div class="onp-help-section" id="social-options">
             <h1>
-                <i class="fa fa-star-o"></i> <?php _e('Drive More Traffic & Build Quality Followers', 'optinpanda'); ?>
+                <i class="fa fa-star-o"></i> <?php _e('Drive More Traffic & Build Quality Followers', 'bizpanda'); ?>
             </h1>
-            <p><?php _e('The premium version of the plugin provides 7 social buttons for all major social networks: Facebook, Twitter, Google, LinkedIn, including the Twitter Follow button. You can use them together or separately for customized results.', 'optinpanda') ?></p>
+            <p><?php _e('The premium version of the plugin provides 7 social buttons for all major social networks: Facebook, Twitter, Google, LinkedIn, including the Twitter Follow button. You can use them together or separately for customized results.', 'bizpanda') ?></p>
             <p class='onp-img'>
                 <img src='http://cconp.s3.amazonaws.com/bizpanda/social-options.png' />
             </p>
             <p><?php _e('What\'s more, each button has individual settings (this way you can set an individual URL for each button).') ?>
-            <p><?php _e('<strong>For example</strong>, you can set up the locker to get followers your Twitter account, fans for your Facebook page, +1s for a home page of your website.', 'optinpanda') ?></p>
+            <p><?php _e('<strong>For example</strong>, you can set up the locker to get followers your Twitter account, fans for your Facebook page, +1s for a home page of your website.', 'bizpanda') ?></p>
         </div> 
 
         <div class="onp-help-section" id="extra-options">
             <h1>
-                <i class="fa fa-star-o"></i> <?php _e('Set How, When and For Whom Your Lockers Appear', 'optinpanda'); ?>
+                <i class="fa fa-star-o"></i> <?php _e('Set How, When and For Whom Your Lockers Appear', 'bizpanda'); ?>
             </h1>
             
             <p>Of course, each website has its own unique audience. We know that a good business is an agile business. The premium version of Opt-In Panda provides 8 additional options that allow you to configure the lockers flexibly to meet your needs.</p>
@@ -573,7 +573,7 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
 
         <div class="onp-help-section" id='blurring'>
             <h1>
-                <i class="fa fa-star-o"></i> <?php _e('Create Highly Shareable Content Via The Blur Effect', 'optinpanda'); ?>
+                <i class="fa fa-star-o"></i> <?php _e('Create Highly Shareable Content Via The Blur Effect', 'bizpanda'); ?>
             </h1>
             <p>The previous versions of the plugin allowed only to hide the locked content totally. But recently we have added the long-awaited option to overlap content and make it transparent or blurred.</p>
             <p class='onp-img'>
@@ -584,7 +584,7 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
 
         <div class="onp-help-section" id='extra-themes'>
             <h1>
-                <i class="fa fa-star-o"></i> <?php _e('3 Extra Stunning Themes For Your Lockers', 'optinpanda'); ?>
+                <i class="fa fa-star-o"></i> <?php _e('3 Extra Stunning Themes For Your Lockers', 'bizpanda'); ?>
             </h1>
             <p>
                 <p>The premium version of Opt-In Panda comes with 3 extra impressive, polished styles which create interest and attract attention. They are nicely animated and don't look obtrusive:</p>
@@ -601,14 +601,14 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
 
         <div class="onp-help-section" id='updates'>
             <h1>
-                <i class="fa fa-star-o"></i> <?php _e('Get New Features & Updates Almost Every Week', 'optinpanda'); ?>
+                <i class="fa fa-star-o"></i> <?php _e('Get New Features & Updates Almost Every Week', 'bizpanda'); ?>
             </h1>
             <p>We release about 3-4 updates each month, adding new features and fixing bugs. The Free version does not guarantee that you will get all the major updates. But if you upgrade to the Premium version, your copy of the plugin will be always up-to-date.</p>
         </div> 
 
         <div class="onp-help-section" id='support'>
             <h1>
-                <i class="fa fa-star-o"></i> <?php _e('Guaranteed Support Within 24h', 'optinpanda'); ?>
+                <i class="fa fa-star-o"></i> <?php _e('Guaranteed Support Within 24h', 'bizpanda'); ?>
             </h1>
             <p>
                 All of our plugins come with free support. We care about your plugin after purchase just as much as you do. We want to make your life easier and make you happy about choosing our plugins.
@@ -638,8 +638,8 @@ class OPanda_HowToUsePage extends FactoryPages321_AdminPage  {
             </p>
             <div class="onp-remark">
                 <div class="onp-inner-wrap">
-                    <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'optinpanda'); ?></p>
-                    <p><?php printf(__('<strong>To purchase the Opt-In Panda</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'optinpanda'), onp_licensing_325_get_purchase_url( $this->plugin )); ?></p>
+                    <p><?php _e('You can purchase the premium version at any time within your trial period or right now. After purchasing you will get a license key to unlock all the plugin features.', 'bizpanda'); ?></p>
+                    <p><?php printf(__('<strong>To purchase the Opt-In Panda</strong>, <a target="_blank" href="%s">click here</a> to visit the plugin page on CodeCanyon. Then click the "Purchase" button on the right sidebar.', 'bizpanda'), onp_licensing_325_get_purchase_url( $this->plugin )); ?></p>
                 </div>
             </div>
         </div> 

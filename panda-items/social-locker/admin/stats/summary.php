@@ -10,21 +10,21 @@ class OPanda_SocialLocker_Summary_StatsTable extends OPanda_StatsTable {
                 'title' => ''
             ),
             'title' => array(
-                'title' => __('Post Title', 'opanda')
+                'title' => __('Post Title', 'sociallocker')
             ),
             'impress' => array(
-                'title' => __('Impressions', 'opanda'),
+                'title' => __('Impressions', 'sociallocker'),
                 'cssClass' => 'opanda-col-number'
             ),
             'unlock' => array(
-                'title' => __('Number of Unlocks', 'opanda'),
-                'hint' => __('The number of unlocks made by visitors.', 'opanda'), 
+                'title' => __('Number of Unlocks', 'sociallocker'),
+                'hint' => __('The number of unlocks made by visitors.', 'sociallocker'), 
                 'highlight' => true,
                 'cssClass' => 'opanda-col-number'
             ),
             'conversion' => array(
-                'title' => __('Conversion', 'opanda'),
-                'hint' => __('The ratio of the number of unlocks to impressions, in percentage.', 'opanda'),
+                'title' => __('Conversion', 'sociallocker'),
+                'hint' => __('The ratio of the number of unlocks to impressions, in percentage.', 'sociallocker'),
                 'cssClass' => 'opanda-col-number'
             )
         );

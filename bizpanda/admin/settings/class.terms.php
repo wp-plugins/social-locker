@@ -27,7 +27,7 @@ class OPanda_TermsSettings extends OPanda_Settings  {
     public function init() {
         
         if ( isset( $_GET['onp_table_cleared'] )) {
-            $this->success = __('The data has been successfully cleared.', 'optinpanda');
+            $this->success = __('The data has been successfully cleared.', 'bizpanda');
         }
     }
     
@@ -73,8 +73,8 @@ class OPanda_TermsSettings extends OPanda_Settings  {
             'way'       => 'buttons',
             'name'      => 'terms_enabled',
             'data'      => $result,
-            'title'     => __('Enable Policies', 'optinpanda'),
-            'hint'      => __('Set On to show the links to Terms of Use and Privacy Policy of your website below the Sign-In/Email lockers.', 'optinpanda'),
+            'title'     => __('Enable Policies', 'bizpanda'),
+            'hint'      => __('Set On to show the links to Terms of Use and Privacy Policy of your website below the Sign-In/Email lockers.', 'bizpanda'),
             'default'   => true
         ); 
         
@@ -88,8 +88,8 @@ class OPanda_TermsSettings extends OPanda_Settings  {
             'way'       => 'buttons',
             'name'      => 'terms_use_pages',
             'data'      => $result,
-            'title'     => __('Use Existing Pages', 'optinpanda'),
-            'hint'      => __('Set On, if your website already contains pages for "Terms of Use" and "Privacy Policies" and you want to use them.', 'optinpanda'),
+            'title'     => __('Use Existing Pages', 'bizpanda'),
+            'hint'      => __('Set On, if your website already contains pages for "Terms of Use" and "Privacy Policies" and you want to use them.', 'bizpanda'),
             'default'   => false
         ); 
         
@@ -106,8 +106,8 @@ class OPanda_TermsSettings extends OPanda_Settings  {
                     'type'      => 'wp-editor',
                     'name'      => 'terms_of_use_text',
                     'data'      => $result,
-                    'title'     => __('Terms of Use', 'optinpanda'),
-                    'hint'      => __('The text of Terms of Use. The link to this text will be shown below the lockers.', 'optinpanda'),
+                    'title'     => __('Terms of Use', 'bizpanda'),
+                    'hint'      => __('The text of Terms of Use. The link to this text will be shown below the lockers.', 'bizpanda'),
                     'tinymce'   => array(
                         'height' => 250,
                         'content_css' => OPANDA_BIZPANDA_URL . '/assets/admin/css/tinymce.010000.css'
@@ -119,8 +119,8 @@ class OPanda_TermsSettings extends OPanda_Settings  {
                     'type'      => 'wp-editor',
                     'name'      => 'privacy_policy_text',
                     'data'      => $result,
-                    'title'     => __('Privacy Policy', 'optinpanda'),
-                    'hint'      => __('The text of Privacy Policy.  The link to this text will be shown below the lockers.', 'optinpanda'),
+                    'title'     => __('Privacy Policy', 'bizpanda'),
+                    'hint'      => __('The text of Privacy Policy.  The link to this text will be shown below the lockers.', 'bizpanda'),
                     'tinymce'   => array(
                         'height' => 250,
                         'content_css' => OPANDA_BIZPANDA_URL . '/assets/admin/css/tinymce.010000.css'
@@ -143,16 +143,16 @@ class OPanda_TermsSettings extends OPanda_Settings  {
                     'type'      => 'dropdown',
                     'name'      => 'terms_of_use_page',
                     'data'      => $result,
-                    'title'     => __('Terms of Use', 'optinpanda'),
-                    'hint'      => __('Select a page which contains the "Terms of Use" for the lockers or/and your website.', 'optinpanda')
+                    'title'     => __('Terms of Use', 'bizpanda'),
+                    'hint'      => __('Select a page which contains the "Terms of Use" for the lockers or/and your website.', 'bizpanda')
                 ),
 
                 array(
                     'type'      => 'dropdown',
                     'name'      => 'privacy_policy_page',
                     'data'      => $result,
-                    'title'     => __('Privacy Policy', 'optinpanda'),
-                    'hint'      => __('Select a page which contains the "Privacy Policy" for the lockers or/and your website.', 'optinpanda')
+                    'title'     => __('Privacy Policy', 'bizpanda'),
+                    'hint'      => __('Select a page which contains the "Privacy Policy" for the lockers or/and your website.', 'bizpanda')
                 )
             )
         );

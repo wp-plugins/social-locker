@@ -40,7 +40,7 @@ function opanda_get_premium_note( $wrap = true, $campaign = 'na' ) {
         $content .= '<div class="factory-fontawesome-320 opanda-overlay-note opanda-premium-note">';
     }
 
-    $content .= sprintf( __( '<i class="fa fa-star-o"></i> <strong>Go Premium</strong> <i class="fa fa-star-o"></i><br />To Unlock These Features<br /><a href="%s" class="opnada-button" target="_blank">Learn More</a>', 'optinpanda' ), $url );
+    $content .= sprintf( __( '<i class="fa fa-star-o"></i> <strong>Go Premium</strong> <i class="fa fa-star-o"></i><br />To Unlock These Features<br /><a href="%s" class="opnada-button" target="_blank">Learn More</a>', 'bizpanda' ), $url );
     
     if ( $wrap ) {
         $content .= '</div>';

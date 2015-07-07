@@ -7,6 +7,7 @@
             this.basic.init();
             this.social.init();
             this.subscription.init();
+            this.lock.init();
             this.advanced.init();
             this.text.init();    
         },
@@ -62,6 +63,35 @@
                 }).change();
             }  
         },
+        
+        /** ---
+         * Lock Options
+         */
+        
+        lock: {
+            
+            
+            init: function() {
+                var $passcode = $("#opanda_passcode");
+                var $passcodeUrl = $(".factory-control-passcode .opanda-url");
+                var $passcodeExample = $(".factory-control-passcode .opanda-example");
+                
+                var checkPasscode = function() {
+                    var value = $passcode.val();
+                    if ( $.trim( value ) ) $passcodeExample.show();
+                    else $passcodeExample.hide();
+                };
+
+                checkPasscode();
+                
+                $("#opanda_passcode").keyup(function(){
+                    var value = $.trim( $(this).val() );
+                    $(".opanda-passcode").text( '?' + value );
+                    $passcodeUrl.attr('href', $passcodeUrl.text());
+                    checkPasscode();
+                }).keyup();
+            }  
+        },        
         
         /** ---
          * Advanced Options

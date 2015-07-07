@@ -198,6 +198,25 @@ textarea {
 }
 
 /** ---
+* Lock Options
+*/
+
+.opanda-screen-lock .opanda-example {
+    display: none;
+}
+.opanda-screen-lock .opanda-url {
+    color: #0074a2;
+    text-decoration: none;
+}
+.opanda-screen-lock .opanda-url:hover {
+    text-decoration: underline;
+}
+.opanda-screen-lock .opanda-passcode {
+    font-weight: bold;
+    color: #0074a2;
+}
+
+/** ---
 * Font-end Text
 */
 

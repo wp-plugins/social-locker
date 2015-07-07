@@ -12,6 +12,8 @@ if ( !function_exists('opanda_register_signin_locker') ) {
 
     global $bizpanda;
     
+    BizPanda::enableFeature('signin-locker');
+            
     /**
      * Registers the Sign-In Locker item.
      * 
@@ -33,9 +35,9 @@ if ( !function_exists('opanda_register_signin_locker') ) {
             $items['signin-locker'] = array(
                 'name' => 'signin-locker',
                 'type' => 'free',
-                'title' => __('Sign-In Locker', 'optinpanda'),
+                'title' => __('Sign-In Locker', 'signinlocker'),
                 'help' => opanda_get_help_url('what-is-signin-locker'),
-                'description' => __('<p>Locks the content until the user signs in through social networks.</p><p>You can set up various actions to be performed to sign in (e.g. subscribe, follow, share).</p>', 'optinpanda'),
+                'description' => __('<p>Locks the content until the user signs in through social networks.</p><p>You can set up various actions to be performed to sign in (e.g. subscribe, follow, share).</p>', 'signinlocker'),
                 'shortcode' => 'signinlocker',
                 'plugin' => $plugin
             );
@@ -120,13 +122,14 @@ if ( !function_exists('opanda_register_signin_locker') ) {
         
         if ( in_array( 'linkedin', $actions ) ) {
             
-            $options['connectButtons']['linkedin'] = array(
-                'actions' => opanda_signin_locker_get_actions( $id, 'linkedin_actions' ),
-                'apiKey' => opanda_get_option('linkedin_api_key'),
+            $linkedInActions = opanda_signin_locker_get_actions( $id, 'linkedin_actions' );
+            if( ($key = array_search('follow', $linkedInActions)) !== false ) {
+                unset($linkedInActions[$key]);
+            }
 
-                'follow' => array(
-                    'company' => opanda_get_item_option($id, 'linkedin_follow_company')
-                )
+            $options['connectButtons']['linkedin'] = array(
+                'actions' => $linkedInActions,
+                'apiKey' => opanda_get_option('linkedin_api_key')
             );
         }
 
@@ -139,7 +142,8 @@ if ( !function_exists('opanda_register_signin_locker') ) {
             $options['subscription']['form'] = array(
                 'actions'       => opanda_signin_locker_get_actions( $id, 'email_actions' ),
                 'buttonText'    => opanda_get_item_option($id, 'subscribe_button_text', false),
-                'noSpamText'    => opanda_get_item_option($id, 'subscribe_after_button', false)      
+                'noSpamText'    => opanda_get_item_option($id, 'subscribe_after_button', false),
+                'type'          => opanda_get_item_option($id, 'subscribe_name') ? 'name-email-form' : 'email-form'
             );
         }
 
@@ -153,7 +157,6 @@ if ( !function_exists('opanda_register_signin_locker') ) {
             'service' => $service,
             'doubleOptin' => in_array( $optinMode, array('quick-double-optin', 'double-optin') ),
             'confirm' => in_array( $optinMode, array('double-optin') ),
-            'requireName' => opanda_get_item_option($id, 'subscribe_name')
         );
         
         return $options;
@@ -170,6 +173,15 @@ if ( !function_exists('opanda_register_signin_locker') ) {
         $actions = explode( ',', opanda_get_item_option($id, $optionName ) );   
         if ( empty( $actions ) || empty($actions[0]) ) $actions = array();
         
+        if ( !BizPanda::hasPlugin('optinpanda') ) {
+            
+            $temp = $actions; $actions = array();
+            foreach( $temp as $actionName ) {
+                if ( 'subscribe' === $actionName ) continue;
+                $actions[] = $actionName;
+            }
+        }
+
         $catchLeads = opanda_get_item_option($id, 'catch_leads', false);
         
         if ( !$catchLeads ) return $actions;

@@ -129,6 +129,8 @@
                         self.addListItem( item );
                     }
                 }
+                
+                this.$element.trigger("factory-loaded");
             };
 
             this.clearList = function() {

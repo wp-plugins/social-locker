@@ -27,7 +27,7 @@ class OPanda_StatsSettings extends OPanda_Settings  {
     public function init() {
         
         if ( isset( $_GET['onp_table_cleared'] )) {
-            $this->success = __('The data has been successfully cleared.', 'optinpanda');
+            $this->success = __('The data has been successfully cleared.', 'bizpanda');
         }
     }
     
@@ -62,8 +62,8 @@ class OPanda_StatsSettings extends OPanda_Settings  {
             'type'      => 'checkbox',
             'way'       => 'buttons',
             'name'      => 'google_analytics',
-            'title'     => __( 'Google Analytics', 'sociallocker' ),
-            'hint'      => __( 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.', 'sociallocker' )
+            'title'     => __( 'Google Analytics', 'bizpanda' ),
+            'hint'      => __( 'If set On, the plugin will generate <a href="https://support.google.com/analytics/answer/1033068?hl=en" target="_blank">events</a> for the Google Analytics when the content is unlocked.<br /><strong>Note:</strong> before enabling this feature, please <a href="https://support.google.com/analytics/answer/1008015?hl=en" target="_blank">make sure</a> that your website contains the Google Analytics tracker code.', 'bizpanda' )
         );
         
         $options[] = array(
@@ -75,8 +75,8 @@ class OPanda_StatsSettings extends OPanda_Settings  {
             'type'      => 'checkbox',
             'way'       => 'buttons',  
             'name'      => 'tracking',
-            'title'     => __( 'Collecting Stats', 'sociallocker' ),
-            'hint'      => __( 'Turns on collecting the statistical data for reports.', 'sociallocker' )
+            'title'     => __( 'Collecting Stats', 'bizpanda' ),
+            'hint'      => __( 'Turns on collecting the statistical data for reports.', 'bizpanda' )
         );
 
         $options[] = array(
@@ -107,10 +107,10 @@ class OPanda_StatsSettings extends OPanda_Settings  {
                 <div class="control-group controls col-sm-10">
                     <p class="onp-sl-inline">
                         <?php if ( $count == 0 ) { ?>
-                        <?php printf( __( 'The statistical data is <strong>empty</strong>.', 'optinpanda' ), $humanDataSize ); ?>
+                        <?php printf( __( 'The statistical data is <strong>empty</strong>.', 'bizpanda' ), $humanDataSize ); ?>
                         <?php } else { ?>
-                        <?php printf( __( 'The statistical data takes <strong>%s</strong> on your server', 'optinpanda' ), $humanDataSize ); ?>
-                        <a class="button" style="margin-left: 5px;" href="<?php $this->actionUrl('clearStatsData') ?>"><?php _e('clear data', 'optinpanda') ?></a>
+                        <?php printf( __( 'The statistical data takes <strong>%s</strong> on your server', 'bizpanda' ), $humanDataSize ); ?>
+                        <a class="button" style="margin-left: 5px;" href="<?php $this->actionUrl('clearStatsData') ?>"><?php _e('clear data', 'bizpanda') ?></a>
                         <?php } ?>
                     </p>
                 </div>
@@ -128,19 +128,19 @@ class OPanda_StatsSettings extends OPanda_Settings  {
         
         if ( !isset( $_REQUEST['onp_confirmed'] ) ) {
             return $this->confirm(array(
-                'title' => __('Are you sure that you want to clear the current statistical data?', 'optinpanda'),
-                'description' => __('All the statistical data will be removed.', 'optinpanda'),
+                'title' => __('Are you sure that you want to clear the current statistical data?', 'bizpanda'),
+                'description' => __('All the statistical data will be removed.', 'bizpanda'),
                 'actions' => array(
                     'onp_confirm' => array(
                         'class' => 'btn btn-danger',
-                        'title' => __("Yes, I'm sure", 'optinpanda'),
+                        'title' => __("Yes, I'm sure", 'bizpanda'),
                         'url' => $this->getActionUrl('clearStatsData', array(
                             'onp_confirmed' => true
                         ))
                     ),
                     'onp_cancel' => array(
                         'class' => 'btn btn-default',
-                        'title' => __("No, return back", 'optinpanda'),
+                        'title' => __("No, return back", 'bizpanda'),
                         'url' => $this->getActionUrl('index')
                     ),
                 )

@@ -13,7 +13,10 @@
 require(SOCIALLOCKER_DIR . '/plugin/admin/activation.php');
 require(SOCIALLOCKER_DIR . '/plugin/admin/notices.php');
 require(SOCIALLOCKER_DIR . '/plugin/admin/pages/license-manager.php');
-    require(SOCIALLOCKER_DIR . '/plugin/admin/pages/premium.php');
+        require(SOCIALLOCKER_DIR . '/plugin/admin/pages/premium.php');
+    
+ 
+
 
 
 #endcomp
@@ -63,45 +66,45 @@ function sociallocker_register_help( $pages ) {
     
     array_unshift($pages, array(
         'name' => 'sociallocker',
-        'title' => __('Plugin: Social Locker', 'optinpanda'),
+        'title' => __('Plugin: Social Locker', 'plugin-sociallocker'),
         
         'items' => array(
             array(
                 'name' => 'social-locker',
-                'title' => __('Social Locker', 'optinpanda'),
+                'title' => __('Social Locker', 'plugin-sociallocker'),
                 'hollow' => true,
                 
                 'items' => array(
                     array(
                         'name' => 'what-is-social-locker',
-                        'title' => __('What is it?', 'optinpanda')
+                        'title' => __('What is it?', 'plugin-sociallocker')
                     ), 
                     array(
                         'name' => 'usage-example-social-locker',
-                        'title' => __('Quick Start Guide', 'optinpanda')
+                        'title' => __('Quick Start Guide', 'plugin-sociallocker')
                     )
                     
                     /**
                     array(
                         'name' => 'other-notes-social-locker',
-                        'title' => __('Other Notes', 'optinpanda')
+                        'title' => __('Other Notes', 'plugin-sociallocker')
                     )
                     */
                 )
             ),
             array(
                 'name' => 'signin-locker',
-                'title' => __('Sign-In Locker', 'optinpanda'),
+                'title' => __('Sign-In Locker', 'plugin-sociallocker'),
                 'hollow' => true,
                 
                 'items' => array(
                     array(
                         'name' => 'what-is-signin-locker',
-                        'title' => __('What is it?', 'optinpanda')
+                        'title' => __('What is it?', 'plugin-sociallocker')
                     ),
                     array(
                         'name' => 'usage-example-signin-locker',
-                        'title' => __('Quick Start Guide', 'optinpanda')
+                        'title' => __('Quick Start Guide', 'plugin-sociallocker')
                     ),
                 )
             )
@@ -140,7 +143,7 @@ add_action('opanda_help_page_sociallocker', 'sociallocker_help_page_optinpanda')
  */
 function sociallocker_change_menu_title( $title ) {
     if ( !BizPanda::isSinglePlugin() ) return $title;
-    return __('Social Locker', 'opanda');
+    return __('Social Locker', 'plugin-sociallocker');
 }
 
 add_filter('opanda_menu_title', 'sociallocker_change_menu_title');
@@ -181,7 +184,7 @@ add_filter('opanda_shortcode_icon', 'sociallocker_change_shortcode_icon');
  */
 function sociallocker_change_new_item_menu_title( $title ) {
     if ( !BizPanda::isSinglePlugin() ) return $title;
-    return __('+ New Locker', 'opanda');
+    return __('+ New Locker', 'plugin-sociallocker');
 }
 
 add_filter('factory_menu_title_new-item-opanda', 'sociallocker_change_new_item_menu_title');
@@ -195,8 +198,8 @@ add_filter('factory_menu_title_new-item-opanda', 'sociallocker_change_new_item_m
  */
 function sociallocker_change_items_lables( $labels ) {
     if ( !BizPanda::isSinglePlugin() ) return $labels;
-    $labels['all_items'] = __('All Lockers', 'opanda');
-    $labels['add_new'] = __('+ New Locker', 'opanda');
+    $labels['all_items'] = __('All Lockers', 'plugin-sociallocker');
+    $labels['add_new'] = __('+ New Locker', 'plugin-sociallocker');
     return $labels;
 }
 
@@ -210,7 +213,7 @@ add_filter('opanda_items_lables', 'sociallocker_change_items_lables');
  * @return bool true
  */
 function sociallocker_make_internal_license_manager( $internal ) {
-
+    
     if ( BizPanda::isSinglePlugin() ) return $internal;
     return true;
 }

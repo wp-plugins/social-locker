@@ -4,7 +4,7 @@ Plugin Name: Social Locker | BizPanda
 Plugin URI: http://codecanyon.net/item/social-locker-for-wordpress/3667715?ref=OnePress&utm_source=plugin&utm_medium=plugin-uri&utm_campaign=plugin-uri
 Description: Social Locker is a set of social buttons and a locker in one bottle. <strong>Give people a reason</strong> why they need to click your social buttons. Ask people to “pay” with a Like/Tweet/+1 to get access to your content, to get discount, to download, to watch a video, to view a funny picture or so. And it will help you to get more likes/tweets/+1s, traffic and customers!
 Author: OnePress
-Version: 4.1.8
+Version: 4.2.0
 Author URI: http://byonepress.com
 */
 
@@ -28,22 +28,23 @@ define('SOCIALLOCKER_URL', plugins_url( null, __FILE__ ));
 
 // inits bizpanda and its items
 require( SOCIALLOCKER_DIR . '/bizpanda/connect.php');
-define('SOCIALLOCKER_BIZPANDA_VERSION', 114);
+define('SOCIALLOCKER_BIZPANDA_VERSION', 116);
 
 /**
  * Fires when the BizPanda connected.
  */
-function onp_sl_init_bizpanda() {
+function onp_sl_init_bizpanda( $activationHook = false ) {
     
     /**
      * Displays a note about that it's requited to update other plugins.
      */
-    if ( !bizpanda_validate( SOCIALLOCKER_BIZPANDA_VERSION, 'Social Locker' ) ) return;
+    if ( !$activationHook && !bizpanda_validate( SOCIALLOCKER_BIZPANDA_VERSION, 'Social Locker' ) ) return;
 
     // enabling features the plugin requires
     
     BizPanda::enableFeature('lockers');
     BizPanda::enableFeature('terms');
+    BizPanda::enableFeature('social');
     
     // creating the plugin object
 
@@ -51,7 +52,7 @@ function onp_sl_init_bizpanda() {
     $sociallocker = new Factory325_Plugin(__FILE__, array(
         'name'          => 'sociallocker-next',
         'title'         => 'Social Locker',
-        'version'       => '4.1.8',
+        'version'       => '4.2.0',
         'assembly'      => 'free',
         'lang'          => 'en_US',
         'api'           => 'http://api.byonepress.com/1.1/',
@@ -95,7 +96,7 @@ function onp_sl_activation() {
     if ( !function_exists( 'bizpanda_connect') ) return;
 
     // if the bizpanda has been already connected, inits the plugin manually
-    if ( defined('OPANDA_ACTIVE') ) onp_sl_init_bizpanda();
+    if ( defined('OPANDA_ACTIVE') ) onp_sl_init_bizpanda( true );
     else bizpanda_connect();
     
     global $sociallocker;

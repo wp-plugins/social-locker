@@ -10,31 +10,31 @@ class OPanda_SignInLocker_Bounces_StatsTable extends OPanda_StatsTable {
                 'title' => ''
             ),
             'title' => array(
-                'title' => __('Post Title', 'opanda')
+                'title' => __('Post Title', 'signinlocker')
             ),
             'impress' => array(
-                'title' => __('Impressions', 'opanda'),
+                'title' => __('Impressions', 'signinlocker'),
                 'highlight' => true,
                 'cssClass' => 'opanda-col-number'
             ), 
             'users' => array(
-                'title' => __('Visitors Who', 'opanda'),
+                'title' => __('Visitors Who', 'signinlocker'),
                 'cssClass' => 'opanda-col-common',
                 'columns' => array(
                     /*
                     'ignored' => array(
-                        'title' => __('Ignored Locker', 'opanda'),
-                        'hint' => __('The number of visitors who viewed the locker but didn\'t try to interact with the one (no clicks on any buttons).', 'opanda'),
+                        'title' => __('Ignored Locker', 'signinlocker'),
+                        'hint' => __('The number of visitors who viewed the locker but didn\'t try to interact with the one (no clicks on any buttons).', 'signinlocker'),
                         'cssClass' => 'opanda-col-number'
                     ),*/
                     'errors' => array(
-                        'title' => __('Faced Errors', 'opanda'),
-                        'hint' => __('Visitors who faced with any errors and were not able to unlock the content. This value normally should be equal 0. If not, please check settings of your locker or contact OnePress support.', 'opanda'),
+                        'title' => __('Faced Errors', 'signinlocker'),
+                        'hint' => __('Visitors who faced with any errors and were not able to unlock the content. This value normally should be equal 0. If not, please check settings of your locker or contact OnePress support.', 'signinlocker'),
                         'cssClass' => 'opanda-col-number'
                     ),
                     'social-fails' => array(
-                        'title' => __('Declined Social Apps', 'opanda'),
-                        'hint' => __('Visitors who refused to authorize of your social apps. If you think this value is too large, try to set less social actions to be performed on signing in through social networks.', 'opanda'),
+                        'title' => __('Declined Social Apps', 'signinlocker'),
+                        'hint' => __('Visitors who refused to authorize of your social apps. If you think this value is too large, try to set less social actions to be performed on signing in through social networks.', 'signinlocker'),
                         'cssClass' => 'opanda-col-number'
                     )
                 )
@@ -85,17 +85,17 @@ class OPanda_SignInLocker_Bounces_StatsChart extends OPanda_StatsChart {
             ),
             /*
             'ignored' => array(
-                'title' => __('Who Ignored Locker', 'opanda'),
+                'title' => __('Who Ignored Locker', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'color' => '#cccccc'
             ),*/
             'errors' => array(
-                'title' => __('Who Faced Errors', 'opanda'),
+                'title' => __('Who Faced Errors', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'color' => '#F97D81'
             ),
             'social-fails' => array(
-                'title' => __('Who Declined Social Apps', 'opanda'),
+                'title' => __('Who Declined Social Apps', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'color' => '#29264E'
             )

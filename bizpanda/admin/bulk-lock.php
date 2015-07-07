@@ -76,34 +76,34 @@ function opanda_print_bulk_locking_state( $lockerId ) {
 
                 <div class="onp-sl-way-description onp-sl-skip-lock-content <?php echo $skipAndLockStateClass ?>">
                     <span class="onp-sl-skip-lock-0-content">
-                        <?php echo _e('Every post will be locked entirely.', 'optinpanda') ?>
+                        <?php echo _e('Every post will be locked entirely.', 'bizpanda') ?>
                     </span>
                     <span class="onp-sl-skip-lock-1-content">
-                        <?php echo _e('Every post will be locked entirely except the first paragraph.', 'optinpanda') ?>
+                        <?php echo _e('Every post will be locked entirely except the first paragraph.', 'bizpanda') ?>
                     </span>
                     <span class="onp-sl-skip-lock-2-content">
-                        <?php echo sprintf( __('Every post will be locked entirely except %s paragraphs placed at the beginning.', 'optinpanda'), $skipNumber ) ?>
+                        <?php echo sprintf( __('Every post will be locked entirely except %s paragraphs placed at the beginning.', 'bizpanda'), $skipNumber ) ?>
                     </span>
                 </div>
 
                 <div class="onp-sl-way-description onp-sl-more-tag-content">
-                    <?php echo _e('Content placed after the More Tag will be locked in every post.', 'optinpanda') ?>
+                    <?php echo _e('Content placed after the More Tag will be locked in every post.', 'bizpanda') ?>
                 </div>
 
                 <div class="onp-sl-way-description onp-sl-css-selector-content">
-                    <p><?php echo _e('Every content matching the CSS selector will be locked on every page:', 'optinpanda') ?></p>
+                    <p><?php echo _e('Every content matching the CSS selector will be locked on every page:', 'bizpanda') ?></p>
                     <strong class="onp-sl-css-selector-view"><?php echo $cssSelector ?></strong>                      
                 </div>
 
                 <div class='onp-sl-rules'>
                     <span class='onp-sl-post-types-rule'>
-                        <?php printf( __('Applies to types: %s', 'optinpanda'), $postTypes ) ?>
+                        <?php printf( __('Applies to types: %s', 'bizpanda'), $postTypes ) ?>
                     </span>
                     <span class='onp-sl-exclude-post-ids-rule'>
-                        <?php printf( __('Excludes posts: %s', 'optinpanda'), $excludePosts ) ?>
+                        <?php printf( __('Excludes posts: %s', 'bizpanda'), $excludePosts ) ?>
                     </span>
                     <span class='onp-sl-exclude-categories-ids-rule'>
-                        <?php printf( __('Excludes categories: %s', 'optinpanda'), $excludeCategories ) ?>
+                        <?php printf( __('Excludes categories: %s', 'bizpanda'), $excludeCategories ) ?>
                     </span>       
                 </div>
             </div> 

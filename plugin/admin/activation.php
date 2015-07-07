@@ -16,7 +16,7 @@
  * @return string
  */
 function sociallocker_license_manager_success_button() {
-    return __('Learn how to use the plugin <i class="fa fa-lightbulb-o"></i>', 'opanda');
+    return __('Learn how to use the plugin <i class="fa fa-lightbulb-o"></i>', 'plugin-sociallocker');
 }
 
 add_action('onp_license_manager_success_button_' . $sociallocker->pluginName, 'sociallocker_license_manager_success_button');
@@ -74,7 +74,7 @@ class SocialLocker_Activation extends Factory325_Activator {
                                     It allows you to change this version of the plugin and to
                                     use the plugin free. Please remember this license 
                                     covers only free edition of the plugin. Premium versions are 
-                                    distributed with other type of a license.', 'optinpanda')
+                                    distributed with other type of a license.', 'plugin-sociallocker')
             ));
         
 

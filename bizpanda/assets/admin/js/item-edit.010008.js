@@ -12,8 +12,9 @@ if ( !window.bizpanda.lockerEditor ) window.bizpanda.lockerEditor = {};
 
             this.trackInputChanges();
             this.recreatePreview();
+                this.initStyleRollerButton();
+            
 
-            this.initStyleRollerButton();
         }, 
 
         /**

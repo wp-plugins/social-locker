@@ -129,14 +129,14 @@ function onp_lock_preview() {
          <script type="text/javascript" src="<?php echo OPANDA_BIZPANDA_URL ?>/assets/admin/js/libs/json2.js"></script>    
          
          <?php ?>
-         <script type="text/javascript" src="<?php echo OPANDA_BIZPANDA_URL ?>/assets/js/lockers.010014.min.js"></script>  
-         <link rel="stylesheet" type="text/css" href="<?php echo OPANDA_BIZPANDA_URL ?>/assets/css/lockers.010014.min.css">  
+         <script type="text/javascript" src="<?php echo OPANDA_BIZPANDA_URL ?>/assets/js/lockers.010101.min.js"></script>  
+         <link rel="stylesheet" type="text/css" href="<?php echo OPANDA_BIZPANDA_URL ?>/assets/css/lockers.010101.min.css">  
          <?php 
  ?>
          
          <?php do_action('onp_sl_preview_head') ?>  
     </head>
-    <body class="onp-sl-demo">
+    <body class="onp-sl-demo factory-fontawesome-320">
         <div id="wrap" style="text-align: center; margin: 0 auto; max-width: 800px;">
             <div class="content-to-lock" style="text-align: center; margin: 0 auto; max-width: 700px;">
 
@@ -178,7 +178,7 @@ function onp_lock_preview() {
                locker.bind('opanda-unlock', function(){
                     window.alertFrameSize();   
                });
-               
+
                locker.bind('opanda-size-changed', function(){
                     window.alertFrameSize();   
                });
@@ -198,6 +198,8 @@ function onp_lock_preview() {
 
            window.dencodeOptions  = function( options ) {
                for( var optionName in options ) {
+                   if ( !$.isPlainObject(options[optionName])) continue;
+                   
                    if ( typeof options[optionName] === 'object' ) {
                        options[optionName] = dencodeOptions( options[optionName] );
                    } else {

@@ -14,14 +14,14 @@ global $bizpanda;
 function opanda_register_social_locker( $items ) {
     global $sociallocker;
     
-    $title =  __('Social Locker', 'bizpanda');
+    $title =  __('Social Locker', 'sociallocker');
         
         $items['social-locker'] = array(
             'name' => 'social-locker',
             'type' => 'free',
             'title' => $title,
             'help' => opanda_get_help_url('sociallocker'),
-            'description' => __('<p>Asks users to "pay with a like" or share to unlock content.</p><p>Perfect way to get more followers, attract social traffic and improve some social metrics.</p>', 'optinpanda'),
+            'description' => __('<p>Asks users to "pay with a like" or share to unlock content.</p><p>Perfect way to get more followers, attract social traffic and improve some social metrics.</p>', 'sociallocker'),
             'shortcode' => 'sociallocker',
             'plugin' => $sociallocker
         ); 

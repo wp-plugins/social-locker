@@ -19,13 +19,13 @@
         $alreadyActivated = get_option('onp_trial_activated_' . $sociallocker->pluginName, false);
 
         if ( $alreadyActivated ) {
-            $message = __('5 extra stunning themes, 8 social buttons, the blurring effect, advanced options, new features & updates every week, dedicated support and more.', 'optinpanda');
-            $header = __('Drive more traffic and build quality followers with Social Locker Premium!', 'optinpanda');
+            $message = __('5 extra stunning themes, 8 social buttons, the blurring effect, advanced options, new features & updates every week, dedicated support and more.', 'plugin-sociallocker');
+            $header = __('Drive more traffic and build quality followers with Social Locker Premium!', 'plugin-sociallocker');
             $url = onp_licensing_325_get_purchase_url( $sociallocker );
 
         } else {
-            $message = __('5 extra stunning themes, 8 social buttons, the blurring effect, advanced options, new features & updates every week, dedicated support and more. Drive more traffic and build quality followers with Social Locker Premium!', 'optinpanda');
-            $header = __('Try the premium version for 7 days for free!', 'optinpanda');
+            $message = __('5 extra stunning themes, 8 social buttons, the blurring effect, advanced options, new features & updates every week, dedicated support and more. Drive more traffic and build quality followers with Social Locker Premium!', 'plugin-sociallocker');
+            $header = __('Try the premium version for 7 days for free!', 'plugin-sociallocker');
             $url = onp_licensing_325_manager_link($sociallocker->pluginName, 'activateTrial', false);
         }
 
@@ -53,12 +53,12 @@
                         // buttons and links
                         'buttons'   => array(
                             array(
-                                'title'     => '<i class="fa fa-arrow-circle-o-up"></i> ' . __('Activate Premium', 'optinpanda'),
+                                'title'     => '<i class="fa fa-arrow-circle-o-up"></i> ' . __('Activate Premium', 'plugin-sociallocker'),
                                 'class'     => 'button button-primary',
                                 'action'    => $url
                             ),
                             array(
-                                'title'     => __('No, thanks, not now', 'optinpanda'),
+                                'title'     => __('No, thanks, not now', 'plugin-sociallocker'),
                                 'class'     => 'button',
                                 'action'    => 'x'
                             )
@@ -80,12 +80,12 @@
                         // buttons and links
                         'buttons'   => array(
                             array(
-                                'title'     => '<i class="fa fa-arrow-circle-o-up"></i> ' . __('Learn More & Upgrade', 'optinpanda'),
+                                'title'     => '<i class="fa fa-arrow-circle-o-up"></i> ' . __('Learn More & Upgrade', 'plugin-sociallocker'),
                                 'class'     => 'button button-primary',
                                 'action'    => $url
                             ),
                             array(
-                                'title'     => __('No, thanks, not now', 'optinpanda'),
+                                'title'     => __('No, thanks, not now', 'plugin-sociallocker'),
                                 'class'     => 'button',
                                 'action'    => 'x'
                             )
@@ -308,39 +308,39 @@
 
             switch( $level['metric'] ) {
                 case 'unlock-via-facebook-like':
-                    $units = __( 'likes', 'sociallocker' );
+                    $units = __( 'likes', 'plugin-sociallocker' );
                     $where = 'on Facebook';
                     break;
                 case 'unlock-via-facebook-share':
-                    $units = __( 'shares', 'sociallocker' );
+                    $units = __( 'shares', 'plugin-sociallocker' );
                     $where = 'on Facebook';
                     break;
                 case 'unlock-via-twitter-tweets':
-                    $units = __( 'tweets', 'sociallocker' );
+                    $units = __( 'tweets', 'plugin-sociallocker' );
                     $where = 'on Twitter';
                     break;
                 case 'unlock-via-twitter-followers':
-                    $units = __( 'followers', 'sociallocker' );
+                    $units = __( 'followers', 'plugin-sociallocker' );
                     $where = 'on Twitter';
                     break;
                 case 'unlock-via-linkedin-share':
-                    $units = __( 'shares', 'sociallocker' );
+                    $units = __( 'shares', 'plugin-sociallocker' );
                     $where = 'on Linkedin';
                     break;
                 case 'unlock-via-google-plus':
-                    $units = __( 'pluses', 'sociallocker' );
+                    $units = __( 'pluses', 'plugin-sociallocker' );
                     $where = 'on Google';
                     break;
                 case 'email-received':
-                    $units = __( 'emails', 'sociallocker' );
+                    $units = __( 'emails', 'plugin-sociallocker' );
                     $where = 'collected';
                     break;
             }
 
             if ( 'email-received' == $level['metric'] ) {
-                $description = sprintf( __('Congrats! You collected more %s emails via <strong>Social Locker</strong>.', 'sociallocker'), $value, $units );
+                $description = sprintf( __('Congrats! You collected more %s emails via <strong>Social Locker</strong>.', 'plugin-sociallocker'), $value, $units );
             } else {
-                $description = sprintf( __('Congrats! You gained more %s %s via <strong>Social Locker</strong>.', 'sociallocker'), $value, $units );
+                $description = sprintf( __('Congrats! You gained more %s %s via <strong>Social Locker</strong>.', 'plugin-sociallocker'), $value, $units );
             }
 
             $premiumUrl = onp_sl_get_premium_url('achievements');
@@ -348,30 +348,30 @@
             ?>
             <div>
                 <div class="onp-sl-achievement onp-sl-<?php echo $level['metric'] ?>">
-                    <span class="onp-sl-count"><?php _e('+', 'sociallocker') ?><?php echo $value ?></span>
+                    <span class="onp-sl-count"><?php _e('+', 'plugin-sociallocker') ?><?php echo $value ?></span>
                     <span class="onp-sl-count-explanation">
                         <span class="onp-sl-units"><?php echo $units ?></span><br/>
                         <span class="onp-sl-where"><?php echo $where ?></span>  
                     </span>
-                    <span class="onp-sl-exclamation"><?php _e('!', 'sociallocker') ?></span>  
+                    <span class="onp-sl-exclamation"><?php _e('!', 'plugin-sociallocker') ?></span>  
                 </div>
 
                 <?php if ( 'review' == $action ) { ?>
 
                 <div class="onp-sl-text">
                     <p><?php echo $description ?></p>
-                    <p><?php _e('Please do us a BIG favor, give the plugin a 5-star rating on wordpress.org.', 'sociallocker') ?></p>  
+                    <p><?php _e('Please do us a BIG favor, give the plugin a 5-star rating on wordpress.org.', 'plugin-sociallocker') ?></p>  
                 </div>
 
                 <div class="onp-sl-buttons">
                     <a href='https://wordpress.org/support/view/plugin-reviews/social-locker?filter=5' target="_blank" class='onp-sl-button onp-sl-button-primary' data-achievement-value="<?php echo $level['value'] ?>">
-                        <i class='fa fa-star'></i><?php _e('Sure, you deserved it!', 'sociallocker') ?>
+                        <i class='fa fa-star'></i><?php _e('Sure, you deserved it!', 'plugin-sociallocker') ?>
                     </a><br />
                     <a href='#' class='onp-sl-button-link' data-achievement-value="<?php echo $level['value'] ?>">
-                        <?php _e('I already did', 'sociallocker') ?>
+                        <?php _e('I already did', 'plugin-sociallocker') ?>
                     </a>   
                     <a href='#' class='onp-sl-button-link' data-achievement-value="<?php echo $level['value'] ?>">
-                        <?php _e('No, not good enough', 'sociallocker') ?>
+                        <?php _e('No, not good enough', 'plugin-sociallocker') ?>
                     </a>         
                 </div>
 
@@ -414,7 +414,7 @@
         $value = isset( $_REQUEST['achievementValue'] ) ? intval( $_REQUEST['achievementValue'] ) : null;  
 
         if ( empty( $type) || empty( $value ) ) {
-            echo json_encode(array('error' => __('Invalid request type.', 'sociallocker')));
+            echo json_encode(array('error' => __('Invalid request type.', 'plugin-sociallocker')));
             exit;
         }
 

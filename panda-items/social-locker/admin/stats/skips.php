@@ -10,11 +10,11 @@ class OPanda_SocialLocker_Skips_StatsTable extends OPanda_StatsTable {
                 'title' => ''
             ),
             'title' => array(
-                'title' => __('Post Title', 'opanda')
+                'title' => __('Post Title', 'sociallocker')
             ),
             'unlock' => array(
-                'title' => __('Number of Unlocks', 'opanda'),
-                'hint' => __('The number of unlocks made by visitors.', 'opanda'),
+                'title' => __('Number of Unlocks', 'sociallocker'),
+                'hint' => __('The number of unlocks made by visitors.', 'sociallocker'),
                 'highlight' => true,
                 'cssClass' => 'opanda-col-number'
             ),
@@ -42,7 +42,7 @@ class OPanda_SocialLocker_Skips_StatsChart extends OPanda_StatsChart {
                 'title' => __('Date')
             ),
             'unlock' => array(
-                'title' => __('Number of Unlocks', 'opanda'),
+                'title' => __('Number of Unlocks', 'sociallocker'),
                 'color' => '#0074a2'
             ),
             'skip-via-timer' => array(

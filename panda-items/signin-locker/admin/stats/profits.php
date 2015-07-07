@@ -9,11 +9,11 @@ class OPanda_SignInLocker_Profits_StatsTable extends OPanda_StatsTable {
                 'title' => ''
             ),
             'title' => array(
-                'title' => __('Post Title', 'opanda')
+                'title' => __('Post Title', 'signinlocker')
             ),
             'unlock' => array(
-                'title' => __('Unlocks', 'opanda'),
-                'hint' => __('The number of unlocks made by visitors.', 'opanda'),
+                'title' => __('Unlocks', 'signinlocker'),
+                'hint' => __('The number of unlocks made by visitors.', 'signinlocker'),
                 'highlight' => true,
                 'cssClass' => 'opanda-col-number'
             )
@@ -22,15 +22,15 @@ class OPanda_SignInLocker_Profits_StatsTable extends OPanda_StatsTable {
         if ( BizPanda::hasPlugin('optinpanda') ) {
             
             $columns['emails'] = array(
-                'title' => __('Emails', 'opanda'),
-                'hint' => __('The number of new emails added to the database. If the email exists in the database, this email will not be counted.', 'opanda'),
+                'title' => __('Emails', 'signinlocker'),
+                'hint' => __('The number of new emails added to the database. If the email exists in the database, this email will not be counted.', 'signinlocker'),
                 'cssClass' => 'opanda-col-number'
             );
         }
         
         $columns['account-registered'] = array(
-            'title' => __('Accounts', 'opanda'),
-            'hint' => __('The number of new accounts created for visitors.', 'opanda'),
+            'title' => __('Accounts', 'signinlocker'),
+            'hint' => __('The number of new accounts created for visitors.', 'signinlocker'),
             'cssClass' => 'opanda-col-number',
             'prefix' => '+'
         );
@@ -38,29 +38,29 @@ class OPanda_SignInLocker_Profits_StatsTable extends OPanda_StatsTable {
         if ( BizPanda::hasPlugin('sociallocker') ) {
             
             $columns['got-twitter-follower'] = array(
-                'title' => __('Twitter Followers', 'opanda'),
-                'hint' => __('The number of new followers attracted via the locker. If the user was a follower before, this user will not be counted.', 'opanda'),
+                'title' => __('Twitter Followers', 'signinlocker'),
+                'hint' => __('The number of new followers attracted via the locker. If the user was a follower before, this user will not be counted.', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'prefix' => '+'
             );
             
             $columns['tweet-posted'] = array(
-                'title' => __('Tweets', 'opanda'),
-                'hint' => __('The number of new tweets posted via the locker.', 'opanda'),
+                'title' => __('Tweets', 'signinlocker'),
+                'hint' => __('The number of new tweets posted via the locker.', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'prefix' => '+'
             );
             
             $columns['got-youtube-subscriber'] = array(
-                'title' => __('Youtube Subscribers', 'opanda'),
-                'hint' => __('The number of new subscribers attracted via the locker. If the user was a subscribers before, this user will not be counted.', 'opanda'),
+                'title' => __('Youtube Subscribers', 'signinlocker'),
+                'hint' => __('The number of new subscribers attracted via the locker. If the user was a subscribers before, this user will not be counted.', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'prefix' => '+'
             );
             
             $columns['got-linkedin-follower'] = array(
-                'title' => __('LinkedIn Followers', 'opanda'),
-                'hint' => __('The number of new followers attracted via the locker. If the user was a follower before, this user will not be counted.', 'opanda'),
+                'title' => __('LinkedIn Followers', 'signinlocker'),
+                'hint' => __('The number of new followers attracted via the locker. If the user was a follower before, this user will not be counted.', 'signinlocker'),
                 'cssClass' => 'opanda-col-number',
                 'prefix' => '+'
             );  
@@ -97,32 +97,32 @@ class OPanda_SignInLocker_Profits_StatsChart extends OPanda_StatsChart {
         if ( BizPanda::hasPlugin('optinpanda') ) {
             
             $fields['got-twitter-follower'] = array(
-                'title' => __('Emails', 'opanda'),
+                'title' => __('Emails', 'signinlocker'),
                 'color' => '#FFCC66'
             );
         }
         
         $fields['account-registered'] =  array(
-            'title' => __('Accounts', 'opanda'),
+            'title' => __('Accounts', 'signinlocker'),
             'color' => '#336699'
         );
         
         if ( BizPanda::hasPlugin('sociallocker') ) {
             
             $fields['got-twitter-follower'] = array(
-                'title' => __('Twitter Tweets', 'opanda'),
+                'title' => __('Twitter Tweets', 'signinlocker'),
                 'color' => '#3bb4ea'
             );
             $fields['tweet-posted'] = array(
-               'title' => __('Twitter Followers', 'opanda'),
+               'title' => __('Twitter Followers', 'signinlocker'),
                'color' => '#1e92c9'
             );
             $fields['got-youtube-subscriber'] = array(
-               'title' => __('Youtube Subscribers', 'opanda'),
+               'title' => __('Youtube Subscribers', 'signinlocker'),
                'color' => '#ba5145'
             );
             $fields['got-linkedin-follower'] = array(
-               'title' => __('LinkedIn Followers', 'opanda'),
+               'title' => __('LinkedIn Followers', 'signinlocker'),
                'color' => '#006080'
             );
         }

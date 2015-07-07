@@ -10,11 +10,11 @@ class OPanda_SignInLocker_Channels_StatsTable extends OPanda_StatsTable {
                 'title' => ''
             ),
             'title' => array(
-                'title' => __('Post Title', 'opanda')
+                'title' => __('Post Title', 'signinlocker')
             ),
             'unlock' => array(
-                'title' => __('Number of Unlocks', 'opanda'),
-                'hint' => __('The number of unlocks made by visitors.', 'opanda'),
+                'title' => __('Number of Unlocks', 'signinlocker'),
+                'hint' => __('The number of unlocks made by visitors.', 'signinlocker'),
                 'highlight' => true,
                 'cssClass' => 'opanda-col-number'
             ),

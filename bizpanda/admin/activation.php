@@ -116,6 +116,8 @@ class OPanda_Activation extends Factory325_Activator {
                 lead_id int(10) UNSIGNED NOT NULL,
                 field_name varchar(255) NOT NULL,
                 field_value text NOT NULL,
+                field_custom bit(1) NOT NULL DEFAULT b'0',
+                KEY IDX_wp_opanda_leads_fields_field_name (field_name),
                 UNIQUE KEY UK_wp_opanda_leads_fields (lead_id,field_name)
             );";
 

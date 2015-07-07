@@ -20,7 +20,11 @@ class OPanda_SignupHandler extends OPanda_Handler {
         
         $identityData = isset( $_POST['opandaIdentityData'] ) ? $_POST['opandaIdentityData'] : array();
         $identityData = $this->normilizeValues( $identityData );
-
+        
+        // prepares data received from custom fields to be transferred to the mailing service
+        
+        $identityData = $this->prepareDataToSave( null, null, $identityData );
+        
         do_action('opanda_lead_catched', $identityData, $contextData);
         
         if ( is_user_logged_in() ) {

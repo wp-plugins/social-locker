@@ -10,17 +10,17 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
         
         $this->columns->clear();
 
-        $this->columns->add('stats', __('<span title="Unlocks / Impressions / Conversion">U / I / %', 'optinpanda'));
-        $this->columns->add('title', __('Locker Title', 'optinpanda'));
+        $this->columns->add('stats', __('<span title="Unlocks / Impressions / Conversion">U / I / %', 'bizpanda'));
+        $this->columns->add('title', __('Locker Title', 'bizpanda'));
         
         if ( !BizPanda::isSinglePlugin() ) {
-            $this->columns->add('type', __('Type', 'optinpanda'));
+            $this->columns->add('type', __('Type', 'bizpanda'));
         }
         
-        $this->columns->add('shortcode', __('Shortcode', 'optinpanda')); 
-        $this->columns->add('bulk', __('Bulk Lock', 'optinpanda'));   
-        $this->columns->add('theme', __('Theme', 'optinpanda'));
-        $this->columns->add('created', __('Created', 'optinpanda'));
+        $this->columns->add('shortcode', __('Shortcode', 'bizpanda')); 
+        $this->columns->add('bulk', __('Bulk Lock', 'bizpanda'));   
+        $this->columns->add('theme', __('Theme', 'bizpanda'));
+        $this->columns->add('created', __('Created', 'bizpanda'));
         
         /**
          * Scripts & styles

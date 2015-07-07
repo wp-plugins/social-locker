@@ -4,8 +4,8 @@ class OPanda_LeadsListTable extends WP_List_Table
 {
     public function __construct( $options = array() ) {
         
-        $options['singular'] = __( 'Lead', 'opanda' );
-        $options['plural'] = __( 'Leads', 'opanda' );
+        $options['singular'] = __( 'Lead', 'bizpanda' );
+        $options['plural'] = __( 'Leads', 'bizpanda' );
         $options['ajax'] = false;
         
         parent::__construct( $options );
@@ -22,19 +22,19 @@ class OPanda_LeadsListTable extends WP_List_Table
         
         $items = array(
             'view-all' => array(
-                'title' => __('All', 'opanda'),
+                'title' => __('All', 'bizpanda'),
                 'link' => $link,
                 'count' => array_sum($counts),
                 'current' => $currentStatus == 'all'
             ),
             'view-confirmed' => array(
-                'title' => __('Confirmed', 'opanda'),
+                'title' => __('Confirmed', 'bizpanda'),
                 'link' => add_query_arg( 'opanda_status', 'confirmed', $link ),
                 'count' => $counts['confirmed'],
                 'current' => $currentStatus == 'confirmed'
             ),
             'view-not-confirmed' => array(
-                'title' => __('Not Confirmed', 'opanda'),
+                'title' => __('Not Confirmed', 'bizpanda'),
                 'link' => add_query_arg( 'opanda_status', 'not-confirmed', $link ),
                 'count' => $counts['not-confirmed'],
                 'current' => $currentStatus == 'not-confirmed'
@@ -50,7 +50,7 @@ class OPanda_LeadsListTable extends WP_List_Table
     }
     
     public function no_items() {
-        echo __( 'No leads found. ', 'opanda');
+        echo __( 'No leads found. ', 'bizpanda');
         
         $view = isset( $_GET['opanda_status'] ) ? $_GET['opanda_status'] : 'all';
         if ( 'all' !== $view ) return;
@@ -96,10 +96,10 @@ class OPanda_LeadsListTable extends WP_List_Table
             
            'cb' => '<input type="checkbox" />',
            'avatar' => '',
-           'name' => __('Name', 'optinpanda'),
-           'channel' => __('Channel', 'optinpanda'),
-           'added' => __('Added', 'optinpanda'),
-           'status' => __('Status', 'optinpanda'),
+           'name' => __('Name', 'bizpanda'),
+           'channel' => __('Channel', 'bizpanda'),
+           'added' => __('Added', 'bizpanda'),
+           'status' => __('Status', 'bizpanda'),
         );
     }
     
@@ -259,10 +259,10 @@ class OPanda_LeadsListTable extends WP_List_Table
      */
     public function column_avatar($record) {
         
-        $url = OPanda_Leads::getSocialUrl( $record->ID );
+        $url = admin_url('/edit.php?post_type=opanda-item&page=leads-bizpanda&action=leadDetails&leadID=' . $record->ID);
         $avatar = '';
         
-        if ( !empty( $url ) ) $avatar .= '<a href="' .$url . '" target="_blank" class="opanda-avatar">';
+        if ( !empty( $url ) ) $avatar .= '<a href="' .$url . '" class="opanda-avatar">';
         else $avatar .= '<span class="opanda-avatar">';
         
         $avatar .= OPanda_Leads::getAvatar( $record->ID, $record->lead_email, 40 );
@@ -282,10 +282,10 @@ class OPanda_LeadsListTable extends WP_List_Table
     public function column_name($record) {
         
         $name = '';
+
+        $url = admin_url('/edit.php?post_type=opanda-item&page=leads-bizpanda&action=leadDetails&leadID=' . $record->ID);
         
-        $url = OPanda_Leads::getSocialUrl( $record->ID );
-        
-        if ( !empty( $url ) ) $name .= '<a href="' . $url . '" target="_blank" class="opanda-name">';
+        if ( !empty( $url ) ) $name .= '<a href="' . $url . '" class="opanda-name">';
         else $name .= '<strong class="opanda-name">';
         
         if ( !empty( $record->lead_display_name ) ) {
@@ -299,25 +299,25 @@ class OPanda_LeadsListTable extends WP_List_Table
         
         /**
         Social Icons
-         * 
+         */ 
         $fields = OPanda_Leads::getLeadFields( $record->ID  );
         
-        if ( true || isset( $fields['facebookUrl'] ) ) {
-            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon"><i class="fa fa-facebook"></i></a>', $fields['facebookUrl'] );
+        if ( isset( $fields['facebookUrl'] ) ) {
+            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon opanda-facebook-icon"><i class="fa fa-facebook"></i></a>', $fields['facebookUrl'] );
         } 
         
-        if ( true || isset( $fields['twitterUrl'] ) ) {
-            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon"><i class="fa fa-twitter"></i></a>', $fields['twitterUrl'] );
+        if ( isset( $fields['twitterUrl'] ) ) {
+            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon opanda-twitter-icon"><i class="fa fa-twitter"></i></a>', $fields['twitterUrl'] );
         } 
         
-        if ( true || isset( $fields['googleUrl'] ) ) {
-            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon"><i class="fa fa-google-plus"></i></a>', $fields['googleUrl'] );
+        if ( isset( $fields['googleUrl'] ) ) {
+            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon opanda-google-icon"><i class="fa fa-google-plus"></i></a>', $fields['googleUrl'] );
         } 
         
-        if ( true || isset( $fields['linkedinUrl'] ) ) {
-            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon"><i class="fa fa-linkedin"></i></a>', $fields['linkedinUrl'] );
+        if ( isset( $fields['linkedinUrl'] ) ) {
+            $name .= sprintf( '<a href="%s" target="_blank" class="opanda-social-icon opanda-linkedin-icon"><i class="fa fa-linkedin"></i></a>', $fields['linkedinUrl'] );
         } 
-         */
+         /**/
         
         if ( !empty( $record->lead_display_name ) ) {
             $name .= '<br />' . $record->lead_email;
@@ -340,14 +340,14 @@ class OPanda_LeadsListTable extends WP_List_Table
         $item = get_post( $itemId );
 
         $itemTitle = empty( $item )
-            ? '<i>' . __('(unknown)', 'opanda') . '</i>'
+            ? '<i>' . __('(unknown)', 'bizpanda') . '</i>'
             : $item->post_title;
         
         $via = empty( $item )
              ? $itemTitle
              : '<a href="' . opanda_get_admin_url('stats', array('opanda_id' => $itemId)) . '"><strong>' . $itemTitle. '</strong></a>';
  
-        $via = sprintf( __("Via: %s", 'opanda'), $via );
+        $via = sprintf( __("Via: %s", 'bizpanda'), $via );
         
         $postUrl = $record->lead_referer;
         $postTitle = $record->lead_post_title;
@@ -359,9 +359,9 @@ class OPanda_LeadsListTable extends WP_List_Table
             $postTitle = $post->post_title;
         }
         
-        if ( empty( $postTitle) ) $postTitle = '<i>' . __('(no title)', 'optinpanda') . '</i>';
+        if ( empty( $postTitle) ) $postTitle = '<i>' . __('(no title)', 'bizpanda') . '</i>';
         $referer = '<a href="' . $postUrl . '"><strong>' . $postTitle . '</strong></a>';
-        $where = sprintf( __("On Page: %s", 'opanda'), $referer );
+        $where = sprintf( __("On Page: %s", 'bizpanda'), $referer );
         
         $text = $via . '<br />' . $where;
         echo $text;
@@ -389,11 +389,11 @@ class OPanda_LeadsListTable extends WP_List_Table
         if ( BizPanda::hasPlugin('optinpanda') ) {
             
             if ( $record->lead_email_confirmed) { ?>
-                <span class="opanda-status-help" title="<?php _e('This email is real. It was received from social networks or the user confirmed it by clicking on the link inside the confirmation email.', 'opanda') ?>">
+                <span class="opanda-status-help" title="<?php _e('This email is real. It was received from social networks or the user confirmed it by clicking on the link inside the confirmation email.', 'bizpanda') ?>">
                     <i class="fa fa-check-circle-o"></i><i><?php _e('email', 'optinapnda') ?></i>
                 </span>
             <?php } else { ?>
-                <span class="opanda-status-help" title="<?php _e('This email was not confirmed. It means that actually this email address may be owned by another user.', 'opanda') ?>">
+                <span class="opanda-status-help" title="<?php _e('This email was not confirmed. It means that actually this email address may be owned by another user.', 'bizpanda') ?>">
                     <i class="fa fa-circle-o"></i><i><?php _e('email', 'optinapnda') ?></i>
                 </span>
             <?php }
@@ -401,11 +401,11 @@ class OPanda_LeadsListTable extends WP_List_Table
             echo '<br />'; 
             
             if ( $record->lead_subscription_confirmed) { ?>
-                <span class="opanda-status-help" title="<?php _e('This user confirmed his subscription.', 'opanda') ?>">
+                <span class="opanda-status-help" title="<?php _e('This user confirmed his subscription.', 'bizpanda') ?>">
                     <i class="fa fa-check-circle-o"></i><i><?php _e('subscription', 'optinapnda') ?></i>
                 </span>
             <?php } else { ?>
-                <span class="opanda-status-help" title="<?php _e('This user has not confirmed his subscription.', 'opanda') ?>">
+                <span class="opanda-status-help" title="<?php _e('This user has not confirmed his subscription.', 'bizpanda') ?>">
                     <i class="fa fa-circle-o"></i><i><?php _e('subscription', 'optinapnda') ?></i>
                 </span>
             <?php }
@@ -413,11 +413,11 @@ class OPanda_LeadsListTable extends WP_List_Table
         } else {
             
             if ( $record->lead_email_confirmed) { ?>
-                <span class="opanda-status-help" title="<?php _e('This email is real. It was received from social networks.', 'opanda') ?>">
+                <span class="opanda-status-help" title="<?php _e('This email is real. It was received from social networks.', 'bizpanda') ?>">
                     <i class="fa fa-check-circle-o"></i><i><?php _e('email', 'optinapnda') ?></i>
                 </span>
             <?php } else { ?>
-                <span class="opanda-status-help" title="<?php _e('This email was not confirmed. It means that actually this email address may be owned by another user.', 'opanda') ?>">
+                <span class="opanda-status-help" title="<?php _e('This email was not confirmed. It means that actually this email address may be owned by another user.', 'bizpanda') ?>">
                     <i class="fa fa-circle-o"></i><i><?php _e('email', 'optinapnda') ?></i>
                 </span>
             <?php }

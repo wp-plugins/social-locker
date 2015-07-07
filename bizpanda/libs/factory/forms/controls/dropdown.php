@@ -75,8 +75,9 @@ class FactoryForms328_DropdownControl extends FactoryForms328_Control
             $ajaxId = 'factory-dropdown-' . rand(1000000, 9999999);
             
             $value = $this->getValue();
-            if ( empty( $value ) || empty( $value[0] )) $value = null;
-                    
+
+            if ( empty( $value ) || ( is_array( $value) && empty( $value[0] ) ) ) $value = null;
+
             ?>
             <div class="factory-ajax-loader <?php echo $ajaxId . '-loader'; ?>"></div>
             <script>

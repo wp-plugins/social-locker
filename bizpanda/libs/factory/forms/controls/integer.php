@@ -7,8 +7,8 @@
  *  checkbox     => Указывается если, 'way' имеет значение 'checkbox-slider'
  *                  Пример:
  *                      array(
- *                          'on'  => __('Show shadow', 'optinpanda'),
- *                          'off' => __('Hide shadow', 'optinpanda'),
+ *                          'on'  => __('Show shadow', 'bizpanda'),
+ *                          'off' => __('Hide shadow', 'bizpanda'),
  *                      )
  *  title        => Заголовок контрола
  *  slider-title => Заголовок слайдера( Только если 'way' имеет значение 'checkbox-slider' )

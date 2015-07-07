@@ -220,7 +220,7 @@ class OPanda_StatsTable {
     } 
     
     public function columnTitle( $row ) {
-        $title = !empty( $row['title'] ) ? $row['title'] : '<i>' . __('(untitled post)', 'opanda') . '</i>';
+        $title = !empty( $row['title'] ) ? $row['title'] : '<i>' . __('(untitled post)', 'bizpanda') . '</i>';
         
         if ( !empty( $row['id'] ) ) {
             echo '<a href="' . get_permalink( $row['id'] ) . '" target="_blank">' . $title . ' </a>';

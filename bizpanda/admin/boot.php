@@ -45,6 +45,7 @@ if ( isset( $_REQUEST['action'] ) ) {
             break;      
         case 'opanda_connect':
         case 'opanda_get_subscrtiption_lists':
+        case 'opanda_get_custom_fields':            
             require OPANDA_BIZPANDA_DIR . '/admin/ajax/proxy.php';
             break;      
         case 'opanda_loader':

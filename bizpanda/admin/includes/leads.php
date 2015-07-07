@@ -56,11 +56,12 @@ class OPanda_Leads {
                 $displayName = $family;
             }
         }
-        
+
         $leadId = empty( $lead ) ? null : $lead->ID;
 
         // counts the number of confirmed emails (subscription)
         if ( $subscriptionConfirmed && $leadId && !$lead->lead_subscription_confirmed ) {
+            require_once OPANDA_BIZPANDA_DIR . '/admin/includes/stats.php';
             OPanda_Stats::countMetrict( $itemId, $postId, 'email-confirmed');
         }
             
@@ -149,38 +150,69 @@ class OPanda_Leads {
 
         $fields = array();
 
-        if ( isset( $identity['facebookUrl'] ) ) {
-            $fields['facebookUrl'] = $identity['facebookUrl'];
+        foreach( $identity as $itemName => $itemValue ) {
+            if ( in_array( $itemName, array( 'email', 'name', 'family', 'displayName' ) ) ) continue;
+            if ( 'image' === $itemName ) $itemName = 'externalImage';
+            $fields[trim( $itemName, '{}') ] = array('value' => $itemValue, 'custom' => ( strpos($itemName, '{') === 0 )  ? 1 : 0 );
         }
 
-        if ( isset( $identity['twitterUrl'] ) ) {
-            $fields['twitterUrl'] = $identity['twitterUrl'];
-        }
-
-        if ( isset( $identity['googleUrl'] ) ) {
-            $fields['googleUrl'] = $identity['googleUrl'];
-        }
-
-        if ( isset( $identity['linkedinUrl'] ) ) {
-            $fields['linkedinUrl'] = $identity['linkedinUrl'];
-        }
-
-        if ( isset( $identity['image'] ) ) {
-            $fields['externalImage'] = $identity['image'];
-        }  
-
-        foreach( $fields as $fieldName => $fieldValue ) {
+        foreach( $fields as $fieldName => $fieldData ) {
             
             $sql = $wpdb->prepare("
-                INSERT IGNORE INTO {$wpdb->prefix}opanda_leads_fields
-                ( lead_id, field_name, field_value )
-                VALUES ( %d, %s, %s )
-            ", $leadId, $fieldName, $fieldValue );
+                INSERT INTO {$wpdb->prefix}opanda_leads_fields
+                ( lead_id, field_name, field_value, field_custom )
+                VALUES ( %d, %s, %s, %d ) ON DUPLICATE KEY UPDATE field_value = VALUES(field_value)
+            ", $leadId, $fieldName, $fieldData['value'], $fieldData['custom'] );
 
             $wpdb->query( $sql );
         }
         
         return $leadId;
+    }
+    
+    private static $_leads = array();
+    
+    /**
+     * Returns a lead.
+     */
+    public static function get( $leadId ) {
+        if ( isset( self::$_leads[$leadId] ) ) return self::$_leads[$leadId];
+        
+        global $wpdb; 
+        $lead = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}opanda_leads WHERE ID = %d", $leadId ) );  
+        
+        self::$_leads[$leadId] = $lead;
+        return $lead;
+    }
+    
+    /**
+     * Returns custom fields
+     */
+    public static function getCustomFields( $leadId = null ) {
+        
+        if ( !empty( $leadId )) {
+        
+            global $wpdb; 
+            $data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}opanda_leads_fields WHERE lead_id = %d AND field_custom = 1", $leadId ), ARRAY_A );
+
+            $customFields = array();
+            foreach( $data as $item ) {
+
+                $name = $item['field_name'];
+                if ( strpos( $name, '_' ) === 0 ) continue;
+                $customFields[$item['field_name']] = $item['field_value'];
+
+                $fields[$name] = strip_tags( $item['field_value'] );
+            }
+            
+            return $customFields;
+        
+        } else {
+            
+            global $wpdb; 
+            $fields = $wpdb->get_results( "SELECT field_name FROM {$wpdb->prefix}opanda_leads_fields WHERE field_custom = 1 GROUP BY field_name" );
+            return $fields;
+        }
     }
     
     private static $_fields = array();
@@ -197,8 +229,9 @@ class OPanda_Leads {
         
         global $wpdb; 
         $data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}opanda_leads_fields WHERE lead_id = %d", $leadId ), ARRAY_A );
-    
+        
         $fields = array();
+
         foreach( $data as $item ) {
             $fields[$item['field_name']] = $item['field_value'];
         }
@@ -280,15 +313,17 @@ class OPanda_Leads {
      * @return string
      */
     public static function getAvatarUrl( $leadId, $email = null, $size = 40 ) {
-        
+
         $imageSource = OPanda_Leads::getLeadField( $leadId, 'externalImage', null );
         $image = OPanda_Leads::getLeadField( $leadId, '_image' . $size, null );
         
         // getting an avatar from cache
         
         if ( !empty( $image ) ) {
-            $path = ABSPATH . '/wp-content/uploads/bizpanda/avatars/' . $image;
-            $url = site_url( '/wp-content/uploads/bizpanda/avatars/' . $image );
+            $upload_dir = wp_upload_dir(); 
+     
+            $path = $upload_dir['path'] . '/bizpanda/avatars/' . $image;
+            $url = $upload_dir['url'] . '/bizpanda/avatars/' . $image;
 
             if ( file_exists( $path ) ) return $url;
             self::removeLeadField($leadId, '_image' . $size);
@@ -302,7 +337,7 @@ class OPanda_Leads {
         
         // else return a gravatar
         
-        $gravatar = get_avatar( $email, 40 );
+        $gravatar = get_avatar( $email, $size );
         if ( preg_match('/https?\:\/\/[^\'"]+/i', $gravatar, $match) ) {
             return $match[0];
         }
@@ -318,12 +353,12 @@ class OPanda_Leads {
      * @param int $size A size of the avatar (px).
      * @return string HTML
      */
-    public static function getAvatar( $leadId, $size = 40 ) {
+    public static function getAvatar( $leadId, $email = null, $size = 40 ) {
         
-        $url = self::getAvatarUrl( $leadId, $size );
+        $url = self::getAvatarUrl( $leadId, $email, $size );
         if ( empty( $url ) ) return null;
         
-        $alt = __('User Avatar', 'opanda');
+        $alt = __('User Avatar', 'bizpanda');
         return "<img src='$url' width='$size' height='$size' alt='$alt' />";
     }
     

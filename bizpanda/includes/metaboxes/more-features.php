@@ -54,7 +54,7 @@ class OPanda_MoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
     public function __construct( $plugin ) {
         parent::__construct( $plugin );
         
-        $this->title = __('More Features?', 'optinpanda');
+        $this->title = __('More Features?', 'bizpanda');
     }
     
     public function configure( $scripts, $styles ){
@@ -79,12 +79,12 @@ class OPanda_MoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
         <div class="factory-bootstrap-329 factory-fontawesome-320">
             
         <div class="sl-header">
-            <strong><?php _e('More Features?', 'optinpanda'); ?></strong>
-            <p><?php _e('You Use Only 30% of Opt-In Panda!', 'optinpanda'); ?></p>
+            <strong><?php _e('More Features?', 'bizpanda'); ?></strong>
+            <p><?php _e('You Use Only 30% of Opt-In Panda!', 'bizpanda'); ?></p>
             <?php if ( FACTORY_FLAT_ADMIN ) { ?>
             <div class="progress progress-striped">
               <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-                <span class="sr-only"><?php _e('30% Complete', 'optinpanda'); ?></span>
+                <span class="sr-only"><?php _e('30% Complete', 'bizpanda'); ?></span>
               </div>
             </div>
             <?php } else { ?>
@@ -96,10 +96,10 @@ class OPanda_MoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
         <div class="sl-seporator"></div>
         <?php ?>
         <ul>
-            <li><span data-target="demo-social-options"><?php _e('More Social Buttons (+4)', 'optinpanda'); ?></span></li>
-            <li><span data-target="demo-themes"><?php _e('More themes (+4)', 'optinpanda'); ?></span></li>
-            <li><span data-target="demo-blurring-effect"><?php _e('Blurring Effect', 'optinpanda'); ?></span></li>
-            <li><span data-target="demo-advanced-options"><?php _e('Advanced options (+8)', 'optinpanda'); ?></span></li>
+            <li><span data-target="demo-social-options"><?php _e('More Social Buttons (+4)', 'bizpanda'); ?></span></li>
+            <li><span data-target="demo-themes"><?php _e('More themes (+4)', 'bizpanda'); ?></span></li>
+            <li><span data-target="demo-blurring-effect"><?php _e('Blurring Effect', 'bizpanda'); ?></span></li>
+            <li><span data-target="demo-advanced-options"><?php _e('Advanced options (+8)', 'bizpanda'); ?></span></li>
         </ul>
         <?php 
  ?>
@@ -107,11 +107,11 @@ class OPanda_MoreFeaturesMetaBox extends FactoryMetaboxes321_Metabox
 
         <?php if ( !$alreadyActivated ) { ?>
             <div class="sl-footer">
-                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'optinpanda'), onp_licensing_325_manager_link($optinpanda->pluginName, 'activateTrial', false), onp_licensing_325_get_purchase_url( $optinpanda )); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Try 7-days Trial Version<br /><span>(activate by one click)</span></a><a href="%s" class="sl-buy"> or <strong>buy</strong> the full premium version now!</a>', 'bizpanda'), onp_licensing_325_manager_link($optinpanda->pluginName, 'activateTrial', false), onp_licensing_325_get_purchase_url( $optinpanda )); ?>
             </div>
         <?php } else { ?>
             <div class="sl-footer">
-                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'optinpanda'), onp_licensing_325_get_purchase_url( $optinpanda ), onp_licensing_325_manager_link($optinpanda->pluginName, 'activateTrial', false)); ?>
+                <?php echo sprintf(__('<a href="%s" class="btn btn-primary btn-large">Get Premium for $24<br /><span>(it will take a pair of minutes)</span></a>', 'bizpanda'), onp_licensing_325_get_purchase_url( $optinpanda ), onp_licensing_325_manager_link($optinpanda->pluginName, 'activateTrial', false)); ?>
             </div>
         <?php } ?>
         
