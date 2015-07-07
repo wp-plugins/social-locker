@@ -48,9 +48,4 @@ require(OPANDA_BIZPANDA_DIR . '/includes/post-types.php');
 require(OPANDA_BIZPANDA_DIR . '/includes/shortcodes.php');
 #endcomp
 
-add_action('after_setup_theme', 'my_theme_setup');
-function my_theme_setup(){
-    load_theme_textdomain('my_theme', get_template_directory() . '/languages');
-}
-
 if ( is_admin() ) require( OPANDA_BIZPANDA_DIR . '/admin/boot.php' );

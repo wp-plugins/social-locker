@@ -86,7 +86,8 @@ abstract class FactoryViewtables320_Viewtable {
         $postfix = strtoupper(substr($column, 0, 1)) . substr($column, 1, strlen($column));
         $functionName = 'column' . $postfix;
         $fullMode = ( isset( $_GET['mode'] ) && $_GET['mode'] == 'excerpt' );
-
+        
+        if ( !method_exists($this, $functionName) ) return false;
         call_user_func(array($this, $functionName), $post, $fullMode);   
     }
     
