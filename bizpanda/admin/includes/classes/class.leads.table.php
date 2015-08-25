@@ -70,16 +70,24 @@ class OPanda_LeadsListTable extends WP_List_Table
 
     public function search_box($text, $input_id) {
         if( !count($this->items) && !isset($_GET['s']) ) return;
-
+        
+        $postType = isset( $_GET['post_type'] ) ? htmlspecialchars( $_GET['post_type'] ) : ''; 
+        $page = isset( $_GET['page'] ) ? htmlspecialchars( $_GET['page'] ) : '';
+        
+        $currentStatus = isset( $_GET['opanda_status'] ) ? htmlspecialchars( $_GET['opanda_status'] ) : 'all';
+        if ( !in_array( $currentStatus, array('all', 'confirmed', 'not-confirmed') ) ) $currentStatus = 'all';
+        
+        $s = isset( $_GET['s'] ) ? htmlspecialchars( $_GET['s'] ) : '';
+        
         ?>
             <form id="searchform" action method="GET">
-            <?php if(isset($_GET['post_type'])) : ?><input type="hidden" name="post_type" value="<?php echo $_GET['post_type'] ?>"><?php endif; ?>
-            <?php if(isset($_GET['page'])) : ?><input type="hidden" name="page" value="<?php echo $_GET['page'] ?>"><?php endif; ?>
-            <?php if(isset($_GET['opanda_status'])) : ?><input type="hidden" name="opanda_status" value="<?php echo $_GET['opanda_status'] ?>"><?php endif; ?>
+            <?php if(isset($_GET['post_type'])) : ?><input type="hidden" name="post_type" value="<?php echo $postType ?>"><?php endif; ?>
+            <?php if(isset($_GET['page'])) : ?><input type="hidden" name="page" value="<?php echo $page ?>"><?php endif; ?>
+            <?php if(isset($_GET['opanda_status'])) : ?><input type="hidden" name="opanda_status" value="<?php echo $currentStatus ?>"><?php endif; ?>
 
             <p class="search-box">
                 <label class="screen-reader-text" for="sa-search-input"><?php echo $text; ?></label>
-                <input type="search" id="<?php echo $input_id ?>" name="s" value="<?php if(isset($_GET['s'])) echo $_GET['s']?>">
+                <input type="search" id="<?php echo $input_id ?>" name="s" value="<?php echo $s ?>">
                 <input type="submit" name="" id="search-submit" class="button" value="<?php echo $text; ?>">
             </p>
             </form>

@@ -8,7 +8,6 @@
             this.social.init();
             this.subscription.init();
             this.lock.init();
-            this.advanced.init();
             this.text.init();    
         },
         
@@ -96,22 +95,6 @@
         /** ---
          * Advanced Options
          */
-        
-        advanced: {
-            
-            init: function() {
-                
-                $("#opanda_dynamic_theme").change(function(){
-                    var isYes = $(this).is(":checked");
-
-                    if ( isYes ) {
-                        $("#onp-dynamic-theme-options").fadeIn();
-                    } else {
-                        $("#onp-dynamic-theme-options").hide();  
-                    }
-                }).change();
-            }
-        },
         
         text: {
             

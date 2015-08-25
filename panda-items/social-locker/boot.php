@@ -97,7 +97,7 @@ function opanda_social_locker_options( $options, $id ) {
             $options['overlap']['mode'] = 'transparence';
         }   
         
-        if ( !in_array( $options['theme'] , array('default', 'secrets')) ) {
+        if ( !in_array( $options['theme'] , array('starter', 'secrets')) ) {
             $options['theme'] = 'secrets';
         }
       
@@ -167,7 +167,7 @@ class OPanda_SocialLockerShortcode extends OPanda_LockerShortcode {
      * @var string
      */
     public $shortcodeName = array( 
-        'sociallocker', 'sociallocker-1', 'sociallocker-2', 'sociallocker-3', 'sociallocker-4', 'sociallocker-bulk'
+        'sociallocker', 'sociallocker-1', 'sociallocker-2', 'sociallocker-3', 'sociallocker-4'
     );
     
     protected function getDefaultId() {

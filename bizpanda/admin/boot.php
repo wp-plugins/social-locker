@@ -56,6 +56,8 @@ if ( isset( $_REQUEST['action'] ) ) {
             break;
         case 'get_opanda_lockers':
             require OPANDA_BIZPANDA_DIR . '/admin/ajax/tinymce.php';
+        case 'bp_ajax_get_user_roles':
+            require OPANDA_BIZPANDA_DIR . '/admin/ajax/visibility.php';            
     }
 }
 

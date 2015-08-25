@@ -221,6 +221,45 @@
  * Visability Options
  */
 
+/* Options Switcher */
+
+#OPanda_VisabilityOptionsMetaBox .inside,
+#OPanda_VisabilityOptionsMetaBox .factory-form-metabox {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+#OPanda_VisabilityOptionsMetaBox .bp-options-switcher {
+    background-color: #f9f9f9;
+    position: relative;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 100%;
+    margin-left: -22px;
+    padding: 15px 22px 12px 22px;
+    overflow: auto;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 24px;
+}
+#OPanda_VisabilityOptionsMetaBox .bp-label {
+    padding-top: 4px;
+    display: inline-block;
+    position: relative;
+}
+#OPanda_VisabilityOptionsMetaBox .bp-swither-ctrl {
+    border: 0px;
+    float: right;
+    position: relative;
+    margin-right: -7px;
+}
+#OPanda_VisabilityOptionsMetaBox .bp-swither-ctrl .btn {
+    padding: 3px 10px;
+}
+
+#bp-simple-visibility-options,
+#bp-advanced-visibility-options {
+    display: none;
+}
+
 #OPanda_VisabilityOptionsMetaBox #onp-sl-lock-delay-options label,
 #OPanda_VisabilityOptionsMetaBox #onp-sl-relock-options label {
     margin-bottom: 10px;
@@ -245,6 +284,266 @@
 #OPanda_VisabilityOptionsMetaBox .onp-sl-visibility-options-disabled .alert {
     margin-bottom: 0px;
 }
+
+#OPanda_VisabilityOptionsMetaBox .bp-template {
+    display: none;
+}
+
+#OPanda_VisabilityOptionsMetaBox .bp-advanded-options input {
+    float: none;
+    position: relative;
+    top: 0;
+    padding: 4px;
+}
+
+#bp-advanced-visability-options .modal-dialog {
+    width: 1000px;
+}
+
+/* visability filters :: head */
+
+.bp-advanded-options .bp-head {
+    overflow: auto;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd; 
+    padding: 10px 15px;
+}
+.bp-advanded-options .bp-head .bp-left {
+    float: left;
+}
+.bp-advanded-options .bp-head .bp-right {
+    float: right;
+}
+.bp-advanded-options .bp-head .bp-left > *,
+.bp-advanded-options .bp-head .bp-right > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+.bp-advanded-options .bp-head .bp-left > span,
+.bp-advanded-options .bp-head .bp-right > span {
+    margin: 0 5px;
+}
+
+/* visability filters :: editor */
+
+.bp-advanded-options .bp-editor-wrap .bp-filters {
+    padding-left: 20px;
+    border-left: 1px solid #ddd;
+}
+.bp-advanded-options .bp-filters .bp-point {
+    background-color: #fff;
+    border: 1px solid #0073aa;
+    border-radius: 100%;
+    width: 11px;
+    height: 11px;
+    display: block;
+    position: absolute;
+    margin-left: -26px;
+    margin-top: 19px;
+}
+.bp-advanded-options .bp-filters .bp-point:after {
+    position: absolute;
+    content: " ";
+    display: block;
+    width: 15px;
+    border-top: 1px solid #ddd;
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+.bp-advanded-options .bp-filter + .bp-filter {
+    margin-top: 20px;
+}
+
+.bp-advanded-options .bp-box {
+    padding: 25px 15px 15px 15px;
+    border-left: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.bp-advanded-options .bp-when-empty {
+    display: none;
+}
+.bp-advanded-options .bp-empty .bp-when-empty {
+    display: block;
+}
+.bp-advanded-options .bp-empty .bp-conditions {
+    display: none;
+}
+
+/* Conditions */
+
+.bp-condition {
+    position: relative;
+}
+.bp-condition > span {
+    display: inline-block;
+    vertical-align: top;
+}
+.bp-condition .btn-group .btn {
+    height: 28px;
+}
+
+.bp-condition .bp-hint,
+.bp-condition .bp-hint-content {
+    display: none;
+}
+
+.bp-condition .bp-hint {
+    position: relative;
+    display: inline-block;
+    padding: 0 6px 0 3px;
+}
+.bp-condition .bp-hint-icon {
+    background: url('../img/help.png') no-repeat 0 0 transparent;
+    position: relative;
+    height: 14px;
+    width: 13px;
+    display: inline-block;
+    cursor: help;
+    vertical-align: middle;
+    top: -1px;
+    opacity: 0.55;
+}
+.bp-condition .bp-hint:hover .bp-hint-content {
+    display: block;
+    position: absolute;
+    width: 280px;
+    background-color: rgba(0,0,0,0.8);
+    white-space: normal;
+    padding: 10px 12px 12px 12px;
+    font-weight: normal;
+    line-height: 150%;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+    z-index: 999;
+}
+.bp-condition .bp-hint .bp-hint-content,
+.bp-condition .bp-hint .bp-hint-content a {
+    color: #fff;
+}
+
+/* date control */
+
+.bp-date-control {
+    display: inline-block;
+    position: relative;
+}
+.bp-date-control.bp-between .bp-solo-date {
+    display: none;
+}
+.bp-date-control.bp-solo .bp-between-date {
+    display: none;
+}
+.bp-date-control.bp-relative .bp-absolute-date {
+    display: none;
+}
+.bp-date-control.bp-absolute .bp-relative-date {
+    display: none;
+}
+.bp-date-control input[type='text'],
+.bp-date-control select {
+    vertical-align: top;
+}
+.bp-date-control .bp-label {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 4px;
+    padding: 0 4px;
+}
+.bp-date-control .bp-switcher {
+    padding: 4px 0;
+}
+.bp-date-control .bp-switcher * {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.bp-date-control .bp-switcher label {
+    margin: 0 5px 0 0;
+    font-weight: normal;
+}
+
+.bp-date-control .bp-absolute-date input[type="text"] {
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+.bp-date-control .bp-absolute-date input[type="text"] {
+    background-color: #fff;
+    padding-right: 20px;
+    width: 140px;
+}
+.bp-date-control .bp-absolute-date .fa-calendar {
+    position: absolute;
+    right: 7px;
+    top: 8px;
+    border-left: 1px solid rgba(0,0,0,0.2);
+    padding-left: 6px;
+}
+.bp-date-control .bp-relative-date input[type="text"] {
+    width: 40px;
+    text-align: center;
+}
+
+/* integer control */
+
+.bp-advanded-options .bp-integer {
+    width: 60px;
+}
+
+/* text control */
+
+.bp-advanded-options .bp-text {
+    width: 300px;
+}
+
+.bp-condition .bp-or {
+    display: none;
+    color: rgba(0,0,0,0.4);
+    font-weight: bold;
+    padding: 1px 0 3px 0px;
+    font-size: 80%;
+    text-transform: uppercase;
+}
+.bp-condition + .bp-condition .bp-or {
+    display: block;
+}
+
+.bp-scope .bp-and {
+    display: none;
+    color: rgba(0,0,0,0.7);
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    margin: 18px 0;
+    position: relative;
+}
+.bp-scope .bp-and span {
+    position: absolute;
+    top: -10px;
+    background-color: #f9f9f9;
+    padding-right: 7px;
+    text-transform: uppercase;
+}
+.bp-scope + .bp-scope .bp-and {
+    display: block;
+}
+
+.bp-condition .bp-controls {
+    position: absolute;
+    right: 0;
+}
+.bp-condition .btn-group {
+    border: 0px;
+}
+
+.modal-footer .bp-btn-left {
+    float: left;
+}
+
 
 /**
  * Advanced Functions Tab

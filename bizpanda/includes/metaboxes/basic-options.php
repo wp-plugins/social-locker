@@ -97,8 +97,7 @@ class OPanda_BasicOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                 break;
         }
         
-        
-        $form->add(array(  
+        $textOptions = array(  
             
             array(
                 'type'      => 'textbox',
@@ -123,7 +122,12 @@ class OPanda_BasicOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
                     'hint-position' => 'left'
                 )
             ),
-        ));
+        );
+        
+        $textOptions = apply_filters('opanda_text_options', $textOptions );
+        
+        
+        $form->add($textOptions);
         
         if ( 'email-locker' === $itemType['name'] ) {
             

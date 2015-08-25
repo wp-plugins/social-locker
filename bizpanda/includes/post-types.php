@@ -107,6 +107,7 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         
         $this->scripts->request( array( 
             'bootstrap.transition',
+            'bootstrap.datepicker',
             'bootstrap.tab',
             'holder.more-link',
             'control.checkbox',
@@ -117,6 +118,7 @@ if ( in_array( $sociallocker->license->type, array( 'paid','trial' ) ) ) {
         
         $this->styles->request( array( 
             'bootstrap.core', 
+            'bootstrap.datepicker',
             'bootstrap.form-group', 
             'bootstrap.form-metabox', 
             'bootstrap.tab', 

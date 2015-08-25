@@ -17,10 +17,10 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
             $this->columns->add('type', __('Type', 'bizpanda'));
         }
         
-        $this->columns->add('shortcode', __('Shortcode', 'bizpanda')); 
-        $this->columns->add('bulk', __('Bulk Lock', 'bizpanda'));   
+        $this->columns->add('shortcode', __('Shortcode', 'bizpanda'));
         $this->columns->add('theme', __('Theme', 'bizpanda'));
-        $this->columns->add('created', __('Created', 'bizpanda'));
+        $this->columns->add('bulk', __('Bulk Lock', 'bizpanda'));
+        $this->columns->add('visibility', __('Visibility Conditions', 'bizpanda'));
         
         /**
          * Scripts & styles
@@ -81,7 +81,7 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
     public function columnBulk( $post, $isFullMode ) {
         ?>
         <div class='onp-sl-inner-wrap'>
-            <?php echo opanda_print_bulk_locking_state( $post->ID ); ?>
+            <?php opanda_print_bulk_locking_state( $post->ID ); ?>
         </div>
         <?php
     }
@@ -98,22 +98,22 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
     }
     
      /**
-     * Column 'Created'
+     * Column 'Visibility Conditions'
      */
-    public function columnCreated( $post, $isFullMode ) {
+    public function columnVisibility( $post, $isFullMode ) {
         
-        $t_time = get_the_time( 'Y/m/d g:i:s A' );
-        $m_time = $post->post_date;
-        $time = get_post_time( 'G', true, $post );
-
-        $time_diff = time() - $time;
-
-        if ( $time_diff > 0 && $time_diff < 24*60*60 )
-            $h_time = sprintf( '%s ago', human_time_diff( $time ) );
-        else
-            $h_time = mysql2date( 'Y/m/d', $m_time );
+        $mode = get_post_meta($post->ID, 'opanda_visibility_mode', true);
+        if ( empty( $mode) ) $mode = 'simple';
         
-        echo '<abbr title="' . esc_attr( $t_time ) . '">' . $h_time . '</abbr><br />';
+        ?>
+        <div class='onp-sl-inner-wrap'>
+            <?php if ( $mode === 'simple' ) { ?>
+                <?php opanda_print_simple_visibility_options( $post->ID ); ?>
+            <?php } else { ?>
+                <?php opanda_print_visibility_conditions( $post->ID ); ?>
+            <?php } ?>
+        </div>
+        <?php
     }
     
      /**

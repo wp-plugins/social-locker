@@ -53,9 +53,9 @@ class OPanda_AdvancedSettings extends OPanda_Settings  {
             'way'       => 'buttons',
             'name'      => 'debug',
             'title'     => __( 'Debug', 'bizpanda' ),
-            'hint'      => __( 'When this option turned on, the locker appears always, ignoring any settings, even if the user already unlocked the content.', 'bizpanda' )
+            'hint'      => __( 'If this option turned on, the plugin displays information about why the locker is not visible.', 'bizpanda' )
         );
-        
+
         $forms[] = array(
             'type' => 'separator'
         );
@@ -82,66 +82,41 @@ class OPanda_AdvancedSettings extends OPanda_Settings  {
         );
         
         $forms[] = array(
+            'type'      => 'textbox',
+            'name'      => 'session_duration',
+            'title'     => __( 'Session Duration<br />(in secs)', 'bizpanda' ),
+            'hint'      => __( 'Optional. The session duration used in the advanced Visiblity Options. The default value 900 seconds (15 minutes).', 'bizpanda' ),
+            'default'   => 900
+        );
+        
+        $forms[] = array(
             'type'      => 'checkbox',
             'way'       => 'buttons',
-            'name'      => 'interrelation',
-            'title'     => __( 'Interrelation', 'bizpanda' ),
-            'hint'      => __( 'Set On to make lockers interrelated. When one of the interrelated lockers are unlocked on your site, the others will be unlocked too.<br /> Recommended to turn on, if you use the Batch Locking feature.', 'bizpanda' ),
+            'name'      => 'session_freezing',
+            'title'     => __( 'Session Freezing', 'bizpanda' ),
+            'hint'      => __( 'Optional. If On, the length of users\' sessions is fixed, by default the sessions are prolonged automatically every time when a user visits your website for a specified value of the session duration.', 'bizpanda' ),
             'default'   => false
-        );
+        );  
+        
+        if ( BizPanda::hasPlugin('sociallocker') ) {
+            
+            $forms[] = array(
+                'type' => 'separator'
+            );
+
+            $forms[] = array(
+                'type'      => 'checkbox',
+                'way'       => 'buttons',
+                'name'      => 'interrelation',
+                'title'     => __( 'Interrelation', 'bizpanda' ),
+                'hint'      => __( 'Set On to make lockers interrelated. When one of the interrelated lockers are unlocked on your site, the others will be unlocked too.<br /> Recommended to turn on, if you use the Batch Locking feature.', 'bizpanda' ),
+                'default'   => false
+            );
+        
+        }
 
         $forms[] = array(
-            'type'      => 'checkbox',
-            'way'       => 'buttons',
-            'name'      => 'dynamic_theme',
-            'title'     => __( 'I use a dynamic theme', 'bizpanda' ),
-            'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working (if everything works properly, don\'t turn on this option).', 'bizpanda' )
-        );
-        
-        $forms[] = array(
             'type' => 'separator'
-        );
-        
-        $forms[] = array(
-            'type'      => 'checkbox',
-            'way'       => 'buttons',
-            'name'      => 'normalize_markup',
-            'title'     => __( 'Normalize Markup for Visual Composer', 'bizpanda' ),
-            'hint'      => __( 'If you use the Batch Lock with the mode "Skip & Lock" and Visual Composer (or similar plugins), turn on this option to normalize html markup before output.', 'bizpanda' )
-        );
-        
-        $forms[] = array(
-            'type'      => 'div',
-            'id'        => 'onp-dynamic-theme-options',
-            'items'     => array(
-
-                array(
-                    'type'      => 'textbox',
-                    'name'      => 'dynamic_theme_event',
-                    'title'     => __( 'jQuery Events', 'bizpanda' ),
-                    'hint'      => __( 'If pages of your site are loaded dynamically via ajax, it\'s necessary to catch ' . 
-                                   'the moment when the page is loaded in order to appear the locker.<br />By default the plugin covers ' .
-                                   '99% possible events. So <strong>you don\'t need to set any value here</strong>.<br />' .
-                                   'But if you know how it works and sure that it will help, you can put here the javascript event ' .
-                                   'that triggers after loading of pages on your site.', 'bizpanda' )
-                )   
-            )
-        );
-        
-        $forms[] = array(
-            'type' => 'separator'
-        );
-        
-        $forms[] = array(
-            'type'      => 'dropdown',
-            'name'      => 'alt_overlap_mode',
-            'data'      => array(
-                array( 'full', __('Classic (full)', 'bizpanda') ),
-                array( 'transparence', __('Transparency', 'bizpanda') )   
-            ),
-            'default'   => 'transparence',
-            'title'     => __( 'Alt Overlap Mode', 'bizpanda' ),
-            'hint'      => __( 'This overlap mode will be applied for browsers which don\'t support the blurring effect.', 'bizpanda' )
         );
 
         $forms[] = array(
@@ -164,6 +139,67 @@ class OPanda_AdvancedSettings extends OPanda_Settings  {
                 'default'   => false
             );
         }
+        
+        $forms[] = array(
+            'type' => 'separator'
+        );
+         
+        $forms[] = array(
+            'type' => 'html',
+            'html' =>   '<div class="col-md-offset-2" style="padding: 30px 0 10px 0;">' . 
+                            '<strong style="font-size: 15px;">' . __('Advanced Options', 'bizpanda') . '</strong>' .
+                            '<p>' . __('Please don\'t change these options if everything works properly.', 'bizpanda') . '</p>' .
+                        '</div>'
+        ); 
+
+        $forms[] = array(
+            'type' => 'separator'
+        );
+        
+        $forms[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'normalize_markup',
+            'title'     => __( 'Normalize Markup', 'bizpanda' ),
+            'hint'      => __( 'Optional. If you use the Batch Lock and the locker appears incorrectly, probably HTML markup of your page is broken. Try to turn on this option and the plugin will try to normalize html markup before output.', 'bizpanda' )
+        );
+        
+        $forms[] = array(
+            'type' => 'separator'
+        );
+        
+        $forms[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'dynamic_theme',
+            'title'     => __( 'I use a dynamic theme', 'bizpanda' ),
+            'hint'      => __( 'If your theme loads pages dynamically via ajax, set "On" to get the lockers working (if everything works properly, don\'t turn on this option).', 'bizpanda' )
+        );
+
+        $forms[] = array(
+            'type'      => 'textbox',
+            'way'       => 'buttons',
+            'name'      => 'managed_hook',
+            'title'     => __( 'Creater Trigger', 'bizpanda' ),
+            'hint'      => __( 'Optional. Set any jQuery trigger bound to the root document to create lockers. By default lockers are created on loading a page.', 'bizpanda' )
+        );    
+
+        $forms[] = array(
+            'type' => 'separator'
+        );
+        
+        $forms[] = array(
+            'type'      => 'dropdown',
+            'name'      => 'alt_overlap_mode',
+            'data'      => array(
+                array( 'full', __('Classic (full)', 'bizpanda') ),
+                array( 'transparence', __('Transparency', 'bizpanda') )   
+            ),
+            'default'   => 'transparence',
+            'title'     => __( 'Alt Overlap Mode', 'bizpanda' ),
+            'hint'      => __( 'This overlap mode will be applied for browsers which don\'t support the blurring effect.', 'bizpanda' )
+        );
+
 
         if ( BizPanda::hasPlugin('sociallocker') ) {
 

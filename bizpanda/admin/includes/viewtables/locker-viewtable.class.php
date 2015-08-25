@@ -12,14 +12,10 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
 
         $this->columns->add('stats', __('<span title="Unlocks / Impressions / Conversion">U / I / %', 'bizpanda'));
         $this->columns->add('title', __('Locker Title', 'bizpanda'));
-        
-        if ( !BizPanda::isSinglePlugin() ) {
-            $this->columns->add('type', __('Type', 'bizpanda'));
-        }
-        
+
         $this->columns->add('shortcode', __('Shortcode', 'bizpanda')); 
         $this->columns->add('bulk', __('Bulk Lock', 'bizpanda'));   
-        $this->columns->add('theme', __('Theme', 'bizpanda'));
+        $this->columns->add('visibility', __('Visibility', 'bizpanda'));
         $this->columns->add('created', __('Created', 'bizpanda'));
         
         /**
@@ -45,15 +41,7 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
             echo $post->post_title;
         }
     }
-    
-    /**
-     * Column 'Type'
-     */
-    public function columnType( $post, $isFullMode ) {
-        $item = get_post_meta($post->ID, 'opanda_item', true);
-        echo $item;
-    }
-    
+
     /**
      * Column 'Shortcode'
      */ 
@@ -89,7 +77,7 @@ class OPanda_ItemsViewTable extends FactoryViewtables320_Viewtable
     /**
      * Column 'Theme'
      */
-    public function columnTheme( $post, $isFullMode ) {
+    public function columnVisibility( $post, $isFullMode ) {
         
         $theme = get_post_meta($post->ID, 'opanda_style', true);
         echo $theme;

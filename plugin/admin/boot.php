@@ -265,6 +265,6 @@ function onp_sl_get_premium_url( $campaign = 'na' ) {
             update_option('onp_sl_skip_trial', 0); 
         }
     }
-    add_action('admin_init', 'onp_set_skip_trial_const');
+    // add_action('admin_init', 'onp_set_skip_trial_const');
 
 

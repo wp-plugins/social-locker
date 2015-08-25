@@ -326,7 +326,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <div class='factory-bootstrap-329'>
                 <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>">
                     <i class="fa fa-star"></i>
-                    Purchase Social Locker Premium For $24 Only
+                    Purchase Social Locker Premium For $25 Only
                     <i class="fa fa-star"></i>
                 </a>
             </div>
@@ -336,7 +336,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <?php if ( !$alreadyActivated ) { ?>
 
             <p style="text-align: center; margin-top: 20px;">
-                <a href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $24 Only</strong></a>
+                <a href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $25 Only</strong></a>
             </p>
 
             <?php } ?>
@@ -424,7 +424,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
 
         <div class="onp-page-section">
             <p style="text-align: center;">
-                <a href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $24 Only</strong></a>
+                <a href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>" style="color: #111;"><strong>Or Buy The Social Locker Right Now For $25 Only</strong></a>
             </p>
             <div class="onp-remark">
                 <div class="onp-inner-wrap">
@@ -439,7 +439,7 @@ class OnpSL_PremiumPage extends FactoryPages321_AdminPage  {
             <div class='factory-bootstrap-329'>
                 <a class="btn btn-gold" id="onp-sl-purchase-btn" href="<?php echo onp_sl_get_premium_url( 'go-premium' ) ?>">
                     <i class="fa fa-star"></i>
-                    Purchase Social Locker Premium For $24 Only
+                    Purchase Social Locker Premium For $25 Only
                     <i class="fa fa-star"></i>
                 </a>
             </div>

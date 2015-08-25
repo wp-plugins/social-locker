@@ -101,7 +101,7 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
         $licenseManager = $license = $this->plugin->license;
         $updatesManager = $this->plugin->updates;
         
-        $licenseKey = isset( $_POST['licensekey'] ) ? trim( $_POST['licensekey'] ) : null;
+        $licenseKey = isset( $_POST['licensekey'] ) ? htmlspecialchars ( trim( $_POST['licensekey'] ) ) : null;
         
         $scope = isset( $_GET['scope'] ) ? $_GET['scope'] : null;  
         $error = $response = null;
@@ -110,7 +110,7 @@ class OnpLicensing325_LicenseManagerPage extends FactoryPages321_AdminPage  {
 
         if ( isset( $_POST['licensekey'] ) ) {
             $scope = 'submit-key';
-            $licenseKey = trim( $_POST['licensekey'] );
+            $licenseKey = htmlspecialchars( trim( $_POST['licensekey'] ));
             
             if ( empty( $licenseKey ) ) {
                 $error = new WP_Error('FORM:KeyEmpty', __('Please enter your license key to continue.', 'onp_licensing_325'));

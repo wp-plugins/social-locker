@@ -209,7 +209,7 @@ function opanda_privacy_policy_url() {
     $usePages = get_option('opanda_terms_use_pages', false);
     if ( $usePages ) {
         
-        $pageId = get_option('opanda_terms_of_use_page', false);   
+        $pageId = get_option('opanda_privacy_policy_page', false);   
         if ( empty( $pageId ) ) return false;
         return get_permalink( $pageId );
         
@@ -452,7 +452,7 @@ function bizpanda_frontend_action() {
         $action = $_REQUEST[$robustKey];
         
         if ( opanda_get_robust_script_key() === $action ) {
-            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010101.min.js');
+            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010102.min.js');
             exit;
         }
     }
@@ -514,3 +514,61 @@ function bizpanda_show_privacy_policy() {
     <?php
     exit;
 }
+
+// ----------------------------------------------
+// Visibility Parameters
+// ----------------------------------------------
+
+/**
+ * Writes a current user role into the visibility vars.
+ */
+function bizpanda_visibility_param_user_role( $value ) {
+    
+    if ( !is_user_logged_in() ) return 'guest';
+    else {
+        $current_user = wp_get_current_user(); 
+        if ( !($current_user instanceof WP_User) ) return $value;
+        return $current_user->roles;
+    }
+}
+add_filter('bp_visibility_param_user-role', 'bizpanda_visibility_param_user_role');
+
+/**
+ * Writes a timestamp when the user was registered the visibility vars.
+ */
+function bizpanda_visibility_param_user_registered( $value ) {
+    
+    if ( !is_user_logged_in() ) return 0;
+    else {
+        $user = wp_get_current_user();
+        $timestamp = strtotime( $user->data->user_registered ) * 1000;
+        return $timestamp;
+    }
+}
+add_filter('bp_visibility_param_user-registered', 'bizpanda_visibility_param_user_registered');
+
+/**
+ * Writes a number of user pageviews.
+ */
+function bizpanda_visibility_param_user_pageviews( $value ) {
+    
+    if ( !is_user_logged_in() ) return 0;
+    else {
+        $user = wp_get_current_user();
+        $timestamp = strtotime( $user->data->user_registered ) * 1000;
+        return $timestamp;
+    }
+}
+add_filter('bp_visibility_param_user-pageviews', 'bizpanda_visibility_param_user_pageviews');
+
+/**
+ * Writes a number of user pageviews.
+ */
+function bizpanda_visibility_param_post_published( $value ) {
+    global $post;
+    if ( empty( $post ) ) return $value;
+    
+    if ( empty( $post->post_date_gmt ) ) return time() * 1000;
+    return strtotime( $post->post_date_gmt ) * 1000;
+}
+add_filter('bp_visibility_param_post-published', 'bizpanda_visibility_param_post_published');

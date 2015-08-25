@@ -2,10 +2,13 @@
     tinymce.PluginManager.add( 'optinpanda', function( editor, url ) {
         var menuCreated = false;
         
+        var menu = [];
+        
         editor.addButton( 'optinpanda', {
             title: bizpanda_shortcode_title,
             type: 'menubutton',
             icon: 'icon onp-sl-shortcode-icon',
+            menu: menu,
             
             /*
              * After rendeing contol, starts to load manu items (locker shortcodes).
@@ -23,8 +26,6 @@
                         action: 'get_opanda_lockers'
                     },
                     success: function(data, textStatus, jqXHR) {
-
-                        var menu = [];
 
                         $.each(data, function(index, item){
 

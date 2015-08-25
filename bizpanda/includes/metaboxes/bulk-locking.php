@@ -243,7 +243,7 @@ class OPanda_BulkLockingMetaBox extends FactoryMetaboxes321_Metabox
             </div>
             
             <div class="<?php echo $setupStateClass ?> <?php echo $interrelatedClass ?> onp-sl-interrelation-hint">
-                <?php printf( _e('Recommended to turn on the Interrelation option on the <a target="_blank" href="%s">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'bizpanda'), admin_url("edit.php?post_type=optinpanda&page=common-settings-" . $this->plugin->pluginName) ) ?>
+                <?php printf( __('Recommended to turn on the Interrelation option on the <a target="_blank" href="%s">Common Settings</a> page. It allows to unlock all lockers when one is unlocked.', 'bizpanda'), opanda_get_admin_url("settings", array( 'opanda_screen' => 'lock' ) ) ) ?>
             </div>
             
             <div class="onp-sl-after-change-hint">

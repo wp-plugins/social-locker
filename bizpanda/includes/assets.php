@@ -10,6 +10,7 @@ class OPanda_AssetsManager {
     public static function init() {
         self::initBulkLocking();
         self::iniDynamicThemes();
+        self::userTracker();
     }
     
     private static $_cookiesPassCode = null;
@@ -64,6 +65,7 @@ class OPanda_AssetsManager {
     
     /**
      * Requests adding assets for a given item type on a current page.
+     * Called as an entry point in methods of Shortcodes, Bulk Lockers and Dynamic Themes.
      * 
      * @since 1.0.0
      * @return void
@@ -76,6 +78,8 @@ class OPanda_AssetsManager {
                 
         $type = OPanda_Items::getItemNameById( $itemId );
         $options = self::getLockerOptions( $itemId );
+        
+        self::defineVisibilityVars( $options, $itemId );
         
         do_action('opanda_request_resources');
         do_action('opanda_request_assets_for_' . $type, $itemId, $options, $fromBody, $fromHeader);
@@ -104,8 +108,39 @@ class OPanda_AssetsManager {
             add_action( 'wp_enqueue_scripts', 'OPanda_AssetsManager::connectLockerAssets' );
         }  
         
-        add_action( 'wp_footer', 'OPanda_AssetsManager::localizeLockerScript', 1 );    
+        add_action( 'wp_footer', 'OPanda_AssetsManager::printLockerScriptVars', 1 );
         add_action( 'wp_footer', 'OPanda_AssetsManager::printLockerCreatorScript', 9999 );
+    }
+    
+    private static $_definedVisibilityVars = array();
+    
+    /**
+     * Definces visibility vars.
+     */
+    public static function defineVisibilityVars( $options, $itemId ) {
+
+        if ( empty( $options['opanda_visibility_filters'] ) ) return;
+        $visibility = json_decode( $options['opanda_visibility_filters'], true );
+
+        $params = array();
+        foreach( $visibility as $filter ) {
+            if ( empty( $filter['conditions'] ) ) continue;
+            
+            foreach( $filter['conditions'] as $scope ) {
+                if ( empty( $scope['conditions'] ) ) continue;
+            
+                foreach( $scope['conditions'] as $condition ) {
+                    $params[] = $condition['param'];
+                }
+            }
+        }
+
+        foreach( $params as $param ) {
+            $value = apply_filters('bp_visibility_param_' . $param, null );
+            $value = apply_filters('bp_visibility_param', $value, $param );
+
+            self::$_definedVisibilityVars[$param] = $value;
+        }
     }
     
     /**
@@ -118,14 +153,29 @@ class OPanda_AssetsManager {
 
         wp_enqueue_style( 
             'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010101.min.css'
+            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010102.min.css'
         );
 
         wp_enqueue_script( 
             'opanda-lockers',
-            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010101.min.js',
+            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010102.min.js',
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );
+        
+        if ( get_option('opanda_debug', false ) ) {
+
+            wp_enqueue_style( 
+                'opanda-lockers-debugger',
+                OPANDA_BIZPANDA_URL . '/assets/css/lockers.debugger.css'
+            );
+
+            wp_enqueue_script( 
+                'opanda-lockers-debugger',
+                OPANDA_BIZPANDA_URL . '/assets/js/lockers.debugger.js',
+                array('opanda-lockers'), false, true
+            );   
+            
+        }
         
         $facebookSDK = array( 
             'appId' => get_option('opanda_facebook_appid'),
@@ -137,7 +187,10 @@ class OPanda_AssetsManager {
         do_action('opanda_connect_locker_assets');
     }
     
-    public static function localizeLockerScript() {
+    /**
+     * Prints variables required for the locker script.
+     */
+    public static function printLockerScriptVars() {
        
         $resToPrint = array();
         foreach( self::$_requestedTextRes as $res ) {
@@ -145,14 +198,14 @@ class OPanda_AssetsManager {
             if ( false === $value ) continue;
             $resToPrint[$res] = $value;
         }
-        
-        if ( !empty( $resToPrint ) ) {
-            wp_localize_script( 'opanda-lockers', '__pandalockers', array(
-                'lang' => $resToPrint
-            ));
-        }
+
+        wp_localize_script( 'opanda-lockers', '__pandalockers', array(
+            'lang' => $resToPrint,
+            'visibility' => self::$_definedVisibilityVars,
+            'managedInitHook' => get_option('opanda_managed_hook', false)
+        ));
     }
-    
+
     /**
      * Prints a script that creates lockers.
      * 
@@ -169,14 +222,13 @@ class OPanda_AssetsManager {
         $robustLoader = add_query_arg($args, site_url() );
         
         ?> 
-        <!-- 
-            Script checks if the locker assets were successfully loaded and creates lockers.
-            http://bizpanda.com
+        <!--
+            Lockers: script checks if the locker assets were successfully loaded and creates lockers.
+            OnePress, bizpanda.com
         -->
         <script>
-            (function($){ if ( window.bizpanda && window.bizpanda.lockers ) window.bizpanda.lockers(); })(jQuery); (function($){ $(function(){ if ( window.bizpanda && window.bizpanda.lockers ) return; $.getScript( "<?php echo $robustLoader; ?>", function() { if ( window.bizpanda && window.bizpanda.lockers ) window.bizpanda.lockers(); }); }); })(jQuery);
+            (function($){ if ( window.bizpanda && window.bizpanda.initLockers ) { window.bizpanda.initLockers(); } })(jQuery); (function($){ $(function(){ if ( window.bizpanda && window.bizpanda.initLockers ) return; $.getScript( "<?php echo $robustLoader; ?>", function() { if ( window.bizpanda && window.bizpanda.initLockers ) window.bizpanda.initLockers(); }); }); })(jQuery);
         </script>
-        <!-- / -->
         <?php
     
         do_action('opanda_after_locker_creator_script');
@@ -215,10 +267,8 @@ class OPanda_AssetsManager {
 
         ?>
         <!-- 
-            Facebook SDK
-        
-            Added by BizPanda, the common platform for Social Locker and Opt-In Panda plugins (c) OnePress Ltd
-            http://byonepress.com
+            Lockers: Facebook SDK
+            OnePress, bizpanda.com
         -->
         <script>
             window.fbAsyncInitPredefined = window.fbAsyncInit;
@@ -251,8 +301,8 @@ class OPanda_AssetsManager {
 
         ?>
         <!-- 
-            CSS Selectors (Bulk Locking)
-            http://bizpanda.com
+            Lockers: CSS Selectors (Bulk Locking) 
+            OnePress, bizpanda.com
         -->
         <script>
             if ( !window.bizpanda ) window.bizpanda = {};
@@ -305,9 +355,9 @@ class OPanda_AssetsManager {
         }
 
         ?>  
-        <!-- 
-            Options of Bulk Lockers   
-            http://bizpanda.com
+        <!--
+            Lockers: options of bulk lockers   
+            OnePress, bizpanda.com
         -->
             <script>
             if ( !window.bizpanda ) window.bizpanda = {};
@@ -317,11 +367,11 @@ class OPanda_AssetsManager {
             <?php } ?>
             </script>
             <?php foreach( $data as $id => $item ) { ?>
-            <?php do_action( 'opanda_print_batch_locker_assets', $id, $item['options'] ); ?>          
+            <?php do_action( 'opanda_print_batch_locker_assets', $id, $item['options'], $item['name'] ); ?>          
             <?php } ?>
         <!-- / -->
         <?php
-        
+
         self::$_lockerOptionsToPrint = array();
     }
     
@@ -333,39 +383,36 @@ class OPanda_AssetsManager {
     public static function getBaseOptions( $id ) {
 
         $hasScope = get_option('opanda_interrelation', false);
+            
+        $params = array(
+            'demo' => self::getLockerOption($id, 'always', false, false),
+            'actualUrls' => get_option('opanda_actual_urls', false),
 
-         $params = array(
-             'demo' => get_option('opanda_debug', false),
-             'actualUrls' => get_option('opanda_actual_urls', false),
-
-             'text' => array(
-                 'header' => self::getLockerOption($id, 'header'), 
-                 'message' => self::getLockerOption($id, 'message')             
-             ),
-
-             'theme' => self::getLockerOption($id, 'style'), 
-             'lang' => get_option('opanda_lang', 'en_US'),
-
-             'overlap' => array(
-                 'mode' => self::getLockerOption($id, 'overlap', false, 'full'),
-                 'position' => self::getLockerOption($id, 'overlap_position', false, 'middle'),
-                 'altMode' => get_option('opanda_alt_overlap_mode', 'transparence')
-             ),
-             
-            'effects' => array(
-                'highlight' => self::getLockerOption($id, 'highlight')
+            'text' => array(
+                'header' => self::getLockerOption($id, 'header'), 
+                'message' => self::getLockerOption($id, 'message')             
             ),
-             
-             'googleAnalytics' => get_option('opanda_google_analytics', 1),
 
-             'locker' => array(
-                 'scope' => $hasScope ? 'global' : '',
-                 'counter' => self::getLockerOption($id, 'show_counters', false, 1),
-                 'loadingTimeout' => get_option('opanda_timeout', 20000),
-                 'tumbler' => get_option('opanda_tumbler', false),
-                 'naMode' => get_option('opanda_na_mode', 'show-error')
-             )
-         );
+            'theme' => self::getLockerOption($id, 'style'), 
+            'lang' => get_option('opanda_lang', 'en_US'),
+
+            'overlap' => array(
+                'mode' => self::getLockerOption($id, 'overlap', false, 'full'),
+                'position' => self::getLockerOption($id, 'overlap_position', false, 'middle'),
+                'altMode' => get_option('opanda_alt_overlap_mode', 'transparence')
+            ),
+            
+            'highlight' => self::getLockerOption($id, 'highlight'),
+            'googleAnalytics' => get_option('opanda_google_analytics', 1),
+
+            'locker' => array(
+                'scope' => $hasScope ? 'global' : '',
+                'counter' => self::getLockerOption($id, 'show_counters', false, 1),
+                'loadingTimeout' => get_option('opanda_timeout', 20000),
+                'tumbler' => get_option('opanda_tumbler', false),
+                'naMode' => get_option('opanda_na_mode', 'show-error')
+            )
+        );
             
             if ( 'blurring' === $params['overlap']['mode'] ) {
                 $options['overlap']['mode'] = 'transparence';
@@ -439,7 +486,7 @@ class OPanda_AssetsManager {
     public static function getLockerOptions( $lockerId ) {
 
         if ( isset( self::$_lockerOptions[$lockerId] ) ) return self::$_lockerOptions[$lockerId];
-        
+
         $options = get_post_meta($lockerId, '');
         if ( empty($options) ) return $options;
         
@@ -463,6 +510,7 @@ class OPanda_AssetsManager {
      */
     public static function getLockerOption( $lockerId, $name, $isArray = false, $default = null ) {
         $options = self::getLockerOptions($lockerId);
+
         $value = isset( $options['opanda_' . $name] ) ? $options['opanda_' . $name] : null;
 
         return ($value === null || $value === '')
@@ -526,7 +574,7 @@ class OPanda_AssetsManager {
         
         $normalizeMarkup = get_option('opanda_normalize_markup', false);
         if ( !$normalizeMarkup ) return $contentBefore . $shortcodeStart . $contentInside . $shortcodeEnd;
-            
+
         list( $endingElements, $endingTags ) = self::findMarkupElements( true, $contentInside );
 
         $allowedNames = array();
@@ -548,37 +596,42 @@ class OPanda_AssetsManager {
      * @return mixed[]
      */
     public static function findMarkupElements( $closing = false, $content, $allowedNames = null ) {
-        
+
         $result = array( array(), array() );
         
         $regex = array();
         
         $regex[] = '(\[(\/)?([^\[\]]*)\])';
-        $regex[] = '(<(\/)?\s*([^<>]*)>)';
+        $regex[] = '(<(\/)?\s*([a-z0-9\-\_]+[^<>]*)>)';
 
         if ( !preg_match_all( '/' . implode('|', $regex) . '/', $content, $matches, PREG_SET_ORDER ) ) return $result;
-        
+
         $elements = array();
         $tags = array();
         
         $stack = array();
         
         foreach( $matches as $match ) {
-            
-            $attrs = explode( ' ', trim( $match[3] ) );
+            $keyShift = empty( $match[3] ) ? 3 : 0;
+                    
+            $attrs = explode( ' ', trim( $match[3+$keyShift] ) );
             $name = trim( $attrs[0] );
-            $closing = !empty( $match[2] );
-            $tag = trim( $match[1] );
+            $matchClosing = !empty( $match[2+$keyShift] );
+            $tag = trim( $match[1+$keyShift] );
+            
+            if ( !ctype_lower( $name ) )  continue;			
+            if ( in_array( $name, array( 'img', 'intense_hover_box', 'Don' ) ) )  continue;
+            if ( strpos($name, 'locker-bulk-') > 0 ) continue;
             
             $lastStack = end( $stack );
             
-            if ( $lastStack['name'] === $name && $lastStack['closing'] !== $closing ) {
+            if ( $lastStack['name'] === $name && $lastStack['closing'] !== $matchClosing ) {
                 array_pop( $stack );
             } else {
-                array_push( $stack, array('name' => $name, 'closing' => $closing, 'tag' => $tag ) );
+                array_push( $stack, array('name' => $name, 'closing' => $matchClosing, 'tag' => $tag ) );
             }
         } 
-        
+
         foreach( $stack as $element ) {
             if ( $closing !== $element['closing'] ) continue;
             
@@ -622,7 +675,7 @@ class OPanda_AssetsManager {
 
         $bulkLockers = get_option('onp_sl_bulk_lockers', array());
         if ( empty($bulkLockers) ) return;
-        
+
         require_once OPANDA_BIZPANDA_DIR . '/includes/panda-items.php';
         
         foreach($bulkLockers as $id => $options) {
@@ -726,7 +779,14 @@ class OPanda_AssetsManager {
     public static function addSocialLockerShortcodes( $content ) {
         $bulkLockers = get_option('onp_sl_bulk_lockers', array());
         if ( empty($bulkLockers) ) return $content;
-
+        
+        global $bizpanda;
+        
+        $shortcodeEnds = array();
+        $bulkIndex = 0;
+        
+        $ignoredShortcodes = array();
+        
         foreach($bulkLockers as $id => $options) {
             if ( !in_array( $options['way'], array('skip-lock', 'more-tag') ) ) continue;
             if ( self::isPageExcluded( $id, $options ) ) continue;
@@ -738,22 +798,31 @@ class OPanda_AssetsManager {
 
             if ( 'social-locker' == $itemType && !BizPanda::hasPlugin('sociallocker') ) continue;
             if ( 'email-locker' == $itemType && !BizPanda::hasPlugin('optinpanda') ) continue;
-            
+
+            $bulkIndex++;
+
             switch ( $itemType ) {
                 case 'email-locker':
-                    $shortcodeName = 'emaillocker-bulk';
+                    $shortcodeName = 'emaillocker-bulk-' . $bulkIndex;
                     break;
                 case 'signin-locker':
-                    $shortcodeName = 'signinlocker-bulk';
+                    $shortcodeName = 'signinlocker-bulk-' . $bulkIndex;
                     break;
                 default:
-                    $shortcodeName = 'sociallocker-bulk';
+                    $shortcodeName = 'sociallocker-bulk-' . $bulkIndex;
                     break;
             }
-
+            
+            $shortcode = new OPanda_LockerShortcode( $bizpanda );
+            add_shortcode($shortcodeName, array($shortcode, 'render'));
+            
             if ( $options['way'] == 'skip-lock' ) {
                 if ( $options['skip_number'] == 0 ) {;
-                    return "[$shortcodeName id='$id']" . $content . "[/$shortcodeName]";
+                    $content = "[$shortcodeName id='$id']" . $content;
+                    
+                    if ( !isset( $shortcodeEnds[0] ) ) $shortcodeEnds[0] = array();
+                    $shortcodeEnds[0][] = "[/$shortcodeName]";
+                    
                 } else {
                     $counter = 0;
                     $offset = 0;
@@ -767,13 +836,16 @@ class OPanda_AssetsManager {
                             $beforeShortcode = substr($content, 0, $offset);
                             $insideShortcode = substr($content, $offset);
 
-                            return self::normilizerMarkup( $beforeShortcode, $insideShortcode, "[$shortcodeName id='$id']", "[/$shortcodeName]" );                         
+                            $content = self::normilizerMarkup( $beforeShortcode, $insideShortcode, "[$shortcodeName id='$id']", "" );
+                                                   
+                            if ( !isset( $shortcodeEnds[$offset] ) ) $shortcodeEnds[$offset] = array();
+                            $shortcodeEnds[$offset][] = "[/$shortcodeName]";
+                            
+                            break;
                         }
                     }
                 }
 
-                return $content;
-                
             } elseif( $options['way'] == 'more-tag' && is_singular( $options['post_types'] ) ) {
                 global $post;
                 
@@ -784,11 +856,25 @@ class OPanda_AssetsManager {
                 $offset = $pos + strlen( $label );
                 if ( substr($content, $offset, 4) == '</p>' ) $offset += 4;
                 
-                return substr($content, 0, $offset) . "[$shortcodeName id='$id']" . substr($content, $offset) . "[/$shortcodeName]";                 
+                $content = substr($content, 0, $offset) . "[$shortcodeName id='$id']" . substr($content, $offset);
+                
+                if ( !isset( $shortcodeEnds[$offset] ) ) $shortcodeEnds[$offset] = array();
+                $shortcodeEnds[$offset][] = "[/$shortcodeName]";
             }
         }
-        
-        return $content;
+
+        if ( !empty( $shortcodeEnds ) ) {
+            
+            krsort($shortcodeEnds);
+ 
+            foreach( $shortcodeEnds as $shortcodeEndItem ) {
+                foreach( $shortcodeEndItem as $shortcodeEnd ) {
+                    $content .= $shortcodeEnd;
+                }
+            }
+        }
+
+        return $content; 
     }
     
     private static function deleteBulkLocker( $id ) {
@@ -839,10 +925,8 @@ class OPanda_AssetsManager {
         $event = get_option('opanda_dynamic_theme_event', '');       
         ?>
         <!-- 
-            Support for Dynamic Themes
-        
-            Created by the Opt-In Panda plugin (c) OnePress Ltd
-            http://optinpanda.org
+            Lockers: support for dynamic themes
+            OnePress, bizpanda.com
         -->
         <script>
         if ( !window.bizpanda ) window.bizpanda = {};
@@ -853,6 +937,130 @@ class OPanda_AssetsManager {
         <!-- / -->     
         <?php
     }
+    
+    // -----------------------------------------------
+    // User Tacker
+    // -----------------------------------------------
+    
+    public static function userTracker() {
+        add_action( 'wp_footer', 'OPanda_AssetsManager::printUserTrackerScript', 1 );
+    }
+    
+    public static function printUserTrackerScript() {
+        ?>
+        <!-- 
+            Lockers: user tracker for visibility filters
+            OnePress, bizpanda.com
+        -->
+        <script>
+            window.__bp_session_timeout = '<?php echo get_option('opanda_session_duration', 900) ?>';
+            window.__bp_session_freezing = <?php echo get_option('opanda_session_freezing', 0) ?>;
+            (function(){if(!window.bizpanda)window.bizpanda={};window.bizpanda.bp_can_store_localy=function(){if(!window.localStorage||!window.localStorage.getItem||!window.localStorage.setItem)return false;var salt=''+Math.floor((Math.random()*1000)+1);try{window.localStorage.setItem('bp_ut_test',salt);var checkSalt=window.localStorage.getItem('bp_ut_test');window.localStorage.removeItem('bp_ut_test');return checkSalt===salt}catch(e){return false}};window.bizpanda.bp_ut_get_cookie=function getCookie(cname){var name=cname+"=";var ca=document.cookie.split(';');for(var i=0;i<ca.length;i++){var c=ca[i];while(c.charAt(0)==' ')c=c.substring(1);if(c.indexOf(name)==0)return c.substring(name.length,c.length)}return false};window.bizpanda.bp_ut_set_cookie=function(cname,cvalue,days){var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));var expires="expires="+d.toUTCString();document.cookie=cname+"="+cvalue+"; "+expires};window.bizpanda.bp_ut_get_obj=function(timeout){var obj=null;if(window.bizpanda.bp_can_store_localy()){obj=window.localStorage.getItem('bp_ut_session')}else{obj=window.bizpanda.bp_ut_get_cookie('bp_ut_session')}if(!obj)return false;obj=JSON.parse(obj);if((obj.started+timeout*1000)<new Date().getTime())obj=null;return obj};window.bizpanda.bp_ut_set_obj=function(obj,timeout){if(!obj.started||!window.__bp_session_freezing){obj.started=new Date().getTime()}var obj=JSON.stringify(obj);if(window.bizpanda.bp_can_store_localy()){window.localStorage.setItem('bp_ut_session',obj)}else{window.bizpanda.bp_ut_set_cookie('bp_ut_session',obj,5000)}};window.bizpanda.bp_ut_count_pageview=function(){var obj=window.bizpanda.bp_ut_get_obj(window.__bp_session_timeout);if(!obj)obj={};if(!obj.pageviews)obj.pageviews=0;if(obj.pageviews===0){obj.referrer=document.referrer;obj.landingPage=window.location.href;obj.pageviews=0}obj.pageviews++;window.bizpanda.bp_ut_set_obj(obj)};window.bizpanda.bp_ut_count_locker_pageview=function(){var obj=window.bizpanda.bp_ut_get_obj(window.__bp_timeout);if(!obj)obj={};if(!obj.lockerPageviews)obj.lockerPageviews=0;obj.lockerPageviews++;window.bizpanda.bp_ut_set_obj(obj)};window.bizpanda.bp_ut_count_pageview()})();
+        </script>
+        <!-- / -->
+        <?php
+            /*
+            <script>
+            (function(){
+                if ( !window.bizpanda ) window.bizpanda = {};
+                
+                window.bizpanda.bp_can_store_localy = function() {
+                    if ( !window.localStorage || !window.localStorage.getItem  || !window.localStorage.setItem ) return false;
+                    var salt = '' + Math.floor((Math.random() * 1000) + 1);
+                    
+                    try { 
+                        window.localStorage.setItem('bp_ut_test', salt); 
+                        var checkSalt = window.localStorage.getItem('bp_ut_test'); 
+                        window.localStorage.removeItem('bp_ut_test');
+
+                        return checkSalt === salt;
+                    } catch(e) {
+                        return false;
+                    } 
+                };
+                
+                window.bizpanda.bp_ut_get_cookie = function getCookie(cname) {
+                    var name = cname + "="; var ca = document.cookie.split(';');
+                    for(var i=0; i<ca.length; i++) {
+                        var c = ca[i]; while (c.charAt(0)==' ') c = c.substring(1);
+                        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+                    }
+                    return false;
+                };
+                
+                window.bizpanda.bp_ut_set_cookie = function(cname, cvalue, days) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (days*24*60*60*1000));
+                    var expires = "expires="+d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + "; " + expires;
+                };
+
+                window.bizpanda.bp_ut_get_obj = function( timeout ) {
+                    
+                    var obj = null;
+                    
+                    if ( window.bizpanda.bp_can_store_localy() ) {
+                        obj = window.localStorage.getItem('bp_ut_session');
+                    } else {
+                        obj = window.bizpanda.bp_ut_get_cookie('bp_ut_session');
+                    }
+
+                    if ( !obj ) return false;
+                    
+                    obj = JSON.parse(obj);
+					
+                    if ( ( obj.started + timeout * 1000 ) < new Date().getTime() ) obj = null;                    
+                    return obj;
+                };
+                
+                window.bizpanda.bp_ut_set_obj = function( obj, timeout ) {
+                    
+                    if ( !obj.started || !window.__bp_session_freezing ) {
+                        obj.started = new Date().getTime();
+                    }
+
+                    var obj = JSON.stringify(obj);
+                    
+                    if ( window.bizpanda.bp_can_store_localy() ) {
+                        window.localStorage.setItem('bp_ut_session', obj); 
+                    } else {
+                        window.bizpanda.bp_ut_set_cookie('bp_ut_session', obj, 5000);
+                    }
+                };
+
+                window.bizpanda.bp_ut_count_pageview = function() {
+
+                    var obj = window.bizpanda.bp_ut_get_obj( window.__bp_session_timeout );
+
+                    if ( !obj ) obj = {};
+                    if ( !obj.pageviews ) obj.pageviews = 0;
+
+                    if ( obj.pageviews === 0 ) {
+                        obj.referrer = document.referrer;
+                        obj.landingPage = window.location.href;
+                        obj.pageviews = 0;
+                    }
+
+                    obj.pageviews++;
+                    window.bizpanda.bp_ut_set_obj( obj );
+                };
+                
+                window.bizpanda.bp_ut_count_locker_pageview = function() {
+
+                    var obj = window.bizpanda.bp_ut_get_obj( window.__bp_timeout );
+
+                    if ( !obj ) obj = {};
+                    if ( !obj.lockerPageviews ) obj.lockerPageviews = 0;
+                    obj.lockerPageviews++;
+
+                    window.bizpanda.bp_ut_set_obj( obj );
+                };                
+
+                window.bizpanda.bp_ut_count_pageview();
+            })();
+            </script>
+             */
+    }
 }
 
-if ( !is_admin() ) add_action('wp', 'OPanda_AssetsManager::init');
+if ( !is_admin() ) add_action('template_redirect', 'OPanda_AssetsManager::init');

@@ -44,15 +44,8 @@ class OPanda_LockerShortcode extends FactoryShortcodes320_Shortcode {
         $id = isset( $attr['id'] ) ? (int)$attr['id'] : $this->getDefaultId();
         if ( !empty( $id ) ) $lockerMeta = get_post_meta($id, '');
         
-        if ( empty( $id ) || empty($lockerMeta) ) {
-            printf( __('<div><strong>[Opt-In Panda] The locker [id=%d] doesn\'t exist or the default lockers were deleted.</strong></div>', 'bizpanda'), $id );
-            return;
-        }
-        
-        // passcode
-        
-        if ( OPanda_AssetsManager::autoUnlock( $id ) ) {
-            echo $content;
+        if ( empty( $id ) || empty($lockerMeta) || empty($lockerMeta['opanda_item']) ) {
+            printf( __('<div><strong>[Locker] The locker [id=%d] doesn\'t exist or the default lockers were deleted.</strong></div>', 'bizpanda'), $id );
             return;
         }
         
@@ -60,6 +53,13 @@ class OPanda_LockerShortcode extends FactoryShortcodes320_Shortcode {
         
         $content = $wp_embed->autoembed($content);
         $content = do_shortcode( $content );
+
+        // passcode
+        
+        if ( OPanda_AssetsManager::autoUnlock( $id ) ) {
+            echo $content;
+            return;
+        }
         
         // if returns:
         // 'content' - shows the locker content
@@ -135,16 +135,14 @@ class OPanda_LockerShortcode extends FactoryShortcodes320_Shortcode {
         if ( !$dynamicTheme ) $this->printOptions();
     }
     
-    public function printOptions() { 
-
-        
+    public function printOptions() {    
     ?>
         <script>
             if ( !window.bizpanda ) window.bizpanda = {};
             if ( !window.bizpanda.lockerOptions ) window.bizpanda.lockerOptions = {};
             window.bizpanda.lockerOptions['<?php echo $this->lockId; ?>'] = <?php echo json_encode( $this->lockData ) ?>;
         </script>
-        <?php  do_action('opanda_print_locker_assets', $this->lockData['lockerId'], $this->lockData ); ?>
+        <?php  do_action('opanda_print_locker_assets', $this->lockData['lockerId'], $this->lockData, $this->lockId ); ?>
     <?php
     }
         

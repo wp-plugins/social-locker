@@ -4,10 +4,10 @@
  */
 class SocialLocker_LicenseManagerPage extends OnpLicensing325_LicenseManagerPage  {
  
-    public $purchasePrice = '$24';
+    public $purchasePrice = '$25';
     
     public function configure() {
-                $this->purchasePrice = '$24';
+                $this->purchasePrice = '$25';
             
 
         

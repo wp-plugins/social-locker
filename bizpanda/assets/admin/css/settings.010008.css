@@ -48,14 +48,16 @@ textarea {
 #opanda_linkedin_api_key {
     width: 250px;
 }
-#opanda_dynamic_theme_event {
+#opanda_dynamic_theme_event,
+#opanda_managed_hook {
     width: 250px;  
 }
 #opanda_lang {
     width: 250px;     
 }
 
-#opanda_timeout {
+#opanda_timeout,
+#opanda_session_duration {
     width: 100px;
 }
 

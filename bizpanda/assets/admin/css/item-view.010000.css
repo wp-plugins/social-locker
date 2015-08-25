@@ -9,7 +9,8 @@
  */
 
 .column-shortcode input {
-    width: 280px;
+    width: 100%;
+    max-width: 280px;
     border: 0px;
     background-color:  transparent;
     font-size: 12px;
@@ -201,4 +202,38 @@
 
 th.column-stats span {
     cursor: help;
+}
+
+/**
+* Visibility Conditions
+
+*/
+table.fixed {
+    table-layout: auto;
+}
+
+.column-visibility {
+    padding-left: 10px !important;
+}
+.column-visibility .onp-sl-inner-wrap {
+    min-width: 200px;
+}
+.column-visibility ul {
+    padding: 0px;
+    margin: 0px;
+}
+.column-visibility .bp-visibility-conditions {
+
+}
+.column-visibility .bp-filter-type,
+.column-visibility strong {
+    font-weight: bold;
+    color: #111;
+}
+
+.column-visibility strong {
+    color: #111;
+}
+.column-visibility .bp-scopes {
+    margin-left: 10px;
 }

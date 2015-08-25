@@ -168,13 +168,14 @@ class OPanda_SocialSettings extends OPanda_Settings  {
             'way'       => 'buttons',
             'name'      => 'facebook_version',
             'title'     => __( 'Facebook API Version', 'bizpanda' ),
-            'default'   => 'v2.3',
+            'default'   => 'v2.4',
             'data'      => array(
                 array('v1.0', 'v1.0'),
                 array('v2.0', 'v2.0'), 
-                array('v2.3', 'v2.3')             
+                array('v2.3', 'v2.3'),
+                array('v2.4', 'v2.4')
              ),
-            'hint'      => __( 'Optional. Use the most recent version of the API (v2.3) but if Facebook buttons or widgets don\'t work on your website try to switch to other versions.', 'bizpanda' )
+            'hint'      => __( 'Optional. Use the most recent version of the API (v2.4) but if Facebook buttons or widgets don\'t work on your website try to switch to other versions.', 'bizpanda' )
         );
 
         $options[] = array(

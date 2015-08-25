@@ -149,14 +149,25 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.4.2.5 - 25 Aug 2015</strong><br />
+<ul>
+<li>FIXED: A set of bugs of the Batch Lock.
+<li>FIXED: The bug when the Starter theme is not available to select.</li>
+<li>FIXED: The bug when the links Terms and Privacy Policy point to the same page.</li>
+<li>FIXED: The option Highlight.</li>
+<li>FIXED: A set of security issues.</li>
+<li>IMPROVED: Compatibility with the plugin <a href="https://wordpress.org/plugins/opt-in-panda/">Opt-In Panda</a>, that extends features of the Social Locker.
+<li>IMPROVED: Compatibility of the options CSS Selector and Dynamic Theme.
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
 <strong>v.4.2.0 - 7 Jul 2015</strong><br />
 <ul>
 <li>NEW: Added compatibility with the new free plugin from OnePress, <a href="https://wordpress.org/plugins/opt-in-panda/">Opt-In Panda</a>, that extends features of the Social Locker.
 <li>NEW: Pass Code. This feature allows to hide lockers if the pass code is specified in the URL.
 <li>NEW: Added an option to hide the License Manager.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.4.1.8 - 21 Apr 2015</strong><br />
 <ul>
