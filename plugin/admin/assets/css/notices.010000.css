@@ -1,0 +1,232 @@
+/**
+* StyleRoller
+*/
+
+.call-to-action.sociallocker-styleroller-banner {
+    border-radius: 4px;
+    background: url("../img/styleroller/banner-bg.png");
+    padding: 0px !important;
+    border: 10px solid #fff !important;
+    border-radius: 8px;
+    color: #525a5e !important;
+}
+.call-to-action.sociallocker-styleroller-banner,
+.call-to-action.sociallocker-styleroller-banner p {
+    font-size: 16px;
+    line-height: 150%;
+}
+.call-to-action.sociallocker-styleroller-banner .factory-inner-wrap {
+    padding: 30px;
+    padding-left: 320px;
+    padding-right: 10px;
+    background: transparent url("../img/styleroller/pallete.png") -5px center no-repeat;
+    border-radius: 8px;
+}
+.call-to-action.sociallocker-styleroller-banner .factory-inner-wrap {
+    padding: 30px;
+    padding-left: 320px;
+    padding-right: 10px;
+    background: transparent url("../img/styleroller/en_US/pallete.png") -5px center no-repeat;
+    border-radius: 8px;
+}
+.call-to-action.sociallocker-styleroller-banner.onp-sl-ru_RU .factory-inner-wrap {
+    background: transparent url("../img/styleroller/ru_RU/pallete.png") -6px center no-repeat; 
+}
+.call-to-action.sociallocker-styleroller-banner .onp-hightlight {
+    background-color: #1bbc9d;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 5px;
+    margin-right: 5px;
+}
+.call-to-action.sociallocker-styleroller-banner .factory-buttons {
+    margin-top: 5px;
+}
+.call-to-action.sociallocker-styleroller-banner .btn {
+    padding: 8px 30px;
+    background-color: #ecf0f1;
+    border: 0px;
+    border-bottom: 2px solid #bec3c7;
+    font-size: 16px;
+    box-shadow: none;
+}
+.call-to-action.sociallocker-styleroller-banner .btn-primary {
+    background-color: #1bbc9d;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 0px;
+    border-bottom: 2px solid #16a086;
+}
+.call-to-action.sociallocker-styleroller-banner .btn:hover {
+    background-color: #f6f8f8;
+}
+.call-to-action.sociallocker-styleroller-banner .btn-primary:hover {
+    background-color: #20d1af;
+}
+.call-to-action.sociallocker-styleroller-banner .factory-icon {
+    display: none;
+}
+.call-to-action.sociallocker-styleroller-banner .fa {
+    margin-right: 7px;
+}
+.call-to-action.sociallocker-styleroller-banner .factory-header {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+/**
+* Rate Us
+*/
+
+.onp-sl-rateus-popup {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    width: 500px !important;
+    border-radius: 10px !important;
+}
+
+.onp-sl-rateus-popup .onp-sl-achievement {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 35px 40px 20px 40px;
+    background-color: #f4f4f4;
+    
+    width: 100%;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin-left: -40px;
+    
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+    text-align: center;
+}
+.onp-sl-rateus-popup .onp-sl-count {
+    font-size: 80px;
+    line-height: 80px;
+    display: inline-block;
+    vertical-align: top;
+    font-weight: bold;
+}
+.onp-sl-unlock-via-facebook-like .onp-sl-count-explanation2,
+.onp-sl-unlock-via-facebook-share .onp-sl-count-explanation2 {
+    color: #3c5a9a;
+}
+.onp-sl-unlock-via-twitter-tweet .onp-sl-count-explanation2,
+.onp-sl-unlock-via-twitter-follow .onp-sl-count-explanation2 {
+    color: #4086cc;
+}
+.onp-sl-unlock-via-google-plus .onp-sl-count-explanation2,
+.onp-sl-unlock-via-google-share .onp-sl-count-explanation2 {
+    color: #4086cc;
+}
+
+.onp-sl-rateus-popup .onp-sl-count-explanation {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 8px;
+    font-size: 30px;
+    line-height: 33px;
+    margin-left: 8px;
+    text-align: left;
+}
+
+.onp-sl-rateus-popup .onp-sl-units {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.onp-sl-rateus-popup .onp-sl-exclamation {
+    font-size: 80px;
+    line-height: 80px;
+    display: inline-block;
+    display: none;
+}
+
+.onp-sl-rateus-popup .onp-sl-text {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.onp-sl-rateus-popup .onp-sl-text p {
+    font-size: 16px;
+    margin: 0;
+}
+.onp-sl-rateus-popup .onp-sl-text p + p {
+    margin-top: 10px;
+}
+.onp-sl-rateus-popup .onp-sl-buttons {
+    padding-top: 5px;
+    text-align: center;
+}
+.onp-sl-rateus-popup .onp-sl-button {
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    background-color: #f1f1f1;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    color: #111;
+    padding: 10px 15px 10px 15px;
+    border-radius: 6px;
+    font-size: 15px;
+}
+.onp-sl-rateus-popup .onp-sl-button + .onp-sl-button {
+    margin-left: 5px;
+}
+.onp-sl-rateus-popup .onp-sl-button-primary {
+    color: #7c5d1b;
+    background: #fded90;
+    border-bottom: 5px solid #e1b149;
+    font-weight: bold;
+    padding: 12px 30px 12px 30px;
+    font-size: 20px;
+}
+.onp-sl-rateus-popup .onp-sl-button-primary:hover {
+    background: #feeb80;    
+    border-bottom: 5px solid #d6a437;
+}
+.onp-sl-rateus-popup .onp-sl-button-link {
+    margin-top: 13px;
+    display: inline-block;
+    font-size: 14px;
+}
+.onp-sl-rateus-popup .onp-sl-button-link + .onp-sl-button-link {
+    margin-left: 10px;
+}
+.onp-sl-rateus-popup .onp-sl-button-primary .fa {
+    margin-right: 7px;
+}
+
+.onp-sl-rateus-popup .onp-sl-status-bar {
+    background-color: #f4f4f4;
+    padding: 10px 40px;
+    text-align: center;
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin-left: -40px;
+    
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/**
+* Hides the vk note on the plugins page 
+*/
+
+.plugins-php .onp-sl-vk-note {
+    display: none;
+}

@@ -1,0 +1,28 @@
+/**
+* WP Editor
+*/
+
+.factory-bootstrap-329 .wp-editor-wrap * {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+.factory-bootstrap-329 .wp-editor-wrap .button,
+.factory-bootstrap-329 .wp-editor-wrap textarea,
+.factory-bootstrap-329 .wp-editor-wrap input {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.factory-bootstrap-329 .switch-tmce, 
+.factory-bootstrap-329 .switch-html {
+    color: #777;
+}
+.factory-bootstrap-329 .tmce-active .switch-tmce, 
+.factory-bootstrap-329 .html-active .switch-html {
+    color: #555;
+}
+.factory-bootstrap-329 .switch-tmce:hover,
+.factory-bootstrap-329 .switch-html:hover {
+    color: #777;
+}
