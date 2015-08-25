@@ -149,15 +149,17 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
-<strong>v.4.2.5 - 25 Aug 2015</strong><br />
+<strong>v.4.2.5 - 26 Aug 2015</strong><br />
 <ul>
-<li>FIXED: A set of bugs of the Batch Lock.
+<li>NEW: Compatibility with WP 4.3.</li>
+<li>NEW: The Debug option explains now why the locker is not visible (Global Settings -> Lock Options -> Debug).</li>
+<li>IMPROVED: Compatibility with the plugin <a href="https://wordpress.org/plugins/opt-in-panda/">Opt-In Panda</a>, that extends features of the Social Locker.</li>
+<li>IMPROVED: Compatibility of the options CSS Selector and Dynamic Theme.
+<li>FIXED: A set of bugs of the Batch Lock.</li>
 <li>FIXED: The bug when the Starter theme is not available to select.</li>
 <li>FIXED: The bug when the links Terms and Privacy Policy point to the same page.</li>
 <li>FIXED: The option Highlight.</li>
 <li>FIXED: A set of security issues.</li>
-<li>IMPROVED: Compatibility with the plugin <a href="https://wordpress.org/plugins/opt-in-panda/">Opt-In Panda</a>, that extends features of the Social Locker.
-<li>IMPROVED: Compatibility of the options CSS Selector and Dynamic Theme.
 </ul>
 
 <p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
