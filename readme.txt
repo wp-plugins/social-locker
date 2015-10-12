@@ -160,8 +160,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 <p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
-<p><strong>Important:</strong> if you use the LinkedIn Sign-In button, please update its settings on the page Global Settings -> Lock Options.</p>
-
 <strong>v.4.2.5 - 26 Aug 2015</strong><br />
 <ul>
 <li>NEW: Compatibility with WP 4.3.</li>
