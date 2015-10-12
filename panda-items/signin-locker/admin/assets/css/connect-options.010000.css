@@ -1,0 +1,339 @@
+/**
+ * CSS for the metabox "Connect Options"
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2015, OnePress Ltd
+ * 
+ * @package optinpanda 
+ * @since 1.0.0
+ */
+
+#OPanda_ConnectOptionsMetaBox {
+    display: block;
+}
+
+#OPanda_ConnectOptionsMetaBox .inside,
+#OPanda_ConnectOptionsMetaBox .factory-form-metabox {
+    padding-bottom: 0px;
+}
+.opanda-connect-buttons .opanda-button input {
+    outline: none !important;
+}
+#OPanda_ConnectOptionsMetaBox select {
+    width: auto;
+}
+.opanda-connect-buttons .opanda-button input:disabled {
+    cursor: default;
+}
+
+#OPanda_ConnectOptionsMetaBox .factory-separator {
+    border: 0px;
+    border-top: 1px solid #f1f1f1;
+}
+
+/* connect buttons */
+
+#OPanda_ConnectOptionsMetaBox .opanda-connect-buttons {
+    padding: 0 0 10px 0;
+
+    overflow: auto;    
+    background: #f7f7f7;
+    
+    margin: 0 0 0 -22px;
+    padding: 30px 22px 32px 22px;
+    
+    position: relative;
+    width: 100%;
+    
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    
+    white-space: nowrap;
+}
+.opanda-connect-buttons .opanda-button {
+    width: 160px;
+    display: inline-block;
+    vertical-align: top;
+
+    padding: 3px 0 0 0;
+    
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    border-left: 1px solid #f1f1f1;
+    border-right: 1px solid #f1f1f1;
+   
+    box-shadow: 0 2px 3px rgba(0,0,0,0.03);
+    background-color: #e1e1e1;
+
+    color: #111;
+}
+.opanda-connect-buttons .opanda-button + .opanda-button  {
+    border-left: 0px;
+    margin-left: 15px;
+}
+.opanda-connect-buttons .opanda-inner-wrap {
+    background-color: #fff;
+
+}
+.opanda-connect-buttons .opanda-button-facebook {
+    background: #989de1;
+}
+.opanda-connect-buttons .opanda-button-twitter {
+    background: #55acee;
+}
+.opanda-connect-buttons .opanda-button-google {
+    background: #f47665;
+}
+.opanda-connect-buttons .opanda-button-linkedin {
+    background: #286b8d;
+}
+.opanda-connect-buttons .opanda-button-email {
+    background: #9faeae;
+}
+
+.opanda-connect-buttons .opanda-button-title {
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 14px 20px;
+}
+.opanda-connect-buttons .opanda-button-title > * {
+    display: inline-block;
+    vertical-align: bottom; 
+}
+.opanda-connect-buttons .opanda-button-title span + span {
+    margin-left: 5px;
+}
+
+.opanda-connect-buttons .opanda-button-title {
+    position: relative;
+}
+
+/* erorrs */
+
+.opanda-connect-buttons .opanda-error {
+    display: none;
+    position: relative;
+}
+.opanda-connect-buttons .opanda-error i {
+    cursor: help;
+    color: #f47665;
+}
+.opanda-connect-buttons .opanda-error .opanda-error-text,
+.opanda-connect-buttons .opanda-actions-disabled .opanda-error-text {
+    display: none;
+    position: absolute;
+    width: 300px;
+    background-color: rgba(0,0,0,0.8);
+    white-space: normal;
+    z-index: 10;
+    padding: 10px 12px 12px 12px;
+    font-weight: normal;
+    line-height: 150%;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+    margin-top: 5px;
+}
+.opanda-connect-buttons .opanda-error-text a {
+    color: #fff !important;
+    font-weight: bold;
+}
+.opanda-connect-buttons .opanda-button-title:hover .opanda-error-text {
+    display: block;
+}
+.opanda-connect-buttons .opanda-has-error .opanda-checkbox {
+    display: none;
+}
+.opanda-connect-buttons .opanda-has-error .opanda-button-title {
+    cursor: default;
+}
+.opanda-connect-buttons .opanda-has-error .opanda-error {
+    display: inline-block;
+}
+
+.opanda-connect-buttons .opanda-actions,
+.opanda-connect-buttons .opanda-actions-disabled {
+    padding: 8px 20px 15px 20px;
+    margin: 0px;
+}
+.opanda-connect-buttons .opanda-actions-disabled {
+    border-top: 1px solid #f5f5f5;
+    background-color: #fafafa;
+    padding-top: 10px;
+    position: relative;
+}
+.opanda-connect-buttons .opanda-actions-disabled input {
+    cursor: no-drop !important;
+}
+.opanda-connect-buttons .opanda-actions-disabled .opanda-error-text {
+    display: none;
+    left: 100%;
+    margin-left: -2px;
+    top: -30px;
+}
+.opanda-connect-buttons .opanda-actions-disabled .opanda-error-wrap {
+    position: relative;
+    padding-right: 20px;
+}
+.opanda-connect-buttons .opanda-actions-disabled .opanda-error-wrap:hover .opanda-error-text {
+    display: block;
+}
+.opanda-connect-buttons .opanda-actions-disabled .opanda-error-wrap input {
+    margin-top: 0px;
+}
+
+.opanda-connect-buttons .opanda-action {
+     margin-bottom: 0px;
+     padding-bottom: 6px;
+}
+.opanda-connect-buttons .opanda-action > * {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.opanda-connect-buttons .opanda-action .opanda-action-link {
+    text-decoration: none;
+    color: #111;
+    margin-left: 5px;
+    text-transform: capitalize;
+    border-bottom: 1px dashed #aaa;
+    outline: none;
+    box-shadow: none;
+}
+
+.opanda-connect-buttons .opanda-action.opanda-hover .opanda-action-link {
+    border-bottom: 1px dashed #dfdfbd;
+    background-color: #ffffdd;
+}
+.opanda-connect-buttons .opanda-action.opanda-on .opanda-action-link {
+    font-weight: bold;
+    color: #0074a2;
+    border-bottom: 1px dotted #0074a2;
+}
+
+.opanda-connect-buttons .opanda-button.opanda-off {
+    background-color: #e1e1e1;
+    color: #999;
+}
+.opanda-connect-buttons .opanda-button.opanda-off .opanda-inner-wrap {
+    background-color: #f9f9f9;
+}
+.opanda-connect-buttons .opanda-button.opanda-off .opanda-action-link,
+.opanda-connect-buttons .opanda-button.opanda-off input[type=checkbox]:checked:before {
+    color: #999;
+}
+.opanda-connect-buttons .opanda-button.opanda-off input:focus {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.opanda-connect-buttons .opanda-button.opanda-off .opanda-button-title input {
+    border-color: #aaa;
+}
+.opanda-connect-buttons .opanda-button.opanda-off .opanda-action .opanda-action-link {
+    color: #bbb;
+    border-bottom: 1px dashed #eee;
+    cursor: default;
+}
+.opanda-connect-buttons .opanda-button.opanda-off .opanda-action.opanda-hover .opanda-action-link {
+    background-color: transparent;
+    border-bottom: 1px dashed #eee;
+}
+
+/* premium errors */
+
+
+.opanda-connect-buttons .opanda-error-premium .opanda-error-text {
+    width: 270px;
+    padding: 0px;
+    background-color: transparent;
+}
+.opanda-connect-buttons .opanda-error-premium i {
+    position: relative;
+    top: 1px;
+    font-size: 16px;
+    color: #777;
+}
+.opanda-connect-buttons .opanda-premium-note {
+    margin: 0px;
+    position: static;
+    width: 100%;
+    border: 0px;
+}
+.opanda-connect-buttons .opanda-premium-note .fa {
+    color: #fff;
+}
+
+/* connect buttons options */
+
+#OPanda_ConnectOptionsMetaBox .opanda-connect-buttons-options {
+    background-color: #fff;
+    margin: 0 -22px 0 -22px;
+    padding: 38px 22px 26px 22px;
+    
+    position: relative;
+    width: 100%;
+    
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    
+    border-top: 1px solid #eaeaea;
+}
+.opanda-connect-buttons-options.opanda-off {
+    display: none;
+}
+.opanda-connect-buttons-options .control-label  {
+    max-width: 184px !important;
+}
+.opanda-connect-buttons-options .control-group {
+    max-width: 800px !important;
+}
+.opanda-connect-buttons-options .opanda-header {
+    margin-bottom: 20px;
+}
+.opanda-connect-buttons-options .opanda-header .opanda-inner-wrap {
+    background-color: #f8f8f8;
+    padding: 9px 9px 7px 9px;
+    position: relative;
+    border-left: 4px solid #f1f1f1;
+}
+.opanda-connect-buttons-options .opanda-header strong {
+    display: block;
+    font-size: 16px;
+}
+.opanda-connect-buttons-options .opanda-header p {
+    margin: 0px;
+}
+.opanda-connect-buttons-options .opanda-header strong + p {
+    margin-top: 5px;
+}
+
+#opanda_signup_mode {
+    width: auto;
+}
+
+#OPanda_ConnectOptionsMetaBox .factory-control-signup_mode select {
+    display: inline-block;
+    vertical-align: top;
+}
+.factory-control-subscribe_mode .factory-hints,
+.factory-control-signup_mode .factory-hints {
+    vertical-align: top;
+    color: #737373;
+    width: auto;
+    max-width: 500px;
+    position: relative;
+    top: -1px;
+    border-left: 1px solid #999;
+    padding: 0 0 0 9px;
+    margin: 10px 0 0 5px;
+    background: transparent;
+}
+.factory-control-subscribe_mode .factory-hints .factory-hint,
+.factory-control-signup_mode .factory-hints .factory-hint {
+    background: transparent;
+    padding: 0px;
+    margin-top: 0px;
+}

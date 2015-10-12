@@ -1,0 +1,147 @@
+/**
+ * The Page 'New Item'
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2014, OnePress Ltd
+ * 
+ * @package optinpanda 
+ * @since 1.0.0
+ */
+
+
+html {
+ 
+}
+.wrap {
+    margin-top: 0px;
+}
+
+.opanda-fullwidth {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 100%;
+    margin-left: -22px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+.opanda-items {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+.opanda-items .opanda-buttons .button {
+    background-color: #fff; 
+}
+.opanda-item {
+    width: 250px;
+    min-width: 0;
+    height: 250px;
+    
+    padding: 20px;    
+    margin: 0 15px 15px 0;
+    
+    vertical-align: top;
+    float: left;
+    
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    line-height: 150%;
+    position: relative;
+}
+.opanda-item .opanda-title {
+    font-size: 16px;
+    margin: 0 0 15px 0;
+}
+.opanda-item .opanda-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 18px;
+    background-color: #f9f9f9;
+    height: 66px;
+    
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.opanda-item .opanda-buttons .fa {
+    position: relative;
+    font-size: 14px;
+}
+.opanda-item .opanda-buttons .fa + span {
+    margin-left: 5px;
+}
+
+.opanda-item .opanda-buttons .opanda-right {
+    float: right;
+}
+.opanda-item .opanda-buttons .opanda-create {
+
+}
+.opanda-item .opanda-buttons .opanda-create .fa {
+    top: 1px
+}
+.opanda-item .opanda-buttons .opanda-help .fa {
+
+}
+.opanda-separator {
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.opanda-extra-items {
+    padding-top: 30px;
+}
+.opanda-extra-items {
+    position: relative;
+}
+.opanda-extra-items .opanda-arrow {
+    display: none;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.opanda-extra-items .opanda-item {
+    border: 2px dashed rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: none;
+}
+.opanda-extra-items .opanda-plus-background {
+    display: none;
+    position: absolute;
+    font-size: 30px;
+    right: 10px;
+    top: 10px;
+    
+}
+.opanda-extra-items .opanda-item:hover {
+    border: 2px dashed rgba(0,0,0,0.3);
+}
+.opanda-extra-items .opanda-item em {
+    font-size: 12px;
+    font-style: normal;
+    color: #999;
+    font-weight: normal;
+    display: block;
+}
+.opanda-extra-items .opanda-buttons {
+    background-color: transparent;
+    padding-top: 20px;
+}
+
+.opanda-extra-items .opanda-separator {
+    margin-bottom: 20px;
+}
+.opanda-extra-items h2 + p {
+    margin-bottom: 30px;
+}
+
+.opanda-item-premium .opanda-item-cover {
+    width: 67px;
+    height: 67px;
+    background: url("../img/premium-item.png") top right no-repeat;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+}

@@ -1,0 +1,239 @@
+/**
+ * CSS for Opt-In Panda viewtable
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2013, OnePress Ltd
+ * 
+ * @package optinpanda 
+ * @since 1.0.0
+ */
+
+.column-shortcode input {
+    width: 100%;
+    max-width: 280px;
+    border: 0px;
+    background-color:  transparent;
+    font-size: 12px;
+    font-family: "Consolas", Tahoma, Arial;
+    padding: 5px;
+    background-color: transparent;
+    box-shadow: inset 1px 1px 1px rgba(0,0,0,0.05), 1px 1px 1px #fff !important;
+}
+.column-shortcode {
+    width: 30%;
+}
+.column-bulk  {
+    width: 270px;
+}
+
+.column-bulk .onp-sl-setup-section {
+    overflow: hidden;
+    padding: 10px;
+}
+.column-bulk .onp-sl-setup-section.onp-sl-empty-state {
+    padding: 0px; 
+}
+
+.column-bulk .onp-sl-empty-state .onp-sl-has-options-content,
+.column-bulk .onp-sl-has-options-state .onp-sl-empty-content {
+    display: none;
+}
+
+.column-bulk .onp-sl-setup-section .btn {
+    text-decoration: none;
+}
+.column-bulk .onp-sl-setup-section .btn + .btn {
+    margin-left: 5px;
+}
+.column-bulk.onp-sl-setup-section .btn .fa {
+    font-size: 14px;
+    position: relative;
+    top: 1px;
+    margin-right: 2px;
+}
+
+/* Empty State */
+
+.column-bulk .onp-sl-empty-content .btn {
+    float: right;
+}
+
+/* Has Options */
+
+.column-bulk .onp-sl-has-options-state {
+    color: #fff;
+    background-color: #0074a2;
+    border-top: 1px solid #006187;
+}
+.column-bulk .onp-sl-has-options-state p {
+    color: #fff; 
+}
+.admin-color-light .column-bulk .onp-sl-has-options-state {
+    color: #111;
+    background-color: #f5f5f5;
+    border-top: 1px solid #dddddd;
+}
+.admin-color-light .column-bulk .onp-sl-has-options-state p {
+    color: #111;
+}
+.admin-color-blue .column-bulk .onp-sl-has-options-state {
+    color: #111;
+    background-color: #f5f5f5;
+    border-top: 1px solid #dddddd;
+}
+.admin-color-blue .column-bulk .onp-sl-has-options-state p {
+    color: #111;
+}
+.admin-color-coffee .column-bulk .onp-sl-has-options-state {
+    background-color: #59524c;
+    border-top: 1px solid #403c39;
+}
+.admin-color-ectoplasm .column-bulk .onp-sl-has-options-state {
+    background-color: #523f6d;
+    border-top: 1px solid #382b4b;
+}
+.admin-color-midnight .column-bulk .onp-sl-has-options-state {
+    background-color: #363b3f;
+    border-top: 1px solid #1c1f21;
+}
+.admin-color-ocean .column-bulk .onp-sl-has-options-state {
+    background-color: #738e96;
+    border-top: 1px solid #667c82;
+}
+.admin-color-sunrise .column-bulk .onp-sl-has-options-state {
+    background-color: #cf4944;
+    border-top: 1px solid #c1423d;
+}
+
+.factory-volumetric .column-bulk .onp-sl-has-options-state {
+    color: #fff;
+    background: #21759b;
+    border-radius: 3px;
+    margin-bottom: 9px;
+    margin-top: 4px;
+    border: 0px;
+    border-top: 1px solid #21759b;
+    -webkit-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.15),inset 0px 1px 0px 0px rgba(255,255,255,0.2);
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.15),inset 0px 1px 0px 0px rgba(255,255,255,0.2);
+    
+}
+
+.column-bulk .onp-sl-way-description {
+    display: none;
+}
+.column-bulk .onp-sl-skip-lock-state .onp-sl-skip-lock-content,
+.column-bulk .onp-sl-more-tag-state .onp-sl-more-tag-content,
+.column-bulk .onp-sl-css-selector-state .onp-sl-css-selector-content {
+    display: block;
+}
+
+.column-bulk .onp-sl-rules,
+.column-bulk .onp-sl-post-types-rule,
+.column-bulk .onp-sl-exclude-post-ids-rule,
+.column-bulk .onp-sl-exclude-categories-ids-rule {
+    display: none;
+}
+.column-bulk .onp-sl-post-types-rule-state .onp-sl-rules,
+.column-bulk .onp-sl-exclude-post-ids-rule-state .onp-sl-rules,
+.column-bulk .onp-sl-exclude-categories-ids-rule-state .onp-sl-rules,
+.column-bulk .onp-sl-post-types-rule-state .onp-sl-post-types-rule,
+.column-bulk .onp-sl-exclude-post-ids-rule-state .onp-sl-exclude-post-ids-rule,
+.column-bulk .onp-sl-exclude-categories-ids-rule-state .onp-sl-exclude-categories-ids-rule {
+    display: block;
+}
+
+.column-bulk .onp-sl-rules {
+    position: relative;
+    top: 10px;
+}
+.column-bulk .onp-sl-rules span + span {
+   margin-top: 5px; 
+}
+
+.column-bulk .onp-sl-rules,
+.column-bulk .onp-sl-css-selector-view {
+    background-color: rgba(255,255,255,0.1);
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 100%;
+    margin-left: -10px;
+    padding: 10px;
+    overflow: hidden;
+}
+.admin-color-light .column-bulk .onp-sl-rules,
+.admin-color-light .column-bulk .onp-sl-css-selector-view,
+.admin-color-blue .column-bulk .onp-sl-rules,
+.admin-color-blue .column-bulk .onp-sl-css-selector-view {
+    background-color: rgba(0,0,0,0.02);
+}
+
+.column-bulk .onp-sl-css-selector-view {
+    display: block;
+    margin-top: 0px;
+    position: relative;
+    top: 10px;
+}
+.column-bulk .onp-sl-way-description p {
+    margin: 0px;
+}
+.column-bulk .onp-sl-way-description p + p {
+    margin-top: 5px;
+}
+
+.column-bulk .onp-sl-skip-lock-content > span {
+    display: none;
+}
+.column-bulk .onp-sl-skip-lock-0-state .onp-sl-skip-lock-0-content,
+.column-bulk .onp-sl-skip-lock-1-state .onp-sl-skip-lock-1-content,
+.column-bulk .onp-sl-skip-lock-2-state .onp-sl-skip-lock-2-content {
+    display: block;
+}
+.column-bulk .onp-sl-controls {
+    padding-top: 12px;
+}
+
+.column-stats .opanda-empty {
+    color: #555;
+}
+
+/**
+* Stats Column
+*/
+
+th.column-stats span {
+    cursor: help;
+}
+
+/**
+* Visibility Conditions
+
+*/
+table.fixed {
+    table-layout: auto;
+}
+
+.column-visibility {
+    padding-left: 10px !important;
+}
+.column-visibility .onp-sl-inner-wrap {
+    min-width: 200px;
+}
+.column-visibility ul {
+    padding: 0px;
+    margin: 0px;
+}
+.column-visibility .bp-visibility-conditions {
+
+}
+.column-visibility .bp-filter-type,
+.column-visibility strong {
+    font-weight: bold;
+    color: #111;
+}
+
+.column-visibility strong {
+    color: #111;
+}
+.column-visibility .bp-scopes {
+    margin-left: 10px;
+}

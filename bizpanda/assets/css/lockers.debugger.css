@@ -1,0 +1,187 @@
+.bp-content-to-debug {
+    position: relative;
+    padding: 40px 15px 15px 15px;
+}
+.bp-content-to-debug p:empty {
+    display: none !important;
+}
+.bp-debugger-bracket {
+    position: absolute;
+    top: 25px;
+    bottom: 0px;
+    left: 0px;
+    width: 2px;
+}
+.bp-debugger-bracket,
+.bp-debugger-bracket-top,
+.bp-debugger-bracket-bottom,
+.bp-debugger-label {
+    background-color: #f3da0b;
+    opacity: 1;
+    z-index: 15;
+}
+.bp-content-to-debug:hover .bp-debugger-bracket,
+.bp-content-to-debug:hover .bp-debugger-bracket-top,
+.bp-content-to-debug:hover .bp-debugger-bracket-bottom,
+.bp-content-to-debug:hover .bp-debugger-label {
+    opacity: 1;
+}
+.bp-debugger-bracket-top,
+.bp-debugger-bracket-bottom,
+.bp-debugger-label {
+    position: absolute;
+    left: 0px;
+    width: 30px;
+    height: 2px;
+    top: 25px;
+}
+.bp-debugger-bracket-top {
+    right: 0px;
+    width: auto;
+}
+.bp-debugger-bracket-bottom {
+    top: auto;
+    bottom: 0px;
+}
+
+.bp-debugger-label {
+    top: 0px;
+    left: 8px;
+    width: auto;
+    height: 25px;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    color: #876916 !important;
+    background-color: #fde910;
+    padding: 6px 8px 0 6px;
+    z-index: 14;
+}
+.bp-debugger-label strong {
+    font-weight: bold;
+    color: #876916;
+}
+.bp-debugger-label a {
+    color: #876916;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px dotted #876916;
+    display: inline-block;
+}
+
+.bp-debugger-label,
+.bp-debugger-reason,
+.bp-debugger-label a, 
+.bp-debugger-reason a {
+    font-size: 13px !important;
+    line-height: 15px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.bp-debugger-reason {
+    background-color: #fdf5e6;
+    padding: 10px 15px 7px 15px;
+    position: relative;
+    -moz-box-sizing: content-box; 
+    box-sizing: content-box;
+    margin-left: -15px;
+    width: 100%;
+    top: -15px;
+}
+
+.bp-debugger-vc-wrap {
+    margin-bottom: 10px;
+}
+.bp-debugger-vc-wrap .bp-vc-description {
+    margin: 15px 0 10px 0;
+}
+
+.bp-vc-and,
+.bp-vc-or {
+    display: none;
+}
+
+.bp-debugger-vc-scope + .bp-debugger-vc-scope .bp-vc-and {
+    display: block;
+}
+.bp-debugger-vc-condition + .bp-debugger-vc-condition {
+    margin-top: 3px;
+}
+.bp-debugger-vc-condition + .bp-debugger-vc-condition .bp-vc-or {
+    display: block;
+}
+
+.bp-debugger-vc-filter > .bp-filter-container,
+.bp-debugger-vc-scope > .bp-scope-container
+.bp-debugger-vc-condition > .bp-condition-container {
+    padding-left: 5px;
+    margin-left: 5px;
+}
+.bp-debugger-vc-condition > .bp-condition-container {
+    padding-left: 8px !important;
+}
+.bp-debugger-vc-filter > .bp-filter-container {
+    margin-left: 0px !important;
+}
+
+.bp-debugger-vc-filter.bp-passed > .bp-filter-container,
+.bp-debugger-vc-scope.bp-passed > .bp-scope-container,
+.bp-debugger-vc-condition.bp-passed > .bp-condition-container {
+    border-left: 3px solid #3caa3c;
+}
+.bp-debugger-vc-filter.bp-notpassed > .bp-filter-container,
+.bp-debugger-vc-scope.bp-notpassed > .bp-scope-container,
+.bp-debugger-vc-condition.bp-notpassed > .bp-condition-container {
+    border-left: 3px solid #b00000;
+}
+
+.bp-debugger-vc-filter .bp-filter-type {
+    margin: 15px 0 10px 0;
+    font-size: 12px;
+}
+.bp-debugger-vc-scope .bp-vc-and {
+    margin: 6px 0 7px 0;   
+    text-transform: uppercase;
+    color: #999;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.bp-debugger-vc-condition .bp-vc-or {
+    padding-left: 6px;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin: 5px 0 3px 0;
+    color: #999;
+    font-weight: bold;
+}
+.bp-debugger-vc-condition > .bp-container {
+    padding-left: 5px;
+    margin-left: 5px;
+}
+.bp-debugger-vc-condition strong {
+    font-weight: normal;
+}
+.bp-debugger-vc-condition .bp-current {
+    display: block;
+    padding-top: 1px;
+    font-style: italic;
+}
+.bp-debugger-vc-condition .bp-current strong {
+    font-weight: bold;
+}
+
+.bp-debugger-sv-wrap {
+    padding: 5px 0;
+}
+.bp-debugger-btn {
+    display: inline-block;
+    padding: 5px 7px;
+    color: #876916 !important;
+    background-color: #fde910;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+.bp-debugger-btn:hover {
+    background-color: #ffef14;
+}
