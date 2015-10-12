@@ -45,7 +45,8 @@ textarea {
 
 #opanda_facebook_appid, 
 #opanda_vk_appid,
-#opanda_linkedin_api_key {
+#opanda_linkedin_client_id,
+#opanda_linkedin_client_secret {
     width: 250px;
 }
 #opanda_dynamic_theme_event,

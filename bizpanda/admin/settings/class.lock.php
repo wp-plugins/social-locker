@@ -199,8 +199,16 @@ class OPanda_AdvancedSettings extends OPanda_Settings  {
             'title'     => __( 'Alt Overlap Mode', 'bizpanda' ),
             'hint'      => __( 'This overlap mode will be applied for browsers which don\'t support the blurring effect.', 'bizpanda' )
         );
-
-
+        
+        $forms[] = array(
+            'type'      => 'checkbox',
+            'way'       => 'buttons',
+            'name'      => 'hide_content_on_loading',
+            'default'   => false,
+            'title'     => __( 'Hide Content On Loading', 'bizpanda' ),
+            'hint'      => __( 'By default if the blurring or transparent mode is used, the content may be visible during a short time before the locker appears. Set this option to "On" to hide the locked content when the page is loading until the locker is created.', 'bizpanda' )
+        );
+        
         if ( BizPanda::hasPlugin('sociallocker') ) {
 
             $forms[] = array(

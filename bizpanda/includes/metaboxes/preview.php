@@ -88,7 +88,7 @@ class OPanda_PreviewMetaBox extends FactoryMetaboxes321_Metabox
             window.opanda_proxy_url = '<?php echo opanda_proxy_url() ?>'
             window.opanda_facebook_app_id = '<?php echo get_option('opanda_facebook_appid') ?>';
             window.opanda_google_client_id = '<?php echo get_option('opanda_google_client_id') ?>';
-            window.opanda_linkedin_api_key = '<?php echo get_option('opanda_linkedin_api_key') ?>';
+            window.opanda_linkedin_client_id = '<?php echo get_option('opanda_linkedin_client_id') ?>';
             window.opanda_terms = '<?php echo opanda_terms_url() ?>';
             window.opanda_privacy_policy = '<?php echo opanda_privacy_policy_url() ?>';
             window.opanda_subscription_service_name = '<?php echo get_option('opanda_subscription_service', 'none') ?>';

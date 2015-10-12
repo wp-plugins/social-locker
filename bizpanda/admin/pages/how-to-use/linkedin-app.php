@@ -73,35 +73,38 @@
             <tr>
                 <td class="onp-title"><?php _e('Business Phone', 'bizpanda') ?></td>
                 <td>
-                    <p><?php _e('Enter your phone. It will not be visible.', 'bizpanda') ?></p>
+                    <p><?php _e('Enter your phone. It will not be visible for visitors.', 'bizpanda') ?></p>
                 </td>
             </tr>
         </tbody>
     </table>
-    <p><?php _e('Mark the checkbox "I have read and agree to the LinkedIn API Terms of Use." and submot the form.', 'bizpanda') ?></p>
+    <p><?php _e('Mark the checkbox "I have read and agree to the LinkedIn API Terms of Use." and submit the form.', 'bizpanda') ?></p>
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('3. On the page "Authentication", mark "<strong>r_basicprofile</strong>" and "<strong>r_emailaddress</strong>". Click the button Update.', 'bizpanda' ) ?></p>
+    <p><?php _e('3. On the page "Authentication", mark "<strong>r_basicprofile</strong>" and "<strong>r_emailaddress</strong>".', 'bizpanda' ) ?></p>
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('4. On the page "Settings", switch <strong>Application Status</strong> to <strong>Live</strong>. Click the button Update.', 'bizpanda' ) ?></p>
+    <p>
+        <?php _e('4. In the field "<strong>Authorized Redirect URLs</strong>" of the section "<strong>OAuth 2.0</strong>" paste the URL:', 'bizpanda' ) ?><br />
+    </p>
+    <p>
+        <i>
+            <?php echo add_query_arg( array(
+                            'action' => 'opanda_connect',
+                            'opandaHandler' => 'linkedin',
+                            'opandaRequestType' => 'callback'
+            ), admin_url('admin-ajax.php') ) ?>
+        </i>
+    </p>
+    <p>Click the orange button "<strong>Add</strong>", then click the button button "<strong>Update</strong>" below the from.</p>
 </div>
 
-<?php
-    $origin = null;
-    $pieces = parse_url( site_url() );
-    $domain = isset($pieces['host']) ? $pieces['host'] : '';
-    if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-        $origin = str_replace( 'www.', '', $regs['domain'] );
-    }
-?>
-
 <div class="onp-help-section">
-    <p><?php _e('5. On the page "JavaScript", enter your website domains <strong>' . $origin . '</strong> and <strong>www.' . $origin . '</strong> (with and without "www").', 'bizpanda' ) ?></p>
+    <p><?php _e('5. On the page "Settings", switch <strong>Application Status</strong> to <strong>Live</strong>. Click the button Update.', 'bizpanda' ) ?></p>
 </div>
 
 <div class="onp-help-section">
-    <p><?php printf( __('4. Return to the page "Authentication", copy your <strong>Client ID</strong> and paste it on the page Global Settings > <a href="%s">Social Options</a>.', 'bizpanda' ), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') ) ?></p>
+    <p><?php printf( __('4. Return to the page "Authentication", copy your <strong>Client ID</strong> and <strong>Client Secret</strong>, paste them on the page Global Settings > <a href="%s">Social Options</a>.', 'bizpanda' ), admin_url('admin.php?page=settings-bizpanda&opanda_screen=social') ) ?></p>
 </div>

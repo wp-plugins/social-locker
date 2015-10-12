@@ -32,67 +32,16 @@
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('4. Select "APIs & auth" > "Consent screen" in the sidebar on the left.', 'bizpanda' ) ?></p>
+    <p><?php _e('4. In the sidebar on the left, select "APIs & auth" > "APIs".', 'bizpanda' ) ?></p>
     <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/2.png' />
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/2a.png' />
     </p>
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('5. Fill up and save the form:', 'bizpanda' ) ?></p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th><?php _e('Field', 'bizpanda') ?></th>
-                <th><?php _e('How To Fill', 'bizpanda') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="onp-title"><?php _e('Email Address', 'bizpanda') ?></td>
-                <td><?php _e('Select your email address from the list.', 'bizpanda') ?></td>
-            </tr>
-            <tr>
-                <td class="onp-title"><?php _e('Product Name', 'bizpanda') ?></td>
-                <td><?php _e('The best name is your website name.', 'bizpanda') ?></td>
-            </tr>
-            <tr>
-                <td class="onp-title"><?php _e('Homepage URL', 'bizpanda') ?></td>
-                <td>
-                    <p><?php _e('Paste your website URL:', 'bizpanda') ?></p>
-                    <p><i><?php echo site_url() ?></i></p>
-                </td>
-            </tr>
-            <tr>
-                <td class="onp-title"><?php _e('Product Logo', 'bizpanda') ?></td>
-                <td>
-                    <p><?php _e('If you have any suitable logo, paste it here. Recommended to set for better conversion.', 'bizpanda') ?></p>
-                </td>
-            </tr>
-            <tr>
-                <td class="onp-title"><?php _e('Privacy Policy URL', 'bizpanda') ?></td>
-                <td>
-                    <p><?php _e('Recommended to set it in order to make the work of the plugin transparent for the users. While the plugin activation, we created one for you:', 'bizpanda') ?></p>
-                    <p><i><?php echo opanda_privacy_policy_url() ?></i></p>
-                    <p><?php _e('You can change it or create your own one.', 'bizpanda') ?></p>
-                </td>
-            </tr>
-            <tr>
-                <td class="onp-title"><?php _e('Terms of Service URL', 'bizpanda') ?></td>
-                <td>
-                    <p><?php _e('Recommended to set it in order to make the work of the plugin transparent for the users. While the plugin activation, we created one for you:', 'bizpanda') ?></p>
-                    <p><i><?php echo opanda_terms_url() ?></i></p>
-                    <p><?php _e('You can change it or create your own one.', 'bizpanda') ?></p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="onp-help-section">
-    <p><?php _e('6. In the sidebar on the left, select "APIs" and enable the following APIs:', 'bizpanda' ) ?></p>
+    <p><?php _e('5. Find and enable the following APIs:', 'bizpanda' ) ?></p>
     <ul>
-        <li><?php _e('<strong>Google API</strong>', 'bizpanda' ) ?></li>
+        <li><?php _e('<strong>Google+ API</strong>', 'bizpanda' ) ?></li>
         <li><?php _e('<strong>YouTube APIs</strong> <em>(if you are going to attract subscribers for your Youtube channel)</em>', 'bizpanda' ) ?></li> 
     </ul>
     <p><?php _e('To enable these APIs, click on a title of the required API in the list and then click the button "Enable API".', 'bizpanda' ) ?></p>
@@ -100,10 +49,18 @@
         <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/3a.png' />
     </p>
 </div>
+
 <div class="onp-help-section">
-    <p><?php _e('7. In the sidebar on the left, select "Credentials", then click the button "Create new Client ID".', 'bizpanda' ) ?></p>
+    <p><?php _e('6. In the sidebar on the left, select "APIs & auth" > "Credentials" and create new credentials "OAuth 2.0 client ID"', 'bizpanda' ) ?></p>
     <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/5.png' />
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/4a.png' />
+    </p>
+</div>
+
+<div class="onp-help-section">
+    <p><?php _e('7. Google may ask you to set a product name before creating  OAuth client ID, at this case follow the Google instruction and then return back:', 'bizpanda' ) ?></p>
+    <p class='onp-img'>
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/8.png' />
     </p>
 </div>
 
@@ -112,12 +69,12 @@
     $pieces = parse_url( site_url() );
     $domain = isset($pieces['host']) ? $pieces['host'] : '';
     if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-        $origin = 'http://' . $regs['domain'];
+        $origin = $regs['domain'];
     }
 ?>
 
 <div class="onp-help-section">
-    <p><?php _e('8. In the popup window, select "Web application" and fill up the form:', 'bizpanda' ) ?></p>
+    <p><?php _e('8. Fill up the form:', 'bizpanda' ) ?></p>
     <table class="table">
         <thead>
             <tr>
@@ -127,10 +84,18 @@
         </thead>
         <tbody>
             <tr>
-                <td class="onp-title"><?php _e('Javascript Origin', 'bizpanda') ?></td>
+                <td class="onp-title"><?php _e('Application Type', 'bizpanda') ?></td>
                 <td>
-                    <p><?php _e('Paste your website root path:', 'bizpanda') ?></p>
-                    <p><i><?php echo $origin ?></i></p>
+                    <p>Web Application</p>
+                </td>
+            </tr>   
+            <tr>
+                <td class="onp-title"><?php _e('Authorized Javascript origins', 'bizpanda') ?></td>
+                <td>
+                    <p><?php _e('Add the origins:', 'bizpanda') ?></p>
+                    <p><i><?php echo 'http://' . str_replace('www.', '', $origin) ?></i></p>
+                    <p><i><?php echo 'http://www.' . $origin ?></i></p>
+                    
                 </td>
             </tr>
             <tr>
@@ -148,14 +113,14 @@
     </table>
     
     <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/6.png' />
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/5a.png' />
     </p>
 </div>
 
 <div class="onp-help-section">
-    <p><?php _e('9. After closing the popup window, you will see your new Client ID:', 'bizpanda' ) ?></p>
+    <p><?php _e('9. After clicking on the button Create, you will see your new Client ID:', 'bizpanda' ) ?></p>
     <p class='onp-img'>
-        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/7.png' />
+        <img src='http://cconp.s3.amazonaws.com/bizpanda/google-app/6a.png' />
     </p>
 </div>
 

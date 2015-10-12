@@ -208,8 +208,11 @@ class OPanda_LeadsListTable extends WP_List_Table
 
         // order
 
-        $orderby = !empty($_GET["orderby"]) ? mysql_real_escape_string($_GET["orderby"]) : 'added';
-        $order = !empty($_GET["order"]) ? mysql_real_escape_string($_GET["order"]) : 'desc';
+        $orderby = !empty($_GET["orderby"]) ? $_GET["orderby"] : 'added';
+        if ( !in_array( $orderby, array('name','channel','added','status') ) ) $orderby = 'added';
+        
+        $order = !empty($_GET["order"]) ? $_GET["order"] : 'desc';
+        if ( !in_array( $orderby, array('asc','desc') ) ) $orderby = 'desc';
         
         if ( !in_array( $orderby, array( 'name', 'channel', 'added', 'status' ) ) ) $orderby = 'added';
         if ( !in_array( $order, array( 'asc', 'desc' ) ) ) $orderby = 'asc';
@@ -229,7 +232,7 @@ class OPanda_LeadsListTable extends WP_List_Table
         $totalitems = $wpdb->query($query);
         $perpage = 20;
 
-        $paged = !empty($_GET["paged"]) ? mysql_real_escape_string($_GET["paged"]) : '';
+        $paged = !empty($_GET["paged"]) ? intval($_GET["paged"]) : 1;
         if(empty($paged) || !is_numeric($paged) || $paged<=0 ){ $paged=1; }
         $totalpages = ceil($totalitems/$perpage);
         
@@ -297,9 +300,9 @@ class OPanda_LeadsListTable extends WP_List_Table
         else $name .= '<strong class="opanda-name">';
         
         if ( !empty( $record->lead_display_name ) ) {
-            $name .= $record->lead_display_name;
+            $name .= htmlspecialchars( $record->lead_display_name );
         } else {
-            $name .= $record->lead_email;
+            $name .= htmlspecialchars( $record->lead_email );
         }
         
         if ( !empty( $url ) ) $name .= '</a>';
@@ -382,7 +385,7 @@ class OPanda_LeadsListTable extends WP_List_Table
      * @return void
      */
     public function column_added($record) {
-        
+
         echo date_i18n( get_option('date_format') . ' ' . get_option('time_format'), $record->lead_date + (get_option('gmt_offset')*3600));
     }    
    

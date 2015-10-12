@@ -82,6 +82,8 @@ class OPanda_Handler {
                 foreach( $identityData as $itemId => $itemValue ) {
 
                     foreach($fieldsData as $fieldData) {
+                        
+                        if ( !isset( $fieldData['mapOptions']['id'] ) ) continue;    
                         if ( $fieldData['fieldOptions']['id'] !== $itemId ) continue;
 
                         $mapId = $fieldData['mapOptions']['id'];
@@ -100,6 +102,7 @@ class OPanda_Handler {
                 }  
 
                 $identityData = $newIdentityData;
+                
             }
         }
    
@@ -152,7 +155,7 @@ class OPanda_Handler {
         
         $data = array();
         foreach( $identityData as $itemId => $itemValue ) {
-            
+
             if ( in_array( $itemId, array('email', 'fullname', 'name', 'family', 'displayName') ) ) {
                 $data[$itemId] = $itemValue;
                 continue;
@@ -204,6 +207,89 @@ class OPanda_Handler {
         }
         
         return $data;
+    }
+    
+    /**
+     * Returns true if the user identity data is verified.
+     */
+    public function verifyUserData( $identityData, $serviceData ) {
+        $source = isset( $identityData['source'] ) ? $identityData['source'] : false;
+        if ( !$source || empty( $serviceData ) ) return false;
+        
+        switch( $source ) {
+            case 'facebook':
+                
+                if ( !isset( $serviceData['authResponse']['accessToken'] ) || empty( $serviceData['authResponse']['accessToken'] ) ) return false;
+                
+                $url = 'https://graph.facebook.com/me?access_token=' . $serviceData['authResponse']['accessToken'];
+                $response = wp_remote_get($url);
+                
+                if ( is_wp_error( $response) || !isset( $response['body'] ) ) return false;
+                
+                $data = json_decode($response['body']);
+                if ( !isset( $data->email ) ) return false;
+                
+                $email = str_replace('\u0040', '@', $data->email);
+                if ( $identityData['email'] !== $email ) return false;
+                
+                return true;
+
+            case 'twitter':
+
+                if ( !isset( $serviceData['visitorId'] ) || empty( $serviceData['visitorId'] ) ) return false;
+                
+                $token = $this->getValue( $serviceData['visitorId'], 'twitter_token' );
+                $secret = $this->getValue( $serviceData['visitorId'], 'twitter_secret' );
+                        
+                if ( empty( $token ) || empty($secret) ) return false;
+
+                $options = opanda_get_handler_options( 'twitter' );
+
+                require_once OPANDA_BIZPANDA_DIR . "/admin/includes/connect-handlers/handlers/twitter/twitter.php";
+                $handler = new OPanda_TwitterHandler( $options, true );
+
+                $response = $handler->getUserData( $serviceData['visitorId'], true );
+
+                if ( !isset( $response->email ) || empty( $response->email ) ) return false;
+                if ( $identityData['email'] !== $response->email ) return false;
+                
+                return true;
+            
+            case 'linkedin':
+
+                if ( !isset( $serviceData['accessToken'] ) || empty( $serviceData['accessToken'] ) ) return false;
+                
+                $url = 'https://api.linkedin.com/v1/people/~:(emailAddress)?oauth2_access_token='.$serviceData['accessToken'];
+                $response = wp_remote_get($url, array(
+                    'headers' => 'x-li-format: json'
+                ));
+
+                if ( is_wp_error( $response) || !isset( $response['body'] ) ) return false;
+                
+                $data = json_decode($response['body']);
+                if ( !isset( $data->emailAddress ) ) return false;
+
+                if ( $identityData['email'] !== $data->emailAddress ) return false;
+                return true;
+
+            case 'google':
+                
+                if ( !isset( $serviceData['access_token'] ) || empty( $serviceData['access_token'] ) ) return false;
+                
+                $url = 'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=' . $serviceData['access_token'];
+                $response = wp_remote_get($url);  
+                
+                if ( is_wp_error( $response) || !isset( $response['body'] ) ) return false;
+                
+                $data = json_decode($response['body']);
+                if ( !isset( $data->email ) ) return false;
+                
+                if ( $identityData['email'] !== $data->email ) return false;
+                
+                return true;
+        }
+        
+        return false;
     }
 }
 

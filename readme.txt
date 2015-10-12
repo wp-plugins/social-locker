@@ -3,7 +3,7 @@ Contributors: OnePressMedia
 Donate link: http://onepress-media.com/portfolio
 Tags:content locker, locker, like locker, pay with a tweet, pay with a like, share to unlock, like to unlock, facebook, twitter, google, google+, google plus, linkedin, email, e-mail, emails, subscribe, optin, opt-in, optins, subscribers, subscription, email marketing, marketing, smo, seo, social network, traffic, social, social traffic, social networking, social plugins, mashable, social media pop-up, social media widget, social media sharing, social media networks, social sharing, social sharing optimization, share button, share buttons, facebook share, facebook share button, linkedin share, linkedin share button, twitter share, twitter share button, twitter follow, twitter follow button, tweet, tweeting, social share, social buttons, social share buttons, Share, Share this, simple social buttons, simple share buttons adder, digg, stumble upon, analytics, buddypress, button, facebook like, facebook recommend, facebook share, facebook share button, floating buttons, follow, lock video, youtube, lock video youtube, unlock video, unlock video youtube, video, video social, video viral, viral plugin, viral video, viral traffic
 Requires at least: 3.2
-Tested up to: 4.3.0
+Tested up to: 4.3.1
 Stable tag: trunk
 License: GPLv2
 
@@ -149,6 +149,19 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.4.2.6 - 12 Oct 2015</strong><br />
+<ul>
+<li>IMPROVED: The button Twitter Sign-In now receives an email address of the user (by default works only with the default Twitter app, for custom apps, please see the updated section "How to create a Twitter app" in the help section of the plugin").</li>
+<li>IMPROVED: Added support for Facebook API v.2.5.</li>
+<li>IMPROVED: Compatibility with websites using SSL.</li>
+<li>FIXED: A bug when Facebook does not return an email of the user when using Facebook API v.2.4+.</li>
+<li>FIXED: A set of security issues.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
+<p><strong>Important:</strong> if you use the LinkedIn Sign-In button, please update its settings on the page Global Settings -> Lock Options.</p>
+
 <strong>v.4.2.5 - 26 Aug 2015</strong><br />
 <ul>
 <li>NEW: Compatibility with WP 4.3.</li>
@@ -161,8 +174,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>FIXED: The option Highlight.</li>
 <li>FIXED: A set of security issues.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.4.2.0 - 7 Jul 2015</strong><br />
 <ul>

@@ -52,7 +52,7 @@ class OPanda_Activation extends Factory325_Activator {
     protected function presetOptions() {
         
 	add_option('opanda_facebook_appid', '117100935120196');
-        add_option('opanda_facebook_version', 'v2.3');
+        add_option('opanda_facebook_version', 'v2.5');
         
 	add_option('opanda_lang', 'en_US');
         add_option('opanda_short_lang', 'en');

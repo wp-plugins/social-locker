@@ -129,7 +129,7 @@ if ( !function_exists('opanda_register_signin_locker') ) {
 
             $options['connectButtons']['linkedin'] = array(
                 'actions' => $linkedInActions,
-                'apiKey' => opanda_get_option('linkedin_api_key')
+                'clientId' => opanda_get_option('linkedin_client_id')
             );
         }
 

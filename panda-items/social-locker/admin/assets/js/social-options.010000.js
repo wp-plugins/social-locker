@@ -107,7 +107,14 @@ if ( !window.bizpanda.socialOptions ) window.bizpanda.socialOptions = {};
 
                 var resultArray = [];
                 socialTabWrap.find('li:not(.sortable-placeholder):not(.factory-disabled)').each(function(){
-                    resultArray.push( $(this).data('tab-id') );
+                    var tabId = $(this).data('tab-id');
+
+                    if ( window['sociallocker-next-build'] === 'free' && $.inArray( tabId, ['facebook-like', 'twitter-tweet', 'google-plus']) >= 0 ) {
+                        resultArray.push( tabId );
+                    } else if ( window['sociallocker-next-build'] !== 'free'  ) {
+                        resultArray.push( tabId );
+                    }
+                    
                 });
                 var result = resultArray.join(',');
 

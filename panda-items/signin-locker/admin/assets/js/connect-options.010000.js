@@ -83,7 +83,7 @@ if ( !window.bizpanda.connectOptions ) window.bizpanda.connectOptions = {};
                     },
                     linkedin: {
                         actions: gerOrder('#opanda_linkedin_actions'),
-                        apiKey: window.opanda_linkedin_api_key,
+                        clientId: window.opanda_linkedin_client_id,
 
                         follow: {
                             company: $("#opanda_linkedin_follow_company").val()

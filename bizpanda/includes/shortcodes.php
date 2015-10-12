@@ -108,7 +108,7 @@ class OPanda_LockerShortcode extends FactoryShortcodes320_Shortcode {
         $this->lockData = $lockData;
         
         $overlap = $lockData['options']['overlap']['mode'];
-        $hideContent = $overlap === 'full';
+        $hideContent = $overlap === 'full' || get_option('opanda_hide_content_on_loading', false);
 
         if ($isAjax) { ?>
             <div class="onp-locker-call" style="display: none;" data-lock-id="<?php echo $this->lockId ?>"></div>
@@ -122,9 +122,10 @@ class OPanda_LockerShortcode extends FactoryShortcodes320_Shortcode {
         
 
         if ( $dynamicTheme ) { ?>
-            <div class="onp-optinpanda-params" style="display: none;">
+            <script type="text/bp-data" class="onp-optinpanda-params">
                 <?php echo json_encode( $lockData ) ?>
-            </div>
+            </script>
+            <?php  do_action('opanda_print_locker_assets', $this->lockData['lockerId'], $this->lockData, $this->lockId ); ?>
         <?php } else {
            add_action('wp_footer', array($this, 'wp_footer'), 1);
         }

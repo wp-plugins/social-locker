@@ -11,10 +11,10 @@ add_action('wp_ajax_nopriv_opanda_connect', 'opanda_connect');
  */
 function opanda_connect() {    
     define('OPANDA_PROXY', true);
-    error_reporting(1);  
+    error_reporting(-1);
     
     $handlerName = isset( $_REQUEST['opandaHandler'] ) ? $_REQUEST['opandaHandler'] : null;
-    $allowed = array('twitter', 'subscription', 'signup', 'lead');
+    $allowed = array('twitter', 'linkedin', 'subscription', 'signup', 'lead');
 
     if ( empty( $handlerName ) || !in_array( $handlerName, $allowed ) ) {
         header( 'Status: 403 Forbidden' );
@@ -36,6 +36,7 @@ function opanda_connect() {
     $handler = new $handlerClass( $options );
 
     try {
+        
         $result = $handler->handleRequest();
         echo json_encode( $result );
 

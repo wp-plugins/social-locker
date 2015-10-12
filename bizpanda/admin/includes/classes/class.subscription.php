@@ -17,7 +17,7 @@ abstract class OPanda_Subscription {
     }
 
     public abstract function getLists();
-    public abstract function subscribe( $identityData, $listId, $doubleOptin, $contextData );
+    public abstract function subscribe( $identityData, $listId, $doubleOptin, $contextData, $verified );
     public abstract function check( $identityData, $listId, $contextData );
     public abstract function getCustomFields( $listId );
     

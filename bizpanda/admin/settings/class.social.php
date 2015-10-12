@@ -173,7 +173,8 @@ class OPanda_SocialSettings extends OPanda_Settings  {
                 array('v1.0', 'v1.0'),
                 array('v2.0', 'v2.0'), 
                 array('v2.3', 'v2.3'),
-                array('v2.4', 'v2.4')
+                array('v2.4', 'v2.4'),
+                array('v2.5', 'v2.5')        
              ),
             'hint'      => __( 'Optional. Use the most recent version of the API (v2.4) but if Facebook buttons or widgets don\'t work on your website try to switch to other versions.', 'bizpanda' )
         );
@@ -238,10 +239,17 @@ class OPanda_SocialSettings extends OPanda_Settings  {
 
             $options[] = array(
                 'type'      => 'textbox',
-                'name'      => 'linkedin_api_key',
+                'name'      => 'linkedin_client_id',
                 'title'     => __( 'LinkedIn Client ID', 'bizpanda' ),
-                'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Get Client ID</a>', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') ),
-                'hint'      => sprintf( __( 'If you want to use the LinkedIn Sign-In button, please <a href="%s">get a Client ID</a> for your website.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') )
+                'after'     => sprintf( __( '<a href="%s" class="btn btn-default">Register App</a>', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') ),
+                'hint'      => sprintf( __( 'If you want to use the LinkedIn Sign-In button, please <a href="%s">register an app</a> for your website and set Client ID / Secret of your app in this field and the field below.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') )
+            );
+            
+            $options[] = array(
+                'type'      => 'textbox',
+                'name'      => 'linkedin_client_secret',
+                'title'     => __( 'LinkedIn Client Secret', 'bizpanda' ),
+                'hint'      => sprintf( __( 'The LinkedIn Client Secret of your LinkedIn App.', 'bizpanda' ), admin_url('admin.php?page=how-to-use-' . $this->plugin->pluginName . '&onp_sl_page=linkedin-api-key') )
             );
         }
         

@@ -153,12 +153,12 @@ class OPanda_AssetsManager {
 
         wp_enqueue_style( 
             'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010102.min.css'
+            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010104.min.css'
         );
 
         wp_enqueue_script( 
             'opanda-lockers',
-            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010102.min.js',
+            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010104.min.js',
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );
         
@@ -955,16 +955,17 @@ class OPanda_AssetsManager {
         <script>
             window.__bp_session_timeout = '<?php echo get_option('opanda_session_duration', 900) ?>';
             window.__bp_session_freezing = <?php echo get_option('opanda_session_freezing', 0) ?>;
-            (function(){if(!window.bizpanda)window.bizpanda={};window.bizpanda.bp_can_store_localy=function(){if(!window.localStorage||!window.localStorage.getItem||!window.localStorage.setItem)return false;var salt=''+Math.floor((Math.random()*1000)+1);try{window.localStorage.setItem('bp_ut_test',salt);var checkSalt=window.localStorage.getItem('bp_ut_test');window.localStorage.removeItem('bp_ut_test');return checkSalt===salt}catch(e){return false}};window.bizpanda.bp_ut_get_cookie=function getCookie(cname){var name=cname+"=";var ca=document.cookie.split(';');for(var i=0;i<ca.length;i++){var c=ca[i];while(c.charAt(0)==' ')c=c.substring(1);if(c.indexOf(name)==0)return c.substring(name.length,c.length)}return false};window.bizpanda.bp_ut_set_cookie=function(cname,cvalue,days){var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));var expires="expires="+d.toUTCString();document.cookie=cname+"="+cvalue+"; "+expires};window.bizpanda.bp_ut_get_obj=function(timeout){var obj=null;if(window.bizpanda.bp_can_store_localy()){obj=window.localStorage.getItem('bp_ut_session')}else{obj=window.bizpanda.bp_ut_get_cookie('bp_ut_session')}if(!obj)return false;obj=JSON.parse(obj);if((obj.started+timeout*1000)<new Date().getTime())obj=null;return obj};window.bizpanda.bp_ut_set_obj=function(obj,timeout){if(!obj.started||!window.__bp_session_freezing){obj.started=new Date().getTime()}var obj=JSON.stringify(obj);if(window.bizpanda.bp_can_store_localy()){window.localStorage.setItem('bp_ut_session',obj)}else{window.bizpanda.bp_ut_set_cookie('bp_ut_session',obj,5000)}};window.bizpanda.bp_ut_count_pageview=function(){var obj=window.bizpanda.bp_ut_get_obj(window.__bp_session_timeout);if(!obj)obj={};if(!obj.pageviews)obj.pageviews=0;if(obj.pageviews===0){obj.referrer=document.referrer;obj.landingPage=window.location.href;obj.pageviews=0}obj.pageviews++;window.bizpanda.bp_ut_set_obj(obj)};window.bizpanda.bp_ut_count_locker_pageview=function(){var obj=window.bizpanda.bp_ut_get_obj(window.__bp_timeout);if(!obj)obj={};if(!obj.lockerPageviews)obj.lockerPageviews=0;obj.lockerPageviews++;window.bizpanda.bp_ut_set_obj(obj)};window.bizpanda.bp_ut_count_pageview()})();
+            !function(){window.bizpanda||(window.bizpanda={}),window.bizpanda.bp_can_store_localy=function(){return!1},window.bizpanda.bp_ut_get_cookie=function(e){for(var n=e+"=",i=document.cookie.split(";"),o=0;o<i.length;o++){for(var t=i[o];" "==t.charAt(0);)t=t.substring(1);if(0==t.indexOf(n))return decodeURIComponent(t.substring(n.length,t.length))}return!1},window.bizpanda.bp_ut_set_cookie=function(e,n,i){var o=new Date;o.setTime(o.getTime()+24*i*60*60*1e3);var t="expires="+o.toUTCString();document.cookie=e+"="+encodeURIComponent(n)+"; "+t+"; path=/"},window.bizpanda.bp_ut_get_obj=function(e){var n=null;return(n=window.bizpanda.bp_can_store_localy()?window.localStorage.getItem("bp_ut_session"):window.bizpanda.bp_ut_get_cookie("bp_ut_session"))?(n=JSON.parse(n),n.started+1e3*e<(new Date).getTime()&&(n=null),n):!1},window.bizpanda.bp_ut_set_obj=function(e){e.started&&window.__bp_session_freezing||(e.started=(new Date).getTime());var e=JSON.stringify(e);window.bizpanda.bp_can_store_localy()?window.localStorage.setItem("bp_ut_session",e):window.bizpanda.bp_ut_set_cookie("bp_ut_session",e,5e3)},window.bizpanda.bp_ut_count_pageview=function(){var e=window.bizpanda.bp_ut_get_obj(window.__bp_session_timeout);e||(e={}),e.pageviews||(e.pageviews=0),0===e.pageviews&&(e.referrer=document.referrer,e.landingPage=window.location.href,e.pageviews=0),e.pageviews++,window.bizpanda.bp_ut_set_obj(e)},window.bizpanda.bp_ut_count_locker_pageview=function(){var e=window.bizpanda.bp_ut_get_obj(window.__bp_timeout);e||(e={}),e.lockerPageviews||(e.lockerPageviews=0),e.lockerPageviews++,window.bizpanda.bp_ut_set_obj(e)},window.bizpanda.bp_ut_count_pageview()}();
         </script>
         <!-- / -->
-        <?php
-            /*
+            <?php
+            /**
             <script>
             (function(){
                 if ( !window.bizpanda ) window.bizpanda = {};
                 
                 window.bizpanda.bp_can_store_localy = function() {
+                    return false;
                     if ( !window.localStorage || !window.localStorage.getItem  || !window.localStorage.setItem ) return false;
                     var salt = '' + Math.floor((Math.random() * 1000) + 1);
                     
@@ -983,7 +984,7 @@ class OPanda_AssetsManager {
                     var name = cname + "="; var ca = document.cookie.split(';');
                     for(var i=0; i<ca.length; i++) {
                         var c = ca[i]; while (c.charAt(0)==' ') c = c.substring(1);
-                        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+                        if (c.indexOf(name) == 0) return decodeURIComponent( c.substring(name.length,c.length) );
                     }
                     return false;
                 };
@@ -992,7 +993,7 @@ class OPanda_AssetsManager {
                     var d = new Date();
                     d.setTime(d.getTime() + (days*24*60*60*1000));
                     var expires = "expires="+d.toUTCString();
-                    document.cookie = cname + "=" + cvalue + "; " + expires;
+                    document.cookie = cname + "=" + encodeURIComponent( cvalue ) + "; " + expires + "; path=/";
                 };
 
                 window.bizpanda.bp_ut_get_obj = function( timeout ) {
@@ -1059,7 +1060,7 @@ class OPanda_AssetsManager {
                 window.bizpanda.bp_ut_count_pageview();
             })();
             </script>
-             */
+        */
     }
 }
 

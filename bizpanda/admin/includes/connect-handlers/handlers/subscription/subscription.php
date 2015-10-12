@@ -45,7 +45,12 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
         if ( empty( $identityData['email'] )) {
            throw new Opanda_HandlerException( 'Unable to subscribe. The email is not specified.' );
         }
-
+        
+        // - service data
+        
+        $serviceData = isset( $_POST['opandaServiceData'] ) ? $_POST['opandaServiceData'] : array();
+        $serviceData = $this->normilizeValues( $serviceData );
+        
         // - context data
         
         $contextData = isset( $_POST['opandaContextData'] ) ? $_POST['opandaContextData'] : array();
@@ -68,6 +73,19 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
         $confirm =  isset( $_POST['opandaConfirm'] ) ? $_POST['opandaConfirm'] : true;
         $confirm = $this->normilizeValue( $confirm );
         
+        // verifying user data if needed while subscribing
+        
+        $verified = false; 
+        
+        if ( 'subscribe' === $requestType ) {
+            
+            $mailServiceInfo = OPanda_SubscriptionServices::getServiceInfo();
+
+            if ( $doubleOptin && in_array( 'quick', $mailServiceInfo['modes'] ) ) {
+                $verified = $this->verifyUserData( $identityData, $serviceData );
+            }     
+        }
+
         // prepares data received from custom fields to be transferred to the mailing service
         
         $itemId = intval( $contextData['itemId'] );
@@ -84,7 +102,7 @@ class OPanda_SubscriptionHandler extends OPanda_Handler {
             $result = array();
             
             if ( 'subscribe' === $requestType ) {
-                $result = $service->subscribe( $serviceReadyData, $listId, $doubleOptin, $contextData );
+                $result = $service->subscribe( $serviceReadyData, $listId, $doubleOptin, $contextData, $verified );
 
                 do_action('opanda_subscribe', 
                     ( $result && isset( $result['status'] ) ) ? $result['status'] : 'error', 

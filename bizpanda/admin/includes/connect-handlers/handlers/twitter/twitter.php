@@ -144,12 +144,14 @@ class OPanda_TwitterHandler extends OPanda_Handler {
         return new OPanda_TwitterOAuth( $options['consumer_key'], $options['consumer_secret'], $token, $secret);
     }
     
-    public function getUserData( $visitorId ) {
+    public function getUserData( $visitorId, $returnData = false ) {
+        require_once( 'libs/twitteroauth.php');
         $oauth = $this->getOPanda_TwitterOAuth( $visitorId );
 
-        $response = $oauth->get('account/verify_credentials');
-        echo json_encode($response);
+        $response = $oauth->get('account/verify_credentials', array('skip_status' => 1, 'include_email' => 'true'));
+        if ( $returnData ) return $response;
         
+        echo json_encode($response);
         exit;
     }
     

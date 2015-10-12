@@ -166,7 +166,7 @@ class OPanda_LeadsPage extends OPanda_AdminPage  {
 
         <div class="wrap factory-fontawesome-320" id="opanda-lead-details-page">
             
-        <h2>Edit <strong><?php echo $displayName ?></strong></h2>
+        <h2>Edit <strong><?php echo htmlspecialchars( $displayName ) ?></strong></h2>
         
         <?php if ( isset( $_GET['opanda_success'] ) ) { ?>
         <div class="factory-bootstrap-329">
@@ -194,18 +194,18 @@ class OPanda_LeadsPage extends OPanda_AdminPage  {
                     
                     <h3 class="detail">
                         <ul class="click-to-edit">
-                            <li><?php echo $email ?></li>
-                            <li><input id="opanda_email" class="" type="text" name="email" value="<?php echo $email ?>" placeholder="<?php _e('Email', 'bizpanda') ?>"></li>
+                            <li><?php echo htmlspecialchars( $email ) ?></li>
+                            <li><input id="opanda_email" class="" type="text" name="email" value="<?php echo htmlspecialchars( $email ) ?>" placeholder="<?php _e('Email', 'bizpanda') ?>"></li>
                         </ul>
                     </h3>
                     
                     <div class="detail">
                         <label for="opanda_name"><?php _e('Name:', 'bizpanda') ?></label>
                         <ul class="click-to-edit">
-                            <li><?php echo $name ?> <?php echo $family ?></li>
+                            <li><?php echo htmlspecialchars( $name ) ?> <?php echo htmlspecialchars( $family ) ?></li>
                             <li>
-                                <input id="opanda_name" type="text" name="name" value="<?php echo $name ?>" placeholder="<?php _e('First Name', 'bizpanda') ?>">
-                                <input id="opanda_family" class="" type="text" name="family" value="<?php echo $family ?>" placeholder="<?php _e('Last Name', 'bizpanda') ?>">
+                                <input id="opanda_name" type="text" name="name" value="<?php echo htmlspecialchars( $name ) ?>" placeholder="<?php _e('First Name', 'bizpanda') ?>">
+                                <input id="opanda_family" class="" type="text" name="family" value="<?php echo htmlspecialchars( $family ) ?>" placeholder="<?php _e('Last Name', 'bizpanda') ?>">
                             </li>
                         </ul>
                     </div>

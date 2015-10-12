@@ -318,6 +318,17 @@ function opanda_get_handler_options( $handlerName ) {
                 'consumer_secret' => $consumerSecret,
                 'proxy' => opanda_proxy_url()
             );
+            
+        case 'linkedin':
+            
+            $clientId = get_option('opanda_linkedin_client_id');
+            $clientSecret = get_option('opanda_linkedin_client_secret');
+
+            return array(
+                'client_id' => $clientId,
+                'client_secret' => $clientSecret,
+                'proxy' => opanda_proxy_url()
+            ); 
 
         case 'subscription':
             
@@ -452,7 +463,7 @@ function bizpanda_frontend_action() {
         $action = $_REQUEST[$robustKey];
         
         if ( opanda_get_robust_script_key() === $action ) {
-            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010102.min.js');
+            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010104.min.js');
             exit;
         }
     }
