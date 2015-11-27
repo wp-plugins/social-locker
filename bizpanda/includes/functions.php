@@ -463,7 +463,7 @@ function bizpanda_frontend_action() {
         $action = $_REQUEST[$robustKey];
         
         if ( opanda_get_robust_script_key() === $action ) {
-            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010104.min.js');
+            echo file_get_contents(OPANDA_BIZPANDA_DIR . '/assets/js/lockers.010105.min.js');
             exit;
         }
     }

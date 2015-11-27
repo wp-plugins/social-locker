@@ -236,6 +236,10 @@ class OPanda_ConnectOptionsMetaBox extends FactoryMetaboxes321_FormMetabox
         
         // signup options
         
+        if ( !function_exists('get_editable_roles') ) {
+            require_once( ABSPATH . '/wp-admin/includes/user.php' );
+        }
+
         $rolesItems = array();
         foreach (get_editable_roles() as $roleName => $roleInfo) {
             $rolesItems[] = array($roleName, $roleName);

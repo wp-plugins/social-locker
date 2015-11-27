@@ -57,7 +57,7 @@ global $bizpanda_versions;
 
 if ( !$bizpanda_versions )
     $bizpanda_versions = array( 'free' => array(), 'premium' => array() );
-    $bizpanda_versions['free']['117'] = dirname(__FILE__) . '/boot.php';
+    $bizpanda_versions['free']['118'] = dirname(__FILE__) . '/boot.php';
 
 
 

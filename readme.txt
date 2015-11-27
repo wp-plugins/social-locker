@@ -149,6 +149,14 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
+<strong>v.4.2.7 - 28 Nov 2015</strong><br />
+<ul>
+<li>FIXED: A bug when Tweet and Follow buttons unlocked content immediately after clicking on the buttons.</li>
+<li>FIXED: A set of security issues.</li>
+</ul>
+
+<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
+
 <strong>v.4.2.6 - 12 Oct 2015</strong><br />
 <ul>
 <li>IMPROVED: The button Twitter Sign-In now receives an email address of the user (by default works only with the default Twitter app, for custom apps, please see the updated section "How to create a Twitter app" in the help section of the plugin").</li>
@@ -157,8 +165,6 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 <li>FIXED: A bug when Facebook does not return an email of the user when using Facebook API v.2.4+.</li>
 <li>FIXED: A set of security issues.</li>
 </ul>
-
-<p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>
 
 <strong>v.4.2.5 - 26 Aug 2015</strong><br />
 <ul>
