@@ -1,0 +1,419 @@
+/**
+ * CSS for the How To Use section of the Opt-In Panda
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2014, OnePress Ltd
+ * 
+ * @package optinpanda 
+ * @since 1.0.0
+ */
+
+.wrap {
+    width: 950px;
+    margin: 18px auto;
+}
+.wrap * {
+    font-family: 'helvetica neue',helvetica,arial,'lucida grande',sans-serif;
+}
+
+/* ---
+* Navigation 
+*/
+
+.onp-help-nav {
+    width: 192px;
+    float: left;
+    position: fixed;
+}
+.onp-help-nav a {
+    display: block;
+    color: #141823;
+    padding: 14px 12px; 
+    text-decoration: none;
+}
+.onp-help-nav a:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Sub items */
+
+.onp-help-nav-subitems {
+    display: none;
+}
+.onp-help-active-item > .onp-inner-wrap > .onp-help-nav-subitems {
+    display: block;
+}
+
+/* Icons */
+
+.onp-help-nav .fa {
+    margin-right: 2px;
+    font-size: 14px;
+    position: relative;
+    top: 1px;
+    color: #999;
+}
+.onp-help-nav .fa-minus-square-o {
+    display: none;
+}
+.onp-help-active-item > .onp-inner-wrap > a .fa-minus-square-o {
+    display: inline-block;
+}
+.onp-help-active-item > .onp-inner-wrap > a .fa-plus-square-o {
+    display: none;
+}
+
+/* Categories */
+
+.onp-help-nav-category > .onp-inner-wrap > a {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 9px;
+    color: #999;
+    font-weight: bold;
+}
+.onp-help-nav-category > .onp-inner-wrap > a:hover {
+    text-decoration: underline;
+    color: #555;
+}
+.onp-help-nav-category + .onp-help-nav-category.onp-help-active-item {
+    margin-top: 5px;
+}
+.onp-help-nav-category.onp-help-active-item {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.onp-help-nav-category.onp-help-active-item > .onp-inner-wrap {
+    border-bottom: 1px solid #f1f1f1;
+}
+.onp-help-nav-category.onp-help-active-item  > .onp-inner-wrap > a {
+    border-left: 0px;
+    margin: 0px;
+    background-color: #fafafa;
+    color: #777;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 12px 12px 10px 12px; 
+}
+.onp-help-nav-category.onp-help-active-item  > .onp-inner-wrap > a:hover {
+    text-decoration: none;
+}
+.onp-help-nav-category > .onp-inner-wrap > a .fa {
+    display: none;
+}
+
+/* Pages */
+
+.onp-help-nav-page + .onp-help-nav-page {
+    border-top: 1px solid #f7f7f7;
+}
+.onp-help-nav-page.onp-help-active-item.onp-has-subitems + .onp-help-nav-page {
+    border-top: 0px;
+}
+.onp-help-nav-page.onp-help-active-item > .onp-inner-wrap > a > span {
+    font-weight: bold;
+}
+.onp-help-nav-page > .onp-inner-wrap > a:hover {
+    background-color: #fdfdfd;
+}
+.onp-help-nav-page > .onp-inner-wrap > .onp-help-nav-subitems {
+    background-color: #f9f9f9;
+    border-bottom: 0px;
+    border-top: 2px solid #f1f1f1;  
+    border-bottom: 1px solid #f1f1f1;
+}
+.onp-help-nav-page:last-child > .onp-inner-wrap > .onp-help-nav-subitems {
+    border-bottom: 0px;
+}
+
+/* Sub Pages */
+
+.onp-help-nav-subpage a {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+.onp-help-nav-subpage a:first-child {
+    padding-top: 12px;
+}
+.onp-help-nav-subpage.onp-help-active-item > .onp-inner-wrap > a span {
+    font-style: italic;
+}
+.onp-help-nav-subpage > .onp-inner-wrap > a:hover {
+    background-color: #fcfcfc;
+}
+
+
+/* ---
+* Content 
+*/
+
+.onp-help-content {
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+    margin-left: 210px;
+    width: 725px;
+    border-radius: 3px;
+}
+.onp-help-content > .onp-inner-wrap {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.onp-help-content p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+}
+.onp-help-content .onp-help-section p:last-child {
+    margin-bottom: 0px;
+}
+.onp-help-content .onp-help-section {
+    color: #4e5665;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 30px;
+}
+.onp-help-content .onp-help-section + .onp-help-section {
+    border-top: 1px solid #f9f9f9;
+}
+.onp-help-content .onp-help-section h1,
+.onp-help-content .onp-help-section h2 {
+    margin: 0;
+    padding: 0px;
+}
+
+.onp-help-content .onp-help-section h1,
+.onp-help-content .onp-help-section h2,
+.onp-help-content .onp-help-section h3,
+.onp-help-content .onp-help-section h4 {
+    color: #4e5665;
+}
+.onp-help-content .onp-help-section h1 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 32px;
+    margin-bottom: 12px;
+}
+.onp-help-content .onp-help-section h2 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+
+.onp-help-content .fa {
+    margin-left: 7px;
+    font-size: 11px;
+}
+
+/* List */
+
+.onp-help-content .onp-list {
+    list-style: disc;
+    padding: 0 0 0 20px;
+}
+.onp-help-content .onp-list li {
+    padding: 0px;
+    margin: 0px;
+}
+.onp-help-content .onp-list li + li {
+    margin-top: 15px;
+}
+
+/* Bold List */
+
+.onp-help-content .onp-bold-link {
+    font-weight: bold;
+    text-decoration: none;
+}
+.onp-help-content .onp-bold-link:hover {
+    text-decoration: underline;
+}
+
+/* Marks */
+
+.onp-help-content .onp-mark {
+    padding: 0px 0;
+    display: inline-block; 
+}
+.onp-help-content .onp-mark-stricked {
+    border-bottom: 1px solid #fff;
+}
+.onp-help-content .onp-mark-yellow {
+    background-color: #fffaea;
+    border-bottom-color: #f9f1e1;
+}
+.onp-help-content .onp-mark-gray {
+    background-color: #f7f7f7;
+    border-bottom-color: #e9e9e9;
+}
+
+/* Code */
+
+.onp-help-content .onp-code {
+    font-family: Consolas;
+    font-size: 13px;
+}
+
+/* Stress */
+
+.onp-help-content strong {
+    color: #555;
+}
+
+.onp-help-content .onp-stress {
+    font-weight: 600;
+    font-style: italic;
+    color: #555;
+}
+
+/* Notes */
+
+.onp-help-content .onp-note {
+    border-left: 5px solid #2c3e50;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    color: #444;
+}
+
+
+.onp-help-content .onp-remark {
+    background: #f9f9f9;
+    border-radius: 3px;
+}
+.onp-help-content .onp-remark .onp-inner-wrap {
+    display: block;
+    padding: 10px 10px 10px 15px;
+}
+
+/* images */
+
+.onp-help-content .onp-img {
+    margin: 20px 0px 25px 0;
+    padding: 35px 20px 30px 20px;
+    text-align: center;
+    line-height: 50%;
+    background-color: #fcfcfc;
+}
+.onp-help-content .onp-img img {
+    max-width: 612px;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+.onp-help-content .onp-img i {
+    display: block;
+    font-style: italic;
+    margin: 20px 0 0 0px;
+    padding: 0px;
+    line-height: 150%;
+    color: #aaa;
+    font-size: 15px;
+    padding: 0 70px;
+}
+
+.onp-help-content strong {
+    font-weight: bold;
+}
+.onp-help-content ul {
+    padding-left: 20px;
+    list-style: inside;
+}
+
+/**
+* Upgrade To Premium
+*/
+
+.onp-how-comparation thead {
+   background-color: #f9f9f9;  
+}
+.onp-how-comparation,
+.onp-how-comparation td, 
+.onp-how-comparation th {
+    border: 0px !important;
+}
+
+.onp-how-group-title {
+    font-weight: bold;
+    padding-top: 30px !important;
+}
+.onp-how-title a {
+    color: #4e5665;
+    text-decoration: none;
+    border-bottom: 1px dotted #5e6675;
+}
+.onp-how-no {
+    color: #ddd;
+}
+.onp-how-yes strong {
+    color: #444;
+}
+.onp-how-premium {
+   background-color: #f6fcfe;  
+}
+thead .onp-how-premium {
+   background-color: #2ea2cc;  
+   color: #fff;
+}
+
+#activate-trial-btn,
+#onp-sl-purchase-btn {
+    padding: 20px 0 !important;
+    font-size: 20px;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 100%;
+    text-align: center;
+    height: auto;
+}
+#onp-sl-purchase-btn {
+    padding: 20px 0 !important;
+    font-size: 20px;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 100%;
+    text-align: center;
+    height: auto; 
+    background: #fffaea;
+    border-color: #ddd9cd;
+    
+    -moz-box-shadow: 0 0 8px #fddf67;   
+    -webkit-box-shadow: 0 0 8px #fddf67;
+    box-shadow: 0 0 8px #fddf67;
+    
+    -moz-text-shadow: none;
+    -webkit-text-shadow: none;  
+    text-shadow: none;
+}
+
+/* hides the vk note on the how to use page */
+.onp-sl-vk-note {
+    display: none;
+}
+
+/* tables */
+
+.onp-help-content .table p {
+    margin: 0px;
+}
+.onp-help-content .table p + p {
+    margin-top: 5px;
+}
+.onp-help-content .table .onp-title {
+    font-weight: bold;
+    white-space: nowrap;
+}
+.onp-help-content .table > thead {
+    background-color: #f9f9f9;
+}
+.onp-help-content .table > thead > tr > th {
+    border-bottom-width: 1px;
+}
+.onp-help-content .table > tbody > tr > td,
+.onp-help-content .table > tr > td {
+    border-bottom: 1px solid #f9f9f9;
+}

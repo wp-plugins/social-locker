@@ -1,0 +1,214 @@
+/*!
+ * Factory Notices
+ *
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2013, OnePress Ltd
+ * 
+ * @package factory-notices 
+ * @since 1.0.0
+ */
+
+.factory-notices-323-notices.updated {
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.factory-notices-323-notices .factory-notice + .factory-notice {
+    margin-top: 10px;
+}
+
+/**
+ * Hero Offer
+ */
+
+.factory-notices-323-notices .factory-hero {
+    position: relative;
+    background: url("../img/offer-bg.png") center center;
+    background-size: cover;
+    background-color: #314860;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.15);
+    padding: 0px;
+    font-size: 18px;
+    font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",Verdana,"Bitstream Vera Sans",sans-serif;
+    font-weight: normal;
+    color: #fff;
+    text-shadow: 0px 1px 1px rgba(0,0,0,0.4);
+    line-height: 130%;
+    border: 1px solid #404b57;
+}
+.factory-notices-323-notices .factory-hero .factory-inner-wrap {
+    overflow: hidden;
+    padding: 15px 15px 20px 15px;
+}
+.factory-notices-323-notices .factory-hero .factory-header {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.factory-notices-323-notices .factory-hero .factory-message,
+.factory-notices-323-notices .factory-hero .factory-header {
+    display: inline;
+}
+.factory-notices-323-notices .factory-hero .factory-message-container { 
+    float: left;
+    width: 68.421053%;
+}
+.factory-notices-323-notices .factory-hero .factory-message-container a {
+    color: #fff;
+    text-decoration: underline;
+}
+.factory-notices-323-notices .factory-hero .factory-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.factory-notices-323-notices .factory-hero .factory-button {
+    display: inline-block;
+    line-height: 1.2;
+    text-align: center;
+    -moz-box-shadow: inset 0 0 2px #fff, 0 1px 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 2px #fff, 0 1px 5px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 2px #fff, 0 1px 5px rgba(0,0,0,0.3);
+    padding: 9px 15px 8px 15px;
+    border-radius: 5px;
+    background: #1b9772;
+    border: 1px solid #2e3847;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0px 1px 2px rgba( 0,0,0,0.5);
+    -webkit-transition-duration: .3s;
+    -moz-transition-duration: .3s;
+    cursor: pointer;
+}
+.factory-notices-323-notices .factory-hero .factory-button:hover {
+    color: #fff !important;
+    background-color: #f0a000;
+    border-color: #c87800;
+    -webkit-transition-duration: .3s;
+    outline: none;
+    -moz-box-shadow: inset 0 0 2px #fff, 0 1px 7px rgba(240,160,0,0.5);
+    -webkit-box-shadow: inset 0 0 2px #fff, 0 1px 7px rgba(240,160,0,0.5);
+    box-shadow: inset 0 0 2px #fff, 0 1px 7spx rgba(240,160,0,0.5);
+}
+.factory-notices-323-notices .factory-hero .highlighted {
+    background-color: rgba(255,255,255,0.12);
+    padding: 0 7px;
+    display: inline-block;
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none !important;
+    -webkit-transition-duration: .3s;
+    -moz-transition-duration: .3s;
+}
+.factory-notices-323-notices .factory-hero .highlighted:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+/**
+* Alert Danger
+*/
+
+.factory-notices-323-notices .alert-danger .factory-inner-wrap {
+    min-height: 90px;
+    padding-left: 110px;
+    background: url("../img/alert-danger-icon.png") no-repeat top left;
+}
+.factory-notices-323-notices .alert-danger .factory-close {
+    opacity: 1;
+}
+.factory-notices-323-notices .alert-danger .factory-close .fa {
+    color: #b23e3a;
+    text-shadow: none;
+}
+.factory-notices-323-notices .alert .factory-button {
+    margin-right: 5px;
+}
+
+/**
+* Call to action
+*/
+
+.factory-notices-323-notices .call-to-action {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    color: #111;
+    border: 2px solid #0074a2;
+}
+.factory-notices-323-notices2 .call-to-action .factory-inner-wrap {
+    min-height: 90px;
+    padding-left: 110px;
+    background: url("../img/call-to-action-icon-4.png") no-repeat top left;
+}
+.factory-notices-323-notices .call-to-action h4 {
+    margin-top: 0;
+    color: inherit;
+    margin-bottom: 10px;
+}
+.factory-notices-323-notices .call-to-action .actions {
+    padding-top: 10px;
+}
+.factory-notices-323-notices .call-to-action .close {
+    position: relative;
+    top: -8px;
+    right: -7px;
+}
+.factory-notices-323-notices .call-to-action .factory-button {
+    margin-right: 5px;
+}
+.factory-notices-323-notices .call-to-action .factory-icon {
+    font-size: 100px;
+    line-height: 100px;
+    float: left;
+    margin-right: 15px;
+    color: #2ea2cc;
+    position: relative;
+    top: -5px;
+    text-shadow: 0 1px 0 #fff;
+}
+
+/**
+* Popups
+*/
+
+.factory-popup {
+    max-width: 600px;
+    background-color: #fff;
+    padding: 40px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: fixed;
+    visibility: hidden;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    z-index: 151;
+}
+.factory-popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 150;
+}
+.factory-popup .factory-corner-close {
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    color: #bbb;
+    font-size: 18px;
+    background-color: #fff;
+    height: 20px;
+    width: 20px;
+    padding: 7px;
+    text-align: center;
+    border-radius: 100%;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}

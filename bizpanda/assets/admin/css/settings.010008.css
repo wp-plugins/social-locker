@@ -1,0 +1,280 @@
+/**
+ * CSS for Opt-In Panda Settings
+ * 
+ * @author Paul Kashtanoff <paul@byonepress.com>
+ * @copyright (c) 2013, OnePress Ltd
+ * 
+ * @package optinpanda 
+ * @since 1.0.0
+ */
+
+.alert.alert-success {
+    margin: 0px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    font-weight: bold;
+    padding: 10px;
+}
+.alert.alert-success p {
+    margin: 0px;
+}
+
+input[type=text],
+textarea {
+    max-width: 400px;
+}
+select {
+    width: auto !important;
+}
+textarea {
+    min-height: 100px;
+}
+
+.opanda-hidden {
+    display: none;
+}
+.factory-bootstrap-329 .form-control {
+    display: inline-block;
+}
+.help-block a {
+    color: #737373;
+}
+.help-block a:hover {
+ 
+}
+
+#opanda_facebook_appid, 
+#opanda_vk_appid,
+#opanda_linkedin_client_id,
+#opanda_linkedin_client_secret {
+    width: 250px;
+}
+#opanda_dynamic_theme_event,
+#opanda_managed_hook {
+    width: 250px;  
+}
+#opanda_lang {
+    width: 250px;     
+}
+
+#opanda_timeout,
+#opanda_session_duration {
+    width: 100px;
+}
+
+.help-block {
+    position: relative;
+    margin-top: 12px !important;
+    line-height: 160%;
+}
+.form-horizontal {
+    max-width: 1200px;
+}
+.btn-group {
+    border: 0px !important;
+}
+.factory-bootstrap-329 .btn-group { 
+    margin-bottom: 0px;
+}
+
+.form-horizontal .onp-sl-inline {
+    padding-top: 1px;
+    margin: 0px;
+}
+.factory-volumetric .onp-sl-inline {
+    font-size: 14px;
+    line-height: 100%;
+    padding-top: 8px;
+}
+
+.btn + .btn {
+    margin-left: 5px;
+}
+
+/**
+* Confirmation Dialog
+*/
+
+#onp-confirm-dialog.onp-page-wrap {
+    width: 700px;
+    margin: auto;
+    margin-top: 100px;
+}
+#onp-confirm-dialog-wrap {
+    background-color: #fefefe;
+    border-radius: 15px;
+    padding: 40px 40px 40px 210px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 165px;
+    border-bottom: 2px solid #dfdfdf;
+    background-image: url("../img/confirmation-dialog.png");
+    background-repeat: no-repeat;
+    background-position: 40px 40px;
+}
+.factory-volumetric #onp-confirm-dialog-wrap {
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #f3f3f3;
+}
+#onp-confirm-dialog-wrap h1 {
+    padding: 0px;
+    margin: 0 0 15px 0;
+    color: #48515F;
+    -moz-text-shadow: #fff;
+    text-shadow: #fff;
+    line-height: 120%;
+    font-size: 20px;
+}
+#onp-confirm-dialog-wrap p {
+    margin: 0px;
+}
+#onp-confirm-dialog-wrap .onp-actions {
+    padding-top: 20px;
+}
+#onp-confirm-dialog-wrap .onp-actions a + a {
+    margin-left: 10px;
+}
+
+#opanda_alt_overlap_mode {
+    max-width: 200px;
+}
+#opanda_na_mode {
+    max-width: 300px;
+}
+
+/** ---
+* Common
+*/
+
+.control-group > * {
+    vertical-align: middle;
+}
+.factory-dropdown.factory-buttons-way {
+    margin-bottom: 15px;
+}
+.control-group .btn {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 12px 0px 12px;
+
+}
+.factory-bootstrap-329 .factory-after {
+    margin-left: 2px;
+}
+
+/** ---
+* Social Options
+*/
+
+#opanda_twitter_use_dev_keys {
+    width: 250px !important;
+}
+
+/** ---
+* Subscription Options
+*/
+
+.opanda-screen-subscription .factory-dropdown .factory-hint {
+    background: none;
+    color: #737373;
+}
+
+.opanda-aweber-steps ul,
+.opanda-aweber-steps span,
+.opanda-aweber-steps a {
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 28px;
+}
+
+.opanda-screen-subscription  .dd-option-image, 
+.opanda-screen-subscription  .dd-selected-image {
+    max-width: 110px !important;
+    margin-left: 20px;
+}
+
+.opanda-screen-subscription .dd-options {
+    max-height: 400px;
+}
+.opanda-screen-subscription .dd-options li {
+   margin-bottom: 0px;
+}
+
+/** ---
+* Lock Options
+*/
+
+.opanda-screen-lock .opanda-example {
+    display: none;
+}
+.opanda-screen-lock .opanda-url {
+    color: #0074a2;
+    text-decoration: none;
+}
+.opanda-screen-lock .opanda-url:hover {
+    text-decoration: underline;
+}
+.opanda-screen-lock .opanda-passcode {
+    font-weight: bold;
+    color: #0074a2;
+}
+
+/** ---
+* Font-end Text
+*/
+
+.opanda-screen-text .factory-legend {
+    margin-bottom: 40px;
+    background-color: rgba(255,255,255,0.6) !important;
+
+    border-radius: 3px;
+    border-bottom: 1px solid #e3e3e3;
+   
+    padding: 15px !important;
+}
+.opanda-screen-text .factory-legend + .factory-separator {
+    margin-bottom: 40px;
+}
+.opanda-screen-text fieldset + fieldset {
+    margin-top: 30px !important;
+}
+.opanda-screen-text .form-horizontal {
+    max-width: 750px;
+}
+.opanda-screen-text label {
+    width: 220px;
+}
+.opanda-screen-text .control-group {
+    width: 500px !important;
+}
+.opanda-screen-text input[type=text], 
+.opanda-screen-text textarea {
+    max-width: none;
+} 
+
+.opanda-screen-text .opanda-width-short {
+    width: 200px;
+}
+.opanda-screen-text fieldset .factory-separator {
+    border-top: 0px;
+    border-bottom: 1px dashed #d9d9d9;
+}
+
+.opanda-screen-text .factory-form-group .factory-hint {
+    font-size: 13px;
+}
+
+.opanda-screen-terms #opanda-enabled-options,
+.opanda-screen-terms #opanda-nopages-options,
+.opanda-screen-terms #opanda-pages-options {
+    display: none;
+}
+
+.opanda-screen-terms #opanda_terms_of_use_text,
+.opanda-screen-terms #opanda_privacy_policy_text {
+    max-width: none;
+}
+
+.opanda-screen-terms .wp-editor-wrap  {
+    max-width: 800px;
+}
