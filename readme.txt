@@ -149,10 +149,9 @@ For example, you can set an URL to like for your Facebook Page (in order to send
 
 == Changelog ==
 
-<strong>v.4.2.7 - 28 Nov 2015</strong><br />
+<strong>v.4.2.8 - 30 Nov 2015</strong><br />
 <ul>
-<li>FIXED: A bug when Tweet and Follow buttons unlocked content immediately after clicking on the buttons.</li>
-<li>FIXED: A set of security issues.</li>
+<li>FIXED: Tweet button.</li>
 </ul>
 
 <p><strong>Important:</strong> if you use CDN, please purge your CDN after installing this update.</p>

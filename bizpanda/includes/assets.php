@@ -153,12 +153,12 @@ class OPanda_AssetsManager {
 
         wp_enqueue_style( 
             'opanda-lockers', 
-            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010105.min.css'
+            OPANDA_BIZPANDA_URL . '/assets/css/lockers.010106.min.css'
         );
 
         wp_enqueue_script( 
             'opanda-lockers',
-            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010105.min.js',
+            OPANDA_BIZPANDA_URL . '/assets/js/lockers.010106.min.js',
             array('jquery', 'jquery-effects-core', 'jquery-effects-highlight'), false, true
         );
         
